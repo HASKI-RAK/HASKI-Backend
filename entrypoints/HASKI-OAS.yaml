@@ -24,7 +24,7 @@ tags:
 - name: "Admin"
   description: "All Admin endpoints"
 paths:
-  /user/{user_id}/{lms_user_id}: #Y
+  /user/{user_id}/{lms_user_id}:
     get:
       tags:
       - "HASKI-intern"
@@ -1003,7 +1003,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TopicStudent'
+                $ref: '#/components/schemas/Topic'
         "400":
           description: "Bad Request"
           content:
@@ -1066,7 +1066,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TopicStudent'
+                $ref: '#/components/schemas/LearningElement'
         "400":
           description: "Bad Request"
           content:
@@ -1141,7 +1141,80 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GeneralError' #ToDo
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      tags:
+        - "HASKI-intern"
+        - "Student"
+      summary: "Post Student Learning Path"
+      description: "Post a topic learning path for a specific Student in a specific Course"
+      operationId: "postStudentCoursesTopicLearningPath"
+      parameters:
+        - name: "user_id"
+          in: "path"
+          description: "The ID of the User"
+          required: true
+          schema:
+            type: "string"
+          example: 1
+        - name: "lms_user_id"
+          in: "path"
+          description: "The Moodle ID of the User"
+          required: true
+          schema:
+            type: "string"
+          example: 1
+        - name: "student_id"
+          in: "path"
+          description: "The ID of the Student"
+          required: true
+          schema:
+            type: "string"
+          example: 1
+        - name: "course_id"
+          in: "path"
+          description: "The ID of the Course"
+          required: true
+          schema:
+            type: "string"
+          example: 1
+        - name: "topic_id"
+          in: "path"
+          description: "The ID of the Topic"
+          required: true
+          schema:
+            type: "string"
+          example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                algorithm:
+                  type: "string"
+                  example: "aco"
+                  description: "The algorithm, the LP should be based on"
+      responses:
+        "200":
+          description: "Successful Operation"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LearningElementsPath'
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
   /user/{user_id}/{lms_user_id}/student/{student_id}/course/{course_id}/topic/{topic_id}/subtopic:
     get:
       tags:
@@ -1325,7 +1398,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LearningElementStudent'
+                $ref: '#/components/schemas/LearningElement'
         "400":
           description: "Bad Request"
           content:
@@ -2155,7 +2228,48 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CourseStudent'
+                $ref: '#/components/schemas/StudentCourse'
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError' #Y
+  /lms/course/{course_id}/teacher/{teacher_id}:
+    post:
+      tags:
+        - "Moodle"
+      summary: "Add Teacher Course"
+      description: "Add a Teacher to a Course"
+      operationId: "postTeacherCourse"
+      parameters:
+        - name: "course_id"
+          in: "path"
+          description: "The ID of the Course"
+          required: true
+          schema:
+            type: "string"
+          example: 1
+        - name: "teacher_id"
+          in: "path"
+          description: "The ID of the Teacher"
+          required: true
+          schema:
+            type: "string"
+          example: 1
+      responses:
+        "201":
+          description: "Successful Operation"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeacherCourse'
         "400":
           description: "Bad Request"
           content:
@@ -2172,8 +2286,8 @@ paths:
     post:
       tags:
       - "Moodle"
-      summary: "Post ILS Questionnaire"
-      description: "Post the answers to the ILS Questionnaire for a specific User from Moodle"
+      summary: "Post Questionnaire"
+      description: "Post the answers to the Questionnaire for a specific User from Moodle"
       operationId: "postIlsMoodle"
       parameters:
         - name: "student_id"
@@ -2202,7 +2316,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LearningStyle'
+                $ref: '#/components/schemas/QuestionnaireAnswer'
         "400":
           description: "Bad Request"
           content:
@@ -2382,89 +2496,6 @@ components:
           type: "string"
           example: "TH-AB"
           description: "To which university belongs the Course"
-    CourseAdmin:
-      type: "object"
-      properties:
-        id:
-          type: "integer"
-          format: "int64"
-          example: 1
-          description: "The course ID within HASKI"
-        name:
-          type: "string"
-          example: "Test Course"
-          description: "The name of the course"
-        lms_id:
-          type: "integer"
-          format: "int64"
-          example: 1
-          description: "The ID of the course from the LMS"
-        created_by:
-          type: "string"
-          example: "Maria Musterfrau"
-          description: "Who created the course"
-        created_at:
-          type: "string"
-          format: "date-time"
-          example: "2017-07-21T17:32:28Z"
-          description: "When was the course created"
-        last_updated:
-          type: "string"
-          format: "date-time"
-          example: "2017-07-21T17:32:28Z"
-          description: "When was the course last updated"
-        university:
-          type: "string"
-          example: "TH-AB"
-          description: "To which university belongs the Course"
-    CoursesAdmin:
-      type: "object"
-      properties:
-        courses:
-          type: "array"
-          items:
-            $ref: '#/components/schemas/CourseAdmin'
-    CourseCourseCreator:
-      type: "object"
-      properties:
-        id:
-          type: "integer"
-          format: "int64"
-          example: 1
-          description: "The course ID within HASKI"
-        name:
-          type: "string"
-          example: "Test Course"
-          description: "The name of the course"
-        lms_id:
-          type: "integer"
-          format: "int64"
-          example: 1
-          description: "The ID of the course from the LMS"
-        created_at:
-          type: "string"
-          format: "date-time"
-          example: "2017-07-21T17:32:28Z"
-          description: "When was the course created"
-        last_updated:
-          type: "string"
-          format: "date-time"
-          example: "2017-07-21T17:32:28Z"
-          description: "When was the course last updated"
-        nr_teachers:
-          type: "integer"
-          format: "int64"
-          example: 3
-          description: "The number of Teachers within the course"
-        teachers:
-          $ref: '#/components/schemas/UsersList'
-    CoursesCourseCreator:
-      type: "object"
-      properties:
-        courses:
-          type: "array"
-          items:
-            $ref: '#/components/schemas/CourseCourseCreator'
     CourseStudent:
       type: "object"
       properties:
@@ -2482,11 +2513,24 @@ components:
           format: "int64"
           example: 1
           description: "The ID of the course from the LMS"
-        time_spend:
-          type: "number"
-          format: "double"
-          example: 234.56
-          description: "The time spend in the course in minutes"
+        created_at:
+          type: "string"
+          format: "date-time"
+          example: "2017-07-21T17:32:28Z"
+          description: "When was the course created"
+        created_by:
+          type: "string"
+          example: "Max Mustermann"
+          description: "Who created the course"
+        last_updated:
+          type: "string"
+          format: "date-time"
+          example: "2017-07-21T17:32:28Z"
+          description: "When was the course last updated"
+        university:
+          type: "string"
+          example: "TH-AB"
+          description: "The university the course belongs to"
     CoursesStudent:
       type: "object"
       properties:
@@ -2494,277 +2538,13 @@ components:
           type: "array"
           items:
             $ref: '#/components/schemas/CourseStudent'
-    CourseTeacher:
-      type: "object"
-      properties:
-        id:
-          type: "integer"
-          format: "int64"
-          example: 1
-          description: "The course ID within HASKI"
-        name:
-          type: "string"
-          example: "Test Course"
-          description: "The name of the course"
-        lms_id:
-          type: "integer"
-          format: "int64"
-          example: 1
-          description: "The ID of the course from the LMS"
-        user_nr:
-          type: "integer"
-          format: "int64"
-          example: 42
-          description: "The number of students enrolled in the course"
-        created_at:
-          type: "string"
-          format: "date-time"
-          example: "2017-07-21T17:32:28Z"
-          description: "When was the course created"
-        last_updated:
-          type: "string"
-          format: "date-time"
-          example: "2017-07-21T17:32:28Z"
-          description: "When was the course last updated"
     CoursesTeacher:
       type: "object"
       properties:
         courses:
           type: "array"
           items:
-            $ref: '#/components/schemas/CourseTeacher'
-    DashboardStudentCourse:
-      type: "object"
-      properties:
-        topics:
-          type: "array"
-          items:
-            $ref: "#/components/schemas/TopicStudent"
-        learning_style:
-          type: "array"
-          items:
-            $ref: '#/components/schemas/LearningStyle'
-        learning_style_course:
-          type: "array"
-          items:
-            $ref: '#/components/schemas/LearningStyle'
-    DashboardStudentOverview:
-      type: "object"
-      properties:
-        courses:
-          type: "array"
-          items:
-            $ref: '#/components/schemas/CourseStudent'
-        learning_style:
-          type: "array"
-          items:
-            $ref: '#/components/schemas/LearningStyle'
-        learning_strategy:
-          type: "array"
-          items:
-            $ref: '#/components/schemas/LearningStrategy'
-    DashboardStudentTopic:
-      type: "object"
-      properties:
-        topics:
-          type: "array"
-          items:
-            $ref: "#/components/schemas/TopicStudent"
-    DashboardStudentSubTopic:
-      type: "object"
-      properties:
-        learning_elements:
-          type: "array"
-          items:
-            $ref: "#/components/schemas/LearningElementStudent"
-    DashboardTeacherClicks:
-      type: "object"
-      properties:
-        topic_name:
-          type: "string"
-          example: "Test Topic 1"
-          description: "The name of the topic"
-        popularity:
-          type: "number"
-          format: "double"
-          example: 7.8
-          description: "The popularity value of the topics"
-    DashboardTeacherClicksLE:
-      type: "object"
-      properties:
-        topic_name:
-          type: "string"
-          example: "Test Learning Element 1"
-          description: "The name of the LE"
-        visits:
-          type: "integer"
-          format: "int64"
-          example: 42
-          description: "The nr of visits of the learning element"
-    DashboardTeacherCourse:
-      type: "object"
-      properties:
-        learning_style:
-          type: "array"
-          items:
-            $ref: '#/components/schemas/LearningStyleTeacher'
-        performer:
-          type: "array"
-          items:
-            $ref: '#/components/schemas/Performer'
-        time_spend:
-          type: "array"
-          items:
-            $ref: '#/components/schemas/TimeTrackerTeacher'
-    DashboardTeacherFeedback:
-      type: "object"
-      properties:
-        learning_element_name:
-          type: "string"
-          example: "Test Learning Element 1"
-          description: "The name of the learning element"
-        score:
-          type: "number"
-          format: "double"
-          example: 4.2
-          description: "The rating of the LE"
-    DashboardTeacherKnowledge:
-      type: "object"
-      properties:
-        score:
-          type: "number"
-          format: "double"
-          example: 56.7
-          description: "The knowledge score of a student"
-    DashboardTeacherKnowledgeLE:
-      type: "object"
-      properties:
-        error_analysis:
-          type: "array"
-          items:
-            type: "object"
-            properties:
-              learning_element_name:
-                type: "string"
-                example: "Test Learning Element 1"
-                description: "The name of the learning element"
-              first_try:
-                type: "integer"
-                format: "int64"
-                example: 10
-                description: "The nr of students, that managed to have correct answers in the first try"
-              second_try:
-                type: "integer"
-                format: "int64"
-                example: 30
-                description: "The nr of students, that managed to have correct answers in the second try"
-              third_try:
-                type: "integer"
-                format: "int64"
-                example: 8
-                description: "The nr of students, that managed to have correct answers in the third or more tries"
-        learning_progress:
-          type: "array"
-          items:
-            type: "object"
-            properties:
-              learning_element_name:
-                type: "string"
-                example: "Test Learning Element 1"
-                description: "The name of the learning element"
-              min_point:
-                type: "number"
-                format: "double"
-                example: 0.15
-                description: "The percantage of points scored minimum"
-              avg_point:
-                type: "number"
-                format: "double"
-                example: 0.6
-                description: "The percantage of points scored on average"
-              max_point:
-                type: "number"
-                format: "do2le"
-                example: 0.25
-                description: "The percantage of points scored maximum"
-    DashboardTeacherLearningElements:
-      type: "object"
-      properties:
-        feedback:
-          type: "array"
-          items:
-            $ref: '#/components/schemas/DashboardTeacherFeedback'
-        clicks:
-          type: "array"
-          items:
-            $ref: '#/components/schemas/DashboardTeacherClicksLE'
-        knowledge:
-          type: "array"
-          items:
-            $ref: '#/components/schemas/DashboardTeacherKnowledgeLE'
-        time:
-          type: "array"
-          items:
-            $ref: '#/components/schemas/DashboardTeacherTimeLE'
-    DashboardTeacherTime:
-      type: "object"
-      properties:
-        month:
-          type: "integer"
-          format: "int64"
-          example: 1
-          description: "The number of the month that is measured"
-        topics:
-          type: "array"
-          items:
-            type: "object"
-            properties:
-              topic_name: 
-                type: "string"
-                example: "Test Topic 1"
-                description: "The name of the topic"
-              time_spend:
-                type: "number"
-                format: "double"
-                example: 50.3
-                description: "The time spend in the topic on average"
-    DashboardTeacherTimeLE:
-      type: "object"
-      properties:
-        learning_element_name:
-          type: "string"
-          example: "Test Learning Element 1"
-          description: "The name of the learning element"
-        min_time:
-          type: "number"
-          format: "double"
-          example: 3.5
-          description: "The time spend minimum in that LE"
-        avg_time:
-          type: "number"
-          format: "double"
-          example: 7.2
-          description: "The time spend on average in that LE"
-        max_time:
-          type: "number"
-          format: "double"
-          example: 12.9
-          description: "The time spend maximum in that LE"
-    DashboardTeacherTopic:
-      type: "object"
-      properties:
-        clicks:
-          type: "array"
-          items:
-            $ref: '#/components/schemas/DashboardTeacherClicks'
-        knowledge:
-          type: "array"
-          items:
-            $ref: '#/components/schemas/DashboardTeacherKnowledge'
-        time:
-          type: "array"
-          items:
-            $ref: '#/components/schemas/DashboardTeacherTime'
+            $ref: '#/components/schemas/Course'
     Deletion:
       type: "object"
       properties:
@@ -3102,29 +2882,56 @@ components:
             description: "The answer the student selected"
     Knowledge:
       type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+          example: 1
+          description: "The ID of the data"
+        characteristic_id:
+          type: "integer"
+          format: "int64"
+          example: 1
+          description: "The ID of the characteristic"
     LearningAnalytics:
       type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+          example: 1
+          description: "The ID of the data"
+        characteristic_id:
+          type: "integer"
+          format: "int64"
+          example: 1
+          description: "The ID of the characteristic"
     LearningCharacteristics:
       type: "object"
       properties:
+        id:
+          type: "integer"
+          format: "int64"
+          example: 1
+          description: "The ID of the data"
         learning_style:
-          type: "array"
-          items:
-            $ref: '#/components/schemas/LearningStyle'
+          $ref: '#/components/schemas/LearningStyle'
         learning_strategy:
-          type: "array"
-          items:
-            $ref: '#/components/schemas/LearningStrategy'
+          $ref: '#/components/schemas/LearningStrategy'
         knowledge:
-          type: "array"
-          items:
-            $ref: '#/components/schemas/Knowledge'
+          $ref: '#/components/schemas/Knowledge'
         learning_analytics:
-          type: "array"
-          items:
-            $ref: '#/components/schemas/LearningAnalytics'
+          $ref: '#/components/schemas/LearningAnalytics'
     LearningElement:
       type: "object"
+      required:
+        - "lms_id"
+        - "activity_type"
+        - "classification"
+        - "name"
+        - "created_by"
+        - "created_at"
+        - "university"
       properties:
         id:
           type: "integer"
@@ -3166,6 +2973,10 @@ components:
           type: "string"
           example: "TH-AB"
           description: "The university the LE belongs to"
+        student_learning_element:
+          type: "array"
+          items:
+            $ref: '#/components/schemas/LearningElementStudent'
     LearningElementStudent:
       type: "object"
       properties:
@@ -3173,24 +2984,17 @@ components:
           type: "integer"
           format: "int64"
           example: 1
-          description: "The id of the learning element"
-        lms_id:
+          description: "The id of the data"
+        learning_element_id:
           type: "integer"
           format: "int64"
           example: 1
-          description: "The ID of the learning element from the LMS"
-        activity_type:
-          type: "string"
-          example: "Quiz"
-          description: "The type of activity from the LMS"
-        classification:
-          type: "string"
-          example: "RQ"
-          description: "The classification of the LE according to Graf et al."
-        name:
-          type: "string"
-          example: "Test Learning Element"
-          description: "The name of the LE"
+          description: "The id of the learning element"
+        student_id:
+          type: "integer"
+          format: "int64"
+          example: 1
+          description: "The id of the student"
         done:
           type: "boolean"
           example: false
@@ -3200,62 +3004,124 @@ components:
           format: "date-time"
           example: "2017-07-21T17:32:28Z"
           description: "When was the LE completed"
-        nr_of_visits:
-          type: "integer"
-          format: "int64"
-          example: 3
-          description: "The number of times the LE was clicked on"
-        last_visit:
-          type: "string"
-          format: "date-time"
-          example: "2017-07-21T17:32:28Z"
-          description: "When was the last time, the LE was opened?"
-        time_spend:
-          type: "number"
-          format: "double"
-          example: 123.45
-          description: "The time spend within the LE in minutes"
-        is_recommended:
-          type: "boolean"
-          example: true
-          description: "Is the LE recommended"
     LearningElementsStudent:
       type: "object"
       properties:
         learning_elements:
           type: "array"
           items:
-            $ref: '#/components/schemas/LearningElementStudent'
+            $ref: '#/components/schemas/LearningElement'
     LearningElementsPath:
       type: "array"
       items:
         type: "object"
         properties:
-          position:
+          based_on:
+            type: "string"
+            example: "aco"
+            description: "The Algorithm, the path is based on"
+          calculated_on:
+            type: "string"
+            format: "date-time"
+            example: "2017-07-21T17:32:28Z"
+            description: "When was the path calculated?"
+          course_id:
             type: "integer"
             format: "int64"
             example: 1
-            description: "The position of the learning element within the path"
-          learning_element:
-            $ref: '#/components/schemas/LearningElementStudent'
+            description: "The ID of the course"
+          id:
+            type: "integer"
+            format: "int64"
+            example: 1
+            description: "The ID of the data"
+          path:
+            type: "array"
+            items:
+              type: "object"
+              properties:
+                id:
+                  type: "integer"
+                  format: "int64"
+                  example: 1
+                  description: "The ID of the data"
+                position:
+                  type: "integer"
+                  format: "int64"
+                  example: 1
+                  description: "The position of the learning element within the path"
+                recommended:
+                  type: "boolean"
+                  example: true
+                  description: "Is the LE recommended?"
+                learning_path_id:
+                  type: "integer"
+                  format: "int64"
+                  example: 1
+                  description: "The ID of the Learning Path"
+                learning_element_id:
+                  type: "integer"
+                  format: "int64"
+                  example: 1
+                  description: "The ID of the LE"
+                learning_element:
+                  $ref: '#/components/schemas/LearningElement'
     LearningElementVisit:
       type: "object"
+      required:
+        - "visit_start"
       properties:
         visit_start:
           type: "string"
           format: "date-time"
           example: "2017-07-21T17:32:28Z"
-          description: "When was the learning element visited"
-        previous_learning_element_id:
-          type: "number"
-          format: "integer"
+          description: "When was the LE visited"
+        visit_end:
+          type: "string"
+          format: "date-time"
+          example: "2017-07-21T17:32:28Z"
+          description: "When was the LE visit end"
+        id:
+          type: "integer"
+          format: "int64"
           example: 1
-          description: "The ID of the learning element, that was clicked before"
+          description: "The ID of the data"
+        student_id:
+          type: "integer"
+          format: "int64"
+          example: 1
+          description: "The ID of the student"
+        learning_element_id:
+          type: "integer"
+          format: "int64"
+          example: 1
+          description: "The ID of the LE"
     LearningStrategy:
       type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+          example: 1
+          description: "The ID of the data"
+        characteristic_id:
+          type: "integer"
+          format: "int64"
+          example: 1
+          description: "The ID of the characteristic"
     LearningStyle:
       type: "object"
       properties:
+        id:
+          type: "integer"
+          format: "int64"
+          example: 1
+          description: "The ID of the data"
+        characteristic_id:
+          type: "integer"
+          format: "int64"
+          example: 1
+          description: "The ID of the characteristic"
         perception_dimension:
           type: "string"
           example: "SNS"
@@ -3292,73 +3158,20 @@ components:
           format: "int64"
           example: 7
           description: "The dimension value for understanding according to Felder-Silverman"
-    LearningStyleTeacher:
-      type: "object"
-      properties:
-        perception_avg:
-          type: "number"
-          format: "double"
-          example: 3.1
-          description: "The average of the perception dimension"
-        perception_min:
-          type: "number"
-          format: "double"
-          example: -9.5
-          description: "The minimum of the perception dimension"  
-        perception_max:
-          type: "number"
-          format: "double"
-          example: 8.7
-          description: "The maximum of the perception dimension"
-        input_avg:
-          type: "number"
-          format: "double"
-          example: 3.1
-          description: "The average of the input dimension"
-        input_min:
-          type: "number"
-          format: "double"
-          example: -9.5
-          description: "The minimum of the input dimension"  
-        input_max:
-          type: "number"
-          format: "double"
-          example: 8.7
-          description: "The maximum of the input dimension"
-        processing_avg:
-          type: "number"
-          format: "double"
-          example: 3.1
-          description: "The average of the processing dimension"
-        processing_min:
-          type: "number"
-          format: "double"
-          example: -9.5
-          description: "The minimum of the processing dimension"  
-        processing_max:
-          type: "number"
-          format: "double"
-          example: 8.7
-          description: "The maximum of the processing dimension"
-        understanding_avg:
-          type: "number"
-          format: "double"
-          example: 3.1
-          description: "The average of the understanding dimension"
-        understanding_min:
-          type: "number"
-          format: "double"
-          example: -9.5
-          description: "The minimum of the understanding dimension"  
-        understanding_max:
-          type: "number"
-          format: "double"
-          example: 8.7
-          description: "The maximum of the understanding dimension"
     ListKQuestionnaire:
       type: "array"
       items:
         type: "object"
+        properties:
+          question_id: 
+            type: "string"
+            example: "vv_1_f3"
+            description: "The ID of the question from the LIST-K and the number of the question in the questionnaire"
+          answer:
+            type: "integer"
+            format: "int64"
+            example: 5
+            description: "The answer the student selected"
     Logs:
       type: "object"
       properties:
@@ -3398,24 +3211,6 @@ components:
           type: "string"
           example: "Calculation of new learning Path"
           description: "Message from the log"
-    Performer:
-      type: "object"
-      properties:
-        poor_performer:
-          type: "number"
-          format: "double"
-          example: 0.1
-          description: "The percentage of poor performer"
-        average_performer:
-          type: "number"
-          format: "double"
-          example: 0.6
-          description: "The percentage of average performer"
-        high_performer:
-          type: "number"
-          format: "double"
-          example: 0.3
-          description: "The percentage of high performer"
     Questionnaire:
       type: "object"
       properties:
@@ -3423,19 +3218,129 @@ components:
           $ref: '#/components/schemas/IlsQuestionnaire'
         list_k:
           $ref: '#/components/schemas/ListKQuestionnaire'
+    QuestionnaireAnswer:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+          example: 1
+          description: "The ID of the Questionnaire"
+        student_id:
+          type: "integer"
+          format: "int64"
+          example: 1
+          description: "The ID of the Student"
+        learning_style:
+          $ref: '#/components/schemas/LearningStyle'
+        learning_strategy:
+          $ref: '#/components/schemas/LearningStrategy'
     Settings:
       type: "object"
-      required:
-      - "password"
       properties:
+        id:
+          type: "number"
+          format: "int64"
+          example: 1
+          description: "The ID of the settings"
+        user_id:
+          type: "number"
+          format: "int64"
+          example: 1
+          description: "The ID of the User"
         theme:
-          type: "array"
-          items:
-            $ref: '#/components/schemas/Theme'
+          type: "string"
+          example: "standard"
+          description: "The theme of the user"
         password:
           type: "string"
           example: "password"
           description: "The password of the User"
+    StudentCourse:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+          example: 1
+          description: "The course ID within HASKI"
+        course_id:
+          type: "integer"
+          format: "int64"
+          example: 1
+          description: "The ID of the course"
+        student_id:
+          type: "integer"
+          format: "int64"
+          example: 1
+          description: "The ID of the student"
+        input_dimension:
+          type: "string"
+          example: "vrb"
+          description: "The Input-Dimension (vis or vrb) for the student"
+        input_value:
+          type: "integer"
+          format: "int64"
+          example: 7
+          description: "The Value for the Input-Dimension for the student"
+        perception_dimension:
+          type: "string"
+          example: "vrb"
+          description: "The perception-Dimension (sns or int) for the student"
+        perception_value:
+          type: "integer"
+          format: "int64"
+          example: 7
+          description: "The Value for the perception-Dimension for the student"
+        processing_dimension:
+          type: "string"
+          example: "vrb"
+          description: "The processing-Dimension (act or ref) for the student"
+        processing_value:
+          type: "integer"
+          format: "int64"
+          example: 7
+          description: "The Value for the processing-Dimension for the student"
+        understanding_dimension:
+          type: "string"
+          example: "vrb"
+          description: "The understanding-Dimension (glo or seq) for the student"
+        understanding_value:
+          type: "integer"
+          format: "int64"
+          example: 7
+          description: "The Value for the understanding-Dimension for the student"
+    StudentTopic:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+          example: 1
+          description: "The ID of the data"
+        student_id:
+          type: "integer"
+          format: "int64"
+          example: 1
+          description: "The ID of the student"
+        topic_id:
+          type: "integer"
+          format: "int64"
+          example: 1
+          description: "The ID of the topic"
+        done:
+          type: "boolean"
+          example: false
+          description: "Is the topic done?"
+        done_at:
+          type: "string"
+          format: "date-time"
+          example: "2017-07-21T17:32:28Z"
+          description: "When was it done?"
+        visits:
+          type: "array"
+          items:
+            $ref: '#/components/schemas/TopicVisit'
     SystemLog:
       type: "object"
       properties:
@@ -3448,48 +3353,24 @@ components:
           type: "string"
           example: "System is up and running."
           description: "Message from the log"
-    Theme:
+    TeacherCourse:
       type: "object"
       properties:
-        color:
-          type: "string"
-          example: "dark"
-          description: "The prefered color of the User"
-        style:
-          type: "string"
-          example: "dark"
-          description: "The prefered style of the User"
-        typography:
-          type: "string"
-          example: "Arial Black"
-          description: "The prefered typography of the User"
-        language:
-          type: "string"
-          example: "DE"
-          description: "The prefered language of the USer"
-    TimeTrackerTeacher:
-      type: "object"
-      properties:
-        month:
+        id:
           type: "integer"
           format: "int64"
           example: 1
-          description: "The month, the time is measured in"
-        min_time:
-          type: "number"
-          format: "double"
-          example: 15.4
-          description: "The minimum time a student spend in the course"
-        max_time:
-          type: "number"
-          format: "double"
-          example: 52.7
-          description: "The maximum time a student spend in the course"
-        avg_time:
-          type: "number"
-          format: "double"
-          example: 52.7
-          description: "The average time a student spend in the course"
+          description: "The ID of the Teacher-Course-Data"
+        course_id:
+          type: "integer"
+          format: "int64"
+          example: 1
+          description: "The ID of the Course"
+        teacher_id:
+          type: "integer"
+          format: "int64"
+          example: 1
+          description: "The ID of the Teacher"
     Topic:
       type: "object"
       properties:
@@ -3529,7 +3410,7 @@ components:
           format: "date-time"
           example: "2017-07-21T17:32:28Z"
           description: "When was the topic created?"
-        updated_at:
+        last_updated:
           type: "string"
           format: "date-time"
           example: "2017-07-21T17:32:28Z"
@@ -3538,91 +3419,47 @@ components:
           type: "string"
           example: "TH-AB"
           description: "The university the topic belongs to"
-    TopicStudent:
-      type: "object"
-      properties:
-        id:
-          type: "integer"
-          format: "int64"
-          example: 1
-          description: "The topic ID within HASKI"
-        name:
-          type: "string"
-          example: "Test Topic"
-          description: "The name of the topic"
-        lms_id:
-          type: "integer"
-          format: "int64"
-          example: 1
-          description: "The ID of the topic from the LMS"
-        is_topic:
-          type: "boolean"
-          example: true
-          description: "Declare whether a topic is a topic or a sub-topic"
-        parent_id:
-          type: "integer"
-          format: "int64"
-          example: 1
-          description: "The ID of the parent topic (if exists)"
-        contains_le:
-          type: "boolean"
-          example: false
-          description: "Does determine, whether a topic contais LEs (true) or other sub-topics (false)"
-        done:
-          type: "boolean"
-          example: false
-          description: "Are all learning elements/ sub-topics done within the topic"
-        done_percantage:
-          type: "number"
-          format: "double"
-          example: 75.25
-          description: "The percantage of done LEs/Sub-topics"
-        last_visit:
-          type: "string"
-          format: "date-time"
-          example: "2017-07-21T17:32:28Z"
-          description: "When was the last time, the topic was opened?"
-        time_spend:
-          type: "number"
-          format: "double"
-          example: 123.45
-          description: "The time spend within the topic in minutes"
-        is_recommended:
-          type: "boolean"
-          example: true
-          description: "Is the topic recommended"
+        student_topic:
+          type: "array"
+          items: 
+            $ref: '#/components/schemas/StudentTopic'
     TopicsStudent:
       type: "object"
       properties:
         topics:
           type: "array"
           items:
-            $ref: '#/components/schemas/TopicStudent'
-    TopicsPath:
-      type: "array"
-      items:
-        type: "object"
-        properties:
-          position:
-            type: "integer"
-            format: "int64"
-            example: 1
-            description: "The position of the topic within the path"
-          topic:
-            $ref: '#/components/schemas/TopicStudent'
+            $ref: '#/components/schemas/Topic'
     TopicVisit:
       type: "object"
+      required:
+        - "visit_start"
       properties:
         visit_start:
           type: "string"
           format: "date-time"
           example: "2017-07-21T17:32:28Z"
           description: "When was the topic visited"
-        previous_topic_id:
-          type: "number"
-          format: "integer"
+        visit_end:
+          type: "string"
+          format: "date-time"
+          example: "2017-07-21T17:32:28Z"
+          description: "When was the topic visit end"
+        id:
+          type: "integer"
+          format: "int64"
           example: 1
-          description: "The ID of the topic, that was clicked before"
+          description: "The ID of the data"
+        student_id:
+          type: "integer"
+          format: "int64"
+          example: 1
+          description: "The ID of the student"
+        topic_id:
+          type: "integer"
+          format: "int64"
+          example: 1
+          description: "The ID of the topic"
     User:
       type: "object"
       required:
@@ -3653,36 +3490,19 @@ components:
           type: "string"
           example: "Student"
           description: "The role the User has in the System"
+        role_id:
+          type: "number"
+          format: "int64"
+          example: 1
+          description: "The ID for the role"
         settings:
           type: "array"
           items: 
             $ref: '#/components/schemas/Settings'
-    UsersList:
-      type: "array"
-      items:
-        type: "object"
-        properties:
-          name:
-            type: "string"
-            example: "Maria Musterfrau"
-            description: "The name of the User"
     UsersListAdmin:
       type: "object"
       properties:
         users:
           type: "array"
           items:
-            type: "object"
-            properties:
-              name:
-                type: "string"
-                example: "Maria Musterfrau"
-                description: "The name of the User"
-              role:
-                type: "string"
-                example: "Student"
-                description: "The role of the User"
-              university:
-                type: "string"
-                example: "TH-AB"
-                description: "The university of the User"
+            $ref: '#/components/schemas/User'
