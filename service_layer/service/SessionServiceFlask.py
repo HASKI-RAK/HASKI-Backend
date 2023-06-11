@@ -47,10 +47,12 @@ def set_state_jwt(nonce_identifier: str, auth_login_url: str, tool_url: str):
     if nonce_identifier not in sessions:
         sessions[nonce_identifier] = Session()
     sessions[nonce_identifier]['state'] = CryptoRandom().getrandomstring(32)
-    sessions[nonce_identifier]['state_jwt'] = JWTKeyManagement.generate_state_jwt(nonce_identifier,
-                                                                                  sessions[nonce_identifier]['state'],
-                                                                                  auth_login_url,
-                                                                                  tool_url)
+    sessions[nonce_identifier]['state_jwt'] = JWTKeyManagement.generate_state_jwt(
+        nonce_identifier,
+        sessions[nonce_identifier]['state'],
+        auth_login_url,
+        tool_url
+    )
     return sessions[nonce_identifier]['state_jwt']
 
 
