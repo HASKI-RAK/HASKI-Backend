@@ -1,56 +1,61 @@
 import datetime
 import json
 import os
-import pickle
 from typing import Any, Mapping
+
+from cryptography.hazmat.primitives import serialization as crypto_serialization
 from jose import JWSError, jws, jwk
 from jose.backends.base import Key
-from cryptography.hazmat.primitives import serialization as crypto_serialization
-from errors.errors import InvalidJWTError
-from config import get_project_root
 
-from service_layer.crypto.cryptorandom import CryptoRandom
-from service_layer.lti import LaunchDataStorage
 import service_layer.service.SessionServiceFlask as SessionServiceFlask
+from config import get_project_root
+from errors.errors import InvalidJWTError
 
-private_key_location : str = os.path.join(get_project_root(),"keys/private.pem")
-public_key_location : str = os.path.join(get_project_root(),"keys/public.pem")
+private_key_location: str = os.path.join(get_project_root(), "keys/private.pem")
+public_key_location: str = os.path.join(get_project_root(), "keys/public.pem")
+
 
 def load_public_key():
     with open(os.path.abspath(public_key_location), "rb") as key_file:
         public_key = crypto_serialization.load_pem_public_key(key_file.read())
         return public_key.public_bytes(crypto_serialization.Encoding.PEM,
-                            crypto_serialization.PublicFormat.SubjectPublicKeyInfo)
+                                       crypto_serialization.PublicFormat.SubjectPublicKeyInfo)
 
-def construct_key(key : str | bytes | dict[str, Any] | Key):
+
+def construct_key(key: str | bytes | dict[str, Any] | Key):
     return jwk.construct(key)
 
-def verify_jwt(jwt_token : str, key : str | bytes | Mapping[str, Any] | Key = load_public_key().decode()):
-    ''' Returns the payload of the JWT token if it is valid, otherwise raises an exception'''
+
+def verify_jwt(jwt_token: str, key: str | bytes | Mapping[str, Any] | Key = load_public_key().decode()):
+    """Returns the payload of the JWT token if it is valid, otherwise raises an exception"""
     try:
         return json.loads(jws.verify(jwt_token, key, algorithms=["RS256"]).decode('UTF-8'))
     except JWSError as e:
         raise InvalidJWTError(e)
 
-def get_unverified_header(jwt_token : str):
+
+def get_unverified_header(jwt_token: str):
     try:
         return jws.get_unverified_header(jwt_token)
     except JWSError as e:
         raise InvalidJWTError(e)
 
-def sign_jwt(payload : dict):
+
+def sign_jwt(payload: dict):
     with open(os.path.abspath(private_key_location), "rb") as key_file:
-            private_key = crypto_serialization.load_pem_private_key(key_file.read(), password=None)
+        private_key = crypto_serialization.load_pem_private_key(key_file.read(), password=None)
 
-            key_private = private_key.private_bytes(crypto_serialization.Encoding.PEM,
-                            crypto_serialization.PrivateFormat.PKCS8,
-                            crypto_serialization.NoEncryption())
-            return jws.sign(payload, key_private, algorithm="RS256")
+        key_private = private_key.private_bytes(crypto_serialization.Encoding.PEM,
+                                                crypto_serialization.PrivateFormat.PKCS8,
+                                                crypto_serialization.NoEncryption())
+        return jws.sign(payload, key_private, algorithm="RS256")
 
-def load_jwt(jwt_token : str):
+
+def load_jwt(jwt_token: str):
     return json.loads(jws.get_unverified_claims(jwt_token))
 
-def generate_nonce_jwt(nonce : str, audience : str, issuer : str):
+
+def generate_nonce_jwt(nonce: str, audience: str, issuer: str):
     nonce_jwt = {
         'nonce': nonce,
         'iat': datetime.datetime.utcnow().timestamp(),
@@ -61,7 +66,9 @@ def generate_nonce_jwt(nonce : str, audience : str, issuer : str):
     }
     return sign_jwt(nonce_jwt)
 
-def generate_state_jwt(nonce : str, state : str, audience : str, issuer : str, additional_claims : dict = {}, expiration : int = 60):
+
+def generate_state_jwt(nonce: str, state: str, audience: str, issuer: str, additional_claims: dict = {},
+                       expiration: int = 60):
     state_jwt = {
         'state': state,
         'nonce': nonce,
@@ -74,9 +81,10 @@ def generate_state_jwt(nonce : str, state : str, audience : str, issuer : str, a
     }
     return sign_jwt(state_jwt)
 
+
 def verify_jwt_payload(jwt_payload, verify_nonce=True) -> bool:
     """Verifies the payload of a JWT token. Returns True if the payload is valid, otherwise False."""
-    if verify_nonce and not SessionServiceFlask.get(jwt_payload['nonce'],'state'):
+    if verify_nonce and not SessionServiceFlask.get(jwt_payload['nonce'], 'state'):
         return False
     # verify issued at
     if jwt_payload['iat'] > datetime.datetime.utcnow().timestamp():
@@ -92,10 +100,11 @@ def verify_jwt_payload(jwt_payload, verify_nonce=True) -> bool:
         return False
     return True
 
+
 def verify_state_jwt_payload(state_jwt_payload) -> bool:
-    if verify_jwt_payload(state_jwt_payload) == False:
+    if not verify_jwt_payload(state_jwt_payload):
         return False
     # verify state in storage
-    if SessionServiceFlask.get(state_jwt_payload['nonce'],'state') != state_jwt_payload['state']:
+    if SessionServiceFlask.get(state_jwt_payload['nonce'], 'state') != state_jwt_payload['state']:
         return False
     return True
