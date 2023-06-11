@@ -34,8 +34,7 @@ class Session(dict):
     def is_expired(self):
         if self.expiration is None:
             return False
-        else:
-            return datetime.datetime.now() > self.expiration
+        return datetime.datetime.now() > self.expiration
 
 
 sessions: dict[str, Session] = {}  # key is nonce, value is session
@@ -66,10 +65,7 @@ def get(nonce_identifier: str, key):
     if nonce_identifier in sessions:
         if key in sessions[nonce_identifier]:
             return sessions[nonce_identifier][key]
-        else:
-            return None
-    else:
-        return None
+    return None
 
 
 def check_expiration():
