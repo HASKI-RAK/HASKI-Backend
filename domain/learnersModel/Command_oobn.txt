@@ -1,0 +1,1 @@
+python3 load_and_propagate.py LearnProfile_cc.oobn LearnProfile Result
