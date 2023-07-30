@@ -2386,37 +2386,37 @@ def get_user_info(uow: unit_of_work.AbstractUnitOfWork, user_id: str) -> str:
 
 
 def get_oidc_login(request: Request, tool_conf, session):
-    """Return OIDC login url or error response in case of wrong parameters, unsecure or request"""
+    ''' Return OIDC login url or error response in case of wrong parameters, unsecure or request'''
     oidc_login = OIDCLoginFlask(request, tool_conf, session=session)
     return oidc_login.check_params().auth_redirect() or Response("Error", status=500)
 
 
 def get_lti_launch(request: Request, tool_conf, session):
-    """Return LTI launch data or error response in case of wrong parameters, unsecure or request"""
+    ''' Return LTI launch data or error response in case of wrong parameters, unsecure or request'''
     oidc_login = OIDCLoginFlask(request, tool_conf, session=session)
     return oidc_login.verify_state().verify_id_token().lti_launch_from_id_token() or Response("Error", status=500)
 
 
 def get_login(request: Request, tool_conf, session):
-    """Return cookie value or None"""
+    ''' Return cookie value or None'''
     oidc_login = OIDCLoginFlask(request, tool_conf, session=session)
     return oidc_login.get_login() or None
 
 
 def get_loginstatus(request: Request, tool_conf, session):
-    """Return OK when logged in or None"""
+    '''Return OK when logged in or None'''
     oidc_login = OIDCLoginFlask(request, tool_conf, session=session)
     return oidc_login.get_loginstatus() or None
 
 
 def get_logout(request: Request, tool_conf, session):
-    """Return logout url or None"""
+    ''' Return logout url or None'''
     oidc_login = OIDCLoginFlask(request, tool_conf, session=session)
     return oidc_login.get_logout() or None
 
 
 def get_login_credentials(request: Request, tool_conf, session):
-    """Return login credentials or None"""
+    ''' Return login credentials or None'''
     # TODO: implement
     # response json
     return make_response("OK", 200)
