@@ -32,6 +32,10 @@ class Platform:
         self.deployment_ids = deployment_ids
 
     def instance(self):
+        """
+        Return an instance if the platform_name is a valid global variable name
+        and launch it, otherwise, return the current object.
+        """
         if self.platform_name in globals():
             return globals()[
                 self.platform_name
@@ -41,4 +45,5 @@ class Platform:
         return self
 
     def launch(self):
+        """Returns a simple launch response"""
         return "Launch from Platform", 200
