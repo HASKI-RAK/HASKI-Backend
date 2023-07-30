@@ -50,10 +50,9 @@ class OIDCLoginFlask(OIDCLogin):
                     status_code=400
                 )
             # store subset with values from request form in object
-            else:
-                self._oidc_login_params_dict = {
-                    key: self._request.form.get(key) for key in self.oidc_login_params
-                }
+            self._oidc_login_params_dict = {
+                key: self._request.form.get(key) for key in self.oidc_login_params
+            }
         except Exception as e:
             raise err.ErrorException(
                 e,

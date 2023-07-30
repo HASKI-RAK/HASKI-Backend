@@ -13,10 +13,10 @@ class JWTMessage:
 
     def __init__(self) -> None:
         """Check if all member variables are set"""
-        for key in self.__dict__:
-            if key == "azp":
-                continue
-            if self.__dict__[key] is None:
+        for key, val in self.__dict__:
+            if val is None:
+                if key == "azp":
+                    continue
                 raise ValueError(f"JWTMessage: {key} is not set")
 
 
@@ -116,17 +116,10 @@ class LTIIDToken(JWTMessage):
         self.__dict__.update(entries)
         super().__init__()
 
-        for key in self.__dict__:
-            if (
-                key == "deployment_id"
-                or key == "target_link_uri"
-                or key == "message_type"
-                or key == "nonce"
-            ):
-                if self.__dict__[key] is None:
+        for key, val in self.__dict__:
+            if key in ["deployment_id", "target_link_uri", "message_type", "nonce"]:
+                if val is None:
                     raise ValueError(f"LTIIDToken: {key} is not set")
-            else:
-                continue
 
     def __getitem__(self, key):
         return self.__dict__[key]
