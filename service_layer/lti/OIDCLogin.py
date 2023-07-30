@@ -45,4 +45,5 @@ class OIDCLogin(ABC):
     def make_url_accept_param(url):
         if '?' in url:
             return url + '&'
-        return url + '?'
+        else:
+            return url + '?'

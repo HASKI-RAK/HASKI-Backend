@@ -26,8 +26,7 @@ class OIDCLoginFlask(OIDCLogin):
         self._request = request
         self._cookie_service = cookie_service if cookie_service else CookieServiceFlask(request)
         self.oidc_login_params = {
-            'iss',
-            'client_id',
+            'iss', 'client_id',
             'login_hint',
             'lti_message_hint',
             'target_link_uri',
@@ -142,7 +141,7 @@ class OIDCLoginFlask(OIDCLogin):
         # verify state parameter signature
         state_form_jwt = self._request.form.get('state', type=str) or ''
         state_form = JWTKeyManagement.verify_jwt(state_form_jwt)
-        assert JWTKeyManagement.verify_state_jwt_payload(state_form)
+        assert (JWTKeyManagement.verify_state_jwt_payload(state_form))
 
         if not state_form:
             self._response = jsonify({'error': 'Invalid state signature'}), 403
@@ -162,7 +161,7 @@ class OIDCLoginFlask(OIDCLogin):
         if self._request.form.get('error'):
             self._response = jsonify({'error': self._request.form.get('error')}), 400
             return self
-        if not self._request.form.get('id_token'):
+        elif not self._request.form.get('id_token'):
             self._response = jsonify({'error': 'No id_token found'}), 400
             return self
 
@@ -333,7 +332,7 @@ class OIDCLoginFlask(OIDCLogin):
             self._response = jsonify({'message': 'No cookie found', 'status': 403})
             return make_response(self._response)
 
-        # verify state jwt in request cookie
+        # verify state jwt in request cookie        
         state_jwt = self._request.cookies.get('haski_state')
         if not state_jwt:
             self._response = jsonify({'message': 'No state found', 'status': 403})
