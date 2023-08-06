@@ -46,7 +46,7 @@ class MissingParameterError(AException):
         self,
         exception: Exception | None = None,
         message="Missing parameters in request.",
-        status_code=404,
+        status_code=400,
     ):
         super().__init__(exception, message, status_code)
 
@@ -76,7 +76,7 @@ class WrongParameterValueError(AException):
         self,
         exception: Exception | None = None,
         message="The passed parameter values are invalid.",
-        status_code=404,
+        status_code=400,
     ):
         super().__init__(exception, message, status_code)
 
@@ -238,6 +238,26 @@ class ContactFormError(AException):
         self,
         exception: Exception | None = None,
         message="The contact form could not be sent.",
+        status_code=400,
+    ):
+        super().__init__(exception, message, status_code)
+
+
+class MissingUserError(AException):
+    def __init__(
+        self,
+        exception: Exception | None = None,
+        message="The user does not exist.",
+        status_code=400,
+    ):
+        super().__init__(exception, message, status_code)
+
+
+class NoJsonError(AException):
+    def __init__(
+        self,
+        exception: Exception | None = None,
+        message="The request body is not a valid json.",
         status_code=400,
     ):
         super().__init__(exception, message, status_code)
