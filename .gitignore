@@ -12,3 +12,8 @@ coverage.xml
 .vscode/launch.json
 keys/private.pem
 keys/public.pem
+domain/learnersModel/Active_Reflective.hlg
+domain/learnersModel/LearnProfile.hlg
+domain/learnersModel/Sensory_Intuitive.hlg
+domain/learnersModel/Sequenz_Global.hlg
+domain/learnersModel/Visual_verbal.hlg

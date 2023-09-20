@@ -155,8 +155,49 @@ def get_dimension(pole_1,str_dim_output, result):
        
     #result.append( "ref") ; return result
 
+#
+# transformed der Input
+#
+def get_ils_answers(ils_answers):-> dict:
+    """ assigne the answers of ILS """
+    print("\n")    
+    ils_input_answers = {}
+    ils_perception_answers = {}
+    ils_processing_answers = {}
+    ils_understanding_answers = {}
+    node_name = ""
+    for id, answer in ils_answers.items():
+        if id.startswith("vv"):
+            str_vv = id.upper()
+            pos = str_vv.split('_')
+            str_vv = "ILS"+pos[2]+pos[0]+pos[1]
+            node_name = "Visual_verbal"
+            ils_answers_oobn[str_vv] = answer
+            ils_input_answers[str_vv] = answer
+        if id.startswith("si"):
+            str_vv = id.upper()
+            pos = str_vv.split('_')
+            str_vv = "ILS"+pos[2]+pos[0]+pos[1]
+            node_name = "Sensory_Intuitive."
+            ils_perception_answers[str_vv] = answer
+        if id.startswith("ar"):
+            str_vv = id.upper()
+            pos = str_vv.split('_')
+            str_vv = "ILS"+pos[2]+pos[0]+pos[1]
+            node_name = "Active_Reflective."
+            ils_processing_answers[str_vv] = answer
+        if id.startswith("sg"):
+            str_vv = id.upper()
+            pos = str_vv.split('_')
+            str_vv = "ILS"+pos[2]+pos[0]+pos[1]
+            node_name = "Sequenz_Global."           
+            ils_understanding_answers[str_vv] = answer
+    print("\t", ils_answers_oobn)
+    return ils_answers_oobn
 
-if __name__ == "__main__":
+                 
+def calulated_ILS ():
+#'if __name__ == "__main__":
     if len(sys.argv) == 0:
         print ('usage: <oobn> <class> <target>')
         exit ()
@@ -236,6 +277,8 @@ if __name__ == "__main__":
 
         # we consider a case of evidence
         #process_case_1 (dom, target)
+
+
         AR = process_case_1(dom, target, AR_names, labels_AR,
                             str_local_target=str_local_target,
                             str_dim_output=score_nodes[0])
