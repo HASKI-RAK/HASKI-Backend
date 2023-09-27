@@ -418,3 +418,8 @@ class ListK:
             "lu2_f38": self.lu2_f38,
             "lu3_f39": self.lu3_f39,
         }
+
+
+class OOBN_model:
+    def __init__(self, ils_input_answers) -> None:
+        return 1
