@@ -545,7 +545,7 @@ def create_questionnaire(
         ils_answers['ils_processing_answers']=ils_processing_answers
         ils_answers['ils_understanding_answers']=ils_understanding_answers
         LAP.OOBN_model(ils_answers)
-        print("--TODO ANSWERS *****",ils_perception_answers)
+        #print("--TODO ANSWERS *****", ils_answers)
         #print("TODO ANSWERS *****",ils_perception_answers)
         #print("TODO ANSWERS *****",ils_processing_answers)
     
