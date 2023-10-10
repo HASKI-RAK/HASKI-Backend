@@ -533,23 +533,15 @@ def create_questionnaire(
         create_ils_understanding_answers(
             uow, questionnaire.id, ils_understanding_answers
         )
-        create_list_k(uow, questionnaire.id, list_k_answers)
-        
-        # TODO ILS INSERT YOUR CODE
-        print("\n")
-        print("-----size oser len:", len(ils_input_answers))
-
+        create_list_k(uow, questionnaire.id, list_k_answers)        
+       
         ils_answers ={}
         ils_answers['ils_input_answers']=ils_input_answers
         ils_answers['ils_perception_answers']=ils_perception_answers
         ils_answers['ils_processing_answers']=ils_processing_answers
         ils_answers['ils_understanding_answers']=ils_understanding_answers
         LAP.OOBN_model(ils_answers)
-        #print("--TODO ANSWERS *****", ils_answers)
-        #print("TODO ANSWERS *****",ils_perception_answers)
-        #print("TODO ANSWERS *****",ils_processing_answers)
-    
-        #get_calculation_ils_answers(ils_answers)
+      
         characteristics = get_learning_characteristics(uow, student_id)
         questionnaire.learning_style = get_learning_style(uow, characteristics["id"])
         questionnaire.learning_strategy = get_learning_strategy(
