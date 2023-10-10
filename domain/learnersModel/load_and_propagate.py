@@ -226,7 +226,7 @@ class OOBN_model:
             bool_local_target = name_dimension_ils+'.'+Bool_first_pole+'_5'
         return str_local_target, bool_local_target
 
-    def get_domain_and_propagate_oobn(self):
+    def get_domain_oobn(self):
         """ calculate the answers of ILS """
 
         # map input to identifiers
