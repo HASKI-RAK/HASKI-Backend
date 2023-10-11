@@ -1,9 +1,10 @@
 import errors as err
 from domain.domainModel import model as DM
+from domain.learnersModel import load_and_propagate as LAP
 from domain.learnersModel import model as LM
 from domain.tutoringModel import model as TM
 from domain.userAdministartion import model as UA
-from domain.learnersModel import load_and_propagate as LAP
+
 from service_layer import unit_of_work
 
 
