@@ -9,6 +9,10 @@ def parse_listener(line, description):
 
 class OOBN_model:
     def __init__(self, ils_answers) -> None:
+        """OOBN class that is responsible for
+            calculating the probabilities of students'
+            learning styles with the help of
+            the ILS answers Questionnaire."""
         print("\n\n===Start ILS calculation====")
 
         self_result_ils_oobn = {}
@@ -66,7 +70,8 @@ class OOBN_model:
 
         try:
             # parse the file specification
-            class_collection.parse_classes("{}".format(cc_name), parse_listener)
+            class_collection.parse_classes(
+                "{}".format(cc_name), parse_listener)
             # get the main class
             class_by_name = class_collection.get_class_by_name(class_name)
 
@@ -102,9 +107,11 @@ class OOBN_model:
         for node in local_targets:
             print(f"{node.get_name ()}")
             for i in range(node.get_number_of_states()):
-                print(f"P({node.get_state_value (i)}|e) = {node.get_belief (i):.2f}")
+                print(
+                    f"P({node.get_state_value (i)}|e) = {node.get_belief (i):.2f}")
                 if node.get_belief(i) > 0.30 and node.get_belief(i) > high_belif:
-                    print(f"P({node.get_state_value (i)}|e) = {node.get_belief(i):.2f}")
+                    print(
+                        f"P({node.get_state_value (i)}|e) = {node.get_belief(i):.2f}")
                     high_belif = node.get_belief(i)
                     high_score = node.get_state_value(i)
 
@@ -148,7 +155,8 @@ class OOBN_model:
         """assigne input answers of ILS"""
         self.ils_answers_oobn = {}
 
-        ils_input_answers = self.get_ils_answers(ils_answers["ils_input_answers"])
+        ils_input_answers = self.get_ils_answers(
+            ils_answers["ils_input_answers"])
         ils_perception_answers = self.get_ils_answers(
             ils_answers["ils_perception_answers"]
         )
@@ -300,7 +308,8 @@ class OOBN_model:
             )
 
             # Validierung
-            input_boolean_target = self.domain_oobn.get_node_by_name(target_name)
+            input_boolean_target = self.domain_oobn.get_node_by_name(
+                target_name)
             if input_boolean_target is None:
                 print(f"{input_boolean_target} not found")
                 exit()
