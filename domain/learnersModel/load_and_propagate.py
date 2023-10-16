@@ -1,4 +1,8 @@
-from .Lib.hugin94.pyhugin94 import ClassCollection, Domain, HuginException  # type: ignore
+from .Lib.hugin94.pyhugin94 import (  # type: ignore
+    ClassCollection,
+    Domain,
+    HuginException,
+)
 
 
 def parse_listener(line, description):
