@@ -107,11 +107,11 @@ class OOBN_model:
         for node in local_targets:
             print(f"{node.get_name ()}")
             for i in range(node.get_number_of_states()):
-                print(
-                    f"P({node.get_state_value (i)}|e) = {node.get_belief (i):.2f}")
+                # print(
+                    # f"P({node.get_state_value (i)}|e) = {node.get_belief (i):.2f}")
                 if node.get_belief(i) > 0.30 and node.get_belief(i) > high_belif:
-                    print(
-                        f"P({node.get_state_value (i)}|e) = {node.get_belief(i):.2f}")
+                    # print(
+                        # f"P({node.get_state_value (i)}|e) = {node.get_belief(i):.2f}")
                     high_belif = node.get_belief(i)
                     high_score = node.get_state_value(i)
 
@@ -193,45 +193,45 @@ class OOBN_model:
 
         ils_answers_oobn = {}
         for id, answer in ils_answers.items():
-            if id.startswith("vv"):
+            if id.startswith('vv'):
                 str_vv = id.upper()
-                pos = str_vv.split("_")
-                str_vv = "ILS" + pos[2] + pos[0] + pos[1]
-                str_vv = "Visual_verbal." + str_vv
+                pos = str_vv.split('_')
+                str_vv = 'ILS' + pos[2] + pos[0] + pos[1]
+                str_vv = 'Visual_verbal.' + str_vv
                 ils_answers_oobn[str_vv] = answer
 
-            if id.startswith("si"):
+            if id.startswith('si'):
                 str_si = id.upper()
-                pos = str_si.split("_")
-                str_si = "ILS" + pos[2] + pos[0] + pos[1]
-                str_si = "Sensory_Intuitive." + str_si
+                pos = str_si.split('_')
+                str_si = 'ILS' + pos[2] + pos[0] + pos[1]
+                str_si = 'Sensory_Intuitive.' + str_si
                 ils_answers_oobn[str_si] = answer
 
-            if id.startswith("ar"):
+            if id.startswith('ar'):
                 str_ar = id.upper()
-                pos = str_ar.split("_")
-                str_ar = "ILS" + pos[2] + pos[0] + pos[1]
-                str_ar = "Active_Reflective." + str_ar
+                pos = str_ar.split('_')
+                str_ar = 'ILS' + pos[2] + pos[0] + pos[1]
+                str_ar = 'Active_Reflective.' + str_ar
                 ils_answers_oobn[str_ar] = answer
 
-            if id.startswith("sg"):
+            if id.startswith('sg'):
                 str_sg = id.upper()
-                pos = str_sg.split("_")
-                str_sg = "ILS" + pos[2] + pos[0] + pos[1]
-                str_sg = "Sequenz_Global." + str_sg
+                pos = str_sg.split('_')
+                str_sg = 'ILS' + pos[2] + pos[0] + pos[1]
+                str_sg = 'Sequenz_Global.' + str_sg
                 ils_answers_oobn[str_sg] = answer
         return ils_answers_oobn
 
     def get_score_name(self, name_dimension_ils, Score_dimension, Bool_first_pole):
         """get the name of the Node in OOBN"""
         if len(self.ils_answers_oobn) == 44:
-            str_local_target = name_dimension_ils + "." + Score_dimension + "_11"
-            bool_local_target = name_dimension_ils + "." + Bool_first_pole + "_11"
-            print("== Full Version ILS =")
+            str_local_target = name_dimension_ils + '.' + Score_dimension + '_11'
+            bool_local_target = name_dimension_ils + '.' + Bool_first_pole + '_11'
+            print('== Full Version ILS =')
         else:
-            str_local_target = name_dimension_ils + "." + Score_dimension + "_5"
-            bool_local_target = name_dimension_ils + "." + Bool_first_pole + "_5"
-            print("== Short Version ILS =")
+            str_local_target = name_dimension_ils + '.' + Score_dimension + '_5'
+            bool_local_target = name_dimension_ils + '.' + Bool_first_pole + '_5'
+            print('== Short Version ILS =')
 
         return str_local_target, bool_local_target
 
@@ -239,9 +239,9 @@ class OOBN_model:
         """calculate the answers of ILS"""
 
         # map input to identifiers
-        specfile = "../../domain/learnersModel/LearnProfile_cc.oobn"
-        cls_name = "LearnProfile"
-        target_name = "Result"
+        specfile = '../../domain/learnersModel/LearnProfile_cc.oobn'
+        cls_name = 'LearnProfile'
+        target_name = 'Result'
 
         try:
             # print('Be patient. It is a large model;-)')
@@ -275,7 +275,7 @@ class OOBN_model:
             domain.propagate()
 
         except HuginException:
-            print("A Hugin Exception was raised!")
+            print('A Hugin Exception was raised!')
             raise
 
         # all done
@@ -288,7 +288,7 @@ class OOBN_model:
             self.domain_oobn.initialize()
             self.domain_oobn.delete()
         except HuginException:
-            print("A Hugin Exception was raised!")
+            print('A Hugin Exception was raised!')
             raise
 
     def calulated_ils(self, name_dimension_ils, score_dimension, bool_first_pole):
@@ -297,7 +297,7 @@ class OOBN_model:
         # map input to identifiers
         # specfile = '../../domain/learnersModel/LearnProfile_cc.oobn'
         # cls_name = 'LearnProfile'
-        target_name = "Result"
+        target_name = 'Result'
 
         try:
             # print('Be patient. It is a large model;-)')
@@ -327,7 +327,7 @@ class OOBN_model:
             # self.domain_oobn.delete()
 
         except HuginException:
-            print("A Hugin Exception was raised!")
+            print('A Hugin Exception was raised!')
             raise
 
         # all done
