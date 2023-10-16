@@ -10,14 +10,14 @@ def parse_listener(line, description):
 class OOBN_model:
 
     def __init__(self, ils_answers) -> None:
-        print('\n===Start ILS calculation====\n')
+        print('\n\n===Start ILS calculation====')
+        
         self_result_ils_oobn = {}
-
-        print('Be patient. It is a large model;-)')
+       
         self.get_input_answers(ils_answers)
         self.domain_oobn = self.get_domain_oobn()
 
-        # ils_input------------------------------
+        # ------------------------------
         self.get_poles(dimension='Visual_verbal')
         result = self.calulated_ils('Visual_verbal',
                                     'Score_visual_verbal',
@@ -25,8 +25,7 @@ class OOBN_model:
 
         self_result_ils_oobn['ils_input_dimension'] = result
 
-        # ils_perception-------------------------------
-
+        # ------------------------------
         self.get_poles(dimension='Sensory_Intuitive')
         result = self.calulated_ils('Sensory_Intuitive',
                                     'Score_Sensory_Intuitive',
@@ -34,8 +33,7 @@ class OOBN_model:
 
         self_result_ils_oobn['ils_perception_dimension'] = result
 
-        # ils_processing ---------------------------------
-
+        # ------------------------------
         self.get_poles(dimension='Active_Reflective')
         result = self.calulated_ils('Active_Reflective',
                                     'Score_active_reflective',
@@ -43,15 +41,14 @@ class OOBN_model:
 
         self_result_ils_oobn['ils_processing_dimension'] = result
 
-        # ils_understanding---------------------------------
-
+       # ------------------------------
         self.get_poles(dimension='Sequenz_Global')
         result = self.calulated_ils('Sequenz_Global',
                                     'Score_sequenz_Global',
                                     'Sequential_A_highest')
         self_result_ils_oobn['ils_understanding_dimension'] = result
-
         self.print_version_ils(ils_answers, self_result_ils_oobn)
+        
         self.close_model_domain()
 
     def load_model(self, cc_name, class_name):
@@ -108,24 +105,23 @@ class OOBN_model:
         for node in local_targets:
             print(f'{node.get_name ()}')
             for i in range(node.get_number_of_states()):
-                # print(f'P({node.get_state_value (i)}|e) = {node.get_belief (i):.2f}')
+                print(f'P({node.get_state_value (i)}|e) = {node.get_belief (i):.2f}')
                 if (node.get_belief(i) > 0.30 and
                    node.get_belief(i) > high_belif):
-                    # print(f'P({node.get_state_value (i)}|e) = {node.get_belief(i):.2f}')
+                    print(f'P({node.get_state_value (i)}|e) = {node.get_belief(i):.2f}')
                     high_belif = node.get_belief(i)
                     high_score = node.get_state_value(i)
 
-            print()
+            #print()
 
         # print beliefs for dim_FSLSM
         # get local targets
 
         bool_local_targets = []
         bool_local_targets.append(dom.get_node_by_name(bool_target))
-
-        print()
-        # print("poles:", poles)
-        # print("bool_target:", bool_target)
+        
+        #print("poles:", poles)
+        #print("bool_target:", bool_target)
         pole_of_dim = ''
         for node in bool_local_targets:
             #print(f'{node.get_name ()}')
@@ -218,12 +214,15 @@ class OOBN_model:
                        Score_dimension,
                        Bool_first_pole):
         """ get the name of the Node in OOBN """
-        if (len(self.ils_answers_oobn) == 11):
+        if (len(self.ils_answers_oobn) == 44):
             str_local_target = name_dimension_ils+'.'+Score_dimension+'_11'
             bool_local_target = name_dimension_ils+'.'+Bool_first_pole+'_11'
+            print('== Full Version ILS =')
         else:
             str_local_target = name_dimension_ils+'.'+Score_dimension+'_5'
             bool_local_target = name_dimension_ils+'.'+Bool_first_pole+'_5'
+            print('== Short Version ILS =')           
+
         return str_local_target, bool_local_target
 
     def get_domain_oobn(self):
@@ -264,14 +263,14 @@ class OOBN_model:
 
             # propagate the evidence to compute posterior beliefs
             domain.propagate()
-            print('\n')
+            
 
         except HuginException:
             print('A Hugin Exception was raised!')
             raise
 
         # all done
-        print('get domain oobn Done!')
+        #print('get domain oobn Done!')
         return domain
 
     def close_model_domain(self):
@@ -293,7 +292,7 @@ class OOBN_model:
         target_name = 'Result'
 
         try:
-            print('Be patient. It is a large model;-)')
+            #print('Be patient. It is a large model;-)')
 
             # get target Booolean Result
             str_local_target, bool_target = self.get_score_name(
@@ -321,22 +320,22 @@ class OOBN_model:
             raise
 
         # all done
-        print('calulated_ils Done1, thank you!:')
-        print('\n')
+        #print('calulated_ils Done1, thank you!:')
+        #print('\n')
         return result
 
     def print_version_ils(self, ils_answers, self_result_ils_oobn):
         """ print_version_ils """
-        count = 0
-        for x in ils_answers:
-            print(ils_answers[x])
-            print('totale Antwort:', len(ils_answers[x]))
-            count = count + len(ils_answers[x])
-        if count < 40:
-            print('\n= Short Version ILS =')
-        else:
-            print('\n= Full Version ILS =')
+        # count = 0
+        # for x in ils_answers:           
+        #     print('totale Antwort:', len(ils_answers[x]))
+        #     print(ils_answers[x])
+        #     count = count + len(ils_answers[x])
+        # if count < 40:
+        #     print('\n= Short Version ILS =')
+        # else:
+        #     print('\n= Full Version ILS =')
 
         for x, values in self_result_ils_oobn.items():
-            print(x)
+            print(x
             print(values)
