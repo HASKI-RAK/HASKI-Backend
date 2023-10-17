@@ -243,7 +243,7 @@ class OOBN_model:
         """calculate the answers of ILS"""
 
         # map input to identifiers
-        specfile = '../../domain/learnersModel/LearnProfile_cc.oobn'
+        specfile = '../domain/learnersModel/LearnProfile_cc.oobn'
         cls_name = 'LearnProfile'
         target_name = 'Result'
 
