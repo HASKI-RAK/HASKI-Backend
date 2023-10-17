@@ -540,7 +540,7 @@ def create_questionnaire(
         ils_answers['ils_perception_answers']=ils_perception_answers
         ils_answers['ils_processing_answers']=ils_processing_answers
         ils_answers['ils_understanding_answers']=ils_understanding_answers
-        LAP.OOBN_model(ils_answers)
+        #LAP.OOBN_model(ils_answers)
       
         characteristics = get_learning_characteristics(uow, student_id)
         questionnaire.learning_style = get_learning_style(uow, characteristics["id"])
