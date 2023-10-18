@@ -12,8 +12,7 @@ coverage.xml
 .vscode/launch.json
 keys/private.pem
 keys/public.pem
-domain/learnersModel/Active_Reflective.hlg
-domain/learnersModel/LearnProfile.hlg
-domain/learnersModel/Sensory_Intuitive.hlg
-domain/learnersModel/Sequenz_Global.hlg
-domain/learnersModel/Visual_verbal.hlg
+domain/learnersModel/Lib/hugin94/read.txt
+domain/tutoringModel/model.py.rej
+tests/unit/dict
+db_setup_old.py
