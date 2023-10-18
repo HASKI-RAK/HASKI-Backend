@@ -95,9 +95,7 @@ class OOBN_model:
         """Process process_case_1"""
         # case 1: enter evidence, propagate, and
         # print the probability distribution of the target node
-
         # get handles to evidence node. We use "dot" notation to find a node by name
-
         # get local targets
         local_targets = []
 
@@ -118,12 +116,7 @@ class OOBN_model:
                         # f"P({node.get_state_value (i)}|e) = {node.get_belief(i):.2f}")
                     high_belif = node.get_belief(i)
                     high_score = node.get_state_value(i)
-
-            # print()
-
-        # print beliefs for dim_FSLSM
-        # get local targets
-
+            
         bool_local_targets = []
         bool_local_targets.append(dom.get_node_by_name(bool_target))
 
@@ -140,7 +133,7 @@ class OOBN_model:
                     pole_of_dim = poles["pole2"]
 
         # remember to remove any evidence and reset the domain
-        # dom.initialize()
+       
         print(
             "\nMit eine Probability: ",
             high_belif,
@@ -194,7 +187,6 @@ class OOBN_model:
 
     def get_ils_answers(self, ils_answers):
         """assigne the answers of ILS"""
-
         ils_answers_oobn = {}
         for id, answer in ils_answers.items():
             if id.startswith('vv'):
@@ -226,29 +218,27 @@ class OOBN_model:
                 ils_answers_oobn[str_sg] = answer
         return ils_answers_oobn
 
-    def get_score_name(self, name_dimension_ils, Score_dimension, Bool_first_pole):
+    def get_score_name(self, name_dimension_ils, score_dimension, bool_first_pole):
         """get the name of the Node in OOBN"""
-        if len(self.ils_answers_oobn) == 44:
-            str_local_target = name_dimension_ils + '.' + Score_dimension + '_11'
-            bool_local_target = name_dimension_ils + '.' + Bool_first_pole + '_11'
+        if len(self.ils_answers_oobn) > 5:
+            str_local_target = name_dimension_ils + '.' + score_dimension + '_11'
+            bool_local_target = name_dimension_ils + '.' + bool_first_pole + '_11'
             print('== Full Version ILS =')
         else:
-            str_local_target = name_dimension_ils + '.' + Score_dimension + '_5'
-            bool_local_target = name_dimension_ils + '.' + Bool_first_pole + '_5'
+            str_local_target = name_dimension_ils + '.' + score_dimension + '_5'
+            bool_local_target = name_dimension_ils + '.' + bool_first_pole + '_5'
             print('== Short Version ILS =')
 
         return str_local_target, bool_local_target
 
     def get_domain_oobn(self):
         """calculate the answers of ILS"""
-
         # map input to identifiers
         specfile = '../../domain/learnersModel/LearnProfile_cc.oobn'
         cls_name = 'LearnProfile'
         target_name = 'Result'
 
-        try:
-            # print('Be patient. It is a large model;-)')
+        try:            
             # read model and compile it for inference
             domain = self.load_model(specfile, cls_name)
 
@@ -260,9 +250,7 @@ class OOBN_model:
 
             Dim_dict = self.ils_answers_oobn
 
-            #
-            # 1. Enter some evidence
-            #
+            # 1. Enter some evidence          
             for name, label in Dim_dict.items():
                 node = domain.get_node_by_name(name)
                 if node is not None:
@@ -280,10 +268,8 @@ class OOBN_model:
 
         except HuginException:
             print('A Hugin Exception was raised!')
-            raise
-
-        # all done
-        # print('get domain oobn Done!')
+            raise        
+       
         return domain
 
     def close_model_domain(self):
@@ -303,8 +289,7 @@ class OOBN_model:
         # cls_name = 'LearnProfile'
         target_name = 'Result'
 
-        try:
-            # print('Be patient. It is a large model;-)')
+        try:        
 
             # get target Booolean Result
             str_local_target, bool_target = self.get_score_name(
@@ -335,22 +320,11 @@ class OOBN_model:
             raise
 
         # all done
-        # print('calulated_ils Done1, thank you!:')
-        # print('\n')
+        print('calulated_ils Done1, thank you!:')        
         return result
 
     def print_version_ils(self, ils_answers, self_result_ils_oobn):
-        """print_version_ils"""
-        # count = 0
-        # for x in ils_answers:
-        #     print('totale Antwort:', len(ils_answers[x]))
-        #     print(ils_answers[x])
-        #     count = count + len(ils_answers[x])
-        # if count < 40:
-        #     print('\n= Short Version ILS =')
-        # else:
-        #     print('\n= Full Version ILS =')
-
+        """print_version_ils"""    
         for x, values in self_result_ils_oobn.items():
             print(x)
             print(values)
