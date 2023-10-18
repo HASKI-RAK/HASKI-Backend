@@ -4,6 +4,7 @@ from .Lib.hugin94.pyhugin94 import (  # type: ignore
     HuginException,
 )
 
+FILE_NAME_OOBN = '../../domain/learnersModel/LearnProfile_cc.oobn'
 
 def parse_listener(line, description):
     """A parse listener that prints the line number and error description."""
@@ -13,10 +14,7 @@ def parse_listener(line, description):
 
 class OOBN_model:
     def __init__(self, ils_answers) -> None:
-        """OOBN class that is responsible for
-            calculating the probabilities of students'
-            learning styles with the help of
-            the ILS answers Questionnaire."""
+        """OOBN class """
         print("\n\n===Start ILS calculation====")
 
         self_result_ils_oobn = {}
@@ -27,35 +25,40 @@ class OOBN_model:
         # ------------------------------
         self.get_poles(dimension="Visual_verbal")
         result = self.calulated_ils(
-            "Visual_verbal", "Score_visual_verbal", "Visual_A_highest"
+            "Visual_verbal",
+            "Score_visual_verbal",
+            "Visual_A_highest"
         )
-
         self_result_ils_oobn["ils_input_dimension"] = result
 
         # ------------------------------
         self.get_poles(dimension="Sensory_Intuitive")
         result = self.calulated_ils(
-            "Sensory_Intuitive", "Score_Sensory_Intuitive", "Sensitive_A_highest"
+            "Sensory_Intuitive",
+            "Score_Sensory_Intuitive",
+            "Sensitive_A_highest"
         )
-
         self_result_ils_oobn["ils_perception_dimension"] = result
 
         # ------------------------------
         self.get_poles(dimension="Active_Reflective")
         result = self.calulated_ils(
-            "Active_Reflective", "Score_active_reflective", "Active_A_highest"
+            "Active_Reflective",
+            "Score_active_reflective",
+            "Active_A_highest"
         )
-
         self_result_ils_oobn["ils_processing_dimension"] = result
 
         # ------------------------------
         self.get_poles(dimension="Sequenz_Global")
         result = self.calulated_ils(
-            "Sequenz_Global", "Score_sequenz_Global", "Sequential_A_highest"
+            "Sequenz_Global",
+            "Score_sequenz_Global",
+            "Sequential_A_highest"
         )
         self_result_ils_oobn["ils_understanding_dimension"] = result
-        self.print_version_ils(ils_answers, self_result_ils_oobn)
 
+        self.print_version_ils(ils_answers, self_result_ils_oobn)
         self.close_model_domain()
 
     def load_model(self, cc_name, class_name):
@@ -91,7 +94,8 @@ class OOBN_model:
 
         return domain
 
-    def process_case_1(self, dom, dimDict, str_local_target, bool_target, poles):
+    def process_case_1(self, dom,
+                       dimDict, str_local_target, bool_target, poles):
         """Process process_case_1"""
         # case 1: enter evidence, propagate, and
         # print the probability distribution of the target node
@@ -218,12 +222,14 @@ class OOBN_model:
                 ils_answers_oobn[str_sg] = answer
         return ils_answers_oobn
 
-    def get_score_name(self, name_dimension_ils, score_dimension, bool_first_pole):
+    def get_score_name(self, name_dimension_ils,
+                       score_dimension, bool_first_pole):
         """get the name of the Node in OOBN"""
-        if len(self.ils_answers_oobn) > 5:
+        # if len(self.ils_answers_oobn) == 20:then short version
+        if len(self.ils_answers_oobn) > 20:
             str_local_target = name_dimension_ils + '.' + score_dimension + '_11'
             bool_local_target = name_dimension_ils + '.' + bool_first_pole + '_11'
-            print('== Full Version ILS =')
+            print('==Full Version ILS =')
         else:
             str_local_target = name_dimension_ils + '.' + score_dimension + '_5'
             bool_local_target = name_dimension_ils + '.' + bool_first_pole + '_5'
@@ -234,7 +240,7 @@ class OOBN_model:
     def get_domain_oobn(self):
         """calculate the answers of ILS"""
         # map input to identifiers
-        specfile = '../../domain/learnersModel/LearnProfile_cc.oobn'
+        specfile = FILE_NAME_OOBN
         cls_name = 'LearnProfile'
         target_name = 'Result'
 
@@ -320,7 +326,7 @@ class OOBN_model:
             raise
 
         # all done
-        print('calulated_ils Done1, thank you!:')        
+        print('calulated_ils Done1, thank you!:')    
         return result
 
     def print_version_ils(self, ils_answers, self_result_ils_oobn):
