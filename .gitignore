@@ -8,11 +8,9 @@ venv/
 coverage.xml
 .env
 .coverage
-.vscode/settings.json
-.vscode/launch.json
-keys/private.pem
-keys/public.pem
-domain/learnersModel/Lib/hugin94/read.txt
-domain/tutoringModel/model.py.rej
-tests/unit/dict
-db_setup_old.py
+.vscode/
+keys/
+.flaskenv
+configs/lti_config.json
+test_keys/
+
