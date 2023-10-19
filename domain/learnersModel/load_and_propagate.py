@@ -14,6 +14,7 @@ def parse_listener(line, description):
 
 
 class OOBN_model:
+
     def __init__(self, ils_answers) -> None:
         """OOBN class """
         print("\n\n===Start ILS calculation====")
@@ -30,7 +31,7 @@ class OOBN_model:
             "Score_visual_verbal",
             "Visual_A_highest"
         )
-        self_result_ils_oobn["ils_input_dimension"] = result
+        self_result_ils_oobn["ils_input"] = result
 
         # ------------------------------
         self.get_poles(dimension="Sensory_Intuitive")
@@ -39,7 +40,7 @@ class OOBN_model:
             "Score_Sensory_Intuitive",
             "Sensitive_A_highest"
         )
-        self_result_ils_oobn["ils_perception_dimension"] = result
+        self_result_ils_oobn["ils_perception"] = result
 
         # ------------------------------
         self.get_poles(dimension="Active_Reflective")
@@ -48,7 +49,7 @@ class OOBN_model:
             "Score_active_reflective",
             "Active_A_highest"
         )
-        self_result_ils_oobn["ils_processing_dimension"] = result
+        self_result_ils_oobn["ils_processing"] = result
 
         # ------------------------------
         self.get_poles(dimension="Sequenz_Global")
@@ -57,11 +58,11 @@ class OOBN_model:
             "Score_sequenz_Global",
             "Sequential_A_highest"
         )
-        self_result_ils_oobn["ils_understanding_dimension"] = result
-
+        self_result_ils_oobn["ils_understanding"] = result
         self.print_version_ils(ils_answers, self_result_ils_oobn)
         self.close_model_domain()
-
+        #return self_result_ils_oobn
+ 
     def load_model(self, cc_name, class_name):
         """load an OOBN model into a class collection"""
         # load an OOBN model into a class collection,
@@ -344,6 +345,8 @@ class OOBN_model:
 
     def print_version_ils(self, ils_answers, self_result_ils_oobn):
         """print_version_ils"""    
-        for x, values in self_result_ils_oobn.items():
+        
+        for x in self_result_ils_oobn:
             print(x)
-            print(values)
+            print(self_result_ils_oobn[x])
+            #print(x.values())
