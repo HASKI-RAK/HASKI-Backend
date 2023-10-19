@@ -6,6 +6,7 @@ from .Lib.hugin94.pyhugin94 import (  # type: ignore
 
 FILE_NAME_OOBN = '../../domain/learnersModel/LearnProfile_cc.oobn'
 
+
 def parse_listener(line, description):
     """A parse listener that prints the line number and error description."""
     # Parse listener for reading the network specification
@@ -94,12 +95,13 @@ class OOBN_model:
 
         return domain
 
-    def process_case_1(self, dom,
-                       dimDict, str_local_target, bool_target, poles):
+    def process_case_1(self, dom, dimDict, str_local_target,
+                       bool_target, poles):
         """Process process_case_1"""
         # case 1: enter evidence, propagate, and
-        # print the probability distribution of the target node
-        # get handles to evidence node. We use "dot" notation to find a node by name
+        # print the probability distribution of 
+        # the target node get handles to evidence node.
+        # We use "dot" notation to find a node by name
         # get local targets
         local_targets = []
 
@@ -114,15 +116,19 @@ class OOBN_model:
             print(f"{node.get_name ()}")
             for i in range(node.get_number_of_states()):
                 # print(
-                    # f"P({node.get_state_value (i)}|e) = {node.get_belief (i):.2f}")
-                if node.get_belief(i) > 0.30 and node.get_belief(i) > high_belif:
+                # f"P({node.get_state_value (i)}|e) = 
+                # {node.get_belief (i):.2f}")
+                if (node.get_belief(i) > 0.30 and
+                    node.get_belief(i) > high_belif):
                     # print(
-                        # f"P({node.get_state_value (i)}|e) = {node.get_belief(i):.2f}")
+                    # f"P({node.get_state_value (i)}|e) =
+                    # {node.get_belief(i):.2f}")
                     high_belif = node.get_belief(i)
                     high_score = node.get_state_value(i)
             
         bool_local_targets = []
-        bool_local_targets.append(dom.get_node_by_name(bool_target))
+        bool_local_targets.append(
+            dom.get_node_by_name(bool_target))
 
         # print("poles:", poles)
         # print("bool_target:", bool_target)
@@ -130,8 +136,10 @@ class OOBN_model:
         for node in bool_local_targets:
             # print(f'{node.get_name ()}')
             for i in range(node.get_number_of_states()):
-                # print(f'P({node.get_state_label (i)}|e) = {node.get_belief (i):.2f}')
-                if node.get_state_label(i) == "true" and node.get_belief(i):
+                # print(f'P({node.get_state_label (i)}|e) =
+                # {node.get_belief (i):.2f}')
+                if (node.get_state_label(i) == "true" and
+                    node.get_belief(i)):
                     pole_of_dim = poles["pole1"]
                 else:
                     pole_of_dim = poles["pole2"]
@@ -227,12 +235,16 @@ class OOBN_model:
         """get the name of the Node in OOBN"""
         # if len(self.ils_answers_oobn) == 20:then short version
         if len(self.ils_answers_oobn) > 20:
-            str_local_target = name_dimension_ils + '.' + score_dimension + '_11'
-            bool_local_target = name_dimension_ils + '.' + bool_first_pole + '_11'
+            str_local_target = (name_dimension_ils + '.' +
+                                score_dimension + '_11')
+            bool_local_target = (name_dimension_ils + '.' +
+                                 bool_first_pole + '_11')
             print('==Full Version ILS =')
         else:
-            str_local_target = name_dimension_ils + '.' + score_dimension + '_5'
-            bool_local_target = name_dimension_ils + '.' + bool_first_pole + '_5'
+            str_local_target = (name_dimension_ils +
+                                '.' + score_dimension + '_5')
+            bool_local_target = (name_dimension_ils +
+                                '.' + bool_first_pole + '_5')
             print('== Short Version ILS =')
 
         return str_local_target, bool_local_target
@@ -287,7 +299,8 @@ class OOBN_model:
             print('A Hugin Exception was raised!')
             raise
 
-    def calulated_ils(self, name_dimension_ils, score_dimension, bool_first_pole):
+    def calulated_ils(self, name_dimension_ils,
+                      score_dimension, bool_first_pole):
         """calculate the answers of ILS"""
 
         # map input to identifiers
