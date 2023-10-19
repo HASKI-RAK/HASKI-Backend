@@ -15,11 +15,11 @@ def parse_listener(line, description):
 
 class OOBN_model:
 
-    def __init__(self, ils_answers) -> None:
+    def __init__(self, ils_answers)->dict:
         """OOBN class """
         print("\n\n===Start ILS calculation====")
 
-        self_result_ils_oobn = {}
+        self.self_result_ils_oobn = {}
 
         self.get_input_answers(ils_answers)
         self.domain_oobn = self.get_domain_oobn()
@@ -31,7 +31,7 @@ class OOBN_model:
             "Score_visual_verbal",
             "Visual_A_highest"
         )
-        self_result_ils_oobn["ils_input"] = result
+        self.self_result_ils_oobn["ils_input"] = result
 
         # ------------------------------
         self.get_poles(dimension="Sensory_Intuitive")
@@ -40,7 +40,7 @@ class OOBN_model:
             "Score_Sensory_Intuitive",
             "Sensitive_A_highest"
         )
-        self_result_ils_oobn["ils_perception"] = result
+        self.self_result_ils_oobn["ils_perception"] = result
 
         # ------------------------------
         self.get_poles(dimension="Active_Reflective")
@@ -49,7 +49,7 @@ class OOBN_model:
             "Score_active_reflective",
             "Active_A_highest"
         )
-        self_result_ils_oobn["ils_processing"] = result
+        self.self_result_ils_oobn["ils_processing"] = result
 
         # ------------------------------
         self.get_poles(dimension="Sequenz_Global")
@@ -58,10 +58,9 @@ class OOBN_model:
             "Score_sequenz_Global",
             "Sequential_A_highest"
         )
-        self_result_ils_oobn["ils_understanding"] = result
-        self.print_version_ils(ils_answers, self_result_ils_oobn)
+        self.self_result_ils_oobn["ils_understanding"] = result
+        self.print_version_ils(ils_answers, self.self_result_ils_oobn)
         self.close_model_domain()
-        #return self_result_ils_oobn
  
     def load_model(self, cc_name, class_name):
         """load an OOBN model into a class collection"""
