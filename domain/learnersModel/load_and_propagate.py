@@ -4,8 +4,8 @@ from .Lib.hugin94.pyhugin94 import (  # type: ignore
     HuginException,
 )
 
-FILE_NAME_OOBN = "domain/learnersModel/LearnProfile_cc.oobn"
-# FILE_NAME_OOBN = "home/domain/learnersModel/LearnProfile_cc.oobn"
+FILE_NAME_OOBN = "/domain/learnersModel/LearnProfile_cc.oobn"
+# FILE_NAME_OOBN = "../../domain/learnersModel/LearnProfile_cc.oobn"
 
 
 def parse_listener(line, description):
@@ -15,9 +15,20 @@ def parse_listener(line, description):
 
 
 class OOBN_model:
-    def __init__(self, ils_answers) -> dict:
+    def __init__(
+        self,
+        ils_input_answers,
+        ils_perception_answers,
+        ils_processing_answers,
+        ils_understanding_answers,
+    ) -> dict:
         """OOBN class"""
         print("\n\n===Start ILS calculation====")
+        ils_answers = {}
+        ils_answers["ils_input_answers"] = ils_input_answers
+        ils_answers["ils_perception_answers"] = ils_perception_answers
+        ils_answers["ils_processing_answers"] = ils_processing_answers
+        ils_answers["ils_understanding_answers"] = ils_understanding_answers
 
         self.self_result_ils_oobn = {}
 
