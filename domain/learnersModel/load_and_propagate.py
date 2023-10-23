@@ -247,7 +247,6 @@ class OOBN_model:
         specfile = FILE_NAME_OOBN
         cls_name = "LearnProfile"
         target_name = "Result"
-
         try:
             # read model and compile it for inference
             domain = self.load_model(specfile, cls_name)
@@ -257,9 +256,7 @@ class OOBN_model:
             if input_boolean_target is None:
                 print(f"{input_boolean_target} not found")
                 exit()
-
             Dim_dict = self.ils_answers_oobn
-
             # 1. Enter some evidence
             for name, label in Dim_dict.items():
                 node = domain.get_node_by_name(name)
@@ -271,13 +268,12 @@ class OOBN_model:
                         node.select_state(idx)
                 else:
                     print(f"{name} not found")
+
             # propagate the evidence to compute posterior beliefs
             domain.propagate()
-
         except HuginException:
             print("A Hugin Exception was raised!")
             raise
-
         return domain
 
     def close_model_domain(self):
@@ -294,7 +290,6 @@ class OOBN_model:
         """calculate the answers of ILS"""
 
         target_name = "Result"
-
         try:
             # get target Booolean Result
             str_local_target, bool_target = self.get_score_name(
