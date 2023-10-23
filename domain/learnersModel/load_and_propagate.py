@@ -229,7 +229,7 @@ class OOBN_model:
 
     def get_score_name(self, name_dimension_ils, score_dimension, bool_first_pole):
         """get the name of the Node in OOBN"""
-        # if len(self.ils_answers_oobn) == 20:then short version
+        # ils_answers_oobn with answers 20 ist short version
         if len(self.ils_answers_oobn) > 20:
             str_local_target = name_dimension_ils + "." + score_dimension + "_11"
             bool_local_target = name_dimension_ils + "." + bool_first_pole + "_11"
@@ -269,10 +269,8 @@ class OOBN_model:
                         print(f"{label} not found as state of {name}")
                     else:
                         node.select_state(idx)
-                        # print('--------label ', name, ' ', label)
                 else:
                     print(f"{name} not found")
-
             # propagate the evidence to compute posterior beliefs
             domain.propagate()
 
@@ -285,6 +283,7 @@ class OOBN_model:
     def close_model_domain(self):
         """ """
         try:
+            # clean up any memory allocations
             self.domain_oobn.initialize()
             self.domain_oobn.delete()
         except HuginException:
@@ -294,9 +293,6 @@ class OOBN_model:
     def calulated_ils(self, name_dimension_ils, score_dimension, bool_first_pole):
         """calculate the answers of ILS"""
 
-        # map input to identifiers
-        # specfile = '../../domain/learnersModel/LearnProfile_cc.oobn'
-        # cls_name = 'LearnProfile'
         target_name = "Result"
 
         try:
@@ -320,8 +316,6 @@ class OOBN_model:
                 bool_target=bool_target,
                 poles=self.poles,
             )
-            # clean up any memory allocations
-            # self.domain_oobn.delete()
 
         except HuginException:
             print("A Hugin Exception was raised!")
