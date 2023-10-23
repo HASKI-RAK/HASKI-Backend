@@ -571,12 +571,12 @@ def create_questionnaire_ils(
             uow, questionnaire_ils.id, ils_input_answers
         )
 
-        # LAP.OOBN_model(
-        #     ils_input_answers,
-        #     ils_perception_answers,
-        #     ils_processing_answers,
-        #     ils_understanding_answers,
-        # )
+        LAP.OOBN_model(
+            ils_input_answers,
+            ils_perception_answers,
+            ils_processing_answers,
+            ils_understanding_answers,
+        )
 
         ils_perception = create_ils_perception_answers(
             uow, questionnaire_ils.id, ils_perception_answers
