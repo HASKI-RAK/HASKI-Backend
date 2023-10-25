@@ -23,8 +23,8 @@ class OOBN_model:
         ils_understanding_answers,
     ):
         """OOBN class"""
-
         self.self_result_ils_oobn = {}
+        self.poles = {}
 
         self.ils_answers_oobn = self.merge_all_answers_ils(
             ils_input_answers,
@@ -32,7 +32,7 @@ class OOBN_model:
             ils_processing_answers,
             ils_understanding_answers,
         )
-        self.domain_oobn = self.give_all_the_answers_to_the_model_oobn()# Dict
+        self.domain_oobn = self.give_all_answers_to_the_model_oobn()  # Dict
 
         # self.print_version_ils(ils_answers, self.self_result_ils_oobn)
         self.close_model_domain()
@@ -101,9 +101,9 @@ class OOBN_model:
             print("---------------------------------------------------------")
         return ils_answers_oobn
 
-    def give_all_the_answers_to_the_model_oobn(self):
+    def give_all_answers_to_the_model_oobn(self):
         """calculate the answers of ILS"""
-        # map input to identifiers 
+        # map input to identifiers
         try:
             # read model and compile it for inference
             domain = self.load_model(FILE_NAME_OOBN, "LearnProfile")
@@ -144,9 +144,8 @@ class OOBN_model:
         # domain object to perform inference
         domain = None
         class_by_name = None
-        #
+
         # a class collection holds a collection of classes
-        #
         class_collection = ClassCollection()
 
         try:
@@ -167,7 +166,17 @@ class OOBN_model:
 
         return domain
 
-    def process_case_1(self, dom, dimDict, str_local_target, bool_target, poles):
+    def close_model_domain(self):
+        """close_model_domain"""
+        try:
+            # clean up any memory allocations
+            self.domain_oobn.initialize()
+            self.domain_oobn.delete()
+        except HuginException:
+            print("A Hugin Exception was raised!")
+            raise
+
+    def process_case_1(self, str_local_target, bool_target):
         """Process process_case_1"""
         # case 1: enter evidence, propagate, and
         # print the probability distribution of
@@ -175,12 +184,12 @@ class OOBN_model:
         # We use "dot" notation to find a node by name
         # get local targets
         local_targets = []
-
-        # we should test to None pointer, here we take the risk;-)
-        local_targets.append(dom.get_node_by_name(str_local_target))  # new
-
+        bool_local_targets = []
         high_belif = 0.0
         high_score = 0.0
+
+        # we should test to None pointer, here we take the risk;-)
+        local_targets.append(self.domain_oobn.get_node_by_name(str_local_target))
 
         # print the belief for each learning dimension
         for node in local_targets:
@@ -196,8 +205,7 @@ class OOBN_model:
                     high_belif = node.get_belief(i)
                     high_score = node.get_state_value(i)
 
-        bool_local_targets = []
-        bool_local_targets.append(dom.get_node_by_name(bool_target))
+        bool_local_targets.append(self.domain_oobn.get_node_by_name(bool_target))
 
         # print("poles:", poles)
         # print("bool_target:", bool_target)
@@ -208,9 +216,9 @@ class OOBN_model:
                 # print(f'P({node.get_state_label (i)}|e) =
                 # {node.get_belief (i):.2f}')
                 if node.get_state_label(i) == "true" and node.get_belief(i):
-                    pole_of_dim = poles["pole1"]
+                    pole_of_dim = self.poles["pole1"]
                 else:
-                    pole_of_dim = poles["pole2"]
+                    pole_of_dim = self.poles["pole2"]
 
         # remember to remove any evidence and reset the domain
 
@@ -229,71 +237,66 @@ class OOBN_model:
         return result
 
     def get_poles(self, dimension):
-        """assigne poles """
-        self.poles = {}
-        if dimension == "Visual_verbal":
-            self.poles["pole1"] = "Visual"
-            self.poles["pole2"] = "Verbal"
-        if dimension == "Sensory_Intuitive":
-            self.poles["pole1"] = "Sensory"
-            self.poles["pole2"] = "Intuitive"
-        if dimension == "Active_Reflective":
-            self.poles["pole1"] = "Active"
-            self.poles["pole2"] = "Reflective"
-        if dimension == "Sequenz_Global":
-            self.poles["pole1"] = "Sequenz"
-            self.poles["pole2"] = "Global"
+        """assigne poles"""
 
-    def get_score_name(self, name_dimension_ils, score_dimension, bool_first_pole):
+        pole1 = ""
+        pole2 = ""
+        if dimension == "Visual_verbal":
+            pole1 = "Visual"
+            pole2 = "Verbal"
+        if dimension == "Sensory_Intuitive":
+            pole1 = "Sensory"
+            pole2 = "Intuitive"
+        if dimension == "Active_Reflective":
+            pole1 = "Active"
+            pole2 = "Reflective"
+        if dimension == "Sequenz_Global":
+            pole1 = "Sequenz"
+            pole2 = "Global"
+        self.poles["pole1"] = pole1
+        self.poles["pole2"] = pole2
+
+    def get_score_node_name(self, name_dimension_ils, score_dimension, bool_first_pole):
         """get the name of the Node in OOBN"""
         # ils_answers_oobn with answers 20 ist short version
+        str_local_target = name_dimension_ils + "." + score_dimension
+        bool_local_target = name_dimension_ils + "." + bool_first_pole
+
         if len(self.ils_answers_oobn) > 20:
-            str_local_target = name_dimension_ils + "." + score_dimension + "_11"
-            bool_local_target = name_dimension_ils + "." + bool_first_pole + "_11"
+            str_local_target = str_local_target + "_11"
+            bool_local_target = bool_local_target + "_11"
             print("==Full Version ILS =")
         else:
-            str_local_target = name_dimension_ils + "." + score_dimension + "_5"
-            bool_local_target = name_dimension_ils + "." + bool_first_pole + "_5"
+            str_local_target = str_local_target + "_5"
+            bool_local_target = bool_local_target + "_5"
             print("== Short Version ILS =")
 
         return str_local_target, bool_local_target
 
-
-
-    def close_model_domain(self):
-        """ """
-        try:
-            # clean up any memory allocations
-            self.domain_oobn.initialize()
-            self.domain_oobn.delete()
-        except HuginException:
-            print("A Hugin Exception was raised!")
-            raise
-
-    def calulated_ils(self, name_dimension_ils, score_dimension, bool_first_pole):
+    def calculate_answers_of_ils(
+        self, name_dimension_ils, score_dimension, bool_first_pole
+    ):
         """calculate the answers of ILS"""
-        self.get_poles(dimension=name_dimension_ils)
-        target_name = "Result"
-        try:
-            # get target Booolean Result
-            str_local_target, bool_target = self.get_score_name(
-                name_dimension_ils, score_dimension, bool_first_pole
-            )
 
+        self.get_poles(dimension=name_dimension_ils)
+
+        try:
             # Validierung
-            input_boolean_target = self.domain_oobn.get_node_by_name(target_name)
+            input_boolean_target = self.domain_oobn.get_node_by_name("Result")
+
             if input_boolean_target is None:
                 print(f"{input_boolean_target} not found")
                 exit()
 
-            dim_dict = self.ils_answers_oobn
+            # get target Booolean Result
+            str_local_target, bool_target = self.get_score_node_name(
+                name_dimension_ils, score_dimension, bool_first_pole
+            )
+
             self.domain_oobn.propagate()
+
             result = self.process_case_1(
-                self.domain_oobn,
-                dimDict=dim_dict,
-                str_local_target=str_local_target,
-                bool_target=bool_target,
-                poles=self.poles,
+                str_local_target=str_local_target, bool_target=bool_target
             )
 
         except HuginException:
@@ -301,29 +304,29 @@ class OOBN_model:
             raise
 
         # all done
-        print("calulated_ils Done1, thank you!:")
+        print("calculate_answers_of_ils Done1, thank you!:")
         return result
 
     def calculate_oobn_for_all_dimensions(self):
         """calculate"""
-        result = self.calulated_ils(
+        result = self.calculate_answers_of_ils(
             "Visual_verbal",
             "Score_visual_verbal",
             "Visual_A_highest",
         )
         self.self_result_ils_oobn["ils_input"] = result
 
-        result = self.calulated_ils(
+        result = self.calculate_answers_of_ils(
             "Sensory_Intuitive", "Score_Sensory_Intuitive", "Sensitive_A_highest"
         )
         self.self_result_ils_oobn["ils_perception"] = result
 
-        result = self.calulated_ils(
+        result = self.calculate_answers_of_ils(
             "Active_Reflective", "Score_active_reflective", "Active_A_highest"
         )
         self.self_result_ils_oobn["ils_processing"] = result
 
-        result = self.calulated_ils(
+        result = self.calculate_answers_of_ils(
             "Sequenz_Global", "Score_sequenz_Global", "Sequential_A_highest"
         )
         self.self_result_ils_oobn["ils_understanding"] = result
