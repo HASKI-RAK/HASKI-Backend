@@ -4,8 +4,8 @@ from .Lib.hugin94.pyhugin94 import (  # type: ignore
     HuginException,
 )
 
-FILE_NAME_OOBN = "domain/learnersModel/LearnProfile_cc.oobn"
-# FILE_NAME_OOBN = "../../domain/learnersModel/LearnProfile_cc.oobn"
+# FILE_NAME_OOBN = "domain/learnersModel/LearnProfile_cc.oobn"
+FILE_NAME_OOBN = "../../domain/learnersModel/LearnProfile_cc.oobn"
 
 
 def parse_listener(line, description):
@@ -21,49 +21,118 @@ class OOBN_model:
         ils_perception_answers,
         ils_processing_answers,
         ils_understanding_answers,
-    ) -> dict:
+    ):
         """OOBN class"""
-        print("\n\n===Start ILS calculation====")
-        ils_answers = {}
-        ils_answers["ils_input_answers"] = ils_input_answers
-        ils_answers["ils_perception_answers"] = ils_perception_answers
-        ils_answers["ils_processing_answers"] = ils_processing_answers
-        ils_answers["ils_understanding_answers"] = ils_understanding_answers
 
         self.self_result_ils_oobn = {}
 
-        self.get_input_answers(ils_answers)
-        self.domain_oobn = self.get_domain_oobn()
-
-        # ------------------------------
-        self.get_poles(dimension="Visual_verbal")
-        result = self.calulated_ils(
-            "Visual_verbal", "Score_visual_verbal", "Visual_A_highest"
+        self.ils_answers_oobn = self.merge_all_answers_ils(
+            ils_input_answers,
+            ils_perception_answers,
+            ils_processing_answers,
+            ils_understanding_answers,
         )
-        self.self_result_ils_oobn["ils_input"] = result
+        self.domain_oobn = self.give_all_the_answers_to_the_model_oobn()# Dict
 
-        # ------------------------------
-        self.get_poles(dimension="Sensory_Intuitive")
-        result = self.calulated_ils(
-            "Sensory_Intuitive", "Score_Sensory_Intuitive", "Sensitive_A_highest"
-        )
-        self.self_result_ils_oobn["ils_perception"] = result
-
-        # ------------------------------
-        self.get_poles(dimension="Active_Reflective")
-        result = self.calulated_ils(
-            "Active_Reflective", "Score_active_reflective", "Active_A_highest"
-        )
-        self.self_result_ils_oobn["ils_processing"] = result
-
-        # ------------------------------
-        self.get_poles(dimension="Sequenz_Global")
-        result = self.calulated_ils(
-            "Sequenz_Global", "Score_sequenz_Global", "Sequential_A_highest"
-        )
-        self.self_result_ils_oobn["ils_understanding"] = result
-        self.print_version_ils(ils_answers, self.self_result_ils_oobn)
+        # self.print_version_ils(ils_answers, self.self_result_ils_oobn)
         self.close_model_domain()
+
+    def merge_all_answers_ils(
+        self,
+        ils_input_answers,
+        ils_perception_answers,
+        ils_processing_answers,
+        ils_understanding_answers,
+    ):
+        """Merge all ils responses into a single variable"""
+        ils_answers_oobn = {}
+
+        ils_input_answers = self.get_correct_name_of_the_nodes(ils_input_answers)
+        ils_perception_answers = self.get_correct_name_of_the_nodes(
+            ils_perception_answers
+        )
+        ils_processing_answers = self.get_correct_name_of_the_nodes(
+            ils_processing_answers
+        )
+        ils_understanding_answers = self.get_correct_name_of_the_nodes(
+            ils_understanding_answers
+        )
+        ils_answers_oobn.update(ils_input_answers)
+        ils_answers_oobn.update(ils_perception_answers)
+        ils_answers_oobn.update(ils_processing_answers)
+        ils_answers_oobn.update(ils_understanding_answers)
+        return ils_answers_oobn
+
+    def get_correct_name_of_the_nodes(self, ils_answers):
+        """This function is used to get the correct name
+        of the nodes in the oobn in order to give them
+        the value of the students' answers."""
+        ils_answers_oobn = {}
+        for key, answer in ils_answers.items():
+            if key.startswith("vv"):
+                str_vv = key.upper()
+                pos = str_vv.split("_")
+                question_name_vv = "ILS" + pos[2] + pos[0] + pos[1]
+                dimension_name_vv = "Visual_verbal." + question_name_vv
+                ils_answers_oobn[dimension_name_vv] = answer
+
+            if key.startswith("si"):
+                str_si = key.upper()
+                pos = str_si.split("_")
+                question_name_si = "ILS" + pos[2] + pos[0] + pos[1]
+                dimension_name_si = "Sensory_Intuitive." + question_name_si
+                ils_answers_oobn[dimension_name_si] = answer
+
+            if key.startswith("ar"):
+                str_ar = key.upper()
+                pos = str_ar.split("_")
+                question_name_ar = "ILS" + pos[2] + pos[0] + pos[1]
+                dimension_name_ar = "Active_Reflective." + question_name_ar
+                ils_answers_oobn[dimension_name_ar] = answer
+
+            if key.startswith("sg"):
+                str_sg = key.upper()
+                pos = str_sg.split("_")
+                question_name_sg = "ILS" + pos[2] + pos[0] + pos[1]
+                dimension_name_sg = "Sequenz_Global." + question_name_sg
+                ils_answers_oobn[dimension_name_sg] = answer
+
+            print(ils_answers_oobn)
+            print("---------------------------------------------------------")
+        return ils_answers_oobn
+
+    def give_all_the_answers_to_the_model_oobn(self):
+        """calculate the answers of ILS"""
+        # map input to identifiers 
+        try:
+            # read model and compile it for inference
+            domain = self.load_model(FILE_NAME_OOBN, "LearnProfile")
+
+            # Validierung
+            input_boolean_target = domain.get_node_by_name("Result")
+
+            if input_boolean_target is None:
+                print(f"{input_boolean_target} not found")
+                exit()
+            else:
+                # 1. Enter some evidence
+                for name, label in self.ils_answers_oobn.items():
+                    node = domain.get_node_by_name(name)
+                    if node is not None:
+                        idx = node.get_state_index_from_label(label)
+                        if idx < 0:
+                            print(f"{label} not found as state of {name}")
+                        else:
+                            node.select_state(idx)
+                    else:
+                        print(f"{name} not found")
+
+                # propagate the evidence to compute posterior beliefs
+                domain.propagate()
+        except HuginException:
+            print("A Hugin Exception was raised!")
+            raise
+        return domain
 
     def load_model(self, cc_name, class_name):
         """load an OOBN model into a class collection"""
@@ -72,6 +141,7 @@ class OOBN_model:
         # We assume the model is stored in a class collection
         # read model and compile it for inference
 
+        # domain object to perform inference
         domain = None
         class_by_name = None
         #
@@ -158,28 +228,8 @@ class OOBN_model:
         result["Probability"] = high_belif
         return result
 
-    def get_input_answers(self, ils_answers):
-        """assigne input answers of ILS"""
-        self.ils_answers_oobn = {}
-
-        ils_input_answers = self.get_ils_answers(ils_answers["ils_input_answers"])
-        ils_perception_answers = self.get_ils_answers(
-            ils_answers["ils_perception_answers"]
-        )
-        ils_processing_answers = self.get_ils_answers(
-            ils_answers["ils_processing_answers"]
-        )
-        ils_understanding_answers = self.get_ils_answers(
-            ils_answers["ils_understanding_answers"]
-        )
-
-        self.ils_answers_oobn.update(ils_input_answers)
-        self.ils_answers_oobn.update(ils_perception_answers)
-        self.ils_answers_oobn.update(ils_processing_answers)
-        self.ils_answers_oobn.update(ils_understanding_answers)
-
     def get_poles(self, dimension):
-        """assigne poles the answers of ILS"""
+        """assigne poles """
         self.poles = {}
         if dimension == "Visual_verbal":
             self.poles["pole1"] = "Visual"
@@ -193,39 +243,6 @@ class OOBN_model:
         if dimension == "Sequenz_Global":
             self.poles["pole1"] = "Sequenz"
             self.poles["pole2"] = "Global"
-
-    def get_ils_answers(self, ils_answers):
-        """assigne the answers of ILS"""
-        ils_answers_oobn = {}
-        for id, answer in ils_answers.items():
-            if id.startswith("vv"):
-                str_vv = id.upper()
-                pos = str_vv.split("_")
-                str_vv = "ILS" + pos[2] + pos[0] + pos[1]
-                str_vv = "Visual_verbal." + str_vv
-                ils_answers_oobn[str_vv] = answer
-
-            if id.startswith("si"):
-                str_si = id.upper()
-                pos = str_si.split("_")
-                str_si = "ILS" + pos[2] + pos[0] + pos[1]
-                str_si = "Sensory_Intuitive." + str_si
-                ils_answers_oobn[str_si] = answer
-
-            if id.startswith("ar"):
-                str_ar = id.upper()
-                pos = str_ar.split("_")
-                str_ar = "ILS" + pos[2] + pos[0] + pos[1]
-                str_ar = "Active_Reflective." + str_ar
-                ils_answers_oobn[str_ar] = answer
-
-            if id.startswith("sg"):
-                str_sg = id.upper()
-                pos = str_sg.split("_")
-                str_sg = "ILS" + pos[2] + pos[0] + pos[1]
-                str_sg = "Sequenz_Global." + str_sg
-                ils_answers_oobn[str_sg] = answer
-        return ils_answers_oobn
 
     def get_score_name(self, name_dimension_ils, score_dimension, bool_first_pole):
         """get the name of the Node in OOBN"""
@@ -241,40 +258,7 @@ class OOBN_model:
 
         return str_local_target, bool_local_target
 
-    def get_domain_oobn(self):
-        """calculate the answers of ILS"""
-        # map input to identifiers
-        specfile = FILE_NAME_OOBN
-        cls_name = "LearnProfile"
-        target_name = "Result"
-        try:
-            # read model and compile it for inference
-            domain = self.load_model(specfile, cls_name)
 
-            # Validierung
-            input_boolean_target = domain.get_node_by_name(target_name)
-            if input_boolean_target is None:
-                print(f"{input_boolean_target} not found")
-                exit()
-            Dim_dict = self.ils_answers_oobn
-            # 1. Enter some evidence
-            for name, label in Dim_dict.items():
-                node = domain.get_node_by_name(name)
-                if node is not None:
-                    idx = node.get_state_index_from_label(label)
-                    if idx < 0:
-                        print(f"{label} not found as state of {name}")
-                    else:
-                        node.select_state(idx)
-                else:
-                    print(f"{name} not found")
-
-            # propagate the evidence to compute posterior beliefs
-            domain.propagate()
-        except HuginException:
-            print("A Hugin Exception was raised!")
-            raise
-        return domain
 
     def close_model_domain(self):
         """ """
@@ -288,7 +272,7 @@ class OOBN_model:
 
     def calulated_ils(self, name_dimension_ils, score_dimension, bool_first_pole):
         """calculate the answers of ILS"""
-
+        self.get_poles(dimension=name_dimension_ils)
         target_name = "Result"
         try:
             # get target Booolean Result
@@ -319,6 +303,30 @@ class OOBN_model:
         # all done
         print("calulated_ils Done1, thank you!:")
         return result
+
+    def calculate_oobn_for_all_dimensions(self):
+        """calculate"""
+        result = self.calulated_ils(
+            "Visual_verbal",
+            "Score_visual_verbal",
+            "Visual_A_highest",
+        )
+        self.self_result_ils_oobn["ils_input"] = result
+
+        result = self.calulated_ils(
+            "Sensory_Intuitive", "Score_Sensory_Intuitive", "Sensitive_A_highest"
+        )
+        self.self_result_ils_oobn["ils_perception"] = result
+
+        result = self.calulated_ils(
+            "Active_Reflective", "Score_active_reflective", "Active_A_highest"
+        )
+        self.self_result_ils_oobn["ils_processing"] = result
+
+        result = self.calulated_ils(
+            "Sequenz_Global", "Score_sequenz_Global", "Sequential_A_highest"
+        )
+        self.self_result_ils_oobn["ils_understanding"] = result
 
     def print_version_ils(self, ils_answers, self_result_ils_oobn):
         """print_version_ils"""
