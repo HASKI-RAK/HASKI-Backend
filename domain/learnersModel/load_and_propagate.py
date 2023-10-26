@@ -4,8 +4,8 @@ from .Lib.hugin94.pyhugin94 import (  # type: ignore
     HuginException,
 )
 
-# FILE_NAME_OOBN = "domain/learnersModel/LearnProfile_cc.oobn"
-FILE_NAME_OOBN = "../../domain/learnersModel/LearnProfile_cc.oobn"
+FILE_NAME_OOBN = "domain/learnersModel/LearnProfile_cc.oobn"
+#FILE_NAME_OOBN = "../../domain/learnersModel/LearnProfile_cc.oobn"
 
 
 def parse_listener(line, description):
