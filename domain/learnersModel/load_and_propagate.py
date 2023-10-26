@@ -5,7 +5,7 @@ from .Lib.hugin94.pyhugin94 import (  # type: ignore
 )
 
 FILE_NAME_OOBN = "domain/learnersModel/LearnProfile_cc.oobn"
-#FILE_NAME_OOBN = "../../domain/learnersModel/LearnProfile_cc.oobn"
+# FILE_NAME_OOBN = "../../domain/learnersModel/LearnProfile_cc.oobn"
 
 
 def parse_listener(line, description):
@@ -42,7 +42,7 @@ class OOBN_model:
         ils_input_answers,
         ils_perception_answers,
         ils_processing_answers,
-        ils_understanding_answers
+        ils_understanding_answers,
     ):
         """Merge all ils responses into a single variable"""
         ils_answers_oobn = {}
