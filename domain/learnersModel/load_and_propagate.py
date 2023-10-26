@@ -42,7 +42,7 @@ class OOBN_model:
         ils_input_answers,
         ils_perception_answers,
         ils_processing_answers,
-        ils_understanding_answers,
+        ils_understanding_answers
     ):
         """Merge all ils responses into a single variable"""
         ils_answers_oobn = {}
@@ -106,7 +106,7 @@ class OOBN_model:
         # map input to identifiers
         try:
             # read model and compile it for inference
-            domain = self.load_model(FILE_NAME_OOBN, "LearnProfile")
+            domain = self.load_model_oobn(FILE_NAME_OOBN, "LearnProfile")
 
             # Validierung
             input_boolean_target = domain.get_node_by_name("Result")
@@ -134,7 +134,7 @@ class OOBN_model:
             raise
         return domain
 
-    def load_model(self, cc_name, class_name):
+    def load_model_oobn(self, cc_name, class_name):
         """load an OOBN model into a class collection"""
         # load an OOBN model into a class collection,
         # find the main class, and create a Domain
@@ -277,7 +277,6 @@ class OOBN_model:
         self, name_dimension_ils, score_dimension, bool_first_pole
     ):
         """calculate the answers of ILS"""
-
         self.get_poles(dimension=name_dimension_ils)
 
         try:
