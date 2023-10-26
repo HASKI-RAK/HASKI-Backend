@@ -1,7 +1,13 @@
-from .Lib.hugin94.pyhugin94 import *
+from .Lib.hugin94.pyhugin94 import (  # type: ignore
+    ClassCollection,
+    Domain,
+    HuginException,
+)
+
+
 
 FILE_NAME_OOBN = "domain/learnersModel/LearnProfile_cc.oobn"
-#FILE_NAME_OOBN = "../../domain/learnersModel/LearnProfile_cc.oobn"
+# FILE_NAME_OOBN = "../../domain/learnersModel/LearnProfile_cc.oobn"
 
 
 def parse_listener(line, description):
@@ -93,8 +99,8 @@ class OOBN_model:
                 dimension_name_sg = "Sequenz_Global." + question_name_sg
                 ils_answers_oobn[dimension_name_sg] = answer
 
-            #print(ils_answers_oobn)
-            #print("---------------------------------------------------------")
+            # print(ils_answers_oobn)
+            # print("---------------------------------------------------------")
         return ils_answers_oobn
 
     def give_all_answers_to_the_model_oobn(self):
