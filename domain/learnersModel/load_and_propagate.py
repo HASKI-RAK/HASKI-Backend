@@ -1,10 +1,10 @@
 from domain.learnersModel.Lib.hugin94.pyhugin94 import *  # type: ignore
 
-from .Lib.hugin94.pyhugin94 import (  # type: ignore
-    ClassCollection,
-    Domain,
-    HuginException,
-)
+# from .Lib.hugin94.pyhugin94 import (  # type: ignore
+#     ClassCollection,
+#     Domain,
+#     HuginException,
+# )
 
 FILE_NAME_OOBN = "domain/learnersModel/LearnProfile_cc.oobn"
 # FILE_NAME_OOBN = "../../domain/learnersModel/LearnProfile_cc.oobn"
