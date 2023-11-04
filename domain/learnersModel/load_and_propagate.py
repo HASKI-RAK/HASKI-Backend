@@ -1,3 +1,5 @@
+from domain.learnersModel.Lib.hugin94.pyhugin94 import *  # type: ignore
+
 from .Lib.hugin94.pyhugin94 import (  # type: ignore
     ClassCollection,
     Domain,

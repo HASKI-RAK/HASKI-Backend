@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from base64 import b64decode as _hh10
 from bz2 import decompress as _hh1
+
 print("=================================== ** ===============")
 print("ENTRO in THE LICENSE data pyhugin94.py contains the HUGIN Python module.")
 # ignore E501
