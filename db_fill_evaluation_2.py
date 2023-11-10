@@ -5257,2107 +5257,4213 @@ cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (3, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (3, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (4, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (4, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (5, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (5, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (6, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (6, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (7, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (7, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (8, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (8, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (9, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (9, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (10, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (10, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (11, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (11, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (12, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (12, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (13, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (13, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (14, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (14, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (15, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (15, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (16, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (16, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (17, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (17, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (18, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (18, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (19, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (19, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (20, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (20, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (21, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (21, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (22, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (22, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (23, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (23, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (24, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (24, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (25, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (25, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (26, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (26, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (27, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (27, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (28, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (28, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (29, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (29, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (30, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (30, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (31, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (31, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (32, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (32, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (33, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (33, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (34, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (34, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (35, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (35, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (36, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (36, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (37, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (37, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (38, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (38, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (39, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (39, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (40, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (40, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (41, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (41, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (42, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (42, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (43, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (43, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (44, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (44, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (45, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (45, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (46, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (46, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (47, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (47, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (48, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (48, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (49, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (49, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (50, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (50, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (51, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (51, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (52, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (52, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (53, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (53, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (54, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (54, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (55, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (55, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (56, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (56, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (57, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (57, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (58, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (58, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (59, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (59, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (60, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (60, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (61, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (61, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (62, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (62, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (63, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (63, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (64, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (64, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (65, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (65, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (66, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (66, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (67, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (67, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (68, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (68, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (69, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (69, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (70, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (70, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (71, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (71, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (72, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (72, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (73, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (73, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (74, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (74, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (75, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (75, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (76, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (76, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (77, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (77, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (78, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (78, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (79, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (79, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (80, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (80, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (81, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (81, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (82, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (82, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (83, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (83, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (84, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (84, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (85, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (85, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (86, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (86, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (87, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (87, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (88, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (88, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (89, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (89, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (90, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (90, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (91, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (91, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (92, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (92, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (93, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (93, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (94, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (94, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (95, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (95, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (96, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (96, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (97, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (97, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (98, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (98, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (99, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (99, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (100, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (100, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (101, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (101, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (102, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (102, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (103, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (103, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (104, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (104, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (105, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (105, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (106, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (106, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (107, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (107, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (108, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (108, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (109, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (109, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (110, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (110, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (111, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (111, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (112, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (112, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (113, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (113, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (114, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (114, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (115, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (115, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (116, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (116, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (117, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (117, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (5)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (6)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (7)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (8)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (9)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (10)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (11)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (12)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (13)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (14)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (15)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (16)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (17)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (18)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (19)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (20)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (21)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (22)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (23)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (24)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (25)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (26)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (27)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (28)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (29)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (30)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (31)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (32)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (33)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (34)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (35)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (36)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (37)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (38)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (39)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (40)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (41)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (42)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (43)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (44)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (45)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (46)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (47)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (48)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (49)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (50)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (51)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (52)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (53)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (54)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (55)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (56)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (57)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (58)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (59)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (60)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (61)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (62)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (63)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (64)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (65)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (66)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (67)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (68)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (69)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (70)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (71)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (72)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (73)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (74)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (75)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (76)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (77)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (78)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (79)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (80)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (81)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (82)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (83)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (84)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (85)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (86)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (87)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (88)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (89)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (90)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (91)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (92)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (93)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (94)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (95)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (96)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (97)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (98)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (99)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (100)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (101)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (102)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (103)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (104)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (105)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (106)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (107)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (108)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (109)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (110)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (111)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (112)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (113)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (114)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (115)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (116)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO knowledge (characteristic_id)
+    VALUES (117)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (5)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (6)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (7)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (8)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (9)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (10)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (11)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (12)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (13)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (14)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (15)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (16)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (17)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (18)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (19)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (20)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (21)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (22)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (23)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (24)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (25)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (26)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (27)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (28)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (29)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (30)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (31)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (32)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (33)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (34)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (35)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (36)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (37)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (38)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (39)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (40)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (41)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (42)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (43)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (44)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (45)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (46)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (47)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (48)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (49)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (50)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (51)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (52)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (53)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (54)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (55)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (56)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (57)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (58)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (59)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (60)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (61)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (62)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (63)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (64)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (65)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (66)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (67)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (68)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (69)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (70)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (71)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (72)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (73)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (74)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (75)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (76)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (77)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (78)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (79)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (80)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (81)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (82)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (83)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (84)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (85)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (86)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (87)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (88)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (89)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (90)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (91)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (92)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (93)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (94)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (95)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (96)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (97)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (98)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (99)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (100)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (101)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (102)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (103)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (104)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (105)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (106)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (107)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (108)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (109)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (110)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (111)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (112)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (113)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (114)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (115)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (116)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_analytics (characteristic_id)
+    VALUES (117)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (28, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (29, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (33, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (34, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (36, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (37, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (39, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (41, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (42, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (43, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (44, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (46, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (47, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (48, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (49, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (52, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (53, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (54, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (55, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (56, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (57, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (59, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (61, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (65, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (66, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (67, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (68, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (69, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (70, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (71, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (72, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (73, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (74, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (75, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (76, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (77, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (78, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (79, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (81, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (83, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (85, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (86, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (87, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (88, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (89, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (91, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (92, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (93, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (94, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (95, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (96, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (97, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (98, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (101, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (102, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (103, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (104, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (105, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (106, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (107, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (108, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (109, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (110, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (111, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (112, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (113, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (114, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (115, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (116, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_strategy (characteristic_id, cogn_str, org, elab, crit_rev, rep, metacogn_str, goal_plan, con, reg, int_res_mng_str, att, eff, time, ext_res_mng_str, lrn_w_cls, lit_res, lrn_env)
+    VALUES (117, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"""
+cursor.execute(sql)
+
+sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (1, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (1, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (2, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (2, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (3, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (3, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (4, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (4, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (5, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (5, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (6, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (6, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (7, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (7, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (8, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (8, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (9, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (9, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (10, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (10, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (11, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (11, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (12, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (12, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (13, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (13, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (14, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (14, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (15, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (15, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (16, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (16, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (17, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (17, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (18, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (18, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (19, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (19, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (20, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (20, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (21, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (21, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (22, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (22, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (23, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (23, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (24, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (24, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (25, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (25, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (26, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (26, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (27, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (27, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (28, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (28, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (29, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (29, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (30, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (30, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (31, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (31, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (32, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (32, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (33, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (33, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (34, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (34, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (35, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (35, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (36, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (36, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (37, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (37, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (38, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (38, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (39, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (39, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (40, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (40, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (41, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (41, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (42, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (42, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (43, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (43, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (44, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (44, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (45, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (45, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (46, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (46, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (47, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (47, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (48, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (48, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (49, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (49, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (50, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (50, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (51, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (51, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (52, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (52, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (53, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (53, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (54, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (54, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (55, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (55, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (56, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (56, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (57, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (57, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (58, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (58, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (59, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (59, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (60, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (60, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (61, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (61, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (62, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (62, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (63, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (63, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (64, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (64, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (65, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (65, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (66, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (66, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (67, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (67, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (68, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (68, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (69, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (69, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (70, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (70, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (71, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (71, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (72, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (72, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (73, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (73, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (74, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (74, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (75, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (75, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (76, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (76, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (77, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (77, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (78, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (78, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (79, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (79, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (80, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (80, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (81, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (81, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (82, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (82, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (83, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (83, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (84, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (84, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (85, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (85, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (86, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (86, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (87, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (87, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (88, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (88, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (89, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (89, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (90, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (90, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (91, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (91, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (92, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (92, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (93, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (93, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (94, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (94, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (95, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (95, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (96, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (96, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (97, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (97, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (98, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (98, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (99, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (99, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (100, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (100, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (101, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (101, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (102, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (102, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (103, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (103, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (104, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (104, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (105, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (105, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (106, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (106, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (107, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (107, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (108, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (108, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (109, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (109, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (110, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (110, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (111, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (111, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (112, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (112, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (113, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (113, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (114, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (114, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (115, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (115, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (116, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (116, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (117, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (117, 1, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (1, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (1, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (2, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (2, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (3, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (3, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (4, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (4, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (5, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (5, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (6, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (6, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (7, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (7, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (8, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (8, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (9, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (9, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (10, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (10, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (11, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (11, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (12, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (12, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (13, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (13, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (14, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (14, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (15, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (15, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (16, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (16, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (17, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (17, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (18, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (18, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (19, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (19, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (20, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (20, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (21, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (21, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (22, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (22, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (23, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (23, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (24, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (24, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (25, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (25, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (26, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (26, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (27, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (27, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (28, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (28, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (29, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (29, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (30, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (30, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (31, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (31, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (32, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (32, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (33, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (33, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (34, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (34, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (35, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (35, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (36, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (36, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (37, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (37, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (38, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (38, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (39, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (39, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (40, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (40, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (41, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (41, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (42, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (42, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (43, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (43, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (44, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (44, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (45, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (45, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (46, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (46, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (47, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (47, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (48, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (48, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (49, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (49, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (50, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (50, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (51, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (51, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (52, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (52, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (53, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (53, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (54, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (54, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (55, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (55, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (56, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (56, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (57, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (57, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (58, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (58, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (59, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (59, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (60, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (60, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (61, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (61, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (62, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (62, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (63, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (63, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (64, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (64, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (65, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (65, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (66, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (66, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (67, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (67, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (68, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (68, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (69, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (69, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (70, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (70, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (71, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (71, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (72, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (72, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (73, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (73, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (74, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (74, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (75, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (75, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (76, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (76, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (77, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (77, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (78, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (78, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (79, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (79, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (80, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (80, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (81, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (81, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (82, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (82, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (83, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (83, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (84, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (84, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (85, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (85, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (86, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (86, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (87, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (87, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (88, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (88, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (89, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (89, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (90, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (90, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (91, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (91, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (92, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (92, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (93, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (93, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (94, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (94, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (95, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (95, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (96, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (96, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (97, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (97, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (98, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (98, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (99, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (99, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (100, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (100, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (101, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (101, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (102, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (102, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (103, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (103, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (104, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (104, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (105, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (105, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (106, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (106, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (107, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (107, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (108, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (108, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (109, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (109, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (110, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (110, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (111, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (111, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (112, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (112, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (113, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (113, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (114, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (114, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (115, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (115, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (116, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (116, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (117, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (117, 2, 'sns', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
