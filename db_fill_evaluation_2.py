@@ -22097,6 +22097,12642 @@ sql = """
 """
 cursor.execute(sql)
 
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(1, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(1, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(1, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(1, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(1, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(1, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(1, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(1, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(1, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(1, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(1, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(1, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(1, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(1, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(1, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(1, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(1, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(1, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(2, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(2, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(2, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(2, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(2, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(2, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(2, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(2, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(2, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(2, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(2, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(2, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(2, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(2, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(2, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(2, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(2, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(2, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(3, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(3, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(3, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(3, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(3, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(3, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(3, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(3, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(3, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(3, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(3, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(3, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(3, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(3, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(3, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(3, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(3, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(3, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(4, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(4, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(4, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(4, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(4, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(4, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(4, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(4, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(4, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(4, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(4, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(4, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(4, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(4, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(4, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(4, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(4, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(4, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(5, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(5, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(5, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(5, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(5, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(5, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(5, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(5, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(5, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(5, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(5, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(5, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(5, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(5, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(5, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(5, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(5, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(5, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(6, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(6, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(6, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(6, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(6, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(6, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(6, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(6, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(6, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(6, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(6, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(6, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(6, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(6, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(6, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(6, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(6, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(6, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(7, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(7, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(7, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(7, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(7, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(7, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(7, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(7, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(7, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(7, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(7, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(7, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(7, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(7, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(7, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(7, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(7, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(7, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(8, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(8, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(8, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(8, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(8, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(8, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(8, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(8, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(8, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(8, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(8, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(8, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(8, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(8, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(8, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(8, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(8, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(8, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(9, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(9, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(9, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(9, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(9, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(9, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(9, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(9, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(9, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(9, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(9, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(9, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(9, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(9, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(9, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(9, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(9, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(9, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(10, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(10, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(10, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(10, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(10, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(10, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(10, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(10, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(10, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(10, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(10, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(10, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(10, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(10, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(10, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(10, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(10, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(10, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(11, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(11, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(11, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(11, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(11, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(11, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(11, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(11, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(11, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(11, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(11, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(11, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(11, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(11, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(11, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(11, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(11, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(11, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(12, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(12, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(12, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(12, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(12, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(12, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(12, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(12, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(12, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(12, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(12, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(12, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(12, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(12, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(12, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(12, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(12, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(12, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(13, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(13, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(13, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(13, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(13, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(13, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(13, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(13, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(13, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(13, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(13, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(13, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(13, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(13, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(13, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(13, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(13, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(13, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(14, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(14, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(14, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(14, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(14, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(14, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(14, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(14, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(14, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(14, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(14, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(14, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(14, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(14, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(14, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(14, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(14, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(14, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(15, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(15, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(15, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(15, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(15, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(15, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(15, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(15, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(15, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(15, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(15, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(15, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(15, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(15, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(15, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(15, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(15, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(15, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(16, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(16, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(16, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(16, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(16, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(16, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(16, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(16, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(16, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(16, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(16, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(16, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(16, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(16, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(16, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(16, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(16, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(16, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(17, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(17, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(17, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(17, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(17, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(17, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(17, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(17, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(17, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(17, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(17, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(17, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(17, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(17, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(17, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(17, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(17, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(17, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(18, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(18, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(18, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(18, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(18, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(18, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(18, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(18, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(18, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(18, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(18, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(18, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(18, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(18, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(18, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(18, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(18, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(18, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(19, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(19, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(19, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(19, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(19, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(19, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(19, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(19, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(19, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(19, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(19, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(19, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(19, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(19, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(19, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(19, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(19, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(19, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(20, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(20, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(20, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(20, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(20, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(20, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(20, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(20, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(20, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(20, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(20, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(20, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(20, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(20, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(20, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(20, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(20, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(20, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(21, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(21, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(21, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(21, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(21, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(21, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(21, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(21, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(21, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(21, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(21, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(21, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(21, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(21, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(21, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(21, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(21, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(21, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(22, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(22, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(22, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(22, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(22, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(22, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(22, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(22, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(22, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(22, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(22, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(22, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(22, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(22, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(22, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(22, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(22, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(22, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(23, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(23, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(23, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(23, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(23, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(23, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(23, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(23, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(23, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(23, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(23, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(23, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(23, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(23, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(23, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(23, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(23, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(23, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(24, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(24, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(24, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(24, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(24, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(24, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(24, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(24, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(24, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(24, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(24, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(24, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(24, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(24, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(24, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(24, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(24, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(24, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(25, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(25, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(25, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(25, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(25, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(25, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(25, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(25, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(25, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(25, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(25, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(25, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(25, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(25, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(25, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(25, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(25, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(25, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(26, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(26, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(26, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(26, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(26, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(26, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(26, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(26, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(26, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(26, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(26, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(26, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(26, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(26, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(26, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(26, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(26, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(26, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(27, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(27, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(27, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(27, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(27, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(27, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(27, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(27, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(27, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(27, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(27, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(27, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(27, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(27, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(27, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(27, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(27, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(27, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(28, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(28, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(28, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(28, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(28, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(28, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(28, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(28, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(28, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(28, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(28, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(28, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(28, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(28, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(28, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(28, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(28, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(28, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(29, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(29, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(29, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(29, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(29, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(29, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(29, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(29, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(29, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(29, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(29, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(29, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(29, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(29, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(29, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(29, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(29, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(29, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(30, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(30, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(30, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(30, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(30, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(30, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(30, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(30, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(30, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(30, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(30, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(30, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(30, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(30, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(30, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(30, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(30, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(30, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(31, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(31, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(31, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(31, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(31, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(31, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(31, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(31, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(31, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(31, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(31, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(31, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(31, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(31, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(31, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(31, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(31, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(31, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(32, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(32, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(32, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(32, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(32, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(32, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(32, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(32, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(32, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(32, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(32, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(32, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(32, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(32, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(32, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(32, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(32, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(32, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(33, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(33, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(33, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(33, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(33, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(33, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(33, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(33, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(33, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(33, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(33, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(33, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(33, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(33, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(33, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(33, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(33, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(33, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(34, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(34, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(34, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(34, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(34, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(34, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(34, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(34, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(34, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(34, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(34, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(34, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(34, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(34, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(34, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(34, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(34, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(34, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(35, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(35, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(35, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(35, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(35, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(35, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(35, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(35, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(35, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(35, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(35, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(35, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(35, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(35, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(35, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(35, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(35, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(35, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(36, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(36, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(36, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(36, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(36, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(36, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(36, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(36, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(36, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(36, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(36, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(36, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(36, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(36, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(36, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(36, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(36, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(36, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(37, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(37, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(37, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(37, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(37, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(37, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(37, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(37, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(37, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(37, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(37, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(37, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(37, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(37, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(37, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(37, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(37, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(37, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(38, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(38, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(38, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(38, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(38, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(38, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(38, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(38, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(38, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(38, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(38, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(38, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(38, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(38, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(38, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(38, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(38, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(38, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(39, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(39, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(39, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(39, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(39, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(39, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(39, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(39, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(39, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(39, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(39, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(39, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(39, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(39, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(39, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(39, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(39, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(39, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(40, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(40, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(40, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(40, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(40, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(40, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(40, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(40, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(40, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(40, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(40, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(40, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(40, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(40, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(40, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(40, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(40, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(40, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(41, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(41, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(41, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(41, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(41, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(41, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(41, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(41, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(41, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(41, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(41, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(41, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(41, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(41, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(41, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(41, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(41, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(41, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(42, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(42, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(42, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(42, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(42, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(42, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(42, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(42, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(42, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(42, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(42, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(42, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(42, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(42, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(42, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(42, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(42, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(42, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(43, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(43, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(43, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(43, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(43, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(43, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(43, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(43, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(43, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(43, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(43, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(43, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(43, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(43, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(43, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(43, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(43, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(43, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(44, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(44, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(44, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(44, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(44, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(44, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(44, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(44, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(44, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(44, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(44, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(44, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(44, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(44, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(44, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(44, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(44, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(44, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(45, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(45, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(45, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(45, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(45, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(45, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(45, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(45, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(45, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(45, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(45, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(45, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(45, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(45, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(45, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(45, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(45, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(45, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(46, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(46, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(46, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(46, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(46, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(46, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(46, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(46, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(46, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(46, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(46, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(46, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(46, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(46, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(46, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(46, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(46, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(46, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(47, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(47, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(47, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(47, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(47, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(47, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(47, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(47, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(47, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(47, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(47, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(47, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(47, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(47, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(47, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(47, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(47, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(47, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(48, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(48, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(48, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(48, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(48, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(48, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(48, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(48, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(48, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(48, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(48, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(48, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(48, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(48, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(48, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(48, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(48, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(48, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(49, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(49, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(49, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(49, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(49, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(49, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(49, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(49, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(49, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(49, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(49, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(49, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(49, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(49, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(49, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(49, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(49, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(49, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(50, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(50, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(50, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(50, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(50, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(50, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(50, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(50, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(50, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(50, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(50, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(50, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(50, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(50, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(50, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(50, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(50, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(50, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(51, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(51, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(51, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(51, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(51, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(51, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(51, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(51, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(51, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(51, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(51, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(51, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(51, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(51, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(51, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(51, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(51, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(51, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(52, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(52, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(52, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(52, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(52, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(52, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(52, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(52, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(52, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(52, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(52, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(52, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(52, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(52, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(52, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(52, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(52, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(52, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(53, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(53, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(53, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(53, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(53, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(53, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(53, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(53, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(53, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(53, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(53, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(53, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(53, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(53, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(53, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(53, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(53, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(53, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(54, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(54, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(54, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(54, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(54, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(54, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(54, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(54, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(54, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(54, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(54, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(54, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(54, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(54, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(54, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(54, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(54, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(54, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(55, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(55, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(55, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(55, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(55, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(55, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(55, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(55, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(55, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(55, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(55, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(55, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(55, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(55, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(55, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(55, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(55, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(55, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(56, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(56, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(56, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(56, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(56, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(56, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(56, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(56, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(56, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(56, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(56, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(56, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(56, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(56, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(56, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(56, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(56, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(56, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(57, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(57, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(57, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(57, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(57, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(57, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(57, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(57, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(57, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(57, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(57, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(57, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(57, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(57, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(57, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(57, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(57, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(57, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(58, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(58, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(58, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(58, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(58, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(58, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(58, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(58, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(58, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(58, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(58, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(58, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(58, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(58, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(58, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(58, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(58, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(58, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(59, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(59, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(59, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(59, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(59, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(59, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(59, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(59, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(59, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(59, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(59, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(59, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(59, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(59, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(59, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(59, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(59, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(59, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(60, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(60, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(60, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(60, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(60, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(60, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(60, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(60, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(60, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(60, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(60, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(60, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(60, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(60, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(60, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(60, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(60, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(60, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(61, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(61, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(61, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(61, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(61, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(61, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(61, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(61, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(61, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(61, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(61, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(61, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(61, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(61, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(61, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(61, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(61, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(61, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(62, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(62, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(62, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(62, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(62, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(62, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(62, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(62, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(62, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(62, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(62, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(62, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(62, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(62, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(62, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(62, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(62, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(62, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(63, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(63, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(63, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(63, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(63, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(63, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(63, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(63, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(63, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(63, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(63, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(63, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(63, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(63, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(63, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(63, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(63, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(63, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(64, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(64, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(64, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(64, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(64, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(64, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(64, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(64, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(64, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(64, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(64, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(64, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(64, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(64, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(64, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(64, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(64, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(64, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(65, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(65, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(65, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(65, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(65, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(65, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(65, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(65, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(65, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(65, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(65, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(65, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(65, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(65, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(65, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(65, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(65, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(65, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(66, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(66, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(66, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(66, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(66, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(66, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(66, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(66, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(66, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(66, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(66, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(66, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(66, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(66, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(66, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(66, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(66, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(66, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(67, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(67, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(67, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(67, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(67, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(67, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(67, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(67, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(67, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(67, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(67, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(67, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(67, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(67, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(67, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(67, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(67, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(67, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(68, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(68, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(68, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(68, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(68, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(68, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(68, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(68, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(68, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(68, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(68, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(68, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(68, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(68, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(68, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(68, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(68, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(68, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(69, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(69, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(69, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(69, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(69, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(69, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(69, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(69, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(69, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(69, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(69, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(69, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(69, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(69, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(69, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(69, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(69, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(69, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(70, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(70, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(70, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(70, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(70, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(70, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(70, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(70, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(70, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(70, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(70, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(70, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(70, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(70, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(70, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(70, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(70, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(70, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(71, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(71, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(71, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(71, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(71, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(71, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(71, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(71, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(71, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(71, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(71, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(71, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(71, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(71, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(71, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(71, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(71, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(71, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(72, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(72, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(72, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(72, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(72, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(72, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(72, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(72, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(72, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(72, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(72, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(72, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(72, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(72, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(72, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(72, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(72, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(72, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(73, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(73, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(73, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(73, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(73, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(73, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(73, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(73, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(73, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(73, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(73, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(73, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(73, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(73, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(73, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(73, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(73, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(73, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(74, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(74, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(74, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(74, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(74, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(74, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(74, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(74, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(74, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(74, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(74, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(74, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(74, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(74, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(74, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(74, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(74, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(74, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(75, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(75, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(75, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(75, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(75, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(75, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(75, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(75, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(75, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(75, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(75, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(75, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(75, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(75, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(75, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(75, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(75, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(75, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(76, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(76, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(76, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(76, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(76, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(76, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(76, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(76, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(76, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(76, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(76, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(76, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(76, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(76, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(76, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(76, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(76, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(76, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(77, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(77, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(77, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(77, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(77, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(77, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(77, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(77, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(77, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(77, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(77, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(77, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(77, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(77, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(77, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(77, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(77, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(77, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(78, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(78, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(78, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(78, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(78, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(78, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(78, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(78, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(78, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(78, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(78, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(78, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(78, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(78, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(78, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(78, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(78, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(78, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(79, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(79, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(79, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(79, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(79, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(79, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(79, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(79, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(79, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(79, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(79, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(79, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(79, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(79, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(79, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(79, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(79, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(79, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(80, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(80, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(80, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(80, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(80, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(80, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(80, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(80, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(80, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(80, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(80, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(80, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(80, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(80, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(80, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(80, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(80, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(80, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(81, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(81, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(81, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(81, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(81, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(81, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(81, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(81, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(81, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(81, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(81, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(81, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(81, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(81, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(81, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(81, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(81, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(81, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(82, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(82, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(82, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(82, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(82, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(82, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(82, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(82, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(82, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(82, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(82, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(82, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(82, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(82, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(82, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(82, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(82, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(82, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(83, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(83, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(83, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(83, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(83, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(83, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(83, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(83, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(83, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(83, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(83, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(83, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(83, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(83, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(83, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(83, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(83, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(83, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(84, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(84, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(84, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(84, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(84, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(84, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(84, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(84, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(84, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(84, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(84, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(84, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(84, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(84, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(84, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(84, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(84, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(84, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(85, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(85, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(85, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(85, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(85, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(85, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(85, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(85, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(85, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(85, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(85, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(85, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(85, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(85, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(85, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(85, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(85, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(85, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(86, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(86, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(86, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(86, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(86, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(86, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(86, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(86, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(86, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(86, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(86, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(86, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(86, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(86, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(86, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(86, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(86, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(86, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(87, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(87, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(87, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(87, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(87, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(87, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(87, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(87, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(87, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(87, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(87, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(87, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(87, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(87, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(87, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(87, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(87, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(87, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(88, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(88, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(88, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(88, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(88, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(88, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(88, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(88, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(88, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(88, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(88, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(88, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(88, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(88, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(88, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(88, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(88, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(88, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(89, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(89, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(89, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(89, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(89, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(89, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(89, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(89, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(89, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(89, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(89, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(89, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(89, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(89, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(89, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(89, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(89, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(89, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(90, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(90, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(90, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(90, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(90, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(90, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(90, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(90, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(90, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(90, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(90, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(90, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(90, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(90, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(90, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(90, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(90, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(90, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(91, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(91, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(91, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(91, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(91, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(91, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(91, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(91, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(91, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(91, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(91, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(91, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(91, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(91, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(91, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(91, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(91, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(91, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(92, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(92, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(92, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(92, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(92, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(92, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(92, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(92, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(92, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(92, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(92, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(92, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(92, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(92, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(92, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(92, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(92, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(92, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(93, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(93, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(93, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(93, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(93, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(93, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(93, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(93, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(93, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(93, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(93, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(93, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(93, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(93, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(93, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(93, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(93, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(93, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(94, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(94, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(94, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(94, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(94, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(94, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(94, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(94, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(94, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(94, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(94, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(94, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(94, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(94, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(94, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(94, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(94, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(94, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(95, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(95, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(95, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(95, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(95, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(95, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(95, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(95, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(95, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(95, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(95, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(95, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(95, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(95, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(95, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(95, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(95, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(95, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(96, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(96, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(96, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(96, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(96, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(96, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(96, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(96, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(96, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(96, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(96, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(96, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(96, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(96, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(96, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(96, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(96, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(96, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(97, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(97, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(97, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(97, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(97, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(97, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(97, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(97, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(97, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(97, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(97, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(97, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(97, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(97, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(97, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(97, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(97, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(97, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(98, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(98, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(98, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(98, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(98, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(98, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(98, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(98, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(98, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(98, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(98, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(98, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(98, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(98, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(98, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(98, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(98, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(98, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(99, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(99, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(99, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(99, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(99, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(99, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(99, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(99, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(99, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(99, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(99, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(99, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(99, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(99, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(99, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(99, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(99, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(99, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(100, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(100, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(100, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(100, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(100, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(100, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(100, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(100, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(100, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(100, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(100, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(100, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(100, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(100, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(100, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(100, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(100, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(100, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(101, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(101, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(101, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(101, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(101, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(101, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(101, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(101, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(101, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(101, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(101, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(101, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(101, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(101, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(101, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(101, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(101, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(101, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(102, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(102, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(102, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(102, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(102, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(102, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(102, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(102, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(102, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(102, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(102, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(102, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(102, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(102, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(102, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(102, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(102, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(102, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(103, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(103, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(103, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(103, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(103, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(103, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(103, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(103, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(103, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(103, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(103, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(103, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(103, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(103, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(103, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(103, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(103, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(103, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(104, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(104, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(104, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(104, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(104, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(104, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(104, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(104, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(104, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(104, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(104, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(104, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(104, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(104, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(104, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(104, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(104, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(104, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(105, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(105, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(105, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(105, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(105, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(105, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(105, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(105, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(105, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(105, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(105, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(105, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(105, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(105, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(105, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(105, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(105, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(105, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(106, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(106, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(106, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(106, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(106, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(106, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(106, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(106, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(106, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(106, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(106, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(106, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(106, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(106, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(106, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(106, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(106, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(106, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(107, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(107, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(107, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(107, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(107, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(107, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(107, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(107, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(107, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(107, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(107, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(107, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(107, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(107, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(107, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(107, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(107, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(107, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(108, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(108, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(108, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(108, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(108, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(108, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(108, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(108, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(108, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(108, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(108, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(108, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(108, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(108, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(108, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(108, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(108, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(108, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(109, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(109, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(109, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(109, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(109, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(109, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(109, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(109, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(109, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(109, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(109, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(109, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(109, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(109, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(109, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(109, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(109, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(109, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(110, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(110, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(110, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(110, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(110, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(110, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(110, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(110, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(110, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(110, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(110, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(110, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(110, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(110, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(110, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(110, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(110, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(110, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(111, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(111, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(111, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(111, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(111, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(111, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(111, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(111, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(111, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(111, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(111, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(111, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(111, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(111, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(111, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(111, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(111, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(111, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(112, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(112, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(112, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(112, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(112, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(112, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(112, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(112, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(112, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(112, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(112, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(112, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(112, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(112, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(112, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(112, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(112, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(112, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(113, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(113, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(113, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(113, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(113, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(113, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(113, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(113, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(113, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(113, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(113, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(113, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(113, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(113, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(113, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(113, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(113, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(113, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(114, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(114, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(114, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(114, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(114, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(114, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(114, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(114, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(114, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(114, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(114, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(114, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(114, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(114, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(114, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(114, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(114, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(114, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(115, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(115, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(115, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(115, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(115, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(115, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(115, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(115, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(115, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(115, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(115, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(115, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(115, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(115, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(115, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(115, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(115, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(115, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(116, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(116, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(116, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(116, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(116, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(116, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(116, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(116, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(116, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(116, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(116, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(116, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(116, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(116, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(116, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(116, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(116, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(116, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(117, 1, 'Jim Haug', 1, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(117, 1, 'Jim Haug', 3, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(117, 1, 'Jim Haug', 4, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(117, 1, 'Jim Haug', 5, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(117, 1, 'Jim Haug', 7, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(117, 1, 'Jim Haug', 8, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(117, 1, 'Jim Haug', 9, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(117, 1, 'Jim Haug', 11, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(117, 1, 'Jim Haug', 13, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(117, 1, 'Jim Haug', 14, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(117, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(117, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(117, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(117, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(117, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(117, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(117, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
+    VALUES(117, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
 
 
 conn.commit()
