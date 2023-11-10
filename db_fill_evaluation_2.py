@@ -3732,97 +3732,97 @@ cursor.execute(sql)
 
 sql = """
     INSERT INTO topic_learning_element (topic_id, learning_element_id)
-    VALUES (21, 121)
+    VALUES (20, 121)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO topic_learning_element (topic_id, learning_element_id)
-    VALUES (22, 122)
+    VALUES (21, 122)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO topic_learning_element (topic_id, learning_element_id)
-    VALUES (23, 123)
+    VALUES (22, 123)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO topic_learning_element (topic_id, learning_element_id)
-    VALUES (23, 124)
+    VALUES (22, 124)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO topic_learning_element (topic_id, learning_element_id)
-    VALUES (23, 125)
+    VALUES (22, 125)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO topic_learning_element (topic_id, learning_element_id)
-    VALUES (23, 126)
+    VALUES (22, 126)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO topic_learning_element (topic_id, learning_element_id)
-    VALUES (23, 127)
+    VALUES (22, 127)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO topic_learning_element (topic_id, learning_element_id)
-    VALUES (23, 128)
+    VALUES (22, 128)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO topic_learning_element (topic_id, learning_element_id)
-    VALUES (23, 129)
+    VALUES (22, 129)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO topic_learning_element (topic_id, learning_element_id)
-    VALUES (23, 130)
+    VALUES (22, 130)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO topic_learning_element (topic_id, learning_element_id)
-    VALUES (23, 131)
+    VALUES (22, 131)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO topic_learning_element (topic_id, learning_element_id)
-    VALUES (23, 132)
+    VALUES (22, 132)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO topic_learning_element (topic_id, learning_element_id)
-    VALUES (23, 133)
+    VALUES (22, 133)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO topic_learning_element (topic_id, learning_element_id)
-    VALUES (23, 134)
+    VALUES (22, 134)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO topic_learning_element (topic_id, learning_element_id)
-    VALUES (23, 135)
+    VALUES (22, 135)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO topic_learning_element (topic_id, learning_element_id)
-    VALUES (24, 136)
+    VALUES (23, 136)
 """
 cursor.execute(sql)
 
@@ -4550,6 +4550,1410 @@ cursor.execute(sql)
 sql = """
     INSERT INTO student (user_id)
     VALUES (118)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (5)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (6)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (7)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (8)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (9)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (10)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (11)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (12)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (13)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (14)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (15)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (16)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (17)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (18)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (19)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (20)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (21)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (22)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (23)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (24)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (25)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (26)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (27)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (28)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (29)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (30)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (31)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (32)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (33)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (34)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (35)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (36)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (37)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (38)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (39)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (40)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (41)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (42)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (43)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (44)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (45)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (46)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (47)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (48)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (49)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (50)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (51)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (52)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (53)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (54)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (55)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (56)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (57)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (58)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (59)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (60)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (61)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (62)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (63)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (64)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (65)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (66)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (67)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (68)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (69)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (70)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (71)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (72)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (73)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (74)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (75)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (76)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (77)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (78)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (79)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (80)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (81)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (82)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (83)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (84)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (85)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (86)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (87)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (88)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (89)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (90)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (91)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (92)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (93)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (94)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (95)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (96)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (97)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (98)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (99)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (100)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (101)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (102)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (103)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (104)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (105)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (106)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (107)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (108)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (109)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (110)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (111)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (112)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (113)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (114)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (115)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (116)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_characteristics (student_id)
+    VALUES (117)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (3, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (4, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (5, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (6, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (7, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (8, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (9, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (10, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (11, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (12, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (13, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (14, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (15, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (16, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (17, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (18, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (19, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (20, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (21, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (22, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (23, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (24, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (25, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (26, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (27, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (28, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (29, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (30, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (31, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (32, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (33, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (34, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (35, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (36, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (37, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (38, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (39, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (40, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (41, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (42, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (43, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (44, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (45, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (46, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (47, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (48, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (49, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (50, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (51, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (52, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (53, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (54, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (55, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (56, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (57, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (58, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (59, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (60, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (61, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (62, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (63, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (64, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (65, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (66, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (67, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (68, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (69, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (70, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (71, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (72, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (73, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (74, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (75, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (76, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (77, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (78, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (79, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (80, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (81, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (82, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (83, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (84, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (85, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (86, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (87, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (88, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (89, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (90, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (91, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (92, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (93, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (94, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (95, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (96, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (97, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (98, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (99, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (100, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (101, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (102, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (103, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (104, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (105, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (106, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (107, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (108, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (109, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (110, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (111, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (112, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (113, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (114, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (115, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (116, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_style (characteristic_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (117, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
@@ -22866,50 +24270,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(1, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(1, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(1, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(1, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(1, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(1, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(1, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(1, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(1, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(1, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(1, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(1, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(1, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(1, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(1, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(1, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -22974,50 +24370,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(2, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(2, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(2, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(2, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(2, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(2, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(2, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(2, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(2, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(2, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(2, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(2, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(2, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(2, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(2, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(2, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -23082,50 +24470,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(3, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(3, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(3, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(3, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(3, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(3, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(3, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(3, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(3, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(3, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(3, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(3, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(3, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(3, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(3, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(3, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -23190,50 +24570,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(4, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(4, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(4, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(4, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(4, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(4, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(4, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(4, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(4, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(4, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(4, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(4, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(4, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(4, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(4, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(4, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -23298,50 +24670,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(5, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(5, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(5, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(5, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(5, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(5, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(5, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(5, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(5, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(5, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(5, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(5, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(5, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(5, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(5, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(5, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -23406,50 +24770,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(6, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(6, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(6, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(6, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(6, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(6, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(6, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(6, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(6, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(6, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(6, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(6, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(6, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(6, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(6, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(6, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -23514,50 +24870,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(7, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(7, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(7, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(7, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(7, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(7, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(7, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(7, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(7, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(7, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(7, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(7, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(7, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(7, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(7, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(7, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -23622,50 +24970,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(8, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(8, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(8, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(8, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(8, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(8, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(8, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(8, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(8, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(8, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(8, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(8, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(8, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(8, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(8, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(8, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -23730,50 +25070,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(9, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(9, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(9, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(9, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(9, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(9, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(9, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(9, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(9, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(9, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(9, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(9, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(9, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(9, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(9, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(9, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -23838,50 +25170,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(10, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(10, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(10, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(10, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(10, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(10, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(10, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(10, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(10, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(10, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(10, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(10, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(10, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(10, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(10, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(10, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -23946,50 +25270,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(11, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(11, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(11, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(11, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(11, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(11, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(11, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(11, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(11, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(11, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(11, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(11, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(11, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(11, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(11, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(11, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -24054,50 +25370,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(12, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(12, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(12, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(12, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(12, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(12, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(12, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(12, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(12, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(12, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(12, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(12, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(12, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(12, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(12, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(12, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -24162,50 +25470,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(13, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(13, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(13, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(13, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(13, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(13, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(13, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(13, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(13, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(13, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(13, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(13, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(13, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(13, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(13, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(13, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -24270,50 +25570,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(14, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(14, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(14, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(14, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(14, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(14, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(14, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(14, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(14, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(14, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(14, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(14, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(14, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(14, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(14, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(14, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -25458,50 +26750,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(25, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(25, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(25, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(25, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(25, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(25, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(25, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(25, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(25, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(25, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(25, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(25, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(25, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(25, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(25, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(25, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -25566,50 +26850,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(26, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(26, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(26, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(26, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(26, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(26, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(26, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(26, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(26, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(26, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(26, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(26, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(26, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(26, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(26, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(26, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -25674,50 +26950,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(27, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(27, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(27, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(27, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(27, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(27, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(27, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(27, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(27, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(27, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(27, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(27, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(27, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(27, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(27, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(27, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -25782,50 +27050,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(28, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(28, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(28, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(28, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(28, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(28, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(28, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(28, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(28, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(28, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(28, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(28, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(28, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(28, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(28, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(28, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -25890,50 +27150,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(29, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(29, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(29, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(29, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(29, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(29, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(29, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(29, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(29, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(29, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(29, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(29, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(29, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(29, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(29, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(29, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -25998,50 +27250,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(30, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(30, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(30, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(30, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(30, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(30, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(30, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(30, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(30, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(30, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(30, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(30, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(30, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(30, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(30, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(30, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -26106,50 +27350,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(31, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(31, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(31, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(31, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(31, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(31, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(31, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(31, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(31, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(31, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(31, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(31, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(31, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(31, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(31, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(31, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -26214,50 +27450,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(32, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(32, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(32, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(32, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(32, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(32, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(32, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(32, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(32, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(32, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(32, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(32, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(32, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(32, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(32, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(32, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -26322,50 +27550,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(33, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(33, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(33, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(33, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(33, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(33, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(33, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(33, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(33, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(33, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(33, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(33, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(33, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(33, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(33, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(33, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -26430,50 +27650,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(34, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(34, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(34, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(34, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(34, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(34, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(34, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(34, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(34, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(34, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(34, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(34, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(34, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(34, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(34, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(34, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -26538,50 +27750,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(35, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(35, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(35, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(35, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(35, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(35, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(35, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(35, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(35, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(35, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(35, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(35, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(35, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(35, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(35, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(35, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -26646,50 +27850,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(36, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(36, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(36, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(36, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(36, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(36, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(36, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(36, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(36, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(36, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(36, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(36, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(36, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(36, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(36, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(36, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -26754,50 +27950,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(37, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(37, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(37, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(37, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(37, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(37, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(37, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(37, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(37, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(37, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(37, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(37, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(37, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(37, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(37, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(37, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -26862,50 +28050,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(38, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(38, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(38, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(38, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(38, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(38, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(38, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(38, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(38, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(38, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(38, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(38, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(38, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(38, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(38, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(38, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -26970,50 +28150,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(39, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(39, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(39, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(39, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(39, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(39, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(39, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(39, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(39, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(39, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(39, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(39, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(39, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(39, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(39, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(39, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -27078,50 +28250,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(40, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(40, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(40, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(40, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(40, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(40, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(40, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(40, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(40, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(40, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(40, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(40, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(40, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(40, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(40, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(40, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -27186,50 +28350,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(41, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(41, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(41, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(41, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(41, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(41, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(41, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(41, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(41, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(41, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(41, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(41, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(41, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(41, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(41, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(41, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -27294,50 +28450,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(42, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(42, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(42, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(42, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(42, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(42, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(42, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(42, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(42, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(42, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(42, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(42, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(42, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(42, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(42, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(42, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -27402,50 +28550,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(43, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(43, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(43, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(43, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(43, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(43, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(43, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(43, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(43, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(43, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(43, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(43, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(43, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(43, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(43, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(43, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -27510,50 +28650,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(44, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(44, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(44, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(44, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(44, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(44, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(44, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(44, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(44, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(44, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(44, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(44, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(44, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(44, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(44, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(44, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -27618,50 +28750,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(45, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(45, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(45, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(45, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(45, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(45, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(45, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(45, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(45, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(45, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(45, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(45, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(45, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(45, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(45, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(45, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -27726,50 +28850,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(46, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(46, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(46, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(46, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(46, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(46, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(46, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(46, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(46, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(46, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(46, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(46, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(46, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(46, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(46, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(46, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -27834,50 +28950,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(47, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(47, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(47, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(47, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(47, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(47, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(47, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(47, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(47, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(47, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(47, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(47, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(47, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(47, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(47, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(47, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -27942,50 +29050,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(48, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(48, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(48, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(48, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(48, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(48, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(48, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(48, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(48, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(48, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(48, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(48, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(48, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(48, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(48, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(48, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -28050,50 +29150,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(49, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(49, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(49, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(49, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(49, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(49, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(49, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(49, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(49, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(49, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(49, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(49, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(49, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(49, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(49, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(49, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -28158,50 +29250,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(50, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(50, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(50, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(50, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(50, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(50, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(50, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(50, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(50, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(50, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(50, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(50, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(50, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(50, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(50, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(50, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -28266,50 +29350,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(51, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(51, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(51, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(51, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(51, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(51, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(51, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(51, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(51, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(51, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(51, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(51, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(51, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(51, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(51, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(51, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -28374,50 +29450,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(52, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(52, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(52, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(52, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(52, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(52, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(52, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(52, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(52, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(52, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(52, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(52, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(52, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(52, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(52, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(52, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -28482,50 +29550,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(53, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(53, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(53, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(53, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(53, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(53, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(53, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(53, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(53, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(53, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(53, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(53, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(53, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(53, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(53, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(53, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -28590,50 +29650,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(54, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(54, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(54, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(54, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(54, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(54, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(54, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(54, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(54, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(54, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(54, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(54, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(54, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(54, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(54, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(54, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -28698,50 +29750,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(55, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(55, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(55, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(55, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(55, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(55, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(55, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(55, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(55, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(55, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(55, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(55, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(55, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(55, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(55, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(55, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -28806,50 +29850,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(56, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(56, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(56, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(56, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(56, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(56, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(56, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(56, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(56, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(56, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(56, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(56, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(56, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(56, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(56, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(56, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -28914,50 +29950,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(57, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(57, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(57, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(57, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(57, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(57, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(57, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(57, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(57, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(57, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(57, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(57, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(57, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(57, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(57, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(57, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -29022,50 +30050,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(58, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(58, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(58, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(58, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(58, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(58, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(58, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(58, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(58, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(58, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(58, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(58, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(58, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(58, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(58, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(58, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -29130,50 +30150,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(59, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(59, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(59, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(59, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(59, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(59, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(59, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(59, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(59, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(59, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(59, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(59, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(59, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(59, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(59, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(59, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -29238,50 +30250,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(60, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(60, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(60, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(60, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(60, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(60, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(60, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(60, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(60, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(60, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(60, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(60, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(60, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(60, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(60, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(60, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -29346,50 +30350,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(61, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(61, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(61, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(61, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(61, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(61, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(61, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(61, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(61, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(61, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(61, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(61, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(61, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(61, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(61, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(61, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -29454,50 +30450,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(62, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(62, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(62, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(62, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(62, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(62, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(62, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(62, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(62, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(62, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(62, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(62, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(62, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(62, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(62, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(62, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -29562,50 +30550,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(63, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(63, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(63, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(63, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(63, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(63, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(63, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(63, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(63, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(63, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(63, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(63, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(63, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(63, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(63, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(63, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -29670,50 +30650,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(64, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(64, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(64, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(64, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(64, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(64, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(64, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(64, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(64, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(64, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(64, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(64, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(64, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(64, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(64, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(64, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -29778,50 +30750,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(65, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(65, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(65, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(65, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(65, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(65, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(65, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(65, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(65, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(65, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(65, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(65, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(65, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(65, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(65, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(65, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -29886,50 +30850,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(66, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(66, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(66, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(66, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(66, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(66, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(66, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(66, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(66, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(66, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(66, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(66, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(66, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(66, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(66, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(66, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -29994,50 +30950,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(67, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(67, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(67, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(67, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(67, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(67, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(67, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(67, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(67, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(67, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(67, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(67, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(67, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(67, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(67, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(67, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -30102,50 +31050,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(68, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(68, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(68, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(68, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(68, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(68, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(68, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(68, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(68, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(68, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(68, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(68, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(68, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(68, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(68, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(68, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -30210,50 +31150,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(69, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(69, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(69, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(69, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(69, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(69, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(69, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(69, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(69, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(69, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(69, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(69, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(69, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(69, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(69, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(69, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -30318,50 +31250,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(70, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(70, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(70, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(70, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(70, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(70, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(70, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(70, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(70, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(70, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(70, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(70, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(70, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(70, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(70, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(70, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -30426,50 +31350,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(71, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(71, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(71, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(71, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(71, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(71, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(71, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(71, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(71, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(71, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(71, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(71, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(71, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(71, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(71, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(71, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -30534,50 +31450,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(72, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(72, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(72, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(72, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(72, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(72, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(72, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(72, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(72, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(72, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(72, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(72, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(72, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(72, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(72, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(72, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -30642,50 +31550,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(73, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(73, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(73, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(73, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(73, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(73, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(73, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(73, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(73, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(73, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(73, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(73, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(73, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(73, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(73, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(73, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -30750,50 +31650,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(74, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(74, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(74, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(74, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(74, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(74, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(74, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(74, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(74, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(74, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(74, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(74, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(74, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(74, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(74, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(74, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -30858,50 +31750,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(75, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(75, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(75, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(75, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(75, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(75, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(75, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(75, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(75, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(75, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(75, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(75, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(75, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(75, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(75, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(75, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -30966,50 +31850,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(76, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(76, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(76, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(76, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(76, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(76, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(76, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(76, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(76, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(76, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(76, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(76, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(76, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(76, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(76, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(76, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -31074,50 +31950,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(77, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(77, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(77, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(77, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(77, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(77, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(77, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(77, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(77, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(77, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(77, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(77, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(77, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(77, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(77, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(77, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -31182,50 +32050,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(78, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(78, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(78, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(78, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(78, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(78, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(78, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(78, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(78, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(78, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(78, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(78, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(78, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(78, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(78, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(78, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -31290,50 +32150,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(79, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(79, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(79, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(79, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(79, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(79, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(79, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(79, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(79, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(79, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(79, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(79, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(79, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(79, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(79, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(79, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -31398,50 +32250,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(80, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(80, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(80, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(80, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(80, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(80, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(80, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(80, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(80, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(80, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(80, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(80, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(80, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(80, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(80, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(80, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -31506,50 +32350,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(81, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(81, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(81, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(81, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(81, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(81, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(81, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(81, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(81, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(81, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(81, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(81, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(81, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(81, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(81, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(81, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -31614,50 +32450,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(82, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(82, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(82, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(82, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(82, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(82, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(82, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(82, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(82, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(82, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(82, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(82, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(82, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(82, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(82, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(82, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -31722,50 +32550,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(83, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(83, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(83, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(83, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(83, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(83, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(83, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(83, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(83, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(83, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(83, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(83, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(83, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(83, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(83, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(83, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -31830,50 +32650,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(84, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(84, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(84, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(84, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(84, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(84, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(84, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(84, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(84, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(84, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(84, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(84, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(84, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(84, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(84, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(84, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -31938,50 +32750,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(85, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(85, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(85, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(85, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(85, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(85, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(85, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(85, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(85, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(85, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(85, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(85, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(85, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(85, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(85, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(85, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -32046,50 +32850,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(86, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(86, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(86, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(86, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(86, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(86, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(86, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(86, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(86, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(86, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(86, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(86, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(86, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(86, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(86, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(86, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -32154,50 +32950,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(87, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(87, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(87, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(87, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(87, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(87, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(87, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(87, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(87, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(87, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(87, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(87, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(87, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(87, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(87, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(87, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -32262,50 +33050,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(88, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(88, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(88, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(88, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(88, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(88, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(88, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(88, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(88, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(88, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(88, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(88, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(88, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(88, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(88, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(88, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -32370,50 +33150,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(89, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(89, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(89, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(89, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(89, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(89, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(89, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(89, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(89, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(89, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(89, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(89, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(89, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(89, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(89, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(89, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -32478,50 +33250,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(90, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(90, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(90, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(90, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(90, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(90, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(90, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(90, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(90, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(90, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(90, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(90, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(90, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(90, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(90, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(90, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -32586,50 +33350,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(91, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(91, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(91, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(91, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(91, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(91, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(91, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(91, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(91, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(91, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(91, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(91, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(91, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(91, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(91, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(91, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -32694,50 +33450,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(92, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(92, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(92, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(92, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(92, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(92, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(92, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(92, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(92, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(92, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(92, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(92, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(92, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(92, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(92, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(92, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -32802,50 +33550,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(93, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(93, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(93, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(93, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(93, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(93, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(93, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(93, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(93, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(93, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(93, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(93, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(93, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(93, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(93, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(93, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -32910,50 +33650,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(94, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(94, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(94, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(94, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(94, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(94, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(94, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(94, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(94, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(94, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(94, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(94, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(94, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(94, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(94, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(94, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -33018,50 +33750,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(95, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(95, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(95, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(95, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(95, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(95, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(95, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(95, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(95, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(95, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(95, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(95, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(95, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(95, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(95, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(95, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -33126,50 +33850,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(96, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(96, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(96, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(96, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(96, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(96, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(96, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(96, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(96, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(96, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(96, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(96, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(96, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(96, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(96, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(96, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -33234,50 +33950,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(97, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(97, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(97, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(97, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(97, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(97, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(97, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(97, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(97, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(97, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(97, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(97, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(97, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(97, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(97, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(97, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -33342,50 +34050,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(98, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(98, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(98, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(98, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(98, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(98, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(98, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(98, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(98, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(98, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(98, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(98, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(98, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(98, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(98, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(98, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -33450,50 +34150,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(99, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(99, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(99, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(99, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(99, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(99, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(99, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(99, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(99, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(99, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(99, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(99, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(99, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(99, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(99, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(99, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -33558,50 +34250,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(100, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(100, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(100, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(100, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(100, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(100, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(100, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(100, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(100, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(100, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(100, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(100, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(100, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(100, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(100, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(100, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -33666,50 +34350,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(101, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(101, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(101, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(101, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(101, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(101, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(101, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(101, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(101, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(101, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(101, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(101, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(101, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(101, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(101, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(101, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -33774,50 +34450,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(102, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(102, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(102, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(102, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(102, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(102, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(102, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(102, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(102, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(102, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(102, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(102, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(102, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(102, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(102, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(102, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -33882,50 +34550,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(103, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(103, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(103, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(103, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(103, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(103, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(103, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(103, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(103, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(103, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(103, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(103, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(103, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(103, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(103, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(103, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -33990,50 +34650,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(104, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(104, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(104, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(104, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(104, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(104, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(104, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(104, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(104, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(104, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(104, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(104, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(104, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(104, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(104, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(104, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -34098,50 +34750,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(105, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(105, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(105, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(105, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(105, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(105, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(105, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(105, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(105, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(105, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(105, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(105, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(105, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(105, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(105, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(105, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -34206,50 +34850,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(106, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(106, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(106, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(106, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(106, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(106, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(106, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(106, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(106, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(106, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(106, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(106, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(106, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(106, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(106, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(106, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -34314,50 +34950,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(107, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(107, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(107, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(107, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(107, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(107, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(107, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(107, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(107, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(107, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(107, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(107, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(107, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(107, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(107, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(107, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -34422,50 +35050,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(108, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(108, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(108, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(108, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(108, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(108, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(108, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(108, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(108, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(108, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(108, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(108, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(108, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(108, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(108, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(108, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -34530,50 +35150,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(109, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(109, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(109, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(109, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(109, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(109, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(109, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(109, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(109, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(109, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(109, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(109, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(109, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(109, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(109, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(109, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -34638,50 +35250,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(110, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(110, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(110, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(110, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(110, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(110, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(110, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(110, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(110, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(110, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(110, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(110, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(110, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(110, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(110, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(110, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -34746,50 +35350,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(111, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(111, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(111, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(111, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(111, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(111, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(111, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(111, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(111, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(111, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(111, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(111, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(111, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(111, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(111, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(111, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -34854,50 +35450,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(112, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(112, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(112, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(112, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(112, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(112, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(112, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(112, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(112, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(112, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(112, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(112, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(112, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(112, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(112, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(112, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -34962,50 +35550,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(113, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(113, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(113, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(113, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(113, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(113, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(113, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(113, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(113, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(113, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(113, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(113, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(113, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(113, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(113, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(113, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -35070,50 +35650,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(114, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(114, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(114, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(114, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(114, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(114, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(114, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(114, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(114, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(114, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(114, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(114, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(114, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(114, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(114, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(114, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -35178,50 +35750,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(115, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(115, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(115, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(115, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(115, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(115, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(115, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(115, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(115, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(115, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(115, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(115, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(115, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(115, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(115, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(115, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -35286,50 +35850,42 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(116, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(116, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(116, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(116, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(116, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(116, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(116, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(116, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(116, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(116, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(116, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(116, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(116, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(116, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(116, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(116, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -35394,2155 +35950,2147 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(117, 1, 'Jim Haug', 15, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(117, 2, 'Jim Haug', 15, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(117, 1, 'Jim Haug', 17, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(117, 2, 'Jim Haug', 17, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(117, 1, 'Jim Haug', 18, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(117, 2, 'Jim Haug', 18, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(117, 1, 'Jim Haug', 19, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(117, 2, 'Jim Haug', 19, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(117, 1, 'Jim Haug', 20, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(117, 2, 'Jim Haug', 20, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(117, 1, 'Jim Haug', 21, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(117, 2, 'Jim Haug', 21, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(117, 1, 'Jim Haug', 23, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(117, 2, 'Jim Haug', 23, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on)
-    VALUES(117, 1, 'Jim Haug', 24, '2023-07-20 20:00:00')
+    INSERT INTO learning_path(student_id, course_id, based_on, topic_id, calculated_on) VALUES(117, 2, 'Jim Haug', 24, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 19, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 19, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 19, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 37, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 37, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 37, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 55, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 55, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 55, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 73, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 73, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 73, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 91, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 91, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 91, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 109, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 109, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 109, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 127, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 127, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 127, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 145, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 145, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 145, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 163, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 163, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 163, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 181, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 181, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 181, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 199, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 199, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 199, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 217, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 217, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 217, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 235, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 235, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 235, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 253, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 253, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 253, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 271, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 271, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 271, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 289, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 289, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 289, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 307, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 307, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 307, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 325, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 325, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 325, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 343, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 343, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 343, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 361, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 361, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 361, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 379, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 379, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 379, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 397, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 397, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 397, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 415, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 415, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 415, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 433, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 433, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 433, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 451, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 451, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 451, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 469, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 469, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 469, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 487, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 487, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 487, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 505, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 505, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 505, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 523, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 523, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 523, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 541, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 541, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 541, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 559, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 559, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 559, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 577, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 577, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 577, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 595, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 595, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 595, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 613, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 613, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 613, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 631, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 631, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 631, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 649, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 649, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 649, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 667, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 667, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 667, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 685, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 685, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 685, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 703, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 703, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 703, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 721, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 721, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 721, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 739, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 739, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 739, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 757, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 757, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 757, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 775, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 775, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 775, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 793, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 793, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 793, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 811, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 811, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 811, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 829, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 829, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 829, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 847, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 847, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 847, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 865, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 865, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 865, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 883, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 883, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 883, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 901, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 901, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 901, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 919, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 919, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 919, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 937, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 937, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 937, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 955, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 955, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 955, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 973, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 973, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 973, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 991, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 991, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 991, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1009, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1009, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1009, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1027, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1027, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1027, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1045, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1045, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1045, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1063, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1063, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1063, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1081, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1081, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1081, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1099, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1099, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1099, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1117, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1117, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1117, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1135, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1135, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1135, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1153, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1153, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1153, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1171, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1171, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1171, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1189, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1189, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1189, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1207, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1207, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1207, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1225, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1225, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1225, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1243, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1243, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1243, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1261, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1261, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1261, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1279, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1279, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1279, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1297, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1297, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1297, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1315, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1315, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1315, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1333, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1333, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1333, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1351, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1351, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1351, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1369, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1369, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1369, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1387, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1387, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1387, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1405, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1405, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1405, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1423, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1423, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1423, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1441, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1441, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1441, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1459, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1459, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1459, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1477, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1477, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1477, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1495, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1495, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1495, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1513, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1513, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1513, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1531, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1531, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1531, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1549, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1549, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1549, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1567, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1567, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1567, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1585, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1585, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1585, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1603, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1603, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1603, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1621, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1621, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1621, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1639, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1639, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1639, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1657, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1657, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1657, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1675, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1675, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1675, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1693, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1693, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1693, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1711, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1711, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1711, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1729, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1729, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1729, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1747, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1747, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1747, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1765, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1765, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1765, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1783, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1783, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1783, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1801, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1801, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1801, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1819, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1819, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1819, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1837, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1837, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1837, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1855, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1855, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1855, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1873, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1873, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1873, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1891, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1891, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1891, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1909, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1909, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1909, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1927, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1927, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1927, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1945, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1945, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1945, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1963, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1963, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1963, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1981, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1981, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1981, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 1999, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 1999, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 1999, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 2017, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 2017, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 2017, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 2035, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 2035, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 2035, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 2053, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 2053, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 2053, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 2071, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 2071, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 2071, false, 3)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (1, 2089, false, 1)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (2, 2089, false, 2)
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommend, position)
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
     VALUES (3, 2089, false, 3)
 """
 cursor.execute(sql)
@@ -70541,7 +71089,5621 @@ sql = """
 """
 cursor.execute(sql)
 
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 14, false, 1)
+"""
+cursor.execute(sql)
 
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 32, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 50, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 68, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 86, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 104, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 122, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 140, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 158, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 176, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 194, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 212, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 230, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 248, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 266, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 284, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 302, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 320, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 338, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 356, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 374, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 392, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 410, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 428, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 446, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 464, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 482, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 500, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 518, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 536, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 554, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 572, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 590, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 608, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 626, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 644, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 662, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 680, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 698, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 716, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 734, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 752, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 770, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 788, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 806, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 824, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 842, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 860, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 878, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 896, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 914, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 932, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 950, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 968, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 986, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1004, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1022, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1040, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1058, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1076, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1094, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1112, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1130, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1148, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1166, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1184, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1202, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1220, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1238, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1256, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1274, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1292, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1310, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1328, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1346, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1364, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1382, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1400, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1418, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1436, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1454, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1472, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1490, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1508, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1526, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1544, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1562, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1580, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1598, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1616, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1634, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1652, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1670, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1688, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1706, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1724, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1742, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1760, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1778, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1796, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1814, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1832, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1850, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1868, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1886, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1904, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1922, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1940, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1958, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1976, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 1994, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 2012, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 2030, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 2048, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 2066, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 2084, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (120, 2102, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 15, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 33, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 51, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 69, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 87, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 105, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 123, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 141, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 159, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 177, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 195, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 213, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 231, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 249, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 267, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 285, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 303, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 321, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 339, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 357, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 375, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 393, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 411, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 429, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 447, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 465, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 483, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 501, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 519, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 537, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 555, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 573, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 591, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 609, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 627, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 645, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 663, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 681, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 699, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 717, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 735, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 753, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 771, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 789, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 807, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 825, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 843, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 861, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 879, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 897, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 915, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 933, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 951, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 969, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 987, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1005, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1023, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1041, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1059, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1077, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1095, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1113, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1131, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1149, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1167, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1185, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1203, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1221, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1239, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1257, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1275, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1293, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1311, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1329, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1347, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1365, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1383, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1401, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1419, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1437, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1455, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1473, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1491, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1509, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1527, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1545, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1563, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1581, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1599, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1617, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1635, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1653, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1671, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1689, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1707, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1725, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1743, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1761, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1779, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1797, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1815, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1833, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1851, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1869, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1887, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1905, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1923, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1941, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1959, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1977, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 1995, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 2013, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 2031, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 2049, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 2067, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 2085, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (121, 2103, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 16, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 34, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 52, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 70, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 88, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 106, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 124, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 142, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 160, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 178, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 196, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 214, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 232, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 250, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 268, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 286, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 304, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 322, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 340, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 358, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 376, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 394, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 412, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 430, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 448, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 466, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 484, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 502, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 520, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 538, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 556, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 574, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 592, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 610, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 628, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 646, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 664, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 682, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 700, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 718, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 736, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 754, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 772, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 790, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 808, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 826, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 844, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 862, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 880, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 898, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 916, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 934, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 952, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 970, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 988, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1006, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1024, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1042, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1060, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1078, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1096, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1114, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1132, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1150, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1168, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1186, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1204, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1222, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1240, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1258, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1276, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1294, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1312, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1330, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1348, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1366, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1384, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1402, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1420, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1438, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1456, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1474, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1492, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1510, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1528, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1546, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1564, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1582, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1600, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1618, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1636, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1654, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1672, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1690, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1708, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1726, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1744, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1762, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1780, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1798, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1816, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1834, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1852, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1870, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1888, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1906, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1924, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1942, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1960, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1978, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 1996, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 2014, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 2032, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 2050, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 2068, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 2086, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (122, 2104, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 17, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 35, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 53, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 71, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 89, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 107, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 125, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 143, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 161, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 179, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 197, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 215, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 233, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 251, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 269, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 287, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 305, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 323, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 341, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 359, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 377, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 395, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 413, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 431, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 449, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 467, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 485, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 503, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 521, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 539, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 557, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 575, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 593, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 611, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 629, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 647, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 665, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 683, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 701, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 719, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 737, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 755, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 773, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 791, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 809, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 827, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 845, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 863, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 881, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 899, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 917, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 935, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 953, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 971, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 989, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1007, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1025, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1043, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1061, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1079, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1097, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1115, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1133, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1151, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1169, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1187, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1205, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1223, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1241, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1259, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1277, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1295, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1313, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1331, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1349, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1367, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1385, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1403, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1421, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1439, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1457, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1475, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1493, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1511, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1529, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1547, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1565, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1583, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1601, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1619, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1637, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1655, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1673, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1691, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1709, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1727, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1745, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1763, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1781, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1799, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1817, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1835, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1853, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1871, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1889, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1907, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1925, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1943, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1961, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1979, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 1997, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 2015, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 2033, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 2051, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 2069, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 2087, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (136, 2105, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 18, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 18, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 18, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 18, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 36, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 36, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 36, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 36, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 54, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 54, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 54, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 54, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 72, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 72, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 72, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 72, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 90, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 90, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 90, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 90, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 108, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 108, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 108, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 108, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 126, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 126, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 126, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 126, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 144, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 144, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 144, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 144, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 162, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 162, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 162, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 162, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 180, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 180, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 180, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 180, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 198, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 198, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 198, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 198, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 216, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 216, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 216, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 216, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 234, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 234, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 234, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 234, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 252, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 252, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 252, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 252, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 270, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 270, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 270, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 270, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 288, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 288, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 288, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 288, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 306, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 306, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 306, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 306, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 324, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 324, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 324, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 324, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 342, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 342, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 342, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 342, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 360, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 360, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 360, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 360, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 378, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 378, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 378, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 378, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 396, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 396, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 396, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 396, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 414, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 414, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 414, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 414, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 432, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 432, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 432, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 432, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 450, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 450, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 450, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 450, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 468, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 468, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 468, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 468, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 486, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 486, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 486, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 486, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 504, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 504, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 504, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 504, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 522, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 522, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 522, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 522, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 540, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 540, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 540, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 540, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 558, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 558, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 558, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 558, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 576, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 576, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 576, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 576, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 594, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 594, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 594, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 594, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 612, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 612, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 612, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 612, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 630, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 630, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 630, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 630, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 648, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 648, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 648, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 648, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 666, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 666, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 666, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 666, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 684, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 684, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 684, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 684, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 702, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 702, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 702, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 702, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 720, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 720, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 720, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 720, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 738, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 738, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 738, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 738, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 756, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 756, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 756, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 756, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 774, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 774, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 774, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 774, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 792, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 792, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 792, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 792, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 810, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 810, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 810, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 810, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 828, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 828, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 828, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 828, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 846, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 846, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 846, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 846, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 864, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 864, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 864, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 864, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 882, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 882, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 882, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 882, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 900, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 900, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 900, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 900, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 918, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 918, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 918, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 918, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 936, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 936, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 936, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 936, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 954, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 954, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 954, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 954, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 972, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 972, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 972, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 972, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 990, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 990, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 990, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 990, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1008, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1008, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1008, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1008, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1026, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1026, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1026, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1026, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1044, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1044, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1044, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1044, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1062, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1062, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1062, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1062, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1080, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1080, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1080, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1080, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1098, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1098, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1098, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1098, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1116, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1116, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1116, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1116, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1134, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1134, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1134, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1134, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1152, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1152, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1152, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1152, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1170, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1170, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1170, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1170, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1188, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1188, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1188, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1188, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1206, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1206, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1206, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1206, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1224, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1224, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1224, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1224, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1242, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1242, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1242, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1242, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1260, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1260, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1260, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1260, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1278, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1278, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1278, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1278, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1296, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1296, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1296, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1296, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1314, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1314, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1314, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1314, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1332, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1332, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1332, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1332, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1350, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1350, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1350, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1350, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1368, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1368, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1368, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1368, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1386, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1386, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1386, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1386, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1404, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1404, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1404, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1404, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1422, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1422, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1422, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1422, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1440, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1440, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1440, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1440, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1458, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1458, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1458, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1458, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1476, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1476, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1476, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1476, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1494, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1494, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1494, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1494, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1512, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1512, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1512, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1512, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1530, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1530, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1530, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1530, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1548, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1548, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1548, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1548, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1566, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1566, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1566, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1566, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1584, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1584, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1584, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1584, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1602, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1602, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1602, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1602, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1620, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1620, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1620, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1620, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1638, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1638, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1638, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1638, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1656, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1656, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1656, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1656, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1674, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1674, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1674, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1674, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1692, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1692, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1692, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1692, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1710, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1710, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1710, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1710, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1728, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1728, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1728, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1728, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1746, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1746, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1746, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1746, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1764, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1764, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1764, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1764, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1782, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1782, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1782, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1782, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1800, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1800, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1800, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1800, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1818, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1818, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1818, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1818, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1836, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1836, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1836, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1836, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1854, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1854, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1854, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1854, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1872, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1872, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1872, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1872, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1890, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1890, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1890, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1890, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1908, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1908, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1908, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1908, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1926, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1926, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1926, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1926, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1944, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1944, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1944, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1944, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1962, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1962, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1962, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1962, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1980, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1980, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1980, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1980, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 1998, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 1998, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 1998, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 1998, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 2016, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 2016, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 2016, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 2016, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 2034, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 2034, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 2034, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 2034, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 2052, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 2052, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 2052, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 2052, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 2070, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 2070, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 2070, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 2070, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 2088, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 2088, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 2088, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 2088, false, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (137, 2106, false, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (138, 2106, false, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (139, 2106, false, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position)
+    VALUES (140, 2106, false, 4)
+"""
+cursor.execute(sql)
 
 
 
