@@ -6,7 +6,7 @@ import psycopg2
 conn = psycopg2.connect(
     database=os.environ.get("DB_NAME", "haski"),
     user="postgres",
-    password=os.environ.get("DB_PASSWORD", "postgres"),
+    password=os.environ.get("DB_PASSWORD", "genericPassword"),
     host=os.environ.get("DB_HOST", "127.0.0.1"),
     port=os.environ.get("DB_PORT", 5432),
 )
@@ -16,7 +16,12 @@ conn.autocommit = True
 # Creating a cursor object using the cursor() method
 cursor = conn.cursor()
 
-# Fill Database with example data. Insert the following data into DB:
+sql = """
+    INSERT INTO haski_user (name, university, lms_user_id, role)
+    VALUES ('Team Kempten', 'HS-KE', 2, 'course_creator')
+"""
+cursor.execute(sql)
+
 sql = """
     INSERT INTO haski_user (name, university, lms_user_id, role)
     VALUES ('musterstudent-1', 'HS-KE', 50, 'student')
@@ -719,6 +724,2423 @@ sql = """
 """
 cursor.execute(sql)
 
+sql = """
+    INSERT INTO course (lms_id, name, university)
+    VALUES (6, 'SE - Entwurfsmuster 1', 'HS-KE')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course (lms_id, name, university)
+    VALUES (5, 'SE - Entwurfsmuster 2', 'HS-KE')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course_creator (user_id)
+    VALUES (1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course_creator_course (course_id, course_creator_id, created_at, last_updated)
+    VALUES (1, 1, '2023-11-09 10:00:00', '2023-11-09 10:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course_creator_course (course_id, course_creator_id, created_at, last_updated)
+    VALUES (2, 1, '2023-11-09 10:00:00', '2023-11-09 10:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, created_by, created_at, last_updated)
+    VALUES (1, true, 1, true, 'Erste Schritte', 'HS-KE', 'Dimitri Bigler', '2023-11-09 10:00:00', '2023-11-09 10:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, created_by, created_at, last_updated)
+    VALUES (2, true, 1, true, 'Entwurfsmuster Allgemein', 'HS-KE', 'Dimitri Bigler', '2023-11-09 10:00:00', '2023-11-09 10:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, created_by, created_at, last_updated)
+    VALUES (3, true, 1, true, 'Feedback zu Entwurfsmuster Allgemein', 'HS-KE', 'Dimitri Bigler', '2023-11-09 10:00:00', '2023-11-09 10:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, created_by, created_at, last_updated)
+    VALUES (4, true, 1, true, 'Bekannte Entwurfsmuster', 'HS-KE', 'Dimitri Bigler', '2023-11-09 10:00:00', '2023-11-09 10:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, created_by, created_at, last_updated)
+    VALUES (5, true, 1, true, 'Feedback vor Strategie', 'HS-KE', 'Dimitri Bigler', '2023-11-09 10:00:00', '2023-11-09 10:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, created_by, created_at, last_updated)
+    VALUES (6, true, 1, true, 'Strategie', 'HS-KE', 'Dimitri Bigler', '2023-11-09 10:00:00', '2023-11-09 10:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, created_by, created_at, last_updated)
+    VALUES (7, true, 1, true, 'Feedback zu Strategie und Zustand', 'HS-KE', 'Dimitri Bigler', '2023-11-09 10:00:00', '2023-11-09 10:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, created_by, created_at, last_updated)
+    VALUES (8, true, 1, true, 'Zustand', 'HS-KE', 'Dimitri Bigler', '2023-11-09 10:00:00', '2023-11-09 10:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, created_by, created_at, last_updated)
+    VALUES (9, true, 1, true, 'Feedback zu Zustand und Adapter', 'HS-KE', 'Dimitri Bigler', '2023-11-09 10:00:00', '2023-11-09 10:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, created_by, created_at, last_updated)
+    VALUES (10, true, 1, true, 'Adapter', 'HS-KE', 'Dimitri Bigler', '2023-11-09 10:00:00', '2023-11-09 10:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, created_by, created_at, last_updated)
+    VALUES (11, true, 1, true, 'Feedback zu Adapter und Fassade', 'HS-KE', 'Dimitri Bigler', '2023-11-09 10:00:00', '2023-11-09 10:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, created_by, created_at, last_updated)
+    VALUES (12, true, 1, true, 'Fassade', 'HS-KE', 'Dimitri Bigler', '2023-11-09 10:00:00', '2023-11-09 10:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, created_by, created_at, last_updated)
+    VALUES (13, true, 1, true, 'Feedback zu Fassade', 'HS-KE', 'Dimitri Bigler', '2023-11-09 10:00:00', '2023-11-09 10:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, created_by, created_at, last_updated)
+    VALUES (14, true, 1, true, 'Zwischen-Evaluation am Ende von Entwurfsmuster 1', 'HS-KE', 'Dimitri Bigler', '2023-11-09 10:00:00', '2023-11-09 10:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, created_by, created_at, last_updated)
+    VALUES (15, true, 1, true, 'Feedback vor Decorator', 'HS-KE', 'Dimitri Bigler', '2023-11-09 10:00:00', '2023-11-09 10:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, created_by, created_at, last_updated)
+    VALUES (16, true, 1, true, 'Decorator', 'HS-KE', 'Dimitri Bigler', '2023-11-09 10:00:00', '2023-11-09 10:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, created_by, created_at, last_updated)
+    VALUES (17, true, 1, true, 'Feedback zu Decorator und Command', 'HS-KE', 'Dimitri Bigler', '2023-11-09 10:00:00', '2023-11-09 10:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, created_by, created_at, last_updated)
+    VALUES (18, true, 1, true, 'Command', 'HS-KE', 'Dimitri Bigler', '2023-11-09 10:00:00', '2023-11-09 10:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, created_by, created_at, last_updated)
+    VALUES (19, true, 1, true, 'Feedback zu Command', 'HS-KE', 'Dimitri Bigler', '2023-11-09 10:00:00', '2023-11-09 10:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, created_by, created_at, last_updated)
+    VALUES (20, true, 1, true, 'Money', 'HS-KE', 'Dimitri Bigler', '2023-11-09 10:00:00', '2023-11-09 10:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, created_by, created_at, last_updated)
+    VALUES (21, true, 1, true, 'Feedback vor Builder', 'HS-KE', 'Dimitri Bigler', '2023-11-09 10:00:00', '2023-11-09 10:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, created_by, created_at, last_updated)
+    VALUES (22, true, 1, true, 'Builder', 'HS-KE', 'Dimitri Bigler', '2023-11-09 10:00:00', '2023-11-09 10:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, created_by, created_at, last_updated)
+    VALUES (23, true, 1, true, 'Feedback zu Builder', 'HS-KE', 'Dimitri Bigler', '2023-11-09 10:00:00', '2023-11-09 10:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, created_by, created_at, last_updated)
+    VALUES (24, true, 1, true, 'Letzte Schritte', 'HS-KE', 'Dimitri Bigler', '2023-11-09 10:00:00', '2023-11-09 10:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course_topic (course_id, topic_id)
+    VALUES (1, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course_topic (course_id, topic_id)
+    VALUES (1, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course_topic (course_id, topic_id)
+    VALUES (1, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course_topic (course_id, topic_id)
+    VALUES (1, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course_topic (course_id, topic_id)
+    VALUES (1, 5)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course_topic (course_id, topic_id)
+    VALUES (1, 6)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course_topic (course_id, topic_id)
+    VALUES (1, 7)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course_topic (course_id, topic_id)
+    VALUES (1, 8)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course_topic (course_id, topic_id)
+    VALUES (1, 9)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course_topic (course_id, topic_id)
+    VALUES (1, 10)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course_topic (course_id, topic_id)
+    VALUES (1, 11)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course_topic (course_id, topic_id)
+    VALUES (1, 12)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course_topic (course_id, topic_id)
+    VALUES (1, 13)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course_topic (course_id, topic_id)
+    VALUES (1, 14)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course_topic (course_id, topic_id)
+    VALUES (2, 15)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course_topic (course_id, topic_id)
+    VALUES (2, 16)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course_topic (course_id, topic_id)
+    VALUES (2, 17)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course_topic (course_id, topic_id)
+    VALUES (2, 18)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course_topic (course_id, topic_id)
+    VALUES (2, 19)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course_topic (course_id, topic_id)
+    VALUES (2, 20)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course_topic (course_id, topic_id)
+    VALUES (2, 21)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course_topic (course_id, topic_id)
+    VALUES (2, 22)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course_topic (course_id, topic_id)
+    VALUES (2, 23)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO course_topic (course_id, topic_id)
+    VALUES (2, 24)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (405, 'feedback', 'RQ', 'Begriffserklärung HASKI', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 10:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (406, 'h5pactivity', 'ÜB', 'Intuitive Reihenfolge der Lernelemente', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 10:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (407, 'feedback', 'RQ', 'Evaluation vor dem Thema "Entwurfsmuster Allgemein"', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 10:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (408, 'h5pactivity', 'KÜ', 'Kurzübersicht - EM Allg.', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 10:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (409, 'resource', 'EK', 'Erklärung - EM Allg.', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 10:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (410, 'resource', 'AN', 'Animation - EM Allg.', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 10:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (411, 'h5pactivity', 'BE', 'Beispiel - EM Allg.', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 10:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (412, 'h5pactivity', 'SE', 'Selbsteinschätzungstest - EM Allg.', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 10:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (413, 'h5pactivity', 'ÜB', 'Leichte Übung - 1 - EM Allg.', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 10:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (414, 'h5pactivity', 'ÜB', 'Leichte Übung - 2 - EM Allg.', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 10:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (415, 'h5pactivity', 'ÜB', 'Mittlere Übung - 1 - EM Allg.', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 10:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (416, 'h5pactivity', 'ÜB', 'Mittlere Übung - 2 - EM Allg.', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 10:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (417, 'h5pactivity', 'ÜB', 'Schwere Übung - 1 - EM Allg.', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 10:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (418, 'h5pactivity', 'ÜB', 'Schwere Übung - 2 - EM Allg.', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 10:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (419, 'h5pactivity', 'ZF', 'Zusammenfassung - EM Allg.', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 10:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (420, 'h5pactivity', 'ZL', 'Zusatzliteratur - EM Allg.', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 10:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (421, 'feedback', 'RQ', 'Evaluation nach dem Thema "Entwurfsmuster Allgemein"', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (422, 'resource', 'EK', 'Erklärung - Bekannte EM', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (423, 'feedback', 'RQ', 'Evaluation vor dem Thema "Strategie"', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (424, 'h5pactivity', 'KÜ', 'Kurzübersicht - Strategie', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 10:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (425, 'resource', 'EK', 'Erklärung - Strategie', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (426, 'resource', 'AN', 'Animation - Strategie', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (427, 'h5pactivity', 'BE', 'Beispiel - Strategie', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (428, 'h5pactivity', 'SE', 'Selbsteinschätzungstest - Strategie', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (429, 'h5pactivity', 'ÜB', 'Leichte Übung - 1 - Strategie', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (430, 'h5pactivity', 'ÜB', 'Leichte Übung - 2 - Strategie', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (431, 'h5pactivity', 'ÜB', 'Mittlere Übung - 1 - Strategie', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (432, 'h5pactivity', 'ÜB', 'Mittlere Übung - 2 - Strategie', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (433, 'h5pactivity', 'ÜB', 'Schwere Übung - 1 - Strategie', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (434, 'h5pactivity', 'ÜB', 'Schwere Übung - 2 - Strategie', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (435, 'h5pactivity', 'ZF', 'Zusammenfassung - Strategie', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (436, 'h5pactivity', 'ZL', 'Zusatzliteratur - Strategie', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (437, 'feedback', 'RQ', 'Evaluation nach dem Thema "Strategie"', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (438, 'feedback', 'RQ', 'Evaluation vor dem Thema "Zustand"', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (439, 'h5pactivity', 'KÜ', 'Kurzübersicht - Zustand', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (440, 'resource', 'EK', 'Erklärung - Zustand', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (441, 'resource', 'AN', 'Animation - Zustand', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (442, 'h5pactivity', 'BE', 'Beispiel - Zustand', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (443, 'h5pactivity', 'SE', 'Selbsteinschätzungstest - Zustand', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (444, 'h5pactivity', 'ÜB', 'Leichte Übung - 1 - Zustand', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (445, 'h5pactivity', 'ÜB', 'Leichte Übung - 2 - Zustand', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (446, 'h5pactivity', 'ÜB', 'Mittlere Übung - 1 - Zustand', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (447, 'h5pactivity', 'ÜB', 'Mittlere Übung - 2 - Zustand', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (448, 'h5pactivity', 'ÜB', 'Mittlere Übung - 2 - Zustand - Lösung', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (449, 'h5pactivity', 'ÜB', 'Schwere Übung - 1 - Zustand', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (450, 'h5pactivity', 'ÜB', 'Schwere Übung - 1 Aufgabe 1 Heatmap - Zustand', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (451, 'h5pactivity', 'ÜB', 'Schwere Übung - 1 Aufgabe 1 - Zustand - Lösung', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (452, 'h5pactivity', 'ÜB', 'Schwere Übung - 1 Aufgabe 2 Heatmap - Zustand', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (453, 'h5pactivity', 'ÜB', 'Schwere Übung - 2 - Zustand', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (454, 'h5pactivity', 'ZF', 'Zusammenfassung - Zustand', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (455, 'h5pactivity', 'ZL', 'Zusatzliteratur - Zustand', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 11:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (456, 'feedback', 'RQ', 'Evaluation nach dem Thema "Zustand"', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (457, 'feedback', 'RQ', 'Evaluation vor dem Thema "Adapter"', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (458, 'h5pactivity', 'KÜ', 'Kurzübersicht - Adapter', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (459, 'resource', 'EK', 'Erklärung - Adapter', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (460, 'resource', 'AN', 'Animation - Adapter', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (461, 'h5pactivity', 'BE', 'Beispiel - Adapter', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (462, 'h5pactivity', 'SE', 'Selbsteinschätzungstest - Adapter', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (463, 'h5pactivity', 'ÜB', 'Leichte Übung - 1 - Adapter', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (464, 'h5pactivity', 'ÜB', 'Leichte Übung - 2 - Adapter', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (465, 'h5pactivity', 'ÜB', 'Mittlere Übung - 1 - Adapter', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (466, 'h5pactivity', 'ÜB', 'Mittlere Übung - 2 - Adapter', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (467, 'h5pactivity', 'ÜB', 'Schwere Übung - 1 - Adapter', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (468, 'h5pactivity', 'ÜB', 'Schwere Übung - 2 - Adapter', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (469, 'h5pactivity', 'ÜB', 'Schwere Übung - 3 - Adapter', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (470, 'h5pactivity', 'ZF', 'Zusammenfassung - Adapter', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (471, 'h5pactivity', 'ZL', 'Zusatzliteratur - Adapter', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (472, 'feedback', 'RQ', 'Evaluation nach dem Thema "Adapter"', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (473, 'feedback', 'RQ', 'Evaluation vor dem Thema "Fassade"', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (474, 'h5pactivity', 'KÜ', 'Kurzübersicht - Fassade', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (475, 'resource', 'EK', 'Erklärung - Fassade', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (476, 'resource', 'AN', 'Animation - Fassade', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (477, 'h5pactivity', 'BE', 'Beispiel - Fassade', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (478, 'h5pactivity', 'SE', 'Selbsteinschätzungstest - Fassade', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (479, 'h5pactivity', 'ÜB', 'Leichte Übung - 1 - Fassade', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (480, 'h5pactivity', 'ÜB', 'Leichte Übung - 2 - Fassade', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (481, 'h5pactivity', 'ÜB', 'Mittlere Übung - 1 - Fassade', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (482, 'h5pactivity', 'ÜB', 'Mittlere Übung - 2 - Fassade', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (483, 'h5pactivity', 'ÜB', 'Schwere Übung - 1 - Fassade', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (484, 'h5pactivity', 'ÜB', 'Schwere Übung - 2 - Fassade', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (485, 'h5pactivity', 'ZF', 'Zusammenfassung - Fassade', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (486, 'h5pactivity', 'ZL', 'Zusatzliteratur - Fassade', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (487, 'feedback', 'RQ', 'Evaluation nach dem Thema "Fassade"', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (488, 'h5pactivity', 'RQ', 'Evaluation der Themen (EM1)', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (489, 'h5pactivity', 'RQ', 'Retrospektive Reihenfolge der Lernelemente (EM1)', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (490, 'feedback', 'RQ', 'Bewertung von Lernelementen (EM1)', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 12:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (502, 'feedback', 'RQ', 'Evaluation vor dem Thema "Decorator"', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (352, 'h5pactivity', 'KÜ', 'Kurzübersicht - Decorator', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (354, 'resource', 'EK', 'Erklärung - Decorator', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (393, 'resource', 'AN', 'Animation - Funktionserweiterung - Decorator', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (392, 'resource', 'AN', 'Animation - Klassenexplosion - Decorator', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (344, 'h5pactivity', 'BE', 'Beispiel - Funktionserweiterung - C++ - Decorator', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (346, 'h5pactivity', 'BE', 'Beispiel - Klassenexplosion - C++- Decorator', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (349, 'h5pactivity', 'SE', 'Selbsteinschätzungstest - Funktionserweiterung - Decorator', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (351, 'h5pactivity', 'SE', 'Selbsteinschätzungstest - Klassenexplosion - Decorator', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (355, 'h5pactivity', 'ÜB', 'Leichte Übung - 1 - Decorator', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (356, 'h5pactivity', 'ÜB', 'Leichte Übung - 2 - Decorator', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (357, 'h5pactivity', 'ÜB', 'Mittlere Übung - 1 - Decorator', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (358, 'h5pactivity', 'ÜB', 'Mittlere Übung - 2 - Decorator', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (359, 'h5pactivity', 'ÜB', 'Schwere Übung - 1 - C++ - Decorator', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (360, 'h5pactivity', 'ÜB', 'Schwere Übung - 2 - C++ - Decorator', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (343, 'h5pactivity', 'ZF', 'Zusammenfassung - Decorator', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (353, 'h5pactivity', 'ZL', 'Zusatzliteratur - Decorator', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (503, 'feedback', 'RQ', 'Evaluation nach dem Thema "Decorator"', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (504, 'feedback', 'RQ', 'Evaluation vor dem Thema "Command"', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (361, 'h5pactivity', 'KÜ', 'Kurzübersicht - Command', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (362, 'resource', 'EK', 'Erklärung - Command', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (394, 'resource', 'AN', 'Animation - Command', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (363, 'h5pactivity', 'BE', 'Beispiel - Command', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (367, 'h5pactivity', 'SE', 'Selbsteinschätzungstest - Command', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (369, 'h5pactivity', 'ÜB', 'Leichte Übung - 1 - Command', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (370, 'h5pactivity', 'ÜB', 'Leichte Übung - 2 - Command', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (371, 'h5pactivity', 'ÜB', 'Mittlere Übung - 1 - Command', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:00:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (372, 'h5pactivity', 'ÜB', 'Mittlere Übung - 2 - Command', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (395, 'h5pactivity', 'ÜB', 'Mittlere Übung - 3 - Command', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (373, 'h5pactivity', 'ÜB', 'Schwere Übung - 1 - Command', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (374, 'h5pactivity', 'ÜB', 'Schwere Übung - 2 - Command', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (375, 'h5pactivity', 'ZF', 'Zusammenfassung - Command', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (376, 'h5pactivity', 'ZL', 'Zusatzliteratur - Command', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (505, 'feedback', 'RQ', 'Evaluation nach dem Thema "Command"', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (377, 'resource', 'EK', 'Erklärung - Money', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (506, 'feedback', 'RQ', 'Evaluation vor dem Thema "Builder"', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (378, 'h5pactivity', 'KÜ', 'Kurzübersicht - Builder', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (379, 'resource', 'EK', 'Erklärung - Builder', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (396, 'resource', 'AN', 'Animation - Builder', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (380, 'h5pactivity', 'BE', 'Beispiel - C++ - Builder', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (381, 'h5pactivity', 'SE', 'Selbsteinschätzungstest - Builder', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (382, 'h5pactivity', 'ÜB', 'Leichte Übung - 1 - Builder', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (383, 'h5pactivity', 'ÜB', 'Leichte Übung - 2 - Builder', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (384, 'h5pactivity', 'ÜB', 'Mittlere Übung - 1 - C++ - Builder', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (385, 'h5pactivity', 'ÜB', 'Mittlere Übung - 2 - Builder', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (386, 'h5pactivity', 'ÜB', 'Schwere Übung - 1 - C++ - Builder', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (387, 'h5pactivity', 'ÜB', 'Schwere Übung - 2 - C++ - Builder', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (388, 'h5pactivity', 'ZF', 'Zusammenfassung - Builder', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (389, 'h5pactivity', 'ZL', 'Zusatzliteratur - Builder', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (507, 'feedback', 'RQ', 'Evaluation nach dem Thema "Builder"', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (512, 'h5pactivity', 'RQ', 'Evaluation der Themen (EM2)', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (509, 'h5pactivity', 'RQ', 'Retrospektive Reihenfolge der Lernelemente (EM2)', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (508, 'feedback', 'RQ', 'Bewertung von Lernelementen (EM2)', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_element (lms_id, activity_type, classification, name,\
+    university, created_by, created_at,\
+    last_updated)
+    VALUES (510, 'feedback', 'RQ', 'Abschluss-Evaluation', 'HS-KE', 'Gesine Wagner',\
+    '2023-11-09 13:30:00', '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (1, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (1, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (1, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (2, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (2, 5)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (2, 6)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (2, 7)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (2, 8)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (2, 9)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (2, 10)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (2, 11)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (2, 12)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (2, 13)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (2, 14)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (2, 15)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (2, 16)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (3, 17)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (4, 18)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (5, 19)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (6, 20)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (6, 21)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (6, 22)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (6, 23)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (6, 24)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (6, 25)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (6, 26)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (6, 27)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (6, 28)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (6, 29)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (6, 30)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (6, 31)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (6, 32)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (7, 33)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (7, 34)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (8, 35)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (8, 36)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (8, 37)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (8, 38)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (8, 39)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (8, 40)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (8, 41)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (8, 42)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (8, 43)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (8, 44)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (8, 45)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (8, 46)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (8, 47)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (8, 48)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (8, 49)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (8, 50)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (8, 51)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (9, 52)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (9, 53)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (10, 54)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (10, 55)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (10, 56)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (10, 57)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (10, 58)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (10, 59)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (10, 60)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (10, 61)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (10, 62)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (10, 63)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (10, 64)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (10, 65)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (10, 66)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (10, 67)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (11, 68)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (11, 69)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (12, 70)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (12, 71)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (12, 72)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (12, 73)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (12, 74)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (12, 75)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (12, 76)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (12, 77)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (12, 78)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (12, 79)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (12, 80)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (12, 81)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (12, 82)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (13, 83)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (14, 84)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (14, 85)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (14, 86)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (15, 87)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (16, 88)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (16, 89)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (16, 90)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (16, 91)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (16, 92)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (16, 93)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (16, 94)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (16, 95)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (16, 96)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (16, 97)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (16, 98)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (16, 99)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (16, 100)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (16, 101)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (16, 102)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (16, 103)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (17, 104)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (17, 105)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (18, 106)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (18, 107)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (18, 108)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (18, 109)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (18, 110)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (18, 111)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (18, 112)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (18, 113)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (18, 114)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (18, 115)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (18, 116)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (18, 117)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (18, 118)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (18, 119)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (19, 120)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (21, 121)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (22, 122)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (23, 123)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (23, 124)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (23, 125)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (23, 126)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (23, 127)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (23, 128)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (23, 129)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (23, 130)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (23, 131)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (23, 132)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (23, 133)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (23, 134)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (23, 135)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (24, 136)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (24, 137)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (24, 138)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (24, 139)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO topic_learning_element (topic_id, learning_element_id)
+    VALUES (24, 140)
+"""
+cursor.execute(sql)
 
 sql = """
     INSERT INTO student (user_id)
@@ -728,8 +3150,9 @@ cursor.execute(sql)
 
 sql = """
     INSERT INTO student (user_id)
+    
     VALUES (3)
-"""
+    """
 cursor.execute(sql)
 
 sql = """
@@ -1419,6 +3842,12 @@ cursor.execute(sql)
 sql = """
     INSERT INTO student (user_id)
     VALUES (118)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
+    VALUES (1, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
@@ -2120,7 +4549,7 @@ cursor.execute(sql)
 
 sql = """
     INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (118, 1, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    VALUES (1, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
 """
 cursor.execute(sql)
 
@@ -2821,8 +5250,146 @@ sql = """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO student_course(student_id, course_id, perception_dimension, perception_value, input_dimension, input_value, processing_dimension, processing_value, understanding_dimension, understanding_value)
-    VALUES (118, 2, 'ref', 0, 'int', 0, 'vrb', 0, 'seq', 0)
+    INSERT INTO student_topic(student_id, topic_id, done, done_at)
+    VALUES(1, 1, false, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_topic(student_id, topic_id, done, done_at)
+    VALUES(1, 2, false, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_topic(student_id, topic_id, done, done_at)
+    VALUES(1, 3, false, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_topic(student_id, topic_id, done, done_at)
+    VALUES(1, 4, false, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_topic(student_id, topic_id, done, done_at)
+    VALUES(1, 5, false, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_topic(student_id, topic_id, done, done_at)
+    VALUES(1, 6, false, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_topic(student_id, topic_id, done, done_at)
+    VALUES(1, 7, false, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_topic(student_id, topic_id, done, done_at)
+    VALUES(1, 8, false, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_topic(student_id, topic_id, done, done_at)
+    VALUES(1, 9, false, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_topic(student_id, topic_id, done, done_at)
+    VALUES(1, 10, false, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_topic(student_id, topic_id, done, done_at)
+    VALUES(1, 11, false, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_topic(student_id, topic_id, done, done_at)
+    VALUES(1, 12, false, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_topic(student_id, topic_id, done, done_at)
+    VALUES(1, 13, false, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_topic(student_id, topic_id, done, done_at)
+    VALUES(1, 14, false, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_topic(student_id, topic_id, done, done_at)
+    VALUES(1, 15, false, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_topic(student_id, topic_id, done, done_at)
+    VALUES(1, 16, false, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_topic(student_id, topic_id, done, done_at)
+    VALUES(1, 17, false, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_topic(student_id, topic_id, done, done_at)
+    VALUES(1, 18, false, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_topic(student_id, topic_id, done, done_at)
+    VALUES(1, 19, false, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_topic(student_id, topic_id, done, done_at)
+    VALUES(1, 20, false, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_topic(student_id, topic_id, done, done_at)
+    VALUES(1, 21, false, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_topic(student_id, topic_id, done, done_at)
+    VALUES(1, 22, false, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_topic(student_id, topic_id, done, done_at)
+    VALUES(1, 23, false, '2023-07-20 20:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_topic(student_id, topic_id, done, done_at)
+    VALUES(1, 24, false, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
@@ -19527,150 +22094,6 @@ cursor.execute(sql)
 sql = """
     INSERT INTO student_topic(student_id, topic_id, done, done_at)
     VALUES(117, 24, false, '2023-07-20 20:00:00')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_topic(student_id, topic_id, done, done_at)
-    VALUES(118, 1, false, '2023-07-20 20:00:00')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_topic(student_id, topic_id, done, done_at)
-    VALUES(118, 2, false, '2023-07-20 20:00:00')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_topic(student_id, topic_id, done, done_at)
-    VALUES(118, 3, false, '2023-07-20 20:00:00')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_topic(student_id, topic_id, done, done_at)
-    VALUES(118, 4, false, '2023-07-20 20:00:00')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_topic(student_id, topic_id, done, done_at)
-    VALUES(118, 5, false, '2023-07-20 20:00:00')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_topic(student_id, topic_id, done, done_at)
-    VALUES(118, 6, false, '2023-07-20 20:00:00')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_topic(student_id, topic_id, done, done_at)
-    VALUES(118, 7, false, '2023-07-20 20:00:00')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_topic(student_id, topic_id, done, done_at)
-    VALUES(118, 8, false, '2023-07-20 20:00:00')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_topic(student_id, topic_id, done, done_at)
-    VALUES(118, 9, false, '2023-07-20 20:00:00')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_topic(student_id, topic_id, done, done_at)
-    VALUES(118, 10, false, '2023-07-20 20:00:00')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_topic(student_id, topic_id, done, done_at)
-    VALUES(118, 11, false, '2023-07-20 20:00:00')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_topic(student_id, topic_id, done, done_at)
-    VALUES(118, 12, false, '2023-07-20 20:00:00')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_topic(student_id, topic_id, done, done_at)
-    VALUES(118, 13, false, '2023-07-20 20:00:00')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_topic(student_id, topic_id, done, done_at)
-    VALUES(118, 14, false, '2023-07-20 20:00:00')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_topic(student_id, topic_id, done, done_at)
-    VALUES(118, 15, false, '2023-07-20 20:00:00')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_topic(student_id, topic_id, done, done_at)
-    VALUES(118, 16, false, '2023-07-20 20:00:00')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_topic(student_id, topic_id, done, done_at)
-    VALUES(118, 17, false, '2023-07-20 20:00:00')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_topic(student_id, topic_id, done, done_at)
-    VALUES(118, 18, false, '2023-07-20 20:00:00')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_topic(student_id, topic_id, done, done_at)
-    VALUES(118, 19, false, '2023-07-20 20:00:00')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_topic(student_id, topic_id, done, done_at)
-    VALUES(118, 20, false, '2023-07-20 20:00:00')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_topic(student_id, topic_id, done, done_at)
-    VALUES(118, 21, false, '2023-07-20 20:00:00')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_topic(student_id, topic_id, done, done_at)
-    VALUES(118, 22, false, '2023-07-20 20:00:00')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_topic(student_id, topic_id, done, done_at)
-    VALUES(118, 23, false, '2023-07-20 20:00:00')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_topic(student_id, topic_id, done, done_at)
-    VALUES(118, 24, false, '2023-07-20 20:00:00')
 """
 cursor.execute(sql)
 
