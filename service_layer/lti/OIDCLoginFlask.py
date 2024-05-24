@@ -300,7 +300,7 @@ class OIDCLoginFlask(OIDCLogin):
                         self.id_token["https://purl.imsglobal.org/spec/lti/claim/roles"]
                     ).get_role(),
                 )
-                # Add user to student_course
+                # Add user to student_course, on basis of his university
                 courses = services.get_courses_by_uni(
                     unit_of_work.SqlAlchemyUnitOfWork(),
                     university=user["university"]
@@ -316,7 +316,6 @@ class OIDCLoginFlask(OIDCLogin):
                         student_id=student["id"],
                     )
             if user["role"] == "student":
-                # Type student, has to work cause of Substitution Principle
                 user = services.get_student_by_user_id(
                     unit_of_work.SqlAlchemyUnitOfWork(), user["id"]
                 )
