@@ -1083,6 +1083,19 @@ def get_courses_by_student_id(
         return result
 
 
+def get_courses_by_uni(
+        uow: unit_of_work.AbstractUnitOfWork, university
+) -> dict:
+    with uow:
+        courses = uow.course.get_courses_by_uni(university)
+        result_courses = []
+        for course in courses:
+            result_courses.append(course.serialize_short())
+        result = {}
+        result["courses"] = result_courses
+        return result
+
+
 def get_courses_for_teacher(
     uow: unit_of_work.AbstractUnitOfWork, user_id, teacher_id
 ) -> dict:

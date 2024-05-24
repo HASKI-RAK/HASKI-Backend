@@ -281,11 +281,14 @@ class OIDCLoginFlask(OIDCLogin):
         )
 
         try:
-            user = services.get_user_by_lms_id(
-                unit_of_work.SqlAlchemyUnitOfWork(), self.id_token.sub
-            )
-            logger.debug("User: " + str(user))
-            if not user:
+            try:
+                user = services.get_user_by_lms_id(
+                    unit_of_work.SqlAlchemyUnitOfWork(), self.id_token.sub
+                )
+                logger.debug("User: " + str(user))
+            # If student is in Moodle, but not in Haski DB
+            except Exception as e:
+                # Create User in haski_user
                 user = services.create_user(
                     unit_of_work.SqlAlchemyUnitOfWork(),
                     name=self.id_token.name,
@@ -297,6 +300,21 @@ class OIDCLoginFlask(OIDCLogin):
                         self.id_token["https://purl.imsglobal.org/spec/lti/claim/roles"]
                     ).get_role(),
                 )
+                # Add user to student_course
+                courses = services.get_courses_by_uni(
+                    unit_of_work.SqlAlchemyUnitOfWork(),
+                    university=user["university"]
+                )
+                for course in courses['courses']:
+                    student = services.get_student_by_user_id(
+                        unit_of_work.SqlAlchemyUnitOfWork(),
+                        user["id"]
+                    )
+                    services.add_student_to_course(
+                        unit_of_work.SqlAlchemyUnitOfWork(),
+                        course_id=course["id"],
+                        student_id=student["id"],
+                    )
             if user["role"] == "student":
                 # Type student, has to work cause of Substitution Principle
                 user = services.get_student_by_user_id(
