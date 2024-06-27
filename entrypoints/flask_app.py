@@ -371,8 +371,23 @@ def get_activity_status_for_student_for_learning_element(
                 student_id,
                 learning_element_id,
             )
-            print(activity_status)
             return jsonify(activity_status), 200
+
+
+@app.route(
+    "/lms/remote/courses",
+    methods=["GET"],
+)
+@cross_origin(supports_credentials=True)
+def get_all_remote_courses():
+    method = request.method
+    match method:
+        case "GET":
+            remote_courses = services.get_courses_from_moodle(
+                unit_of_work.SqlAlchemyUnitOfWork()
+            )
+            print(remote_courses)
+            return jsonify(remote_courses), 200
 
 
 @app.route("/lms/course/<course_id>/<lms_course_id>/topic", methods=["POST"])

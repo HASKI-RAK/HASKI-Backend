@@ -1813,6 +1813,52 @@ def get_activity_status_for_student_for_course(
             return []
 
 
+def get_moodle_rest_url_for_courses(
+        uow: unit_of_work.AbstractUnitOfWork
+) -> dict:
+    with uow:
+        moodle_url = os.environ.get("REST_LMS_URL", "")
+        moodle_rest = "/webservice/rest/server.php"
+        rest_function = "?wsfunction=core_course_get_courses"
+        rest_token = "&wstoken=" + os.environ.get("REST_TOKEN", "")
+        rest_format = "&moodlewsrestformat=json"
+        moodle_rest_request = (
+            moodle_url
+            + moodle_rest
+            + rest_function
+            + rest_token
+            + rest_format
+        )
+        response = requests.get(moodle_rest_request)
+        if response.status_code == 200:
+            return response.json()
+        else:
+            return {}
+
+
+def get_courses_from_moodle(
+    uow: unit_of_work.AbstractUnitOfWork
+) -> dict:
+    with uow:
+        response = get_moodle_rest_url_for_courses(uow)
+        if response != {}:
+            filtered_courses = [
+                {
+                    "id": course["id"],
+                    "shortname": course["shortname"],
+                    "fullname": course["fullname"],
+                    "startdate": course["startdate"],
+                    "enddate": course["enddate"],
+                    "timecreated": course["timecreated"],
+                    "timemodified": course["timemodified"],
+                }
+                for course in response if course.get("id") != 1
+            ]
+            return filtered_courses
+        else:
+            return []
+
+
 def get_activity_status_for_learning_element(
     uow: unit_of_work.AbstractUnitOfWork, course_id, student_id, learning_element_id
 ) -> list:
