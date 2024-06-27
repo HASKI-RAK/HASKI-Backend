@@ -8,18 +8,18 @@ class TestRoles(unittest.TestCase):
     def test_lti_roles(self):
         """Test if lti_roles has the expected mappings."""
         expected_roles = {
-            "http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor": "Instructor",  # noqa: E501
-            "http://purl.imsglobal.org/vocab/lis/v2/membership#Learner": "Learner",  # noqa: E501
-            "http://purl.imsglobal.org/vocab/lis/v2/membership#Administrator": "Administrator",  # noqa: E501
+            "http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor": "tutor",  # noqa: E501
+            "http://purl.imsglobal.org/vocab/lis/v2/membership#Learner": "student",  # noqa: E501
+            "http://purl.imsglobal.org/vocab/lis/v2/membership#Administrator": "admin",  # noqa: E501
         }
         self.assertDictEqual(lti_roles, expected_roles)
 
     def test_lti_permissions(self):
         """Test if lti_permissions has the expected mappings."""
         expected_permissions = {
-            "Instructor": [Permissions.READ, Permissions.WRITE],
-            "Learner": [Permissions.READ],
-            "Administrator": [Permissions.READ, Permissions.WRITE, Permissions.ADMIN],
+            "tutor": [Permissions.READ, Permissions.WRITE],
+            "student": [Permissions.READ],
+            "admin": [Permissions.READ, Permissions.WRITE, Permissions.ADMIN],
         }
         self.assertDictEqual(lti_permissions, expected_permissions)
 
@@ -31,7 +31,7 @@ class TestRoleMapper(unittest.TestCase):
             RoleMapper.map_role(
                 "http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor"
             ),
-            "Instructor",
+            "tutor",
         )
         self.assertEqual(RoleMapper.map_role("unknown_role"), "Unknown")
 
@@ -43,7 +43,7 @@ class TestRoleMapper(unittest.TestCase):
                 "unknown_role",
             ]
         )
-        self.assertEqual(role_mapper.get_role(), "Learner")
+        self.assertEqual(role_mapper.get_role(), "student")
         role_mapper = RoleMapper(["unknown_role"])
         self.assertEqual(role_mapper.get_role(), "Unknown")
 
@@ -52,7 +52,7 @@ class TestRoleMapper(unittest.TestCase):
         role_mapper = RoleMapper(
             ["http://purl.imsglobal.org/vocab/lis/v2/membership#Administrator"]
         )
-        self.assertEqual(role_mapper.get_role(), "Administrator")
+        self.assertEqual(role_mapper.get_role(), "admin")
 
     def test_get_permissions(self):
         """Test the get_permissions method."""

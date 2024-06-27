@@ -1083,6 +1083,19 @@ def get_courses_by_student_id(
         return result
 
 
+def get_courses_by_uni(
+        uow: unit_of_work.AbstractUnitOfWork, university
+) -> dict:
+    with uow:
+        courses = uow.course.get_courses_by_uni(university)
+        result_courses = []
+        for course in courses:
+            result_courses.append(course.serialize_short())
+        result = {}
+        result["courses"] = result_courses
+        return result
+
+
 def get_courses_for_teacher(
     uow: unit_of_work.AbstractUnitOfWork, user_id, teacher_id
 ) -> dict:
@@ -1796,6 +1809,52 @@ def get_activity_status_for_student_for_course(
                 for status in response["statuses"]
             ]
             return filtered_statuses
+        else:
+            return []
+
+
+def get_moodle_rest_url_for_courses(
+        uow: unit_of_work.AbstractUnitOfWork
+) -> dict:
+    with uow:
+        moodle_url = os.environ.get("REST_LMS_URL", "")
+        moodle_rest = "/webservice/rest/server.php"
+        rest_function = "?wsfunction=core_course_get_courses"
+        rest_token = "&wstoken=" + os.environ.get("REST_TOKEN", "")
+        rest_format = "&moodlewsrestformat=json"
+        moodle_rest_request = (
+            moodle_url
+            + moodle_rest
+            + rest_function
+            + rest_token
+            + rest_format
+        )
+        response = requests.get(moodle_rest_request)
+        if response.status_code == 200:
+            return response.json()
+        else:
+            return {}
+
+
+def get_courses_from_moodle(
+    uow: unit_of_work.AbstractUnitOfWork
+) -> dict:
+    with uow:
+        response = get_moodle_rest_url_for_courses(uow)
+        if response != {}:
+            filtered_courses = [
+                {
+                    "id": course["id"],
+                    "shortname": course["shortname"],
+                    "fullname": course["fullname"],
+                    "startdate": course["startdate"],
+                    "enddate": course["enddate"],
+                    "timecreated": course["timecreated"],
+                    "timemodified": course["timemodified"],
+                }
+                for course in response if course.get("id") != 1
+            ]
+            return filtered_courses
         else:
             return []
 

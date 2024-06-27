@@ -66,6 +66,13 @@ class Course:
             "last_updated": self.last_updated,
         }
 
+    def serialize_short(self):
+        return {
+            "id": self.id,
+            "lms_id": self.lms_id,
+            "name": self.name,
+            "university": self.university,
+        }
 
 class Topic:
     def __init__(
