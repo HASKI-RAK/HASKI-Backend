@@ -485,3 +485,8 @@ class QuestionnaireListK:
             "lrn_env2_f38": self.lrn_env2_f38,
             "lrn_env3_f39": self.lrn_env3_f39,
         }
+
+
+class OOBN_model:
+    def __init__(self, ils_input_answers) -> None:
+        return 1

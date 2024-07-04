@@ -7,6 +7,7 @@ import errors.errors as err
 from domain.domainModel import model as DM
 from domain.learnersModel import basic_ils_algorithm as BILSA
 from domain.learnersModel import basic_listk_algorithm as BLKA
+from domain.learnersModel import load_and_propagate as LAP
 from domain.learnersModel import model as LM
 from domain.tutoringModel import model as TM
 from domain.userAdministartion import model as UA
@@ -598,6 +599,14 @@ def create_questionnaire_ils(
         ils_input = create_ils_input_answers(
             uow, questionnaire_ils.id, ils_input_answers
         )
+        print("Answer OOBN")
+        LAP.OOBN_model(
+            ils_input_answers,
+            ils_perception_answers,
+            ils_processing_answers,
+            ils_understanding_answers,
+        )
+
         ils_perception = create_ils_perception_answers(
             uow, questionnaire_ils.id, ils_perception_answers
         )
