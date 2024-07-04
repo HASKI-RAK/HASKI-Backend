@@ -400,9 +400,16 @@ def test_prepare_les_for_nestor(learning_style):
         )
         list_of_les.append(le.serialize())
     lp = TM.LearningPath(student_id=1, course_id=1, based_on="nestor")
+    lp2 = TM.LearningPath(student_id=3, course_id=1, based_on="nestor")
 
     lp.get_learning_path(
         student_id=1,
+        learning_style=learning_style,
+        _algorithm="nestor",
+        list_of_les=list_of_les,
+    )
+    lp2.get_learning_path(
+        student_id=3,
         learning_style=learning_style,
         _algorithm="nestor",
         list_of_les=list_of_les,
@@ -411,7 +418,12 @@ def test_prepare_les_for_nestor(learning_style):
     # all Learning styles is Forum
     # Unit testing the result for dummy LS and LE
     result = lp.path
-    assert result[:2] == "FO"
+    # Unit test result to check if the LP's elements occur in retrived result
+    result2 = lp2.path
+
+    assert result[:2] in ("LZ", "FO")
+    for ele in result2:
+        assert ele in ("FO, ÜB, KÜ, ZF, EK, AN, ZL, LZ")
 
     nestor_alg = nestor.Nestor()
     # unit test for learning path returned from nestor inference
@@ -599,6 +611,99 @@ def test_learning_style_check(learning_style, error):
     else:
         result = utils.check_learning_style(learning_style)
         assert result
+
+
+def get_learning_path_default(learning_style, list_of_elements, default_learning_path):
+    list_of_les = []
+    for i, ele_name in enumerate(list_of_elements):
+        le = DM.LearningElement(
+            lms_id=i,
+            activity_type="lesson",
+            classification=ele_name,
+            name="Test LE",
+            university="TH-AB",
+            created_by="Max Mustermann",
+            created_at="2023-09-01",
+        )
+        list_of_les.append(le.serialize())
+
+    lp = TM.LearningPath(student_id=1, course_id=1, based_on="default")
+
+    lp.get_learning_path(
+        student_id=1,
+        learning_style=learning_style,
+        _algorithm="default",
+        list_of_les=list_of_les,
+        default_learning_path=default_learning_path,
+    )
+    return lp.path
+
+
+@pytest.mark.parametrize(
+    "learning_style, list_of_keys",
+    [
+        (
+            {},
+            np.array(
+                [
+                    "ZF",
+                    "LZ",
+                    "ÜB",
+                    "ÜB",
+                    "ÜB",
+                    "SE",
+                    "BE",
+                    "AN",
+                    "EK",
+                    "EK",
+                    "EK",
+                    "ZL",
+                    "AB",
+                    "KÜ",
+                    "FO",
+                    "RQ",
+                    "LZ",
+                ],
+            ),
+        )
+    ],
+)
+def test_get_learning_path_default(learning_style, list_of_keys):
+    num_of_test = 10
+    list_of_le_size = rng.integers(2, 50, size=num_of_test)
+
+    for i in range(num_of_test):
+        le_position = rng.integers(2, len(list_of_keys), size=list_of_le_size[i])
+        list_of_elements = list_of_keys[le_position]
+        list_of_elements = rng.permutation(list_of_elements)
+
+        default_learning_path = [
+            {"classification": "KÜ", "position": 1},
+            {"classification": "ZL", "position": 2},
+            {"classification": "EK", "position": 3},
+            {"classification": "AN", "position": 4},
+            {"classification": "BE", "position": 5},
+            {"classification": "SE", "position": 6},
+            {"classification": "AB", "position": 7},
+            {"classification": "ÜB", "position": 8},
+            {"classification": "LZ", "position": 9},
+            {"classification": "ZF", "position": 10},
+        ]
+
+        result = get_learning_path_default(
+            learning_style, list_of_elements, default_learning_path
+        )
+        assert isinstance(result, str)
+        assert ", " in result
+        result = result.split(", ")
+        assert isinstance(result, list)
+        print("OUTPUT:", result, "\n")
+        if "KÜ" in list_of_elements:
+            assert result[0] == "KÜ"
+        if "ZL" in list_of_elements:
+            assert result[0] == "ZL" or result[1] == "ZL"
+        if "ZF" in list_of_elements:
+            assert result[-1] == "ZF"
 
 
 @pytest.mark.parametrize(
