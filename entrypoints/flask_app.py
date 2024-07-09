@@ -390,6 +390,22 @@ def get_all_remote_courses():
             return jsonify(remote_courses), 200
 
 
+@app.route(
+    "/lms/remote/course/<course_id>/content",
+    methods=["GET"],
+)
+@cross_origin(supports_credentials=True)
+def get_remote_topics_and_learning_elements_from_course(course_id):
+    method = request.method
+    match method:
+        case "GET":
+            remote_courses = services.get_topics_and_elements_from_moodle_course(
+                unit_of_work.SqlAlchemyUnitOfWork(), course_id
+            )
+            print(remote_courses)
+            return jsonify(remote_courses), 200
+
+
 @app.route("/lms/course/<course_id>/<lms_course_id>/topic", methods=["POST"])
 @cross_origin(supports_credentials=True)
 @json_only()

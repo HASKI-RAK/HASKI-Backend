@@ -1894,6 +1894,60 @@ def get_courses_from_moodle(
             return []
 
 
+def get_moodle_rest_url_for_course_topics_and_elements(
+        uow: unit_of_work.AbstractUnitOfWork, course_id
+) -> dict:
+    with uow:
+        course = uow.course.get_course_by_id(course_id)
+        moodle_url = os.environ.get("REST_LMS_URL", "")
+        moodle_rest = "/webservice/rest/server.php"
+        rest_function = "?wsfunction=core_course_get_contents"
+        rest_courseid = "&courseid=" + str(course[0].lms_id)
+        rest_token = "&wstoken=" + os.environ.get("REST_TOKEN", "")
+        rest_format = "&moodlewsrestformat=json"
+        moodle_rest_request = (
+                moodle_url
+                + moodle_rest
+                + rest_function
+                + rest_courseid
+                + rest_token
+                + rest_format
+        )
+        response = requests.get(moodle_rest_request)
+        if response.status_code == 200:
+            return response.json()
+        else:
+            return {}
+
+
+def get_topics_and_elements_from_moodle_course(
+        uow: unit_of_work.AbstractUnitOfWork, course_id
+) -> dict:
+    with uow:
+        response = get_moodle_rest_url_for_course_topics_and_elements(uow, course_id)
+        if response:
+            filtered_topics_and_elements = []
+            for content in response:
+                if content.get("visible") == 1:
+                    # Ensure topic_id and topic_name come first
+                    filtered_topic = {
+                        "topic_lms_id": content["id"],
+                        "topic_lms_name": content["name"],
+                        "lms_learning_elements": []
+                    }
+                    for module in content["modules"]:
+                        if module.get("visible") == 1:
+                            filtered_topic["lms_learning_elements"].append({
+                                "lms_id": module["id"],
+                                "lms_learning_element_name": module["name"],
+                                "lms_activity_type": module["modname"]
+                            })
+                    filtered_topics_and_elements.append(filtered_topic)
+            return filtered_topics_and_elements
+        else:
+            return []
+
+
 def get_activity_status_for_learning_element(
     uow: unit_of_work.AbstractUnitOfWork, course_id, student_id, learning_element_id
 ) -> list:
