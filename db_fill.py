@@ -567,6 +567,41 @@ sql = """
 """
 cursor.execute(sql)
 
+# create news
+sql = """
+    INSERT INTO news (language_id, news_content, expiration_date, created_at)
+    VALUES ('de', 'Wir testen gerade die Seite', \
+    '2025-04-20 16:00:00',\
+    '2023-07-13 16:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO news (language_id, news_content, expiration_date, created_at)
+    VALUES ('en', 'Test for eng news', \
+    '2025-04-15 16:00:00',\
+    '2023-07-13 16:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO news (language_id, news_content, university, expiration_date,\
+    created_at)
+    VALUES ('en', 'Test in en and with Kempten university', \
+    'HS-KE', '2025-04-20 16:00:00',\
+    '2023-07-13 16:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO news (language_id, news_content, university, expiration_date,\
+    created_at)
+    VALUES ('en', 'Test in eng and with Aschaffenburg university', \
+    'HS-AS', '2025-04-15 16:00:00',\
+    '2023-07-13 16:00:00')
+"""
+cursor.execute(sql)
+
 # Add student to course
 sql = """
     INSERT INTO student_course (student_id, course_id, perception_dimension,\
@@ -2025,6 +2060,130 @@ cursor.execute(sql)
 sql = """
     INSERT INTO default_learning_path (classification, position, university)
     VALUES ('ZF', 10, 'TH-AB')
+"""
+cursor.execute(sql)
+
+# Create learning path algorithms
+sql = """
+    INSERT INTO learning_path_algorithm (short_name, full_name)
+    VALUES ('default', 'Default Learning Path Algorithm')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_algorithm (short_name, full_name)
+    VALUES ('aco', 'Ant Colony Optimization')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_algorithm (short_name, full_name)
+    VALUES ('ga', 'Genetic Algorithm')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_algorithm (short_name, full_name)
+    VALUES ('graf', 'Graf et al.')
+"""
+cursor.execute(sql)
+
+# Create learning path algorithms per student per topic
+sql = """
+    INSERT INTO student_learning_path_learning_element_algorithm (\
+    student_id, topic_id, algorithm_id)
+    VALUES (1, 1, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_learning_path_learning_element_algorithm (\
+    student_id, topic_id, algorithm_id)
+    VALUES (1, 2, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_learning_path_learning_element_algorithm (\
+    student_id, topic_id, algorithm_id)
+    VALUES (1, 3, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_learning_path_learning_element_algorithm (\
+    student_id, topic_id, algorithm_id)
+    VALUES (1, 4, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_learning_path_learning_element_algorithm (\
+    student_id, topic_id, algorithm_id)
+    VALUES (1, 5, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_learning_path_learning_element_algorithm (\
+    student_id, topic_id, algorithm_id)
+    VALUES (1, 6, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_learning_path_learning_element_algorithm (\
+    student_id, topic_id, algorithm_id)
+    VALUES (2, 1, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_learning_path_learning_element_algorithm (\
+    student_id, topic_id, algorithm_id)
+    VALUES (2, 2, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_learning_path_learning_element_algorithm (\
+    student_id, topic_id, algorithm_id)
+    VALUES (2, 3, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_learning_path_learning_element_algorithm (\
+    student_id, topic_id, algorithm_id)
+    VALUES (2, 4, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_learning_path_learning_element_algorithm (\
+    student_id, topic_id, algorithm_id)
+    VALUES (2, 5, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_learning_path_learning_element_algorithm (\
+    student_id, topic_id, algorithm_id)
+    VALUES (3, 1, 4)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_learning_path_learning_element_algorithm (\
+    student_id, topic_id, algorithm_id)
+    VALUES (3, 3, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO student_learning_path_learning_element_algorithm (\
+    student_id, topic_id, algorithm_id)
+    VALUES (3, 5, 2)
 """
 cursor.execute(sql)
 

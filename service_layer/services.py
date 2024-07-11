@@ -189,7 +189,7 @@ def create_default_learning_path_element(
     university: str,
 ) -> dict:
     with uow:
-        default_learning_path_element = DM.DefaultLearningPathElement(
+        default_learning_path_element = TM.DefaultLearningPathElement(
             classification=classification, position=position, university=university
         )
         uow.default_learning_path.create_default_learning_path_element(
@@ -463,6 +463,20 @@ def create_learning_path(
         return result
 
 
+def create_learning_path_algorithm(
+    uow: unit_of_work.AbstractUnitOfWork, short_name: str, full_name: str = ""
+) -> dict:
+    with uow:
+        learning_path_algorithm = TM.LearningPathAlgorithm(
+            short_name=short_name, full_name=full_name
+        )
+        uow.learning_path_algorithm.create_learning_path_algorithm(
+            learning_path_algorithm
+        )
+        uow.commit()
+        return learning_path_algorithm.serialize()
+
+
 def create_learning_strategy(
     uow: unit_of_work.AbstractUnitOfWork, characteristic_id
 ) -> dict:
@@ -668,6 +682,21 @@ def create_student(uow: unit_of_work.AbstractUnitOfWork, user) -> dict:
         return result
 
 
+def add_student_lpath_le_algorithm(
+    uow: unit_of_work.AbstractUnitOfWork,
+    student_id: int,
+    topic_id: int,
+    algorithm_id: int,
+) -> dict:
+    with uow:
+        algorithm = DM.StudentLearningPathLearningElementAlgorithm(
+            student_id, topic_id, algorithm_id
+        )
+        uow.student_lpath_le_algorithm.add_student_lpath_le_algorithm(algorithm)
+        uow.commit()
+        return algorithm.serialize()
+
+
 def create_teacher(uow: unit_of_work.AbstractUnitOfWork, user) -> dict:
     with uow:
         teacher = UA.Teacher(user)
@@ -756,6 +785,24 @@ def create_user(
     return result
 
 
+def create_news(
+    uow: unit_of_work.AbstractUnitOfWork,
+    university,
+    language_id,
+    created_at,
+    news_content,
+    expiration_date,
+) -> dict:
+    with uow:
+        news = UA.News(
+            language_id, news_content, expiration_date, created_at, university
+        )
+        uow.news.create_news(news)
+        uow.commit()
+        result = news.serialize()
+        return result
+
+
 def delete_admin(uow: unit_of_work.AbstractUnitOfWork, user_id):
     with uow:
         uow.admin.delete_admin(user_id)
@@ -766,6 +813,13 @@ def delete_admin(uow: unit_of_work.AbstractUnitOfWork, user_id):
 def delete_contact_form(uow: unit_of_work.AbstractUnitOfWork, user_id):
     with uow:
         uow.contact_form.delete_contact_form(user_id)
+        uow.commit()
+        return {}
+
+
+def delete_news(uow: unit_of_work.AbstractUnitOfWork):
+    with uow:
+        uow.news.delete_news()
         uow.commit()
         return {}
 
@@ -1421,6 +1475,36 @@ def get_learning_paths(uow: unit_of_work.AbstractUnitOfWork, student_id) -> list
         return result
 
 
+def get_learning_path_algorithm_by_id(
+    uow: unit_of_work.AbstractUnitOfWork, id: int
+) -> dict:
+    with uow:
+        learning_path_algorithm = (
+            uow.learning_path_algorithm.get_learning_path_algorithm_by_id(id)
+        )
+        if learning_path_algorithm == []:
+            result = {}
+        else:
+            result = learning_path_algorithm[0].serialize()
+        return result
+
+
+def get_learning_path_algorithm_by_short_name(
+    uow: unit_of_work.AbstractUnitOfWork, short_name: str
+) -> dict:
+    with uow:
+        learning_path_algorithm = (
+            uow.learning_path_algorithm.get_learning_path_algorithm_by_short_name(
+                short_name
+            )
+        )
+        if learning_path_algorithm == []:
+            result = {}
+        else:
+            result = learning_path_algorithm[0].serialize()
+        return result
+
+
 def get_learning_strategy(
     uow: unit_of_work.AbstractUnitOfWork, characteristic_id
 ) -> dict:
@@ -1765,6 +1849,20 @@ def get_settings_for_user(uow: unit_of_work.AbstractUnitOfWork, user_id) -> dict
         return result
 
 
+def get_student_lpath_le_algorithm(
+    uow: unit_of_work.AbstractUnitOfWork, student_id: int, topic_id: int
+) -> dict:
+    with uow:
+        algorithm = uow.student_lpath_le_algorithm.get_student_lpath_le_algorithm(
+            student_id, topic_id
+        )
+        if algorithm == []:
+            result = {}
+        else:
+            result = algorithm[0].serialize()
+        return result
+
+
 def create_contact_form(
     uow: unit_of_work.AbstractUnitOfWork,
     user_id,
@@ -1785,6 +1883,27 @@ def create_contact_form(
             uow.contact_form.create_contact_form(contact_form)
             uow.commit()
             result = contact_form.serialize()
+        return result
+
+
+def get_news(
+    uow: unit_of_work.AbstractUnitOfWork,
+    language_id,
+    university,
+    created_at,
+) -> dict:
+    with uow:
+        backend_response_university = []
+        if university is not None:
+            backend_response_university = uow.news.get_news(
+                language_id, university, created_at
+            )
+        backend_response = uow.news.get_news(language_id, None, created_at)
+
+        result = dict()
+        result["news"] = [
+            news.serialize() for news in backend_response + backend_response_university
+        ]
         return result
 
 

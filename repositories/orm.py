@@ -187,6 +187,14 @@ learning_path = Table(
     Column("calculated_on", String, nullable=True),
 )
 
+learning_path_algorithm = Table(
+    "learning_path_algorithm",
+    mapper_registry.metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("short_name", String, nullable=False),
+    Column("full_name", String),
+)
+
 learning_path_learning_element = Table(
     "learning_path_learning_element",
     mapper_registry.metadata,
@@ -319,6 +327,17 @@ contact_form = Table(
     Column("date", Date, nullable=False),
 )
 
+news = Table(
+    "news",
+    mapper_registry.metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("language_id", String, nullable=False),
+    Column("news_content", String, nullable=False),
+    Column("university", String, nullable=True),
+    Column("expiration_date", Date, nullable=True),
+    Column("created_at", Date, nullable=False),
+)
+
 default_learning_path = Table(
     "default_learning_path",
     mapper_registry.metadata,
@@ -369,6 +388,15 @@ student_learning_element_visit = Table(
     Column("learning_element_id", Integer, nullable=False),
     Column("visit_start", Date, nullable=False),
     Column("visit_end", Date, nullable=True),
+)
+
+student_learning_path_learning_element_algorithm = Table(
+    "student_learning_path_learning_element_algorithm",
+    mapper_registry.metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("student_id", Integer, nullable=False),
+    Column("topic_id", Integer, nullable=False),
+    Column("algorithm_id", Integer, nullable=False),
 )
 
 student_topic = Table(
@@ -504,6 +532,7 @@ def start_mappers():
         TM.LearningPath,
         learning_path,
     )
+    mapper_registry.map_imperatively(TM.LearningPathAlgorithm, learning_path_algorithm)
     mapper_registry.map_imperatively(
         TM.LearningPathLearningElement,
         learning_path_learning_element,
@@ -542,7 +571,12 @@ def start_mappers():
     )
 
     mapper_registry.map_imperatively(
-        DM.DefaultLearningPathElement, default_learning_path
+        UA.News,
+        news,
+    )
+
+    mapper_registry.map_imperatively(
+        TM.DefaultLearningPathElement, default_learning_path
     )
 
     mapper_registry.map_imperatively(
@@ -563,6 +597,11 @@ def start_mappers():
     mapper_registry.map_imperatively(
         DM.StudentLearningElementVisit,
         student_learning_element_visit,
+    )
+
+    mapper_registry.map_imperatively(
+        DM.StudentLearningPathLearningElementAlgorithm,
+        student_learning_path_learning_element_algorithm,
     )
 
     mapper_registry.map_imperatively(

@@ -22,6 +22,7 @@ path_admin = "/admin"
 path_activity_status = "/activitystatus"
 path_course = "/course"
 path_contactform = "/contactform"
+path_news = "/news"
 path_knowledge = "/knowledge"
 path_logs = "/logs"
 path_frontend_logs = "/logs/frontend"
@@ -43,6 +44,7 @@ path_subtopic = "/subtopic"
 path_teacher = "/teacher"
 path_topic = "/topic"
 path_user = "/user"
+path_algorithm = "/algorithm"
 
 ils_complete = [
     "ar_1_f1",
@@ -815,6 +817,65 @@ class TestApi:
         for key in keys_expected:
             assert key in response.keys()
 
+    @pytest.mark.parametrize(
+        "input, keys_expected, status_code_expected",
+        [
+            (
+                {"short_name": "aco", "full_name": "Ant Colony Optimization"},
+                ["full_name", "id", "short_name"],
+                201,
+            ),
+        ],
+    )
+    def test_post_learning_path_algorithm(
+        self, client_class, input, keys_expected, status_code_expected
+    ):
+        url = path_algorithm
+        r = client_class.post(url, json=input)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+
+    # Test post to create student learning path learning element algorithm
+    @pytest.mark.parametrize(
+        "input, topic_id, keys_expected, status_code_expected",
+        [
+            (
+                {"algorithm": "aco"},
+                1,
+                ["algorithm_id", "id", "student_id", "topic_id"],
+                201,
+            ),
+            (
+                {"algorithm": "aco"},
+                2,
+                ["algorithm_id", "id", "student_id", "topic_id"],
+                201,
+            ),
+        ],
+    )
+    def test_post_student_learning_path_learning_element_algorithm(
+        self, client_class, input, topic_id, keys_expected, status_code_expected
+    ):
+        global student_id
+
+        url = (
+            path_student
+            + "/"
+            + str(student_id)
+            + path_topic
+            + "/"
+            + str(topic_id)
+            + path_algorithm
+        )
+
+        r = client_class.post(url, json=input)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+
     # Post Questionnaire for Student
     @pytest.mark.parametrize(
         "student_id, keys_expected, status_code_expected, \
@@ -1201,6 +1262,46 @@ class TestApi:
         for key in keys_exp:
             assert key in response.keys()
 
+    # Learning paths are calculated
+    @pytest.mark.parametrize(
+        "input, moodle_user_id, keys_expected,\
+                            status_code_expected",
+        [
+            (
+                {},
+                4,
+                [
+                    "id",
+                    "course_id",
+                    "topic_id",
+                    "student_id",
+                    "based_on",
+                    "path",
+                    "calculated_on",
+                ],
+                201,
+            ),
+        ],
+    )
+    def test_post_calculate_learning_path(
+        self, client_class, input, moodle_user_id, keys_expected, status_code_expected
+    ):
+        user_id_student = 4
+        url = (
+            path_user
+            + "/"
+            + str(user_id_student)
+            + "/"
+            + str(moodle_user_id)
+            + path_learning_path
+        )
+        r = client_class.post(url, json=input)
+        assert r.status_code == status_code_expected
+        responses = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            for response in responses:
+                assert key in response.keys()
+
     # Post a Contact Form
     @pytest.mark.parametrize(
         "input, lms_user_id, keys_expected,\
@@ -1326,6 +1427,40 @@ class TestApi:
         self, client_class, input, keys_expected, status_code_expected
     ):
         url = path_frontend_logs
+        r = client_class.post(url, json=input)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+
+    # Post the News
+    @pytest.mark.parametrize(
+        "input, keys_expected,\
+                            status_code_expected",
+        [
+            # Working Example
+            (
+                {
+                    "university": "HS-AS",
+                    "language_id": "en",
+                    "created_at": "2023-08-01T13:37:42Z",
+                    "news_content": "This is news",
+                    "expiration_date": "2028-08-01T13:37:42Z",
+                },
+                [
+                    "id",
+                    "university",
+                    "created_at",
+                    "language_id",
+                    "expiration_date",
+                    "news_content",
+                ],
+                201,
+            ),
+        ],
+    )
+    def test_post_news(self, client_class, input, keys_expected, status_code_expected):
+        url = path_news
         r = client_class.post(url, json=input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -2559,6 +2694,57 @@ class TestApi:
         assert r.status_code == 200
         response = json.loads(r.data.decode("utf-8").strip("\n"))
         assert response == [{"cmid": 2, "state": 0, "timecompleted": 0}]
+
+    # Get News with language and university
+    @pytest.mark.parametrize(
+        "language_id, university, keys_expected,\
+                            status_code_expected",
+        [
+            # Working Example
+            (
+                "en",
+                "HS-AS",
+                [
+                    "created_at",
+                    "expiration_date",
+                    "language_id",
+                    "news_content",
+                    "university",
+                ],
+                201,
+            ),
+            # No university
+            (
+                "en",
+                "",
+                [
+                    "created_at",
+                    "expiration_date",
+                    "language_id",
+                    "news_content",
+                    "university",
+                ],
+                201,
+            ),
+        ],
+    )
+    def test_get_news(
+        self, client_class, language_id, university, keys_expected, status_code_expected
+    ):
+        url = (
+            path_news
+            + "?language_id="
+            + str(language_id)
+            + "?university="
+            + str(university)
+        )
+        r = client_class.get(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        assert "news" in response.keys()
+        for key in keys_expected:
+            for entry in response["news"]:
+                assert key in entry.keys()
 
     # PUT METHODS
     # Update the settings of a User

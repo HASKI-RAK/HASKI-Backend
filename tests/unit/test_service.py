@@ -39,10 +39,12 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         learning_element=[],
         learning_element_rating=[],
         learning_path=[],
+        learning_path_algorithm=[],
         learning_path_learning_element=[],
         learning_path_topic=[],
         learning_strategy=[],
         learning_style=[],
+        news=[],
         questionnaire_list_k=[],
         questionnaire_ils=[],
         settings=[],
@@ -50,6 +52,7 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         student_course=[],
         student_learning_element=[],
         student_learning_element_visit=[],
+        student_learning_path_learning_element_algorithm=[],
         student_topic=[],
         student_topic_visit=[],
         teacher=[],
@@ -75,10 +78,12 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         self.learning_element = set(learning_element)
         self.learning_element_rating = set(learning_element_rating)
         self.learning_path = set(learning_path)
+        self.learning_path_algorithm = set(learning_path_algorithm)
         self.learning_path_learning_element = set(learning_path_learning_element)
         self.learning_path_topic = set(learning_path_topic)
         self.learning_strategy = set(learning_strategy)
         self.learning_style = set(learning_style)
+        self.news = set(news)
         self.questionnaire_list_k = set(questionnaire_list_k)
         self.questionnaire_ils = set(questionnaire_ils)
         self.settings = set(settings)
@@ -86,6 +91,9 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         self.student_course = set(student_course)
         self.student_learning_element = set(student_learning_element)
         self.student_learning_element_visit = set(student_learning_element_visit)
+        self.student_learning_path_learning_element_algorithm = set(
+            student_learning_path_learning_element_algorithm
+        )
         self.student_topic = set(student_topic)
         self.student_topic_visit = set(student_topic_visit)
         self.teacher = set(teacher)
@@ -178,6 +186,10 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         learning_path.id = len(self.learning_path) + 1
         self.learning_path.add(learning_path)
 
+    def create_learning_path_algorithm(self, learning_path_algorithm) -> None:
+        learning_path_algorithm.id = len(self.learning_path_algorithm) + 1
+        self.learning_path_algorithm.add(learning_path_algorithm)
+
     def create_learning_path_learning_element(self, learning_path_learning_element):
         learning_path_learning_element.id = len(self.learning_path_learning_element) + 1
         self.learning_path_learning_element.add(learning_path_learning_element)
@@ -214,6 +226,16 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         student.id = len(self.student) + 1
         self.student.add(student)
 
+    def add_student_lpath_le_algorithm(
+        self, student_learning_path_learning_element_algorithm
+    ):
+        student_learning_path_learning_element_algorithm.id = (
+            len(self.student_learning_path_learning_element_algorithm) + 1
+        )
+        self.student_learning_path_learning_element_algorithm.add(
+            student_learning_path_learning_element_algorithm
+        )
+
     def create_teacher(self, teacher):
         teacher.id = len(self.teacher) + 1
         self.teacher.add(teacher)
@@ -229,6 +251,10 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
     def create_user(self, user):
         user.id = len(self.user) + 1
         self.user.add(user)
+
+    def create_news(self, news):
+        news.id = len(self.news) + 1
+        self.news.add(news)
 
     def delete_admin(self, user_id):
         to_remove = []
@@ -510,6 +536,14 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         for remove in to_remove:
             self.user.remove(remove)
 
+    def delete_news(self, language_id, university):
+        to_remove = []
+        for i in self.news:
+            if i.language_id == language_id and i.university == university:
+                to_remove.append(i)
+        for remove in to_remove:
+            self.news.remove(remove)
+
     def get_admin_by_id(self, user_id):
         result = []
         for i in self.admin:
@@ -668,6 +702,20 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 result.append(i)
         return result
 
+    def get_learning_path_algorithm_by_id(self, id: int):
+        result = []
+        for i in self.learning_path_algorithm:
+            if i.id == id:
+                result.append(i)
+        return result
+
+    def get_learning_path_algorithm_by_short_name(self, short_name: str):
+        result = []
+        for i in self.learning_path_algorithm:
+            if i.short_name == short_name:
+                result.append(i)
+        return result
+
     def get_learning_path_learning_element(self, learning_path_id):
         result = []
         for i in self.learning_path_learning_element:
@@ -759,6 +807,13 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 i.student_id == student_id
                 and i.learning_element_id == learning_element_id
             ):
+                result.append(i)
+        return result
+
+    def get_student_lpath_le_algorithm(self, student_id, topic_id):
+        result = []
+        for i in self.student_learning_path_learning_element_algorithm:
+            if i.student_id == student_id and i.topic_id == topic_id:
                 result.append(i)
         return result
 
@@ -871,6 +926,13 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         result = []
         for i in self.user:
             if i.university == university:
+                result.append(i)
+        return result
+
+    def get_news(self, language_id, university, created_at=None):
+        result = []
+        for i in self.news:
+            if i.language_id == language_id and i.university == university:
                 result.append(i)
         return result
 
@@ -1036,10 +1098,12 @@ class FakeUnitOfWork(unit_of_work.AbstractUnitOfWork):  # pragma: no cover
         self.learning_element = FakeRepository()
         self.learning_element_rating = FakeRepository()
         self.learning_path = FakeRepository()
+        self.learning_path_algorithm = FakeRepository()
         self.learning_path_learning_element = FakeRepository()
         self.learning_path_topic = FakeRepository()
         self.learning_strategy = FakeRepository()
         self.learning_style = FakeRepository()
+        self.news = FakeRepository()
         self.questionnaire_list_k = FakeRepository()
         self.questionnaire_ils = FakeRepository()
         self.settings = FakeRepository()
@@ -1047,6 +1111,7 @@ class FakeUnitOfWork(unit_of_work.AbstractUnitOfWork):  # pragma: no cover
         self.student_course = FakeRepository()
         self.student_learning_element = FakeRepository()
         self.student_learning_element_visit = FakeRepository()
+        self.student_lpath_le_algorithm = FakeRepository()
         self.student_topic = FakeRepository()
         self.student_topic_visit = FakeRepository()
         self.teacher = FakeRepository()
@@ -1191,6 +1256,15 @@ def create_student_for_tests(uow):
     )
 
 
+def create_student_learning_path_learning_element_algorithm_for_tests(uow):
+    services.add_student_lpath_le_algorithm(
+        uow=uow,
+        student_id=1,
+        topic_id=1,
+        algorithm_id=1,
+    )
+
+
 def create_teacher_for_tests(uow):
     services.create_user(
         uow=uow,
@@ -1318,6 +1392,14 @@ def create_learning_path_for_tests(uow, algorithm="aco"):
     )
 
 
+def create_learning_path_algorithm_for_tests(uow):
+    return services.create_learning_path_algorithm(
+        uow=uow,
+        short_name="aco",
+        full_name="Ant Colony Optimization",
+    )
+
+
 def create_default_learning_path_for_tests(uow):
     classifications = ["KÜ", "ZL", "EK", "AN", "BE", "SE", "AB", "ÜB", "LZ", "ZF"]
     for index, classification in enumerate(classifications):
@@ -1335,6 +1417,17 @@ def create_learning_path_for_tests_ga(uow):
         course_id=1,
         topic_id=1,
         algorithm="ga",
+    )
+
+
+def create_news_for_tests(uow):
+    return services.create_news(
+        uow=uow,
+        university="HS-AS",
+        language_id="en",
+        created_at=datetime.datetime.now(),
+        news_content="random text",
+        expiration_date=datetime.datetime(3027, 2, 15, 18, 54, 58, 291224),
     )
 
 
@@ -1410,6 +1503,23 @@ def test_create_student():
     assert student_entries_beginning + 1 == student_entries_after
     assert characteristic_entries_beginning + 1 == characteristic_entries_after
     assert style_entries_beginning + 1 == style_entries_after
+
+
+def test_student_learning_path_learning_element_algorithm():
+    uow = FakeUnitOfWork()
+    create_student_learning_path_learning_element_algorithm_for_tests(uow)
+    initial_entries = len(
+        uow.student_lpath_le_algorithm.student_learning_path_learning_element_algorithm
+    )
+    result = services.add_student_lpath_le_algorithm(
+        uow=uow, student_id=1, topic_id=1, algorithm_id=1
+    )
+    assert isinstance(result, dict)
+    assert result != {}
+    entries = len(
+        uow.student_lpath_le_algorithm.student_learning_path_learning_element_algorithm
+    )
+    assert initial_entries + 1 == entries
 
 
 def test_create_teacher():
@@ -1498,6 +1608,23 @@ def test_create_learning_analytics():
     assert type(result) is dict
     assert result != {}
     entries_after = len(uow.learning_analytics.learning_analytics)
+    assert entries_beginning + 1 == entries_after
+
+
+def test_create_news():
+    uow = FakeUnitOfWork()
+    entries_beginning = len(uow.news.news)
+    result = services.create_news(
+        uow=uow,
+        university="HS-AS",
+        language_id="en",
+        created_at=datetime.datetime.now(),
+        news_content="idk",
+        expiration_date=datetime.datetime(3027, 2, 15, 18, 54, 58, 291224),
+    )
+    assert type(result) is dict
+    assert result != {}
+    entries_after = len(uow.news.news)
     assert entries_beginning + 1 == entries_after
 
 
@@ -1615,6 +1742,14 @@ def test_get_settings_for_user():
     assert result != {}
 
 
+def test_get_student_learning_path_learning_element_algorithm():
+    uow = FakeUnitOfWork()
+    create_student_learning_path_learning_element_algorithm_for_tests(uow)
+    result = services.get_student_lpath_le_algorithm(uow, 1, 1)
+    assert isinstance(result, dict)
+    assert result != {}
+
+
 def test_update_user():
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
@@ -1631,6 +1766,25 @@ def test_create_contact_form():
     )
     assert type(result) == dict
     assert result != {}
+
+
+def test_get_news():
+    uow = FakeUnitOfWork()
+    create_news_for_tests(uow)
+    result = services.get_news(uow, "en", "HS-AS", datetime.datetime.now())
+    assert type(result) == dict
+    assert result != {}
+    keys_expected = [
+        "created_at",
+        "expiration_date",
+        "language_id",
+        "news_content",
+        "university",
+    ]
+    for key in keys_expected:
+        for entry in result["news"]:
+            assert key in entry.keys()
+            assert result["news"] is not None
 
 
 def test_get_learning_characteristics():
@@ -2620,6 +2774,19 @@ def test_get_learning_style_by_student_id():
     assert result != {}
 
 
+def test_create_default_learning_path():
+    uow = FakeUnitOfWork()
+    create_default_learning_path_for_tests(uow)
+    initial_entries = len(uow.default_learning_path.default_learning_path)
+    result = services.create_default_learning_path_element(
+        uow=uow, classification="KÜ", position=1, university="TH-AB"
+    )
+    entries = len(uow.default_learning_path.default_learning_path)
+    assert isinstance(result, dict)
+    assert result != {}
+    assert initial_entries + 1 == entries
+
+
 def test_get_default_learning_path_by_university():
     uow = FakeUnitOfWork()
     create_default_learning_path_for_tests(uow)
@@ -2697,6 +2864,37 @@ def test_get_learning_path():
         uow=uow, user_id=1, lms_user_id=1, student_id=1, course_id=1, topic_id=1
     )
     assert type(result) == dict
+    assert result != {}
+
+
+def test_create_learning_path_algorithm():
+    uow = FakeUnitOfWork()
+    create_course_creator_for_tests(uow)
+    initial_entries = len(uow.learning_path_algorithm.learning_path_algorithm)
+    result = services.create_learning_path_algorithm(
+        uow=uow, short_name="aco", full_name=""
+    )
+    entries = len(uow.learning_path_algorithm.learning_path_algorithm)
+    assert isinstance(result, dict)
+    assert result != {}
+    assert initial_entries + 1 == entries
+
+
+def test_get_learning_path_algorithm_by_id():
+    uow = FakeUnitOfWork()
+    create_learning_path_algorithm_for_tests(uow)
+    result = services.get_learning_path_algorithm_by_id(uow=uow, id=1)
+    assert isinstance(result, dict)
+    assert result != {}
+
+
+def test_get_learning_path_algorithm_by_short_name():
+    uow = FakeUnitOfWork()
+    create_learning_path_algorithm_for_tests(uow)
+    result = services.get_learning_path_algorithm_by_short_name(
+        uow=uow, short_name="aco"
+    )
+    assert isinstance(result, dict)
     assert result != {}
 
 
