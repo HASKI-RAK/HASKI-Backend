@@ -28,6 +28,7 @@ class AbstractUnitOfWork(abc.ABC):
     learning_element_rating: repository.AbstractRepository
     learning_path: repository.AbstractRepository
     learning_path_learning_element: repository.AbstractRepository
+    learning_path_learning_element_algorithm: repository.AbstractRepository
     learning_path_topic: repository.AbstractRepository
     learning_strategy: repository.AbstractRepository
     learning_style: repository.AbstractRepository

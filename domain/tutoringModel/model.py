@@ -142,3 +142,19 @@ class LearningPathLearningElement:
             "position": self.position,
             "learning_element": self.learning_element,
         }
+    
+class LearningPathLearningElementAlgorithm:
+    def __init__(
+        self,
+        topic_id: int,
+        algorithm_id: int,
+    ) -> None:
+        self.topic_id = topic_id
+        self.algorithm_id = algorithm_id
+
+    def serialize(self):
+        return {
+            "topic_id": self.topic_id,
+            "algorithm_id": self.algorithm_id,
+        }
+    
