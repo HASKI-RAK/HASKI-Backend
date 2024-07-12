@@ -192,9 +192,9 @@ def post_course(data: Dict[str, Any]):
                         created_at = datetime.strptime(
                             data["created_at"], cons.date_format
                         ).date()
-                        if(condition13):
+                        if condition13:
                             condition14 = type(data["start_date"]) is str
-                            if(condition14):
+                            if condition14:
                                 started_date = datetime.strptime(
                                 data["start_date"], cons.date_format
                                 ).date()
