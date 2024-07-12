@@ -50,6 +50,10 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
+    def create_course_start(self, course_start) -> DM.CourseStart:
+        raise NotImplementedError
+
+    @abc.abstractmethod
     def create_course_creator(
         self, course_creator: UA.CourseCreator
     ) -> UA.CourseCreator:
@@ -329,6 +333,10 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
 
     @abc.abstractmethod
     def get_course_by_id(self, course_id) -> DM.Course:
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def get_course_start_by_course(self, course_id) -> DM.CourseStart:
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -675,6 +683,16 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
                 raise err.AlreadyExisting()
         try:
             self.session.add(course)
+        except Exception:
+            raise err.CreationError()
+
+    def create_course_start(self, course_start: DM.CourseStart) -> DM.CourseStart:
+        course_start_exist = self.get_course_start_by_course(course_start.course_id)
+        for c in course_start_exist:
+            if c.id == course_start.course_id:
+                raise err.AlreadyExisting()
+        try:
+            self.session.add(course_start)
         except Exception:
             raise err.CreationError()
 
@@ -1205,6 +1223,13 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             )
         except Exception:
             raise err.DatabaseQueryError()
+
+    def get_course_start_by_course(self, course_id: DM.CourseStart) -> DM.CourseStart:
+        result = self.session.query(DM.CourseStart).filter_by(course_id=course_id).all()
+        if result == []:
+            return result
+        else:
+            raise err.AlreadyExisting()
 
     def get_course_topic_by_course(self, course_id) -> DM.CourseTopic:
         result = self.session.query(DM.CourseTopic).filter_by(course_id=course_id).all()

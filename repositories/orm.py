@@ -41,6 +41,14 @@ course_creator_course = Table(
     Column("last_updated", Date, nullable=True),
 )
 
+course_start = Table(
+    "course_start",
+    mapper_registry.metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("course_id", Integer, nullable=False),
+    Column("start_date", Date, nullable=False),
+)
+
 course_topic = Table(
     "course_topic",
     mapper_registry.metadata,
@@ -457,6 +465,10 @@ def start_mappers():
     mapper_registry.map_imperatively(
         DM.CourseCreatorCourse,
         course_creator_course,
+    )
+    mapper_registry.map_imperatively(
+        DM.CourseStart,
+        course_start
     )
     mapper_registry.map_imperatively(
         DM.CourseTopic,

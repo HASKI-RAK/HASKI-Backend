@@ -1,4 +1,5 @@
 import os
+import time
 
 import requests
 from flask.wrappers import Request
@@ -25,6 +26,17 @@ def add_course_creator_to_course(
         uow.course_creator_course.add_course_creator_to_course(course_creator_course)
         uow.commit()
         result = course_creator_course.serialize()
+        return result
+
+
+def add_course_start_to_course(
+        uow: unit_of_work.AbstractUnitOfWork, course_id, start_date
+) -> dict:
+    with uow:
+        course_start = DM.CourseStart(course_id, start_date)
+        uow.course_start.create_course_start(course_start)
+        uow.commit()
+        result = course_start.serialize()
         return result
 
 
@@ -152,13 +164,15 @@ def create_course(
     university,
     created_by,
     created_at,
+    start_date,
 ) -> dict:
     with uow:
-        course = DM.Course(lms_id, name, university, None, None, None)
+        course = DM.Course(lms_id, name, university, None, None, None, None)
         uow.course.create_course(course)
         uow.commit()
         result = course.serialize()
         add_course_creator_to_course(uow, created_by, result["id"], created_at)
+        add_course_start_to_course(uow, result["id"], start_date)
         return result
 
 
@@ -1161,6 +1175,18 @@ def get_courses_for_teacher(
         return result
 
 
+def get_course_start_by_course(
+        uow: unit_of_work.AbstractUnitOfWork, course_id
+) -> dict:
+    with uow:
+        course_start = uow.course_start.get_course_start_by_course(course_id)
+        if course_start == []:
+            result = {}
+        else:
+            result = course_start[0].serialize()
+        return result
+
+
 def get_course_topic_by_course(uow: unit_of_work.AbstractUnitOfWork, course_id) -> dict:
     with uow:
         course_topic = uow.course_topic.get_course_topic_by_course(course_id)
@@ -2028,7 +2054,7 @@ def update_course(
     uow: unit_of_work.AbstractUnitOfWork, course_id, lms_id, name, university
 ) -> dict:
     with uow:
-        course = DM.Course(lms_id, name, university, None, None, None)
+        course = DM.Course(lms_id, name, university, None, None, None, None)
         uow.course.update_course(course_id, course)
         uow.commit()
         return course.serialize()

@@ -62,6 +62,7 @@ class Course:
         created_at=None,
         created_by=None,
         last_updated=None,
+        start_date=None,
     ) -> None:
         self.id = None
         self.lms_id = lms_id
@@ -70,6 +71,7 @@ class Course:
         self.created_at = created_at
         self.created_by = created_by
         self.last_updated = last_updated
+        self.start_date = start_date
 
     def serialize(self):
         return {
@@ -80,6 +82,7 @@ class Course:
             "created_at": self.created_at,
             "created_by": self.created_by,
             "last_updated": self.last_updated,
+            "start_date": self.start_date,
         }
 
     def serialize_short(self):
@@ -173,6 +176,22 @@ class CourseCreatorCourse:
             "course_id": self.course_id,
             "created_at": self.created_at,
             "last_updated": self.last_updated,
+        }
+
+
+class CourseStart:
+    def __init__(
+        self, course_id, start_date
+    ) -> None:
+        self.id = None
+        self.course_id = course_id
+        self.start_date = start_date
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "course_id": self.course_id,
+            "start_date": self.start_date,
         }
 
 
