@@ -195,11 +195,11 @@ def post_course(data: Dict[str, Any]):
                         if condition13:
                             condition14 = type(data["start_date"]) is str
                             if condition14:
-                                started_date = datetime.strptime(
+                                start_date = datetime.strptime(
                                 data["start_date"], cons.date_format
                                 ).date()
                         else:
-                            started_date = datetime.strptime(
+                            start_date = datetime.strptime(
                             data["created_at"], cons.date_format
                             ).date()
                         course = services.create_course(
@@ -209,7 +209,7 @@ def post_course(data: Dict[str, Any]):
                             data["university"],
                             data["created_by"],
                             created_at,
-                            started_date,
+                            start_date,
                         )
                         status_code = 201
                         return jsonify(course), status_code
@@ -237,12 +237,22 @@ def course_management(data: Dict[str, Any], course_id, lms_course_id):
             if condition1 and condition2 and condition3 and condition4:
                 condition5 = re.search(cons.date_format_search, data["last_updated"])
                 if condition5:
+                    condition6 = "start_date" in data
+                    if condition6:
+                        condition7 = type(data["start_date"]) is str
+                        if condition7:
+                            start_date = datetime.strptime(
+                                data["start_date"], cons.date_format
+                            ).date()
+                    else:
+                        start_date = None
                     course = services.update_course(
                         unit_of_work.SqlAlchemyUnitOfWork(),
                         course_id,
                         lms_course_id,
                         data["name"],
                         data["university"],
+                        start_date
                     )
                     status_code = 201
                     return jsonify(course), status_code

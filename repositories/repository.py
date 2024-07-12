@@ -547,6 +547,9 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     def update_course(self, course_id, course) -> DM.Course:
         raise NotImplementedError
 
+    def update_course_start(self, course_start) -> DM.CourseStart:
+        raise NotImplementedError
+
     @abc.abstractmethod
     def update_knowledge(self, characteristic_id, knowledge) -> LM.Knowledge:
         raise NotImplementedError
@@ -1231,10 +1234,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
 
     def get_course_start_by_course(self, course_id: DM.CourseStart) -> DM.CourseStart:
         result = self.session.query(DM.CourseStart).filter_by(course_id=course_id).all()
-        if result == []:
-            return result
-        else:
-            raise err.AlreadyExisting()
+        return result
 
     def get_course_topic_by_course(self, course_id) -> DM.CourseTopic:
         result = self.session.query(DM.CourseTopic).filter_by(course_id=course_id).all()
@@ -1668,6 +1668,23 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             )
         else:
             raise err.NoValidIdError
+
+    def update_course_start(self, course_start) -> DM.CourseStart:
+        if course_start.start_date is not None:
+            course_start_exist = self.get_course_start_by_course(course_start.course_id)
+            if course_start_exist != []:
+                course_start.course_id = course_start_exist[0].course_id
+                return (
+                    self.session.query(DM.CourseStart)
+                    .filter_by(course_id=course_start.course_id)
+                    .update(
+                        {
+                            DM.CourseStart.start_date: course_start.start_date,
+                        }
+                    )
+                )
+            else:
+                self.create_course_start(course_start)
 
     def update_knowledge(self, characteristic_id, knowledge) -> LM.Knowledge:
         knowledge_exist = self.get_knowledge(characteristic_id)

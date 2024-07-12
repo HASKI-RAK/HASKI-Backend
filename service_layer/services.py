@@ -2059,11 +2059,13 @@ def get_student_by_user_id(uow: unit_of_work.AbstractUnitOfWork, user_id) -> dic
 
 
 def update_course(
-    uow: unit_of_work.AbstractUnitOfWork, course_id, lms_id, name, university
+    uow: unit_of_work.AbstractUnitOfWork, course_id, lms_id, name, university, start_date
 ) -> dict:
     with uow:
         course = DM.Course(lms_id, name, university, None, None, None, None)
         uow.course.update_course(course_id, course)
+        course_start = DM.CourseStart(course_id, start_date)
+        #uow.course_start.update_course_start(course_start) - Wenn Kurs existiert, kein ursprüngliches Start_date hat und mit einem Update eins erhält, dann erhält man derzeit einen Fremdschlüssel error in course - Tabelle
         uow.commit()
         return course.serialize()
 

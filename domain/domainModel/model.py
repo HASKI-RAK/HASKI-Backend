@@ -181,7 +181,7 @@ class CourseCreatorCourse:
 
 class CourseStart:
     def __init__(
-        self, course_id, start_date
+        self, course_id, start_date=None
     ) -> None:
         self.id = None
         self.course_id = course_id
