@@ -1238,10 +1238,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
 
     def get_course_topic_by_course(self, course_id) -> DM.CourseTopic:
         result = self.session.query(DM.CourseTopic).filter_by(course_id=course_id).all()
-        if result == []:
-            raise err.NoValidIdError()
-        else:
-            return result
+        return result
 
     def get_course_topic_by_topic(self, topic_id) -> DM.CourseTopic:
         result = self.session.query(DM.CourseTopic).filter_by(topic_id=topic_id).all()
