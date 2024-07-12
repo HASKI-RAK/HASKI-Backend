@@ -208,6 +208,10 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
+    def delete_course_start(self, course_id):
+        raise NotImplementedError
+
+    @abc.abstractmethod
     def delete_ils_input_answers(self, questionnaire_ils_id):
         raise NotImplementedError
 
@@ -944,12 +948,13 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             course_id=course_id
         ).delete()
 
+    def delete_course_start(self, course_id):
+        self.session.query(DM.CourseStart).filter_by(course_id=course_id).delete()
+
     def delete_course_topic_by_course(self, course_id):
         course_topic = self.get_course_topic_by_course(course_id)
         if course_topic != []:
             self.session.query(DM.CourseTopic).filter_by(course_id=course_id).delete()
-        else:
-            raise err.NoValidIdError()
 
     def delete_course_topic_by_topic(self, topic_id):
         course_topic = self.get_course_topic_by_topic(topic_id)

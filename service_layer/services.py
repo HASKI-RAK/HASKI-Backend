@@ -800,6 +800,7 @@ def delete_course(uow: unit_of_work.AbstractUnitOfWork, course_id):
     with uow:
         delete_course_topic_by_course(uow, course_id)
         delete_course_creator_course(uow, course_id)
+        delete_course_start(uow, course_id)
         uow.course.delete_course(course_id)
         uow.commit()
         return {}
@@ -816,6 +817,13 @@ def delete_course_creator_course(uow: unit_of_work.AbstractUnitOfWork, course_id
     with uow:
         uow.course_creator_course.delete_course_creator_course(course_id)
         uow.commit()
+
+
+def delete_course_start(uow: unit_of_work.AbstractUnitOfWork, course_id):
+    with uow:
+        uow.course_start.delete_course_start(course_id)
+        uow.commit()
+        return {}
 
 
 def delete_course_topic_by_course(
