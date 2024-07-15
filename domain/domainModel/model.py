@@ -77,6 +77,7 @@ class Course:
             "university": self.university,
         }
 
+
 class Topic:
     def __init__(
         self,
@@ -164,9 +165,7 @@ class CourseCreatorCourse:
 
 
 class CourseStart:
-    def __init__(
-        self, course_id, start_date=None
-    ) -> None:
+    def __init__(self, course_id, start_date=None) -> None:
         self.id = None
         self.course_id = course_id
         self.start_date = start_date

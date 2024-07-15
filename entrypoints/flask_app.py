@@ -196,11 +196,11 @@ def post_course(data: Dict[str, Any]):
                             condition14 = type(data["start_date"]) is str
                             if condition14:
                                 start_date = datetime.strptime(
-                                data["start_date"], cons.date_format
+                                    data["start_date"], cons.date_format
                                 ).date()
                         else:
                             start_date = datetime.strptime(
-                            data["created_at"], cons.date_format
+                                data["created_at"], cons.date_format
                             ).date()
                         course = services.create_course(
                             unit_of_work.SqlAlchemyUnitOfWork(),
@@ -252,7 +252,7 @@ def course_management(data: Dict[str, Any], course_id, lms_course_id):
                         lms_course_id,
                         data["name"],
                         data["university"],
-                        start_date
+                        start_date,
                     )
                     status_code = 201
                     return jsonify(course), status_code

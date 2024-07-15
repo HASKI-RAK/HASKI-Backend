@@ -302,13 +302,11 @@ class OIDCLoginFlask(OIDCLogin):
                 )
                 # Add user to student_course, on basis of his university
                 courses = services.get_courses_by_uni(
-                    unit_of_work.SqlAlchemyUnitOfWork(),
-                    university=user["university"]
+                    unit_of_work.SqlAlchemyUnitOfWork(), university=user["university"]
                 )
-                for course in courses['courses']:
+                for course in courses["courses"]:
                     student = services.get_student_by_user_id(
-                        unit_of_work.SqlAlchemyUnitOfWork(),
-                        user["id"]
+                        unit_of_work.SqlAlchemyUnitOfWork(), user["id"]
                     )
                     services.add_student_to_course(
                         unit_of_work.SqlAlchemyUnitOfWork(),

@@ -1,5 +1,4 @@
 import os
-import time
 
 import requests
 from flask.wrappers import Request
@@ -30,7 +29,7 @@ def add_course_creator_to_course(
 
 
 def add_course_start_to_course(
-        uow: unit_of_work.AbstractUnitOfWork, course_id, start_date
+    uow: unit_of_work.AbstractUnitOfWork, course_id, start_date
 ) -> dict:
     with uow:
         course_start = DM.CourseStart(course_id, start_date)
@@ -1182,9 +1181,7 @@ def get_courses_by_student_id(
         return result
 
 
-def get_courses_by_uni(
-        uow: unit_of_work.AbstractUnitOfWork, university
-) -> dict:
+def get_courses_by_uni(uow: unit_of_work.AbstractUnitOfWork, university) -> dict:
     with uow:
         courses = uow.course.get_courses_by_uni(university)
         result_courses = []
@@ -1214,9 +1211,7 @@ def get_courses_for_teacher(
         return result
 
 
-def get_course_start_by_course(
-        uow: unit_of_work.AbstractUnitOfWork, course_id
-) -> dict:
+def get_course_start_by_course(uow: unit_of_work.AbstractUnitOfWork, course_id) -> dict:
     with uow:
         course_start = uow.course_start.get_course_start_by_course(course_id)
         if course_start == []:
@@ -2003,9 +1998,7 @@ def get_activity_status_for_student_for_course(
             return []
 
 
-def get_moodle_rest_url_for_courses(
-        uow: unit_of_work.AbstractUnitOfWork
-) -> dict:
+def get_moodle_rest_url_for_courses(uow: unit_of_work.AbstractUnitOfWork) -> dict:
     with uow:
         moodle_url = os.environ.get("REST_LMS_URL", "")
         moodle_rest = "/webservice/rest/server.php"
@@ -2013,11 +2006,7 @@ def get_moodle_rest_url_for_courses(
         rest_token = "&wstoken=" + os.environ.get("REST_TOKEN", "")
         rest_format = "&moodlewsrestformat=json"
         moodle_rest_request = (
-            moodle_url
-            + moodle_rest
-            + rest_function
-            + rest_token
-            + rest_format
+            moodle_url + moodle_rest + rest_function + rest_token + rest_format
         )
         response = requests.get(moodle_rest_request)
         if response.status_code == 200:
@@ -2026,9 +2015,7 @@ def get_moodle_rest_url_for_courses(
             return {}
 
 
-def get_courses_from_moodle(
-    uow: unit_of_work.AbstractUnitOfWork
-) -> dict:
+def get_courses_from_moodle(uow: unit_of_work.AbstractUnitOfWork) -> dict:
     with uow:
         response = get_moodle_rest_url_for_courses(uow)
         if response != {}:
@@ -2042,7 +2029,8 @@ def get_courses_from_moodle(
                     "timecreated": course["timecreated"],
                     "timemodified": course["timemodified"],
                 }
-                for course in response if course.get("id") != 1
+                for course in response
+                if course.get("id") != 1
             ]
             return filtered_courses
         else:
@@ -2050,7 +2038,7 @@ def get_courses_from_moodle(
 
 
 def get_moodle_rest_url_for_course_topics_and_elements(
-        uow: unit_of_work.AbstractUnitOfWork, course_id
+    uow: unit_of_work.AbstractUnitOfWork, course_id
 ) -> dict:
     with uow:
         course = uow.course.get_course_by_id(course_id)
@@ -2061,12 +2049,12 @@ def get_moodle_rest_url_for_course_topics_and_elements(
         rest_token = "&wstoken=" + os.environ.get("REST_TOKEN", "")
         rest_format = "&moodlewsrestformat=json"
         moodle_rest_request = (
-                moodle_url
-                + moodle_rest
-                + rest_function
-                + rest_courseid
-                + rest_token
-                + rest_format
+            moodle_url
+            + moodle_rest
+            + rest_function
+            + rest_courseid
+            + rest_token
+            + rest_format
         )
         response = requests.get(moodle_rest_request)
         if response.status_code == 200:
@@ -2076,7 +2064,7 @@ def get_moodle_rest_url_for_course_topics_and_elements(
 
 
 def get_topics_and_elements_from_moodle_course(
-        uow: unit_of_work.AbstractUnitOfWork, course_id
+    uow: unit_of_work.AbstractUnitOfWork, course_id
 ) -> dict:
     with uow:
         response = get_moodle_rest_url_for_course_topics_and_elements(uow, course_id)
@@ -2088,15 +2076,17 @@ def get_topics_and_elements_from_moodle_course(
                     filtered_topic = {
                         "topic_lms_id": content["id"],
                         "topic_lms_name": content["name"],
-                        "lms_learning_elements": []
+                        "lms_learning_elements": [],
                     }
                     for module in content["modules"]:
                         if module.get("visible") == 1:
-                            filtered_topic["lms_learning_elements"].append({
-                                "lms_id": module["id"],
-                                "lms_learning_element_name": module["name"],
-                                "lms_activity_type": module["modname"]
-                            })
+                            filtered_topic["lms_learning_elements"].append(
+                                {
+                                    "lms_id": module["id"],
+                                    "lms_learning_element_name": module["name"],
+                                    "lms_activity_type": module["modname"],
+                                }
+                            )
                     filtered_topics_and_elements.append(filtered_topic)
             return filtered_topics_and_elements
         else:
@@ -2134,7 +2124,12 @@ def get_student_by_user_id(uow: unit_of_work.AbstractUnitOfWork, user_id) -> dic
 
 
 def update_course(
-    uow: unit_of_work.AbstractUnitOfWork, course_id, lms_id, name, university, start_date
+    uow: unit_of_work.AbstractUnitOfWork,
+    course_id,
+    lms_id,
+    name,
+    university,
+    start_date,
 ) -> dict:
     with uow:
         course = DM.Course(lms_id, name, university, None, None, None, None)

@@ -1049,7 +1049,7 @@ def setup_db(
                 ON UPDATE NO ACTION
                 ON DELETE NO ACTION
         )
-    
+
         TABLESPACE pg_default;
 
         ALTER TABLE IF EXISTS public.course_start
@@ -1066,7 +1066,7 @@ def setup_db(
         topic_id integer NOT NULL,
         algorithm_id integer NOT NULL
     )
-    
+
         TABLESPACE pg_default;
 
         ALTER TABLE IF EXISTS public.course_start
@@ -1083,7 +1083,7 @@ def setup_db(
         short_name text NOT NULL,
         full_name text
     )
-    
+
         TABLESPACE pg_default;
 
         ALTER TABLE IF EXISTS public.course_start

@@ -966,7 +966,9 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         self.course.add(course)
 
     def update_course_start(self, course_start):
-        to_remove = next((p for p in self.course_start if p.id == course_start.id), None)
+        to_remove = next(
+            (p for p in self.course_start if p.id == course_start.id), None
+        )
         if to_remove is not None:
             self.course_start.remove(to_remove)
         course_start.id = len(self.course_start)
@@ -1333,7 +1335,7 @@ def create_course_for_tests(uow):
         university=university_example,
         created_by=1,
         created_at="2023-01-01",
-        start_date=None
+        start_date=None,
     )
 
 
@@ -2139,7 +2141,7 @@ def test_create_course_without_start_date():
         university=university_example,
         created_by=1,
         created_at="2023-01-01",
-        start_date=None
+        start_date=None,
     )
     assert type(result) is dict
     assert result != {}
@@ -2168,7 +2170,7 @@ def test_create_course_with_start_date():
         university=university_example,
         created_by=1,
         created_at="2023-01-01",
-        start_date="2024-01-01"
+        start_date="2024-01-01",
     )
     assert type(result) is dict
     assert result != {}
@@ -2178,8 +2180,8 @@ def test_create_course_with_start_date():
     )
     assert entries_beginning + 1 == entries_after
     assert (
-            entries_beginning_course_creator_course + 1
-            == entries_after_course_creator_course
+        entries_beginning_course_creator_course + 1
+        == entries_after_course_creator_course
     )
 
 
@@ -2291,7 +2293,7 @@ def test_update_course_without_start_date():
         lms_id=1,
         name="Test Course 2",
         university=university_example,
-        start_date=None
+        start_date=None,
     )
     assert type(result) is dict
     entries_after = len(uow.course.course)
@@ -2309,7 +2311,7 @@ def test_update_course_with_start_date():
         lms_id=1,
         name="Test Course 2",
         university=university_example,
-        start_date="2024-01-01"
+        start_date="2024-01-01",
     )
     assert type(result) is dict
     entries_after = len(uow.course.course)

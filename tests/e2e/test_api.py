@@ -398,7 +398,7 @@ class TestApi:
                     "name": "Test Course",
                     "lms_id": 1,
                     "created_at": "2023-08-01T13:37:42Z",
-                    "university": "TH-AB"
+                    "university": "TH-AB",
                 },
                 ["id", "name", "lms_id", "created_at", "created_by", "university"],
                 201,

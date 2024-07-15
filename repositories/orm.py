@@ -483,10 +483,7 @@ def start_mappers():
         DM.CourseCreatorCourse,
         course_creator_course,
     )
-    mapper_registry.map_imperatively(
-        DM.CourseStart,
-        course_start
-    )
+    mapper_registry.map_imperatively(DM.CourseStart, course_start)
     mapper_registry.map_imperatively(
         DM.CourseTopic,
         course_topic,
