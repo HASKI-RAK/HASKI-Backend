@@ -547,6 +547,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     def update_course(self, course_id, course) -> DM.Course:
         raise NotImplementedError
 
+    @abc.abstractmethod
     def update_course_start(self, course_start) -> DM.CourseStart:
         raise NotImplementedError
 
