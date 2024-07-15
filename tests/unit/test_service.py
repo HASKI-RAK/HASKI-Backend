@@ -1339,7 +1339,7 @@ def create_course_for_tests(uow):
     )
 
 
-def create_second_course_for_tests(uow):
+def create_course_with_set_start_date_for_tests(uow):
     services.create_course(
         uow=uow,
         lms_id=2,
@@ -1347,7 +1347,7 @@ def create_second_course_for_tests(uow):
         university=university_example,
         created_by=1,
         created_at="2023-01-01",
-        start_date=None,
+        start_date="2024-01-01",
     )
 
 
@@ -2831,12 +2831,22 @@ def test_delete_learning_paths():
     assert entries_beginning_path_le - 1 == entries_after_path_le
 
 
+def test_get_course_start_by_course():
+    uow = FakeUnitOfWork()
+    create_course_creator_for_tests(uow)
+    create_course_with_set_start_date_for_tests(uow)
+    result = services.get_course_start_by_course(uow=uow, course_id=1)
+    assert type(result) is dict
+    assert result['start_date'] == "2024-01-01"
+    assert result != {}
+
+
 def test_get_courses_by_uni():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
     create_course_for_tests(uow)
-    create_second_course_for_tests(uow)
+    create_course_with_set_start_date_for_tests(uow)
     add_student_to_course_for_tests(uow)
     result = services.get_courses_by_uni(
         uow=uow, university=university_example
