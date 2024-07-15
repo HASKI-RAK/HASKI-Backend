@@ -287,7 +287,7 @@ class OIDCLoginFlask(OIDCLogin):
                 )
                 logger.debug("User: " + str(user))
             # If student is in Moodle, but not in Haski DB
-            except Exception as e:
+            except Exception as e:  # noqa: F841
                 # Create User in haski_user
                 user = services.create_user(
                     unit_of_work.SqlAlchemyUnitOfWork(),
