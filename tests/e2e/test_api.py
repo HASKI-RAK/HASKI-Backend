@@ -465,8 +465,15 @@ class TestApi:
                     "university": "TH-AB",
                     "start_date": "2023-08-01T13:37:42Z",
                 },
-                ["id", "name", "lms_id", "created_at", "created_by", "university",\
-                 "start_date"],
+                [
+                    "id",
+                    "name",
+                    "lms_id",
+                    "created_at",
+                    "created_by",
+                    "university",
+                    "start_date",
+                ],
                 201,
                 True,
             ),
@@ -506,7 +513,7 @@ class TestApi:
         ],
     )
     def test_api_create_course_from_moodle(
-            self, client_class, input, keys_expected, status_code_expected, save_id
+        self, client_class, input, keys_expected, status_code_expected, save_id
     ):
         global user_id_course_creator
         input["created_by"] = user_id_course_creator
