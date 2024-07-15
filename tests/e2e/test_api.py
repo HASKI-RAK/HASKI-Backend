@@ -3117,50 +3117,57 @@ class TestApi:
         [
             # Working Example
             (
-                    {
-                        "name": "Test Course Updated",
-                        "created_by": "Maria Musterfrau",
-                        "created_at": "2023-08-01T13:37:42Z",
-                        "last_updated": "2018-07-21T17:32:28Z",
-                        "university": "TH-AB",
-                        "start_date": "2023-08-01T13:37:42Z",
-                    },
-                    1,
-                    ["id", "name", "lms_id", "created_at", "created_by", "university",\
-                     "start_date"],
-                    201,
+                {
+                    "name": "Test Course Updated",
+                    "created_by": "Maria Musterfrau",
+                    "created_at": "2023-08-01T13:37:42Z",
+                    "last_updated": "2018-07-21T17:32:28Z",
+                    "university": "TH-AB",
+                    "start_date": "2023-08-01T13:37:42Z",
+                },
+                1,
+                [
+                    "id",
+                    "name",
+                    "lms_id",
+                    "created_at",
+                    "created_by",
+                    "university",
+                    "start_date",
+                ],
+                201,
             ),
             # Missing Parameter
             (
-                    {
-                        "created_by": "Maria Musterfrau",
-                        "created_at": "2023-08-01T13:37:42Z",
-                        "last_updated": "2018-07-21T17:32:28Z",
-                        "university": "TH-AB",
-                        "start_date": "2023-08-01T13:37:42Z",
-                    },
-                    1,
-                    ["error", "message"],
-                    400,
+                {
+                    "created_by": "Maria Musterfrau",
+                    "created_at": "2023-08-01T13:37:42Z",
+                    "last_updated": "2018-07-21T17:32:28Z",
+                    "university": "TH-AB",
+                    "start_date": "2023-08-01T13:37:42Z",
+                },
+                1,
+                ["error", "message"],
+                400,
             ),
             # Parameter with wrong data type
             (
-                    {
-                        "name": "Test Course Updated",
-                        "created_by": "Maria Musterfrau",
-                        "created_at": "2023-08-01T13:37:42Z",
-                        "last_updated": "2018-07-21T17:32:28Z",
-                        "university": "TH-AB",
-                        "start_date": "what is this?"
-                    },
-                    1,
-                    ["error", "message"],
-                    400,
+                {
+                    "name": "Test Course Updated",
+                    "created_by": "Maria Musterfrau",
+                    "created_at": "2023-08-01T13:37:42Z",
+                    "last_updated": "2018-07-21T17:32:28Z",
+                    "university": "TH-AB",
+                    "start_date": "what is this?",
+                },
+                1,
+                ["error", "message"],
+                400,
             ),
         ],
     )
     def test_update_course_from_moodle_with_start_date(
-            self, client_class, input, moodle_course_id, keys_expected, status_code_expected
+        self, client_class, input, moodle_course_id, keys_expected, status_code_expected
     ):
         global course_id
         url = path_lms_course + "/" + str(course_id) + "/" + str(moodle_course_id)
