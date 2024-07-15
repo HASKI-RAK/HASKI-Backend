@@ -398,7 +398,7 @@ class TestApi:
                     "name": "Test Course",
                     "lms_id": 1,
                     "created_at": "2023-08-01T13:37:42Z",
-                    "university": "TH-AB",
+                    "university": "TH-AB"
                 },
                 ["id", "name", "lms_id", "created_at", "created_by", "university"],
                 201,
@@ -749,6 +749,8 @@ class TestApi:
             + str(teacher_id_use)
         )
         r = client_class.post(url)
+        print("hello")
+        print(r)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
         for key in keys_expected:

@@ -1161,6 +1161,7 @@ def get_course_by_id(
             course[0].created_at = None
             course[0].created_by = None
             course[0].last_updated = None
+            course[0].start_date = None
             result = course[0].serialize()
         return result
 
@@ -1207,6 +1208,7 @@ def get_courses_for_teacher(
             course_temp[0].created_at = None
             course_temp[0].created_by = None
             course_temp[0].last_updated = None
+            course_temp[0].start_date = None
             course_list.append(course_temp[0].serialize())
         result["courses"] = course_list
         return result
