@@ -437,8 +437,75 @@ class TestApi:
             ),
         ],
     )
-    def test_api_create_course_from_moodle(
+    def test_api_create_course_from_moodle_with_start_date(
         self, client_class, input, keys_expected, status_code_expected, save_id
+    ):
+        global user_id_course_creator
+        input["created_by"] = user_id_course_creator
+        url = path_lms_course
+        r = client_class.post(url, json=input)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+        if save_id:
+            global course_id
+            course_id = response["id"]
+
+    @pytest.mark.parametrize(
+        "input, keys_expected, status_code_expected,\
+                            save_id",
+        [
+            # Working Example
+            (
+                    {
+                        "name": "Test Course",
+                        "lms_id": 2,
+                        "created_at": "2023-08-01T13:37:42Z",
+                        "university": "TH-AB",
+                        "start_date": "2023-08-01T13:37:42Z",
+                    },
+                    ["id", "name", "lms_id", "created_at", "created_by", "university", "start_date"],
+                    201,
+                    True,
+            ),
+            # Missing Parameter
+            (
+                    {"name": "Test Course", "university": "TH-AB"},
+                    ["error", "message"],
+                    400,
+                    False,
+            ),
+            # Parameter with wrong data type
+            (
+                    {
+                        "name": "Test Course",
+                        "lms_id": "2",
+                        "created_at": "2023-08-01T13:37:42Z",
+                        "university": "TH-AB",
+                        "start_date": "2023-08-01T13:37:42Z",
+                    },
+                    ["error", "message"],
+                    400,
+                    False,
+            ),
+            # Course already exists
+            (
+                    {
+                        "name": "Test Course",
+                        "lms_id": 2,
+                        "created_at": "2023-08-01T13:37:42Z",
+                        "university": "TH-AB",
+                        "start_date": "2023-08-01T13:37:42Z",
+                    },
+                    ["error", "message"],
+                    400,
+                    False,
+            ),
+        ],
+    )
+    def test_api_create_course_from_moodle(
+            self, client_class, input, keys_expected, status_code_expected, save_id
     ):
         global user_id_course_creator
         input["created_by"] = user_id_course_creator
