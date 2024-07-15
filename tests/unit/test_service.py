@@ -1339,6 +1339,18 @@ def create_course_for_tests(uow):
     )
 
 
+def create_second_course_for_tests(uow):
+    services.create_course(
+        uow=uow,
+        lms_id=2,
+        name="Test",
+        university=university_example,
+        created_by=1,
+        created_at="2023-01-01",
+        start_date=None,
+    )
+
+
 def create_topic_for_tests(uow):
     services.create_topic(
         uow=uow,
@@ -2817,6 +2829,21 @@ def test_delete_learning_paths():
     )
     assert entries_beginning_path - 1 == entries_after_path
     assert entries_beginning_path_le - 1 == entries_after_path_le
+
+
+def test_get_courses_by_uni():
+    uow = FakeUnitOfWork()
+    create_course_creator_for_tests(uow)
+    create_student_for_tests(uow)
+    create_course_for_tests(uow)
+    create_second_course_for_tests(uow)
+    add_student_to_course_for_tests(uow)
+    result = services.get_courses_by_uni(
+        uow=uow, university=university_example
+    )
+    assert type(result) is dict
+    assert len(result['courses']) == 2
+    assert result != {}
 
 
 def test_get_courses_by_student_id():
