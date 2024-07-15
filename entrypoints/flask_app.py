@@ -195,9 +195,11 @@ def post_course(data: Dict[str, Any]):
                         if condition13:
                             condition14 = type(data["start_date"]) is str
                             if condition14:
-                                start_date = datetime.strptime(
-                                    data["start_date"], cons.date_format
-                                ).date()
+                                condition15 = re.search(cons.date_format_search, data["start_date"])
+                                if condition15:
+                                    start_date = datetime.strptime(
+                                        data["start_date"], cons.date_format
+                                    ).date()
                         else:
                             start_date = datetime.strptime(
                                 data["created_at"], cons.date_format
@@ -239,11 +241,11 @@ def course_management(data: Dict[str, Any], course_id, lms_course_id):
                 if condition5:
                     condition6 = "start_date" in data
                     if condition6:
-                        condition7 = type(data["start_date"]) is str
+                        condition7 = re.search(cons.date_format_search, data["start_date"])
                         if condition7:
-                            start_date = datetime.strptime(
-                                data["start_date"], cons.date_format
-                            ).date()
+                            start_date = datetime.strptime(data["start_date"], cons.date_format).date()
+                        else:
+                            raise err.WrongParameterValueError()
                     else:
                         start_date = None
                     course = services.update_course(

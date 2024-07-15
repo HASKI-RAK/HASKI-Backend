@@ -3149,7 +3149,7 @@ class TestApi:
                         "name": "Test Course Updated",
                         "created_by": "Maria Musterfrau",
                         "created_at": "2023-08-01T13:37:42Z",
-                        "last_updated": "01.01.2023",
+                        "last_updated": "2018-07-21T17:32:28Z",
                         "university": "TH-AB",
                         "start_date": "what is this?"
                     },
