@@ -8,6 +8,7 @@ import pytest
 import errors.errors as err
 import repositories.repository as repository
 import service_layer.crypto.JWTKeyManagement as JWTKeyManagement
+from domain.domainModel import model as DM
 from domain.userAdministartion import model as UA
 from service_layer import services, unit_of_work
 from utils import constants as cons
@@ -28,6 +29,7 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         course_creator=[],
         course_creator_course=[],
         course_topic=[],
+        course_start=[],
         default_learning_path=[],
         ils_input_answers=[],
         ils_perception_answers=[],
@@ -65,6 +67,7 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         self.course_creator = set(course_creator)
         self.course_creator_course = set(course_creator_course)
         self.course_topic = set(course_topic)
+        self.course_start = set(course_start)
         self.default_learning_path = set(default_learning_path)
         self.knowledge = set(knowledge)
         self.ils_input_answers = set(ils_input_answers)
@@ -139,6 +142,10 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
     def create_course_topic(self, course_topic):
         course_topic.id = len(self.course_topic) + 1
         self.course_topic.add(course_topic)
+
+    def create_course_start(self, course_start):
+        course_start.id = len(self.course_start) + 1
+        self.course_start.add(course_start)
 
     def create_default_learning_path_element(self, default_learning_path_element):
         default_learning_path_element.id = len(self.default_learning_path) + 1
@@ -291,6 +298,14 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 to_remove.append(i)
         for remove in to_remove:
             self.course_topic.remove(remove)
+
+    def delete_course_start(self, course_id):
+        to_remove = []
+        for i in self.course_start:
+            if i.course_id == course_id:
+                to_remove.append(i)
+        for remove in to_remove:
+            self.course_start.remove(remove)
 
     def delete_ils_input_answers(self, questionnaire_ils_id):
         to_remove = []
@@ -591,6 +606,13 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         result = []
         for i in self.course_creator:
             if i.university == university:
+                result.append(i)
+        return result
+
+    def get_course_start_by_course(self, course_id) -> DM.CourseStart:
+        result = []
+        for i in self.course_start:
+            if i.course_id == course_id:
                 result.append(i)
         return result
 
@@ -902,6 +924,13 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         course.id = len(self.course)
         self.course.add(course)
 
+    def update_course_start(self, course_start):
+        to_remove = next((p for p in self.course_start if p.id == course_start.id), None)
+        if to_remove is not None:
+            self.course_start.remove(to_remove)
+        course_start.id = len(self.course_start)
+        self.course_start.add(course_start)
+
     def update_knowledge(self, characteristic_id, knowledge):
         to_remove = next(
             (p for p in self.knowledge if p.characteristic_id == characteristic_id),
@@ -1046,6 +1075,7 @@ class FakeUnitOfWork(unit_of_work.AbstractUnitOfWork):  # pragma: no cover
         self.course_creator = FakeRepository()
         self.course_creator_course = FakeRepository()
         self.course_topic = FakeRepository()
+        self.course_start = FakeRepository()
         self.default_learning_path = FakeRepository()
         self.ils_input_answers = FakeRepository()
         self.ils_perception_answers = FakeRepository()
@@ -1251,6 +1281,7 @@ def create_course_for_tests(uow):
         university=university_example,
         created_by=1,
         created_at="2023-01-01",
+        start_date=None
     )
 
 
@@ -2009,7 +2040,7 @@ def test_delete_questionnaire_ils(full_version):
     assert entries_beginning - 1 == entries_after
 
 
-def test_create_course():
+def test_create_course_without_start_date():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     entries_beginning = len(uow.course.course)
@@ -2023,6 +2054,7 @@ def test_create_course():
         university=university_example,
         created_by=1,
         created_at="2023-01-01",
+        start_date=None
     )
     assert type(result) is dict
     assert result != {}
@@ -2034,6 +2066,35 @@ def test_create_course():
     assert (
         entries_beginning_course_creator_course + 1
         == entries_after_course_creator_course
+    )
+
+
+def test_create_course_with_start_date():
+    uow = FakeUnitOfWork()
+    create_course_creator_for_tests(uow)
+    entries_beginning = len(uow.course.course)
+    entries_beginning_course_creator_course = len(
+        uow.course_creator_course.course_creator_course
+    )
+    result = services.create_course(
+        uow=uow,
+        lms_id=1,
+        name="Test Course",
+        university=university_example,
+        created_by=1,
+        created_at="2023-01-01",
+        start_date="2024-01-01"
+    )
+    assert type(result) is dict
+    assert result != {}
+    entries_after = len(uow.course.course)
+    entries_after_course_creator_course = len(
+        uow.course_creator_course.course_creator_course
+    )
+    assert entries_beginning + 1 == entries_after
+    assert (
+            entries_beginning_course_creator_course + 1
+            == entries_after_course_creator_course
     )
 
 
@@ -2134,7 +2195,7 @@ def test_get_course_by_id():
     assert result != {}
 
 
-def test_update_course():
+def test_update_course_without_start_date():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_course_for_tests(uow)
@@ -2145,6 +2206,25 @@ def test_update_course():
         lms_id=1,
         name="Test Course 2",
         university=university_example,
+        start_date=None
+    )
+    assert type(result) is dict
+    entries_after = len(uow.course.course)
+    assert entries_beginning == entries_after
+
+
+def test_update_course_with_start_date():
+    uow = FakeUnitOfWork()
+    create_course_creator_for_tests(uow)
+    create_course_for_tests(uow)
+    entries_beginning = len(uow.course.course)
+    result = services.update_course(
+        uow=uow,
+        course_id=1,
+        lms_id=1,
+        name="Test Course 2",
+        university=university_example,
+        start_date="2024-01-01"
     )
     assert type(result) is dict
     entries_after = len(uow.course.course)
