@@ -21,7 +21,9 @@ questionnaire_list_k_id = 0
 path_admin = "/admin"
 path_activity_status = "/activitystatus"
 path_course = "/course"
+path_courses = "/courses"
 path_contactform = "/contactform"
+path_content = "/content"
 path_news = "/news"
 path_knowledge = "/knowledge"
 path_logs = "/logs"
@@ -38,6 +40,7 @@ path_lms_user = "/lms/user"
 path_questionnaire_ils = "/questionnaire/ils"
 path_questionnaire_list_k = "/questionnaire/listk"
 path_recommendation = "/recommendation"
+path_remote = "/lms/remote"
 path_settings = "/settings"
 path_student = "/student"
 path_subtopic = "/subtopic"
@@ -2623,6 +2626,81 @@ class TestApi:
         else:
             for key in keys_expected_1:
                 assert key in response.keys()
+
+    # Get Remote Courses from LMS
+    @pytest.mark.parametrize(
+        "keys_expected,\
+            status_code_expected, error",
+        [
+            (
+                    {"id", "fullname", "shortname", "startdate", "enddate",
+                     "timecreated", "timemodified"},
+                    200,
+                    False,
+            ),
+        ],
+    )
+    def test_get_remote_courses(
+            self, client_class, keys_expected, status_code_expected, error
+    ):
+        url = (
+                path_remote
+                +
+                path_courses
+        )
+        r = client_class.get(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+
+        # Check that each course in the response contains the expected keys
+        for course in response:
+            assert keys_expected.issubset(course.keys())
+
+    # Get Remote Content from LMS course
+    @pytest.mark.parametrize(
+        "expected_topic_keys, expected_learning_element_keys, course_id,\
+            status_code_expected, error",
+        [
+            (
+                    {"topic_lms_id", "topic_lms_name", "lms_learning_elements"},
+                    {'lms_activity_type', 'lms_id', 'lms_learning_element_name'},
+                    "1",
+                    200,
+                    False,
+            ),
+        ],
+    )
+    def test_get_remote_course_content(
+            self,
+            client_class,
+            expected_topic_keys,
+            expected_learning_element_keys,
+            course_id,
+            status_code_expected,
+            error
+    ):
+        url = (
+                path_remote
+                +
+                path_course
+                +
+                "/"
+                +
+                course_id
+                +
+                path_content
+        )
+        r = client_class.get(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+
+        # Check that each topic in the response contains the expected keys
+        for topic in response:
+            assert expected_topic_keys.issubset(topic.keys()), f"Missing keys in topic: {topic}"
+
+        # Check that each learning element in the topic contains the expected keys
+        for element in topic['lms_learning_elements']:
+            assert expected_learning_element_keys.issubset(element.keys()), f"Missing keys in learning element: {element}"
 
     # Get User by ID
     @pytest.mark.parametrize(
