@@ -2633,21 +2633,24 @@ class TestApi:
             status_code_expected, error",
         [
             (
-                    {"id", "fullname", "shortname", "startdate", "enddate",
-                     "timecreated", "timemodified"},
-                    200,
-                    False,
+                {
+                    "id",
+                    "fullname",
+                    "shortname",
+                    "startdate",
+                    "enddate",
+                    "timecreated",
+                    "timemodified",
+                },
+                200,
+                False,
             ),
         ],
     )
     def test_get_remote_courses(
-            self, client_class, keys_expected, status_code_expected, error
+        self, client_class, keys_expected, status_code_expected, error
     ):
-        url = (
-                path_remote
-                +
-                path_courses
-        )
+        url = path_remote + path_courses
         r = client_class.get(url)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -2662,45 +2665,39 @@ class TestApi:
             status_code_expected, error",
         [
             (
-                    {"topic_lms_id", "topic_lms_name", "lms_learning_elements"},
-                    {'lms_activity_type', 'lms_id', 'lms_learning_element_name'},
-                    "1",
-                    200,
-                    False,
+                {"topic_lms_id", "topic_lms_name", "lms_learning_elements"},
+                {"lms_activity_type", "lms_id", "lms_learning_element_name"},
+                "1",
+                200,
+                False,
             ),
         ],
     )
     def test_get_remote_course_content(
-            self,
-            client_class,
-            expected_topic_keys,
-            expected_learning_element_keys,
-            course_id,
-            status_code_expected,
-            error
+        self,
+        client_class,
+        expected_topic_keys,
+        expected_learning_element_keys,
+        course_id,
+        status_code_expected,
+        error,
     ):
-        url = (
-                path_remote
-                +
-                path_course
-                +
-                "/"
-                +
-                course_id
-                +
-                path_content
-        )
+        url = path_remote + path_course + "/" + course_id + path_content
         r = client_class.get(url)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
 
         # Check that each topic in the response contains the expected keys
         for topic in response:
-            assert expected_topic_keys.issubset(topic.keys()), f"Missing keys in topic: {topic}"
+            assert expected_topic_keys.issubset(
+                topic.keys()
+            ), f"Missing keys in topic: {topic}"
 
         # Check that each learning element in the topic contains the expected keys
-        for element in topic['lms_learning_elements']:
-            assert expected_learning_element_keys.issubset(element.keys()), f"Missing keys in learning element: {element}"
+        for element in topic["lms_learning_elements"]:
+            assert expected_learning_element_keys.issubset(
+                element.keys()
+            ), f"Missing keys in learning element: {element}"
 
     # Get User by ID
     @pytest.mark.parametrize(
