@@ -2015,7 +2015,7 @@ def get_moodle_rest_url_for_courses(uow: unit_of_work.AbstractUnitOfWork) -> dic
             return {}
 
 
-def get_courses_from_moodle(uow: unit_of_work.AbstractUnitOfWork) -> dict:
+def get_courses_from_moodle(uow: unit_of_work.AbstractUnitOfWork) -> list:
     with uow:
         response = get_moodle_rest_url_for_courses(uow)
         if response != {}:
@@ -2065,10 +2065,9 @@ def get_moodle_rest_url_for_course_topics_and_elements(
 
 def get_topics_and_elements_from_moodle_course(
     uow: unit_of_work.AbstractUnitOfWork, course_id
-) -> dict:
+) -> list:
     with uow:
         response = get_moodle_rest_url_for_course_topics_and_elements(uow, course_id)
-        print(response)
         if response:
             filtered_topics_and_elements = []
             for content in response:
@@ -2101,12 +2100,16 @@ def get_activity_status_for_learning_element(
         filtered_statuses = get_activity_status_for_student_for_course(
             uow, course_id, student_id
         )
-        filtered_cmid = [
-            item
-            for item in filtered_statuses
-            if item["cmid"] == int(learning_element_id)
-        ]
-        return filtered_cmid
+        if filtered_statuses:
+            for content in filtered_statuses:
+                filtered_cmid = [
+                    item
+                    for item in filtered_statuses
+                    if item["cmid"] == int(learning_element_id)
+                ]
+            return filtered_cmid
+        else:
+            return []
 
 
 def get_student_by_user_id(uow: unit_of_work.AbstractUnitOfWork, user_id) -> dict:
