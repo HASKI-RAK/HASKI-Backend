@@ -2101,7 +2101,7 @@ def get_activity_status_for_learning_element(
             uow, course_id, student_id
         )
         if filtered_statuses:
-            for _content in filtered_statuses:
+            for _ in filtered_statuses:
                 filtered_cmid = [
                     item
                     for item in filtered_statuses

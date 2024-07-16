@@ -440,7 +440,7 @@ class TestApi:
             ),
         ],
     )
-    def test_api_create_course_from_moodle_with_start_date(
+    def test_api_create_course_from_moodle_without_start_date(
         self, client_class, input, keys_expected, status_code_expected, save_id
     ):
         global user_id_course_creator
