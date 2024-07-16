@@ -2634,54 +2634,53 @@ class TestApi:
             side_effect=lambda k: (
                 mock.Mock(
                     status_code=200,
-                    json=lambda:
-                    [
+                    json=lambda: [
                         {
-                            'id': 2,
-                            'shortname': 'SE - EM1 -SoSe23',
-                            'fullname': 'ω SE - Entwurfsmuster 1 - SoSe23',
-                            'startdate': 1683759600,
-                            'enddate': 0,
-                            'timecreated': 1683723772,
-                            'timemodified': 1699354676
+                            "id": 2,
+                            "shortname": "SE - EM1 -SoSe23",
+                            "fullname": "ω SE - Entwurfsmuster 1 - SoSe23",
+                            "startdate": 1683759600,
+                            "enddate": 0,
+                            "timecreated": 1683723772,
+                            "timemodified": 1699354676,
                         },
                         {
-                            'id': 3,
-                            'shortname': 'tkh5p',
-                            'fullname': 'TestKurs-H5P',
-                            'startdate': 1683846000,
-                            'enddate': 1715382000,
-                            'timecreated': 1683806079,
-                            'timemodified': 1683806079
+                            "id": 3,
+                            "shortname": "tkh5p",
+                            "fullname": "TestKurs-H5P",
+                            "startdate": 1683846000,
+                            "enddate": 1715382000,
+                            "timecreated": 1683806079,
+                            "timemodified": 1683806079,
                         },
                         {
-                            'id': 4,
-                            'shortname': 'testcourse',
-                            'fullname': 'testcourse',
-                            'startdate': 1688598000,
-                            'enddate': 1720134000,
-                            'timecreated': 1688566758,
-                            'timemodified': 1688566758
+                            "id": 4,
+                            "shortname": "testcourse",
+                            "fullname": "testcourse",
+                            "startdate": 1688598000,
+                            "enddate": 1720134000,
+                            "timecreated": 1688566758,
+                            "timemodified": 1688566758,
                         },
                         {
-                            'id': 5,
-                            'shortname': 'SE - EM2 - WiSe23/24',
-                            'fullname': 'SE - Entwurfsmuster 2 - WiSe23/24',
-                            'startdate': 1700611200,
-                            'enddate': 1732233600,
-                            'timecreated': 1699289698,
-                            'timemodified': 1699354526
+                            "id": 5,
+                            "shortname": "SE - EM2 - WiSe23/24",
+                            "fullname": "SE - Entwurfsmuster 2 - WiSe23/24",
+                            "startdate": 1700611200,
+                            "enddate": 1732233600,
+                            "timecreated": 1699289698,
+                            "timemodified": 1699354526,
                         },
                         {
-                            'id': 6,
-                            'shortname': 'SE - EM1 - WiSe23/24',
-                            'fullname': 'SE - Entwurfsmuster 1 - WiSe23/24',
-                            'startdate': 1699315200,
-                            'enddate': 0,
-                            'timecreated': 1683723772,
-                            'timemodified': 1699354114
+                            "id": 6,
+                            "shortname": "SE - EM1 - WiSe23/24",
+                            "fullname": "SE - Entwurfsmuster 1 - WiSe23/24",
+                            "startdate": 1699315200,
+                            "enddate": 0,
+                            "timecreated": 1683723772,
+                            "timemodified": 1699354114,
                         },
-                    ]
+                    ],
                 )
             )
         ),
@@ -2724,218 +2723,206 @@ class TestApi:
             side_effect=lambda k: (
                 mock.Mock(
                     status_code=200,
-                    json=lambda:
-                    [
+                    json=lambda: [
                         {
-                            'id': 76,
-                            'name': 'Erste Schritte',
-                            'visible': 1,
-                            'summary': '',
-                            'summaryformat': 1,
-                            'section': 0,
-                            'hiddenbynumsections': 0,
-                            'uservisible': True,
-                            'modules': [
+                            "id": 76,
+                            "name": "Erste Schritte",
+                            "visible": 1,
+                            "summary": "",
+                            "summaryformat": 1,
+                            "section": 0,
+                            "hiddenbynumsections": 0,
+                            "uservisible": True,
+                            "modules": [
                                 {
-                                    'id': 513,
-                                    'url': 'https://ke.moodle.haski.app/mod/feedback/view.php?id=513',
-                                    'name': 'Begriffserklärung HASKI (empfohlen)',
-                                    'instance': 84,
-                                    'contextid': 838,
-                                    'visible': 1,
-                                    'uservisible': True,
-                                    'visibleoncoursepage': 1,
-                                    'modicon': 'https://ke.moodle.haski.app/theme/image.php/haskiminimal/feedback/1715090261/monologo?filtericon=1',
-                                    'modname': 'feedback',
-                                    'modplural': 'Feedback',
-                                    'availability': None,
-                                    'indent': 0,
-                                    'onclick': '',
-                                    'afterlink': None,
-                                    'customdata': '{"customcompletionrules":{"completionsubmit":"1"},"anonymous":"2"}',
-                                    'noviewlink': False,
-                                    'completion': 2,
-                                    'completiondata':
-                                        {
-                                            'state': 0,
-                                            'timecompleted': 0,
-                                            'overrideby': None,
-                                            'valueused': False,
-                                            'hascompletion': True,
-                                            'isautomatic': True,
-                                            'istrackeduser': True,
-                                            'uservisible': True,
-                                            'details':
-                                                [
-                                                    {
-                                                        'rulename': 'completionsubmit',
-                                                        'rulevalue':
-                                                            {'status': 0,
-                                                             'description':
-                                                                 'Submit feedback'
-                                                             }
-                                                    }
-                                                ]
-                                        },
-                                    'downloadcontent': 1,
-                                    'dates': []
+                                    "id": 513,
+                                    "url": "ke.moodle.haski.app/feedback/view?id=513",
+                                    "name": "Begriffserklärung HASKI (empfohlen)",
+                                    "instance": 84,
+                                    "contextid": 838,
+                                    "visible": 1,
+                                    "uservisible": True,
+                                    "visibleoncoursepage": 1,
+                                    "modicon": "ke.moodle.haski.app/?filtericon=1",
+                                    "modname": "feedback",
+                                    "modplural": "Feedback",
+                                    "availability": None,
+                                    "indent": 0,
+                                    "onclick": "",
+                                    "afterlink": None,
+                                    "customdata": "",
+                                    "noviewlink": False,
+                                    "completion": 2,
+                                    "completiondata": {
+                                        "state": 0,
+                                        "timecompleted": 0,
+                                        "overrideby": None,
+                                        "valueused": False,
+                                        "hascompletion": True,
+                                        "isautomatic": True,
+                                        "istrackeduser": True,
+                                        "uservisible": True,
+                                        "details": [
+                                            {
+                                                "rulename": "completionsubmit",
+                                                "rulevalue": {
+                                                    "status": 0,
+                                                    "description": "Submit feedback",
+                                                },
+                                            }
+                                        ],
+                                    },
+                                    "downloadcontent": 1,
+                                    "dates": [],
                                 },
                                 {
-                                    'id': 601,
-                                    'url': 'https://ke.moodle.haski.app/mod/h5pactivity/view.php?id=601',
-                                    'name': 'Freiwilliges Emotionsbarometer',
-                                    'instance': 384,
-                                    'contextid': 926,
-                                    'visible': 1,
-                                    'uservisible': True,
-                                    'visibleoncoursepage': 1,
-                                    'modicon': 'https://ke.moodle.haski.app/theme/image.php/haskiminimal/h5pactivity/1715090261/monologo?filtericon=1',
-                                    'modname': 'h5pactivity',
-                                    'modplural': 'H5P',
-                                    'availability': None,
-                                    'indent': 0,
-                                    'onclick': '',
-                                    'afterlink': None,
-                                    'customdata': '""',
-                                    'noviewlink': False,
-                                    'completion': 2,
-                                    'completiondata':
-                                        {
-                                            'state': 1,
-                                            'timecompleted': 1715080190,
-                                            'overrideby': None,
-                                            'valueused': False,
-                                            'hascompletion': True,
-                                            'isautomatic': True,
-                                            'istrackeduser': True,
-                                            'uservisible': True,
-                                            'details':
-                                                [
-                                                    {
-                                                        'rulename': 'completionview',
-                                                        'rulevalue':
-                                                            {
-                                                                'status': 1,
-                                                                'description': 'View'
-                                                            }
-                                                    }
-                                                ]
-                                        },
-                                    'downloadcontent': 1,
-                                    'dates': []
+                                    "id": 601,
+                                    "url": "ke.moodle.haski.app/h5pactivity/view?id601",
+                                    "name": "Freiwilliges Emotionsbarometer",
+                                    "instance": 384,
+                                    "contextid": 926,
+                                    "visible": 1,
+                                    "uservisible": True,
+                                    "visibleoncoursepage": 1,
+                                    "modicon": "ke.moodle.haski.app/?filtericon=1",
+                                    "modname": "h5pactivity",
+                                    "modplural": "H5P",
+                                    "availability": None,
+                                    "indent": 0,
+                                    "onclick": "",
+                                    "afterlink": None,
+                                    "customdata": '""',
+                                    "noviewlink": False,
+                                    "completion": 2,
+                                    "completiondata": {
+                                        "state": 1,
+                                        "timecompleted": 1715080190,
+                                        "overrideby": None,
+                                        "valueused": False,
+                                        "hascompletion": True,
+                                        "isautomatic": True,
+                                        "istrackeduser": True,
+                                        "uservisible": True,
+                                        "details": [
+                                            {
+                                                "rulename": "completionview",
+                                                "rulevalue": {
+                                                    "status": 1,
+                                                    "description": "View",
+                                                },
+                                            }
+                                        ],
+                                    },
+                                    "downloadcontent": 1,
+                                    "dates": [],
                                 },
                                 {
-                                    'id': 515,
-                                    'url': 'https://ke.moodle.haski.app/mod/feedback/view.php?id=515',
-                                    'name': 'Freiwilliges Feedback vor dem Thema "Entwurfsmuster Allgemein"',
-                                    'instance': 85,
-                                    'contextid': 840,
-                                    'visible': 1,
-                                    'uservisible': True,
-                                    'visibleoncoursepage': 1,
-                                    'modicon': 'https://ke.moodle.haski.app/theme/image.php/haskiminimal/feedback/1715090261/monologo?filtericon=1',
-                                    'modname': 'feedback',
-                                    'modplural': 'Feedback',
-                                    'availability': None,
-                                    'indent': 0,
-                                    'onclick': '',
-                                    'afterlink': None,
-                                    'customdata': '{"customcompletionrules":{"completionsubmit":"1"},"anonymous":"2"}',
-                                    'noviewlink': False,
-                                    'completion': 2,
-                                    'completiondata':
-                                        {
-                                            'state': 0,
-                                            'timecompleted': 0,
-                                            'overrideby': None,
-                                            'valueused': False,
-                                            'hascompletion': True,
-                                            'isautomatic': True,
-                                            'istrackeduser': True,
-                                            'uservisible': True,
-                                            'details':
-                                                [
-                                                    {
-                                                        'rulename': 'completionsubmit',
-                                                        'rulevalue':
-                                                            {
-                                                                'status': 0,
-                                                                'description': 'Submit feedback'
-                                                            }
-                                                    }
-                                                ]
-                                        },
-                                    'downloadcontent': 1,
-                                    'dates': []
+                                    "id": 515,
+                                    "url": "ke.moodle.haski.app/feedback/view?id=515",
+                                    "name": "Freiwilliges Feedback vor dem Thema",
+                                    "instance": 85,
+                                    "contextid": 840,
+                                    "visible": 1,
+                                    "uservisible": True,
+                                    "visibleoncoursepage": 1,
+                                    "modicon": "ke.moodle.haski.app?filtericon=1",
+                                    "modname": "feedback",
+                                    "modplural": "Feedback",
+                                    "availability": None,
+                                    "indent": 0,
+                                    "onclick": "",
+                                    "afterlink": None,
+                                    "customdata": "",
+                                    "noviewlink": False,
+                                    "completion": 2,
+                                    "completiondata": {
+                                        "state": 0,
+                                        "timecompleted": 0,
+                                        "overrideby": None,
+                                        "valueused": False,
+                                        "hascompletion": True,
+                                        "isautomatic": True,
+                                        "istrackeduser": True,
+                                        "uservisible": True,
+                                        "details": [
+                                            {
+                                                "rulename": "completionsubmit",
+                                                "rulevalue": {
+                                                    "status": 0,
+                                                    "description": "Submit",
+                                                },
+                                            }
+                                        ],
+                                    },
+                                    "downloadcontent": 1,
+                                    "dates": [],
                                 },
                                 {
-                                    'id': 514,
-                                    'url': 'https://ke.moodle.haski.app/mod/h5pactivity/view.php?id=514',
-                                    'name': 'Freiwilliges Feedback zur intuitiven Reihenfolge der Lernelemente',
-                                    'instance': 321,
-                                    'contextid': 839,
-                                    'visible': 1,
-                                    'uservisible': True,
-                                    'visibleoncoursepage': 1,
-                                    'modicon': 'https://ke.moodle.haski.app/theme/image.php/haskiminimal/h5pactivity/1715090261/monologo?filtericon=1',
-                                    'modname': 'h5pactivity',
-                                    'modplural': 'H5P',
-                                    'availability': None,
-                                    'indent': 0,
-                                    'onclick': '',
-                                    'afterlink': None,
-                                    'customdata': '""',
-                                    'noviewlink': False,
-                                    'completion': 2,
-                                    'completiondata':
-                                        {
-                                            'state': 1,
-                                            'timecompleted': 1714373032,
-                                            'overrideby': None,
-                                            'valueused': False,
-                                            'hascompletion': True,
-                                            'isautomatic': True,
-                                            'istrackeduser': True,
-                                            'uservisible': True,
-                                            'details':
-                                                [
-                                                    {
-                                                        'rulename': 'completionview',
-                                                        'rulevalue':
-                                                            {
-                                                                'status': 1,
-                                                                'description': 'View'
-                                                            }
-                                                    }
-                                                ]
-                                        },
-                                    'downloadcontent': 1,
-                                    'dates': []
+                                    "id": 514,
+                                    "url": "ke.moodle.haski.app/h5pactivity/id=514",
+                                    "name": "Freiwilliges Feedback zur intuitiven",
+                                    "instance": 321,
+                                    "contextid": 839,
+                                    "visible": 1,
+                                    "uservisible": True,
+                                    "visibleoncoursepage": 1,
+                                    "modicon": "ke.moodle.haski.app?filtericon=1",
+                                    "modname": "h5pactivity",
+                                    "modplural": "H5P",
+                                    "availability": None,
+                                    "indent": 0,
+                                    "onclick": "",
+                                    "afterlink": None,
+                                    "customdata": '""',
+                                    "noviewlink": False,
+                                    "completion": 2,
+                                    "completiondata": {
+                                        "state": 1,
+                                        "timecompleted": 1714373032,
+                                        "overrideby": None,
+                                        "valueused": False,
+                                        "hascompletion": True,
+                                        "isautomatic": True,
+                                        "istrackeduser": True,
+                                        "uservisible": True,
+                                        "details": [
+                                            {
+                                                "rulename": "completionview",
+                                                "rulevalue": {
+                                                    "status": 1,
+                                                    "description": "View",
+                                                },
+                                            }
+                                        ],
+                                    },
+                                    "downloadcontent": 1,
+                                    "dates": [],
                                 },
                                 {
-                                    'id': 517, 'url': 'https://ke.moodle.haski.app/mod/forum/view.php?id=517',
-                                    'name': 'Announcements',
-                                    'instance': 9,
-                                    'contextid': 842,
-                                    'visible': 0,
-                                    'uservisible': True,
-                                    'visibleoncoursepage': 1,
-                                    'modicon': 'https://ke.moodle.haski.app/theme/image.php/haskiminimal/forum/1715090261/monologo?filtericon=1',
-                                    'modname': 'forum',
-                                    'modplural': 'Forums',
-                                    'availability': None,
-                                    'indent': 0,
-                                    'onclick': '',
-                                    'afterlink': None,
-                                    'customdata': '""',
-                                    'noviewlink': False,
-                                    'completion': 0,
-                                    'downloadcontent': 1,
-                                    'dates': []
-                                }
-                            ]
+                                    "id": 517,
+                                    "url": "ke.moodle.haski.app/forum/view?id=517",
+                                    "name": "Announcements",
+                                    "instance": 9,
+                                    "contextid": 842,
+                                    "visible": 0,
+                                    "uservisible": True,
+                                    "visibleoncoursepage": 1,
+                                    "modicon": "ke.moodle.haski.app/",
+                                    "modname": "forum",
+                                    "modplural": "Forums",
+                                    "availability": None,
+                                    "indent": 0,
+                                    "onclick": "",
+                                    "afterlink": None,
+                                    "customdata": '""',
+                                    "noviewlink": False,
+                                    "completion": 0,
+                                    "downloadcontent": 1,
+                                    "dates": [],
+                                },
+                            ],
                         },
-                    ]
+                    ],
                 )
             )
         ),
