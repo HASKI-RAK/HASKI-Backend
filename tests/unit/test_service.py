@@ -1164,7 +1164,7 @@ user_name_example = "Max Mustermann"
 university_example = "TH-AB"
 creation_date_example = "2023-03-31T09:00:00Z"
 
-ils_complete = [
+questionnaire_ils_complete = [
     "ar_1_f1",
     "ar_2_f5",
     "ar_3_f9",
@@ -1210,7 +1210,7 @@ ils_complete = [
     "sg_10_f40",
     "sg_11_f44",
 ]
-ils_short = [
+questionnaire_ils_short = [
     "ar_3_f9",
     "ar_4_f13",
     "ar_6_f21",
@@ -1865,7 +1865,7 @@ def test_reset_learning_characteristics():
 def test_create_ils_input_answers():
     uow = FakeUnitOfWork()
     ils_input_answers = {}
-    for key in ils_complete:
+    for key in questionnaire_ils_complete:
         if key.startswith("vv"):
             ils_input_answers[key] = "a"
     entries_beginning = len(uow.ils_input_answers.ils_input_answers)
@@ -1881,7 +1881,7 @@ def test_create_ils_input_answers():
 def test_create_ils_perception_answers():
     uow = FakeUnitOfWork()
     ils_perception_answers = {}
-    for key in ils_complete:
+    for key in questionnaire_ils_complete:
         if key.startswith("si"):
             ils_perception_answers[key] = "a"
     entries_beginning = len(uow.ils_perception_answers.ils_perception_answers)
@@ -1897,7 +1897,7 @@ def test_create_ils_perception_answers():
 def test_create_ils_processing_answers():
     uow = FakeUnitOfWork()
     ils_processing_answers = {}
-    for key in ils_complete:
+    for key in questionnaire_ils_complete:
         if key.startswith("ar"):
             ils_processing_answers[key] = "a"
     entries_beginning = len(uow.ils_processing_answers.ils_processing_answers)
@@ -1913,7 +1913,7 @@ def test_create_ils_processing_answers():
 def test_create_ils_understanding_answers():
     uow = FakeUnitOfWork()
     ils_understanding_answers = {}
-    for key in ils_complete:
+    for key in questionnaire_ils_complete:
         if key.startswith("sg"):
             ils_understanding_answers[key] = "a"
     entries_beginning = len(uow.ils_understanding_answers.ils_understanding_answers)
@@ -1979,10 +1979,10 @@ def test_create_questionnaire_ils(full_version):
     entries_beginning = len(uow.questionnaire_ils.questionnaire_ils)
     questionnaire_ils_answers = {}
     if full_version:
-        for key in ils_complete:
+        for key in questionnaire_ils_complete:
             questionnaire_ils_answers[key] = "a"
     else:
-        for key in ils_short:
+        for key in questionnaire_ils_short:
             questionnaire_ils_answers[key] = "a"
     result = services.create_questionnaire_ils(
         uow=uow,
@@ -2007,7 +2007,7 @@ def test_create_questionnaire_ils(full_version):
 def test_delete_ils_input_answers():
     uow = FakeUnitOfWork()
     ils_input_answers = {}
-    for key in ils_complete:
+    for key in questionnaire_ils_complete:
         if key.startswith("vv"):
             ils_input_answers[key] = "a"
     services.create_ils_input_answers(
@@ -2024,7 +2024,7 @@ def test_delete_ils_input_answers():
 def test_delete_ils_perception_answers():
     uow = FakeUnitOfWork()
     ils_perception_answers = {}
-    for key in ils_complete:
+    for key in questionnaire_ils_complete:
         if key.startswith("si"):
             ils_perception_answers[key] = "a"
     services.create_ils_perception_answers(
@@ -2041,7 +2041,7 @@ def test_delete_ils_perception_answers():
 def test_delete_ils_processing_answers():
     uow = FakeUnitOfWork()
     ils_processing_answers = {}
-    for key in ils_complete:
+    for key in questionnaire_ils_complete:
         if key.startswith("ar"):
             ils_processing_answers[key] = "a"
     services.create_ils_processing_answers(
@@ -2058,7 +2058,7 @@ def test_delete_ils_processing_answers():
 def test_delete_ils_understanding_answers():
     uow = FakeUnitOfWork()
     ils_understanding_answers = {}
-    for key in ils_complete:
+    for key in questionnaire_ils_complete:
         if key.startswith("sg"):
             ils_understanding_answers[key] = "a"
     services.create_ils_understanding_answers(
@@ -2120,10 +2120,10 @@ def test_delete_questionnaire_ils(full_version):
     services.create_learning_characteristics(uow=uow, student_id=1)
     questionnaire_ils_answers = {}
     if full_version:
-        for key in ils_complete:
+        for key in questionnaire_ils_complete:
             questionnaire_ils_answers[key] = "a"
     else:
-        for key in ils_short:
+        for key in questionnaire_ils_short:
             questionnaire_ils_answers[key] = "a"
     services.create_questionnaire_ils(
         uow=uow,
@@ -2354,21 +2354,21 @@ def test_get_courses_from_moodle():
                             "modicon": "https://ke.moodle.haski.app/filtericon=1",
                             "modname": "h5pactivity",
                             "modplural": "H5P",
-                            "availability": None,
+                            "availability": True,
                             "indent": 0,
-                            "onclick": "",
+                            "onclick": None,
                             "afterlink": None,
                             "customdata": '""',
                             "noviewlink": False,
                             "completion": 2,
                             "completiondata": {
                                 "state": 1,
-                                "timecompleted": 1715080190,
+                                "timecompleted": 1715080195,
                                 "overrideby": None,
-                                "valueused": False,
+                                "valueused": True,
                                 "hascompletion": True,
                                 "isautomatic": True,
-                                "istrackeduser": True,
+                                "istrackeduser": False,
                                 "uservisible": True,
                                 "details": [
                                     {
