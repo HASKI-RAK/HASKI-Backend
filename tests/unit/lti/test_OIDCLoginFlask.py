@@ -5,8 +5,10 @@ from unittest.mock import patch, MagicMock
 
 import service_layer.lti.config.ToolConfigJson as ToolConfigJson
 from errors import errors as err
+from service_layer import unit_of_work
 from service_layer.crypto import JWTKeyManagement
 from service_layer.lti.OIDCLoginFlask import OIDCLoginFlask
+from service_layer.service import SessionServiceFlask
 
 # Test configuration data
 config_file = {
