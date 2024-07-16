@@ -309,3 +309,27 @@ class TestOIDCLoginFlask(unittest.TestCase):
                             mock_verify_jwt.assert_called_with(
                                 "valid_id_token_jwt", mock.ANY
                             )
+
+    def test_get_logout(self):
+        with patch.object(self.oidc_login, '_request', _request=MagicMock) as mock_request:
+            mock_request.referrer = 'https://example.com'
+
+            response = self.oidc_login.get_logout()
+
+            self.assertEqual(response.status_code, 204)
+            set_cookie_header = response.headers.get('Set-Cookie', '')
+            self.assertIn('haski_state=', set_cookie_header)  # Check for empty value
+            self.assertIn('Max-Age=0', set_cookie_header)
+            self.assertIn('Domain=example.com', set_cookie_header)
+            self.assertIn('HttpOnly', set_cookie_header)
+            self.assertIn('SameSite=Lax', set_cookie_header)
+            self.assertIn('Path=/', set_cookie_header)
+
+            # Check that the Expires attribute is set to a past date
+            expires_part = next((part for part in set_cookie_header.split('; ') if part.startswith('Expires=')), None)
+            self.assertIsNotNone(expires_part, "Expires attribute not found in Set-Cookie header")
+            expires_date = expires_part.split('=', 1)[1]
+            from email.utils import parsedate_to_datetime
+            import datetime
+            expires_datetime = parsedate_to_datetime(expires_date)
+            self.assertLess(expires_datetime, datetime.datetime.now(datetime.timezone.utc), "Expires date should be in the past")
