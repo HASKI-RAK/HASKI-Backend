@@ -2068,6 +2068,7 @@ def get_topics_and_elements_from_moodle_course(
 ) -> dict:
     with uow:
         response = get_moodle_rest_url_for_course_topics_and_elements(uow, course_id)
+        print(response)
         if response:
             filtered_topics_and_elements = []
             for content in response:

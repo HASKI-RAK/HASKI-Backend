@@ -22,46 +22,46 @@ from utils import constants as cons
 )
 class FakeRepository(repository.AbstractRepository):  # pragma: no cover
     def __init__(
-        self,
-        admin=[],
-        contact_form=[],
-        course=[],
-        course_creator=[],
-        course_creator_course=[],
-        course_topic=[],
-        course_start=[],
-        default_learning_path=[],
-        ils_input_answers=[],
-        ils_perception_answers=[],
-        ils_processing_answers=[],
-        ils_understanding_answers=[],
-        knowledge=[],
-        learning_analytics=[],
-        learning_characteristics=[],
-        learning_element=[],
-        learning_element_rating=[],
-        learning_path=[],
-        learning_path_algorithm=[],
-        learning_path_learning_element=[],
-        learning_path_topic=[],
-        learning_strategy=[],
-        learning_style=[],
-        news=[],
-        questionnaire_list_k=[],
-        questionnaire_ils=[],
-        settings=[],
-        student=[],
-        student_course=[],
-        student_learning_element=[],
-        student_learning_element_visit=[],
-        student_learning_path_learning_element_algorithm=[],
-        student_topic=[],
-        student_topic_visit=[],
-        teacher=[],
-        teacher_course=[],
-        topic=[],
-        topic_learning_element=[],
-        user=[],
+            self,
+            admin=[],
+            contact_form=[],
+            course=[],
+            course_creator=[],
+            course_creator_course=[],
+            course_topic=[],
+            course_start=[],
+            default_learning_path=[],
+            ils_input_answers=[],
+            ils_perception_answers=[],
+            ils_processing_answers=[],
+            ils_understanding_answers=[],
+            knowledge=[],
+            learning_analytics=[],
+            learning_characteristics=[],
+            learning_element=[],
+            learning_element_rating=[],
+            learning_path=[],
+            learning_path_algorithm=[],
+            learning_path_learning_element=[],
+            learning_path_topic=[],
+            learning_strategy=[],
+            learning_style=[],
+            news=[],
+            questionnaire_list_k=[],
+            questionnaire_ils=[],
+            settings=[],
+            student=[],
+            student_course=[],
+            student_learning_element=[],
+            student_learning_element_visit=[],
+            student_learning_path_learning_element_algorithm=[],
+            student_topic=[],
+            student_topic_visit=[],
+            teacher=[],
+            teacher_course=[],
+            topic=[],
+            topic_learning_element=[],
+            user=[],
     ):
         self.admin = set(admin)
         self.contact_form = set(contact_form)
@@ -234,10 +234,10 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         self.student.add(student)
 
     def add_student_lpath_le_algorithm(
-        self, student_learning_path_learning_element_algorithm
+            self, student_learning_path_learning_element_algorithm
     ):
         student_learning_path_learning_element_algorithm.id = (
-            len(self.student_learning_path_learning_element_algorithm) + 1
+                len(self.student_learning_path_learning_element_algorithm) + 1
         )
         self.student_learning_path_learning_element_algorithm.add(
             student_learning_path_learning_element_algorithm
@@ -710,9 +710,9 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         result = []
         for i in self.learning_path:
             if (
-                i.student_id == student_id
-                and i.course_id == course_id
-                and i.topic_id == topic_id
+                    i.student_id == student_id
+                    and i.course_id == course_id
+                    and i.topic_id == topic_id
             ):
                 result.append(i)
         return result
@@ -826,8 +826,8 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         result = []
         for i in self.student_learning_element:
             if (
-                i.student_id == student_id
-                and i.learning_element_id == learning_element_id
+                    i.student_id == student_id
+                    and i.learning_element_id == learning_element_id
             ):
                 result.append(i)
         return result
@@ -1073,15 +1073,15 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         self.settings.add(settings)
 
     def update_student_learning_element(
-        self, student_id, learning_element_id, visit_time
+            self, student_id, learning_element_id, visit_time
     ):
         to_update = next(
             (
                 p
                 for p in self.student_learning_element
                 if p.student_id == student_id
-                and p.learning_element_id == learning_element_id
-                and p.visit_start is None
+                   and p.learning_element_id == learning_element_id
+                   and p.visit_start is None
             ),
             None,
         )
@@ -1163,7 +1163,6 @@ class FakeUnitOfWork(unit_of_work.AbstractUnitOfWork):  # pragma: no cover
 user_name_example = "Max Mustermann"
 university_example = "TH-AB"
 creation_date_example = "2023-03-31T09:00:00Z"
-
 
 ils_complete = [
     "ar_1_f1",
@@ -2163,8 +2162,8 @@ def test_create_course_without_start_date():
     )
     assert entries_beginning + 1 == entries_after
     assert (
-        entries_beginning_course_creator_course + 1
-        == entries_after_course_creator_course
+            entries_beginning_course_creator_course + 1
+            == entries_after_course_creator_course
     )
 
 
@@ -2192,8 +2191,8 @@ def test_create_course_with_start_date():
     )
     assert entries_beginning + 1 == entries_after
     assert (
-        entries_beginning_course_creator_course + 1
-        == entries_after_course_creator_course
+            entries_beginning_course_creator_course + 1
+            == entries_after_course_creator_course
     )
 
 
@@ -2201,12 +2200,12 @@ def test_create_course_with_start_date():
     "requests.get",
     mock.Mock(
         side_effect=lambda k: (
-            mock.Mock(
-                status_code=200,
-                json=lambda: {
-                    "statuses": [{"cmid": 1, "state": 0, "timecompleted": 0}]
-                },
-            )
+                mock.Mock(
+                    status_code=200,
+                    json=lambda: {
+                        "statuses": [{"cmid": 1, "state": 0, "timecompleted": 0}]
+                    },
+                )
         )
     ),
 )
@@ -2226,16 +2225,218 @@ def test_get_moodle_rest_url_for_completion_status():
 @mock.patch(
     "requests.get",
     mock.Mock(
-        side_effect=lambda k: (
-            mock.Mock(
-                status_code=200,
-                json=lambda: {
-                    "statuses": [
-                        {"cmid": 1, "state": 0, "timecompleted": 0},
-                        {"cmid": 2, "state": 0, "timecompleted": 0},
+        side_effect=lambda k: mock.Mock(
+            status_code=200,
+            json=lambda:
+            [
+                {
+                    'id': 2,
+                    'shortname': 'HASKI',
+                    'categoryid': 0,
+                    'categorysortorder': 1,
+                    'fullname': 'HASKI',
+                    'displayname': 'HASKI',
+                    'idnumber': '',
+                    'summary': 'Moodle powered by Bitnami',
+                    'summaryformat': 1,
+                    'format': 'site',
+                    'showgrades': 1,
+                    'newsitems': 3,
+                    'startdate': 0,
+                    'enddate': 0,
+                    'numsections': 1,
+                    'maxbytes': 0,
+                    'showreports': 0,
+                    'visible': 1,
+                    'groupmode': 0,
+                    'groupmodeforce': 0,
+                    'defaultgroupingid': 0,
+                    'timecreated': 1683716308,
+                    'timemodified': 1683716377,
+                    'enablecompletion': 0,
+                    'completionnotify': 0,
+                    'lang': '',
+                    'forcetheme': '',
+                    'courseformatoptions': [
+                        {'name': 'numsections', 'value': 1}
+                    ],
+                    'showactivitydates': False,
+                    'showcompletionconditions': None
+                }
+            ]
+        )
+    ),
+)
+def test_get_courses_from_moodle():
+    uow = FakeUnitOfWork()
+    create_course_creator_for_tests(uow)
+    create_course_for_tests(uow)
+
+    result = services.get_courses_from_moodle(
+        uow=uow,
+    )
+
+    assert result == [
+        {
+            'id': 2,
+            'shortname': 'HASKI',
+            'fullname': 'HASKI',
+            'startdate': 0,
+            'enddate': 0,
+            'timecreated': 1683716308,
+            'timemodified': 1683716377
+        }
+    ]
+
+
+@mock.patch(
+    "requests.get",
+    mock.Mock(
+        side_effect=lambda k: mock.Mock(
+            status_code=200,
+            json=lambda:
+            [
+                {
+                    'id': 76,
+                    'name': 'Erste Schritte',
+                    'visible': 1,
+                    'summary': '',
+                    'summaryformat': 1,
+                    'section': 0,
+                    'hiddenbynumsections': 0,
+                    'uservisible': True,
+                    'modules': [
+                            {
+                                'id': 513,
+                                'url': 'https://ke.moodle.haski.app/feedback/id=513',
+                                'name': 'Begriffserklärung HASKI',
+                                'instance': 84,
+                                'contextid': 838,
+                                'visible': 1,
+                                'uservisible': True,
+                                'visibleoncoursepage': 1,
+                                'modicon': 'https://ke.moodle.haski.app/filtericon=1',
+                                'modname': 'feedback',
+                                'modplural': 'Feedback',
+                                'availability': None,
+                                'indent': 0,
+                                'onclick': '',
+                                'afterlink': None,
+                                'customdata': '{""}',
+                                'noviewlink': False,
+                                'completion': 2,
+                                'completiondata': {
+                                    'state': 0,
+                                    'timecompleted': 0,
+                                    'overrideby': None,
+                                    'valueused': False,
+                                    'hascompletion': True,
+                                    'isautomatic': True,
+                                    'istrackeduser': True,
+                                    'uservisible': True,
+                                    'details': [
+                                        {
+                                            'rulename': 'completionsubmit',
+                                            'rulevalue': {
+                                                'status': 0,
+                                                'description': 'Submit feedback'
+                                            }
+                                        }
+                                    ]
+                                },
+                            'downloadcontent': 1,
+                            'dates': []
+                            },
+                            {
+                                'id': 601,
+                                'url': 'https://ke.moodle.haski.app/h5pactivity?id=601',
+                                'name': 'Freiwilliges Emotionsbarometer',
+                                'instance': 384,
+                                'contextid': 926,
+                                'visible': 1,
+                                'uservisible': True,
+                                'visibleoncoursepage': 1,
+                                'modicon': 'https://ke.moodle.haski.app/filtericon=1',
+                                'modname': 'h5pactivity',
+                                'modplural': 'H5P',
+                                'availability': None,
+                                'indent': 0,
+                                'onclick': '',
+                                'afterlink': None,
+                                'customdata': '""',
+                                'noviewlink': False,
+                                'completion': 2,
+                                'completiondata': {
+                                    'state': 1,
+                                    'timecompleted': 1715080190,
+                                    'overrideby': None,
+                                    'valueused': False,
+                                    'hascompletion': True,
+                                    'isautomatic': True,
+                                    'istrackeduser': True,
+                                    'uservisible': True,
+                                    'details': [
+                                        {
+                                            'rulename': 'completionview',
+                                            'rulevalue': {
+                                                'status': 1,
+                                                'description': 'View'
+                                            }
+                                        }
+                                    ]
+                                },
+                                'downloadcontent': 1,
+                                'dates': []
+                            }
                     ]
                 },
-            )
+            ]
+        )
+    ),
+)
+def test_get_topics_and_elements_from_moodle_course():
+    uow = FakeUnitOfWork()
+    create_course_creator_for_tests(uow)
+    create_course_for_tests(uow)
+
+    result = services.get_topics_and_elements_from_moodle_course(
+        uow=uow,
+        course_id=1,
+    )
+    print(result)
+    assert result == [
+        {
+            "lms_learning_elements": [
+                {
+                    "lms_activity_type": "feedback",
+                    "lms_id": 513,
+                    "lms_learning_element_name": "Begriffserklärung HASKI"
+                },
+                {
+                    "lms_activity_type": "h5pactivity",
+                    "lms_id": 601,
+                    "lms_learning_element_name": "Freiwilliges Emotionsbarometer"
+                }
+            ],
+            "topic_lms_id": 76,
+            "topic_lms_name": "Erste Schritte"
+        },
+    ]
+
+
+@mock.patch(
+    "requests.get",
+    mock.Mock(
+        side_effect=lambda k: (
+                mock.Mock(
+                    status_code=200,
+                    json=lambda: {
+                        "statuses": [
+                            {"cmid": 1, "state": 0, "timecompleted": 0},
+                            {"cmid": 2, "state": 0, "timecompleted": 0},
+                        ]
+                    },
+                )
         )
     ),
 )
@@ -2259,15 +2460,15 @@ def test_get_activity_status_for_student_for_course():
     "requests.get",
     mock.Mock(
         side_effect=lambda k: (
-            mock.Mock(
-                status_code=200,
-                json=lambda: {
-                    "statuses": [
-                        {"cmid": 1, "state": 0, "timecompleted": 0},
-                        {"cmid": 2, "state": 0, "timecompleted": 0},
-                    ]
-                },
-            )
+                mock.Mock(
+                    status_code=200,
+                    json=lambda: {
+                        "statuses": [
+                            {"cmid": 1, "state": 0, "timecompleted": 0},
+                            {"cmid": 2, "state": 0, "timecompleted": 0},
+                        ]
+                    },
+                )
         )
     ),
 )
@@ -2397,37 +2598,37 @@ def test_delete_course_topic_by_topic():
     [
         # Working Example Topic
         (
-            1,
-            True,
-            None,
-            False,
-            "Test Topic",
-            university_example,
-            user_name_example,
-            time.time(),
+                1,
+                True,
+                None,
+                False,
+                "Test Topic",
+                university_example,
+                user_name_example,
+                time.time(),
         ),
         # Working Example Sub-Topic
         (
-            2,
-            False,
-            1,
-            True,
-            "Test Sub-Topic",
-            university_example,
-            user_name_example,
-            time.time(),
+                2,
+                False,
+                1,
+                True,
+                "Test Sub-Topic",
+                university_example,
+                user_name_example,
+                time.time(),
         ),
     ],
 )
 def test_create_topic(
-    lms_id,
-    is_topic,
-    parent_id,
-    contains_le,
-    name,
-    university,
-    created_by,
-    created_at,
+        lms_id,
+        is_topic,
+        parent_id,
+        contains_le,
+        name,
+        university,
+        created_by,
+        created_at,
 ):
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.topic.topic)
