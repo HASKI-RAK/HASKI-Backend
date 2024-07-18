@@ -9,7 +9,7 @@ from errors import errors as err
 from service_layer.crypto import JWTKeyManagement
 from service_layer.lti.OIDCLoginFlask import OIDCLoginFlask
 
-# Test configuration data
+# ignore E501
 config_file = {
     "https://moodle.haski.app": {
         "default": True,
