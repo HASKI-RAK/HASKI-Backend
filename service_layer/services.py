@@ -166,7 +166,7 @@ def create_course(
     start_date,
 ) -> dict:
     with uow:
-        course = DM.Course(lms_id, name, university, None, None, None, None)
+        course = DM.Course(lms_id, name, university, created_at, created_by, None, start_date)
         uow.course.create_course(course)
         uow.commit()
         result = course.serialize()
@@ -2136,7 +2136,7 @@ def update_course(
     start_date,
 ) -> dict:
     with uow:
-        course = DM.Course(lms_id, name, university, None, None, None, None)
+        course = DM.Course(lms_id, name, university, None, None, None, start_date)
         uow.course.update_course(course_id, course)
         course_start = DM.CourseStart(course_id, start_date)
         uow.course_start.update_course_start(course_start)
