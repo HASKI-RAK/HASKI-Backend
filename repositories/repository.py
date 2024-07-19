@@ -487,6 +487,10 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
+    def get_all_students(self) -> list[UA.Student]:
+        raise NotImplementedError
+
+    @abc.abstractmethod
     def get_student_by_id(self, user_id) -> UA.Student:
         raise NotImplementedError
 
@@ -1547,6 +1551,12 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
                 .filter_by(university=university)
                 .all()
             )
+        except Exception:
+            raise err.DatabaseQueryError()
+
+    def get_all_students(self) -> list[UA.Student]:
+        try:
+            return self.session.query(UA.Student).all()
         except Exception:
             raise err.DatabaseQueryError()
 

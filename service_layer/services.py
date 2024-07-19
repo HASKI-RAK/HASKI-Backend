@@ -2116,6 +2116,20 @@ def get_activity_status_for_learning_element(
             return []
 
 
+def get_all_students(uow: unit_of_work.AbstractUnitOfWork) -> list:
+    with uow:
+        students = uow.student.get_all_students()
+        result = []
+        for student in students:
+            user = uow.user.get_user_by_id(student.user_id, None)
+            setting = uow.settings.get_settings(student.user_id)
+            student.settings = setting[0].serialize()
+            student.role = user[0].role
+            student.role_id = None
+            result.append(student.serialize())
+        return result
+
+
 def get_student_by_user_id(uow: unit_of_work.AbstractUnitOfWork, user_id) -> dict:
     with uow:
         student = uow.student.get_student_by_id(user_id)

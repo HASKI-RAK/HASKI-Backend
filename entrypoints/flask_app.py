@@ -153,10 +153,10 @@ def get_user_by_id(user_id, lms_user_id):
 
 
 # Course Administration via LMS
-@app.route("/lms/course", methods=["POST"])
+@app.route("/v2/lms/course", methods=["POST"])
 @cross_origin(supports_credentials=True)
 @json_only()
-def post_course(data: Dict[str, Any]):
+def post_course_and_add_all_students(data: Dict[str, Any]):
     method = request.method
     match method:
         case "POST":
@@ -186,6 +186,89 @@ def post_course(data: Dict[str, Any]):
                     and condition9
                     and condition10
                     and condition11
+                ):
+                    condition12 = re.search(cons.date_format_search, data["created_at"])
+                    if condition12:
+                        created_at = datetime.strptime(
+                            data["created_at"], cons.date_format
+                        )
+                        if condition13:
+                            condition14 = type(data["start_date"]) is str
+                            if condition14:
+                                condition15 = re.search(
+                                    cons.date_format_search, data["start_date"]
+                                )
+                                if condition15:
+                                    print(data["start_date"])
+                                    start_date = datetime.strptime(
+                                        data["start_date"], cons.date_format
+                                    )
+                                    print(start_date)
+                        else:
+                            start_date = datetime.strptime(
+                                data["created_at"], cons.date_format
+                            ).date()
+                        course = services.create_course(
+                            unit_of_work.SqlAlchemyUnitOfWork(),
+                            data["lms_id"],
+                            data["name"],
+                            data["university"],
+                            data["created_by"],
+                            created_at,
+                            start_date,
+                        )
+                        students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
+                        for student in students:
+                            student_id = student['id']
+                            course_id = course['id']
+                            services.add_student_to_course(
+                                unit_of_work.SqlAlchemyUnitOfWork(), student_id, course_id
+                            )
+                        status_code = 201
+                        return jsonify(course), status_code
+                    else:
+                        raise err.WrongParameterValueError(
+                            message=cons.date_format_message
+                        )
+                else:
+                    raise err.WrongParameterValueError()
+            else:
+                raise err.MissingParameterError()
+
+
+@app.route("/lms/course", methods=["POST"])
+@cross_origin(supports_credentials=True)
+@json_only()
+def post_course(data: Dict[str, Any]):
+    method = request.method
+    match method:
+        case "POST":
+            condition1 = data is not None
+            condition2 = "name" in data
+            condition3 = "lms_id" in data
+            condition4 = "university" in data
+            condition5 = "created_by" in data
+            condition6 = "created_at" in data
+            condition13 = "start_date" in data
+            if (
+                    condition1
+                    and condition2
+                    and condition3
+                    and condition4
+                    and condition5
+                    and condition6
+            ):
+                condition7 = type(data["lms_id"]) is int
+                condition8 = type(data["name"]) is str
+                condition9 = type(data["university"]) is str
+                condition10 = type(data["created_by"]) is int
+                condition11 = type(data["created_at"]) is str
+                if (
+                        condition7
+                        and condition8
+                        and condition9
+                        and condition10
+                        and condition11
                 ):
                     condition12 = re.search(cons.date_format_search, data["created_at"])
                     if condition12:
