@@ -1160,7 +1160,11 @@ def get_course_by_id(
             course[0].created_at = None
             course[0].created_by = None
             course[0].last_updated = None
-            course[0].start_date = None
+            course_start = uow.course_start.get_course_start_by_course(course[0].id)
+            if course_start:
+                course[0].start_date = course_start[0].start_date
+            else:
+                course[0].start_date = None
             result = course[0].serialize()
         return result
 
