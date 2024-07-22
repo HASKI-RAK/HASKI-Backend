@@ -2088,6 +2088,55 @@ sql = """
 """
 cursor.execute(sql)
 
+sql = """
+    INSERT INTO learning_path_algorithm (short_name, full_name)
+    VALUES ('tyche', 'Tyche')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_algorithm (short_name, full_name)
+    VALUES ('nestor', 'Nestor')
+"""
+cursor.execute(sql)
+
+#create default learning path algorithm for the topics
+sql = """
+    INSERT INTO learning_path_learning_element_algorithm (topic_id, algorithm_id)
+    VALUES (1, 1)
+    """
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element_algorithm (topic_id, algorithm_id)
+    VALUES (2, 1)
+    """
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element_algorithm (topic_id, algorithm_id)
+    VALUES (3, 1)
+    """
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element_algorithm (topic_id, algorithm_id)
+    VALUES (4, 2)
+    """
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element_algorithm (topic_id, algorithm_id)
+    VALUES (5, 3)
+    """
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element_algorithm (topic_id, algorithm_id)
+    VALUES (6, 4)
+    """
+cursor.execute(sql)
+
 # Create learning path algorithms per student per topic
 sql = """
     INSERT INTO student_learning_path_learning_element_algorithm (\

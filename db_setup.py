@@ -1041,8 +1041,14 @@ def setup_db(
         ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
         student_id integer NOT NULL,
         topic_id integer NOT NULL,
-        algorithm_id integer NOT NULL
+        algorithm_id integer NOT NULL,
+        CONSTRAINT student_le_path_le_element_algorithm_pkey PRIMARY KEY (id)
     )
+
+    TABLESPACE pg_default;
+
+    ALTER TABLE IF EXISTS public.student_learning_path_learning_element_algorithm
+        OWNER to postgres;
     """
 
     cursor.execute(sql)
@@ -1053,8 +1059,14 @@ def setup_db(
         id integer NOT NULL GENERATED ALWAYS AS IDENTITY
         ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
         short_name text NOT NULL,
-        full_name text
+        full_name text,
+        CONSTRAINT learning_path_algorithm_pkey PRIMARY KEY (id)
     )
+    
+    TABLESPACE pg_default;
+
+    ALTER TABLE IF EXISTS public.learning_path_algorithm
+        OWNER to postgres;
     """
 
     cursor.execute(sql)
@@ -1066,10 +1078,16 @@ def setup_db(
             ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
             topic_id integer NOT NULL,
             algorithm_id integer NOT NULL,
+            CONSTRAINT learning_path_learning_element_algorithm_pkey PRIMARY KEY (id),
             FOREIGN KEY (topic_id) REFERENCES public.topic (id),
             FOREIGN KEY (algorithm_id) REFERENCES public.learning_path_algorithm (id),
             UNIQUE (topic_id)
         )
+        
+        TABLESPACE pg_default;
+
+        ALTER TABLE IF EXISTS public.learning_path_learning_element_algorithm
+            OWNER to postgres;
     """
 
     cursor.execute(sql)

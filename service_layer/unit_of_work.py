@@ -97,6 +97,9 @@ class SqlAlchemyUnitOfWork(AbstractUnitOfWork):  # pragma: no cover
         self.learning_element_rating = repository.SqlAlchemyRepository(self.session)
         self.learning_path = repository.SqlAlchemyRepository(self.session)
         self.learning_path_algorithm = repository.SqlAlchemyRepository(self.session)
+        self.learning_path_learning_element_algorithm = repository.SqlAlchemyRepository(
+            self.session
+        )
         self.learning_path_learning_element = repository.SqlAlchemyRepository(
             self.session
         )
