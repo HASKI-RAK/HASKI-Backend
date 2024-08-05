@@ -2073,26 +2073,27 @@ def get_topics_and_elements_from_moodle_course(
     with uow:
         response = get_moodle_rest_url_for_course_topics_and_elements(uow, course_id)
         if response:
-            filtered_topics_and_elements = []
-            for content in response:
-                if content.get("visible") == 1:
-                    # Ensure topic_id and topic_name come first
-                    filtered_topic = {
-                        "topic_lms_id": content["id"],
-                        "topic_lms_name": content["name"],
-                        "lms_learning_elements": [],
-                    }
-                    for module in content["modules"]:
-                        if module.get("visible") == 1:
-                            filtered_topic["lms_learning_elements"].append(
-                                {
-                                    "lms_id": module["id"],
-                                    "lms_learning_element_name": module["name"],
-                                    "lms_activity_type": module["modname"],
-                                }
-                            )
-                    filtered_topics_and_elements.append(filtered_topic)
-            return filtered_topics_and_elements
+            if 'exception' not in response:
+                filtered_topics_and_elements = []
+                for content in response:
+                    if content.get("visible") == 1:
+                        # Ensure topic_id and topic_name come first
+                        filtered_topic = {
+                            "topic_lms_id": content["id"],
+                            "topic_lms_name": content["name"],
+                            "lms_learning_elements": [],
+                        }
+                        for module in content["modules"]:
+                            if module.get("visible") == 1:
+                                filtered_topic["lms_learning_elements"].append(
+                                    {
+                                        "lms_id": module["id"],
+                                        "lms_learning_element_name": module["name"],
+                                        "lms_activity_type": module["modname"],
+                                    }
+                                )
+                        filtered_topics_and_elements.append(filtered_topic)
+                return filtered_topics_and_elements
         else:
             return []
 
