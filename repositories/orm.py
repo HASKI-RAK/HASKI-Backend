@@ -466,6 +466,15 @@ topic_learning_element = Table(
 )
 
 
+learning_path_learning_element_algorithm = Table(
+    "learning_path_learning_element_algorithm",
+    mapper_registry.metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("topic_id", Integer, nullable=False),
+    Column("algorithm_id", Integer, nullable=False)
+)
+
+
 def start_mappers():
     mapper_registry.map_imperatively(
         UA.Admin,
@@ -537,6 +546,12 @@ def start_mappers():
         TM.LearningPathLearningElement,
         learning_path_learning_element,
     )
+
+    mapper_registry.map_imperatively(
+        TM.LearningPathLearningElementAlgorithm,
+        learning_path_learning_element_algorithm,
+        )
+
     mapper_registry.map_imperatively(
         TM.LearningPathTopic,
         learning_path_topic,
