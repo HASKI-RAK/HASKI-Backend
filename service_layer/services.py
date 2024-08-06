@@ -2248,12 +2248,28 @@ def update_learning_path_learning_element_algorithm(
         learning_path_learning_element_algorithm = TM.LearningPathLearningElementAlgorithm(
             topic_id, algorithm_id
         )
-        uow.learning_path_learning_element_algorithm.update_learning_path_learning_element_algorithm(
+        uow.learning_path_learning_element_algorithm\
+        .update_learning_path_learning_element_algorithm(
             topic_id, algorithm_id
         )
         uow.commit()
         return learning_path_learning_element_algorithm.serialize()
 
+
+def update_student_lpath_le_algorithm(
+        uow: unit_of_work.AbstractUnitOfWork,
+        student_id: int,
+        topic_id: int,
+        algorithm_id: int) -> dict:
+    with uow:
+        student_lpath_le_algorithm = DM.StudentLearningPathLearningElementAlgorithm(
+            student_id, topic_id, algorithm_id
+        )
+        uow.student_lpath_le_algorithm.update_student_lpath_le_algorithm(
+            student_id, topic_id, algorithm_id
+        )
+        uow.commit()
+        return student_lpath_le_algorithm.serialize()
 
 # ##### TEST ENDPOINT #####
 

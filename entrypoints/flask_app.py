@@ -1549,9 +1549,11 @@ def settings_by_user_id_administration(data: Dict[str, Any], user_id, lms_user_i
             return jsonify(result), status_code
 
 
-@app.route("/user/<user_id>/topic/<topic_id>/algorithm", methods=["GET"])
+@app.route("/user/<user_id>/topic/<topic_id>/studentAlgorithm", methods=["GET", "POST"])
 @cross_origin(supports_credentials=True)
-def get_lp_le_algorithm_by_user_topic_id(user_id: str, topic_id: str):
+@json_only(ignore=["GET"])
+def student_lp_le_algorithm_by_administration(
+    data: Dict[str, Any], user_id: str, topic_id: str):
     method = request.method
     match method:
         case "GET":
@@ -1561,8 +1563,38 @@ def get_lp_le_algorithm_by_user_topic_id(user_id: str, topic_id: str):
             algorithm = services.get_student_lpath_le_algorithm(
                 unit_of_work.SqlAlchemyUnitOfWork(), student_id, topic_id
             )
+            algorithm["short_name"] = services.get_learning_path_algorithm_by_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), algorithm["algorithm_id"]
+            )["short_name"]
             status_code = 200
             return jsonify(algorithm), status_code
+        case "POST":
+            condition1 = "algorithm_s_name" in data
+            condition2 = type(data["algorithm_s_name"]) is str
+            algorithm = services.get_learning_path_algorithm_by_short_name(
+                unit_of_work.SqlAlchemyUnitOfWork(),
+                data["algorithm_s_name"]
+            )
+            condition3 = algorithm != {}
+            if condition1 and condition2 and condition3:
+                student_id = services.get_student_by_user_id(
+                    unit_of_work.SqlAlchemyUnitOfWork(), user_id
+                )["id"]
+                studend_lpath_le_algorithm = services.get_student_lpath_le_algorithm(
+                    unit_of_work.SqlAlchemyUnitOfWork(), student_id, topic_id
+                )
+                if studend_lpath_le_algorithm == {}:      
+                    result = services.add_student_lpath_le_algorithm(
+                        unit_of_work.SqlAlchemyUnitOfWork(), student_id, topic_id, algorithm["id"]
+                    )
+                    status_code = 201
+                    return jsonify(result), status_code
+                else:
+                    result = services.update_student_lpath_le_algorithm(
+                        unit_of_work.SqlAlchemyUnitOfWork(), student_id, topic_id, algorithm["id"]
+                    )
+                    status_code = 201
+                    return jsonify(result), status_code
 
 
 @app.route("/user/<user_id>/topic/<topic_id>/teacherAlgorithm", methods=["GET", "POST"])
@@ -1575,6 +1607,9 @@ def teacher_lp_le_algorithm_administration(data: Dict[str, Any],user_id: str, to
             algorithm = services.get_learning_path_learning_element_algorithm_by_topic(
                 unit_of_work.SqlAlchemyUnitOfWork(), topic_id
             )
+            algorithm["short_name"] = services.get_learning_path_algorithm_by_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), algorithm["algorithm_id"]
+            )["short_name"]
             status_code = 200
             return jsonify(algorithm), status_code
         case "POST":
