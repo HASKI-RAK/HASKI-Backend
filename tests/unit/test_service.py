@@ -80,9 +80,7 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         self.learning_element_rating = set(learning_element_rating)
         self.learning_path = set(learning_path)
         self.learning_path_algorithm = set(learning_path_algorithm)
-        self.lpath_le_algorithm = set(
-            lpath_le_algorithm
-        )
+        self.lpath_le_algorithm = set(lpath_le_algorithm)
         self.learning_path_learning_element = set(learning_path_learning_element)
         self.learning_path_topic = set(learning_path_topic)
         self.learning_strategy = set(learning_strategy)
@@ -194,15 +192,9 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         learning_path_algorithm.id = len(self.learning_path_algorithm) + 1
         self.learning_path_algorithm.add(learning_path_algorithm)
 
-    def create_learning_path_learning_element_algorithm(
-        self, lp_le_algorithm
-    ):
-        lp_le_algorithm.id = (
-            len(self.lpath_le_algorithm) + 1
-        )
-        self.lpath_le_algorithm.add(
-            lp_le_algorithm
-        )
+    def create_learning_path_learning_element_algorithm(self, lp_le_algorithm):
+        lp_le_algorithm.id = len(self.lpath_le_algorithm) + 1
+        self.lpath_le_algorithm.add(lp_le_algorithm)
 
     def create_learning_path_learning_element(self, learning_path_learning_element):
         learning_path_learning_element.id = len(self.learning_path_learning_element) + 1
@@ -1084,11 +1076,7 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         self, topic_id, algorithm_short_name
     ):
         to_update = next(
-            (
-                p
-                for p in self.lpath_le_algorithm
-                if p.topic_id == topic_id
-            ),
+            (p for p in self.lpath_le_algorithm if p.topic_id == topic_id),
             None,
         )
         if to_update is not None:

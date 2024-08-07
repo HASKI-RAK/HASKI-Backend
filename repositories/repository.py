@@ -1974,7 +1974,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
                 DM.StudentLearningPathLearningElementAlgorithm
             ).filter_by(student_id=student_id).filter_by(topic_id=topic_id).update(
                 {
-                    DM.StudentLearningPathLearningElementAlgorithm.algorithm_id: algorithm_id# noqa
+                    DM.StudentLearningPathLearningElementAlgorithm.algorithm_id: algorithm_id  # noqa
                 }
             )
         else:
