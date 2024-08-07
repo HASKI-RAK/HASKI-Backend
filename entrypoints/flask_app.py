@@ -1928,8 +1928,8 @@ def teacher_lp_le_algorithm_administration(data: Dict[str, Any],user_id: str, to
                     students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
                     for student in students:
                         student_id = student['id']
-                        student_lp_le_algorithm_by_administration(
-                            unit_of_work.SqlAlchemyUnitOfWork(), student_id, topic_id
+                        services.add_student_lpath_le_algorithm(
+                            unit_of_work.SqlAlchemyUnitOfWork(), student_id, topic_id, algorithm["id"]
                         )
                     result = services.create_learning_path_learning_element_algorithm(
                         unit_of_work.SqlAlchemyUnitOfWork(), topic_id, algorithm["id"]
