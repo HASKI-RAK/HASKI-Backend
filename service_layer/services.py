@@ -761,19 +761,19 @@ def create_topic_learning_element(
 
 
 def create_learning_path_learning_element_algorithm(
-        uow: unit_of_work.AbstractUnitOfWork, topic_id: int, algorithm_id: int
+    uow: unit_of_work.AbstractUnitOfWork, topic_id: int, algorithm_id: int
 ) -> dict:
     with uow:
         lp_le_algorithm = TM.LearningPathLearningElementAlgorithm(
             topic_id, algorithm_id
         )
-        uow.learning_path_learning_element_algorithm\
-        .create_learning_path_learning_element_algorithm(
+        uow.lpath_le_algorithm.create_learning_path_learning_element_algorithm(
             lp_le_algorithm
         )
         uow.commit()
-        result = lp_le_algorithm.serialize()	
+        result = lp_le_algorithm.serialize()
         return result
+
 
 def create_user(
     uow: unit_of_work.AbstractUnitOfWork, name, university, lms_user_id, role
@@ -1710,18 +1710,21 @@ def get_topics_for_course_id(uow: unit_of_work.AbstractUnitOfWork, course_id) ->
             return []
 
 
-def get_learning_path_learning_element_algorithm_by_topic(
-    uow: unit_of_work.AbstractUnitOfWork, topic_id) -> dict:
+def get_lpath_le_algorithm_by_topic(
+    uow: unit_of_work.AbstractUnitOfWork, topic_id
+) -> dict:
     with uow:
-        learning_path_learning_element_algorithm = (
-        uow.learning_path_learning_element_algorithm
-        .get_learning_path_learning_element_algorithm_by_topic(topic_id)
+        lpath_le_algorithm = uow.lpath_le_algorithm.get_lpath_le_algorithm_by_topic(
+            topic_id
         )
-        
-        if learning_path_learning_element_algorithm == []:
+
+        if lpath_le_algorithm == []:
             result = {}
         else:
-            result = learning_path_learning_element_algorithm[0].serialize()
+            if isinstance(lpath_le_algorithm, list):
+                result = lpath_le_algorithm[0].serialize()
+            else:
+                result = lpath_le_algorithm.serialize()
         return result
 
 
@@ -1903,9 +1906,9 @@ def get_settings_for_user(uow: unit_of_work.AbstractUnitOfWork, user_id) -> dict
 
 def get_learning_path_learning_element_algorithm(
     uow: unit_of_work.AbstractUnitOfWork, topic_id: int
-    ) -> dict:
+) -> dict:
     with uow:
-        algorithm = uow.learning_path_learning_element_algorithm.get_learning_path_learning_element_algorithm(
+        algorithm = uow.lpath_le_algorithm.get_learning_path_learning_element_algorithm(
             topic_id
         )
         if algorithm == []:
@@ -1913,7 +1916,6 @@ def get_learning_path_learning_element_algorithm(
         else:
             result = algorithm[0].serialize()
         return result
-
 
 
 def get_student_lpath_le_algorithm(
@@ -2408,17 +2410,18 @@ def update_user(
 
 
 def update_learning_path_learning_element_algorithm(
-    uow: unit_of_work.AbstractUnitOfWork, topic_id : int, algorithm_short_name: str
+    uow: unit_of_work.AbstractUnitOfWork, topic_id: int, algorithm_short_name: str
 ) -> dict:
     with uow:
-        algorithm_id = uow.learning_path_algorithm.get_learning_path_algorithm_by_short_name(
-            algorithm_short_name
-        )[0].id
-        learning_path_learning_element_algorithm = TM.LearningPathLearningElementAlgorithm(
-            topic_id, algorithm_id
+        algorithm_id = (
+            uow.learning_path_algorithm.get_learning_path_algorithm_by_short_name(
+                algorithm_short_name
+            )[0].id
         )
-        uow.learning_path_learning_element_algorithm\
-        .update_learning_path_learning_element_algorithm(
+        learning_path_learning_element_algorithm = (
+            TM.LearningPathLearningElementAlgorithm(topic_id, algorithm_id)
+        )
+        uow.lpath_le_algorithm.update_learning_path_learning_element_algorithm(
             topic_id, algorithm_id
         )
         uow.commit()
@@ -2426,10 +2429,11 @@ def update_learning_path_learning_element_algorithm(
 
 
 def update_student_lpath_le_algorithm(
-        uow: unit_of_work.AbstractUnitOfWork,
-        student_id: int,
-        topic_id: int,
-        algorithm_id: int) -> dict:
+    uow: unit_of_work.AbstractUnitOfWork,
+    student_id: int,
+    topic_id: int,
+    algorithm_id: int,
+) -> dict:
     with uow:
         student_lpath_le_algorithm = DM.StudentLearningPathLearningElementAlgorithm(
             student_id, topic_id, algorithm_id
@@ -2439,6 +2443,7 @@ def update_student_lpath_le_algorithm(
         )
         uow.commit()
         return student_lpath_le_algorithm.serialize()
+
 
 # ##### TEST ENDPOINT #####
 

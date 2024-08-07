@@ -30,7 +30,7 @@ class AbstractUnitOfWork(abc.ABC):
     learning_path: repository.AbstractRepository
     learning_path_algorithm: repository.AbstractRepository
     learning_path_learning_element: repository.AbstractRepository
-    learning_path_learning_element_algorithm: repository.AbstractRepository
+    lpath_le_algorithm: repository.AbstractRepository
     learning_path_topic: repository.AbstractRepository
     learning_strategy: repository.AbstractRepository
     learning_style: repository.AbstractRepository
@@ -99,9 +99,7 @@ class SqlAlchemyUnitOfWork(AbstractUnitOfWork):  # pragma: no cover
         self.learning_element_rating = repository.SqlAlchemyRepository(self.session)
         self.learning_path = repository.SqlAlchemyRepository(self.session)
         self.learning_path_algorithm = repository.SqlAlchemyRepository(self.session)
-        self.learning_path_learning_element_algorithm = repository.SqlAlchemyRepository(
-            self.session
-        )
+        self.lpath_le_algorithm = repository.SqlAlchemyRepository(self.session)
         self.learning_path_learning_element = repository.SqlAlchemyRepository(
             self.session
         )

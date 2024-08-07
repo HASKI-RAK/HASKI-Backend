@@ -172,7 +172,7 @@ class LearningPathLearningElementAlgorithm:
             "topic_id": self.topic_id,
             "algorithm_id": self.algorithm_id,
         }
-    
+
 
 class DefaultLearningPathElement:
     def __init__(self, classification: str, position: int, university: str) -> None:
