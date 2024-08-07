@@ -2100,7 +2100,7 @@ sql = """
 """
 cursor.execute(sql)
 
-#create default learning path algorithm for the topics
+# create default learning path algorithm for the topics
 sql = """
     INSERT INTO learning_path_learning_element_algorithm (topic_id, algorithm_id)
     VALUES (1, 1)
