@@ -1074,7 +1074,7 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
 
     def update_learning_path_learning_element_algorithm(
         self, topic_id, algorithm_short_name
-    ):
+    ) -> None:
         to_update = next(
             (p for p in self.lpath_le_algorithm if p.topic_id == topic_id),
             None,
@@ -1085,7 +1085,9 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
             to_update.algorithm_short_name = algorithm_short_name
             self.lpath_le_algorithm.add(to_update)
 
-    def update_student_lpath_le_algorithm(self, student_id, topic_id, algorithm_id):
+    def update_student_lpath_le_algorithm(
+        self, student_id, topic_id, algorithm_id
+    ) -> None:
         to_update = next(
             (
                 p
