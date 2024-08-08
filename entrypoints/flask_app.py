@@ -1570,37 +1570,42 @@ def student_lp_le_algorithm_by_administration(
             status_code = 200
             return jsonify(algorithm), status_code
         case "POST":
-            condition1 = "algorithm_s_name" in data
-            condition2 = type(data["algorithm_s_name"]) is str
-            algorithm = services.get_learning_path_algorithm_by_short_name(
-                unit_of_work.SqlAlchemyUnitOfWork(), data["algorithm_s_name"]
-            )
-            condition3 = algorithm != {}
-            if condition1 and condition2 and condition3:
-                student_id = services.get_student_by_user_id(
-                    unit_of_work.SqlAlchemyUnitOfWork(), user_id
-                )["id"]
-                studend_lpath_le_algorithm = services.get_student_lpath_le_algorithm(
-                    unit_of_work.SqlAlchemyUnitOfWork(), student_id, topic_id
+            condition1 = "algorithm_short_name" in data
+            if condition1:
+                condition2 = type(data["algorithm_short_name"]) is str
+                algorithm = services.get_learning_path_algorithm_by_short_name(
+                    unit_of_work.SqlAlchemyUnitOfWork(), data["algorithm_short_name"]
                 )
-                if studend_lpath_le_algorithm == {}:
-                    result = services.add_student_lpath_le_algorithm(
-                        unit_of_work.SqlAlchemyUnitOfWork(),
-                        student_id,
-                        topic_id,
-                        algorithm["id"],
+                condition3 = algorithm != {}
+                if condition2 and condition3:
+                    student_id = services.get_student_by_user_id(
+                        unit_of_work.SqlAlchemyUnitOfWork(), user_id
+                    )["id"]
+                    student_lpath_le_algorithm = services.get_student_lpath_le_algorithm(
+                        unit_of_work.SqlAlchemyUnitOfWork(), student_id, topic_id
                     )
-                    status_code = 201
-                    return jsonify(result), status_code
+                    if student_lpath_le_algorithm == {}:
+                        result = services.add_student_lpath_le_algorithm(
+                            unit_of_work.SqlAlchemyUnitOfWork(),
+                            student_id,
+                            topic_id,
+                            algorithm["id"],
+                        )
+                        status_code = 201
+                        return jsonify(result), status_code
+                    else:
+                        result = services.update_student_lpath_le_algorithm(
+                            unit_of_work.SqlAlchemyUnitOfWork(),
+                            student_id,
+                            topic_id,
+                            algorithm["id"],
+                        )
+                        status_code = 201
+                        return jsonify(result), status_code
                 else:
-                    result = services.update_student_lpath_le_algorithm(
-                        unit_of_work.SqlAlchemyUnitOfWork(),
-                        student_id,
-                        topic_id,
-                        algorithm["id"],
-                    )
-                    status_code = 201
-                    return jsonify(result), status_code
+                    raise err.WrongParameterValueError()
+            else:
+                raise err.MissingParameterError()
 
 
 @app.route("/user/<user_id>/topic/<topic_id>/teacherAlgorithm", methods=["GET", "POST"])
@@ -1619,32 +1624,35 @@ def teacher_lp_le_algorithm_admin(data: Dict[str, Any], user_id: str, topic_id: 
             status_code = 200
             return jsonify(algorithm), status_code
         case "POST":
-            condition1 = "algorithm_s_name" in data
-            condition2 = type(data["algorithm_s_name"]) is str
-            algorithm = services.get_learning_path_algorithm_by_short_name(
-                unit_of_work.SqlAlchemyUnitOfWork(), data["algorithm_s_name"]
-            )
-            condition3 = algorithm != {}
-            if condition1 and condition2 and condition3:
-                lp_le_algorithm = services.get_lpath_le_algorithm_by_topic(
-                    unit_of_work.SqlAlchemyUnitOfWork(), topic_id
+            condition1 = "algorithm_short_name" in data
+            if condition1:
+                condition2 = type(data["algorithm_short_name"]) is str
+                algorithm = services.get_learning_path_algorithm_by_short_name(
+                    unit_of_work.SqlAlchemyUnitOfWork(), data["algorithm_short_name"]
                 )
-                if lp_le_algorithm == {}:
-                    result = services.create_learning_path_learning_element_algorithm(
-                        unit_of_work.SqlAlchemyUnitOfWork(), topic_id, algorithm["id"]
+                condition3 = algorithm != {}
+                if condition2 and condition3:
+                    lp_le_algorithm = services.get_lpath_le_algorithm_by_topic(
+                        unit_of_work.SqlAlchemyUnitOfWork(), topic_id
                     )
-                    status_code = 201
-                    return jsonify(result), status_code
+                    if lp_le_algorithm == {}:
+                        result = services.create_learning_path_learning_element_algorithm(
+                            unit_of_work.SqlAlchemyUnitOfWork(), topic_id, algorithm["id"]
+                        )
+                        status_code = 201
+                        return jsonify(result), status_code
+                    else:
+                        result = services.update_learning_path_learning_element_algorithm(
+                            unit_of_work.SqlAlchemyUnitOfWork(),
+                            topic_id,
+                            data["algorithm_short_name"],
+                        )
+                        status_code = 201
+                        return jsonify(result), status_code
                 else:
-                    result = services.update_learning_path_learning_element_algorithm(
-                        unit_of_work.SqlAlchemyUnitOfWork(),
-                        topic_id,
-                        data["algorithm_s_name"],
-                    )
-                    status_code = 201
-                    return jsonify(result), status_code
+                    raise err.WrongParameterValueError()
             else:
-                raise err.WrongParameterValueError()
+                raise err.MissingParameterError()
 
 
 @app.route("/user/<user_id>/<lms_user_id>/settings", methods=["GET"])
