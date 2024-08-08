@@ -1581,8 +1581,10 @@ def student_lp_le_algorithm_by_administration(
                     student_id = services.get_student_by_user_id(
                         unit_of_work.SqlAlchemyUnitOfWork(), user_id
                     )["id"]
-                    student_lpath_le_algorithm = services.get_student_lpath_le_algorithm(
-                        unit_of_work.SqlAlchemyUnitOfWork(), student_id, topic_id
+                    student_lpath_le_algorithm = (
+                        services.get_student_lpath_le_algorithm(
+                            unit_of_work.SqlAlchemyUnitOfWork(), student_id, topic_id
+                        )
                     )
                     if student_lpath_le_algorithm == {}:
                         result = services.add_student_lpath_le_algorithm(
@@ -1611,7 +1613,7 @@ def student_lp_le_algorithm_by_administration(
 @app.route("/user/<user_id>/topic/<topic_id>/teacherAlgorithm", methods=["GET", "POST"])
 @cross_origin(supports_credentials=True)
 @json_only(ignore=["GET"])
-def teacher_lp_le_algorithm_admin(data: Dict[str, Any], user_id: str, topic_id: str):
+def teacher_lp_le_algorithm(data: Dict[str, Any], user_id: str, topic_id: str):
     method = request.method
     match method:
         case "GET":
@@ -1636,16 +1638,22 @@ def teacher_lp_le_algorithm_admin(data: Dict[str, Any], user_id: str, topic_id: 
                         unit_of_work.SqlAlchemyUnitOfWork(), topic_id
                     )
                     if lp_le_algorithm == {}:
-                        result = services.create_learning_path_learning_element_algorithm(
-                            unit_of_work.SqlAlchemyUnitOfWork(), topic_id, algorithm["id"]
+                        result = (
+                            services.create_learning_path_learning_element_algorithm(
+                                unit_of_work.SqlAlchemyUnitOfWork(),
+                                topic_id,
+                                algorithm["id"],
+                            )
                         )
                         status_code = 201
                         return jsonify(result), status_code
                     else:
-                        result = services.update_learning_path_learning_element_algorithm(
-                            unit_of_work.SqlAlchemyUnitOfWork(),
-                            topic_id,
-                            data["algorithm_short_name"],
+                        result = (
+                            services.update_learning_path_learning_element_algorithm(
+                                unit_of_work.SqlAlchemyUnitOfWork(),
+                                topic_id,
+                                data["algorithm_short_name"],
+                            )
                         )
                         status_code = 201
                         return jsonify(result), status_code

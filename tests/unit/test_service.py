@@ -2962,7 +2962,7 @@ def test_create_learning_path_learning_element_algorithm():
     assert initial_entries + 1 == entries
 
 
-def test_get_learning_path_learning_element_algorithm_by_topic():
+def test_get_lpath_le_algorithm_by_topic():
     uow = FakeUnitOfWork()
     create_learning_path_algorithm_for_tests(uow)
     create_learning_path_learning_element_algorithm_for_tests(uow)

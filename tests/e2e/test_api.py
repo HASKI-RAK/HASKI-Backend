@@ -930,7 +930,7 @@ class TestApi:
         response = json.loads(r.data.decode("utf-8").strip("\n"))
         for key in keys_expected:
             assert key in response.keys()
-    
+
     # Test post to create student learning path learning element algorithm
     @pytest.mark.parametrize(
         "input, topic_id, keys_expected, status_code_expected",
@@ -2264,10 +2264,7 @@ class TestApi:
             (
                 1,
                 1,
-                [
-                    "short_name",
-                    "algorithm_id",
-                    "topic_id"],
+                ["short_name", "algorithm_id", "topic_id"],
                 200,
             ),
         ],
@@ -2296,10 +2293,7 @@ class TestApi:
         [
             (
                 1,
-                [
-                    "short_name",
-                    "algorithm_id",
-                    "topic_id"],
+                ["short_name", "algorithm_id", "topic_id"],
                 200,
             ),
         ],
