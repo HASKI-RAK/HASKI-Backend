@@ -1549,12 +1549,9 @@ def settings_by_user_id_administration(data: Dict[str, Any], user_id, lms_user_i
             return jsonify(result), status_code
 
 
-@app.route("/user/<user_id>/topic/<topic_id>/studentAlgorithm", methods=["GET", "POST"])
+@app.route("/user/<user_id>/topic/<topic_id>/studentAlgorithm", methods=["GET"])
 @cross_origin(supports_credentials=True)
-@json_only(ignore=["GET"])
-def student_lp_le_algorithm_by_administration(
-    data: Dict[str, Any], user_id: str, topic_id: str
-):
+def get_student_lp_le_algorithm(user_id: str, topic_id: str):
     method = request.method
     match method:
         case "GET":
@@ -1569,6 +1566,14 @@ def student_lp_le_algorithm_by_administration(
             )["short_name"]
             status_code = 200
             return jsonify(algorithm), status_code
+
+
+@app.route("/user/<user_id>/topic/<topic_id>/studentAlgorithm", methods=["POST"])
+@cross_origin(supports_credentials=True)
+@json_only(ignore=["GET"])
+def post_student_lp_le_algorithm(data: Dict[str, Any], user_id: str, topic_id: str):
+    method = request.method
+    match method:
         case "POST":
             condition1 = "algorithm_short_name" in data
             if condition1:
@@ -1610,10 +1615,9 @@ def student_lp_le_algorithm_by_administration(
                 raise err.MissingParameterError()
 
 
-@app.route("/user/<user_id>/topic/<topic_id>/teacherAlgorithm", methods=["GET", "POST"])
+@app.route("/user/<user_id>/topic/<topic_id>/teacherAlgorithm", methods=["GET"])
 @cross_origin(supports_credentials=True)
-@json_only(ignore=["GET"])
-def teacher_lp_le_algorithm(data: Dict[str, Any], user_id: str, topic_id: str):
+def get_teacher_lp_le_algorithm(user_id: str, topic_id: str):
     method = request.method
     match method:
         case "GET":
@@ -1625,6 +1629,14 @@ def teacher_lp_le_algorithm(data: Dict[str, Any], user_id: str, topic_id: str):
             )["short_name"]
             status_code = 200
             return jsonify(algorithm), status_code
+
+
+@app.route("/user/<user_id>/topic/<topic_id>/teacherAlgorithm", methods=["GET", "POST"])
+@cross_origin(supports_credentials=True)
+@json_only(ignore=["GET"])
+def post_teacher_lp_le_algorithm(data: Dict[str, Any], user_id: str, topic_id: str):
+    method = request.method
+    match method:
         case "POST":
             condition1 = "algorithm_short_name" in data
             if condition1:
