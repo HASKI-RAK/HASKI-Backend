@@ -1631,21 +1631,30 @@ def get_teacher_lp_le_algorithm(user_id: str, topic_id: str):
             return jsonify(algorithm), status_code
 
 
-@app.route("/user/<user_id>/topic/<topic_id>/teacherAlgorithm", methods=["POST"])
+@app.route(
+    "/user/<user_id>/<lms_user_id>/topic/<topic_id>/teacherAlgorithm", methods=["POST"]
+)
 @cross_origin(supports_credentials=True)
 @json_only(ignore=["GET"])
-def post_teacher_lp_le_algorithm(data: Dict[str, Any], user_id: str, topic_id: str):
+def post_teacher_lp_le_algorithm(
+    data: Dict[str, Any], user_id: str, lms_user_id: str, topic_id: str
+):
     method = request.method
     match method:
         case "POST":
             condition1 = "algorithm_short_name" in data
-            if condition1:
-                condition2 = type(data["algorithm_short_name"]) is str
+            user = services.get_user_by_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), user_id, lms_user_id
+            )
+            permitted_roles = ["teacher", "course_creator", "admin"]
+            condition2 = user["role"] in permitted_roles
+            if condition1 and condition2:
+                condition3 = type(data["algorithm_short_name"]) is str
                 algorithm = services.get_learning_path_algorithm_by_short_name(
                     unit_of_work.SqlAlchemyUnitOfWork(), data["algorithm_short_name"]
                 )
-                condition3 = algorithm != {}
-                if condition2 and condition3:
+                condition4 = algorithm != {}
+                if condition3 and condition4:
                     lp_le_algorithm = services.get_lpath_le_algorithm_by_topic(
                         unit_of_work.SqlAlchemyUnitOfWork(), topic_id
                     )
@@ -1671,8 +1680,10 @@ def post_teacher_lp_le_algorithm(data: Dict[str, Any], user_id: str, topic_id: s
                         return jsonify(result), status_code
                 else:
                     raise err.WrongParameterValueError()
-            else:
+            elif not condition1:
                 raise err.MissingParameterError()
+            else:
+                raise err.UnauthorizedError()
 
 
 @app.route("/user/<user_id>/<lms_user_id>/settings", methods=["GET"])

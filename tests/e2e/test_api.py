@@ -11,6 +11,10 @@ user_id_teacher = 0
 teacher_id = 0
 user_id_student = 0
 student_id = 0
+lms_user_id_admin = 1
+lms_user_id_creator = 2
+lms_user_id_teacher = 3
+lms_user_id_student = 4
 course_id = 0
 topic_id = 0
 sub_topic_id = 0
@@ -241,7 +245,7 @@ class TestApi:
             (
                 {
                     "name": "Achim Admin",
-                    "lms_user_id": 1,
+                    "lms_user_id": lms_user_id_admin,
                     "role": "Admin",
                     "university": "TH-AB",
                     "password": "password",
@@ -262,7 +266,7 @@ class TestApi:
             (
                 {
                     "name": "Claus Creator",
-                    "lms_user_id": 2,
+                    "lms_user_id": lms_user_id_creator,
                     "role": "Course Creator",
                     "university": "TH-AB",
                     "password": "password",
@@ -283,7 +287,7 @@ class TestApi:
             (
                 {
                     "name": "Tim Teacher",
-                    "lms_user_id": 3,
+                    "lms_user_id": lms_user_id_teacher,
                     "role": "Teacher",
                     "university": "TH-AB",
                     "password": "password",
@@ -304,7 +308,7 @@ class TestApi:
             (
                 {
                     "name": "Sonja Studentin",
-                    "lms_user_id": 4,
+                    "lms_user_id": lms_user_id_student,
                     "role": "Student",
                     "university": "TH-AB",
                     "password": "password",
@@ -880,16 +884,20 @@ class TestApi:
 
     # Test post to create teacher learning path learning element algorithm
     @pytest.mark.parametrize(
-        "input, topic_id, keys_expected, status_code_expected",
+        "input, user_id, lms_id, topic_id, keys_expected, status_code_expected",
         [
             (
                 {"algorithm_short_name": "aco"},
+                3,
+                lms_user_id_teacher,
                 1,
                 ["algorithm_id", "topic_id"],
                 201,
             ),
             (
                 {"algorithm_short_name": "aco"},
+                3,
+                lms_user_id_teacher,
                 1,
                 ["algorithm_id", "topic_id"],
                 201,
@@ -897,6 +905,8 @@ class TestApi:
             # Wrong key
             (
                 {"wrong_key": "algorithm"},
+                3,
+                lms_user_id_teacher,
                 1,
                 ["error", "message"],
                 400,
@@ -904,21 +914,39 @@ class TestApi:
             # Wrong data type
             (
                 {"algorithm_short_name": 2},
+                3,
+                lms_user_id_teacher,
                 1,
                 ["error", "message"],
                 400,
             ),
+            # Unauthorized User
+            (
+                {"algorithm_short_name": "aco"},
+                4,
+                lms_user_id_student,
+                1,
+                ["error", "message"],
+                401,
+            ),
         ],
     )
     def test_post_teacher_learning_path_learning_element_algorithm(
-        self, client_class, input, topic_id, keys_expected, status_code_expected
+        self,
+        client_class,
+        input,
+        user_id,
+        lms_id,
+        topic_id,
+        keys_expected,
+        status_code_expected,
     ):
-        global teacher_id
-
         url = (
             path_user
             + "/"
-            + str(teacher_id)
+            + str(user_id)
+            + "/"
+            + str(lms_id)
             + path_topic
             + "/"
             + str(topic_id)
