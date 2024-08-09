@@ -166,6 +166,7 @@ def post_course(data: Dict[str, Any]):
             condition4 = "university" in data
             condition5 = "created_by" in data
             condition6 = "created_at" in data
+            condition13 = "start_date" in data
             if (
                 condition1
                 and condition2
@@ -190,7 +191,23 @@ def post_course(data: Dict[str, Any]):
                     if condition12:
                         created_at = datetime.strptime(
                             data["created_at"], cons.date_format
-                        ).date()
+                        )
+                        if condition13:
+                            condition14 = type(data["start_date"]) is str
+                            if condition14:
+                                condition15 = re.search(
+                                    cons.date_format_search, data["start_date"]
+                                )
+                                if condition15:
+                                    print(data["start_date"])
+                                    start_date = datetime.strptime(
+                                        data["start_date"], cons.date_format
+                                    )
+                                    print(start_date)
+                        else:
+                            start_date = datetime.strptime(
+                                data["created_at"], cons.date_format
+                            ).date()
                         course = services.create_course(
                             unit_of_work.SqlAlchemyUnitOfWork(),
                             data["lms_id"],
@@ -198,6 +215,7 @@ def post_course(data: Dict[str, Any]):
                             data["university"],
                             data["created_by"],
                             created_at,
+                            start_date,
                         )
                         status_code = 201
                         return jsonify(course), status_code
@@ -225,12 +243,26 @@ def course_management(data: Dict[str, Any], course_id, lms_course_id):
             if condition1 and condition2 and condition3 and condition4:
                 condition5 = re.search(cons.date_format_search, data["last_updated"])
                 if condition5:
+                    condition6 = "start_date" in data
+                    if condition6:
+                        condition7 = re.search(
+                            cons.date_format_search, data["start_date"]
+                        )
+                        if condition7:
+                            start_date = datetime.strptime(
+                                data["start_date"], cons.date_format
+                            ).date()
+                        else:
+                            raise err.WrongParameterValueError()
+                    else:
+                        start_date = None
                     course = services.update_course(
                         unit_of_work.SqlAlchemyUnitOfWork(),
                         course_id,
                         lms_course_id,
                         data["name"],
                         data["university"],
+                        start_date,
                     )
                     status_code = 201
                     return jsonify(course), status_code
@@ -371,8 +403,39 @@ def get_activity_status_for_student_for_learning_element(
                 student_id,
                 learning_element_id,
             )
-            print(activity_status)
             return jsonify(activity_status), 200
+
+
+@app.route(
+    "/lms/remote/courses",
+    methods=["GET"],
+)
+@cross_origin(supports_credentials=True)
+def get_all_remote_courses():
+    method = request.method
+    match method:
+        case "GET":
+            remote_courses = services.get_courses_from_moodle(
+                unit_of_work.SqlAlchemyUnitOfWork()
+            )
+            print(remote_courses)
+            return jsonify(remote_courses), 200
+
+
+@app.route(
+    "/lms/remote/course/<course_id>/content",
+    methods=["GET"],
+)
+@cross_origin(supports_credentials=True)
+def get_remote_topics_and_learning_elements_from_course(course_id):
+    method = request.method
+    match method:
+        case "GET":
+            remote_courses = services.get_topics_and_elements_from_moodle_course(
+                unit_of_work.SqlAlchemyUnitOfWork(), course_id
+            )
+            print(remote_courses)
+            return jsonify(remote_courses), 200
 
 
 @app.route("/algorithm", methods=["POST"])

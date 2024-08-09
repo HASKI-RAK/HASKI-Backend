@@ -8,6 +8,7 @@ import pytest
 import errors.errors as err
 import repositories.repository as repository
 import service_layer.crypto.JWTKeyManagement as JWTKeyManagement
+from domain.domainModel import model as DM
 from domain.userAdministartion import model as UA
 from service_layer import services, unit_of_work
 from utils import constants as cons
@@ -28,6 +29,7 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         course_creator=[],
         course_creator_course=[],
         course_topic=[],
+        course_start=[],
         default_learning_path=[],
         ils_input_answers=[],
         ils_perception_answers=[],
@@ -67,6 +69,7 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         self.course_creator = set(course_creator)
         self.course_creator_course = set(course_creator_course)
         self.course_topic = set(course_topic)
+        self.course_start = set(course_start)
         self.default_learning_path = set(default_learning_path)
         self.knowledge = set(knowledge)
         self.ils_input_answers = set(ils_input_answers)
@@ -145,6 +148,10 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
     def create_course_topic(self, course_topic):
         course_topic.id = len(self.course_topic) + 1
         self.course_topic.add(course_topic)
+
+    def create_course_start(self, course_start):
+        course_start.id = len(self.course_start) + 1
+        self.course_start.add(course_start)
 
     def create_default_learning_path_element(self, default_learning_path_element):
         default_learning_path_element.id = len(self.default_learning_path) + 1
@@ -311,6 +318,14 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 to_remove.append(i)
         for remove in to_remove:
             self.course_topic.remove(remove)
+
+    def delete_course_start(self, course_id):
+        to_remove = []
+        for i in self.course_start:
+            if i.course_id == course_id:
+                to_remove.append(i)
+        for remove in to_remove:
+            self.course_start.remove(remove)
 
     def delete_ils_input_answers(self, questionnaire_ils_id):
         to_remove = []
@@ -611,6 +626,13 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         result = []
         for i in self.course_creator:
             if i.university == university:
+                result.append(i)
+        return result
+
+    def get_course_start_by_course(self, course_id) -> DM.CourseStart:
+        result = []
+        for i in self.course_start:
+            if i.course_id == course_id:
                 result.append(i)
         return result
 
@@ -943,6 +965,15 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         course.id = len(self.course)
         self.course.add(course)
 
+    def update_course_start(self, course_start):
+        to_remove = next(
+            (p for p in self.course_start if p.id == course_start.id), None
+        )
+        if to_remove is not None:
+            self.course_start.remove(to_remove)
+        course_start.id = len(self.course_start)
+        self.course_start.add(course_start)
+
     def update_knowledge(self, characteristic_id, knowledge):
         to_remove = next(
             (p for p in self.knowledge if p.characteristic_id == characteristic_id),
@@ -1087,6 +1118,7 @@ class FakeUnitOfWork(unit_of_work.AbstractUnitOfWork):  # pragma: no cover
         self.course_creator = FakeRepository()
         self.course_creator_course = FakeRepository()
         self.course_topic = FakeRepository()
+        self.course_start = FakeRepository()
         self.default_learning_path = FakeRepository()
         self.ils_input_answers = FakeRepository()
         self.ils_perception_answers = FakeRepository()
@@ -1132,8 +1164,7 @@ user_name_example = "Max Mustermann"
 university_example = "TH-AB"
 creation_date_example = "2023-03-31T09:00:00Z"
 
-
-ils_complete = [
+questionnaire_ils_complete = [
     "ar_1_f1",
     "ar_2_f5",
     "ar_3_f9",
@@ -1179,7 +1210,7 @@ ils_complete = [
     "sg_10_f40",
     "sg_11_f44",
 ]
-ils_short = [
+questionnaire_ils_short = [
     "ar_3_f9",
     "ar_4_f13",
     "ar_6_f21",
@@ -1303,6 +1334,19 @@ def create_course_for_tests(uow):
         university=university_example,
         created_by=1,
         created_at="2023-01-01",
+        start_date=None,
+    )
+
+
+def create_course_with_set_start_date_for_tests(uow):
+    services.create_course(
+        uow=uow,
+        lms_id=2,
+        name="Test",
+        university=university_example,
+        created_by=1,
+        created_at="2023-01-01",
+        start_date="2024-01-01",
     )
 
 
@@ -1821,7 +1865,7 @@ def test_reset_learning_characteristics():
 def test_create_ils_input_answers():
     uow = FakeUnitOfWork()
     ils_input_answers = {}
-    for key in ils_complete:
+    for key in questionnaire_ils_complete:
         if key.startswith("vv"):
             ils_input_answers[key] = "a"
     entries_beginning = len(uow.ils_input_answers.ils_input_answers)
@@ -1837,7 +1881,7 @@ def test_create_ils_input_answers():
 def test_create_ils_perception_answers():
     uow = FakeUnitOfWork()
     ils_perception_answers = {}
-    for key in ils_complete:
+    for key in questionnaire_ils_complete:
         if key.startswith("si"):
             ils_perception_answers[key] = "a"
     entries_beginning = len(uow.ils_perception_answers.ils_perception_answers)
@@ -1853,7 +1897,7 @@ def test_create_ils_perception_answers():
 def test_create_ils_processing_answers():
     uow = FakeUnitOfWork()
     ils_processing_answers = {}
-    for key in ils_complete:
+    for key in questionnaire_ils_complete:
         if key.startswith("ar"):
             ils_processing_answers[key] = "a"
     entries_beginning = len(uow.ils_processing_answers.ils_processing_answers)
@@ -1869,7 +1913,7 @@ def test_create_ils_processing_answers():
 def test_create_ils_understanding_answers():
     uow = FakeUnitOfWork()
     ils_understanding_answers = {}
-    for key in ils_complete:
+    for key in questionnaire_ils_complete:
         if key.startswith("sg"):
             ils_understanding_answers[key] = "a"
     entries_beginning = len(uow.ils_understanding_answers.ils_understanding_answers)
@@ -1935,10 +1979,10 @@ def test_create_questionnaire_ils(full_version):
     entries_beginning = len(uow.questionnaire_ils.questionnaire_ils)
     questionnaire_ils_answers = {}
     if full_version:
-        for key in ils_complete:
+        for key in questionnaire_ils_complete:
             questionnaire_ils_answers[key] = "a"
     else:
-        for key in ils_short:
+        for key in questionnaire_ils_short:
             questionnaire_ils_answers[key] = "a"
     result = services.create_questionnaire_ils(
         uow=uow,
@@ -1963,7 +2007,7 @@ def test_create_questionnaire_ils(full_version):
 def test_delete_ils_input_answers():
     uow = FakeUnitOfWork()
     ils_input_answers = {}
-    for key in ils_complete:
+    for key in questionnaire_ils_complete:
         if key.startswith("vv"):
             ils_input_answers[key] = "a"
     services.create_ils_input_answers(
@@ -1980,7 +2024,7 @@ def test_delete_ils_input_answers():
 def test_delete_ils_perception_answers():
     uow = FakeUnitOfWork()
     ils_perception_answers = {}
-    for key in ils_complete:
+    for key in questionnaire_ils_complete:
         if key.startswith("si"):
             ils_perception_answers[key] = "a"
     services.create_ils_perception_answers(
@@ -1997,7 +2041,7 @@ def test_delete_ils_perception_answers():
 def test_delete_ils_processing_answers():
     uow = FakeUnitOfWork()
     ils_processing_answers = {}
-    for key in ils_complete:
+    for key in questionnaire_ils_complete:
         if key.startswith("ar"):
             ils_processing_answers[key] = "a"
     services.create_ils_processing_answers(
@@ -2014,7 +2058,7 @@ def test_delete_ils_processing_answers():
 def test_delete_ils_understanding_answers():
     uow = FakeUnitOfWork()
     ils_understanding_answers = {}
-    for key in ils_complete:
+    for key in questionnaire_ils_complete:
         if key.startswith("sg"):
             ils_understanding_answers[key] = "a"
     services.create_ils_understanding_answers(
@@ -2076,10 +2120,10 @@ def test_delete_questionnaire_ils(full_version):
     services.create_learning_characteristics(uow=uow, student_id=1)
     questionnaire_ils_answers = {}
     if full_version:
-        for key in ils_complete:
+        for key in questionnaire_ils_complete:
             questionnaire_ils_answers[key] = "a"
     else:
-        for key in ils_short:
+        for key in questionnaire_ils_short:
             questionnaire_ils_answers[key] = "a"
     services.create_questionnaire_ils(
         uow=uow,
@@ -2094,7 +2138,7 @@ def test_delete_questionnaire_ils(full_version):
     assert entries_beginning - 1 == entries_after
 
 
-def test_create_course():
+def test_create_course_without_start_date():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     entries_beginning = len(uow.course.course)
@@ -2108,6 +2152,7 @@ def test_create_course():
         university=university_example,
         created_by=1,
         created_at="2023-01-01",
+        start_date=None,
     )
     assert type(result) is dict
     assert result != {}
@@ -2119,6 +2164,34 @@ def test_create_course():
     assert (
         entries_beginning_course_creator_course + 1
         == entries_after_course_creator_course
+    )
+
+
+def test_create_course_with_start_date():
+    uow = FakeUnitOfWork()
+    create_course_creator_for_tests(uow)
+    entries_before = len(uow.course.course)
+    entries_before_course_creator_course = len(
+        uow.course_creator_course.course_creator_course
+    )
+    result = services.create_course(
+        uow=uow,
+        lms_id=1,
+        name="Test Course",
+        university=university_example,
+        created_by=1,
+        created_at="2023-01-01",
+        start_date="2024-01-01",
+    )
+    assert type(result) is dict
+    assert result != {}
+    entries_after = len(uow.course.course)
+    entries_after_course_creator_course = len(
+        uow.course_creator_course.course_creator_course
+    )
+    assert entries_before + 1 == entries_after
+    assert (
+        entries_before_course_creator_course + 1 == entries_after_course_creator_course
     )
 
 
@@ -2146,6 +2219,204 @@ def test_get_moodle_rest_url_for_completion_status():
         student_id=1,
     )
     assert result == {"statuses": [{"cmid": 1, "state": 0, "timecompleted": 0}]}
+
+
+@mock.patch(
+    "requests.get",
+    mock.Mock(
+        side_effect=lambda k: mock.Mock(
+            status_code=200,
+            json=lambda: [
+                {
+                    "id": 2,
+                    "shortname": "HASKI",
+                    "categoryid": 0,
+                    "categorysortorder": 1,
+                    "fullname": "HASKI",
+                    "displayname": "HASKI",
+                    "idnumber": "",
+                    "summary": "Moodle powered by Bitnami",
+                    "summaryformat": 1,
+                    "format": "site",
+                    "showgrades": 1,
+                    "newsitems": 3,
+                    "startdate": 0,
+                    "enddate": 0,
+                    "numsections": 1,
+                    "maxbytes": 0,
+                    "showreports": 0,
+                    "visible": 1,
+                    "groupmode": 0,
+                    "groupmodeforce": 0,
+                    "defaultgroupingid": 0,
+                    "timecreated": 1683716308,
+                    "timemodified": 1683716377,
+                    "enablecompletion": 0,
+                    "completionnotify": 0,
+                    "lang": "",
+                    "forcetheme": "",
+                    "courseformatoptions": [{"name": "numsections", "value": 1}],
+                    "showactivitydates": False,
+                    "showcompletionconditions": None,
+                }
+            ],
+        )
+    ),
+)
+def test_get_courses_from_moodle():
+    uow = FakeUnitOfWork()
+    create_course_creator_for_tests(uow)
+    create_course_for_tests(uow)
+
+    result = services.get_courses_from_moodle(
+        uow=uow,
+    )
+
+    assert result == [
+        {
+            "id": 2,
+            "shortname": "HASKI",
+            "fullname": "HASKI",
+            "startdate": 0,
+            "enddate": 0,
+            "timecreated": 1683716308,
+            "timemodified": 1683716377,
+        }
+    ]
+
+
+@mock.patch(
+    "requests.get",
+    mock.Mock(
+        side_effect=lambda k: mock.Mock(
+            status_code=200,
+            json=lambda: [
+                {
+                    "id": 76,
+                    "name": "Erste Schritte",
+                    "visible": 1,
+                    "summary": "",
+                    "summaryformat": 1,
+                    "section": 0,
+                    "hiddenbynumsections": 0,
+                    "uservisible": True,
+                    "modules": [
+                        {
+                            "id": 513,
+                            "url": "https://ke.moodle.haski.app/feedback/id=513",
+                            "name": "Begriffserklärung HASKI",
+                            "instance": 84,
+                            "contextid": 838,
+                            "visible": 1,
+                            "uservisible": True,
+                            "visibleoncoursepage": 1,
+                            "modicon": "https://ke.moodle.haski.app/filtericon=1",
+                            "modname": "feedback",
+                            "modplural": "Feedback",
+                            "availability": None,
+                            "indent": 0,
+                            "onclick": "",
+                            "afterlink": None,
+                            "customdata": '{""}',
+                            "noviewlink": False,
+                            "completion": 2,
+                            "completiondata": {
+                                "state": 0,
+                                "timecompleted": 0,
+                                "overrideby": None,
+                                "valueused": False,
+                                "hascompletion": True,
+                                "isautomatic": True,
+                                "istrackeduser": True,
+                                "uservisible": True,
+                                "details": [
+                                    {
+                                        "rulename": "completionsubmit",
+                                        "rulevalue": {
+                                            "status": 0,
+                                            "description": "Submit feedback",
+                                        },
+                                    }
+                                ],
+                            },
+                            "downloadcontent": 1,
+                            "dates": [],
+                        },
+                        {
+                            "id": 601,
+                            "url": "https://ke.moodle.haski.app/h5pactivity?id=601",
+                            "name": "Freiwilliges Emotionsbarometer",
+                            "instance": 384,
+                            "contextid": 926,
+                            "visible": 1,
+                            "uservisible": True,
+                            "visibleoncoursepage": 1,
+                            "modicon": "https://ke.moodle.haski.app/filtericon=1",
+                            "modname": "h5pactivity",
+                            "modplural": "H5P",
+                            "availability": True,
+                            "indent": 0,
+                            "onclick": None,
+                            "afterlink": None,
+                            "customdata": '""',
+                            "noviewlink": False,
+                            "completion": 2,
+                            "completiondata": {
+                                "state": 1,
+                                "timecompleted": 1715080195,
+                                "overrideby": None,
+                                "valueused": True,
+                                "hascompletion": True,
+                                "isautomatic": True,
+                                "istrackeduser": False,
+                                "uservisible": True,
+                                "details": [
+                                    {
+                                        "rulename": "completionview",
+                                        "rulevalue": {
+                                            "status": 1,
+                                            "description": "View",
+                                        },
+                                    }
+                                ],
+                            },
+                            "downloadcontent": 1,
+                            "dates": [],
+                        },
+                    ],
+                },
+            ],
+        )
+    ),
+)
+def test_get_topics_and_elements_from_moodle_course():
+    uow = FakeUnitOfWork()
+    create_course_creator_for_tests(uow)
+    create_course_for_tests(uow)
+
+    result = services.get_topics_and_elements_from_moodle_course(
+        uow=uow,
+        course_id=1,
+    )
+    print(result)
+    assert result == [
+        {
+            "lms_learning_elements": [
+                {
+                    "lms_activity_type": "feedback",
+                    "lms_id": 513,
+                    "lms_learning_element_name": "Begriffserklärung HASKI",
+                },
+                {
+                    "lms_activity_type": "h5pactivity",
+                    "lms_id": 601,
+                    "lms_learning_element_name": "Freiwilliges Emotionsbarometer",
+                },
+            ],
+            "topic_lms_id": 76,
+            "topic_lms_name": "Erste Schritte",
+        },
+    ]
 
 
 @mock.patch(
@@ -2219,7 +2490,7 @@ def test_get_course_by_id():
     assert result != {}
 
 
-def test_update_course():
+def test_update_course_without_start_date():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_course_for_tests(uow)
@@ -2230,6 +2501,25 @@ def test_update_course():
         lms_id=1,
         name="Test Course 2",
         university=university_example,
+        start_date=None,
+    )
+    assert type(result) is dict
+    entries_after = len(uow.course.course)
+    assert entries_beginning == entries_after
+
+
+def test_update_course_with_start_date():
+    uow = FakeUnitOfWork()
+    create_course_creator_for_tests(uow)
+    create_course_for_tests(uow)
+    entries_beginning = len(uow.course.course)
+    result = services.update_course(
+        uow=uow,
+        course_id=1,
+        lms_id=1,
+        name="Test Course 2",
+        university=university_example,
+        start_date="2024-01-01",
     )
     assert type(result) is dict
     entries_after = len(uow.course.course)
@@ -2735,6 +3025,29 @@ def test_delete_learning_paths():
     )
     assert entries_beginning_path - 1 == entries_after_path
     assert entries_beginning_path_le - 1 == entries_after_path_le
+
+
+def test_get_course_start_by_course():
+    uow = FakeUnitOfWork()
+    create_course_creator_for_tests(uow)
+    create_course_with_set_start_date_for_tests(uow)
+    result = services.get_course_start_by_course(uow=uow, course_id=1)
+    assert type(result) is dict
+    assert result["start_date"] == "2024-01-01"
+    assert result != {}
+
+
+def test_get_courses_by_uni():
+    uow = FakeUnitOfWork()
+    create_course_creator_for_tests(uow)
+    create_student_for_tests(uow)
+    create_course_for_tests(uow)
+    create_course_with_set_start_date_for_tests(uow)
+    add_student_to_course_for_tests(uow)
+    result = services.get_courses_by_uni(uow=uow, university=university_example)
+    assert type(result) is dict
+    assert len(result["courses"]) == 2
+    assert result != {}
 
 
 def test_get_courses_by_student_id():

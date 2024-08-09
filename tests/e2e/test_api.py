@@ -21,7 +21,9 @@ questionnaire_list_k_id = 0
 path_admin = "/admin"
 path_activity_status = "/activitystatus"
 path_course = "/course"
+path_courses = "/courses"
 path_contactform = "/contactform"
+path_content = "/content"
 path_news = "/news"
 path_knowledge = "/knowledge"
 path_logs = "/logs"
@@ -38,6 +40,7 @@ path_lms_user = "/lms/user"
 path_questionnaire_ils = "/questionnaire/ils"
 path_questionnaire_list_k = "/questionnaire/listk"
 path_recommendation = "/recommendation"
+path_remote = "/lms/remote"
 path_settings = "/settings"
 path_student = "/student"
 path_subtopic = "/subtopic"
@@ -437,6 +440,81 @@ class TestApi:
             ),
         ],
     )
+    def test_api_create_course_from_moodle_without_start_date(
+        self, client_class, input, keys_expected, status_code_expected, save_id
+    ):
+        global user_id_course_creator
+        input["created_by"] = user_id_course_creator
+        url = path_lms_course
+        r = client_class.post(url, json=input)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+        if save_id:
+            global course_id
+            course_id = response["id"]
+
+    @pytest.mark.parametrize(
+        "input, keys_expected, status_code_expected,\
+                            save_id",
+        [
+            # Working Example
+            (
+                {
+                    "name": "Test Course",
+                    "lms_id": 2,
+                    "created_at": "2023-08-01T13:37:42Z",
+                    "university": "TH-AB",
+                    "start_date": "2023-08-01T13:37:42Z",
+                },
+                [
+                    "id",
+                    "name",
+                    "lms_id",
+                    "created_at",
+                    "created_by",
+                    "university",
+                    "start_date",
+                ],
+                201,
+                True,
+            ),
+            # Missing Parameter
+            (
+                {"name": "Test Course", "university": "TH-AB"},
+                ["error", "message"],
+                400,
+                False,
+            ),
+            # Parameter with wrong data type
+            (
+                {
+                    "name": "Test Course",
+                    "lms_id": "2",
+                    "created_at": "2023-08-01T13:37:42Z",
+                    "university": "TH-AB",
+                    "start_date": "2023-08-01T13:37:42Z",
+                },
+                ["error", "message"],
+                400,
+                False,
+            ),
+            # Course already exists
+            (
+                {
+                    "name": "Test Course",
+                    "lms_id": 2,
+                    "created_at": "2023-08-01T13:37:42Z",
+                    "university": "TH-AB",
+                    "start_date": "2023-08-01T13:37:42Z",
+                },
+                ["error", "message"],
+                400,
+                False,
+            ),
+        ],
+    )
     def test_api_create_course_from_moodle(
         self, client_class, input, keys_expected, status_code_expected, save_id
     ):
@@ -749,6 +827,8 @@ class TestApi:
             + str(teacher_id_use)
         )
         r = client_class.post(url)
+        print("hello")
+        print(r)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
         for key in keys_expected:
@@ -2547,6 +2627,346 @@ class TestApi:
             for key in keys_expected_1:
                 assert key in response.keys()
 
+    # Get Remote Courses from LMS
+    @mock.patch(
+        "requests.get",
+        mock.Mock(
+            side_effect=lambda k: (
+                mock.Mock(
+                    status_code=200,
+                    json=lambda: [
+                        {
+                            "id": 2,
+                            "shortname": "SE - EM1 -SoSe23",
+                            "fullname": "ω SE - Entwurfsmuster 1 - SoSe23",
+                            "startdate": 1683759600,
+                            "enddate": 0,
+                            "timecreated": 1683723772,
+                            "timemodified": 1699354676,
+                        },
+                        {
+                            "id": 3,
+                            "shortname": "tkh5p",
+                            "fullname": "TestKurs-H5P",
+                            "startdate": 1683846000,
+                            "enddate": 1715382000,
+                            "timecreated": 1683806079,
+                            "timemodified": 1683806079,
+                        },
+                        {
+                            "id": 4,
+                            "shortname": "testcourse",
+                            "fullname": "testcourse",
+                            "startdate": 1688598000,
+                            "enddate": 1720134000,
+                            "timecreated": 1688566758,
+                            "timemodified": 1688566758,
+                        },
+                        {
+                            "id": 5,
+                            "shortname": "SE - EM2 - WiSe23/24",
+                            "fullname": "SE - Entwurfsmuster 2 - WiSe23/24",
+                            "startdate": 1700611200,
+                            "enddate": 1732233600,
+                            "timecreated": 1699289698,
+                            "timemodified": 1699354526,
+                        },
+                        {
+                            "id": 6,
+                            "shortname": "SE - EM1 - WiSe23/24",
+                            "fullname": "SE - Entwurfsmuster 1 - WiSe23/24",
+                            "startdate": 1699315200,
+                            "enddate": 0,
+                            "timecreated": 1683723772,
+                            "timemodified": 1699354114,
+                        },
+                    ],
+                )
+            )
+        ),
+    )
+    @pytest.mark.parametrize(
+        "keys_expected,\
+            status_code_expected, error",
+        [
+            (
+                {
+                    "id",
+                    "fullname",
+                    "shortname",
+                    "startdate",
+                    "enddate",
+                    "timecreated",
+                    "timemodified",
+                },
+                200,
+                False,
+            ),
+        ],
+    )
+    def test_get_remote_courses(
+        self, client_class, keys_expected, status_code_expected, error
+    ):
+        url = path_remote + path_courses
+        r = client_class.get(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+
+        # Check that each course in the response contains the expected keys
+        for course in response:
+            assert keys_expected.issubset(course.keys())
+
+    # Get Remote Content from LMS course
+    @mock.patch(
+        "requests.get",
+        mock.Mock(
+            side_effect=lambda k: (
+                mock.Mock(
+                    status_code=200,
+                    json=lambda: [
+                        {
+                            "id": 76,
+                            "name": "Erste Schritte",
+                            "visible": 1,
+                            "summary": "",
+                            "summaryformat": 1,
+                            "section": 0,
+                            "hiddenbynumsections": 0,
+                            "uservisible": True,
+                            "modules": [
+                                {
+                                    "id": 513,
+                                    "url": "ke.moodle.haski.app/feedback/view?id=513",
+                                    "name": "Begriffserklärung HASKI (empfohlen)",
+                                    "instance": 84,
+                                    "contextid": 838,
+                                    "visible": 1,
+                                    "uservisible": True,
+                                    "visibleoncoursepage": 1,
+                                    "modicon": "ke.moodle.haski.app/?filtericon=1",
+                                    "modname": "feedback",
+                                    "modplural": "Feedback",
+                                    "availability": None,
+                                    "indent": 0,
+                                    "onclick": "",
+                                    "afterlink": None,
+                                    "customdata": "",
+                                    "noviewlink": False,
+                                    "completion": 2,
+                                    "completiondata": {
+                                        "state": 0,
+                                        "timecompleted": 0,
+                                        "overrideby": None,
+                                        "valueused": False,
+                                        "hascompletion": True,
+                                        "isautomatic": True,
+                                        "istrackeduser": True,
+                                        "uservisible": True,
+                                        "details": [
+                                            {
+                                                "rulename": "completionsubmit",
+                                                "rulevalue": {
+                                                    "status": 0,
+                                                    "description": "Submit feedback",
+                                                },
+                                            }
+                                        ],
+                                    },
+                                    "downloadcontent": 1,
+                                    "dates": [],
+                                },
+                                {
+                                    "id": 601,
+                                    "url": "ke.moodle.haski.app/h5pactivity/view?id601",
+                                    "name": "Freiwilliges Emotionsbarometer",
+                                    "instance": 384,
+                                    "contextid": 926,
+                                    "visible": 1,
+                                    "uservisible": True,
+                                    "visibleoncoursepage": 1,
+                                    "modicon": "ke.moodle.haski.app/?filtericon=1",
+                                    "modname": "h5pactivity",
+                                    "modplural": "H5P",
+                                    "availability": None,
+                                    "indent": 0,
+                                    "onclick": "",
+                                    "afterlink": None,
+                                    "customdata": '""',
+                                    "noviewlink": False,
+                                    "completion": 2,
+                                    "completiondata": {
+                                        "state": 1,
+                                        "timecompleted": 1715080190,
+                                        "overrideby": None,
+                                        "valueused": False,
+                                        "hascompletion": True,
+                                        "isautomatic": True,
+                                        "istrackeduser": True,
+                                        "uservisible": True,
+                                        "details": [
+                                            {
+                                                "rulename": "completionview",
+                                                "rulevalue": {
+                                                    "status": 1,
+                                                    "description": "View",
+                                                },
+                                            }
+                                        ],
+                                    },
+                                    "downloadcontent": 1,
+                                    "dates": [],
+                                },
+                                {
+                                    "id": 515,
+                                    "url": "ke.moodle.haski.app/feedback/view?id=515",
+                                    "name": "Freiwilliges Feedback vor dem Thema",
+                                    "instance": 85,
+                                    "contextid": 840,
+                                    "visible": 1,
+                                    "uservisible": True,
+                                    "visibleoncoursepage": 1,
+                                    "modicon": "ke.moodle.haski.app?filtericon=1",
+                                    "modname": "feedback",
+                                    "modplural": "Feedback",
+                                    "availability": None,
+                                    "indent": 0,
+                                    "onclick": "",
+                                    "afterlink": None,
+                                    "customdata": "",
+                                    "noviewlink": False,
+                                    "completion": 2,
+                                    "completiondata": {
+                                        "state": 0,
+                                        "timecompleted": 0,
+                                        "overrideby": None,
+                                        "valueused": False,
+                                        "hascompletion": True,
+                                        "isautomatic": True,
+                                        "istrackeduser": True,
+                                        "uservisible": True,
+                                        "details": [
+                                            {
+                                                "rulename": "completionsubmit",
+                                                "rulevalue": {
+                                                    "status": 0,
+                                                    "description": "Submit",
+                                                },
+                                            }
+                                        ],
+                                    },
+                                    "downloadcontent": 1,
+                                    "dates": [],
+                                },
+                                {
+                                    "id": 514,
+                                    "url": "ke.moodle.haski.app/h5pactivity/id=514",
+                                    "name": "Freiwilliges Feedback zur intuitiven",
+                                    "instance": 321,
+                                    "contextid": 839,
+                                    "visible": 1,
+                                    "uservisible": True,
+                                    "visibleoncoursepage": 1,
+                                    "modicon": "ke.moodle.haski.app?filtericon=1",
+                                    "modname": "h5pactivity",
+                                    "modplural": "H5P",
+                                    "availability": None,
+                                    "indent": 0,
+                                    "onclick": "",
+                                    "afterlink": None,
+                                    "customdata": '""',
+                                    "noviewlink": False,
+                                    "completion": 2,
+                                    "completiondata": {
+                                        "state": 1,
+                                        "timecompleted": 1714373032,
+                                        "overrideby": None,
+                                        "valueused": False,
+                                        "hascompletion": True,
+                                        "isautomatic": True,
+                                        "istrackeduser": True,
+                                        "uservisible": True,
+                                        "details": [
+                                            {
+                                                "rulename": "completionview",
+                                                "rulevalue": {
+                                                    "status": 1,
+                                                    "description": "View",
+                                                },
+                                            }
+                                        ],
+                                    },
+                                    "downloadcontent": 1,
+                                    "dates": [],
+                                },
+                                {
+                                    "id": 517,
+                                    "url": "ke.moodle.haski.app/forum/view?id=517",
+                                    "name": "Announcements",
+                                    "instance": 9,
+                                    "contextid": 842,
+                                    "visible": 0,
+                                    "uservisible": True,
+                                    "visibleoncoursepage": 1,
+                                    "modicon": "ke.moodle.haski.app/",
+                                    "modname": "forum",
+                                    "modplural": "Forums",
+                                    "availability": None,
+                                    "indent": 0,
+                                    "onclick": "",
+                                    "afterlink": None,
+                                    "customdata": '""',
+                                    "noviewlink": False,
+                                    "completion": 0,
+                                    "downloadcontent": 1,
+                                    "dates": [],
+                                },
+                            ],
+                        },
+                    ],
+                )
+            )
+        ),
+    )
+    @pytest.mark.parametrize(
+        "expected_topic_keys, expected_learning_element_keys, expected_course_id,\
+            status_code_expected, error",
+        [
+            (
+                {"topic_lms_id", "topic_lms_name", "lms_learning_elements"},
+                {"lms_activity_type", "lms_id", "lms_learning_element_name"},
+                "1",
+                200,
+                False,
+            ),
+        ],
+    )
+    def test_get_remote_course_content(
+        self,
+        client_class,
+        expected_topic_keys,
+        expected_learning_element_keys,
+        expected_course_id,
+        status_code_expected,
+        error,
+    ):
+        url = path_remote + path_course + "/" + expected_course_id + path_content
+        r = client_class.get(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        print(response)
+
+        # Check that each topic in the response contains the expected keys
+        for topic in response:
+            assert expected_topic_keys.issubset(
+                topic.keys()
+            ), f"Missing keys in topic: {topic}"
+
+        # Check that each learning element in the topic contains the expected keys
+        for element in topic["lms_learning_elements"]:
+            assert expected_learning_element_keys.issubset(
+                element.keys()
+            ), f"Missing keys in learning element: {element}"
+
     # Get User by ID
     @pytest.mark.parametrize(
         "lms_user_id, keys_expected,\
@@ -3020,6 +3440,72 @@ class TestApi:
         ],
     )
     def test_update_course_from_moodle(
+        self, client_class, input, moodle_course_id, keys_expected, status_code_expected
+    ):
+        global course_id
+        url = path_lms_course + "/" + str(course_id) + "/" + str(moodle_course_id)
+        r = client_class.put(url, json=input)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+
+    @pytest.mark.parametrize(
+        "input, moodle_course_id, keys_expected,\
+                            status_code_expected",
+        [
+            # Working Example
+            (
+                {
+                    "name": "Test Course Updated",
+                    "created_by": "Maria Musterfrau",
+                    "created_at": "2023-08-01T13:37:42Z",
+                    "last_updated": "2018-07-21T17:32:28Z",
+                    "university": "TH-AB",
+                    "start_date": "2023-08-01T13:37:42Z",
+                },
+                1,
+                [
+                    "id",
+                    "name",
+                    "lms_id",
+                    "created_at",
+                    "created_by",
+                    "university",
+                    "start_date",
+                ],
+                201,
+            ),
+            # Missing Parameter
+            (
+                {
+                    "created_by": "Maria Musterfrau",
+                    "created_at": "2023-08-01T13:37:42Z",
+                    "last_updated": "2018-07-21T17:32:28Z",
+                    "university": "TH-AB",
+                    "start_date": "2023-08-01T13:37:42Z",
+                },
+                1,
+                ["error", "message"],
+                400,
+            ),
+            # Parameter with wrong data type
+            (
+                {
+                    "name": "Test Course Updated",
+                    "created_by": "Maria Musterfrau",
+                    "created_at": "2023-08-01T13:37:42Z",
+                    "last_updated": "2018-07-21T17:32:28Z",
+                    "university": "TH-AB",
+                    "start_date": "what is this?",
+                },
+                1,
+                ["error", "message"],
+                400,
+            ),
+        ],
+    )
+    def test_update_course_from_moodle_with_start_date(
         self, client_class, input, moodle_course_id, keys_expected, status_code_expected
     ):
         global course_id

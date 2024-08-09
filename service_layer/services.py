@@ -28,6 +28,17 @@ def add_course_creator_to_course(
         return result
 
 
+def add_course_start_to_course(
+    uow: unit_of_work.AbstractUnitOfWork, course_id, start_date
+) -> dict:
+    with uow:
+        course_start = DM.CourseStart(course_id, start_date)
+        uow.course_start.create_course_start(course_start)
+        uow.commit()
+        result = course_start.serialize()
+        return result
+
+
 def add_student_to_course(
     uow: unit_of_work.AbstractUnitOfWork, student_id, course_id
 ) -> dict:
@@ -152,13 +163,15 @@ def create_course(
     university,
     created_by,
     created_at,
+    start_date,
 ) -> dict:
     with uow:
-        course = DM.Course(lms_id, name, university, None, None, None)
+        course = DM.Course(lms_id, name, university, created_at, created_by, None, start_date)
         uow.course.create_course(course)
         uow.commit()
         result = course.serialize()
         add_course_creator_to_course(uow, created_by, result["id"], created_at)
+        add_course_start_to_course(uow, result["id"], start_date)
         return result
 
 
@@ -815,6 +828,7 @@ def delete_course(uow: unit_of_work.AbstractUnitOfWork, course_id):
     with uow:
         delete_course_topic_by_course(uow, course_id)
         delete_course_creator_course(uow, course_id)
+        delete_course_start(uow, course_id)
         uow.course.delete_course(course_id)
         uow.commit()
         return {}
@@ -831,6 +845,13 @@ def delete_course_creator_course(uow: unit_of_work.AbstractUnitOfWork, course_id
     with uow:
         uow.course_creator_course.delete_course_creator_course(course_id)
         uow.commit()
+
+
+def delete_course_start(uow: unit_of_work.AbstractUnitOfWork, course_id):
+    with uow:
+        uow.course_start.delete_course_start(course_id)
+        uow.commit()
+        return {}
 
 
 def delete_course_topic_by_course(
@@ -1139,6 +1160,11 @@ def get_course_by_id(
             course[0].created_at = None
             course[0].created_by = None
             course[0].last_updated = None
+            course_start = uow.course_start.get_course_start_by_course(course[0].id)
+            if course_start:
+                course[0].start_date = course_start[0].start_date
+            else:
+                course[0].start_date = None
             result = course[0].serialize()
         return result
 
@@ -1159,6 +1185,17 @@ def get_courses_by_student_id(
         return result
 
 
+def get_courses_by_uni(uow: unit_of_work.AbstractUnitOfWork, university) -> dict:
+    with uow:
+        courses = uow.course.get_courses_by_uni(university)
+        result_courses = []
+        for course in courses:
+            result_courses.append(course.serialize_short())
+        result = {}
+        result["courses"] = result_courses
+        return result
+
+
 def get_courses_for_teacher(
     uow: unit_of_work.AbstractUnitOfWork, user_id, teacher_id
 ) -> dict:
@@ -1172,8 +1209,19 @@ def get_courses_for_teacher(
             course_temp[0].created_at = None
             course_temp[0].created_by = None
             course_temp[0].last_updated = None
+            course_temp[0].start_date = None
             course_list.append(course_temp[0].serialize())
         result["courses"] = course_list
+        return result
+
+
+def get_course_start_by_course(uow: unit_of_work.AbstractUnitOfWork, course_id) -> dict:
+    with uow:
+        course_start = uow.course_start.get_course_start_by_course(course_id)
+        if course_start == []:
+            result = {}
+        else:
+            result = course_start[0].serialize()
         return result
 
 
@@ -1954,6 +2002,101 @@ def get_activity_status_for_student_for_course(
             return []
 
 
+def get_moodle_rest_url_for_courses(uow: unit_of_work.AbstractUnitOfWork) -> dict:
+    with uow:
+        moodle_url = os.environ.get("REST_LMS_URL", "")
+        moodle_rest = "/webservice/rest/server.php"
+        rest_function = "?wsfunction=core_course_get_courses"
+        rest_token = "&wstoken=" + os.environ.get("REST_TOKEN", "")
+        rest_format = "&moodlewsrestformat=json"
+        moodle_rest_request = (
+            moodle_url + moodle_rest + rest_function + rest_token + rest_format
+        )
+        response = requests.get(moodle_rest_request)
+        if response.status_code == 200:
+            return response.json()
+        else:
+            return {}
+
+
+def get_courses_from_moodle(uow: unit_of_work.AbstractUnitOfWork) -> list:
+    with uow:
+        response = get_moodle_rest_url_for_courses(uow)
+        if response != {}:
+            filtered_courses = [
+                {
+                    "id": course["id"],
+                    "shortname": course["shortname"],
+                    "fullname": course["fullname"],
+                    "startdate": course["startdate"],
+                    "enddate": course["enddate"],
+                    "timecreated": course["timecreated"],
+                    "timemodified": course["timemodified"],
+                }
+                for course in response
+                if course.get("id") != 1
+            ]
+            return filtered_courses
+        else:
+            return []
+
+
+def get_moodle_rest_url_for_course_topics_and_elements(
+    uow: unit_of_work.AbstractUnitOfWork, course_id
+) -> dict:
+    with uow:
+        course = uow.course.get_course_by_id(course_id)
+        moodle_url = os.environ.get("REST_LMS_URL", "")
+        moodle_rest = "/webservice/rest/server.php"
+        rest_function = "?wsfunction=core_course_get_contents"
+        rest_courseid = "&courseid=" + str(course[0].lms_id)
+        rest_token = "&wstoken=" + os.environ.get("REST_TOKEN", "")
+        rest_format = "&moodlewsrestformat=json"
+        moodle_rest_request = (
+            moodle_url
+            + moodle_rest
+            + rest_function
+            + rest_courseid
+            + rest_token
+            + rest_format
+        )
+        response = requests.get(moodle_rest_request)
+        if response.status_code == 200:
+            return response.json()
+        else:
+            return {}
+
+
+def get_topics_and_elements_from_moodle_course(
+    uow: unit_of_work.AbstractUnitOfWork, course_id
+) -> list:
+    with uow:
+        response = get_moodle_rest_url_for_course_topics_and_elements(uow, course_id)
+        if response:
+            filtered_topics_and_elements = []
+            for content in response:
+                if content.get("visible") == 1:
+                    # Ensure topic_id and topic_name come first
+                    filtered_topic = {
+                        "topic_lms_id": content["id"],
+                        "topic_lms_name": content["name"],
+                        "lms_learning_elements": [],
+                    }
+                    for module in content["modules"]:
+                        if module.get("visible") == 1:
+                            filtered_topic["lms_learning_elements"].append(
+                                {
+                                    "lms_id": module["id"],
+                                    "lms_learning_element_name": module["name"],
+                                    "lms_activity_type": module["modname"],
+                                }
+                            )
+                    filtered_topics_and_elements.append(filtered_topic)
+            return filtered_topics_and_elements
+        else:
+            return []
+
+
 def get_activity_status_for_learning_element(
     uow: unit_of_work.AbstractUnitOfWork, course_id, student_id, learning_element_id
 ) -> list:
@@ -1961,12 +2104,16 @@ def get_activity_status_for_learning_element(
         filtered_statuses = get_activity_status_for_student_for_course(
             uow, course_id, student_id
         )
-        filtered_cmid = [
-            item
-            for item in filtered_statuses
-            if item["cmid"] == int(learning_element_id)
-        ]
-        return filtered_cmid
+        if filtered_statuses:
+            for _ in filtered_statuses:
+                filtered_cmid = [
+                    item
+                    for item in filtered_statuses
+                    if item["cmid"] == int(learning_element_id)
+                ]
+            return filtered_cmid
+        else:
+            return []
 
 
 def get_student_by_user_id(uow: unit_of_work.AbstractUnitOfWork, user_id) -> dict:
@@ -1985,11 +2132,18 @@ def get_student_by_user_id(uow: unit_of_work.AbstractUnitOfWork, user_id) -> dic
 
 
 def update_course(
-    uow: unit_of_work.AbstractUnitOfWork, course_id, lms_id, name, university
+    uow: unit_of_work.AbstractUnitOfWork,
+    course_id,
+    lms_id,
+    name,
+    university,
+    start_date,
 ) -> dict:
     with uow:
-        course = DM.Course(lms_id, name, university, None, None, None)
+        course = DM.Course(lms_id, name, university, None, None, None, start_date)
         uow.course.update_course(course_id, course)
+        course_start = DM.CourseStart(course_id, start_date)
+        uow.course_start.update_course_start(course_start)
         uow.commit()
         return course.serialize()
 

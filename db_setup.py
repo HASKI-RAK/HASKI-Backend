@@ -9,7 +9,7 @@ load_dotenv()
 
 DEFAULT_DB_HOST = "localhost"
 DEFAULT_DB_PORT = 5432
-DEFAULT_DB_PASSWORD = "postgres"  # Does not matter for local development
+DEFAULT_DB_PASSWORD = "genericPassword"  # Does not matter for local development
 DEFAULT_DB_USER = "postgres"
 DEFAULT_DB_NAME = "haski"
 
@@ -95,6 +95,7 @@ def setup_db(
     cursor.execute("DROP TABLE IF EXISTS ils_understanding_answers")
     cursor.execute("DROP TABLE IF EXISTS questionnaire_list_k")
     cursor.execute("DROP TABLE IF EXISTS default_learning_path")
+    cursor.execute("DROP TABLE IF EXISTS course_start")
     cursor.execute(
         "DROP TABLE IF EXISTS student_learning_path_learning_element_algorithm"
     )
@@ -1029,8 +1030,32 @@ def setup_db(
             position integer NOT NULL,
             university text NOT NULL
         )
-        """
+        TABLESPACE pg_default;
 
+        ALTER TABLE IF EXISTS public.default_learning_path
+            OWNER to postgres;
+    """
+    cursor.execute(sql)
+
+    sql = """
+    CREATE TABLE IF NOT EXISTS public.course_start
+    (
+        id integer NOT NULL GENERATED ALWAYS AS IDENTITY
+        ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+        course_id integer NOT NULL,
+        start_date timestamp without time zone NOT NULL,
+        CONSTRAINT course_start_pkey PRIMARY KEY (id),
+        CONSTRAINT fk_course FOREIGN KEY (course_id)
+            REFERENCES public.course (id) MATCH SIMPLE
+            ON UPDATE NO ACTION
+            ON DELETE NO ACTION
+    )
+    TABLESPACE pg_default;
+
+    ALTER TABLE IF EXISTS public.course_start
+        OWNER to postgres;
+
+    """
     cursor.execute(sql)
 
     sql = """
@@ -1042,6 +1067,11 @@ def setup_db(
         topic_id integer NOT NULL,
         algorithm_id integer NOT NULL
     )
+
+        TABLESPACE pg_default;
+
+        ALTER TABLE IF EXISTS public.student_learning_path_learning_element_algorithm
+            OWNER to postgres;
     """
 
     cursor.execute(sql)
@@ -1054,6 +1084,11 @@ def setup_db(
         short_name text NOT NULL,
         full_name text
     )
+
+        TABLESPACE pg_default;
+
+        ALTER TABLE IF EXISTS public.learning_path_algorithm
+            OWNER to postgres;
     """
 
     cursor.execute(sql)
