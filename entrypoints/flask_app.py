@@ -1631,7 +1631,7 @@ def get_teacher_lp_le_algorithm(user_id: str, topic_id: str):
             return jsonify(algorithm), status_code
 
 
-@app.route("/user/<user_id>/topic/<topic_id>/teacherAlgorithm", methods=["GET", "POST"])
+@app.route("/user/<user_id>/topic/<topic_id>/teacherAlgorithm", methods=["POST"])
 @cross_origin(supports_credentials=True)
 @json_only(ignore=["GET"])
 def post_teacher_lp_le_algorithm(data: Dict[str, Any], user_id: str, topic_id: str):
