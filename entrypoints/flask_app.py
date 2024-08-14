@@ -1642,6 +1642,29 @@ def delete_news():
     services.delete_news(unit_of_work.SqlAlchemyUnitOfWork())
     return "ok", 201
 
+#Logbuffer
+@app.route("/logbuffer", methods=["POST"])
+@cross_origin(supports_credentials=True)
+@json_only()
+def logbuffer(data: Dict[str, Any], user_id, content, timestamp):
+    result = services.create_logbuffer(
+        unit_of_work.SqlAlchemyUnitOfWork(),
+        datetime.today(),
+    )
+
+    if result is None:
+        raise err.LogBufferError()
+
+    status_code = 201
+    return jsonify(result), status_code
+
+
+@app.route("/logbuffer", methods=["DELETE"])
+@cross_origin(supports_credentials=True)
+def delete_logbuffer(user_id, content, timestamp):
+    services.delete_logbuffer(unit_of_work.SqlAlchemyUnitOfWork(), user_id, content, timestamp)
+    return "ok", 201
+
 
 # Log Endpoints
 @app.route("/logs/frontend", methods=["POST"])

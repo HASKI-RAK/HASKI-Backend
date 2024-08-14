@@ -567,6 +567,23 @@ sql = """
 """
 cursor.execute(sql)
 
+#create logbuffer
+sql = """
+    INSERT INTO logbuffer (user_id, content, timestamp, date)
+    VALUES (1, 'Es gab einen Fehler beim Abrufen der Kursdaten.\
+    Error: TypeError: Failed to fetch', 'Wed, 14 Aug 2024 11:06:00 GMT',\
+    '2023-07-13 16:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO logbuffer (user_id, content, timestamp, date)
+    VALUES (5, 'Test buffer message. Error btw.',\
+    'Wed, 14 Aug 2024 11:06:00 GMT',\
+    '2023-07-13 16:00:00')
+"""
+cursor.execute(sql)
+
 # create news
 sql = """
     INSERT INTO news (language_id, news_content, expiration_date, created_at)
