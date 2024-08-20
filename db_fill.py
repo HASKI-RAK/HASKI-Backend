@@ -6,7 +6,7 @@ import psycopg2
 conn = psycopg2.connect(
     database=os.environ.get("DB_NAME", "haski"),
     user="postgres",
-    password=os.environ.get("DB_PASSWORD", "postgres"),
+    password=os.environ.get("DB_PASSWORD", "postgre"),
     host=os.environ.get("DB_HOST", "127.0.0.1"),
     port=os.environ.get("DB_PORT", 5432),
 )
@@ -567,11 +567,11 @@ sql = """
 """
 cursor.execute(sql)
 
-#create logbuffer
+# create logbuffer
 sql = """
     INSERT INTO logbuffer (user_id, content, timestamp, date)
-    VALUES (1, 'Es gab einen Fehler beim Abrufen der Kursdaten.\
-    Error: TypeError: Failed to fetch', 'Wed, 14 Aug 2024 11:06:00 GMT',\
+    VALUES (1, 'Fehler beim Abrufen der Kursdaten',\
+    'Wed, 14 Aug 2024 11:06:00 GMT',\
     '2023-07-13 16:00:00')
 """
 cursor.execute(sql)

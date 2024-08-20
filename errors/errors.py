@@ -257,7 +257,7 @@ class NewsError(AException):
         super().__init__(exception, message, status_code)
 
 
-class LogBuffer(AException):
+class LogBufferError(AException):
     def __init__(
         self,
         exception: Exception | None = None,

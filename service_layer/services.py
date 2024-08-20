@@ -778,15 +778,28 @@ def create_news(
     language_id,
     created_at,
     news_content,
-    expiration_date,
+    expiration_date
 ) -> dict:
     with uow:
-        news = UA.News(
-            language_id, news_content, expiration_date, created_at, university
-        )
+        news = UA.News(language_id, news_content, expiration_date, created_at, university)
         uow.news.create_news(news)
         uow.commit()
         result = news.serialize()
+        return result
+
+
+def create_logbuffer(
+    uow: unit_of_work.AbstractUnitOfWork,
+    user_id,
+    content,
+    timestamp,
+    date
+) -> dict:
+    with uow:
+        logbuffer = UA.LogBuffer(user_id, content, timestamp, date)
+        uow.logbuffer.create_logbuffer(logbuffer)
+        uow.commit()
+        result = logbuffer.serialize()
         return result
 
 
@@ -807,6 +820,13 @@ def delete_contact_form(uow: unit_of_work.AbstractUnitOfWork, user_id):
 def delete_news(uow: unit_of_work.AbstractUnitOfWork):
     with uow:
         uow.news.delete_news()
+        uow.commit()
+        return {}
+
+
+def delete_logbuffer(uow: unit_of_work.AbstractUnitOfWork, user_id):
+    with uow:
+        uow.logbuffer.delete_logbuffer(user_id)
         uow.commit()
         return {}
 
@@ -1878,6 +1898,19 @@ def get_news(
         result["news"] = [
             news.serialize() for news in backend_response + backend_response_university
         ]
+        return result
+
+
+def get_logbuffer(
+    uow: unit_of_work.AbstractUnitOfWork,
+    user_id,
+) -> dict:
+    with uow:
+        logbuffer = uow.logbuffer.get_logbuffer(user_id)
+        if logbuffer == []:
+            result = {}
+        else:
+            result = logbuffer.serialize()
         return result
 
 
