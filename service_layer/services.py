@@ -1910,7 +1910,7 @@ def get_logbuffer(
         if logbuffer == []:
             result = {}
         else:
-            result = logbuffer.serialize()
+            result = [log.serialize() for log in logbuffer]
         return result
 
 

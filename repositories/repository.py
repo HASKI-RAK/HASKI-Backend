@@ -1711,7 +1711,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
 
     def get_logbuffer(self, user_id) -> UA.LogBuffer:
         try:
-            result = self.session.query(UA.LogBuffer).filter_by(id=user_id).all()
+            result = self.session.query(UA.LogBuffer).filter_by(user_id=user_id).all()
             return result
         except Exception:
             raise err.CreationError()
