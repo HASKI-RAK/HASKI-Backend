@@ -1783,6 +1783,73 @@ def post_calculate_learning_path(_: Dict[str, Any], user_id: str, lms_user_id: s
 
 
 @app.route(
+    "/v2/user/<user_id>/course/<course_id>/topic/<topic_id>/learningPath",
+    methods=["POST"],
+)
+@cross_origin(supports_credentials=True)
+@json_only()
+def post_calculate_learning_path_for_all_students(data: Dict[str, Any], user_id: str, course_id: str, topic_id: str):
+    match request.method:
+        case "POST":
+            condition2 = "university" in data
+            condition4 = "role" in data
+            if condition2 and condition4:
+                condition6 = type(data["university"]) is str
+                condition8 = type(data["role"]) is str
+                if condition6 and condition8:
+                    role = data["role"].lower()
+                    available_roles = [
+                        "admin",
+                        "course creator",
+                        "teacher"
+                    ]
+                    if role not in available_roles:
+                        raise err.NoValidRoleError()
+                    else:
+                        # Get unit of work.
+                        uow = unit_of_work.SqlAlchemyUnitOfWork()
+
+                        # Get student and their courses.
+                        students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
+
+                        for student in students:
+                            student_user_id = services.get_user_by_id(unit_of_work.SqlAlchemyUnitOfWork(), student['user_id'], None)
+                            topic = services.get_topic_by_id(unit_of_work.SqlAlchemyUnitOfWork(), None, None, course_id, None, topic_id)
+
+                            results = []
+
+                            if topic["contains_le"]:
+                                # Get algorithm for the topic.
+                                algorithm = services.get_student_lpath_le_algorithm(
+                                    uow, student['id'], topic['id']
+                                ) or services.get_lpath_le_algorithm_by_topic(uow, topic['id'])
+                                lpath_algorithm = services.get_learning_path_algorithm_by_id(
+                                    uow, algorithm["algorithm_id"]
+                                )
+
+                                # Create learning path.
+                                results.append(
+                                    services.create_learning_path(
+                                        unit_of_work.SqlAlchemyUnitOfWork(),
+                                        student_user_id['id'],
+                                        student_user_id['lms_user_id'],
+                                        student['id'],
+                                        course_id,
+                                        topic['id'],
+                                        lpath_algorithm["short_name"].lower(),
+                                    )
+                                )
+
+                        # Return results with status code.
+                        status_code = 201
+                        return jsonify(results), status_code
+                else:
+                    raise err.WrongParameterValueError()
+            else:
+                raise err.MissingParameterError()
+
+
+@app.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>/course/"
     + "<course_id>/topic/<topic_id>/learningPath",
     methods=["GET"],
