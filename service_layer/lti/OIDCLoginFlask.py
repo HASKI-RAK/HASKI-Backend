@@ -313,7 +313,9 @@ class OIDCLoginFlask(OIDCLogin):
                         course_id=course["id"],
                         student_id=student["id"],
                     )
-            if user["role"] == "student":
+            # course creators also need a student_id, to be able to see the courses,
+            # topics and learning elements they created.
+            if user["role"] == "student" or user["role"] == "course creator":
                 user = services.get_student_by_user_id(
                     unit_of_work.SqlAlchemyUnitOfWork(), user["id"]
                 )
