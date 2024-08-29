@@ -827,7 +827,6 @@ class TestApi:
             + str(teacher_id_use)
         )
         r = client_class.post(url)
-        print("hello")
         print(r)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))

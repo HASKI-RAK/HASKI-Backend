@@ -199,11 +199,9 @@ def post_course_and_add_all_students(data: Dict[str, Any]):
                                     cons.date_format_search, data["start_date"]
                                 )
                                 if condition15:
-                                    print(data["start_date"])
                                     start_date = datetime.strptime(
                                         data["start_date"], cons.date_format
                                     )
-                                    print(start_date)
                         else:
                             start_date = datetime.strptime(
                                 data["created_at"], cons.date_format
@@ -282,11 +280,9 @@ def post_course(data: Dict[str, Any]):
                                     cons.date_format_search, data["start_date"]
                                 )
                                 if condition15:
-                                    print(data["start_date"])
                                     start_date = datetime.strptime(
                                         data["start_date"], cons.date_format
                                     )
-                                    print(start_date)
                         else:
                             start_date = datetime.strptime(
                                 data["created_at"], cons.date_format
@@ -501,7 +497,6 @@ def get_all_remote_courses():
             remote_courses = services.get_courses_from_moodle(
                 unit_of_work.SqlAlchemyUnitOfWork()
             )
-            print(remote_courses)
             return jsonify(remote_courses), 200
 
 
@@ -517,7 +512,6 @@ def get_remote_topics_and_learning_elements_from_course(course_id):
             remote_courses = services.get_topics_and_elements_from_moodle_course(
                 unit_of_work.SqlAlchemyUnitOfWork(), course_id
             )
-            print(remote_courses)
             return jsonify(remote_courses), 200
 
 
