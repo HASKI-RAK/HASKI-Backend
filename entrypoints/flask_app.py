@@ -1726,7 +1726,7 @@ def learning_path_administration(
 )
 @cross_origin(supports_credentials=True)
 @json_only()
-def post_calculate_learning_path(_: Dict[str, Any], user_id: str, lms_user_id: str):
+def post_calculate_learning_path(_f: Dict[str, Any], user_id: str, lms_user_id: str):
     match request.method:
         case "POST":
             # Get unit of work.
@@ -1737,6 +1737,7 @@ def post_calculate_learning_path(_: Dict[str, Any], user_id: str, lms_user_id: s
             courses = services.get_courses_by_student_id(
                 uow, user_id, lms_user_id, student["id"]
             )
+            results = []
 
             for course in courses["courses"]:
                 # Get every available topic in all course.
