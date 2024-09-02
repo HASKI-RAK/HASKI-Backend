@@ -163,6 +163,11 @@ Also it is necessary to create a token for a user with admin rights.
 - Go to Site administration -> Server -> Manage tokens -> Create token
 - Select an admin user and create a token with the Service "Moodle mobile web service", set the validity to your needs and save the token.
 
+To be able to create courses, topics and learning elements in the frontend the moodle user
+- has to be a teacher or manager in the moodle course where the LTI-Activity is located
+- is not a global moodle admin
+-> The user automatically gets the "course creator" role upon first login into the frontend
+
 Lastly you have to add the following lines to your .flaskenv file:
 - REST_LMS_URL= "yourmoodleurl" (something like https://moodle.haski.de)
 - REST_TOKEN="yourtoken" (something like f5b78d90cff0bf8f61a5745ce1441e87)

@@ -788,8 +788,11 @@ def create_user(
                 role = create_admin(uow, user)
                 user.role_id = role["id"]
             case "course creator":
-                role = create_course_creator(uow, user)
-                user.role_id = role["id"]
+                role_course_creator = create_course_creator(uow, user)
+                # course creator needs a studentId to be able to see the created
+                # learning_paths
+                create_student(uow, user)
+                user.role_id = role_course_creator["id"]
             case "student":
                 role = create_student(uow, user)
                 user.role_id = role["id"]
