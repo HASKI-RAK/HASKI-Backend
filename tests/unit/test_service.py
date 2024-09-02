@@ -2266,7 +2266,7 @@ def test_get_moodle_rest_url_for_completion_status():
     result = services.get_moodle_rest_url_for_completion_status(
         uow=uow,
         course_id=1,
-        student_id=1,
+        lms_user_id=1,
     )
     assert result == {"statuses": [{"cmid": 1, "state": 0, "timecompleted": 0}]}
 
@@ -2493,7 +2493,7 @@ def test_get_activity_status_for_student_for_course():
     result = services.get_activity_status_for_student_for_course(
         uow=uow,
         course_id=1,
-        student_id=1,
+        lms_user_id=1,
     )
     assert result == [
         {"cmid": 1, "state": 0, "timecompleted": 0},

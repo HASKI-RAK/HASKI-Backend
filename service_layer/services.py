@@ -2006,7 +2006,7 @@ def get_user_by_lms_id(uow: unit_of_work.AbstractUnitOfWork, lms_user_id) -> dic
 
 
 def get_moodle_rest_url_for_completion_status(
-    uow: unit_of_work.AbstractUnitOfWork, course_id, student_id
+    uow: unit_of_work.AbstractUnitOfWork, course_id, lms_user_id
 ) -> dict:
     with uow:
         course = uow.course.get_course_by_id(course_id)
@@ -2016,7 +2016,7 @@ def get_moodle_rest_url_for_completion_status(
         rest_token = "&wstoken=" + os.environ.get("REST_TOKEN", "")
         rest_format = "&moodlewsrestformat=json"
         moodle_course_id = "&courseid=" + str(course[0].lms_id)
-        moodle_user_id = "&userid=" + str(student_id)
+        moodle_user_id = "&userid=" + str(lms_user_id)
         moodle_rest_request = (
             moodle_url
             + moodle_rest
@@ -2034,10 +2034,10 @@ def get_moodle_rest_url_for_completion_status(
 
 
 def get_activity_status_for_student_for_course(
-    uow: unit_of_work.AbstractUnitOfWork, course_id, student_id
+    uow: unit_of_work.AbstractUnitOfWork, course_id, lms_user_id
 ) -> list:
     with uow:
-        response = get_moodle_rest_url_for_completion_status(uow, course_id, student_id)
+        response = get_moodle_rest_url_for_completion_status(uow, course_id, lms_user_id)
         if response != {}:
             filtered_statuses = [
                 {
