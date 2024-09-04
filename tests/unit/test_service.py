@@ -579,6 +579,13 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 result.append(i)
         return result
 
+    def get_all_students(self) -> list[UA.Student]:
+        result = []
+        for i in self.student:
+            result.append(i)
+        print(result)
+        return result
+
     def get_courses_by_uni(self, university):
         result = []
         for i in self.course:

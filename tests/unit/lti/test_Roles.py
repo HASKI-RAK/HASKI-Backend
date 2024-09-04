@@ -31,7 +31,7 @@ class TestRoleMapper(unittest.TestCase):
             RoleMapper.map_role(
                 "http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor"
             ),
-            "tutor",
+            "course creator",
         )
         self.assertEqual(RoleMapper.map_role("unknown_role"), "Unknown")
 
