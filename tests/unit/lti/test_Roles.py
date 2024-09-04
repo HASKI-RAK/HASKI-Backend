@@ -8,7 +8,7 @@ class TestRoles(unittest.TestCase):
     def test_lti_roles(self):
         """Test if lti_roles has the expected mappings."""
         expected_roles = {
-            "http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor": "tutor",  # noqa: E501
+            "http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor": "course creator",  # noqa: E501
             "http://purl.imsglobal.org/vocab/lis/v2/membership#Learner": "student",  # noqa: E501
             "http://purl.imsglobal.org/vocab/lis/v2/membership#Administrator": "admin",  # noqa: E501
         }
@@ -17,7 +17,7 @@ class TestRoles(unittest.TestCase):
     def test_lti_permissions(self):
         """Test if lti_permissions has the expected mappings."""
         expected_permissions = {
-            "tutor": [Permissions.READ, Permissions.WRITE],
+            "course creator": [Permissions.READ, Permissions.WRITE],
             "student": [Permissions.READ],
             "admin": [Permissions.READ, Permissions.WRITE, Permissions.ADMIN],
         }
@@ -59,6 +59,7 @@ class TestRoleMapper(unittest.TestCase):
         role_mapper = RoleMapper(
             ["http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor"]
         )
+        self.assertEqual(role_mapper.get_role(), "course creator")
         self.assertEqual(
             role_mapper.get_permissions(), [Permissions.READ, Permissions.WRITE]
         )  # Replace with actual Permissions enum
