@@ -20,8 +20,8 @@ class RoleMapper:
     Example:
     IMS roles: http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor,\
         http://purl.imsglobal.org/vocab/lis/v2/membership#Learner
-    LTI role: tutor
-    return by get_role(): tutor
+    LTI role: Instructor
+    return by get_role(): course creator
     """
 
     # map IMS roles to LTI roles
