@@ -1670,10 +1670,7 @@ def logbuffer(data: Dict[str, Any], user_id):
 @app.route("/user/<user_id>/logbuffer", methods=["GET"])
 @cross_origin(supports_credentials=True)
 def get_logbuffer(user_id):
-    result = services.get_logbuffer(
-        unit_of_work.SqlAlchemyUnitOfWork(),
-        user_id
-    )
+    result = services.get_logbuffer(unit_of_work.SqlAlchemyUnitOfWork(), user_id)
     status_code = 200
     return jsonify(result), status_code
 
@@ -1681,9 +1678,7 @@ def get_logbuffer(user_id):
 @app.route("/user/<user_id>/logbuffer", methods=["DELETE"])
 @cross_origin(supports_credentials=True)
 def delete_logbuffer(user_id):
-    services.delete_logbuffer(
-        unit_of_work.SqlAlchemyUnitOfWork(), user_id
-    )
+    services.delete_logbuffer(unit_of_work.SqlAlchemyUnitOfWork(), user_id)
     return "ok", 201
 
 

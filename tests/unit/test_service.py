@@ -223,7 +223,7 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
     def create_contact_form(self, contact_form):
         contact_form.id = len(self.contact_form) + 1
         self.contact_form.add(contact_form)
-    
+
     def create_logbuffer(self, logbuffer):
         logbuffer.id = len(self.logbuffer) + 1
         self.logbuffer.add(logbuffer)
@@ -357,7 +357,7 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 to_remove.append(i)
         for remove in to_remove:
             self.knowledge.remove(remove)
-    
+
     def delete_logbuffer(self, user_id):
         to_remove = []
         for i in self.logbuffer:
@@ -942,7 +942,7 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
             if i.university == university:
                 result.append(i)
         return result
-    
+
     def get_logbuffer(self, user_id):
         result = []
         for i in self.news:
@@ -1799,11 +1799,16 @@ def test_create_contact_form():
     assert type(result) == dict
     assert result != {}
 
+
 def test_create_logbuffer():
     uow = FakeUnitOfWork()
     create_logbuffer_for_tests(uow)
     result = services.create_logbuffer(
-        uow, 1,  "Test content", datetime.datetime(3027, 2, 15, 18, 54, 58, 291224), datetime.datetime.now()
+        uow,
+        1,
+        "Test content",
+        datetime.datetime(3027, 2, 15, 18, 54, 58, 291224),
+        datetime.datetime.now(),
     )
     assert type(result) == dict
     assert result != {}
@@ -1821,9 +1826,9 @@ def test_get_logbuffer():
         "date",
     ]
     for key in keys_expected:
-        for entry in result["logbuffer"]:
+        for entry in result["log"]:
             assert key in entry.keys()
-            assert result["logbuffer"] is not None
+            assert result["log"] is not None
 
 
 def test_get_news():

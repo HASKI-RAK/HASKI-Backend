@@ -778,10 +778,12 @@ def create_news(
     language_id,
     created_at,
     news_content,
-    expiration_date
+    expiration_date,
 ) -> dict:
     with uow:
-        news = UA.News(language_id, news_content, expiration_date, created_at, university)
+        news = UA.News(
+            language_id, news_content, expiration_date, created_at, university
+        )
         uow.news.create_news(news)
         uow.commit()
         result = news.serialize()
@@ -789,11 +791,7 @@ def create_news(
 
 
 def create_logbuffer(
-    uow: unit_of_work.AbstractUnitOfWork,
-    user_id,
-    content,
-    timestamp,
-    date
+    uow: unit_of_work.AbstractUnitOfWork, user_id, content, timestamp, date
 ) -> dict:
     with uow:
         logbuffer = UA.LogBuffer(user_id, content, timestamp, date)
@@ -1906,11 +1904,10 @@ def get_logbuffer(
     user_id,
 ) -> dict:
     with uow:
-        logbuffer = uow.logbuffer.get_logbuffer(user_id)
-        if logbuffer == []:
-            result = {}
-        else:
-            result = [log.serialize() for log in logbuffer]
+        logbuffer_response = []
+        logbuffer_response = uow.logbuffer.get_logbuffer(user_id)
+        result = dict()
+        result["log"] = [logbuffer.serialize() for logbuffer in logbuffer_response]
         return result
 
 
