@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, Date, Float, Integer, String, Table
+from sqlalchemy import Boolean, Column, Date, DateTime, Float, Integer, String, Table
 from sqlalchemy.orm import registry
 
 from domain.domainModel import model as DM
@@ -46,7 +46,7 @@ course_start = Table(
     mapper_registry.metadata,
     Column("id", Integer, primary_key=True, autoincrement=True),
     Column("course_id", Integer, nullable=False),
-    Column("start_date", Date, nullable=False),
+    Column("start_date", DateTime, nullable=False),
 )
 
 course_topic = Table(

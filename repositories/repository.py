@@ -212,7 +212,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def delete_course_topic_by_course(self, course_id):
+    def delete_course_topic_by_course(self, course_id: int):
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -228,7 +228,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def delete_course_start(self, course_id):
+    def delete_course_start(self, course_id: int):
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -360,7 +360,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def get_course_start_by_course(self, course_id) -> DM.CourseStart:
+    def get_course_start_by_course(self, course_id: int) -> DM.CourseStart:
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -750,11 +750,10 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         except Exception:
             raise err.CreationError()
 
-    def create_course_start(self, course_start: DM.CourseStart) -> DM.CourseStart:
+    def create_course_start(self, course_start: DM.CourseStart):
         course_start_exist = self.get_course_start_by_course(course_start.course_id)
-        for c in course_start_exist:
-            if c.id == course_start.course_id:
-                raise err.AlreadyExisting()
+        if course_start_exist.id == course_start.course_id:
+            raise err.AlreadyExisting()
         try:
             self.session.add(course_start)
         except Exception:
@@ -1044,10 +1043,10 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             course_id=course_id
         ).delete()
 
-    def delete_course_start(self, course_id):
+    def delete_course_start(self, course_id: int):
         self.session.query(DM.CourseStart).filter_by(course_id=course_id).delete()
 
-    def delete_course_topic_by_course(self, course_id):
+    def delete_course_topic_by_course(self, course_id: int):
         course_topic = self.get_course_topic_by_course(course_id)
         if course_topic != []:
             self.session.query(DM.CourseTopic).filter_by(course_id=course_id).delete()
@@ -1325,7 +1324,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         except Exception:
             raise err.DatabaseQueryError()
 
-    def get_course_start_by_course(self, course_id: DM.CourseStart) -> DM.CourseStart:
+    def get_course_start_by_course(self, course_id: int) -> DM.CourseStart:
         result = self.session.query(DM.CourseStart).filter_by(course_id=course_id).all()
         return result
 
@@ -1808,11 +1807,11 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         else:
             raise err.NoValidIdError
 
-    def update_course_start(self, course_start) -> DM.CourseStart:
+    def update_course_start(self, course_start: DM.CourseStart):
         if course_start.start_date is not None:
             course_start_exist = self.get_course_start_by_course(course_start.course_id)
             if course_start_exist != []:
-                course_start.course_id = course_start_exist[0].course_id
+                course_start.course_id = course_start_exist.course_id
                 return (
                     self.session.query(DM.CourseStart)
                     .filter_by(course_id=course_start.course_id)

@@ -583,7 +583,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         result = []
         for i in self.student:
             result.append(i)
-        print(result)
         return result
 
     def get_courses_by_uni(self, university):
@@ -642,12 +641,9 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 result.append(i)
         return result
 
-    def get_course_start_by_course(self, course_id) -> DM.CourseStart:
-        result = []
-        for i in self.course_start:
-            if i.course_id == course_id:
-                result.append(i)
-        return result
+    def get_course_start_by_course(self, course_id:int ) -> DM.CourseStart:
+        if self.course_start.course_id == course_id:
+            return self.course_start
 
     def get_ils_input_answers_by_id(self, questionnaire_id):
         result = []

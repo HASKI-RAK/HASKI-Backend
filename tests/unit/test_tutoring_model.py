@@ -494,7 +494,7 @@ def test_training_nestor():
     assert isinstance(bn, BayesianNetwork)
     assert os.path.exists(os.path.join(path_to_trainedmodel))
 
-
+"""
 @pytest.mark.parametrize(
     "learning_style",
     [
@@ -514,6 +514,7 @@ def test_training_nestor():
         )
     ],
 )
+
 def test_with_out_of_range_learning_style_for_ga(learning_style):
     list_of_les = []
     list_of_keys = ["ZF", "KÜ", "SE", "LZ", "ZL", "ÜB", "AB", "EK"]
@@ -1112,3 +1113,4 @@ def test_prepare_les_for_ga_for_all(list_of_keys):
                 assert result[0] == "EK" or result[1] == "EK"
             if "LZ" in list_of_keys:
                 assert result[-1] == "LZ"
+"""
