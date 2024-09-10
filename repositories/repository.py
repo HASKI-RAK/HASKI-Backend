@@ -50,10 +50,6 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def create_course_start(self, course_start) -> DM.CourseStart:
-        raise NotImplementedError
-
-    @abc.abstractmethod
     def create_course_creator(
         self, course_creator: UA.CourseCreator
     ) -> UA.CourseCreator:
@@ -228,10 +224,6 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def delete_course_start(self, course_id: int):
-        raise NotImplementedError
-
-    @abc.abstractmethod
     def delete_ils_input_answers(self, questionnaire_ils_id):
         raise NotImplementedError
 
@@ -357,10 +349,6 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
 
     @abc.abstractmethod
     def get_course_by_id(self, course_id) -> DM.Course:
-        raise NotImplementedError
-
-    @abc.abstractmethod
-    def get_course_start_by_course(self, course_id: int) -> DM.CourseStart:
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -594,10 +582,6 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def update_course_start(self, course_start) -> DM.CourseStart:
-        raise NotImplementedError
-
-    @abc.abstractmethod
     def update_knowledge(self, characteristic_id, knowledge) -> LM.Knowledge:
         raise NotImplementedError
 
@@ -747,15 +731,6 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
                 raise err.AlreadyExisting()
         try:
             self.session.add(course)
-        except Exception:
-            raise err.CreationError()
-
-    def create_course_start(self, course_start: DM.CourseStart):
-        course_start_exist = self.get_course_start_by_course(course_start.course_id)
-        if course_start_exist.id == course_start.course_id:
-            raise err.AlreadyExisting()
-        try:
-            self.session.add(course_start)
         except Exception:
             raise err.CreationError()
 
@@ -1043,9 +1018,6 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             course_id=course_id
         ).delete()
 
-    def delete_course_start(self, course_id: int):
-        self.session.query(DM.CourseStart).filter_by(course_id=course_id).delete()
-
     def delete_course_topic_by_course(self, course_id: int):
         course_topic = self.get_course_topic_by_course(course_id)
         if course_topic != []:
@@ -1323,10 +1295,6 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             )
         except Exception:
             raise err.DatabaseQueryError()
-
-    def get_course_start_by_course(self, course_id: int) -> DM.CourseStart:
-        result = self.session.query(DM.CourseStart).filter_by(course_id=course_id).all()
-        return result
 
     def get_course_topic_by_course(self, course_id) -> DM.CourseTopic:
         result = self.session.query(DM.CourseTopic).filter_by(course_id=course_id).all()
@@ -1801,28 +1769,12 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
                         DM.Course.lms_id: course.lms_id,
                         DM.Course.name: course.name,
                         DM.Course.university: course.university,
+                        DM.Course.start_date: course.start_date,
                     }
                 )
             )
         else:
             raise err.NoValidIdError
-
-    def update_course_start(self, course_start: DM.CourseStart):
-        if course_start.start_date is not None:
-            course_start_exist = self.get_course_start_by_course(course_start.course_id)
-            if course_start_exist != []:
-                course_start.course_id = course_start_exist.course_id
-                return (
-                    self.session.query(DM.CourseStart)
-                    .filter_by(course_id=course_start.course_id)
-                    .update(
-                        {
-                            DM.CourseStart.start_date: course_start.start_date,
-                        }
-                    )
-                )
-            else:
-                self.create_course_start(course_start)
 
     def update_knowledge(self, characteristic_id, knowledge) -> LM.Knowledge:
         knowledge_exist = self.get_knowledge(characteristic_id)

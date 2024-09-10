@@ -531,81 +531,6 @@ class TestApi:
             global course_id
             course_id = response["id"]
 
-    @pytest.mark.parametrize(
-        "input, keys_expected, status_code_expected,\
-                            save_id",
-        [
-            # Working Example
-            (
-                    {
-                        "name": "Test Course",
-                        "lms_id": 3,
-                        "created_at": "2024-09-04T13:37:42Z",
-                        "university": "TH-AB",
-                        "start_date": "2024-09-04T13:37:42Z",
-                    },
-                    [
-                        "id",
-                        "name",
-                        "lms_id",
-                        "created_at",
-                        "created_by",
-                        "university",
-                        "start_date",
-                    ],
-                    201,
-                    True,
-            ),
-            # Missing Parameter
-            (
-                    {"name": "Test Course", "university": "TH-AB"},
-                    ["error", "message"],
-                    400,
-                    False,
-            ),
-            # Parameter with wrong data type
-            (
-                    {
-                        "name": "Test Course",
-                        "lms_id": "3",
-                        "created_at": "2024-09-041T13:37:42Z",
-                        "university": "TH-AB",
-                        "start_date": "2024-09-04T13:37:42Z",
-                    },
-                    ["error", "message"],
-                    400,
-                    False,
-            ),
-            # Course already exists
-            (
-                    {
-                        "name": "Test Course",
-                        "lms_id": 3,
-                        "created_at": "2024-09-04T13:37:42Z",
-                        "university": "TH-AB",
-                        "start_date": "2024-09-04T13:37:42Z",
-                    },
-                    ["error", "message"],
-                    400,
-                    False,
-            ),
-        ],
-    )
-    def test_api_create_course_and_add_all_students(
-            self, client_class, input, keys_expected, status_code_expected, save_id
-    ):
-        global user_id_course_creator
-        input["created_by"] = user_id_course_creator
-        url = path_v2 + path_lms_course
-        r = client_class.post(url, json=input)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        for key in keys_expected:
-            assert key in response.keys()
-        if save_id:
-            global course_id
-            course_id = response["id"]
-
     # Create Topic
     @pytest.mark.parametrize(
         "input, moodle_course_id, \
@@ -3481,6 +3406,7 @@ class TestApi:
                     "created_by": "Maria Musterfrau",
                     "created_at": "2023-08-01T13:37:42Z",
                     "last_updated": "2018-07-21T17:32:28Z",
+                    "start_date": "2018-07-21T17:32:28Z",
                     "university": "TH-AB",
                 },
                 1,
@@ -3519,6 +3445,7 @@ class TestApi:
     ):
         global course_id
         url = path_lms_course + "/" + str(course_id) + "/" + str(moodle_course_id)
+        print(url)
         r = client_class.put(url, json=input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -3823,6 +3750,81 @@ class TestApi:
         response = json.loads(r.data.decode("utf-8").strip("\n"))
         for key in keys_expected:
             assert key in response.keys()
+
+    @pytest.mark.parametrize(
+        "input, keys_expected, status_code_expected,\
+                            save_id",
+        [
+            # Working Example
+            (
+                    {
+                        "name": "Test Course",
+                        "lms_id": 3,
+                        "created_at": "2024-09-04T13:37:42Z",
+                        "university": "TH-AB",
+                        "start_date": "2024-09-04T13:37:42Z",
+                    },
+                    [
+                        "id",
+                        "name",
+                        "lms_id",
+                        "created_at",
+                        "created_by",
+                        "university",
+                        "start_date",
+                    ],
+                    201,
+                    True,
+            ),
+            # Missing Parameter
+            (
+                    {"name": "Test Course", "university": "TH-AB"},
+                    ["error", "message"],
+                    400,
+                    False,
+            ),
+            # Parameter with wrong data type
+            (
+                    {
+                        "name": "Test Course",
+                        "lms_id": "3",
+                        "created_at": "2024-09-041T13:37:42Z",
+                        "university": "TH-AB",
+                        "start_date": "2024-09-04T13:37:42Z",
+                    },
+                    ["error", "message"],
+                    400,
+                    False,
+            ),
+            # Course already exists
+            (
+                    {
+                        "name": "Test Course",
+                        "lms_id": 3,
+                        "created_at": "2024-09-04T13:37:42Z",
+                        "university": "TH-AB",
+                        "start_date": "2024-09-04T13:37:42Z",
+                    },
+                    ["error", "message"],
+                    400,
+                    False,
+            ),
+        ],
+    )
+    def test_api_create_course_and_add_all_students(
+            self, client_class, input, keys_expected, status_code_expected, save_id
+    ):
+        global user_id_course_creator
+        input["created_by"] = user_id_course_creator
+        url = path_v2 + path_lms_course
+        r = client_class.post(url, json=input)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+        if save_id:
+            global course_id
+            course_id = response["id"]
 
     # DELETE METHODS
     # Reset User Settings

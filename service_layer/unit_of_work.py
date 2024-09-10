@@ -14,7 +14,6 @@ class AbstractUnitOfWork(abc.ABC):
     course: repository.AbstractRepository
     course_creator: repository.AbstractRepository
     course_creator_course: repository.AbstractRepository
-    course_start: repository.AbstractRepository
     course_topic: repository.AbstractRepository
     default_learning_path: repository.AbstractRepository
     user: repository.AbstractRepository
@@ -85,7 +84,6 @@ class SqlAlchemyUnitOfWork(AbstractUnitOfWork):  # pragma: no cover
         self.course = repository.SqlAlchemyRepository(self.session)
         self.course_creator = repository.SqlAlchemyRepository(self.session)
         self.course_creator_course = repository.SqlAlchemyRepository(self.session)
-        self.course_start = repository.SqlAlchemyRepository(self.session)
         self.course_topic = repository.SqlAlchemyRepository(self.session)
         self.user = repository.SqlAlchemyRepository(self.session)
         self.ils_input_answers = repository.SqlAlchemyRepository(self.session)

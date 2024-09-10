@@ -22,6 +22,7 @@ course = Table(
     Column("lms_id", Integer, nullable=False),
     Column("name", String, nullable=False),
     Column("university", String, nullable=False),
+    Column("start_date", Date, nullable=False)
 )
 
 course_creator = Table(
@@ -39,14 +40,6 @@ course_creator_course = Table(
     Column("course_id", Integer, nullable=False),
     Column("created_at", Date, nullable=False),
     Column("last_updated", Date, nullable=True),
-)
-
-course_start = Table(
-    "course_start",
-    mapper_registry.metadata,
-    Column("id", Integer, primary_key=True, autoincrement=True),
-    Column("course_id", Integer, nullable=False),
-    Column("start_date", DateTime, nullable=False),
 )
 
 course_topic = Table(
@@ -492,7 +485,6 @@ def start_mappers():
         DM.CourseCreatorCourse,
         course_creator_course,
     )
-    mapper_registry.map_imperatively(DM.CourseStart, course_start)
     mapper_registry.map_imperatively(
         DM.CourseTopic,
         course_topic,

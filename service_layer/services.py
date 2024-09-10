@@ -28,17 +28,6 @@ def add_course_creator_to_course(
         return result
 
 
-def add_course_start_to_course(
-    uow: unit_of_work.AbstractUnitOfWork, course_id, start_date
-) -> dict:
-    with uow:
-        course_start = DM.CourseStart(course_id, start_date)
-        uow.course_start.create_course_start(course_start)
-        uow.commit()
-        result = course_start.serialize()
-        return result
-
-
 def add_student_to_course(
     uow: unit_of_work.AbstractUnitOfWork, student_id, course_id
 ) -> dict:
@@ -171,7 +160,6 @@ def create_course(
         uow.commit()
         result = course.serialize()
         add_course_creator_to_course(uow, created_by, result["id"], created_at)
-        add_course_start_to_course(uow, result["id"], start_date)
         return result
 
 
@@ -846,7 +834,6 @@ def delete_course(uow: unit_of_work.AbstractUnitOfWork, course_id):
     with uow:
         delete_course_topic_by_course(uow, course_id)
         delete_course_creator_course(uow, course_id)
-        delete_course_start(uow, course_id)
         uow.course.delete_course(course_id)
         uow.commit()
         return {}
@@ -863,13 +850,6 @@ def delete_course_creator_course(uow: unit_of_work.AbstractUnitOfWork, course_id
     with uow:
         uow.course_creator_course.delete_course_creator_course(course_id)
         uow.commit()
-
-
-def delete_course_start(uow: unit_of_work.AbstractUnitOfWork, course_id):
-    with uow:
-        uow.course_start.delete_course_start(course_id)
-        uow.commit()
-        return {}
 
 
 def delete_course_topic_by_course(
@@ -1178,11 +1158,6 @@ def get_course_by_id(
             course[0].created_at = None
             course[0].created_by = None
             course[0].last_updated = None
-            course_start = uow.course_start.get_course_start_by_course(course[0].id)
-            if course_start:
-                course[0].start_date = course_start[0].start_date
-            else:
-                course[0].start_date = None
             result = course[0].serialize()
         return result
 
@@ -1230,16 +1205,6 @@ def get_courses_for_teacher(
             course_temp[0].start_date = None
             course_list.append(course_temp[0].serialize())
         result["courses"] = course_list
-        return result
-
-
-def get_course_start_by_course(uow: unit_of_work.AbstractUnitOfWork, course_id) -> dict:
-    with uow:
-        course_start = uow.course_start.get_course_start_by_course(course_id)
-        if course_start == []:
-            result = {}
-        else:
-            result = course_start[0].serialize()
         return result
 
 
@@ -2207,8 +2172,6 @@ def update_course(
     with uow:
         course = DM.Course(lms_id, name, university, None, None, None, start_date)
         uow.course.update_course(course_id, course)
-        course_start = DM.CourseStart(course_id, start_date)
-        uow.course_start.update_course_start(course_start)
         uow.commit()
         return course.serialize()
 

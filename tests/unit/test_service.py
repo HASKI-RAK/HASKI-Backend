@@ -29,7 +29,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         course_creator=[],
         course_creator_course=[],
         course_topic=[],
-        course_start=[],
         default_learning_path=[],
         ils_input_answers=[],
         ils_perception_answers=[],
@@ -70,7 +69,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         self.course_creator = set(course_creator)
         self.course_creator_course = set(course_creator_course)
         self.course_topic = set(course_topic)
-        self.course_start = set(course_start)
         self.default_learning_path = set(default_learning_path)
         self.knowledge = set(knowledge)
         self.ils_input_answers = set(ils_input_answers)
@@ -150,10 +148,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
     def create_course_topic(self, course_topic):
         course_topic.id = len(self.course_topic) + 1
         self.course_topic.add(course_topic)
-
-    def create_course_start(self, course_start):
-        course_start.id = len(self.course_start) + 1
-        self.course_start.add(course_start)
 
     def create_default_learning_path_element(self, default_learning_path_element):
         default_learning_path_element.id = len(self.default_learning_path) + 1
@@ -324,14 +318,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 to_remove.append(i)
         for remove in to_remove:
             self.course_topic.remove(remove)
-
-    def delete_course_start(self, course_id):
-        to_remove = []
-        for i in self.course_start:
-            if i.course_id == course_id:
-                to_remove.append(i)
-        for remove in to_remove:
-            self.course_start.remove(remove)
 
     def delete_ils_input_answers(self, questionnaire_ils_id):
         to_remove = []
@@ -640,10 +626,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
             if i.university == university:
                 result.append(i)
         return result
-
-    def get_course_start_by_course(self, course_id:int ) -> DM.CourseStart:
-        if self.course_start.course_id == course_id:
-            return self.course_start
 
     def get_ils_input_answers_by_id(self, questionnaire_id):
         result = []
@@ -979,15 +961,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         course.id = len(self.course)
         self.course.add(course)
 
-    def update_course_start(self, course_start):
-        to_remove = next(
-            (p for p in self.course_start if p.id == course_start.id), None
-        )
-        if to_remove is not None:
-            self.course_start.remove(to_remove)
-        course_start.id = len(self.course_start)
-        self.course_start.add(course_start)
-
     def update_knowledge(self, characteristic_id, knowledge):
         to_remove = next(
             (p for p in self.knowledge if p.characteristic_id == characteristic_id),
@@ -1162,7 +1135,6 @@ class FakeUnitOfWork(unit_of_work.AbstractUnitOfWork):  # pragma: no cover
         self.course_creator = FakeRepository()
         self.course_creator_course = FakeRepository()
         self.course_topic = FakeRepository()
-        self.course_start = FakeRepository()
         self.default_learning_path = FakeRepository()
         self.ils_input_answers = FakeRepository()
         self.ils_perception_answers = FakeRepository()
@@ -3078,16 +3050,6 @@ def test_delete_learning_paths():
     )
     assert entries_beginning_path - 1 == entries_after_path
     assert entries_beginning_path_le - 1 == entries_after_path_le
-
-
-def test_get_course_start_by_course():
-    uow = FakeUnitOfWork()
-    create_course_creator_for_tests(uow)
-    create_course_with_set_start_date_for_tests(uow)
-    result = services.get_course_start_by_course(uow=uow, course_id=1)
-    assert type(result) is dict
-    assert result["start_date"] == "2024-01-01"
-    assert result != {}
 
 
 def test_get_courses_by_uni():
