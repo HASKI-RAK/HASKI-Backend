@@ -152,7 +152,7 @@ def get_user_by_id(user_id, lms_user_id):
             return jsonify(user), status_code
 
 
-# Course Administration via LMS
+# Add a course and add all students to it
 @app.route("/v2/lms/course", methods=["POST"])
 @cross_origin(supports_credentials=True)
 @json_only()
@@ -233,7 +233,7 @@ def post_course_and_add_all_students(data: Dict[str, Any]):
             else:
                 raise err.MissingParameterError()
 
-
+#Add a course
 @app.route("/lms/course", methods=["POST"])
 @cross_origin(supports_credentials=True)
 @json_only()
@@ -611,7 +611,7 @@ def post_topic(data: Dict[str, Any], course_id, lms_course_id):
             else:
                 raise err.MissingParameterError()
 
-
+# Add Topic to course and add all students to it
 @app.route("/v2/lms/course/<course_id>/topic", methods=["POST"])
 @cross_origin(supports_credentials=True)
 @json_only()
@@ -830,7 +830,7 @@ def create_learning_element(
             else:
                 raise err.MissingParameterError()
 
-
+# Create LE - shorter request-url
 @app.route(
     "/v2/lms/topic/<topic_id>/learningElement",
     methods=["POST"],
@@ -1737,7 +1737,10 @@ def post_calculate_learning_path(_: Dict[str, Any], user_id: str, lms_user_id: s
             courses = services.get_courses_by_student_id(
                 uow, user_id, lms_user_id, student["id"]
             )
-            results = []
+
+            # If there are no courses, initiate an empty array
+            if not courses["courses"]:
+                results = []
 
             for course in courses["courses"]:
                 # Get every available topic in all course.
@@ -1776,7 +1779,9 @@ def post_calculate_learning_path(_: Dict[str, Any], user_id: str, lms_user_id: s
             status_code = 201
             return jsonify(results), status_code
 
-
+# specific roles can trigger calculation of learningpaths for all students for a topic
+# calculation on basis of student-algorithm (if empty teacher algorithm)
+# useful when: creating a new topic
 @app.route(
     "/v2/user/<user_id>/course/<course_id>/topic/<topic_id>/learningPath",
     methods=["POST"],

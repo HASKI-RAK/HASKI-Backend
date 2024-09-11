@@ -1202,7 +1202,6 @@ def get_courses_for_teacher(
             course_temp[0].created_at = None
             course_temp[0].created_by = None
             course_temp[0].last_updated = None
-            course_temp[0].start_date = None
             course_list.append(course_temp[0].serialize())
         result["courses"] = course_list
         return result
@@ -1960,13 +1959,12 @@ def get_user_by_id(uow: unit_of_work.AbstractUnitOfWork, user_id, lms_user_id) -
 def get_user_by_lms_id(uow: unit_of_work.AbstractUnitOfWork, lms_user_id) -> dict:
     with uow:
         user = uow.user.get_user_by_lms_id(lms_user_id)
+        if not user:
+            return {}
         settings = uow.settings.get_settings(user[0].id)
-        if user == []:
-            result = {}
-        else:
-            user[0].settings = settings[0].serialize()
-            user[0].role_id = None
-            result = user[0].serialize()
+        user[0].settings = settings[0].serialize()
+        user[0].role_id = None
+        result = user[0].serialize()
         return result
 
 
