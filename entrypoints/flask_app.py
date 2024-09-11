@@ -1571,7 +1571,7 @@ def get_student_lp_le_algorithm(user_id: str, topic_id: str):
 @app.route("/user/<user_id>/topic/<topic_id>/studentAlgorithm", methods=["POST"])
 @cross_origin(supports_credentials=True)
 @json_only(ignore=["GET"])
-def post_student_lp_le_algorithm(data: Dict[str, Any], user_id: str, topic_id: str):
+def post_student_lp_le_algorithm(data: Dict[str, Any], user_id: str, topic_id: int):
     method = request.method
     match method:
         case "POST":
@@ -1615,9 +1615,9 @@ def post_student_lp_le_algorithm(data: Dict[str, Any], user_id: str, topic_id: s
                 raise err.MissingParameterError()
 
 
-@app.route("/user/<user_id>/topic/<topic_id>/teacherAlgorithm", methods=["GET"])
+@app.route("/topic/<topic_id>/teacherAlgorithm", methods=["GET"])
 @cross_origin(supports_credentials=True)
-def get_teacher_lp_le_algorithm(user_id: str, topic_id: str):
+def get_teacher_lp_le_algorithm(topic_id: str):
     method = request.method
     match method:
         case "GET":

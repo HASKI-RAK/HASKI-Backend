@@ -2301,10 +2301,7 @@ class TestApi:
         self, client_class, user_id, topic_id, keys_expected, status_code_expected
     ):
         url = (
-            path_user
-            + "/"
-            + str(user_id)
-            + path_topic
+            path_topic
             + "/"
             + str(topic_id)
             + path_teacher_algorithm

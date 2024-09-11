@@ -785,10 +785,13 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 result.append(i)
         return result
 
-    def get_lpath_le_algorithm_by_topic(self, topic_id):
+    def get_lpath_le_algorithm_by_topic(self, topic_id) -> dict:
+        i: dict
+        result : dict = {}
         for i in self.lpath_le_algorithm:
             if i.topic_id == topic_id:
-                return i
+                result = i
+        return result
 
     def get_student_by_id(self, user_id):
         result = []
