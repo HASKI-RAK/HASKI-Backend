@@ -48,7 +48,7 @@ path_teacher = "/teacher"
 path_topic = "/topic"
 path_user = "/user"
 path_algorithm = "/algorithm"
-path_v2="/v2"
+path_v2 = "/v2"
 
 ils_complete = [
     "ar_1_f1",
@@ -3756,57 +3756,57 @@ class TestApi:
         [
             # Working Example
             (
-                    {
-                        "name": "Test Course",
-                        "lms_id": 3,
-                        "created_at": "2024-09-04T13:37:42Z",
-                        "university": "TH-AB",
-                        "start_date": "2024-09-04T13:37:42Z",
-                    },
-                    [
-                        "id",
-                        "name",
-                        "lms_id",
-                        "created_at",
-                        "created_by",
-                        "university",
-                        "start_date",
-                    ],
-                    201,
-                    True,
+                {
+                    "name": "Test Course",
+                    "lms_id": 3,
+                    "created_at": "2024-09-04T13:37:42Z",
+                    "university": "TH-AB",
+                    "start_date": "2024-09-04T13:37:42Z",
+                },
+                [
+                    "id",
+                    "name",
+                    "lms_id",
+                    "created_at",
+                    "created_by",
+                    "university",
+                    "start_date",
+                ],
+                201,
+                True,
             ),
             # Missing Parameter
             (
-                    {"name": "Test Course", "university": "TH-AB"},
-                    ["error", "message"],
-                    400,
-                    False,
+                {"name": "Test Course", "university": "TH-AB"},
+                ["error", "message"],
+                400,
+                False,
             ),
             # Parameter with wrong data type
             (
-                    {
-                        "name": "Test Course",
-                        "lms_id": "3",
-                        "created_at": "2024-09-041T13:37:42Z",
-                        "university": "TH-AB",
-                        "start_date": "2024-09-04T13:37:42Z",
-                    },
-                    ["error", "message"],
-                    400,
-                    False,
+                {
+                    "name": "Test Course",
+                    "lms_id": "3",
+                    "created_at": "2024-09-041T13:37:42Z",
+                    "university": "TH-AB",
+                    "start_date": "2024-09-04T13:37:42Z",
+                },
+                ["error", "message"],
+                400,
+                False,
             ),
             # Course already exists
             (
-                    {
-                        "name": "Test Course",
-                        "lms_id": 3,
-                        "created_at": "2024-09-04T13:37:42Z",
-                        "university": "TH-AB",
-                        "start_date": "2024-09-04T13:37:42Z",
-                    },
-                    ["error", "message"],
-                    400,
-                    False,
+                {
+                    "name": "Test Course",
+                    "lms_id": 3,
+                    "created_at": "2024-09-04T13:37:42Z",
+                    "university": "TH-AB",
+                    "start_date": "2024-09-04T13:37:42Z",
+                },
+                ["error", "message"],
+                400,
+                False,
             ),
         ],
     )

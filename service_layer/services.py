@@ -155,7 +155,8 @@ def create_course(
     start_date,
 ) -> dict:
     with uow:
-        course = DM.Course(lms_id, name, university, created_at, created_by, None, start_date)
+        course = DM.Course(lms_id, name, university, created_at,
+                           created_by, None, start_date)
         uow.course.create_course(course)
         uow.commit()
         result = course.serialize()
@@ -2000,7 +2001,11 @@ def get_activity_status_for_student_for_course(
     uow: unit_of_work.AbstractUnitOfWork, course_id, lms_user_id
 ) -> list:
     with uow:
-        response = get_moodle_rest_url_for_completion_status(uow, course_id, lms_user_id)
+        response = get_moodle_rest_url_for_completion_status(
+            uow,
+            course_id,
+            lms_user_id
+        )
         if response != {}:
             filtered_statuses = [
                 {

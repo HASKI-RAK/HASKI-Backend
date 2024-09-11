@@ -68,6 +68,7 @@ class Course:
             "last_updated": self.last_updated,
             "start_date": self.start_date,
         }
+
     # serialize method equivalent to table columns in db
     def serialize_short(self):
         return {

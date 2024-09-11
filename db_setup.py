@@ -1066,7 +1066,7 @@ def setup_db(
         full_name text,
         CONSTRAINT learning_path_algorithm_pkey PRIMARY KEY (id)
     )
-    
+
     TABLESPACE pg_default;
 
     ALTER TABLE IF EXISTS public.learning_path_algorithm
@@ -1087,7 +1087,7 @@ def setup_db(
             FOREIGN KEY (algorithm_id) REFERENCES public.learning_path_algorithm (id),
             UNIQUE (topic_id)
         )
-        
+
         TABLESPACE pg_default;
 
         ALTER TABLE IF EXISTS public.learning_path_learning_element_algorithm

@@ -215,12 +215,16 @@ def post_course_and_add_all_students(data: Dict[str, Any]):
                             created_at,
                             start_date,
                         )
-                        students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
+                        students = services.get_all_students(
+                            unit_of_work.SqlAlchemyUnitOfWork()
+                        )
                         for student in students:
                             student_id = student['id']
                             course_id = course['id']
                             services.add_student_to_course(
-                                unit_of_work.SqlAlchemyUnitOfWork(), student_id, course_id
+                                unit_of_work.SqlAlchemyUnitOfWork(),
+                                student_id,
+                                course_id
                             )
                         status_code = 201
                         return jsonify(course), status_code
@@ -233,7 +237,8 @@ def post_course_and_add_all_students(data: Dict[str, Any]):
             else:
                 raise err.MissingParameterError()
 
-#Add a course
+
+# Add a course
 @app.route("/lms/course", methods=["POST"])
 @cross_origin(supports_credentials=True)
 @json_only()
@@ -611,6 +616,7 @@ def post_topic(data: Dict[str, Any], course_id, lms_course_id):
             else:
                 raise err.MissingParameterError()
 
+
 # Add Topic to course and add all students to it
 @app.route("/v2/lms/course/<course_id>/topic", methods=["POST"])
 @cross_origin(supports_credentials=True)
@@ -670,7 +676,9 @@ def post_topic_and_add_all_students(data: Dict[str, Any], course_id):
                             data["created_by"],
                             created_at,
                         )
-                        students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
+                        students = services.get_all_students(
+                            unit_of_work.SqlAlchemyUnitOfWork()
+                        )
                         for student in students:
                             student_id = student['id']
                             services.add_student_to_topics(
@@ -830,11 +838,11 @@ def create_learning_element(
             else:
                 raise err.MissingParameterError()
 
+
 # Create LE - shorter request-url
-@app.route(
-    "/v2/lms/topic/<topic_id>/learningElement",
-    methods=["POST"],
-    )
+@app.route("/v2/lms/topic/<topic_id>/learningElement",
+           methods=["POST"],
+           )
 @cross_origin(supports_credentials=True)
 @json_only()
 def create_learning_element_v2(
@@ -1779,6 +1787,7 @@ def post_calculate_learning_path(_: Dict[str, Any], user_id: str, lms_user_id: s
             status_code = 201
             return jsonify(results), status_code
 
+
 # specific roles can trigger calculation of learningpaths for all students for a topic
 # calculation on basis of student-algorithm (if empty teacher algorithm)
 # useful when: creating a new topic
@@ -1788,7 +1797,12 @@ def post_calculate_learning_path(_: Dict[str, Any], user_id: str, lms_user_id: s
 )
 @cross_origin(supports_credentials=True)
 @json_only()
-def post_calculate_learning_path_for_all_students(data: Dict[str, Any], user_id: str, course_id: str, topic_id: str):
+def post_calculate_learning_path_for_all_students(
+        data: Dict[str, Any],
+        user_id: str,
+        course_id: str,
+        topic_id: str
+):
     match request.method:
         case "POST":
             condition2 = "university" in data
@@ -1810,11 +1824,24 @@ def post_calculate_learning_path_for_all_students(data: Dict[str, Any], user_id:
                         uow = unit_of_work.SqlAlchemyUnitOfWork()
 
                         # Get student and their courses.
-                        students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
+                        students = services.get_all_students(
+                            unit_of_work.SqlAlchemyUnitOfWork()
+                        )
 
                         for student in students:
-                            student_user_id = services.get_user_by_id(unit_of_work.SqlAlchemyUnitOfWork(), student['user_id'], None)
-                            topic = services.get_topic_by_id(unit_of_work.SqlAlchemyUnitOfWork(), None, None, course_id, None, topic_id)
+                            student_user_id = services.get_user_by_id(
+                                unit_of_work.SqlAlchemyUnitOfWork(),
+                                student['user_id'],
+                                None
+                            )
+                            topic = services.get_topic_by_id(
+                                unit_of_work.SqlAlchemyUnitOfWork(),
+                                None,
+                                None,
+                                course_id,
+                                None,
+                                topic_id
+                            )
 
                             results = []
 
@@ -1822,9 +1849,14 @@ def post_calculate_learning_path_for_all_students(data: Dict[str, Any], user_id:
                                 # Get algorithm for the topic.
                                 algorithm = services.get_student_lpath_le_algorithm(
                                     uow, student['id'], topic['id']
-                                ) or services.get_lpath_le_algorithm_by_topic(uow, topic['id'])
-                                lpath_algorithm = services.get_learning_path_algorithm_by_id(
-                                    uow, algorithm["algorithm_id"]
+                                ) or services.get_lpath_le_algorithm_by_topic(
+                                    uow,
+                                    topic['id']
+                                )
+                                lpath_algorithm = (
+                                    services.get_learning_path_algorithm_by_id(
+                                        uow, algorithm["algorithm_id"]
+                                    )
                                 )
 
                                 # Create learning path.
@@ -1995,16 +2027,24 @@ def teacher_lp_le_algorithm_admin(data: Dict[str, Any], user_id: str, topic_id: 
                     unit_of_work.SqlAlchemyUnitOfWork(), topic_id
                 )
                 if lp_le_algorithm == {}:
-                    #here all available students should get their student_learning_path_learning_element_algorithm
-                    #on behalf of the set teacher_algorithm
-                    students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
+                    # here all available students should get their
+                    # student_learning_path_learning_element_algorithm
+                    # on behalf of the set teacher_algorithm
+                    students = services.get_all_students(
+                        unit_of_work.SqlAlchemyUnitOfWork()
+                    )
                     for student in students:
                         student_id = student['id']
                         services.add_student_lpath_le_algorithm(
-                            unit_of_work.SqlAlchemyUnitOfWork(), student_id, topic_id, algorithm["id"]
+                            unit_of_work.SqlAlchemyUnitOfWork(),
+                            student_id,
+                            topic_id,
+                            algorithm["id"]
                         )
                     result = services.create_learning_path_learning_element_algorithm(
-                        unit_of_work.SqlAlchemyUnitOfWork(), topic_id, algorithm["id"]
+                        unit_of_work.SqlAlchemyUnitOfWork(),
+                        topic_id,
+                        algorithm["id"]
                     )
                     status_code = 201
                     return jsonify(result), status_code

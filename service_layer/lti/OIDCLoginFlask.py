@@ -285,9 +285,9 @@ class OIDCLoginFlask(OIDCLogin):
                 unit_of_work.SqlAlchemyUnitOfWork(), self.id_token.sub
             )
             logger.debug("User: " + str(user))
-            if not user:
             # If student is in Moodle, but not in Haski DB
             # noqa: F841
+            if not user:
                 # Create User in haski_user
                 user = services.create_user(
                     unit_of_work.SqlAlchemyUnitOfWork(),
@@ -300,10 +300,11 @@ class OIDCLoginFlask(OIDCLogin):
                         self.id_token["https://purl.imsglobal.org/spec/lti/claim/roles"]
                     ).get_role(),
                 )
-                # Add "student"/"course creator" to student_course, on basis of his university
+                # Add "student"/"course creator" to student_course, on basis of his uni
                 if user["role"] == "student" or user["role"] == "course creator":
                     courses = services.get_courses_by_uni(
-                        unit_of_work.SqlAlchemyUnitOfWork(), university=user["university"]
+                        unit_of_work.SqlAlchemyUnitOfWork(),
+                        university=user["university"]
                     )
                     for course in courses["courses"]:
                         student = services.get_student_by_user_id(
