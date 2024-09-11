@@ -1873,20 +1873,6 @@ def get_settings_for_user(uow: unit_of_work.AbstractUnitOfWork, user_id) -> dict
         return result
 
 
-def get_learning_path_learning_element_algorithm(
-    uow: unit_of_work.AbstractUnitOfWork, topic_id: int
-) -> dict:
-    with uow:
-        algorithm = uow.lpath_le_algorithm.get_learning_path_learning_element_algorithm(
-            topic_id
-        )
-        if algorithm == []:
-            result = {}
-        else:
-            result = algorithm[0].serialize()
-        return result
-
-
 def get_student_lpath_le_algorithm(
     uow: unit_of_work.AbstractUnitOfWork, student_id: int, topic_id: int
 ) -> dict:

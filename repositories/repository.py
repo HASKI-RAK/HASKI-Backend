@@ -628,7 +628,9 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def update_student_lpath_le_algorithm(self, student_id, topic_id, algorithm_id):
+    def update_student_lpath_le_algorithm(
+        self, student_id, topic_id, algorithm_id
+    ) -> None:
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -1959,7 +1961,9 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         else:
             raise err.NoValidIdError
 
-    def update_learning_path_learning_element_algorithm(self, topic_id, algorithm_id):
+    def update_learning_path_learning_element_algorithm(
+        self, topic_id, algorithm_id
+    ) -> TM.LearningPathLearningElementAlgorithm:
         entry = self.get_lpath_le_algorithm_by_topic(topic_id)
         if entry != []:
             self.session.query(TM.LearningPathLearningElementAlgorithm).filter_by(
@@ -1970,7 +1974,9 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         else:
             raise err.NoValidIdError
 
-    def update_student_lpath_le_algorithm(self, student_id, topic_id, algorithm_id):
+    def update_student_lpath_le_algorithm(
+        self, student_id, topic_id, algorithm_id
+    ) -> None:
         entry = self.get_student_lpath_le_algorithm(student_id, topic_id)
         if entry != []:
             self.session.query(
