@@ -46,6 +46,7 @@ class Course:
         created_at=None,
         created_by=None,
         last_updated=None,
+        start_date=None,
     ) -> None:
         self.id = None
         self.lms_id = lms_id
@@ -54,6 +55,7 @@ class Course:
         self.created_at = created_at
         self.created_by = created_by
         self.last_updated = last_updated
+        self.start_date = start_date
 
     def serialize(self):
         return {
@@ -64,6 +66,17 @@ class Course:
             "created_at": self.created_at,
             "created_by": self.created_by,
             "last_updated": self.last_updated,
+            "start_date": self.start_date,
+        }
+
+    # serialize method equivalent to table columns in db
+    def serialize_short(self):
+        return {
+            "id": self.id,
+            "lms_id": self.lms_id,
+            "name": self.name,
+            "university": self.university,
+            "start_date": self.start_date,
         }
 
 
