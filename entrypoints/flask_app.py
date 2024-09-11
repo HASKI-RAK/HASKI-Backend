@@ -219,12 +219,12 @@ def post_course_and_add_all_students(data: Dict[str, Any]):
                             unit_of_work.SqlAlchemyUnitOfWork()
                         )
                         for student in students:
-                            student_id = student['id']
-                            course_id = course['id']
+                            student_id = student["id"]
+                            course_id = course["id"]
                             services.add_student_to_course(
                                 unit_of_work.SqlAlchemyUnitOfWork(),
                                 student_id,
-                                course_id
+                                course_id,
                             )
                         status_code = 201
                         return jsonify(course), status_code
@@ -254,12 +254,12 @@ def post_course(data: Dict[str, Any]):
             condition6 = "created_at" in data
             condition13 = "start_date" in data
             if (
-                    condition1
-                    and condition2
-                    and condition3
-                    and condition4
-                    and condition5
-                    and condition6
+                condition1
+                and condition2
+                and condition3
+                and condition4
+                and condition5
+                and condition6
             ):
                 condition7 = type(data["lms_id"]) is int
                 condition8 = type(data["name"]) is str
@@ -267,11 +267,11 @@ def post_course(data: Dict[str, Any]):
                 condition10 = type(data["created_by"]) is int
                 condition11 = type(data["created_at"]) is str
                 if (
-                        condition7
-                        and condition8
-                        and condition9
-                        and condition10
-                        and condition11
+                    condition7
+                    and condition8
+                    and condition9
+                    and condition10
+                    and condition11
                 ):
                     condition12 = re.search(cons.date_format_search, data["created_at"])
                     if condition12:
@@ -634,14 +634,14 @@ def post_topic_and_add_all_students(data: Dict[str, Any], course_id):
             condition7 = "created_at" in data
             condition8 = "university" in data
             if (
-                    condition1
-                    and condition2
-                    and condition3
-                    and condition4
-                    and condition5
-                    and condition6
-                    and condition7
-                    and condition8
+                condition1
+                and condition2
+                and condition3
+                and condition4
+                and condition5
+                and condition6
+                and condition7
+                and condition8
             ):
                 condition9 = type(data["name"]) is str
                 condition10 = type(data["lms_id"]) is int
@@ -651,13 +651,13 @@ def post_topic_and_add_all_students(data: Dict[str, Any], course_id):
                 condition14 = type(data["created_at"]) is str
                 condition15 = type(data["university"]) is str
                 if (
-                        condition9
-                        and condition10
-                        and condition11
-                        and condition12
-                        and condition13
-                        and condition14
-                        and condition15
+                    condition9
+                    and condition10
+                    and condition11
+                    and condition12
+                    and condition13
+                    and condition14
+                    and condition15
                 ):
                     condition16 = re.search(cons.date_format_search, data["created_at"])
                     if condition16:
@@ -680,7 +680,7 @@ def post_topic_and_add_all_students(data: Dict[str, Any], course_id):
                             unit_of_work.SqlAlchemyUnitOfWork()
                         )
                         for student in students:
-                            student_id = student['id']
+                            student_id = student["id"]
                             services.add_student_to_topics(
                                 unit_of_work.SqlAlchemyUnitOfWork(),
                                 student_id,
@@ -840,14 +840,13 @@ def create_learning_element(
 
 
 # Create LE - shorter request-url
-@app.route("/v2/lms/topic/<topic_id>/learningElement",
-           methods=["POST"],
-           )
+@app.route(
+    "/v2/lms/topic/<topic_id>/learningElement",
+    methods=["POST"],
+)
 @cross_origin(supports_credentials=True)
 @json_only()
-def create_learning_element_v2(
-        data: Dict[str, Any], topic_id
-):
+def create_learning_element_v2(data: Dict[str, Any], topic_id):
     method = request.method
     match method:
         case "POST":
@@ -860,14 +859,14 @@ def create_learning_element_v2(
             condition7 = "created_at" in data
             condition8 = "university" in data
             if (
-                    condition1
-                    and condition2
-                    and condition3
-                    and condition4
-                    and condition5
-                    and condition6
-                    and condition7
-                    and condition8
+                condition1
+                and condition2
+                and condition3
+                and condition4
+                and condition5
+                and condition6
+                and condition7
+                and condition8
             ):
                 condition9 = type(data["lms_id"]) == int
                 condition10 = type(data["activity_type"]) == str
@@ -877,13 +876,13 @@ def create_learning_element_v2(
                 condition14 = type(data["created_at"]) == str
                 condition15 = type(data["university"]) == str
                 if (
-                        condition9
-                        and condition10
-                        and condition11
-                        and condition12
-                        and condition13
-                        and condition14
-                        and condition15
+                    condition9
+                    and condition10
+                    and condition11
+                    and condition12
+                    and condition13
+                    and condition14
+                    and condition15
                 ):
                     condition16 = re.search(cons.date_format_search, data["created_at"])
                     if condition16:
@@ -1798,10 +1797,7 @@ def post_calculate_learning_path(_: Dict[str, Any], user_id: str, lms_user_id: s
 @cross_origin(supports_credentials=True)
 @json_only()
 def post_calculate_learning_path_for_all_students(
-        data: Dict[str, Any],
-        user_id: str,
-        course_id: str,
-        topic_id: str
+    data: Dict[str, Any], user_id: str, course_id: str, topic_id: str
 ):
     match request.method:
         case "POST":
@@ -1812,11 +1808,7 @@ def post_calculate_learning_path_for_all_students(
                 condition8 = type(data["role"]) is str
                 if condition6 and condition8:
                     role = data["role"].lower()
-                    available_roles = [
-                        "admin",
-                        "course creator",
-                        "teacher"
-                    ]
+                    available_roles = ["admin", "course creator", "teacher"]
                     if role not in available_roles:
                         raise err.NoValidRoleError()
                     else:
@@ -1831,8 +1823,8 @@ def post_calculate_learning_path_for_all_students(
                         for student in students:
                             student_user_id = services.get_user_by_id(
                                 unit_of_work.SqlAlchemyUnitOfWork(),
-                                student['user_id'],
-                                None
+                                student["user_id"],
+                                None,
                             )
                             topic = services.get_topic_by_id(
                                 unit_of_work.SqlAlchemyUnitOfWork(),
@@ -1840,7 +1832,7 @@ def post_calculate_learning_path_for_all_students(
                                 None,
                                 course_id,
                                 None,
-                                topic_id
+                                topic_id,
                             )
 
                             results = []
@@ -1848,10 +1840,9 @@ def post_calculate_learning_path_for_all_students(
                             if topic["contains_le"]:
                                 # Get algorithm for the topic.
                                 algorithm = services.get_student_lpath_le_algorithm(
-                                    uow, student['id'], topic['id']
+                                    uow, student["id"], topic["id"]
                                 ) or services.get_lpath_le_algorithm_by_topic(
-                                    uow,
-                                    topic['id']
+                                    uow, topic["id"]
                                 )
                                 lpath_algorithm = (
                                     services.get_learning_path_algorithm_by_id(
@@ -1863,11 +1854,11 @@ def post_calculate_learning_path_for_all_students(
                                 results.append(
                                     services.create_learning_path(
                                         unit_of_work.SqlAlchemyUnitOfWork(),
-                                        student_user_id['id'],
-                                        student_user_id['lms_user_id'],
-                                        student['id'],
+                                        student_user_id["id"],
+                                        student_user_id["lms_user_id"],
+                                        student["id"],
                                         course_id,
-                                        topic['id'],
+                                        topic["id"],
                                         lpath_algorithm["short_name"].lower(),
                                     )
                                 )
@@ -2034,17 +2025,15 @@ def teacher_lp_le_algorithm_admin(data: Dict[str, Any], user_id: str, topic_id: 
                         unit_of_work.SqlAlchemyUnitOfWork()
                     )
                     for student in students:
-                        student_id = student['id']
+                        student_id = student["id"]
                         services.add_student_lpath_le_algorithm(
                             unit_of_work.SqlAlchemyUnitOfWork(),
                             student_id,
                             topic_id,
-                            algorithm["id"]
+                            algorithm["id"],
                         )
                     result = services.create_learning_path_learning_element_algorithm(
-                        unit_of_work.SqlAlchemyUnitOfWork(),
-                        topic_id,
-                        algorithm["id"]
+                        unit_of_work.SqlAlchemyUnitOfWork(), topic_id, algorithm["id"]
                     )
                     status_code = 201
                     return jsonify(result), status_code

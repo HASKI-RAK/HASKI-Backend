@@ -76,7 +76,7 @@ class Course:
             "lms_id": self.lms_id,
             "name": self.name,
             "university": self.university,
-            "start_date": self.start_date
+            "start_date": self.start_date,
         }
 
 

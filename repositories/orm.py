@@ -22,7 +22,7 @@ course = Table(
     Column("lms_id", Integer, nullable=False),
     Column("name", String, nullable=False),
     Column("university", String, nullable=False),
-    Column("start_date", DateTime, nullable=False)
+    Column("start_date", DateTime, nullable=False),
 )
 
 course_creator = Table(

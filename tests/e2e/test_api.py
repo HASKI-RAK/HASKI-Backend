@@ -3811,7 +3811,7 @@ class TestApi:
         ],
     )
     def test_api_create_course_and_add_all_students(
-            self, client_class, input, keys_expected, status_code_expected, save_id
+        self, client_class, input, keys_expected, status_code_expected, save_id
     ):
         global user_id_course_creator
         input["created_by"] = user_id_course_creator

@@ -304,7 +304,7 @@ class OIDCLoginFlask(OIDCLogin):
                 if user["role"] == "student" or user["role"] == "course creator":
                     courses = services.get_courses_by_uni(
                         unit_of_work.SqlAlchemyUnitOfWork(),
-                        university=user["university"]
+                        university=user["university"],
                     )
                     for course in courses["courses"]:
                         student = services.get_student_by_user_id(
