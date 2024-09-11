@@ -43,6 +43,7 @@ config_file = {
 
 host = config_file["https://moodle.haski.app"]["tool_url"].split("//")[1]
 
+
 form = {
     "iss": "https://moodle.haski.app",
     "client_id": "VRCKkhKlZtHNHtD",

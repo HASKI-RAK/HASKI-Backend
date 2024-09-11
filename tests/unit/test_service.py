@@ -8,7 +8,6 @@ import pytest
 import errors.errors as err
 import repositories.repository as repository
 import service_layer.crypto.JWTKeyManagement as JWTKeyManagement
-from domain.domainModel import model as DM
 from domain.userAdministartion import model as UA
 from service_layer import services, unit_of_work
 from utils import constants as cons
@@ -1355,7 +1354,7 @@ def create_course_for_tests(uow):
     )
 
 
-def create_course_with_set_start_date_for_tests(uow):
+def create_course_with_start_date_for_tests(uow):
     services.create_course(
         uow=uow,
         lms_id=2,
@@ -3057,7 +3056,7 @@ def test_get_courses_by_uni():
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
     create_course_for_tests(uow)
-    create_course_with_set_start_date_for_tests(uow)
+    create_course_with_start_date_for_tests(uow)
     add_student_to_course_for_tests(uow)
     result = services.get_courses_by_uni(uow=uow, university=university_example)
     assert type(result) is dict
