@@ -1708,6 +1708,45 @@ def delete_news():
     return "ok", 201
 
 
+# Logbuffer
+@app.route("/user/<user_id>/logbuffer", methods=["POST"])
+@cross_origin(supports_credentials=True)
+@json_only()
+def logbuffer(data: Dict[str, Any], user_id):
+    for el in ["content", "timestamp"]:
+        if el not in data:
+            raise err.MissingParameterError()
+
+    result = services.create_logbuffer(
+        unit_of_work.SqlAlchemyUnitOfWork(),
+        user_id,
+        data["content"],
+        data["timestamp"],
+        datetime.today(),
+    )
+
+    if result is None:
+        raise err.LogBufferError()
+
+    status_code = 201
+    return jsonify(result), status_code
+
+
+@app.route("/user/<user_id>/logbuffer", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_logbuffer(user_id):
+    result = services.get_logbuffer(unit_of_work.SqlAlchemyUnitOfWork(), user_id)
+    status_code = 200
+    return jsonify(result), status_code
+
+
+@app.route("/user/<user_id>/logbuffer", methods=["DELETE"])
+@cross_origin(supports_credentials=True)
+def delete_logbuffer(user_id):
+    services.delete_logbuffer(unit_of_work.SqlAlchemyUnitOfWork(), user_id)
+    return "ok", 201
+
+
 # Log Endpoints
 @app.route("/logs/frontend", methods=["POST"])
 @cross_origin(supports_credentials=True)
