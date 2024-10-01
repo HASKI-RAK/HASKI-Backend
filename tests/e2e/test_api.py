@@ -2300,12 +2300,7 @@ class TestApi:
     def test_get_learning_path_algorithm(
         self, client_class, user_id, topic_id, keys_expected, status_code_expected
     ):
-        url = (
-            path_topic
-            + "/"
-            + str(topic_id)
-            + path_teacher_algorithm
-        )
+        url = path_topic + "/" + str(topic_id) + path_teacher_algorithm
         r = client_class.get(url)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))

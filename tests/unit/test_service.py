@@ -787,7 +787,7 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
 
     def get_lpath_le_algorithm_by_topic(self, topic_id) -> dict:
         i: dict
-        result : dict = {}
+        result: dict = {}
         for i in self.lpath_le_algorithm:
             if i.topic_id == topic_id:
                 result = i
