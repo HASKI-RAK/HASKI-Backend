@@ -1746,8 +1746,7 @@ def post_calculate_learning_path(_: Dict[str, Any], user_id: str, lms_user_id: s
             )
 
             # If there are no courses, initiate an empty array
-            if not courses["courses"]:
-                results = []
+            results = []
 
             for course in courses["courses"]:
                 # Get every available topic in all course.
@@ -1758,7 +1757,6 @@ def post_calculate_learning_path(_: Dict[str, Any], user_id: str, lms_user_id: s
                     )["topics"]
                 ]
 
-                results = []
                 for topic in topics:
                     if topic["contains_le"]:
                         # Get algorithm for the topic.
