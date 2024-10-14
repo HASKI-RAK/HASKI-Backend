@@ -2032,7 +2032,7 @@ def post_teacher_lp_le_algorithm(
             user = services.get_user_by_id(
                 unit_of_work.SqlAlchemyUnitOfWork(), user_id, lms_user_id
             )
-            permitted_roles = ["teacher", "course_creator", "admin"]
+            permitted_roles = ["teacher", "course creator", "admin"]
             condition2 = user["role"] in permitted_roles
             if condition1 and condition2:
                 condition3 = type(data["algorithm_short_name"]) is str

@@ -13,7 +13,7 @@ from errors import errors as err
 class AbstractRepository(abc.ABC):  # pragma: no cover
     @abc.abstractmethod
     def add_course_creator_to_course(
-        self, course_creator_cours
+        self, course_creator_course
     ) -> DM.CourseCreatorCourse:
         raise NotImplementedError
 

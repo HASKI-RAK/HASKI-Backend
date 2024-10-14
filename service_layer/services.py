@@ -1029,7 +1029,7 @@ def delete_user(uow: unit_of_work.AbstractUnitOfWork, user_id, lms_user_id):
         match user["role"]:
             case "admin":
                 delete_admin(uow, user["id"])
-            case "course_creator":
+            case "course creator":
                 delete_course_creator(uow, user["id"])
             case "student":
                 delete_student(uow, user["id"])
