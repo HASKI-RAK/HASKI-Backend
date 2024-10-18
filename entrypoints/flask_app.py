@@ -165,75 +165,63 @@ def post_course_and_add_all_students(data: Dict[str, Any]):
             condition3 = "lms_id" in data
             condition4 = "university" in data
             condition5 = "created_by" in data
-            condition6 = "created_at" in data
-            condition13 = "start_date" in data
+            condition10 = "start_date" in data
             if (
                 condition1
                 and condition2
                 and condition3
                 and condition4
                 and condition5
-                and condition6
             ):
-                condition7 = type(data["lms_id"]) is int
-                condition8 = type(data["name"]) is str
-                condition9 = type(data["university"]) is str
-                condition10 = type(data["created_by"]) is int
-                condition11 = type(data["created_at"]) is str
+                condition6 = type(data["lms_id"]) is int
+                condition7 = type(data["name"]) is str
+                condition8 = type(data["university"]) is str
+                condition9 = type(data["created_by"]) is int
                 if (
-                    condition7
+                    condition6
+                    and condition7
                     and condition8
                     and condition9
-                    and condition10
-                    and condition11
                 ):
-                    condition12 = re.search(cons.date_format_search, data["created_at"])
-                    if condition12:
-                        created_at = datetime.strptime(
-                            data["created_at"], cons.date_format
-                        )
-                        if condition13:
-                            condition14 = type(data["start_date"]) is str
-                            if condition14:
-                                condition15 = re.search(
-                                    cons.date_format_search, data["start_date"]
-                                )
-                                if condition15:
-                                    start_date = datetime.strptime(
-                                        data["start_date"], cons.date_format
-                                    )
-                        else:
-                            start_date = datetime.strptime(
-                                data["created_at"], cons.date_format
-                            ).date()
-                        course = services.create_course(
-                            unit_of_work.SqlAlchemyUnitOfWork(),
-                            data["lms_id"],
-                            data["name"],
-                            data["university"],
-                            data["created_by"],
-                            created_at,
-                            start_date,
-                        )
-                        students = services.get_all_students(
-                            unit_of_work.SqlAlchemyUnitOfWork()
-                        )
-                        for student in students:
-                            student_id = student["id"]
-                            course_id = course["id"]
-                            services.add_student_to_course(
-                                unit_of_work.SqlAlchemyUnitOfWork(),
-                                student_id,
-                                course_id,
+                    current_date = datetime.now().strftime(cons.date_format)
+                    if condition10:
+                        condition11 = type(data["start_date"]) is str
+                        if condition11:
+                            condition12 = re.search(
+                                cons.date_format_search, data["start_date"]
                             )
-                        status_code = 201
-                        return jsonify(course), status_code
+                            if condition12:
+                                start_date = datetime.strptime(
+                                    data["start_date"], cons.date_format
+                                )
                     else:
-                        raise err.WrongParameterValueError(
-                            message=cons.date_format_message
+                        start_date = current_date
+                    course = services.create_course(
+                        unit_of_work.SqlAlchemyUnitOfWork(),
+                        data["lms_id"],
+                        data["name"],
+                        data["university"],
+                        data["created_by"],
+                        current_date,
+                        start_date,
+                    )
+                    students = services.get_all_students(
+                        unit_of_work.SqlAlchemyUnitOfWork()
+                    )
+                    for student in students:
+                        student_id = student["id"]
+                        course_id = course["id"]
+                        services.add_student_to_course(
+                            unit_of_work.SqlAlchemyUnitOfWork(),
+                            student_id,
+                            course_id,
                         )
+                    status_code = 201
+                    return jsonify(course), status_code
                 else:
-                    raise err.WrongParameterValueError()
+                    raise err.WrongParameterValueError(
+                        message=cons.date_format_message
+                    )
             else:
                 raise err.MissingParameterError()
 
@@ -2329,10 +2317,6 @@ def get_teacher_courses(user_id, lms_user_id, teacher_id):
             return jsonify(courses), status_code
 
 
-if __name__ == "__main__":
-    app.run(port=5000, debug=True)
-
-
 @app.route("/student/<student_id>/topic/<topic_id>/rating", methods=["POST"])
 @cross_origin(supports_credentials=True)
 def post_create_student_rating(student_id: str, topic_id: str):
@@ -2423,3 +2407,7 @@ def get_learning_element_ratings():
             )
             status_code = 200
             return jsonify(result), status_code
+
+
+if __name__ == "__main__":
+    app.run(port=5000, debug=True)

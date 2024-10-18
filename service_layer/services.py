@@ -2609,6 +2609,8 @@ def update_student_lpath_le_algorithm(
         )
         uow.commit()
         return student_lpath_le_algorithm.serialize()
+
+
 def update_ratings(
     uow: unit_of_work.AbstractUnitOfWork,
     student_id: int,
