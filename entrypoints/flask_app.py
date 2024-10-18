@@ -2007,10 +2007,15 @@ def get_student_lp_le_algorithm(user_id: str, topic_id: str):
             return jsonify(algorithm), status_code
 
 
-@app.route("/user/<user_id>/topic/<topic_id>/studentAlgorithm", methods=["POST"])
+@app.route("/user/<user_id>/<lms_user_id>/course/<course_id>"+
+           "/topic/<topic_id>/studentAlgorithm", methods=["POST"])
 @cross_origin(supports_credentials=True)
 @json_only(ignore=["GET"])
-def post_student_lp_le_algorithm(data: Dict[str, Any], user_id: str, topic_id: int):
+def post_student_lp_le_algorithm(data: Dict[str, Any],
+                                  user_id: str,
+                                  lms_user_id: int,
+                                  course_id: int,
+                                  topic_id: int):
     method = request.method
     match method:
         case "POST":
@@ -2046,6 +2051,15 @@ def post_student_lp_le_algorithm(data: Dict[str, Any], user_id: str, topic_id: i
                             topic_id,
                             algorithm["id"],
                         )
+                        services.create_learning_path(
+                                unit_of_work.SqlAlchemyUnitOfWork(),
+                                user_id,
+                                lms_user_id,
+                                student_id,
+                                course_id,
+                                topic_id,
+                                data["algorithm_short_name"].lower(),
+                            )
                         status_code = 201
                         return jsonify(result), status_code
                 else:
