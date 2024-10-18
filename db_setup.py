@@ -1006,8 +1006,10 @@ def setup_db(
             ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
             classification text NOT NULL,
             position integer NOT NULL,
-            university text NOT NULL
+            university text NOT NULL,
+            CONSTRAINT default_learning_path_pkey PRIMARY KEY (id)
         )
+        
         TABLESPACE pg_default;
 
         ALTER TABLE IF EXISTS public.default_learning_path
@@ -1031,7 +1033,6 @@ def setup_db(
     ALTER TABLE IF EXISTS public.student_learning_path_learning_element_algorithm
         OWNER to postgres;
     """
-
     cursor.execute(sql)
 
     sql = """
