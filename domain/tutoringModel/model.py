@@ -158,6 +158,22 @@ class LearningPathLearningElement:
         }
 
 
+class LearningPathLearningElementAlgorithm:
+    def __init__(
+        self,
+        topic_id: int,
+        algorithm_id: int,
+    ) -> None:
+        self.topic_id = topic_id
+        self.algorithm_id = algorithm_id
+
+    def serialize(self):
+        return {
+            "topic_id": self.topic_id,
+            "algorithm_id": self.algorithm_id,
+        }
+
+
 class DefaultLearningPathElement:
     def __init__(self, classification: str, position: int, university: str) -> None:
         self.id = None
