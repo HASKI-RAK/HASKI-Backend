@@ -1767,7 +1767,6 @@ def post_calculate_learning_path(_: Dict[str, Any], user_id: str, lms_user_id: s
                                 lpath_algorithm["short_name"].lower(),
                             )
                         )
-
             # Return results with status code.
             status_code = 201
             return jsonify(results), status_code
