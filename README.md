@@ -152,6 +152,8 @@ There shouldn't be any code smells left, when contributing to the project.
 After a Pull Request, one of the Code Owners will check and give feedback before the merge is possible.
 
 ## Moodle
+The university of the haski_user is automatically set to the same name as the moodle home-site.
+In our case the moodle home-site is named HS-KE, TH-AB, ...
 
 The functionality to send requests to moodle via REST-API needs to be activated in moodle settings. 
 The following settings are necessary, do not forget so save the changes:
