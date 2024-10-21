@@ -82,9 +82,9 @@ def add_student_to_topics(uow: unit_of_work.AbstractUnitOfWork, student_id, cour
             uow.student_topic.add_student_to_topic(student_topic)
             uow.commit()
             add_student_to_learning_element(uow, student_id, topic["topic_id"])
-            topic_algorithm = get_lpath_le_algorithm_by_topic(uow, topic["topic_id"])
-            if topic_algorithm != []:
-                add_student_lpath_le_algorithm(uow, student_id, topic_algorithm["topic_id"], topic_algorithm["algorithm_id"])
+            ##topic_algorithm = get_lpath_le_algorithm_by_topic(uow, topic["topic_id"])
+            ##if topic_algorithm != []:
+            ##    add_student_lpath_le_algorithm(uow, student_id, topic_algorithm["topic_id"], topic_algorithm["algorithm_id"])
 
 
 def add_student_learning_element_visit(
