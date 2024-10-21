@@ -20,7 +20,8 @@ lti_permissions = {
 class RoleMapper:
     """Maps IMS roles to a single LTI role
     Example:
-    IMS roles: http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor,\
+    IMS roles:
+    http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor,\
         http://purl.imsglobal.org/vocab/lis/v2/membership#Learner
     LTI role: Instructor
     return by get_role(): course creator

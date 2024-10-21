@@ -1320,14 +1320,9 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             return result
 
     def get_courses_by_student_id(self, student_id):
-        try:
-            return (
-                self.session.query(DM.StudentCourse)
-                .filter_by(student_id=student_id)
-                .all()
-            )
-        except Exception:
-            raise err.DatabaseQueryError()
+        result = (self.session.query(DM.StudentCourse)
+                  .filter_by(student_id=student_id).all())
+        return result
 
     def get_course_creator_by_id(self, user_id) -> UA.CourseCreator:
         result = self.session.query(UA.CourseCreator).filter_by(user_id=user_id).all()
