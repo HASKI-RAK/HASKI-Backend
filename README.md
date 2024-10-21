@@ -152,6 +152,8 @@ There shouldn't be any code smells left, when contributing to the project.
 After a Pull Request, one of the Code Owners will check and give feedback before the merge is possible.
 
 ## Moodle
+The university of the haski_user is automatically set to the same name as the moodle home-site.
+In our case the moodle home-site is named HS-KE, TH-AB, ...
 
 The functionality to send requests to moodle via REST-API needs to be activated in moodle settings. 
 The following settings are necessary, do not forget so save the changes:
@@ -162,6 +164,11 @@ The following settings are necessary, do not forget so save the changes:
 Also it is necessary to create a token for a user with admin rights. 
 - Go to Site administration -> Server -> Manage tokens -> Create token
 - Select an admin user and create a token with the Service "Moodle mobile web service", set the validity to your needs and save the token.
+
+To be able to create courses, topics and learning elements in the frontend the moodle user
+- has to be a teacher or manager in the moodle course where the LTI-Activity is located
+- is not a global moodle admin
+-> The user automatically gets the "course creator" role upon first login into the frontend
 
 Lastly you have to add the following lines to your .flaskenv file:
 - REST_LMS_URL= "yourmoodleurl" (something like https://moodle.haski.de)
