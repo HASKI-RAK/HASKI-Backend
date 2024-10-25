@@ -67,6 +67,12 @@ sql = """
 """
 cursor.execute(sql)
 
+sql = """
+    INSERT INTO default_learning_path (classification, position, university)
+    VALUES ('RQ', 9, 'HS-KE')
+"""
+cursor.execute(sql)
+
 # Create default learning path for TH-AB
 sql = """
     INSERT INTO default_learning_path (classification, position, university)
@@ -125,6 +131,12 @@ cursor.execute(sql)
 sql = """
     INSERT INTO default_learning_path (classification, position, university)
     VALUES ('ZF', 10, 'TH-AB')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO default_learning_path (classification, position, university)
+    VALUES ('RQ', 11, 'TH-AB')
 """
 cursor.execute(sql)
 
