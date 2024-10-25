@@ -424,6 +424,10 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
+    def get_learning_element_by_lms_id(self, learning_element_lms_id) -> DM.LearningElement:
+        raise NotImplementedError
+
+    @abc.abstractmethod
     def get_learning_elements_by_uni(self, university):
         raise NotImplementedError
 
@@ -1386,6 +1390,17 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         result = (
             self.session.query(DM.LearningElement)
             .filter_by(id=learning_element_id)
+            .all()
+        )
+        if result == []:
+            raise err.NoValidIdError()
+        else:
+            return result
+
+    def get_learning_element_by_lms_id(self, learning_element_lms_id) -> DM.LearningElement:
+        result = (
+            self.session.query(DM.LearningElement)
+            .filter_by(lms_id=learning_element_lms_id)
             .all()
         )
         if result == []:
