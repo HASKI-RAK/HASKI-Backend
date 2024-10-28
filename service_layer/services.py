@@ -1345,20 +1345,45 @@ def get_learning_characteristics(
         return result
 
 
-def get_learning_element_by_id(
+def get_learning_element_by_lms_id(
     uow: unit_of_work.AbstractUnitOfWork,
-    user_id,
-    lms_user_id,
     student_id,
-    course_id,
-    topic_id,
-    learning_element_id,
+    learning_element_lms_id,
+) -> dict:
+    with uow:
+        learning_element = uow.learning_element.get_learning_element_by_lms_id(learning_element_lms_id)
+        if learning_element[0] is None:
+            result = {}
+        else:
+            student_learning_element = (
+                uow.student_learning_element.get_student_learning_element(
+                    student_id, learning_element[0].id
+                )
+            )
+            if student_learning_element == []:
+                learning_element[0].student_learning_element = None
+            else:
+                learning_element[0].student_learning_element = student_learning_element[
+                    0
+                ].serialize()
+            result = learning_element[0].serialize()
+        return result
+
+
+def get_learning_element_by_id(
+        uow: unit_of_work.AbstractUnitOfWork,
+        user_id,
+        lms_user_id,
+        student_id,
+        course_id,
+        topic_id,
+        learning_element_id,
 ) -> dict:
     with uow:
         get_user_by_id(uow, user_id, lms_user_id)
         get_course_by_id(uow, user_id, lms_user_id, course_id)
         get_topic_by_id(uow, user_id, lms_user_id, course_id, student_id, topic_id)
-        learning_element = uow.learning_element.get_learning_element_by_lms_id(
+        learning_element = uow.learning_element.get_learning_element_by_id(
             learning_element_id
         )
         if learning_element[0] is None:
@@ -1366,7 +1391,7 @@ def get_learning_element_by_id(
         else:
             student_learning_element = (
                 uow.student_learning_element.get_student_learning_element(
-                    student_id, learning_element[0].id
+                    student_id, learning_element_id
                 )
             )
             if student_learning_element == []:

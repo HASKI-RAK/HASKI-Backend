@@ -1859,12 +1859,12 @@ def post_calculate_learning_path_for_all_students(
 
 @app.route(
     "/user/<user_id>/course/"
-    + "<course_id>/topic/<topic_id>/learningElement/<learning_element_id>/rating",
+    + "<course_id>/topic/<topic_id>/learningElement/<learning_element_lms_id>/rating",
     methods=["POST"],
 )
 @cross_origin(supports_credentials=True)
 def post_calculate_rating(
-    user_id: str, course_id: str, topic_id: str, learning_element_id: str
+    user_id: str, course_id: str, topic_id: str, learning_element_lms_id: str
 ):
     match request.method:
         case "POST":
@@ -1878,6 +1878,12 @@ def post_calculate_rating(
             student = services.get_student_by_user_id(uow=uow, user_id=user_id)
 
             # Get learning element by learning element id.
+            learning_element_by_lms = services.get_learning_element_by_lms_id(
+                uow=uow,
+                student_id=student["id"],
+                learning_element_lms_id=learning_element_lms_id,
+            )
+
             learning_element = services.get_learning_element_by_id(
                 uow=uow,
                 user_id=user_id,
@@ -1885,7 +1891,7 @@ def post_calculate_rating(
                 student_id=student["id"],
                 course_id=course_id,
                 topic_id=topic_id,
-                learning_element_id=learning_element_id,
+                learning_element_id=learning_element_by_lms["id"],
             )
 
             # Get classification of learning element id.
