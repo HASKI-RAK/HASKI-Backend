@@ -1908,7 +1908,7 @@ def post_calculate_rating(
                 response = services.get_moodle_most_recent_attempt_by_user(
                     uow=uow,
                     course_id=int(course_id),
-                    learning_element_id=int(learning_element["id"]),
+                    learning_element_id=int(learning_element_lms_id),
                     lms_user_id=str(user["lms_user_id"]),
                 )
 
