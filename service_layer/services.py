@@ -2683,7 +2683,7 @@ def update_ratings(
         if learning_element_ratings == []:
             # If no learning element rating is available,
             # create an initial learning element rating on concept.
-            create_learning_element_rating(
+            learning_element_rating = create_learning_element_rating(
                 uow=uow,
                 learning_element_id=learning_element_id,
                 topic_id=topic_id,
@@ -2697,7 +2697,7 @@ def update_ratings(
             learning_element_rating = learning_element_ratings[-1]
 
         # Create student rating and learning element rating objects.
-        student_rating = LM.StudentRating(
+        mapped_student_rating = LM.StudentRating(
             student_id=student_rating["student_id"],
             topic_id=student_rating["topic_id"],
             rating_value=student_rating["rating_value"],
@@ -2705,7 +2705,7 @@ def update_ratings(
             timestamp=student_rating["timestamp"],
         )
 
-        learning_element_rating = DM.LearningElementRating(
+        mapped_learning_element_rating = DM.LearningElementRating(
             learning_element_id=learning_element_rating["learning_element_id"],
             topic_id=learning_element_rating["topic_id"],
             rating_value=learning_element_rating["rating_value"],
@@ -2714,23 +2714,23 @@ def update_ratings(
         )
 
         # Calculate updated ratings.
-        updated_student_rating = student_rating.calculate_updated_rating(
+        updated_student_rating = mapped_student_rating.calculate_updated_rating(
             attempt_timestamp=timestamp,
             attempt_result=attempt_result,
             learning_element_id=learning_element_id,
-            learning_element_rating_value=learning_element_rating.rating_value,
-            learning_element_rating_deviation=learning_element_rating.rating_deviation,
-            learning_element_rating_timestamp=learning_element_rating.timestamp,
+            learning_element_rating_value=mapped_learning_element_rating.rating_value,
+            learning_element_rating_deviation=mapped_learning_element_rating.rating_deviation,
+            learning_element_rating_timestamp=mapped_learning_element_rating.timestamp,
         )
 
         updated_learning_element_rating = (
-            learning_element_rating.calculate_updated_rating(
+            mapped_learning_element_rating.calculate_updated_rating(
                 attempt_timestamp=timestamp,
                 attempt_result=attempt_result,
                 student_id=student_id,
-                student_rating_value=student_rating.rating_value,
-                student_rating_deviation=student_rating.rating_deviation,
-                student_rating_timestamp=student_rating.timestamp,
+                student_rating_value=mapped_student_rating.rating_value,
+                student_rating_deviation=mapped_student_rating.rating_deviation,
+                student_rating_timestamp=mapped_student_rating.timestamp,
             )
         )
 
