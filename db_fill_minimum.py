@@ -73,6 +73,24 @@ sql = """
 """
 cursor.execute(sql)
 
+sql = """
+    INSERT INTO default_learning_path (classification, position, university)
+    VALUES ('FO', 10, 'HS-KE')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO default_learning_path (classification, position, university)
+    VALUES ('LZ', 11, 'HS-KE')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO default_learning_path (classification, position, university)
+    VALUES ('AB', 12, 'HS-KE')
+"""
+cursor.execute(sql)
+
 # Create default learning path for TH-AB
 sql = """
     INSERT INTO default_learning_path (classification, position, university)
@@ -139,6 +157,25 @@ sql = """
     VALUES ('RQ', 11, 'TH-AB')
 """
 cursor.execute(sql)
+
+sql = """
+    INSERT INTO default_learning_path (classification, position, university)
+    VALUES ('FO', 12, 'TH-AB')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO default_learning_path (classification, position, university)
+    VALUES ('LZ', 13, 'TH-AB')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO default_learning_path (classification, position, university)
+    VALUES ('AB', 14, 'TH-AB')
+"""
+cursor.execute(sql)
+
 
 # Create learning path algorithms
 sql = """
