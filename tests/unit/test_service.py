@@ -42,6 +42,7 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         learning_element_rating=[],
         learning_path=[],
         learning_path_algorithm=[],
+        lpath_le_algorithm=[],
         learning_path_learning_element=[],
         learning_path_topic=[],
         learning_strategy=[],
@@ -82,6 +83,7 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         self.learning_element_rating = set(learning_element_rating)
         self.learning_path = set(learning_path)
         self.learning_path_algorithm = set(learning_path_algorithm)
+        self.lpath_le_algorithm = set(lpath_le_algorithm)
         self.learning_path_learning_element = set(learning_path_learning_element)
         self.learning_path_topic = set(learning_path_topic)
         self.learning_strategy = set(learning_strategy)
@@ -193,6 +195,10 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
     def create_learning_path_algorithm(self, learning_path_algorithm) -> None:
         learning_path_algorithm.id = len(self.learning_path_algorithm) + 1
         self.learning_path_algorithm.add(learning_path_algorithm)
+
+    def create_learning_path_learning_element_algorithm(self, lp_le_algorithm):
+        lp_le_algorithm.id = len(self.lpath_le_algorithm) + 1
+        self.lpath_le_algorithm.add(lp_le_algorithm)
 
     def create_learning_path_learning_element(self, learning_path_learning_element):
         learning_path_learning_element.id = len(self.learning_path_learning_element) + 1
@@ -793,6 +799,14 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 result.append(i)
         return result
 
+    def get_lpath_le_algorithm_by_topic(self, topic_id) -> dict:
+        i: dict
+        result: dict = {}
+        for i in self.lpath_le_algorithm:
+            if i.topic_id == topic_id:
+                result = i
+        return result
+
     def get_student_by_id(self, user_id):
         result = []
         for i in self.student:
@@ -1097,6 +1111,38 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
             to_update.done = True
             self.student_learning_element.add(to_update)
 
+    def update_learning_path_learning_element_algorithm(
+        self, topic_id, algorithm_short_name
+    ) -> None:
+        to_update = next(
+            (p for p in self.lpath_le_algorithm if p.topic_id == topic_id),
+            None,
+        )
+        if to_update is not None:
+            self.lpath_le_algorithm.remove(to_update)
+            to_update.id = len(self.lpath_le_algorithm)
+            to_update.algorithm_short_name = algorithm_short_name
+            self.lpath_le_algorithm.add(to_update)
+
+    def update_student_lpath_le_algorithm(
+        self, student_id, topic_id, algorithm_id
+    ) -> None:
+        to_update = next(
+            (
+                p
+                for p in self.student_learning_path_learning_element_algorithm
+                if p.student_id == student_id and p.topic_id == topic_id
+            ),
+            None,
+        )
+        if to_update is not None:
+            self.student_learning_path_learning_element_algorithm.remove(to_update)
+            to_update.id = len(self.student_learning_path_learning_element_algorithm)
+            to_update.algorithm_id = algorithm_id
+            to_update.student_id = student_id
+            to_update.topic_id = topic_id
+            self.student_learning_path_learning_element_algorithm.add(to_update)
+
     def update_topic(self, topic_id, topic):
         to_remove = next((p for p in self.topic if p.id == topic_id), None)
         if to_remove is not None:
@@ -1135,6 +1181,7 @@ class FakeUnitOfWork(unit_of_work.AbstractUnitOfWork):  # pragma: no cover
         self.learning_element_rating = FakeRepository()
         self.learning_path = FakeRepository()
         self.learning_path_algorithm = FakeRepository()
+        self.lpath_le_algorithm = FakeRepository()
         self.learning_path_learning_element = FakeRepository()
         self.learning_path_topic = FakeRepository()
         self.learning_strategy = FakeRepository()
@@ -1434,6 +1481,14 @@ def create_learning_path_algorithm_for_tests(uow):
         uow=uow,
         short_name="aco",
         full_name="Ant Colony Optimization",
+    )
+
+
+def create_learning_path_learning_element_algorithm_for_tests(uow):
+    return services.create_learning_path_learning_element_algorithm(
+        uow=uow,
+        topic_id=1,
+        algorithm_id=1,
     )
 
 
@@ -2952,6 +3007,58 @@ def test_get_learning_path_algorithm_by_short_name():
     create_learning_path_algorithm_for_tests(uow)
     result = services.get_learning_path_algorithm_by_short_name(
         uow=uow, short_name="aco"
+    )
+    assert isinstance(result, dict)
+    assert result != {}
+
+
+def test_create_learning_path_learning_element_algorithm():
+    uow = FakeUnitOfWork()
+    create_topic_for_tests(uow)
+    create_learning_path_algorithm_for_tests(uow)
+    initial_entries = len(uow.lpath_le_algorithm.lpath_le_algorithm)
+    result = services.create_learning_path_learning_element_algorithm(
+        uow=uow, topic_id=1, algorithm_id=1
+    )
+    entries = len(uow.lpath_le_algorithm.lpath_le_algorithm)
+    assert isinstance(result, dict)
+    assert result != {}
+    assert initial_entries + 1 == entries
+
+
+def test_get_lpath_le_algorithm_by_topic():
+    uow = FakeUnitOfWork()
+    create_learning_path_algorithm_for_tests(uow)
+    create_learning_path_learning_element_algorithm_for_tests(uow)
+    result = services.get_lpath_le_algorithm_by_topic(uow=uow, topic_id=1)
+    assert isinstance(result, dict)
+    assert result != {}
+
+
+def test_update_learning_path_learning_element_algorithm():
+    uow = FakeUnitOfWork()
+    create_topic_for_tests(uow)
+    create_learning_path_algorithm_for_tests(uow)
+    create_learning_path_learning_element_algorithm_for_tests(uow)
+    result = services.update_learning_path_learning_element_algorithm(
+        uow=uow,
+        topic_id=1,
+        algorithm_short_name="aco",
+    )
+    assert isinstance(result, dict)
+    assert result != {}
+
+
+def test_update_student_lpath_le_algorithm():
+    uow = FakeUnitOfWork()
+    create_topic_for_tests(uow)
+    create_student_for_tests(uow)
+    create_learning_path_algorithm_for_tests(uow)
+    result = services.update_student_lpath_le_algorithm(
+        uow=uow,
+        student_id=1,
+        topic_id=1,
+        algorithm_id=1,
     )
     assert isinstance(result, dict)
     assert result != {}

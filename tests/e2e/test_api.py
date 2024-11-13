@@ -11,6 +11,10 @@ user_id_teacher = 0
 teacher_id = 0
 user_id_student = 0
 student_id = 0
+lms_user_id_admin = 1
+lms_user_id_creator = 2
+lms_user_id_teacher = 3
+lms_user_id_student = 4
 course_id = 0
 topic_id = 0
 sub_topic_id = 0
@@ -45,6 +49,8 @@ path_teacher = "/teacher"
 path_topic = "/topic"
 path_user = "/user"
 path_algorithm = "/algorithm"
+path_student_algorithm = "/studentAlgorithm"
+path_teacher_algorithm = "/teacherAlgorithm"
 path_rating = "/rating"
 
 ils_complete = [
@@ -240,7 +246,7 @@ class TestApi:
             (
                 {
                     "name": "Achim Admin",
-                    "lms_user_id": 1,
+                    "lms_user_id": lms_user_id_admin,
                     "role": "Admin",
                     "university": "TH-AB",
                     "password": "password",
@@ -261,7 +267,7 @@ class TestApi:
             (
                 {
                     "name": "Claus Creator",
-                    "lms_user_id": 2,
+                    "lms_user_id": lms_user_id_creator,
                     "role": "Course Creator",
                     "university": "TH-AB",
                     "password": "password",
@@ -282,7 +288,7 @@ class TestApi:
             (
                 {
                     "name": "Tim Teacher",
-                    "lms_user_id": 3,
+                    "lms_user_id": lms_user_id_teacher,
                     "role": "Teacher",
                     "university": "TH-AB",
                     "password": "password",
@@ -303,7 +309,7 @@ class TestApi:
             (
                 {
                     "name": "Sonja Studentin",
-                    "lms_user_id": 4,
+                    "lms_user_id": lms_user_id_student,
                     "role": "Student",
                     "university": "TH-AB",
                     "password": "password",
@@ -869,6 +875,134 @@ class TestApi:
             + "/"
             + str(topic_id)
             + path_algorithm
+        )
+
+        r = client_class.post(url, json=input)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+
+    # Test post to create teacher learning path learning element algorithm
+    @pytest.mark.parametrize(
+        "input, user_id, lms_id, topic_id, keys_expected, status_code_expected",
+        [
+            (
+                {"algorithm_short_name": "aco"},
+                3,
+                lms_user_id_teacher,
+                1,
+                ["algorithm_id", "topic_id"],
+                201,
+            ),
+            (
+                {"algorithm_short_name": "aco"},
+                3,
+                lms_user_id_teacher,
+                1,
+                ["algorithm_id", "topic_id"],
+                201,
+            ),
+            # Wrong key
+            (
+                {"wrong_key": "algorithm"},
+                3,
+                lms_user_id_teacher,
+                1,
+                ["error", "message"],
+                400,
+            ),
+            # Wrong data type
+            (
+                {"algorithm_short_name": 2},
+                3,
+                lms_user_id_teacher,
+                1,
+                ["error", "message"],
+                400,
+            ),
+            # Unauthorized User
+            (
+                {"algorithm_short_name": "aco"},
+                4,
+                lms_user_id_student,
+                1,
+                ["error", "message"],
+                401,
+            ),
+        ],
+    )
+    def test_post_teacher_learning_path_learning_element_algorithm(
+        self,
+        client_class,
+        input,
+        user_id,
+        lms_id,
+        topic_id,
+        keys_expected,
+        status_code_expected,
+    ):
+        url = (
+            path_user
+            + "/"
+            + str(user_id)
+            + "/"
+            + str(lms_id)
+            + path_topic
+            + "/"
+            + str(topic_id)
+            + path_teacher_algorithm
+        )
+
+        r = client_class.post(url, json=input)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+
+    # Test post to create student learning path learning element algorithm
+    @pytest.mark.parametrize(
+        "input, topic_id, keys_expected, status_code_expected",
+        [
+            (
+                {"algorithm_short_name": "aco"},
+                1,
+                ["algorithm_id", "id", "student_id", "topic_id"],
+                201,
+            ),
+            (
+                {"algorithm_short_name": "aco"},
+                1,
+                ["algorithm_id", "id", "student_id", "topic_id"],
+                201,
+            ),
+            (
+                {"wrong_key": "algorithm"},
+                1,
+                ["error", "message"],
+                400,
+            ),
+            (
+                {"algorithm_short_name": 2},
+                1,
+                ["error", "message"],
+                400,
+            ),
+        ],
+    )
+    def test_p_student_learning_path_learning_element_algorithm(
+        self, client_class, input, topic_id, keys_expected, status_code_expected
+    ):
+        global user_id_student
+
+        url = (
+            path_user
+            + "/"
+            + str(user_id_student)
+            + path_topic
+            + "/"
+            + str(topic_id)
+            + path_student_algorithm
         )
 
         r = client_class.post(url, json=input)
@@ -2397,6 +2531,58 @@ class TestApi:
             + "/"
             + str(topic_id_use)
             + path_learning_path
+        )
+        r = client_class.get(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+
+    # Get a Learning Path Algorithm that a teacher chose for a topic
+    @pytest.mark.parametrize(
+        "user_id, topic_id, keys_expected, status_code_expected",
+        [
+            (
+                1,
+                1,
+                ["short_name", "algorithm_id", "topic_id"],
+                200,
+            ),
+        ],
+    )
+    def test_get_learning_path_algorithm(
+        self, client_class, user_id, topic_id, keys_expected, status_code_expected
+    ):
+        url = path_topic + "/" + str(topic_id) + path_teacher_algorithm
+        r = client_class.get(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+
+    # Get the learning path algorithm a student chose for a topic
+    @pytest.mark.parametrize(
+        "topic_id, keys_expected, status_code_expected",
+        [
+            (
+                1,
+                ["short_name", "algorithm_id", "topic_id"],
+                200,
+            ),
+        ],
+    )
+    def test_get_learning_path_algorithm_student(
+        self, client_class, topic_id, keys_expected, status_code_expected
+    ):
+        global user_id_student
+        url = (
+            path_user
+            + "/"
+            + str(user_id_student)
+            + path_topic
+            + "/"
+            + str(topic_id)
+            + path_student_algorithm
         )
         r = client_class.get(url)
         assert r.status_code == status_code_expected
