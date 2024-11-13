@@ -2414,10 +2414,6 @@ def update_ratings(
     timestamp: datetime,
 ) -> dict:
     with uow:
-        # get all student ratings
-        # if student_ratingS == zero length
-        # create inital rating
-
         # Get all student ratings on concept.
         student_ratings = get_student_ratings_on_topic(
             uow=uow, student_id=student_id, topic_id=topic_id
