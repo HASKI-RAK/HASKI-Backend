@@ -2,7 +2,7 @@ name: Docker Build
 on:
   push:
     branches:
-      - ke-eval-4
+      - th-eval-4
 jobs:
   publish_backend:
     runs-on: ubuntu-latest
