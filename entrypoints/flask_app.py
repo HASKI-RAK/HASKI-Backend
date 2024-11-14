@@ -1896,7 +1896,7 @@ def post_calculate_rating(
 
             # Get classification of learning element id.
             classification = learning_element["classification"]
-            available_classification = ["ÜB", "SE"]
+            available_classification = ["SE"]
             condition = classification in available_classification
 
             # Init result.
