@@ -1482,7 +1482,7 @@ def create_learning_path_for_tests_ga(uow):
 def create_news_for_tests(uow):
     return services.create_news(
         uow=uow,
-        university="HS-AS",
+        university="TH-AB",
         language_id="en",
         created_at=datetime.datetime.now(),
         news_content="random text",
@@ -1706,7 +1706,7 @@ def test_create_news():
     entries_beginning = len(uow.news.news)
     result = services.create_news(
         uow=uow,
-        university="HS-AS",
+        university="TH-AB",
         language_id="en",
         created_at=datetime.datetime.now(),
         news_content="idk",
@@ -1890,7 +1890,7 @@ def test_get_logbuffer():
 def test_get_news():
     uow = FakeUnitOfWork()
     create_news_for_tests(uow)
-    result = services.get_news(uow, "en", "HS-AS", datetime.datetime.now())
+    result = services.get_news(uow, "en", "TH-AB", datetime.datetime.now())
     assert type(result) == dict
     assert result != {}
     keys_expected = [
