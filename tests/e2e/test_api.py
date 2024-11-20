@@ -1731,14 +1731,12 @@ class TestApi:
                 {
                     "user_id": "4",
                     "content": "test text",
-                    "timestamp": "2023-08-01T13:37:42Z",
                     "date": "2028-08-01T13:37:42Z",
                 },
                 [
                     "id",
                     "user_id",
                     "content",
-                    "timestamp",
                     "date",
                 ],
                 201,
