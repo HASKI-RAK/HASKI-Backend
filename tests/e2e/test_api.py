@@ -1730,7 +1730,7 @@ class TestApi:
             (
                 {
                     "user_id": "4",
-                    "content": "test text",
+                    "content": "Test text",
                     "date": "2028-08-01T13:37:42Z",
                 },
                 [
@@ -3042,7 +3042,6 @@ class TestApi:
                 [
                     "user_id",
                     "content",
-                    "timestamp",
                     "date",
                 ],
                 200,

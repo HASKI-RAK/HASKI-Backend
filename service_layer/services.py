@@ -839,7 +839,7 @@ def create_logbuffer(
     uow: unit_of_work.AbstractUnitOfWork, user_id, content, date
 ) -> dict:
     with uow:
-        logbuffer = UA.LogBuffer(user_id, content, date)
+        logbuffer = UA.LogBuffer(user_id, str(content), date)
         uow.logbuffer.create_logbuffer(logbuffer)
         uow.commit()
         result = logbuffer.serialize()
