@@ -126,11 +126,10 @@ class News:
 
 
 class LogBuffer:
-    def __init__(self, user_id, content, timestamp, date) -> None:
+    def __init__(self, user_id, content, date) -> None:
         self.id = None
         self.user_id = user_id
         self.content = content
-        self.timestamp = timestamp
         self.date = date
 
     def serialize(self):
@@ -138,6 +137,5 @@ class LogBuffer:
             "id": self.id,
             "user_id": self.user_id,
             "content": self.content,
-            "timestamp": self.timestamp,
             "date": self.date,
         }

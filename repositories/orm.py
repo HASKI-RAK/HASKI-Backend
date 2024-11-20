@@ -334,7 +334,6 @@ logbuffer = Table(
     Column("id", Integer, primary_key=True, autoincrement=True),
     Column("user_id", Integer, nullable=False),
     Column("content", String, nullable=False),
-    Column("timestamp", String, nullable=False),
     Column("date", Date, nullable=False),
 )
 

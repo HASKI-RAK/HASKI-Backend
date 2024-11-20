@@ -177,7 +177,6 @@ def setup_db(
             ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
             user_id integer NOT NULL,
             content text COLLATE pg_catalog."default",
-            timestamp text COLLATE pg_catalog."default",
             date timestamp without time zone NOT NULL,
             CONSTRAINT logbuffer_pkey PRIMARY KEY (id),
             CONSTRAINT user_id FOREIGN KEY (user_id)

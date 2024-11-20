@@ -1714,16 +1714,14 @@ def delete_news():
 @app.route("/user/<user_id>/logbuffer", methods=["POST"])
 @cross_origin(supports_credentials=True)
 @json_only()
-def create_logbuffer(data: Dict[str, Any], user_id):
-    for el in ["content", "timestamp"]:
-        if el not in data:
-            raise err.MissingParameterError()
+def create_logbuffer(content, user_id):
+    if not content:
+        raise err.MissingParameterError()
 
     result = services.create_logbuffer(
         unit_of_work.SqlAlchemyUnitOfWork(),
         user_id,
-        data["content"],
-        data["timestamp"],
+        content,
         datetime.today(),
     )
 

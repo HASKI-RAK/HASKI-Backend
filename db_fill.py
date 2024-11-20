@@ -533,17 +533,15 @@ cursor.execute(sql)
 
 # create logbuffer
 sql = """
-    INSERT INTO logbuffer (user_id, content, timestamp, date)
+    INSERT INTO logbuffer (user_id, content, date)
     VALUES (1, 'Fehler beim Abrufen der Kursdaten',\
-    'Wed, 14 Aug 2024 11:06:00 GMT',\
     '2023-07-13 16:00:00')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO logbuffer (user_id, content, timestamp, date)
+    INSERT INTO logbuffer (user_id, content, date)
     VALUES (5, 'Test buffer message. Error btw.',\
-    'Wed, 14 Aug 2024 11:06:00 GMT',\
     '2023-07-13 16:00:00')
 """
 cursor.execute(sql)
@@ -578,7 +576,7 @@ sql = """
     INSERT INTO news (language_id, news_content, university, expiration_date,\
     created_at)
     VALUES ('en', 'Test in eng and with Aschaffenburg university', \
-    'HS-AS', '2025-04-15 16:00:00',\
+    'TH-AB', '2025-04-15 16:00:00',\
     '2023-07-13 16:00:00')
 """
 cursor.execute(sql)

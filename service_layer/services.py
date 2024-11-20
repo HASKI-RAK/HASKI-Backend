@@ -836,10 +836,10 @@ def create_learning_element_rating(
 
 
 def create_logbuffer(
-    uow: unit_of_work.AbstractUnitOfWork, user_id, content, timestamp, date
+    uow: unit_of_work.AbstractUnitOfWork, user_id, content, date
 ) -> dict:
     with uow:
-        logbuffer = UA.LogBuffer(user_id, content, timestamp, date)
+        logbuffer = UA.LogBuffer(user_id, content, date)
         uow.logbuffer.create_logbuffer(logbuffer)
         uow.commit()
         result = logbuffer.serialize()

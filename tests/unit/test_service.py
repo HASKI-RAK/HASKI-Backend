@@ -1495,7 +1495,6 @@ def create_logbuffer_for_tests(uow):
         uow=uow,
         user_id=1,
         content="random text",
-        timestamp=datetime.datetime(3027, 2, 15, 18, 54, 58, 291224),
         date=datetime.datetime.now(),
     )
 
@@ -1866,7 +1865,6 @@ def test_create_logbuffer():
         uow,
         1,
         "Test content",
-        datetime.datetime(3027, 2, 15, 18, 54, 58, 291224),
         datetime.datetime.now(),
     )
     assert type(result) == dict
@@ -1881,7 +1879,6 @@ def test_get_logbuffer():
     assert result != {}
     keys_expected = [
         "content",
-        "timestamp",
         "date",
     ]
     for key in keys_expected:
