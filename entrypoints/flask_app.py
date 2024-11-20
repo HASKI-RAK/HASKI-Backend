@@ -1747,7 +1747,6 @@ def delete_logbuffer(user_id):
     return Response(status=http.HTTPStatus.NO_CONTENT)
 
 
-
 # Log Endpoints
 @app.route("/logs/frontend", methods=["POST"])
 @cross_origin(supports_credentials=True)
