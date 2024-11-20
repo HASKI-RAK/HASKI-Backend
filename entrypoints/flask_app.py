@@ -15,6 +15,8 @@ from repositories import orm
 from service_layer import services, unit_of_work
 from utils import constants as cons
 from utils.decorators import debug_only, json_only
+from flask.wrappers import Response
+import http
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
@@ -1712,7 +1714,7 @@ def delete_news():
 @app.route("/user/<user_id>/logbuffer", methods=["POST"])
 @cross_origin(supports_credentials=True)
 @json_only()
-def logbuffer(data: Dict[str, Any], user_id):
+def create_logbuffer(data: Dict[str, Any], user_id):
     for el in ["content", "timestamp"]:
         if el not in data:
             raise err.MissingParameterError()
@@ -1744,7 +1746,8 @@ def get_logbuffer(user_id):
 @cross_origin(supports_credentials=True)
 def delete_logbuffer(user_id):
     services.delete_logbuffer(unit_of_work.SqlAlchemyUnitOfWork(), user_id)
-    return "ok", 201
+    return Response(status=http.HTTPStatus.NO_CONTENT)
+
 
 
 # Log Endpoints
