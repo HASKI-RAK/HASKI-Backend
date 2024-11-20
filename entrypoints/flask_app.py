@@ -1,3 +1,4 @@
+import http
 import json
 import os
 import re
@@ -5,6 +6,7 @@ from datetime import datetime
 from typing import Any, Dict
 
 from flask import Flask, jsonify, request
+from flask.wrappers import Response
 from flask_cors import CORS, cross_origin
 
 import service_layer.crypto.JWTKeyManagement as JWTKeyManagement
@@ -15,8 +17,6 @@ from repositories import orm
 from service_layer import services, unit_of_work
 from utils import constants as cons
 from utils.decorators import debug_only, json_only
-from flask.wrappers import Response
-import http
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
