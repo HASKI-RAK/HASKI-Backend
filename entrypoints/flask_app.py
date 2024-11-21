@@ -5,7 +5,7 @@ import re
 from datetime import datetime
 from typing import Any, Dict
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, make_response
 from flask.wrappers import Response
 from flask_cors import CORS, cross_origin
 
@@ -1728,16 +1728,14 @@ def create_logbuffer(content, user_id):
     if result is None:
         raise err.LogBufferError()
 
-    status_code = 201
-    return jsonify(result), status_code
+    return make_response(jsonify(result), http.HTTPStatus.OK)
 
 
 @app.route("/user/<user_id>/logbuffer", methods=["GET"])
 @cross_origin(supports_credentials=True)
 def get_logbuffer(user_id):
     result = services.get_logbuffer(unit_of_work.SqlAlchemyUnitOfWork(), user_id)
-    status_code = 200
-    return jsonify(result), status_code
+    return make_response(jsonify(result), http.HTTPStatus.OK)
 
 
 @app.route("/user/<user_id>/logbuffer", methods=["DELETE"])
