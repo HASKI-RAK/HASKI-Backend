@@ -1715,6 +1715,9 @@ def delete_news():
 @cross_origin(supports_credentials=True)
 @json_only()
 def create_logbuffer(content, user_id):
+    # raises exception if user does not exsist
+    services.get_user_by_id(unit_of_work.SqlAlchemyUnitOfWork(), user_id, None)
+
     if not content:
         raise err.MissingParameterError()
 
@@ -1733,14 +1736,14 @@ def create_logbuffer(content, user_id):
 
 @app.route("/user/<user_id>/logbuffer", methods=["GET"])
 @cross_origin(supports_credentials=True)
-def get_logbuffer(user_id):
+def get_logbuffer_by_user_id(user_id):
     result = services.get_logbuffer(unit_of_work.SqlAlchemyUnitOfWork(), user_id)
     return make_response(jsonify(result), http.HTTPStatus.OK)
 
 
 @app.route("/user/<user_id>/logbuffer", methods=["DELETE"])
 @cross_origin(supports_credentials=True)
-def delete_logbuffer(user_id):
+def delete_logbuffer_by_user_id(user_id):
     services.delete_logbuffer(unit_of_work.SqlAlchemyUnitOfWork(), user_id)
     return Response(status=http.HTTPStatus.NO_CONTENT)
 
