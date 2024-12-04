@@ -696,6 +696,13 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 result.append(i)
         return result
 
+    def get_learning_element_by_lms_id(self, learning_element_lms_id):
+        result = []
+        for i in self.learning_element:
+            if i.lms_id == learning_element_lms_id:
+                result.append(i)
+        return result
+
     def get_learning_elements_by_uni(self, university):
         result = []
         for i in self.learning_element:
@@ -2950,6 +2957,7 @@ def test_add_student_to_course():
     create_student_for_tests(uow)
     create_course_for_tests(uow)
     create_topic_for_tests(uow)
+    create_learning_path_learning_element_algorithm_for_tests(uow)
     create_learning_element_for_tests_1(uow)
     entries_beginning_course = len(uow.student_course.student_course)
     entries_beginning_topic = len(uow.student_topic.student_topic)
@@ -3200,6 +3208,7 @@ def test_get_les_for_course_id():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
+    create_learning_path_learning_element_algorithm_for_tests(uow)
     create_course_for_tests(uow)
     create_topic_for_tests(uow)
     create_learning_element_for_tests_1(uow)
@@ -3215,6 +3224,7 @@ def test_get_les_for_course_and_topic_id():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
+    create_learning_path_learning_element_algorithm_for_tests(uow)
     create_course_for_tests(uow)
     create_topic_for_tests(uow)
     create_learning_element_for_tests_1(uow)
@@ -3229,6 +3239,7 @@ def test_get_les_for_course_and_topic_id():
 def test_get_learning_element_recommendation():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
+    create_learning_path_learning_element_algorithm_for_tests(uow)
     create_student_for_tests(uow)
     create_course_for_tests(uow)
     create_topic_for_tests(uow)
@@ -3246,6 +3257,7 @@ def test_get_learning_path():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
+    create_learning_path_learning_element_algorithm_for_tests(uow)
     create_course_for_tests(uow)
     create_topic_for_tests(uow)
     create_learning_element_for_tests_1(uow)
@@ -3345,9 +3357,8 @@ def test_get_sub_topics():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
+    create_learning_path_learning_element_algorithm_for_tests(uow)
     create_course_for_tests(uow)
-    create_topic_for_tests(uow)
-    create_sub_topic_for_tests(uow)
     create_learning_element_for_tests_1(uow)
     add_student_to_course_for_tests(uow)
     add_student_topic_visit_for_tests(uow)
@@ -3364,9 +3375,8 @@ def test_get_topics_by_student_and_course_id():
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
     create_course_for_tests(uow)
-    create_topic_for_tests(uow)
-    create_sub_topic_for_tests(uow)
     create_learning_element_for_tests_1(uow)
+    create_learning_path_learning_element_algorithm_for_tests(uow)
     add_student_to_course_for_tests(uow)
     add_student_topic_visit_for_tests(uow)
     add_student_sub_topic_visit_for_tests(uow)

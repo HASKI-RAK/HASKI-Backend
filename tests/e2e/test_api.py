@@ -1078,9 +1078,14 @@ class TestApi:
             path_user
             + "/"
             + str(user_id_student)
+            + "/"
+            + str(4)
+            + path_course
+            + "/"
+            + str(course_id)
             + path_topic
             + "/"
-            + str(topic_id)
+            + str(sub_topic_id)
             + path_student_algorithm
         )
 
