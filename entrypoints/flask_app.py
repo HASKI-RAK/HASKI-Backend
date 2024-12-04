@@ -166,23 +166,12 @@ def post_course_and_add_all_students(data: Dict[str, Any]):
             condition4 = "university" in data
             condition5 = "created_by" in data
             condition10 = "start_date" in data
-            if (
-                condition1
-                and condition2
-                and condition3
-                and condition4
-                and condition5
-            ):
+            if condition1 and condition2 and condition3 and condition4 and condition5:
                 condition6 = type(data["lms_id"]) is int
                 condition7 = type(data["name"]) is str
                 condition8 = type(data["university"]) is str
                 condition9 = type(data["created_by"]) is int
-                if (
-                    condition6
-                    and condition7
-                    and condition8
-                    and condition9
-                ):
+                if condition6 and condition7 and condition8 and condition9:
                     current_date = datetime.now().strftime(cons.date_format)
                     if condition10:
                         condition11 = type(data["start_date"]) is str
@@ -196,9 +185,7 @@ def post_course_and_add_all_students(data: Dict[str, Any]):
                                 )
                     else:
                         start_date = current_date
-                    created_at = datetime.strptime(
-                        current_date, cons.date_format
-                    )
+                    created_at = datetime.strptime(current_date, cons.date_format)
                     course = services.create_course(
                         unit_of_work.SqlAlchemyUnitOfWork(),
                         data["lms_id"],
@@ -222,9 +209,7 @@ def post_course_and_add_all_students(data: Dict[str, Any]):
                     status_code = 201
                     return jsonify(course), status_code
                 else:
-                    raise err.WrongParameterValueError(
-                        message=cons.date_format_message
-                    )
+                    raise err.WrongParameterValueError(message=cons.date_format_message)
             else:
                 raise err.MissingParameterError()
 
@@ -859,7 +844,7 @@ def create_learning_element_v2(data: Dict[str, Any], topic_id):
                 and condition7
                 and condition8
             ):
-                condition9 =  type(data["lms_id"]) == int
+                condition9 = type(data["lms_id"]) == int
                 condition10 = type(data["activity_type"]) == str
                 condition11 = type(data["classification"]) == str
                 condition12 = type(data["name"]) == str
@@ -2015,15 +2000,16 @@ def get_student_lp_le_algorithm(user_id: str, topic_id: str):
             return jsonify(algorithm), status_code
 
 
-@app.route("/user/<user_id>/<lms_user_id>/course/<course_id>"+
-           "/topic/<topic_id>/studentAlgorithm", methods=["POST"])
+@app.route(
+    "/user/<user_id>/<lms_user_id>/course/<course_id>"
+    + "/topic/<topic_id>/studentAlgorithm",
+    methods=["POST"],
+)
 @cross_origin(supports_credentials=True)
 @json_only(ignore=["GET"])
-def post_student_lp_le_algorithm(data: Dict[str, Any],
-                                  user_id: str,
-                                  lms_user_id: int,
-                                  course_id: int,
-                                  topic_id: int):
+def post_student_lp_le_algorithm(
+    data: Dict[str, Any], user_id: str, lms_user_id: int, course_id: int, topic_id: int
+):
     method = request.method
     match method:
         case "POST":
@@ -2060,14 +2046,14 @@ def post_student_lp_le_algorithm(data: Dict[str, Any],
                             algorithm["id"],
                         )
                         services.create_learning_path(
-                                unit_of_work.SqlAlchemyUnitOfWork(),
-                                user_id,
-                                lms_user_id,
-                                student_id,
-                                course_id,
-                                topic_id,
-                                data["algorithm_short_name"].lower(),
-                            )
+                            unit_of_work.SqlAlchemyUnitOfWork(),
+                            user_id,
+                            lms_user_id,
+                            student_id,
+                            course_id,
+                            topic_id,
+                            data["algorithm_short_name"].lower(),
+                        )
                         status_code = 201
                         return jsonify(result), status_code
                 else:

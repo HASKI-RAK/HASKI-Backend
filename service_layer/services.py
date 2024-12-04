@@ -84,7 +84,12 @@ def add_student_to_topics(uow: unit_of_work.AbstractUnitOfWork, student_id, cour
             add_student_to_learning_element(uow, student_id, topic["topic_id"])
             topic_algorithm = get_lpath_le_algorithm_by_topic(uow, topic["topic_id"])
             if topic_algorithm != {}:
-                add_student_lpath_le_algorithm(uow, student_id, topic_algorithm["topic_id"], topic_algorithm["algorithm_id"])
+                add_student_lpath_le_algorithm(
+                    uow,
+                    student_id,
+                    topic_algorithm["topic_id"],
+                    topic_algorithm["algorithm_id"],
+                )
 
 
 def add_student_learning_element_visit(
@@ -1351,7 +1356,9 @@ def get_learning_element_by_lms_id(
     learning_element_lms_id,
 ) -> dict:
     with uow:
-        learning_element = uow.learning_element.get_learning_element_by_lms_id(learning_element_lms_id)
+        learning_element = uow.learning_element.get_learning_element_by_lms_id(
+            learning_element_lms_id
+        )
         if learning_element[0] is None:
             result = {}
         else:
@@ -1371,13 +1378,13 @@ def get_learning_element_by_lms_id(
 
 
 def get_learning_element_by_id(
-        uow: unit_of_work.AbstractUnitOfWork,
-        user_id,
-        lms_user_id,
-        student_id,
-        course_id,
-        topic_id,
-        learning_element_id,
+    uow: unit_of_work.AbstractUnitOfWork,
+    user_id,
+    lms_user_id,
+    student_id,
+    course_id,
+    topic_id,
+    learning_element_id,
 ) -> dict:
     with uow:
         get_user_by_id(uow, user_id, lms_user_id)
@@ -2719,7 +2726,9 @@ def update_ratings(
             attempt_result=attempt_result,
             learning_element_id=learning_element_id,
             learning_element_rating_value=mapped_learning_element_rating.rating_value,
-            learning_element_rating_deviation=mapped_learning_element_rating.rating_deviation,
+            learning_element_rating_deviation=(
+                mapped_learning_element_rating.rating_deviation
+            ),
             learning_element_rating_timestamp=mapped_learning_element_rating.timestamp,
         )
 
