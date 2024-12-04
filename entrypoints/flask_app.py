@@ -196,13 +196,16 @@ def post_course_and_add_all_students(data: Dict[str, Any]):
                                 )
                     else:
                         start_date = current_date
+                    created_at = datetime.strptime(
+                        current_date, cons.date_format
+                    )
                     course = services.create_course(
                         unit_of_work.SqlAlchemyUnitOfWork(),
                         data["lms_id"],
                         data["name"],
                         data["university"],
                         data["created_by"],
-                        current_date,
+                        created_at,
                         start_date,
                     )
                     students = services.get_all_students(
@@ -856,7 +859,7 @@ def create_learning_element_v2(data: Dict[str, Any], topic_id):
                 and condition7
                 and condition8
             ):
-                condition9 = type(data["lms_id"]) == int
+                condition9 =  type(data["lms_id"]) == int
                 condition10 = type(data["activity_type"]) == str
                 condition11 = type(data["classification"]) == str
                 condition12 = type(data["name"]) == str
