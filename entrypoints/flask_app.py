@@ -5,7 +5,7 @@ import re
 from datetime import datetime
 from typing import Any, Dict
 
-from flask import Flask, jsonify, request, make_response
+from flask import Flask, jsonify, make_response, request
 from flask.wrappers import Response
 from flask_cors import CORS, cross_origin
 
@@ -1728,7 +1728,7 @@ def create_logbuffer(content, user_id):
     if result is None:
         raise err.LogBufferError()
 
-    return make_response(jsonify(result), http.HTTPStatus.OK)
+    return make_response(jsonify(result), http.HTTPStatus.CREATED)
 
 
 @app.route("/user/<user_id>/logbuffer", methods=["GET"])
