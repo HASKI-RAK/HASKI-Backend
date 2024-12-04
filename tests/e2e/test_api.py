@@ -23,6 +23,7 @@ path_activity_status = "/activitystatus"
 path_course = "/course"
 path_contactform = "/contactform"
 path_news = "/news"
+path_logbuffer = "/logbuffer"
 path_knowledge = "/knowledge"
 path_logs = "/logs"
 path_frontend_logs = "/logs/frontend"
@@ -1720,6 +1721,41 @@ class TestApi:
         for key in keys_expected:
             assert key in response.keys()
 
+    # Post the logbuffer
+    @pytest.mark.parametrize(
+        "input, keys_expected,\
+                            status_code_expected",
+        [
+            # Working Example
+            (
+                {
+                    "user_id": "4",
+                    "content": "Test text",
+                    "date": "2028-08-01T13:37:42Z",
+                },
+                [
+                    "id",
+                    "user_id",
+                    "content",
+                    "date",
+                ],
+                201,
+            ),
+            # Missing Parameter
+            ({}, ["error", "message"], 400),
+        ],
+    )
+    def test_post_logbuffer(
+        self, client_class, input, keys_expected, status_code_expected
+    ):
+        user_id_student = 4
+        url = path_user + "/" + str(user_id_student) + path_logbuffer
+        r = client_class.post(url, json=input)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+
     # GET METHODS
     # Get Students Learning Characteristics
     @pytest.mark.parametrize(
@@ -2993,6 +3029,35 @@ class TestApi:
         assert "news" in response.keys()
         for key in keys_expected:
             for entry in response["news"]:
+                assert key in entry.keys()
+
+    # Get logbuffer entries for a user
+    @pytest.mark.parametrize(
+        "user_id, keys_expected,\
+                            status_code_expected",
+        [
+            # Working Example
+            (
+                4,
+                [
+                    "user_id",
+                    "content",
+                    "date",
+                ],
+                200,
+            ),
+        ],
+    )
+    def test_get_logbuffer(
+        self, client_class, user_id, keys_expected, status_code_expected
+    ):
+        url = path_user + "/" + str(user_id) + path_logbuffer
+        r = client_class.get(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        assert "log" in response.keys()
+        for key in keys_expected:
+            for entry in response["log"]:
                 assert key in entry.keys()
 
     # PUT METHODS

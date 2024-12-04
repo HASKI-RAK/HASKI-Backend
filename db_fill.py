@@ -531,6 +531,21 @@ sql = """
 """
 cursor.execute(sql)
 
+# create logbuffer
+sql = """
+    INSERT INTO logbuffer (user_id, content, date)
+    VALUES (1, 'Fehler beim Abrufen der Kursdaten',\
+    '2023-07-13 16:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO logbuffer (user_id, content, date)
+    VALUES (5, 'Test buffer message. Error btw.',\
+    '2023-07-13 16:00:00')
+"""
+cursor.execute(sql)
+
 # create news
 sql = """
     INSERT INTO news (language_id, news_content, expiration_date, created_at)

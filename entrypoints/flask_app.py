@@ -1,10 +1,12 @@
+import http
 import json
 import os
 import re
 from datetime import datetime
 from typing import Any, Dict
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, make_response, request
+from flask.wrappers import Response
 from flask_cors import CORS, cross_origin
 
 import service_layer.crypto.JWTKeyManagement as JWTKeyManagement
@@ -1706,6 +1708,44 @@ def news(language_id, university):
 def delete_news():
     services.delete_news(unit_of_work.SqlAlchemyUnitOfWork())
     return "ok", 201
+
+
+# Logbuffer
+@app.route("/user/<user_id>/logbuffer", methods=["POST"])
+@cross_origin(supports_credentials=True)
+@json_only()
+def create_logbuffer(content, user_id):
+    # raises exception if user does not exsist
+    services.get_user_by_id(unit_of_work.SqlAlchemyUnitOfWork(), user_id, None)
+
+    if not content:
+        raise err.MissingParameterError()
+
+    result = services.create_logbuffer(
+        unit_of_work.SqlAlchemyUnitOfWork(),
+        user_id,
+        content,
+        datetime.today(),
+    )
+
+    if result is None:
+        raise err.LogBufferError()
+
+    return make_response(jsonify(result), http.HTTPStatus.CREATED)
+
+
+@app.route("/user/<user_id>/logbuffer", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_logbuffer_by_user_id(user_id):
+    result = services.get_logbuffer(unit_of_work.SqlAlchemyUnitOfWork(), user_id)
+    return make_response(jsonify(result), http.HTTPStatus.OK)
+
+
+@app.route("/user/<user_id>/logbuffer", methods=["DELETE"])
+@cross_origin(supports_credentials=True)
+def delete_logbuffer_by_user_id(user_id):
+    services.delete_logbuffer(unit_of_work.SqlAlchemyUnitOfWork(), user_id)
+    return Response(status=http.HTTPStatus.NO_CONTENT)
 
 
 # Log Endpoints
