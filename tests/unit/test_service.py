@@ -12,6 +12,7 @@ from domain.domainModel.model import LearningElementRating
 from domain.learnersModel.model import StudentRating
 from domain.userAdministartion import model as UA
 from service_layer import services, unit_of_work
+from tests.e2e.test_api import lms_user_id_creator
 from utils import constants as cons
 
 
@@ -942,17 +943,10 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 result.append(i)
         return result
 
-    def get_user_by_lms_user_id(self, lms_user_id):
-        result = []
-        for i in self.user:
-            if i.lms_user_id == lms_user_id:
-                result.append(i)
-        return result
-
     def get_user_by_lms_id(self, lms_id):
         result = []
         for i in self.user:
-            if i.lms_id == lms_id:
+            if i.lms_user_id == lms_id:
                 result.append(i)
         return result
 
@@ -1642,6 +1636,27 @@ def test_create_student():
     assert student_entries_beginning + 1 == student_entries_after
     assert characteristic_entries_beginning + 1 == characteristic_entries_after
     assert style_entries_beginning + 1 == style_entries_after
+
+
+def test_get_empty_user_by_lms_id():
+    uow = FakeUnitOfWork()
+    result = services.get_user_by_lms_id(uow, lms_user_id_creator)
+    assert type(result) is dict
+    assert result == {}
+
+
+def test_get_user_by_lms_id():
+    uow = FakeUnitOfWork()
+    services.create_user(
+        uow=uow,
+        name="Sonja Studentin",
+        university=university_example,
+        lms_user_id=10,
+        role="student",
+    )
+    result = services.get_user_by_lms_id(uow, 10)
+    assert type(result) is dict
+    assert result != {}
 
 
 def test_student_learning_path_learning_element_algorithm():
