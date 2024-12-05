@@ -296,10 +296,10 @@ class TestOIDCLoginFlask(unittest.TestCase):
         jwt_payload = {
             "nonce": "valid_nonce",
             "iat": (
-                    datetime.datetime - datetime.timedelta(minutes=5)
+                    datetime.datetime.utcnow() - datetime.timedelta(minutes=5)
             ).timestamp(),
             "exp": (
-                    datetime.datetime + datetime.timedelta(minutes=5)
+                    datetime.datetime.utcnow() + datetime.timedelta(minutes=5)
             ).timestamp(),
             "iss": os.environ.get("BACKEND_URL", "https://backend.haski.app"),
             "kid": "backendprivatekey",
