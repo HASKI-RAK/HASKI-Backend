@@ -296,10 +296,10 @@ class TestOIDCLoginFlask(unittest.TestCase):
         jwt_payload = {
             "nonce": "valid_nonce",
             "iat": (
-                    datetime.datetime.utcnow() - datetime.timedelta(minutes=5)
+                datetime.datetime.utcnow() - datetime.timedelta(minutes=5)
             ).timestamp(),
             "exp": (
-                    datetime.datetime.utcnow() + datetime.timedelta(minutes=5)
+                datetime.datetime.utcnow() + datetime.timedelta(minutes=5)
             ).timestamp(),
             "iss": os.environ.get("BACKEND_URL", "https://backend.haski.app"),
             "kid": "backendprivatekey",
@@ -313,15 +313,15 @@ class TestOIDCLoginFlask(unittest.TestCase):
         }
 
         with patch(
-                "service_layer.crypto.JWTKeyManagement.verify_jwt", return_value=jwt_payload
+            "service_layer.crypto.JWTKeyManagement.verify_jwt", return_value=jwt_payload
         ):
             with patch(
-                    "service_layer.crypto.JWTKeyManagement.generate_nonce_jwt",
-                    return_value="mocked_nonce_jwt",
+                "service_layer.crypto.JWTKeyManagement.generate_nonce_jwt",
+                return_value="mocked_nonce_jwt",
             ):
                 with patch("service_layer.service.SessionServiceFlask.set"):
                     with patch(
-                            "service_layer.service.SessionServiceFlask.get"
+                        "service_layer.service.SessionServiceFlask.get"
                     ) as mock_get_session:
                         mock_get_session.side_effect = (
                             lambda nonce, key: "valid_state"
@@ -329,39 +329,48 @@ class TestOIDCLoginFlask(unittest.TestCase):
                             else None
                         )
                         with patch(
-                                "service_layer.services.get_user_by_lms_id",
-                                return_value={
-                                    "id": 1,
-                                    "name": "Test User",
-                                    "role": "student",
-                                },
+                            "service_layer.services.get_user_by_lms_id",
+                            return_value={
+                                "id": 1,
+                                "name": "Test User",
+                                "role": "student",
+                            },
                         ):
                             with patch("flask.redirect"):
-                                with patch("service_layer.lti.config.ToolConfigJson.get_platform",
-                                           return_valule="moodle"
-                                           ):
-                                    with patch("service_layer.lti.config.ToolConfigJson.decode_platform",
-                                               return_valule="moodle_decoded"
-                                               ):
-                                        with patch("service_layer.services.get_student_by_user_id",
-                                                   return_value={
-                                                       "id": 1,
-                                                       "name": "Test User",
-                                                       "role": "student",
-                                                   },
-                                                   ):
-                                                    # Use MagicMock to simulate id_token with attributes
-                                                    self.oidc_login.id_token = MagicMock()
-                                                    self.oidc_login.id_token.nonce = "valid_nonce"
-                                                    self.oidc_login.id_token.sub = "user123"
-                                                    self.oidc_login.id_token.name = "Test User"
-                                                    self.oidc_login.id_token.__getitem__.side_effect = (
-                                                        jwt_payload.__getitem__
-                                                    )
+                                with patch(
+                                    "service_layer."
+                                    "lti.config.ToolConfigJson.get_platform",
+                                    return_valule="moodle",
+                                ):
+                                    with patch(
+                                        "service_layer.lti.config."
+                                        "ToolConfigJson.decode_platform",
+                                        return_valule="moodle_decoded",
+                                    ):
+                                        with patch(
+                                            "service_layer.services."
+                                            "get_student_by_user_id",
+                                            return_value={
+                                                "id": 1,
+                                                "name": "Test User",
+                                                "role": "student",
+                                            },
+                                        ):
+                                            self.oidc_login.id_token = MagicMock()
+                                            self.oidc_login.id_token.nonce = (
+                                                "valid_nonce"
+                                            )
+                                            self.oidc_login.id_token.sub = "user123"
+                                            self.oidc_login.id_token.name = "Test User"
+                                            self.oidc_login.id_token.__getitem__.side_effect = (  # noqa: E501
+                                                jwt_payload.__getitem__
+                                            )
 
-                                                    response = self.oidc_login.lti_launch_from_id_token()
-                                                    assert response.status=="302 FOUND"
+                                            response = (
+                                                self.oidc_login.lti_launch_from_id_token()  # noqa: E501
+                                            )
 
+                                            assert response.status == "302 FOUND"
 
     def test_get_logout(self):
         with patch.object(
