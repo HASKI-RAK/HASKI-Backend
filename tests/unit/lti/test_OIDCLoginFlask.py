@@ -275,7 +275,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                                 "valid_id_token_jwt", mock.ANY
                             )
 
-    def test_lti_launch_from_id_token_user_exists_in_db(self):
+    def test_lti_launch_from_id_token_user_does_not_exist_in_db(self):
         # Create a mock request with the necessary attributes
         request_mock = MagicMock()
         request_mock.form = MagicMock()
@@ -314,6 +314,149 @@ class TestOIDCLoginFlask(unittest.TestCase):
 
         with patch(
             "service_layer.crypto.JWTKeyManagement.verify_jwt", return_value=jwt_payload
+        ):
+            with patch(
+                "service_layer.crypto.JWTKeyManagement.generate_nonce_jwt",
+                return_value="mocked_nonce_jwt",
+            ):
+                with patch("service_layer.service.SessionServiceFlask.set"):
+                    with patch(
+                        "service_layer.service.SessionServiceFlask.get"
+                    ) as mock_get_session:
+                        mock_get_session.side_effect = (
+                            lambda nonce, key: "valid_state"
+                            if key == "state" and nonce == "valid_nonce"
+                            else None
+                        )
+                        with patch(
+                            "service_layer.services.get_user_by_lms_id",
+                            return_value={},
+                        ):
+                            with patch(
+                                "service_layer.services.create_user",
+                                return_value={
+                                    "id": 1,
+                                    "name": "Test User",
+                                    "role": "student",
+                                    "university": "HS-KE",
+                                },
+                            ):
+                                with patch(
+                                    "service_layer.services." "get_courses_by_uni",
+                                    return_value={
+                                        "courses": [
+                                            {
+                                                "id": 1,
+                                                "name": "course-1",
+                                                "university": "HS-KE",
+                                            }
+                                        ],
+                                    },
+                                ):
+                                    with patch(
+                                        "service_layer.services."
+                                        "get_student_by_user_id",
+                                        return_value={
+                                            "id": 1,
+                                            "name": "Test User",
+                                            "role": "student",
+                                            "university": "HS-KE",
+                                        },
+                                    ):
+                                        with patch(
+                                            "service_layer.services."
+                                            "add_student_to_course",
+                                            return_value={
+                                                "state": "ok",
+                                            },
+                                        ):
+                                            with patch("flask.redirect"):
+                                                with patch(
+                                                    "service_layer."
+                                                    "lti.config."
+                                                    "ToolConfigJson.get_platform",
+                                                    return_valule="moodle",
+                                                ):
+                                                    with patch(
+                                                        "service_layer."
+                                                        "lti.config."
+                                                        "ToolConfigJson."
+                                                        "decode_platform",
+                                                        return_valule="moodle_decoded",
+                                                    ):
+                                                        with patch(
+                                                            "service_layer."
+                                                            "services."
+                                                            "get_student_by_user_id",
+                                                            return_value={
+                                                                "id": 1,
+                                                                "name": "Test User",
+                                                                "role": "student",
+                                                            },
+                                                        ):
+                                                            self.oidc_login.id_token = (
+                                                                MagicMock()
+                                                            )  # noqa: E501
+                                                            self.oidc_login.id_token.nonce = (  # noqa: E501
+                                                                "valid_nonce"
+                                                            )
+                                                            self.oidc_login.id_token.sub = (  # noqa: E501
+                                                                "user123"
+                                                            )
+                                                            self.oidc_login.id_token.name = "Test User"  # noqa: E501
+                                                            self.oidc_login.id_token.__getitem__.side_effect = (  # noqa: E501
+                                                                jwt_payload.__getitem__
+                                                            )
+
+                                                            response = (
+                                                                self.oidc_login.lti_launch_from_id_token()  # noqa: E501
+                                                            )
+
+                                                            assert (
+                                                                response.status
+                                                                == "302 FOUND"
+                                                            )  # noqa: E501
+
+    def test_lti_launch_from_id_token_user_exists_in_db(self):
+        # Create a mock request with the necessary attributes
+        request_mock = MagicMock()
+        request_mock.form = MagicMock()
+        request_mock.form.get = MagicMock(
+            side_effect=lambda k, type=str: {
+                "state": "valid_state_jwt",
+                "iss": "https://moodle.haski.app",
+                "client_id": "VRCKkhKlZtHNHtD",
+                "login_hint": "student",
+                "lti_message_hint": "message_hint",
+                "target_link_uri": "https://backend.ke.haski.app/lti_launch",
+                "id_token": "valid_id_token_jwt",
+            }.get(k, "")
+        )
+        request_mock.referrer = "https://example.com"
+        self.oidc_login._request = request_mock
+
+        jwt_payload = {
+            "nonce": "valid_nonce",
+            "iat": (
+                datetime.datetime.utcnow() - datetime.timedelta(minutes=5)
+            ).timestamp(),
+            "exp": (
+                datetime.datetime.utcnow() + datetime.timedelta(minutes=5)
+            ).timestamp(),
+            "iss": os.environ.get("BACKEND_URL", "https://backend.haski.app"),
+            "kid": "backendprivatekey",
+            "state": "valid_state",
+            "sub": "user123",
+            "name": "Test User",
+            "https://purl.imsglobal.org/spec/lti/claim/tool_platform": {
+                "name": "Test University"
+            },
+            "https://purl.imsglobal.org/spec/lti/claim/roles": ["student"],
+        }
+
+        with patch(
+            "service_layer.crypto.JWTKeyManagement.verify_jwt",
+            return_value=jwt_payload,  # noqa: E501
         ):
             with patch(
                 "service_layer.crypto.JWTKeyManagement.generate_nonce_jwt",
