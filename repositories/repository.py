@@ -1,7 +1,8 @@
 import abc
 
-from sqlalchemy.exc import IntegrityError
+from sqlalchemy.exc import IntegrityError, StatementError, OperationalError, InterfaceError, PendingRollbackError
 from sqlalchemy.orm import Session
+from sqlalchemy.orm.exc import DetachedInstanceError, FlushError
 
 from domain.domainModel import model as DM
 from domain.learnersModel import model as LM
@@ -15,6 +16,10 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     def add_course_creator_to_course(
         self, course_creator_course
     ) -> DM.CourseCreatorCourse:
+        raise NotImplementedError
+        
+    @abc.abstractmethod
+    def add_learning_element_solution(self, le_solution: DM.LearningElementSolution):
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -207,6 +212,10 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
 
     @abc.abstractmethod
     def delete_contact_form(self, user_id):
+        raise NotImplementedError
+    
+    @abc.abstractmethod
+    def delete_learning_element_solution(self, learning_element_id):
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -466,6 +475,11 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     @abc.abstractmethod
     def get_learning_style(self, characteristic_id) -> LM.LearningStyle:
         raise NotImplementedError
+    
+    @abc.abstractmethod
+    def get_learning_element_solution(self, learning_element_id
+    ) -> DM.LearningElementSolution:
+        raise NotImplementedError
 
     @abc.abstractmethod
     def get_questionnaire_list_k_by_id(
@@ -695,6 +709,14 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             raise err.ForeignKeyViolation()
         except Exception:
             raise err.CreationError()
+
+    def add_learning_element_solution(self, le_solution: DM.LearningElementSolution):
+        try:
+            self.session.add(le_solution)
+        except IntegrityError:
+            raise err.ForeignKeyViolation()
+        except Exception:
+            raise err.CreationError
 
     def add_student_to_course(self, student_course) -> DM.StudentCourse:
         course_exist = self.get_courses_by_student_id(student_course.student_id)
@@ -1083,6 +1105,15 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             self.session.query(DM.CourseTopic).filter_by(id=course_topic[0].id).delete()
         else:
             raise err.NoValidIdError()
+    
+    def delete_learning_element_solution(self, learning_element_id):
+        learning_element_solution = self.get_learning_element_solution(learning_element_id)
+        if learning_element_solution != []:
+            self.session.query(DM.LearningElementSolution).filter_by(
+                learning_element_id=learning_element_id
+            ).delete()
+        else:
+            raise err.NoValidIdError()
 
     def delete_ils_input_answers(self, questionnaire_ils_id):
         ils_input_answers = self.get_ils_input_answers_by_id(questionnaire_ils_id)
@@ -1423,6 +1454,15 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             self.session.query(TM.LearningPathLearningElement)
             .filter_by(learning_path_id=learning_path_id)
             .filter_by(recommended=True)
+            .all()
+        )
+        return result
+
+    def get_learning_element_solution(self, learning_element_id
+    )-> DM.LearningElementSolution:
+        result = (
+            self.session.query(DM.LearningElementSolution)
+            .filter_by(learning_element_id=learning_element_id)
             .all()
         )
         return result
