@@ -56,6 +56,7 @@ path_student_algorithm = "/studentAlgorithm"
 path_teacher_algorithm = "/teacherAlgorithm"
 path_v2 = "/v2"
 path_rating = "/rating"
+path_solution = "/solution"
 
 ils_complete = [
     "ar_1_f1",
@@ -4724,3 +4725,77 @@ class TestApi:
         response = json.loads(r.data.decode("utf-8").strip("\n"))
         for key in response.keys():
             assert key in keys_expected
+
+    # Create Learning Element Solution
+    @pytest.mark.parametrize(
+        "le_element_id, keys_expected,\
+                            status_code_expected, error",
+        [
+            # Working Example
+            (1, ["id", "learning_element_id", "solution_lms_id"], 201, False),
+            # Solution already exists
+            (1, [], 400, True),
+        ],
+    )
+    def test_add_learning_element_solution(
+        self, client_class, le_element_id, keys_expected, status_code_expected, error
+    ):
+        solution_lms_id = 4
+        url = (path_learning_element +
+                "/" + 
+                str(le_element_id) + 
+                "/solution/" + str(solution_lms_id)
+                )
+        r = client_class.post(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        if not error:
+            for key in response.keys():
+              assert key in keys_expected
+
+    # Get Learning Element Solution
+    @pytest.mark.parametrize(
+        "learning_element_id, keys_expected,\
+                            status_code_expected",
+        [
+            # Working Example
+            (1, ["id", "learning_element_id", "solution_lms_id"], 200),
+        ],
+    )
+    def test_get_learning_element_solution(
+        self, client_class, learning_element_id, keys_expected, status_code_expected
+    ):
+        url = (path_learning_element +
+                "/" + 
+                str(learning_element_id) + 
+                "/solution"
+                )
+        r = client_class.get(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in response.keys():
+            assert key in keys_expected
+
+    # Delete Learning Element Solution
+    @pytest.mark.parametrize(
+        "le_element_id, status_code_expected",
+        [
+            # Working Example
+            (1, 200),
+            # Solution already exists
+            (1, 204),
+        ],
+    )
+    def test_delete_learning_element_solution(
+        self, client_class, le_element_id, status_code_expected
+    ):
+        solution_lms_id = 4
+        url = (path_learning_element +
+                "/" + 
+                str(le_element_id) + 
+                "/solution" +
+                "/" +
+                str(solution_lms_id)
+                )
+        r = client_class.delete(url)
+        assert r.status_code == status_code_expected

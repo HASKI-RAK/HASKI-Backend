@@ -990,7 +990,7 @@ def delete_learning_element(
 
 def delete_learning_element_solution(
     uow: unit_of_work.AbstractUnitOfWork, learning_element_id
-):
+) -> None:
     with uow:
         uow.learning_element_solution.delete_learning_element_solution(
             learning_element_id

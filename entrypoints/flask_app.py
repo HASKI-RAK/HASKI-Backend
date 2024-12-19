@@ -2454,17 +2454,18 @@ def post_or_delete_learning_element_solution(
               status_code = 201
               return jsonify(result), status_code
             else:
-                raise err.AlreadyExistingError()
+                raise err.AlreadyExisting()
         case "DELETE":
             if not condition:
-              result = services.delete_learning_element_solution(
+              services.delete_learning_element_solution(
                   uow=unit_of_work.SqlAlchemyUnitOfWork(),
                   learning_element_id=learning_element_id
               )
+              result = {"message": cons.deletion_message}
               status_code = 200
               return jsonify(result), status_code
             else:
-                raise err.DoesNotExistError()
+                raise err.NoContentWarning()
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)

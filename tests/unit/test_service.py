@@ -41,6 +41,7 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         learning_characteristics=[],
         learning_element=[],
         learning_element_rating=[],
+        learning_element_solution=[],
         learning_path=[],
         learning_path_algorithm=[],
         lpath_le_algorithm=[],
@@ -82,6 +83,7 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         self.learning_characteristics = set(learning_characteristics)
         self.learning_element = set(learning_element)
         self.learning_element_rating = set(learning_element_rating)
+        self.learning_element_solution = set(learning_element_solution)
         self.learning_path = set(learning_path)
         self.learning_path_algorithm = set(learning_path_algorithm)
         self.lpath_le_algorithm = set(lpath_le_algorithm)
@@ -112,6 +114,10 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
     def add_course_creator_to_course(self, course_creator_course):
         course_creator_course.id = len(self.course_creator_course) + 1
         self.course_creator_course.add(course_creator_course)
+
+    def add_learning_element_solution(self, le_solution):
+        le_solution.id = len(self.learning_element_solution) + 1
+        self.learning_element_solution.add(le_solution)
 
     def add_student_learning_element_visit(self, student_learning_element_vist):
         student_learning_element_vist.id = len(self.student_learning_element_visit) + 1
@@ -396,6 +402,14 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 to_remove.append(i)
         for remove in to_remove:
             self.learning_element.remove(remove)
+
+    def delete_learning_element_solution(self, learning_element_id):
+        to_remove = []
+        for i in self.learning_element_solution:
+            if i.learning_element_id == learning_element_id:
+                to_remove.append(i)
+        for remove in to_remove:
+            self.learning_element_solution.remove(remove)
 
     def delete_learning_path(self, learning_path_id):
         to_remove = []
@@ -715,6 +729,13 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         result = []
         for i in self.learning_path_learning_element:
             if i.learning_path_id == learning_path_id and i.recommended:
+                result.append(i)
+        return result
+    
+    def get_learning_element_solution(self, learning_element_id):
+        result = []
+        for i in self.learning_element_solution:
+            if i.learning_element_id == learning_element_id:
                 result.append(i)
         return result
 
@@ -1539,6 +1560,14 @@ def create_news_for_tests(uow):
         created_at=datetime.datetime.now(),
         news_content="random text",
         expiration_date=datetime.datetime(3027, 2, 15, 18, 54, 58, 291224),
+    )
+
+
+def add_learning_element_solution_for_tests(uow):
+    services.add_learning_element_solution(
+        uow=uow,
+        learning_element_id=1,
+        solution_lms_id=4
     )
 
 
@@ -3540,6 +3569,34 @@ def test_get_learning_element_ratings():
     result = services.get_learning_element_ratings(uow=uow)
     assert type(result) is list
     assert result != []
+
+
+def test_add_learning_element_solution():
+    uow = FakeUnitOfWork()
+    result = services.add_learning_element_solution(
+        uow=uow,
+        learning_element_id=1,
+        solution_lms_id="Test Solution"
+    )
+    assert type(result) is dict
+    assert result != {}
+
+
+def test_get_learning_element_solution():
+    uow = FakeUnitOfWork()
+    add_learning_element_solution_for_tests(uow=uow)
+    result = services.get_learning_element_solution(uow=uow, learning_element_id=1)
+    assert type(result) is dict
+    assert result != {}
+
+
+def test_delete_learning_element_solution():
+    uow = FakeUnitOfWork()
+    add_learning_element_solution_for_tests(uow=uow)
+    entries_before = len(uow.learning_element_solution.learning_element_solution)
+    services.delete_learning_element_solution(uow=uow, learning_element_id=1)
+    entries_after = len(uow.learning_element_solution.learning_element_solution)
+    assert entries_after == entries_before - 1
 
 
 @mock.patch(
