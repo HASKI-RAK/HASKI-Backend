@@ -12,6 +12,7 @@ from domain.domainModel.model import LearningElementRating
 from domain.learnersModel.model import StudentRating
 from domain.userAdministartion import model as UA
 from service_layer import services, unit_of_work
+from tests.e2e.test_api import lms_user_id_creator
 from utils import constants as cons
 
 
@@ -696,6 +697,13 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 result.append(i)
         return result
 
+    def get_learning_element_by_lms_id(self, learning_element_lms_id):
+        result = []
+        for i in self.learning_element:
+            if i.lms_id == learning_element_lms_id:
+                result.append(i)
+        return result
+
     def get_learning_elements_by_uni(self, university):
         result = []
         for i in self.learning_element:
@@ -935,17 +943,10 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 result.append(i)
         return result
 
-    def get_user_by_lms_user_id(self, lms_user_id):
-        result = []
-        for i in self.user:
-            if i.lms_user_id == lms_user_id:
-                result.append(i)
-        return result
-
     def get_user_by_lms_id(self, lms_id):
         result = []
         for i in self.user:
-            if i.lms_id == lms_id:
+            if i.lms_user_id == lms_id:
                 result.append(i)
         return result
 
@@ -1635,6 +1636,27 @@ def test_create_student():
     assert student_entries_beginning + 1 == student_entries_after
     assert characteristic_entries_beginning + 1 == characteristic_entries_after
     assert style_entries_beginning + 1 == style_entries_after
+
+
+def test_get_empty_user_by_lms_id():
+    uow = FakeUnitOfWork()
+    result = services.get_user_by_lms_id(uow, lms_user_id_creator)
+    assert type(result) is dict
+    assert result == {}
+
+
+def test_get_user_by_lms_id():
+    uow = FakeUnitOfWork()
+    services.create_user(
+        uow=uow,
+        name="Sonja Studentin",
+        university=university_example,
+        lms_user_id=10,
+        role="student",
+    )
+    result = services.get_user_by_lms_id(uow, 10)
+    assert type(result) is dict
+    assert result != {}
 
 
 def test_student_learning_path_learning_element_algorithm():
@@ -2950,6 +2972,7 @@ def test_add_student_to_course():
     create_student_for_tests(uow)
     create_course_for_tests(uow)
     create_topic_for_tests(uow)
+    create_learning_path_learning_element_algorithm_for_tests(uow)
     create_learning_element_for_tests_1(uow)
     entries_beginning_course = len(uow.student_course.student_course)
     entries_beginning_topic = len(uow.student_topic.student_topic)
@@ -3200,6 +3223,7 @@ def test_get_les_for_course_id():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
+    create_learning_path_learning_element_algorithm_for_tests(uow)
     create_course_for_tests(uow)
     create_topic_for_tests(uow)
     create_learning_element_for_tests_1(uow)
@@ -3215,6 +3239,7 @@ def test_get_les_for_course_and_topic_id():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
+    create_learning_path_learning_element_algorithm_for_tests(uow)
     create_course_for_tests(uow)
     create_topic_for_tests(uow)
     create_learning_element_for_tests_1(uow)
@@ -3229,6 +3254,7 @@ def test_get_les_for_course_and_topic_id():
 def test_get_learning_element_recommendation():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
+    create_learning_path_learning_element_algorithm_for_tests(uow)
     create_student_for_tests(uow)
     create_course_for_tests(uow)
     create_topic_for_tests(uow)
@@ -3246,6 +3272,7 @@ def test_get_learning_path():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
+    create_learning_path_learning_element_algorithm_for_tests(uow)
     create_course_for_tests(uow)
     create_topic_for_tests(uow)
     create_learning_element_for_tests_1(uow)
@@ -3345,9 +3372,8 @@ def test_get_sub_topics():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
+    create_learning_path_learning_element_algorithm_for_tests(uow)
     create_course_for_tests(uow)
-    create_topic_for_tests(uow)
-    create_sub_topic_for_tests(uow)
     create_learning_element_for_tests_1(uow)
     add_student_to_course_for_tests(uow)
     add_student_topic_visit_for_tests(uow)
@@ -3364,9 +3390,8 @@ def test_get_topics_by_student_and_course_id():
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
     create_course_for_tests(uow)
-    create_topic_for_tests(uow)
-    create_sub_topic_for_tests(uow)
     create_learning_element_for_tests_1(uow)
+    create_learning_path_learning_element_algorithm_for_tests(uow)
     add_student_to_course_for_tests(uow)
     add_student_topic_visit_for_tests(uow)
     add_student_sub_topic_visit_for_tests(uow)

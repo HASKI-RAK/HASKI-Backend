@@ -470,7 +470,7 @@ class TestApi:
             # Working Example
             (
                 {
-                    "name": "Test Course",
+                    "name": "Test Course without start date",
                     "lms_id": 2,
                     "created_at": "2023-08-01T13:37:42Z",
                     "university": "TH-AB",
@@ -1078,9 +1078,14 @@ class TestApi:
             path_user
             + "/"
             + str(user_id_student)
+            + "/"
+            + str(4)
+            + path_course
+            + "/"
+            + str(course_id)
             + path_topic
             + "/"
-            + str(topic_id)
+            + str(sub_topic_id)
             + path_student_algorithm
         )
 
@@ -1604,7 +1609,7 @@ class TestApi:
         self, client_class, keys_expected, status_code_expected
     ):
         user_id_student = 4
-        student_id = 1
+        student_id = 2
         url = (
             path_user
             + "/"
@@ -4195,10 +4200,10 @@ class TestApi:
             # Working Example
             (
                 {
-                    "name": "Test Course",
+                    "name": "Test Course with all students in it",
                     "lms_id": 3,
                     "created_at": "2024-09-04T13:37:42Z",
-                    "university": "TH-AB",
+                    "university": "HS-KE",
                     "start_date": "2024-09-04T13:37:42Z",
                 },
                 [
@@ -4215,7 +4220,7 @@ class TestApi:
             ),
             # Missing Parameter
             (
-                {"name": "Test Course", "university": "TH-AB"},
+                {"name": "Test Course", "university": "HS-KE"},
                 ["error", "message"],
                 400,
                 False,
@@ -4226,7 +4231,7 @@ class TestApi:
                     "name": "Test Course",
                     "lms_id": "3",
                     "created_at": "2024-09-041T13:37:42Z",
-                    "university": "TH-AB",
+                    "university": "HS-KE",
                     "start_date": "2024-09-04T13:37:42Z",
                 },
                 ["error", "message"],
@@ -4239,7 +4244,7 @@ class TestApi:
                     "name": "Test Course",
                     "lms_id": 3,
                     "created_at": "2024-09-04T13:37:42Z",
-                    "university": "TH-AB",
+                    "university": "HS-KE",
                     "start_date": "2024-09-04T13:37:42Z",
                 },
                 ["error", "message"],
@@ -4251,7 +4256,6 @@ class TestApi:
     def test_api_create_course_and_add_all_students(
         self, client_class, input, keys_expected, status_code_expected, save_id
     ):
-        global user_id_course_creator
         input["created_by"] = user_id_course_creator
         url = path_v2 + path_lms_course
         r = client_class.post(url, json=input)

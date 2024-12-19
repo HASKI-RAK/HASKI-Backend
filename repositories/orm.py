@@ -38,8 +38,8 @@ course_creator_course = Table(
     Column("id", Integer, primary_key=True, autoincrement=True),
     Column("course_creator_id", Integer, nullable=False),
     Column("course_id", Integer, nullable=False),
-    Column("created_at", Date, nullable=False),
-    Column("last_updated", Date, nullable=True),
+    Column("created_at", DateTime, nullable=False),
+    Column("last_updated", DateTime, nullable=True),
 )
 
 course_topic = Table(

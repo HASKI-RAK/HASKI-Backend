@@ -268,8 +268,7 @@ class OIDCLoginFlask(OIDCLogin):
         except Exception as e:
             raise err.ErrorException(
                 e,
-                message="Error\
-                    in check_auth",
+                message="Error in check_auth",
                 status_code=400,
             )
         # redirect to tool (login url in frontend)

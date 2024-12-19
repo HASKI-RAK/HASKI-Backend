@@ -1009,7 +1009,7 @@ def setup_db(
             university text NOT NULL,
             CONSTRAINT default_learning_path_pkey PRIMARY KEY (id)
         )
-        
+
         TABLESPACE pg_default;
 
         ALTER TABLE IF EXISTS public.default_learning_path
