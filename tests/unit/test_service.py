@@ -1207,6 +1207,7 @@ class FakeUnitOfWork(unit_of_work.AbstractUnitOfWork):  # pragma: no cover
         self.learning_characteristics = FakeRepository()
         self.learning_element = FakeRepository()
         self.learning_element_rating = FakeRepository()
+        self.learning_element_solution = FakeRepository()
         self.learning_path = FakeRepository()
         self.learning_path_algorithm = FakeRepository()
         self.lpath_le_algorithm = FakeRepository()
