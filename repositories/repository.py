@@ -152,7 +152,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def create_news(self, news: UA.News) -> UA.News:
+    def create_logbuffer(self, logbuffer: UA.LogBuffer) -> UA.LogBuffer:
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -200,6 +200,10 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
 
     @abc.abstractmethod
     def delete_contact_form(self, user_id):
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def delete_logbuffer(self, user_id):
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -591,6 +595,10 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
+    def get_logbuffer(self, user_id) -> UA.LogBuffer:
+        raise NotImplementedError
+
+    @abc.abstractmethod
     def update_course(self, course_id, course) -> DM.Course:
         raise NotImplementedError
 
@@ -915,6 +923,12 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         except Exception:
             raise err.CreationError()
 
+    def create_logbuffer(self, logbuffer: UA.LogBuffer) -> UA.LogBuffer:
+        try:
+            self.session.add(logbuffer)
+        except Exception:
+            raise err.CreationError()
+
     def create_news(self, news: UA.News) -> UA.News:
         try:
             self.session.add(news)
@@ -1006,6 +1020,9 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
 
     def delete_news(self):
         self.session.query(UA.News).delete()
+
+    def delete_logbuffer(self, user_id):
+        self.session.query(UA.LogBuffer).filter_by(user_id=user_id).delete()
 
     def delete_course(self, course_id):
         course = self.get_course_by_id(course_id)
@@ -1739,6 +1756,13 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             return self.session.query(UA.User).filter_by(university=university).all()
         except Exception as e:
             raise err.DatabaseQueryError(exception=e)
+
+    def get_logbuffer(self, user_id) -> UA.LogBuffer:
+        try:
+            result = self.session.query(UA.LogBuffer).filter_by(user_id=user_id).all()
+            return result
+        except Exception:
+            raise err.CreationError()
 
     def get_news(self, language, university, created_at) -> UA.News:
         try:

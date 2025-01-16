@@ -62,6 +62,7 @@ def setup_db(
     cursor.execute("DROP TABLE IF EXISTS haski_user")
     cursor.execute("DROP TABLE IF EXISTS settings")
     cursor.execute("DROP TABLE IF EXISTS contact_form")
+    cursor.execute("DROP TABLE IF EXISTS logbuffer")
     cursor.execute("DROP TABLE IF EXISTS news")
     cursor.execute("DROP TABLE IF EXISTS admin")
     cursor.execute("DROP TABLE IF EXISTS course_creator")
@@ -165,6 +166,29 @@ def setup_db(
         TABLESPACE pg_default;
 
         ALTER TABLE IF EXISTS public.contact_form
+            OWNER to postgres;
+    """
+    cursor.execute(sql)
+
+    sql = """
+        CREATE TABLE IF NOT EXISTS public.logbuffer
+        (
+            id integer NOT NULL GENERATED ALWAYS AS IDENTITY
+            ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+            user_id integer NOT NULL,
+            content text COLLATE pg_catalog."default",
+            date timestamp without time zone NOT NULL,
+            CONSTRAINT logbuffer_pkey PRIMARY KEY (id),
+            CONSTRAINT user_id FOREIGN KEY (user_id)
+                REFERENCES public."haski_user" (id) MATCH SIMPLE
+                ON UPDATE NO ACTION
+                ON DELETE NO ACTION
+                NOT VALID
+        )
+
+        TABLESPACE pg_default;
+
+        ALTER TABLE IF EXISTS public.logbuffer
             OWNER to postgres;
     """
     cursor.execute(sql)
