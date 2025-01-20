@@ -48,6 +48,7 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         learning_path_topic=[],
         learning_strategy=[],
         learning_style=[],
+        logbuffer=[],
         news=[],
         questionnaire_list_k=[],
         questionnaire_ils=[],
@@ -89,6 +90,7 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         self.learning_path_topic = set(learning_path_topic)
         self.learning_strategy = set(learning_strategy)
         self.learning_style = set(learning_style)
+        self.logbuffer = set(logbuffer)
         self.news = set(news)
         self.questionnaire_list_k = set(questionnaire_list_k)
         self.questionnaire_ils = set(questionnaire_ils)
@@ -233,6 +235,10 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         contact_form.id = len(self.contact_form) + 1
         self.contact_form.add(contact_form)
 
+    def create_logbuffer(self, logbuffer):
+        logbuffer.id = len(self.logbuffer) + 1
+        self.logbuffer.add(logbuffer)
+
     def create_student(self, student):
         student.id = len(self.student) + 1
         self.student.add(student)
@@ -372,6 +378,14 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 to_remove.append(i)
         for remove in to_remove:
             self.knowledge.remove(remove)
+
+    def delete_logbuffer(self, user_id):
+        to_remove = []
+        for i in self.logbuffer:
+            if i.user_id == user_id:
+                to_remove.append(i)
+        for remove in to_remove:
+            self.logbuffer.remove(remove)
 
     def delete_learning_analytics(self, characteristic_id):
         to_remove = []
@@ -964,6 +978,13 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 result.append(i)
         return result
 
+    def get_logbuffer(self, user_id):
+        result = []
+        for i in self.news:
+            if i.user_id:
+                result.append(i)
+        return result
+
     def get_news(self, language_id, university, created_at=None):
         result = []
         for i in self.news:
@@ -1193,6 +1214,7 @@ class FakeUnitOfWork(unit_of_work.AbstractUnitOfWork):  # pragma: no cover
         self.learning_path_topic = FakeRepository()
         self.learning_strategy = FakeRepository()
         self.learning_style = FakeRepository()
+        self.logbuffer = FakeRepository()
         self.news = FakeRepository()
         self.questionnaire_list_k = FakeRepository()
         self.questionnaire_ils = FakeRepository()
@@ -1539,6 +1561,15 @@ def create_news_for_tests(uow):
         created_at=datetime.datetime.now(),
         news_content="random text",
         expiration_date=datetime.datetime(3027, 2, 15, 18, 54, 58, 291224),
+    )
+
+
+def create_logbuffer_for_tests(uow):
+    return services.create_logbuffer(
+        uow=uow,
+        user_id=1,
+        content="random text",
+        date=datetime.datetime.now(),
     )
 
 
@@ -1920,6 +1951,35 @@ def test_create_contact_form():
     )
     assert type(result) == dict
     assert result != {}
+
+
+def test_create_logbuffer():
+    uow = FakeUnitOfWork()
+    create_logbuffer_for_tests(uow)
+    result = services.create_logbuffer(
+        uow,
+        1,
+        "Test content",
+        datetime.datetime.now(),
+    )
+    assert type(result) == dict
+    assert result != {}
+
+
+def test_get_logbuffer():
+    uow = FakeUnitOfWork()
+    create_logbuffer_for_tests(uow)
+    result = services.get_logbuffer(uow, 1)
+    assert type(result) == dict
+    assert result != {}
+    keys_expected = [
+        "content",
+        "date",
+    ]
+    for key in keys_expected:
+        for entry in result["log"]:
+            assert key in entry.keys()
+            assert result["log"] is not None
 
 
 def test_get_news():

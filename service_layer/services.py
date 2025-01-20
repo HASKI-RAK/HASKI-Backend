@@ -864,6 +864,17 @@ def create_learning_element_rating(
         return learning_element_rating.serialize()
 
 
+def create_logbuffer(
+    uow: unit_of_work.AbstractUnitOfWork, user_id, content, date
+) -> dict:
+    with uow:
+        logbuffer = UA.LogBuffer(user_id, str(content), date)
+        uow.logbuffer.create_logbuffer(logbuffer)
+        uow.commit()
+        result = logbuffer.serialize()
+        return result
+
+
 def delete_admin(uow: unit_of_work.AbstractUnitOfWork, user_id):
     with uow:
         uow.admin.delete_admin(user_id)
@@ -881,6 +892,13 @@ def delete_contact_form(uow: unit_of_work.AbstractUnitOfWork, user_id):
 def delete_news(uow: unit_of_work.AbstractUnitOfWork):
     with uow:
         uow.news.delete_news()
+        uow.commit()
+        return {}
+
+
+def delete_logbuffer(uow: unit_of_work.AbstractUnitOfWork, user_id):
+    with uow:
+        uow.logbuffer.delete_logbuffer(user_id)
         uow.commit()
         return {}
 
@@ -2008,6 +2026,18 @@ def get_news(
         result["news"] = [
             news.serialize() for news in backend_response + backend_response_university
         ]
+        return result
+
+
+def get_logbuffer(
+    uow: unit_of_work.AbstractUnitOfWork,
+    user_id,
+) -> dict:
+    with uow:
+        logbuffer_response = []
+        logbuffer_response = uow.logbuffer.get_logbuffer(user_id)
+        result = dict()
+        result["log"] = [logbuffer.serialize() for logbuffer in logbuffer_response]
         return result
 
 
