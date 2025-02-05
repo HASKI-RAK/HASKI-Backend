@@ -4741,17 +4741,19 @@ class TestApi:
         self, client_class, le_element_id, keys_expected, status_code_expected, error
     ):
         solution_lms_id = 4
-        url = (path_learning_element +
-                "/" + 
-                str(le_element_id) + 
-                "/solution/" + str(solution_lms_id)
-                )
+        url = (
+            path_learning_element
+            + "/"
+            + str(le_element_id)
+            + "/solution/"
+            + str(solution_lms_id)
+        )
         r = client_class.post(url)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
         if not error:
             for key in response.keys():
-              assert key in keys_expected
+                assert key in keys_expected
 
     # Get Learning Element Solution
     @pytest.mark.parametrize(
@@ -4765,11 +4767,7 @@ class TestApi:
     def test_get_learning_element_solution(
         self, client_class, learning_element_id, keys_expected, status_code_expected
     ):
-        url = (path_learning_element +
-                "/" + 
-                str(learning_element_id) + 
-                "/solution"
-                )
+        url = path_learning_element + "/" + str(learning_element_id) + "/solution"
         r = client_class.get(url)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -4790,12 +4788,13 @@ class TestApi:
         self, client_class, le_element_id, status_code_expected
     ):
         solution_lms_id = 4
-        url = (path_learning_element +
-                "/" + 
-                str(le_element_id) + 
-                "/solution" +
-                "/" +
-                str(solution_lms_id)
-                )
+        url = (
+            path_learning_element
+            + "/"
+            + str(le_element_id)
+            + "/solution"
+            + "/"
+            + str(solution_lms_id)
+        )
         r = client_class.delete(url)
         assert r.status_code == status_code_expected

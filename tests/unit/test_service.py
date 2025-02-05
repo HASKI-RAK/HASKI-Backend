@@ -731,7 +731,7 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
             if i.learning_path_id == learning_path_id and i.recommended:
                 result.append(i)
         return result
-    
+
     def get_learning_element_solution(self, learning_element_id):
         result = []
         for i in self.learning_element_solution:
@@ -1566,9 +1566,7 @@ def create_news_for_tests(uow):
 
 def add_learning_element_solution_for_tests(uow):
     services.add_learning_element_solution(
-        uow=uow,
-        learning_element_id=1,
-        solution_lms_id=4
+        uow=uow, learning_element_id=1, solution_lms_id=4
     )
 
 
@@ -3575,9 +3573,7 @@ def test_get_learning_element_ratings():
 def test_add_learning_element_solution():
     uow = FakeUnitOfWork()
     result = services.add_learning_element_solution(
-        uow=uow,
-        learning_element_id=1,
-        solution_lms_id="Test Solution"
+        uow=uow, learning_element_id=1, solution_lms_id="Test Solution"
     )
     assert type(result) is dict
     assert result != {}

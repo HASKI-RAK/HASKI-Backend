@@ -404,6 +404,7 @@ class LearningElementRating:
             "timestamp": updated_rating.timestamp,
         }
 
+
 class LearningElementSolution:
     def __init__(self, learning_element_id, solution_lms_id) -> None:
         self.id = None

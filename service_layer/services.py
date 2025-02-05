@@ -28,6 +28,7 @@ def add_course_creator_to_course(
         result = course_creator_course.serialize()
         return result
 
+
 def add_learning_element_solution(
     uow: unit_of_work.AbstractUnitOfWork, learning_element_id, solution_lms_id
 ) -> dict:
@@ -41,6 +42,7 @@ def add_learning_element_solution(
         uow.commit()
         result = learning_element_solution.serialize()
         return result
+
 
 def add_student_to_course(
     uow: unit_of_work.AbstractUnitOfWork, student_id, course_id
@@ -986,7 +988,7 @@ def delete_learning_element(
         uow.learning_element.delete_learning_element(learning_element_id)
         uow.commit()
         return {}
-    
+
 
 def delete_learning_element_solution(
     uow: unit_of_work.AbstractUnitOfWork, learning_element_id
@@ -2298,10 +2300,10 @@ def get_learning_element_ratings(uow: unit_of_work.AbstractUnitOfWork) -> list:
         for element in learning_element_ratings:
             results.append(element.serialize())
         return results
-    
 
-def get_learning_element_solution(uow: unit_of_work.AbstractUnitOfWork,
-    learning_element_id: int
+
+def get_learning_element_solution(
+    uow: unit_of_work.AbstractUnitOfWork, learning_element_id: int
 ) -> dict:
     with uow:
         learning_element_solution = (

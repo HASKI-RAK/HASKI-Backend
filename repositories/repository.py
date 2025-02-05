@@ -1,8 +1,7 @@
 import abc
 
-from sqlalchemy.exc import IntegrityError, StatementError, OperationalError, InterfaceError, PendingRollbackError
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
-from sqlalchemy.orm.exc import DetachedInstanceError, FlushError
 
 from domain.domainModel import model as DM
 from domain.learnersModel import model as LM
@@ -17,7 +16,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         self, course_creator_course
     ) -> DM.CourseCreatorCourse:
         raise NotImplementedError
-        
+
     @abc.abstractmethod
     def add_learning_element_solution(self, le_solution: DM.LearningElementSolution):
         raise NotImplementedError
@@ -213,7 +212,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     @abc.abstractmethod
     def delete_contact_form(self, user_id):
         raise NotImplementedError
-    
+
     @abc.abstractmethod
     def delete_learning_element_solution(self, learning_element_id):
         raise NotImplementedError
@@ -477,9 +476,10 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     @abc.abstractmethod
     def get_learning_style(self, characteristic_id) -> LM.LearningStyle:
         raise NotImplementedError
-    
+
     @abc.abstractmethod
-    def get_learning_element_solution(self, learning_element_id
+    def get_learning_element_solution(
+        self, learning_element_id
     ) -> DM.LearningElementSolution:
         raise NotImplementedError
 
@@ -1107,9 +1107,11 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             self.session.query(DM.CourseTopic).filter_by(id=course_topic[0].id).delete()
         else:
             raise err.NoValidIdError()
-    
+
     def delete_learning_element_solution(self, learning_element_id):
-        learning_element_solution = self.get_learning_element_solution(learning_element_id)
+        learning_element_solution = self.get_learning_element_solution(
+            learning_element_id
+        )
         if learning_element_solution != []:
             self.session.query(DM.LearningElementSolution).filter_by(
                 learning_element_id=learning_element_id
@@ -1463,8 +1465,9 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         )
         return result
 
-    def get_learning_element_solution(self, learning_element_id
-    )-> DM.LearningElementSolution:
+    def get_learning_element_solution(
+        self, learning_element_id
+    ) -> DM.LearningElementSolution:
         result = (
             self.session.query(DM.LearningElementSolution)
             .filter_by(learning_element_id=learning_element_id)
