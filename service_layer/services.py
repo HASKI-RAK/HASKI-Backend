@@ -401,7 +401,7 @@ def create_learning_path(
         learning_elements = get_learning_elements_for_topic_id(uow, topic_id)
         if learning_elements == []:
             raise err.NoLearningElementsError()
-        paths_exisiting = get_learning_paths(uow=uow, student_id=student_id)
+        paths_exisiting = get_learning_paths_by_student_id(uow=uow, student_id=student_id)
         for path_exisiting in paths_exisiting:
             condition1 = int(path_exisiting["course_id"]) == int(course_id)
             condition2 = (
@@ -905,6 +905,10 @@ def delete_logbuffer(uow: unit_of_work.AbstractUnitOfWork, user_id):
 
 def delete_course(uow: unit_of_work.AbstractUnitOfWork, course_id):
     with uow:
+        all_students = get_all_students(uow)
+        for student in all_students:
+            delete_student_course(uow, student['id'], course_id)
+        #search for learning_path_id and delete learning_path_learning_element, learning_path_topic, learning_path_learning_element_algorithm
         delete_course_topic_by_course(uow, course_id)
         delete_course_creator_course(uow, course_id)
         uow.course.delete_course(course_id)
@@ -999,9 +1003,19 @@ def delete_learning_path(uow: unit_of_work.AbstractUnitOfWork, learning_path_id)
         uow.commit()
 
 
-def delete_learning_paths(uow: unit_of_work.AbstractUnitOfWork, student_id):
+def delete_learning_paths_by_student_id(uow: unit_of_work.AbstractUnitOfWork, student_id):
     with uow:
-        paths = get_learning_paths(uow, student_id)
+        paths = get_learning_paths_by_student_id(uow, student_id)
+        for path in paths:
+            delete_learning_path_learning_element(uow, path["id"])
+            delete_learning_path_topic(uow, path["id"])
+            uow.learning_path.delete_learning_path(path["id"])
+            uow.commit()
+
+
+def delete_learning_paths_by_course_id(uow: unit_of_work.AbstractUnitOfWork, course_id):
+    with uow:
+        paths = get_learning_paths_by_student_id(uow, course_id)
         for path in paths:
             delete_learning_path_learning_element(uow, path["id"])
             delete_learning_path_topic(uow, path["id"])
@@ -1015,6 +1029,26 @@ def delete_learning_path_learning_element(
     with uow:
         uow.learning_path_learning_element.delete_learning_path_learning_element(
             learning_path_id
+        )
+        uow.commit()
+
+
+def delete_learning_path_learning_element_algorithm(
+        uow: unit_of_work.AbstractUnitOfWork, topic_id
+):
+    with uow:
+        uow.lpath_le_algorithm.delete_learning_path_learning_element_algorithm(
+            topic_id
+        )
+        uow.commit()
+
+
+def delete_student_lpath_le_algorithm(
+        uow: unit_of_work.AbstractUnitOfWork, topic_id
+):
+    with uow:
+        uow.lpath_le_algorithm.delete_student_lpath_le_algorithm(
+            topic_id
         )
         uow.commit()
 
@@ -1061,7 +1095,7 @@ def delete_student(uow: unit_of_work.AbstractUnitOfWork, user_id):
         delete_student_learning_element(uow, student[0].id)
         delete_student_topic(uow, student[0].id)
         delete_student_course(uow, student[0].id)
-        delete_learning_paths(uow, student[0].id)
+        delete_learning_paths_by_student_id(uow, student[0].id)
         questionnaire_ils = uow.questionnaire_ils.get_questionnaire_ils_by_student_id(
             student[0].id
         )
@@ -1153,9 +1187,9 @@ def delete_learning_style(uow: unit_of_work.AbstractUnitOfWork, characteristic_i
         return {}
 
 
-def delete_student_course(uow: unit_of_work.AbstractUnitOfWork, student_id):
+def delete_student_course(uow: unit_of_work.AbstractUnitOfWork, student_id, course_id=None):
     with uow:
-        uow.student_course.delete_student_course(student_id)
+        uow.student_course.delete_student_course(student_id, course_id)
         uow.commit()
 
 
@@ -1166,12 +1200,29 @@ def delete_student_learning_element(uow: unit_of_work.AbstractUnitOfWork, studen
         uow.commit()
 
 
+def delete_student_learning_element_by_learning_element_id(uow: unit_of_work.AbstractUnitOfWork, learning_element_id):
+    with uow:
+        delete_student_learning_element_visit_by_learning_element_id(uow, learning_element_id)
+        uow.student_learning_element.delete_student_learning_element_by_learning_element_id(learning_element_id)
+        uow.commit()
+
+
 def delete_student_learning_element_visit(
     uow: unit_of_work.AbstractUnitOfWork, student_id
 ):
     with uow:
         uow.student_learning_element_visit.delete_student_learning_element_visit(
             student_id
+        )
+        uow.commit()
+
+
+def delete_student_learning_element_visit_by_learning_element_id(
+        uow: unit_of_work.AbstractUnitOfWork, learning_element_id
+):
+    with uow:
+        uow.student_learning_element_visit.delete_student_learning_element_visit_by_learning_element_id(
+            learning_element_id
         )
         uow.commit()
 
@@ -1582,9 +1633,19 @@ def get_learning_path(
         return result
 
 
-def get_learning_paths(uow: unit_of_work.AbstractUnitOfWork, student_id) -> list:
+def get_learning_paths_by_student_id(uow: unit_of_work.AbstractUnitOfWork, student_id) -> list:
     with uow:
-        paths = uow.learning_path.get_learning_paths(student_id)
+        paths = uow.learning_path.get_learning_paths_by_student_id(student_id)
+        result = []
+        for path in paths:
+            path.path = None
+            result.append(path.serialize())
+        return result
+
+
+def get_learning_paths_by_course_id(uow: unit_of_work.AbstractUnitOfWork, course_id) -> list:
+    with uow:
+        paths = uow.learning_path.get_learning_paths_by_course_id(course_id)
         result = []
         for path in paths:
             path.path = None

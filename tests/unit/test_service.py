@@ -743,7 +743,7 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 result.append(i)
         return result
 
-    def get_learning_paths(self, student_id):
+    def get_learning_paths_by_student_id(self, student_id):
         result = []
         for i in self.learning_path:
             if i.student_id == student_id:
@@ -3176,7 +3176,7 @@ def test_create_learning_path(number_of_les, algorithm):
         assert entries_after_path_le == entries_after_path_le_2
 
 
-def test_delete_learning_paths():
+def test_delete_learning_paths_by_student_id():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
@@ -3188,7 +3188,7 @@ def test_delete_learning_paths():
     entries_beginning_path_le = len(
         uow.learning_path_learning_element.learning_path_learning_element
     )
-    result = services.delete_learning_paths(uow=uow, student_id=1)
+    result = services.delete_learning_paths_by_student_id(uow=uow, student_id=1)
     assert result is None
     entries_after_path = len(uow.learning_path.learning_path)
     entries_after_path_le = len(

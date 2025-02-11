@@ -333,6 +333,16 @@ def course_management(data: Dict[str, Any], course_id, lms_course_id):
             else:
                 raise err.MissingParameterError()
         case "DELETE":
+            topics = services.get_topics_for_course_id(unit_of_work.SqlAlchemyUnitOfWork(), course_id)
+            services.delete_learning_paths_by_course_id(unit_of_work.SqlAlchemyUnitOfWork(), course_id)
+            for topic in topics:
+                learning_elements = services.get_learning_elements_for_topic_id(unit_of_work.SqlAlchemyUnitOfWork(), topic["id"])
+                services.delete_learning_path_learning_element_algorithm(topic["id"])
+                services.delete_student_lpath_le_algorithm(topic["id"])
+                for learning_element in learning_elements:
+                    services.delete_topic_learning_element_by_learning_element(unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"])
+                    services.delete_student_learning_element_by_learning_element_id(unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"])
+                    services.delete_learning_element(learning_element["id"])
             services.delete_course(unit_of_work.SqlAlchemyUnitOfWork(), course_id)
             result = {"message": cons.deletion_message}
             status_code = 200
