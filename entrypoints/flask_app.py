@@ -6,7 +6,6 @@ from datetime import datetime
 from typing import Any, Dict
 
 from flask import Flask, jsonify, make_response, request
-from flask.wrappers import Response
 from flask_cors import CORS, cross_origin
 
 import service_layer.crypto.JWTKeyManagement as JWTKeyManagement
@@ -2278,7 +2277,7 @@ def get_logbuffer_by_user_id(user_id):
 @cross_origin(supports_credentials=True)
 def delete_logbuffer_by_user_id(user_id):
     services.delete_logbuffer(unit_of_work.SqlAlchemyUnitOfWork(), user_id)
-    return Response(status=http.HTTPStatus.NO_CONTENT)
+    return "ok"#Response(status=http.HTTPStatus.NO_CONTENT)
 
 
 # Log Endpoints
