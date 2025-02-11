@@ -1,10 +1,12 @@
+import http
 import json
 import os
 import re
 from datetime import datetime
 from typing import Any, Dict
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, make_response, request
+from flask.wrappers import Response
 from flask_cors import CORS, cross_origin
 
 import service_layer.crypto.JWTKeyManagement as JWTKeyManagement
@@ -2262,21 +2264,21 @@ def create_logbuffer(content, user_id):
     if result is None:
         raise err.LogBufferError()
 
-    return "ok"#make_response(jsonify(result), http.HTTPStatus.CREATED)
+    return make_response(jsonify(result), http.HTTPStatus.CREATED)
 
 
 @app.route("/user/<user_id>/logbuffer", methods=["GET"])
 @cross_origin(supports_credentials=True)
 def get_logbuffer_by_user_id(user_id):
     result = services.get_logbuffer(unit_of_work.SqlAlchemyUnitOfWork(), user_id)
-    return "ok"#make_response(jsonify(result), http.HTTPStatus.OK)
+    return make_response(jsonify(result), http.HTTPStatus.OK)
 
 
 @app.route("/user/<user_id>/logbuffer", methods=["DELETE"])
 @cross_origin(supports_credentials=True)
 def delete_logbuffer_by_user_id(user_id):
     services.delete_logbuffer(unit_of_work.SqlAlchemyUnitOfWork(), user_id)
-    return "ok"#Response(status=http.HTTPStatus.NO_CONTENT)
+    return Response(status=http.HTTPStatus.NO_CONTENT)
 
 
 # Log Endpoints
