@@ -28,7 +28,5 @@ COPY tests/ /app/tests/
 COPY utils/ /app/utils/
 COPY config.py /app/config.py
 COPY errors/ /app/errors/
-COPY db_setup.py /app/db_setup.py
-COPY db_fill_minimum.py /app/db_fill_minimum.py
 
 CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
