@@ -766,12 +766,7 @@ class TestApi:
     ):
         global course_id
         global sub_topic_id
-        url = (
-            path_lms_topic
-            + "/"
-            + str(sub_topic_id)
-            + path_learning_element
-        )
+        url = path_lms_topic + "/" + str(sub_topic_id) + path_learning_element
         r = client_class.post(url, json=input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
