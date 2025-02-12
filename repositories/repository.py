@@ -502,7 +502,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
 
     @abc.abstractmethod
     def get_student_learning_element(
-        self, student_id, learning_element_id
+        self, student_id
     ) -> DM.StudentLearningElement:
         raise NotImplementedError
 
@@ -1591,17 +1591,13 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             raise err.DatabaseQueryError()
 
     def get_student_learning_element(
-        self, student_id, learning_element_id
+        self, student_id
     ) -> DM.StudentLearningElement:
-        try:
-            return (
-                self.session.query(DM.StudentLearningElement)
-                .filter_by(student_id=student_id)
-                .filter_by(learning_element_id=learning_element_id)
-                .all()
-            )
-        except Exception:
-            raise err.DatabaseQueryError()
+        result = self.session.query(UA.Student).filter_by(id=student_id).all()
+        if result == []:
+            raise err.NoValidIdError()
+        else:
+            return result
 
     def get_student_lpath_le_algorithm(
         self, student_id, topic_id
