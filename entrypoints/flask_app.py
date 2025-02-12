@@ -161,9 +161,7 @@ def add_all_students_to_course(course_id):
     method = request.method
     match method:
         case "POST":
-            students = services.get_all_students(
-                unit_of_work.SqlAlchemyUnitOfWork()
-            )
+            students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
             for student in students:
                 student_id = student["id"]
                 services.add_student_to_course(
@@ -171,7 +169,16 @@ def add_all_students_to_course(course_id):
                     student_id,
                     course_id,
                 )
-            return Response(status=http.HTTPStatus.CREATED)
+            return make_response(
+                jsonify(
+                    {
+                        "CREATED": True,
+                        "course_id": course_id,
+                        "students_added": len(students),
+                    }
+                ),
+                http.HTTPStatus.CREATED,
+            )
 
 
 # Add a course
@@ -207,7 +214,7 @@ def post_course(data: Dict[str, Any]):
                                     data["start_date"], cons.date_format
                                 )
                     else:
-                        start_date = current_date
+                        start_date = datetime.strptime(current_date, cons.date_format)
                     created_at = datetime.strptime(current_date, cons.date_format)
                     course = services.create_course(
                         unit_of_work.SqlAlchemyUnitOfWork(),
@@ -221,9 +228,7 @@ def post_course(data: Dict[str, Any]):
                     status_code = 201
                     return jsonify(course), status_code
                 else:
-                    raise err.WrongParameterValueError(
-                        message=cons.date_format_message
-                    )
+                    raise err.WrongParameterValueError(message=cons.date_format_message)
             else:
                 raise err.MissingParameterError()
 
@@ -478,14 +483,14 @@ def post_topic(data: Dict[str, Any], course_id):
             condition7 = "created_at" in data
             condition8 = "university" in data
             if (
-                    condition1
-                    and condition2
-                    and condition3
-                    and condition4
-                    and condition5
-                    and condition6
-                    and condition7
-                    and condition8
+                condition1
+                and condition2
+                and condition3
+                and condition4
+                and condition5
+                and condition6
+                and condition7
+                and condition8
             ):
                 condition9 = type(data["name"]) is str
                 condition10 = type(data["lms_id"]) is int
@@ -495,13 +500,13 @@ def post_topic(data: Dict[str, Any], course_id):
                 condition14 = type(data["created_at"]) is str
                 condition15 = type(data["university"]) is str
                 if (
-                        condition9
-                        and condition10
-                        and condition11
-                        and condition12
-                        and condition13
-                        and condition14
-                        and condition15
+                    condition9
+                    and condition10
+                    and condition11
+                    and condition12
+                    and condition13
+                    and condition14
+                    and condition15
                 ):
                     condition16 = re.search(cons.date_format_search, data["created_at"])
                     if condition16:
@@ -539,9 +544,7 @@ def add_all_students_to_all_topics(course_id):
     method = request.method
     match method:
         case "POST":
-            students = services.get_all_students(
-                unit_of_work.SqlAlchemyUnitOfWork()
-            )
+            students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
             for student in students:
                 student_id = student["id"]
                 services.add_student_to_topics(
@@ -549,7 +552,16 @@ def add_all_students_to_all_topics(course_id):
                     student_id,
                     course_id,
                 )
-            return Response(status=http.HTTPStatus.CREATED)
+            return make_response(
+                jsonify(
+                    {
+                        "CREATED": True,
+                        "course_id": course_id,
+                        "students_added": len(students),
+                    }
+                ),
+                http.HTTPStatus.CREATED,
+            )
 
 
 @app.route(
