@@ -1070,7 +1070,6 @@ class TestApi:
             + str(sub_topic_id)
             + path_student_algorithm
         )
-
         r = client_class.post(url, json=input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -1502,6 +1501,58 @@ class TestApi:
         for key in keys_expected:
             for response in responses:
                 assert key in response.keys()
+
+    # Learning paths are calculated for all students
+    @pytest.mark.parametrize(
+        "input, moodle_user_id, keys_expected, status_code_expected",
+        [
+            (
+                    {
+                        "university": "TH-AB",  # Added required key
+                        "role": "teacher",      # Added required key
+                    },
+                    4,
+                    [
+                        "id",
+                        "course_id",
+                        "topic_id",
+                        "student_id",
+                        "based_on",
+                        "path",
+                        "calculated_on",
+                    ],
+                    201,
+            ),
+        ],
+    )
+    def test_post_calculate_learning_path_for_all_students(
+            self, client_class, input, moodle_user_id, keys_expected, status_code_expected
+    ):
+        global user_id_course_creator, course_id, sub_topic_id, user_id_student
+        url = (
+            "/v2"+
+                path_user
+                + "/"
+                + str(user_id_student)
+                + path_course
+                + "/"
+                + str(course_id)
+                + path_topic
+                + "/"
+                + str(1)
+                + path_learning_path
+        )
+        r = client_class.post(url, json=input)
+        assert r.status_code == status_code_expected
+        responses = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            for response in responses:
+                assert key in response.keys()
+        # Save course_id if needed
+        # if save_id:
+        #     global course_id
+        #     course_id = responses[0]["id"]
+
 
     @pytest.mark.parametrize(
         "keys_expected, status_code_expected",
@@ -2679,7 +2730,7 @@ class TestApi:
         url = (
             path_user
             + "/"
-            + str(user_id_student)
+            + str(4)
             + path_topic
             + "/"
             + str(topic_id)

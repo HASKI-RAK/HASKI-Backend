@@ -1608,6 +1608,8 @@ def post_calculate_learning_path_for_all_students(
                             unit_of_work.SqlAlchemyUnitOfWork()
                         )
 
+                        results = []
+
                         for student in students:
                             student_user_id = services.get_user_by_id(
                                 unit_of_work.SqlAlchemyUnitOfWork(),
@@ -1870,6 +1872,7 @@ def post_student_lp_le_algorithm(
                             data["algorithm_short_name"].lower(),
                         )
                         status_code = 201
+
                         return jsonify(result), status_code
                 else:
                     raise err.WrongParameterValueError()

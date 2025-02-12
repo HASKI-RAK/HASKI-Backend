@@ -1784,7 +1784,6 @@ def get_lpath_le_algorithm_by_topic(
         lpath_le_algorithm = uow.lpath_le_algorithm.get_lpath_le_algorithm_by_topic(
             topic_id
         )
-
         if lpath_le_algorithm == []:
             result = {}
         else:
