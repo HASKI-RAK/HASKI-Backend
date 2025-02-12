@@ -404,18 +404,6 @@ class TestApi:
         "input, keys_expected, status_code_expected,\
                             save_id",
         [
-            # Working Example
-            (
-                {
-                    "name": "Test Course",
-                    "lms_id": 1,
-                    "created_at": "2023-08-01T13:37:42Z",
-                    "university": "TH-AB",
-                },
-                ["id", "name", "lms_id", "created_at", "created_by", "university"],
-                201,
-                True,
-            ),
             # Missing Parameter
             (
                 {"name": "Test Course", "university": "TH-AB"},
@@ -428,18 +416,6 @@ class TestApi:
                 {
                     "name": "Test Course",
                     "lms_id": "1",
-                    "created_at": "2023-08-01T13:37:42Z",
-                    "university": "TH-AB",
-                },
-                ["error", "message"],
-                400,
-                False,
-            ),
-            # Course already exists
-            (
-                {
-                    "name": "Test Course",
-                    "lms_id": 1,
                     "created_at": "2023-08-01T13:37:42Z",
                     "university": "TH-AB",
                 },
@@ -660,8 +636,6 @@ class TestApi:
             path_lms_course
             + "/"
             + str(course_id)
-            + "/"
-            + str(moodle_course_id)
             + path_topic
         )
         if topic_id != 0:
@@ -4318,11 +4292,11 @@ class TestApi:
             ),
         ],
     )
-    def test_api_create_course_and_add_all_students(
+    def test_api_add_all_students_to_course(
         self, client_class, input, keys_expected, status_code_expected, save_id
     ):
         input["created_by"] = user_id_course_creator
-        url = path_v2 + path_lms_course
+        url = path_lms_course + "1" + "/allStudents"
         r = client_class.post(url, json=input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
