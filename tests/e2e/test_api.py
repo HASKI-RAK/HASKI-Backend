@@ -40,6 +40,7 @@ path_learning_path = "/learningPath"
 path_learning_strategy = "/learningStrategy"
 path_learning_style = "/learningStyle"
 path_lms_course = "/lms/course"
+path_lms_topic = "/lms/topic"
 path_lms_student = "/lms/student"
 path_lms_user = "/lms/user"
 path_questionnaire_ils = "/questionnaire/ils"
@@ -55,7 +56,6 @@ path_user = "/user"
 path_algorithm = "/algorithm"
 path_student_algorithm = "/studentAlgorithm"
 path_teacher_algorithm = "/teacherAlgorithm"
-path_v2 = "/v2"
 path_rating = "/rating"
 
 ils_complete = [
@@ -767,16 +767,9 @@ class TestApi:
         global course_id
         global sub_topic_id
         url = (
-            path_lms_course
-            + "/"
-            + str(course_id)
-            + "/"
-            + str(moodle_course_id)
-            + path_topic
+            path_lms_topic
             + "/"
             + str(sub_topic_id)
-            + "/"
-            + str(moodle_topic_id)
             + path_learning_element
         )
         r = client_class.post(url, json=input)

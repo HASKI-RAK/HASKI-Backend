@@ -630,84 +630,9 @@ def topic_administration(
             return jsonify(result), status_code
 
 
-@app.route(
-    "/lms/course/<course_id>/<lms_course_id>/topic/<topic_id>/"
-    + "<lms_topic_id>/learningElement",
-    methods=["POST"],
-)
-@cross_origin(supports_credentials=True)
-@json_only()
-def create_learning_element(
-    data: Dict[str, Any], course_id, lms_course_id, topic_id, lms_topic_id
-):
-    method = request.method
-    match method:
-        case "POST":
-            condition1 = data is not None
-            condition2 = "lms_id" in data
-            condition3 = "activity_type" in data
-            condition4 = "classification" in data
-            condition5 = "name" in data
-            condition6 = "created_by" in data
-            condition7 = "created_at" in data
-            condition8 = "university" in data
-            if (
-                condition1
-                and condition2
-                and condition3
-                and condition4
-                and condition5
-                and condition6
-                and condition7
-                and condition8
-            ):
-                condition9 = type(data["lms_id"]) == int
-                condition10 = type(data["activity_type"]) == str
-                condition11 = type(data["classification"]) == str
-                condition12 = type(data["name"]) == str
-                condition13 = type(data["created_by"]) == str
-                condition14 = type(data["created_at"]) == str
-                condition15 = type(data["university"]) == str
-                if (
-                    condition9
-                    and condition10
-                    and condition11
-                    and condition12
-                    and condition13
-                    and condition14
-                    and condition15
-                ):
-                    condition16 = re.search(cons.date_format_search, data["created_at"])
-                    if condition16:
-                        created_at = datetime.strptime(
-                            data["created_at"], cons.date_format
-                        ).date()
-                        learning_element = services.create_learning_element(
-                            unit_of_work.SqlAlchemyUnitOfWork(),
-                            topic_id,
-                            data["lms_id"],
-                            data["activity_type"],
-                            data["classification"],
-                            data["name"],
-                            data["created_by"],
-                            created_at,
-                            data["university"],
-                        )
-                        status_code = 201
-                        return jsonify(learning_element), status_code
-                    else:
-                        raise err.WrongParameterValueError(
-                            message=cons.date_format_message
-                        )
-                else:
-                    raise err.WrongParameterValueError()
-            else:
-                raise err.MissingParameterError()
-
-
 # Create LE - shorter request-url
 @app.route(
-    "/v2/lms/topic/<topic_id>/learningElement",
+    "/lms/topic/<topic_id>/learningElement",
     methods=["POST"],
 )
 @cross_origin(supports_credentials=True)
