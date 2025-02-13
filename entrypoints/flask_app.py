@@ -282,15 +282,21 @@ def course_management(data: Dict[str, Any], course_id, lms_course_id):
                 raise err.MissingParameterError()
         case "DELETE":
             topics = services.get_topics_for_course_id(unit_of_work.SqlAlchemyUnitOfWork(), course_id)
+            students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
             services.delete_learning_paths_by_course_id(unit_of_work.SqlAlchemyUnitOfWork(), course_id)
+            for student in students:
+                services.delete_student_topic(unit_of_work.SqlAlchemyUnitOfWork(), student["id"])
             for topic in topics:
+                #student_rating und learning_element rating müsste man noch löschen, beide haben Topic_id
                 learning_elements = services.get_learning_elements_for_topic_id(unit_of_work.SqlAlchemyUnitOfWork(), topic["id"])
-                services.delete_learning_path_learning_element_algorithm(topic["id"])
-                services.delete_student_lpath_le_algorithm(topic["id"])
+                services.delete_learning_path_learning_element_algorithm(unit_of_work.SqlAlchemyUnitOfWork(), topic["id"])
+                services.delete_student_lpath_le_algorithm(unit_of_work.SqlAlchemyUnitOfWork(), topic["id"])
                 for learning_element in learning_elements:
-                    services.delete_topic_learning_element_by_learning_element(unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"])
+                    #services.delete_topic_learning_element_by_learning_element(unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"])
                     services.delete_student_learning_element_by_learning_element_id(unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"])
-                    services.delete_learning_element(learning_element["id"])
+                    services.delete_learning_element(unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"])
+                services.delete_topic(unit_of_work.SqlAlchemyUnitOfWork(), topic["id"])
+
             services.delete_course(unit_of_work.SqlAlchemyUnitOfWork(), course_id)
             result = {"message": cons.deletion_message}
             status_code = 200
@@ -809,8 +815,6 @@ def learning_element_administration(
         case "DELETE":
             services.delete_learning_element(
                 unit_of_work.SqlAlchemyUnitOfWork(),
-                course_id,
-                topic_id,
                 learning_element_id,
             )
             result = {"message": cons.deletion_message}
