@@ -13,6 +13,7 @@ from domain.tutoringModel import model as TM
 from domain.userAdministartion import model as UA
 from service_layer import unit_of_work
 from service_layer.lti.OIDCLoginFlask import OIDCLoginFlask
+import utils.constants as const
 
 
 def add_course_creator_to_course(
@@ -783,19 +784,19 @@ def create_user(
         uow.commit()
         user.settings = create_settings(uow, user.id)
         match role.lower():
-            case "admin":
+            case const.role_admin_string:
                 role = create_admin(uow, user)
                 user.role_id = role["id"]
-            case "course creator":
+            case const.role_course_creator_string:
                 role_course_creator = create_course_creator(uow, user)
                 # course creator needs a studentId to be able to see the created
                 # learning_paths
                 create_student(uow, user)
                 user.role_id = role_course_creator["id"]
-            case "student":
+            case const.role_student_string:
                 role = create_student(uow, user)
                 user.role_id = role["id"]
-            case "teacher":
+            case const.role_teacher_string:
                 role = create_teacher(uow, user)
                 user.role_id = role["id"]
         result = user.serialize()
@@ -1098,13 +1099,13 @@ def delete_user(uow: unit_of_work.AbstractUnitOfWork, user_id, lms_user_id):
     with uow:
         user = get_user_by_id(uow, user_id, lms_user_id)
         match user["role"]:
-            case "admin":
+            case const.role_admin_string:
                 delete_admin(uow, user["id"])
-            case "course creator":
+            case const.role_course_creator_string:
                 delete_course_creator(uow, user["id"])
-            case "student":
+            case const.role_student_string:
                 delete_student(uow, user["id"])
-            case "teacher":
+            case const.role_teacher_string:
                 delete_teacher(uow, user["id"])
         delete_settings(uow, user_id)
         uow.user.delete_user(user_id, lms_user_id)

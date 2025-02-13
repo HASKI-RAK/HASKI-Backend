@@ -1,5 +1,6 @@
 import json
 from unittest import mock
+import utils.constants as const
 
 import pytest
 
@@ -382,19 +383,19 @@ class TestApi:
             assert key in response.keys()
         if save_id:
             match input["role"].lower():
-                case "admin":
+                case const.role_admin_string:
                     global user_id_admin, admin_id
                     user_id_admin = response["id"]
                     admin_id = response["role_id"]
-                case "course creator":
+                case const.role_course_creator_string:
                     global user_id_course_creator, course_creator_id
                     user_id_course_creator = response["id"]
                     course_creator_id = response["role_id"]
-                case "teacher":
+                case const.role_teacher_string:
                     global user_id_teacher, teacher_id
                     user_id_teacher = response["id"]
                     teacher_id = response["role_id"]
-                case "student":
+                case const.role_student_string:
                     global user_id_student, student_id
                     user_id_student = response["id"]
                     student_id = response["role_id"]

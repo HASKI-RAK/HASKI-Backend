@@ -1,20 +1,20 @@
 from utils.auth.permissions import Permissions
-from utils.constants import role_course_creator, role_student, role_admin
+from utils.constants import role_course_creator_string, role_student_string, role_admin_string
 
 # This file contains the mapping of IMS roles to LTI / LMS roles
 # Moodle Manager & Teacher: Instructor
 # Moodle Admin: Administrator
 # Moodle Student: Learner
 lti_roles = {
-    "http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor": role_course_creator,
-    "http://purl.imsglobal.org/vocab/lis/v2/membership#Learner": role_student,
-    "http://purl.imsglobal.org/vocab/lis/v2/membership#Administrator": role_admin,
+    "http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor": role_course_creator_string,
+    "http://purl.imsglobal.org/vocab/lis/v2/membership#Learner": role_student_string,
+    "http://purl.imsglobal.org/vocab/lis/v2/membership#Administrator": role_admin_string,
 }
 
 lti_permissions = {
-    role_course_creator: [Permissions.READ, Permissions.WRITE],
-    role_student: [Permissions.READ],
-    role_admin: [Permissions.READ, Permissions.WRITE, Permissions.ADMIN],
+    role_course_creator_string: [Permissions.READ, Permissions.WRITE],
+    role_student_string: [Permissions.READ],
+    role_admin_string: [Permissions.READ, Permissions.WRITE, Permissions.ADMIN],
 }
 
 
