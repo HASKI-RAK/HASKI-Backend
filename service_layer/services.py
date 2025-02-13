@@ -5,6 +5,7 @@ import requests
 from flask.wrappers import Request
 
 import errors.errors as err
+import utils.constants as const
 from domain.domainModel import model as DM
 from domain.learnersModel import basic_ils_algorithm as BILSA
 from domain.learnersModel import basic_listk_algorithm as BLKA
@@ -783,19 +784,19 @@ def create_user(
         uow.commit()
         user.settings = create_settings(uow, user.id)
         match role.lower():
-            case "admin":
+            case const.role_admin_string:
                 role = create_admin(uow, user)
                 user.role_id = role["id"]
-            case "course creator":
+            case const.role_course_creator_string:
                 role_course_creator = create_course_creator(uow, user)
                 # course creator needs a studentId to be able to see the created
                 # learning_paths
                 create_student(uow, user)
                 user.role_id = role_course_creator["id"]
-            case "student":
+            case const.role_student_string:
                 role = create_student(uow, user)
                 user.role_id = role["id"]
-            case "teacher":
+            case const.role_teacher_string:
                 role = create_teacher(uow, user)
                 user.role_id = role["id"]
         result = user.serialize()
@@ -1132,13 +1133,13 @@ def delete_user(uow: unit_of_work.AbstractUnitOfWork, user_id, lms_user_id):
     with uow:
         user = get_user_by_id(uow, user_id, lms_user_id)
         match user["role"]:
-            case "admin":
+            case const.role_admin_string:
                 delete_admin(uow, user["id"])
-            case "course creator":
+            case const.role_course_creator_string:
                 delete_course_creator(uow, user["id"])
-            case "student":
+            case const.role_student_string:
                 delete_student(uow, user["id"])
-            case "teacher":
+            case const.role_teacher_string:
                 delete_teacher(uow, user["id"])
         delete_settings(uow, user_id)
         uow.user.delete_user(user_id, lms_user_id)
@@ -1845,7 +1846,6 @@ def get_lpath_le_algorithm_by_topic(
         lpath_le_algorithm = uow.lpath_le_algorithm.get_lpath_le_algorithm_by_topic(
             topic_id
         )
-
         if lpath_le_algorithm == []:
             result = {}
         else:
@@ -2746,10 +2746,6 @@ def update_ratings(
     timestamp: datetime,
 ) -> dict:
     with uow:
-        # get all student ratings
-        # if student_ratingS == zero length
-        # create inital rating
-
         # Get all student ratings on concept.
         student_ratings = get_student_ratings_on_topic(
             uow=uow, student_id=student_id, topic_id=topic_id

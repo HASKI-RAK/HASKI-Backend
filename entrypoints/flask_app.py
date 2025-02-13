@@ -16,6 +16,12 @@ from errors import errors as err
 from repositories import orm
 from service_layer import services, unit_of_work
 from utils import constants as cons
+from utils.constants import (
+    role_admin_string,
+    role_course_creator_string,
+    role_student_string,
+    role_teacher_string,
+)
 from utils.decorators import debug_only, json_only
 
 app = Flask(__name__)
@@ -83,10 +89,10 @@ def create_user(data: Dict[str, Any]):
                 if condition5 and condition6 and condition7 and condition8:
                     role = data["role"].lower()
                     available_roles = [
-                        "admin",
-                        "course creator",
-                        "student",
-                        "teacher",
+                        role_admin_string,
+                        role_course_creator_string,
+                        role_student_string,
+                        role_teacher_string,
                     ]
                     if role not in available_roles:
                         raise err.NoValidRoleError()
@@ -154,11 +160,39 @@ def get_user_by_id(user_id, lms_user_id):
             return jsonify(user), status_code
 
 
-# Add a course and add all students to it
-@app.route("/v2/lms/course", methods=["POST"])
+# Add all students to a course
+@app.route("/course/<course_id>/allStudents", methods=["POST"])
+@cross_origin(supports_credentials=True)
+def add_all_students_to_course(course_id):
+    method = request.method
+    match method:
+        case "POST":
+            students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
+            for student in students:
+                student_id = student["id"]
+                services.add_student_to_course(
+                    unit_of_work.SqlAlchemyUnitOfWork(),
+                    student_id,
+                    course_id,
+                )
+            return make_response(
+                jsonify(
+                    {
+                        "CREATED": True,
+                        "course_id": course_id,
+                        "students_added": len(students),
+                    }
+                ),
+                http.HTTPStatus.CREATED,
+            )
+
+
+# Add a course
+# noinspection PyPackageRequirements
+@app.route("/lms/course", methods=["POST"])
 @cross_origin(supports_credentials=True)
 @json_only()
-def post_course_and_add_all_students(data: Dict[str, Any]):
+def post_course(data: Dict[str, Any]):
     method = request.method
     match method:
         case "POST":
@@ -186,7 +220,7 @@ def post_course_and_add_all_students(data: Dict[str, Any]):
                                     data["start_date"], cons.date_format
                                 )
                     else:
-                        start_date = current_date
+                        start_date = datetime.strptime(current_date, cons.date_format)
                     created_at = datetime.strptime(current_date, cons.date_format)
                     course = services.create_course(
                         unit_of_work.SqlAlchemyUnitOfWork(),
@@ -197,96 +231,10 @@ def post_course_and_add_all_students(data: Dict[str, Any]):
                         created_at,
                         start_date,
                     )
-                    students = services.get_all_students(
-                        unit_of_work.SqlAlchemyUnitOfWork()
-                    )
-                    for student in students:
-                        student_id = student["id"]
-                        course_id = course["id"]
-                        services.add_student_to_course(
-                            unit_of_work.SqlAlchemyUnitOfWork(),
-                            student_id,
-                            course_id,
-                        )
                     status_code = 201
                     return jsonify(course), status_code
                 else:
                     raise err.WrongParameterValueError(message=cons.date_format_message)
-            else:
-                raise err.MissingParameterError()
-
-
-# Add a course
-@app.route("/lms/course", methods=["POST"])
-@cross_origin(supports_credentials=True)
-@json_only()
-def post_course(data: Dict[str, Any]):
-    method = request.method
-    match method:
-        case "POST":
-            condition1 = data is not None
-            condition2 = "name" in data
-            condition3 = "lms_id" in data
-            condition4 = "university" in data
-            condition5 = "created_by" in data
-            condition6 = "created_at" in data
-            condition13 = "start_date" in data
-            if (
-                condition1
-                and condition2
-                and condition3
-                and condition4
-                and condition5
-                and condition6
-            ):
-                condition7 = type(data["lms_id"]) is int
-                condition8 = type(data["name"]) is str
-                condition9 = type(data["university"]) is str
-                condition10 = type(data["created_by"]) is int
-                condition11 = type(data["created_at"]) is str
-                if (
-                    condition7
-                    and condition8
-                    and condition9
-                    and condition10
-                    and condition11
-                ):
-                    condition12 = re.search(cons.date_format_search, data["created_at"])
-                    if condition12:
-                        created_at = datetime.strptime(
-                            data["created_at"], cons.date_format
-                        )
-                        if condition13:
-                            condition14 = type(data["start_date"]) is str
-                            if condition14:
-                                condition15 = re.search(
-                                    cons.date_format_search, data["start_date"]
-                                )
-                                if condition15:
-                                    start_date = datetime.strptime(
-                                        data["start_date"], cons.date_format
-                                    )
-                        else:
-                            start_date = datetime.strptime(
-                                data["created_at"], cons.date_format
-                            ).date()
-                        course = services.create_course(
-                            unit_of_work.SqlAlchemyUnitOfWork(),
-                            data["lms_id"],
-                            data["name"],
-                            data["university"],
-                            data["created_by"],
-                            created_at,
-                            start_date,
-                        )
-                        status_code = 201
-                        return jsonify(course), status_code
-                    else:
-                        raise err.WrongParameterValueError(
-                            message=cons.date_format_message
-                        )
-                else:
-                    raise err.WrongParameterValueError()
             else:
                 raise err.MissingParameterError()
 
@@ -535,10 +483,10 @@ def post_learning_path_algorithm(data: Dict[str, Any]):
                 raise err.MissingParameterError()
 
 
-@app.route("/lms/course/<course_id>/<lms_course_id>/topic", methods=["POST"])
+@app.route("/lms/course/<course_id>/topic", methods=["POST"])
 @cross_origin(supports_credentials=True)
 @json_only()
-def post_topic(data: Dict[str, Any], course_id, lms_course_id):
+def post_topic(data: Dict[str, Any], course_id):
     method = request.method
     match method:
         case "POST":
@@ -606,84 +554,30 @@ def post_topic(data: Dict[str, Any], course_id, lms_course_id):
 
 
 # Add Topic to course and add all students to it
-@app.route("/v2/lms/course/<course_id>/topic", methods=["POST"])
+@app.route("/course/<course_id>/topics/allStudents", methods=["POST"])
 @cross_origin(supports_credentials=True)
-@json_only()
-def post_topic_and_add_all_students(data: Dict[str, Any], course_id):
+def add_all_students_to_all_topics(course_id):
     method = request.method
     match method:
         case "POST":
-            condition1 = data is not None
-            condition2 = "name" in data
-            condition3 = "lms_id" in data
-            condition4 = "is_topic" in data
-            condition5 = "contains_le" in data
-            condition6 = "created_by" in data
-            condition7 = "created_at" in data
-            condition8 = "university" in data
-            if (
-                condition1
-                and condition2
-                and condition3
-                and condition4
-                and condition5
-                and condition6
-                and condition7
-                and condition8
-            ):
-                condition9 = type(data["name"]) is str
-                condition10 = type(data["lms_id"]) is int
-                condition11 = type(data["is_topic"]) is bool
-                condition12 = type(data["contains_le"]) is bool
-                condition13 = type(data["created_by"]) is str
-                condition14 = type(data["created_at"]) is str
-                condition15 = type(data["university"]) is str
-                if (
-                    condition9
-                    and condition10
-                    and condition11
-                    and condition12
-                    and condition13
-                    and condition14
-                    and condition15
-                ):
-                    condition16 = re.search(cons.date_format_search, data["created_at"])
-                    if condition16:
-                        created_at = datetime.strptime(
-                            data["created_at"], cons.date_format
-                        ).date()
-                        topic = services.create_topic(
-                            unit_of_work.SqlAlchemyUnitOfWork(),
-                            course_id,
-                            data["lms_id"],
-                            data["is_topic"],
-                            data["parent_id"] if "parent_id" in data else None,
-                            data["contains_le"],
-                            data["name"],
-                            data["university"],
-                            data["created_by"],
-                            created_at,
-                        )
-                        students = services.get_all_students(
-                            unit_of_work.SqlAlchemyUnitOfWork()
-                        )
-                        for student in students:
-                            student_id = student["id"]
-                            services.add_student_to_topics(
-                                unit_of_work.SqlAlchemyUnitOfWork(),
-                                student_id,
-                                course_id,
-                            )
-                        status_code = 201
-                        return jsonify(topic), status_code
-                    else:
-                        raise err.WrongParameterValueError(
-                            message=cons.date_format_message
-                        )
-                else:
-                    raise err.WrongParameterValueError()
-            else:
-                raise err.MissingParameterError()
+            students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
+            for student in students:
+                student_id = student["id"]
+                services.add_student_to_topics(
+                    unit_of_work.SqlAlchemyUnitOfWork(),
+                    student_id,
+                    course_id,
+                )
+            return make_response(
+                jsonify(
+                    {
+                        "CREATED": True,
+                        "course_id": course_id,
+                        "students_added": len(students),
+                    }
+                ),
+                http.HTTPStatus.CREATED,
+            )
 
 
 @app.route(
@@ -752,89 +646,14 @@ def topic_administration(
             return jsonify(result), status_code
 
 
-@app.route(
-    "/lms/course/<course_id>/<lms_course_id>/topic/<topic_id>/"
-    + "<lms_topic_id>/learningElement",
-    methods=["POST"],
-)
-@cross_origin(supports_credentials=True)
-@json_only()
-def create_learning_element(
-    data: Dict[str, Any], course_id, lms_course_id, topic_id, lms_topic_id
-):
-    method = request.method
-    match method:
-        case "POST":
-            condition1 = data is not None
-            condition2 = "lms_id" in data
-            condition3 = "activity_type" in data
-            condition4 = "classification" in data
-            condition5 = "name" in data
-            condition6 = "created_by" in data
-            condition7 = "created_at" in data
-            condition8 = "university" in data
-            if (
-                condition1
-                and condition2
-                and condition3
-                and condition4
-                and condition5
-                and condition6
-                and condition7
-                and condition8
-            ):
-                condition9 = type(data["lms_id"]) == int
-                condition10 = type(data["activity_type"]) == str
-                condition11 = type(data["classification"]) == str
-                condition12 = type(data["name"]) == str
-                condition13 = type(data["created_by"]) == str
-                condition14 = type(data["created_at"]) == str
-                condition15 = type(data["university"]) == str
-                if (
-                    condition9
-                    and condition10
-                    and condition11
-                    and condition12
-                    and condition13
-                    and condition14
-                    and condition15
-                ):
-                    condition16 = re.search(cons.date_format_search, data["created_at"])
-                    if condition16:
-                        created_at = datetime.strptime(
-                            data["created_at"], cons.date_format
-                        ).date()
-                        learning_element = services.create_learning_element(
-                            unit_of_work.SqlAlchemyUnitOfWork(),
-                            topic_id,
-                            data["lms_id"],
-                            data["activity_type"],
-                            data["classification"],
-                            data["name"],
-                            data["created_by"],
-                            created_at,
-                            data["university"],
-                        )
-                        status_code = 201
-                        return jsonify(learning_element), status_code
-                    else:
-                        raise err.WrongParameterValueError(
-                            message=cons.date_format_message
-                        )
-                else:
-                    raise err.WrongParameterValueError()
-            else:
-                raise err.MissingParameterError()
-
-
 # Create LE - shorter request-url
 @app.route(
-    "/v2/lms/topic/<topic_id>/learningElement",
+    "/lms/topic/<topic_id>/learningElement",
     methods=["POST"],
 )
 @cross_origin(supports_credentials=True)
 @json_only()
-def create_learning_element_v2(data: Dict[str, Any], topic_id):
+def create_learning_element(data: Dict[str, Any], topic_id):
     method = request.method
     match method:
         case "POST":
@@ -1793,7 +1612,11 @@ def post_calculate_learning_path_for_all_students(
                 condition8 = type(data["role"]) is str
                 if condition6 and condition8:
                     role = data["role"].lower()
-                    available_roles = ["admin", "course creator", "teacher"]
+                    available_roles = [
+                        role_admin_string,
+                        role_course_creator_string,
+                        role_teacher_string,
+                    ]
                     if role not in available_roles:
                         raise err.NoValidRoleError()
                     else:
@@ -1804,6 +1627,8 @@ def post_calculate_learning_path_for_all_students(
                         students = services.get_all_students(
                             unit_of_work.SqlAlchemyUnitOfWork()
                         )
+
+                        results = []
 
                         for student in students:
                             student_user_id = services.get_user_by_id(
@@ -2067,6 +1892,7 @@ def post_student_lp_le_algorithm(
                             data["algorithm_short_name"].lower(),
                         )
                         status_code = 201
+
                         return jsonify(result), status_code
                 else:
                     raise err.WrongParameterValueError()
@@ -2105,7 +1931,11 @@ def post_teacher_lp_le_algorithm(
             user = services.get_user_by_id(
                 unit_of_work.SqlAlchemyUnitOfWork(), user_id, lms_user_id
             )
-            permitted_roles = ["teacher", "course creator", "admin"]
+            permitted_roles = [
+                role_admin_string,
+                role_course_creator_string,
+                role_teacher_string,
+            ]
             condition2 = user["role"] in permitted_roles
             if condition1 and condition2:
                 condition3 = type(data["algorithm_short_name"]) is str

@@ -8,6 +8,7 @@ import pytest
 import errors.errors as err
 import repositories.repository as repository
 import service_layer.crypto.JWTKeyManagement as JWTKeyManagement
+import utils.constants as const
 from domain.domainModel.model import LearningElementRating
 from domain.learnersModel.model import StudentRating
 from domain.userAdministartion import model as UA
@@ -1873,13 +1874,13 @@ def test_delete_teacher():
 def test_delete_user(role, lms_id):
     uow = FakeUnitOfWork()
     match role:
-        case "admin":
+        case const.role_admin_string:
             create_admin_for_tests(uow)
-        case "course creator":
+        case const.role_course_creator_string:
             create_course_creator_for_tests(uow)
-        case "student":
+        case const.role_student_string:
             create_student_for_tests(uow)
-        case "teacher":
+        case const.role_teacher_string:
             create_teacher_for_tests(uow)
     entries_beginning = len(uow.user.user)
     settings_entries_beginning = len(uow.settings.settings)
