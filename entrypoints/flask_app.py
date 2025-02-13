@@ -16,6 +16,7 @@ from errors import errors as err
 from repositories import orm
 from service_layer import services, unit_of_work
 from utils import constants as cons
+from utils.constants import role_admin, role_course_creator, role_student, role_teacher
 from utils.decorators import debug_only, json_only
 
 app = Flask(__name__)
@@ -83,10 +84,10 @@ def create_user(data: Dict[str, Any]):
                 if condition5 and condition6 and condition7 and condition8:
                     role = data["role"].lower()
                     available_roles = [
-                        "admin",
-                        "course creator",
-                        "student",
-                        "teacher",
+                        role_admin,
+                        role_course_creator,
+                        role_student,
+                        role_teacher,
                     ]
                     if role not in available_roles:
                         raise err.NoValidRoleError()
@@ -637,7 +638,7 @@ def topic_administration(
 )
 @cross_origin(supports_credentials=True)
 @json_only()
-def create_learning_element_v2(data: Dict[str, Any], topic_id):
+def create_learning_element(data: Dict[str, Any], topic_id):
     method = request.method
     match method:
         case "POST":
@@ -1596,7 +1597,7 @@ def post_calculate_learning_path_for_all_students(
                 condition8 = type(data["role"]) is str
                 if condition6 and condition8:
                     role = data["role"].lower()
-                    available_roles = ["admin", "course creator", "teacher"]
+                    available_roles = [role_admin, role_course_creator, role_teacher]
                     if role not in available_roles:
                         raise err.NoValidRoleError()
                     else:
@@ -1911,7 +1912,7 @@ def post_teacher_lp_le_algorithm(
             user = services.get_user_by_id(
                 unit_of_work.SqlAlchemyUnitOfWork(), user_id, lms_user_id
             )
-            permitted_roles = ["teacher", "course creator", "admin"]
+            permitted_roles = [role_admin, role_course_creator, role_teacher]
             condition2 = user["role"] in permitted_roles
             if condition1 and condition2:
                 condition3 = type(data["algorithm_short_name"]) is str
