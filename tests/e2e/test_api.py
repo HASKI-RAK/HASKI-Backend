@@ -1,8 +1,9 @@
 import json
 from unittest import mock
-import utils.constants as const
 
 import pytest
+
+import utils.constants as const
 
 user_id_admin = 0
 admin_id = 0

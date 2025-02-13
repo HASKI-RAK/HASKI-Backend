@@ -5,6 +5,7 @@ import requests
 from flask.wrappers import Request
 
 import errors.errors as err
+import utils.constants as const
 from domain.domainModel import model as DM
 from domain.learnersModel import basic_ils_algorithm as BILSA
 from domain.learnersModel import basic_listk_algorithm as BLKA
@@ -13,7 +14,6 @@ from domain.tutoringModel import model as TM
 from domain.userAdministartion import model as UA
 from service_layer import unit_of_work
 from service_layer.lti.OIDCLoginFlask import OIDCLoginFlask
-import utils.constants as const
 
 
 def add_course_creator_to_course(

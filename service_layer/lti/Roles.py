@@ -1,5 +1,9 @@
 from utils.auth.permissions import Permissions
-from utils.constants import role_course_creator_string, role_student_string, role_admin_string
+from utils.constants import (
+    role_admin_string,
+    role_course_creator_string,
+    role_student_string,
+)
 
 # This file contains the mapping of IMS roles to LTI / LMS roles
 # Moodle Manager & Teacher: Instructor

@@ -2,7 +2,11 @@ import unittest
 
 from service_layer.lti.Roles import RoleMapper, lti_permissions, lti_roles
 from utils.auth.permissions import Permissions
-from utils.constants import role_course_creator_string, role_student_string, role_admin_string
+from utils.constants import (
+    role_admin_string,
+    role_course_creator_string,
+    role_student_string,
+)
 
 
 class TestRoles(unittest.TestCase):

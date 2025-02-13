@@ -2,13 +2,13 @@ import datetime
 import time
 from unittest import mock
 from unittest.mock import MagicMock, patch
-import utils.constants as const
 
 import pytest
 
 import errors.errors as err
 import repositories.repository as repository
 import service_layer.crypto.JWTKeyManagement as JWTKeyManagement
+import utils.constants as const
 from domain.domainModel.model import LearningElementRating
 from domain.learnersModel.model import StudentRating
 from domain.userAdministartion import model as UA
