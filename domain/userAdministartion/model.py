@@ -123,3 +123,19 @@ class News:
             "created_at": self.created_at,
             "university": self.university,
         }
+
+
+class LogBuffer:
+    def __init__(self, user_id, content, date) -> None:
+        self.id = None
+        self.user_id = user_id
+        self.content = content
+        self.date = date
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "content": self.content,
+            "date": self.date,
+        }

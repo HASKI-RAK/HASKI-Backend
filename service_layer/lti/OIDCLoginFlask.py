@@ -10,6 +10,7 @@ from werkzeug.wrappers.response import Response
 import service_layer.crypto.JWTKeyManagement as JWTKeyManagement
 import service_layer.lti.config.ToolConfigJson as ToolConfigJson
 import service_layer.service.SessionServiceFlask as SessionServiceFlask
+import utils.constants as const
 import utils.logger as logger
 from errors import errors as err
 from service_layer import services, unit_of_work
@@ -268,8 +269,7 @@ class OIDCLoginFlask(OIDCLogin):
         except Exception as e:
             raise err.ErrorException(
                 e,
-                message="Error\
-                    in check_auth",
+                message="Error in check_auth",
                 status_code=400,
             )
         # redirect to tool (login url in frontend)
@@ -285,7 +285,10 @@ class OIDCLoginFlask(OIDCLogin):
                 unit_of_work.SqlAlchemyUnitOfWork(), self.id_token.sub
             )
             logger.debug("User: " + str(user))
+            # If student is in Moodle, but not in Haski DB
+            # noqa: F841
             if not user:
+                # Create User in haski_user
                 user = services.create_user(
                     unit_of_work.SqlAlchemyUnitOfWork(),
                     name=self.id_token.name,
@@ -297,8 +300,30 @@ class OIDCLoginFlask(OIDCLogin):
                         self.id_token["https://purl.imsglobal.org/spec/lti/claim/roles"]
                     ).get_role(),
                 )
-            if user["role"] == "student":
-                # Type student, has to work cause of Substitution Principle
+                # Add "student"/"course creator" to student_course, on basis of his uni
+                if (
+                    user["role"] == const.role_student_string
+                    or user["role"] == const.role_course_creator_string
+                ):
+                    courses = services.get_courses_by_uni(
+                        unit_of_work.SqlAlchemyUnitOfWork(),
+                        university=user["university"],
+                    )
+                    for course in courses["courses"]:
+                        student = services.get_student_by_user_id(
+                            unit_of_work.SqlAlchemyUnitOfWork(), user["id"]
+                        )
+                        services.add_student_to_course(
+                            unit_of_work.SqlAlchemyUnitOfWork(),
+                            course_id=course["id"],
+                            student_id=student["id"],
+                        )
+            # course creators also has a student_id, to be able to see the courses,
+            # topics and learning elements they created.
+            if (
+                user["role"] == const.role_student_string
+                or user["role"] == const.role_course_creator_string
+            ):
                 user = services.get_student_by_user_id(
                     unit_of_work.SqlAlchemyUnitOfWork(), user["id"]
                 )

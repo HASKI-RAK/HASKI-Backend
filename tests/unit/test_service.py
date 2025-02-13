@@ -8,10 +8,12 @@ import pytest
 import errors.errors as err
 import repositories.repository as repository
 import service_layer.crypto.JWTKeyManagement as JWTKeyManagement
+import utils.constants as const
 from domain.domainModel.model import LearningElementRating
 from domain.learnersModel.model import StudentRating
 from domain.userAdministartion import model as UA
 from service_layer import services, unit_of_work
+from tests.e2e.test_api import lms_user_id_creator
 from utils import constants as cons
 
 
@@ -42,10 +44,12 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         learning_element_rating=[],
         learning_path=[],
         learning_path_algorithm=[],
+        lpath_le_algorithm=[],
         learning_path_learning_element=[],
         learning_path_topic=[],
         learning_strategy=[],
         learning_style=[],
+        logbuffer=[],
         news=[],
         questionnaire_list_k=[],
         questionnaire_ils=[],
@@ -82,10 +86,12 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         self.learning_element_rating = set(learning_element_rating)
         self.learning_path = set(learning_path)
         self.learning_path_algorithm = set(learning_path_algorithm)
+        self.lpath_le_algorithm = set(lpath_le_algorithm)
         self.learning_path_learning_element = set(learning_path_learning_element)
         self.learning_path_topic = set(learning_path_topic)
         self.learning_strategy = set(learning_strategy)
         self.learning_style = set(learning_style)
+        self.logbuffer = set(logbuffer)
         self.news = set(news)
         self.questionnaire_list_k = set(questionnaire_list_k)
         self.questionnaire_ils = set(questionnaire_ils)
@@ -194,6 +200,10 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         learning_path_algorithm.id = len(self.learning_path_algorithm) + 1
         self.learning_path_algorithm.add(learning_path_algorithm)
 
+    def create_learning_path_learning_element_algorithm(self, lp_le_algorithm):
+        lp_le_algorithm.id = len(self.lpath_le_algorithm) + 1
+        self.lpath_le_algorithm.add(lp_le_algorithm)
+
     def create_learning_path_learning_element(self, learning_path_learning_element):
         learning_path_learning_element.id = len(self.learning_path_learning_element) + 1
         self.learning_path_learning_element.add(learning_path_learning_element)
@@ -225,6 +235,10 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
     def create_contact_form(self, contact_form):
         contact_form.id = len(self.contact_form) + 1
         self.contact_form.add(contact_form)
+
+    def create_logbuffer(self, logbuffer):
+        logbuffer.id = len(self.logbuffer) + 1
+        self.logbuffer.add(logbuffer)
 
     def create_student(self, student):
         student.id = len(self.student) + 1
@@ -365,6 +379,14 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 to_remove.append(i)
         for remove in to_remove:
             self.knowledge.remove(remove)
+
+    def delete_logbuffer(self, user_id):
+        to_remove = []
+        for i in self.logbuffer:
+            if i.user_id == user_id:
+                to_remove.append(i)
+        for remove in to_remove:
+            self.logbuffer.remove(remove)
 
     def delete_learning_analytics(self, characteristic_id):
         to_remove = []
@@ -572,6 +594,12 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 result.append(i)
         return result
 
+    def get_all_students(self) -> list[UA.Student]:
+        result = []
+        for i in self.student:
+            result.append(i)
+        return result
+
     def get_courses_by_uni(self, university):
         result = []
         for i in self.course:
@@ -684,6 +712,13 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 result.append(i)
         return result
 
+    def get_learning_element_by_lms_id(self, learning_element_lms_id):
+        result = []
+        for i in self.learning_element:
+            if i.lms_id == learning_element_lms_id:
+                result.append(i)
+        return result
+
     def get_learning_elements_by_uni(self, university):
         result = []
         for i in self.learning_element:
@@ -791,6 +826,14 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         for i in self.default_learning_path:
             if i.university == university:
                 result.append(i)
+        return result
+
+    def get_lpath_le_algorithm_by_topic(self, topic_id) -> dict:
+        i: dict
+        result: dict = {}
+        for i in self.lpath_le_algorithm:
+            if i.topic_id == topic_id:
+                result = i
         return result
 
     def get_student_by_id(self, user_id):
@@ -915,17 +958,10 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 result.append(i)
         return result
 
-    def get_user_by_lms_user_id(self, lms_user_id):
-        result = []
-        for i in self.user:
-            if i.lms_user_id == lms_user_id:
-                result.append(i)
-        return result
-
     def get_user_by_lms_id(self, lms_id):
         result = []
         for i in self.user:
-            if i.lms_id == lms_id:
+            if i.lms_user_id == lms_id:
                 result.append(i)
         return result
 
@@ -940,6 +976,13 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         result = []
         for i in self.user:
             if i.university == university:
+                result.append(i)
+        return result
+
+    def get_logbuffer(self, user_id):
+        result = []
+        for i in self.news:
+            if i.user_id:
                 result.append(i)
         return result
 
@@ -1097,6 +1140,38 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
             to_update.done = True
             self.student_learning_element.add(to_update)
 
+    def update_learning_path_learning_element_algorithm(
+        self, topic_id, algorithm_short_name
+    ) -> None:
+        to_update = next(
+            (p for p in self.lpath_le_algorithm if p.topic_id == topic_id),
+            None,
+        )
+        if to_update is not None:
+            self.lpath_le_algorithm.remove(to_update)
+            to_update.id = len(self.lpath_le_algorithm)
+            to_update.algorithm_short_name = algorithm_short_name
+            self.lpath_le_algorithm.add(to_update)
+
+    def update_student_lpath_le_algorithm(
+        self, student_id, topic_id, algorithm_id
+    ) -> None:
+        to_update = next(
+            (
+                p
+                for p in self.student_learning_path_learning_element_algorithm
+                if p.student_id == student_id and p.topic_id == topic_id
+            ),
+            None,
+        )
+        if to_update is not None:
+            self.student_learning_path_learning_element_algorithm.remove(to_update)
+            to_update.id = len(self.student_learning_path_learning_element_algorithm)
+            to_update.algorithm_id = algorithm_id
+            to_update.student_id = student_id
+            to_update.topic_id = topic_id
+            self.student_learning_path_learning_element_algorithm.add(to_update)
+
     def update_topic(self, topic_id, topic):
         to_remove = next((p for p in self.topic if p.id == topic_id), None)
         if to_remove is not None:
@@ -1135,10 +1210,12 @@ class FakeUnitOfWork(unit_of_work.AbstractUnitOfWork):  # pragma: no cover
         self.learning_element_rating = FakeRepository()
         self.learning_path = FakeRepository()
         self.learning_path_algorithm = FakeRepository()
+        self.lpath_le_algorithm = FakeRepository()
         self.learning_path_learning_element = FakeRepository()
         self.learning_path_topic = FakeRepository()
         self.learning_strategy = FakeRepository()
         self.learning_style = FakeRepository()
+        self.logbuffer = FakeRepository()
         self.news = FakeRepository()
         self.questionnaire_list_k = FakeRepository()
         self.questionnaire_ils = FakeRepository()
@@ -1169,8 +1246,7 @@ user_name_example = "Max Mustermann"
 university_example = "TH-AB"
 creation_date_example = "2023-03-31T09:00:00Z"
 
-
-ils_complete = [
+questionnaire_ils_complete = [
     "ar_1_f1",
     "ar_2_f5",
     "ar_3_f9",
@@ -1216,7 +1292,7 @@ ils_complete = [
     "sg_10_f40",
     "sg_11_f44",
 ]
-ils_short = [
+questionnaire_ils_short = [
     "ar_3_f9",
     "ar_4_f13",
     "ar_6_f21",
@@ -1340,6 +1416,19 @@ def create_course_for_tests(uow):
         university=university_example,
         created_by=1,
         created_at="2023-01-01",
+        start_date=None,
+    )
+
+
+def create_course_with_start_date_for_tests(uow):
+    services.create_course(
+        uow=uow,
+        lms_id=2,
+        name="Test",
+        university=university_example,
+        created_by=1,
+        created_at="2023-01-01",
+        start_date="2024-01-01",
     )
 
 
@@ -1437,6 +1526,14 @@ def create_learning_path_algorithm_for_tests(uow):
     )
 
 
+def create_learning_path_learning_element_algorithm_for_tests(uow):
+    return services.create_learning_path_learning_element_algorithm(
+        uow=uow,
+        topic_id=1,
+        algorithm_id=1,
+    )
+
+
 def create_default_learning_path_for_tests(uow):
     classifications = ["KÜ", "ZL", "EK", "AN", "BE", "SE", "AB", "ÜB", "LZ", "ZF"]
     for index, classification in enumerate(classifications):
@@ -1460,11 +1557,20 @@ def create_learning_path_for_tests_ga(uow):
 def create_news_for_tests(uow):
     return services.create_news(
         uow=uow,
-        university="HS-AS",
+        university="TH-AB",
         language_id="en",
         created_at=datetime.datetime.now(),
         news_content="random text",
         expiration_date=datetime.datetime(3027, 2, 15, 18, 54, 58, 291224),
+    )
+
+
+def create_logbuffer_for_tests(uow):
+    return services.create_logbuffer(
+        uow=uow,
+        user_id=1,
+        content="random text",
+        date=datetime.datetime.now(),
     )
 
 
@@ -1562,6 +1668,27 @@ def test_create_student():
     assert student_entries_beginning + 1 == student_entries_after
     assert characteristic_entries_beginning + 1 == characteristic_entries_after
     assert style_entries_beginning + 1 == style_entries_after
+
+
+def test_get_empty_user_by_lms_id():
+    uow = FakeUnitOfWork()
+    result = services.get_user_by_lms_id(uow, lms_user_id_creator)
+    assert type(result) is dict
+    assert result == {}
+
+
+def test_get_user_by_lms_id():
+    uow = FakeUnitOfWork()
+    services.create_user(
+        uow=uow,
+        name="Sonja Studentin",
+        university=university_example,
+        lms_user_id=10,
+        role="student",
+    )
+    result = services.get_user_by_lms_id(uow, 10)
+    assert type(result) is dict
+    assert result != {}
 
 
 def test_student_learning_path_learning_element_algorithm():
@@ -1675,7 +1802,7 @@ def test_create_news():
     entries_beginning = len(uow.news.news)
     result = services.create_news(
         uow=uow,
-        university="HS-AS",
+        university="TH-AB",
         language_id="en",
         created_at=datetime.datetime.now(),
         news_content="idk",
@@ -1747,13 +1874,13 @@ def test_delete_teacher():
 def test_delete_user(role, lms_id):
     uow = FakeUnitOfWork()
     match role:
-        case "admin":
+        case const.role_admin_string:
             create_admin_for_tests(uow)
-        case "course creator":
+        case const.role_course_creator_string:
             create_course_creator_for_tests(uow)
-        case "student":
+        case const.role_student_string:
             create_student_for_tests(uow)
-        case "teacher":
+        case const.role_teacher_string:
             create_teacher_for_tests(uow)
     entries_beginning = len(uow.user.user)
     settings_entries_beginning = len(uow.settings.settings)
@@ -1827,10 +1954,39 @@ def test_create_contact_form():
     assert result != {}
 
 
+def test_create_logbuffer():
+    uow = FakeUnitOfWork()
+    create_logbuffer_for_tests(uow)
+    result = services.create_logbuffer(
+        uow,
+        1,
+        "Test content",
+        datetime.datetime.now(),
+    )
+    assert type(result) == dict
+    assert result != {}
+
+
+def test_get_logbuffer():
+    uow = FakeUnitOfWork()
+    create_logbuffer_for_tests(uow)
+    result = services.get_logbuffer(uow, 1)
+    assert type(result) == dict
+    assert result != {}
+    keys_expected = [
+        "content",
+        "date",
+    ]
+    for key in keys_expected:
+        for entry in result["log"]:
+            assert key in entry.keys()
+            assert result["log"] is not None
+
+
 def test_get_news():
     uow = FakeUnitOfWork()
     create_news_for_tests(uow)
-    result = services.get_news(uow, "en", "HS-AS", datetime.datetime.now())
+    result = services.get_news(uow, "en", "TH-AB", datetime.datetime.now())
     assert type(result) == dict
     assert result != {}
     keys_expected = [
@@ -1880,7 +2036,7 @@ def test_reset_learning_characteristics():
 def test_create_ils_input_answers():
     uow = FakeUnitOfWork()
     ils_input_answers = {}
-    for key in ils_complete:
+    for key in questionnaire_ils_complete:
         if key.startswith("vv"):
             ils_input_answers[key] = "a"
     entries_beginning = len(uow.ils_input_answers.ils_input_answers)
@@ -1896,7 +2052,7 @@ def test_create_ils_input_answers():
 def test_create_ils_perception_answers():
     uow = FakeUnitOfWork()
     ils_perception_answers = {}
-    for key in ils_complete:
+    for key in questionnaire_ils_complete:
         if key.startswith("si"):
             ils_perception_answers[key] = "a"
     entries_beginning = len(uow.ils_perception_answers.ils_perception_answers)
@@ -1912,7 +2068,7 @@ def test_create_ils_perception_answers():
 def test_create_ils_processing_answers():
     uow = FakeUnitOfWork()
     ils_processing_answers = {}
-    for key in ils_complete:
+    for key in questionnaire_ils_complete:
         if key.startswith("ar"):
             ils_processing_answers[key] = "a"
     entries_beginning = len(uow.ils_processing_answers.ils_processing_answers)
@@ -1928,7 +2084,7 @@ def test_create_ils_processing_answers():
 def test_create_ils_understanding_answers():
     uow = FakeUnitOfWork()
     ils_understanding_answers = {}
-    for key in ils_complete:
+    for key in questionnaire_ils_complete:
         if key.startswith("sg"):
             ils_understanding_answers[key] = "a"
     entries_beginning = len(uow.ils_understanding_answers.ils_understanding_answers)
@@ -1994,10 +2150,10 @@ def test_create_questionnaire_ils(full_version):
     entries_beginning = len(uow.questionnaire_ils.questionnaire_ils)
     questionnaire_ils_answers = {}
     if full_version:
-        for key in ils_complete:
+        for key in questionnaire_ils_complete:
             questionnaire_ils_answers[key] = "a"
     else:
-        for key in ils_short:
+        for key in questionnaire_ils_short:
             questionnaire_ils_answers[key] = "a"
     result = services.create_questionnaire_ils(
         uow=uow,
@@ -2022,7 +2178,7 @@ def test_create_questionnaire_ils(full_version):
 def test_delete_ils_input_answers():
     uow = FakeUnitOfWork()
     ils_input_answers = {}
-    for key in ils_complete:
+    for key in questionnaire_ils_complete:
         if key.startswith("vv"):
             ils_input_answers[key] = "a"
     services.create_ils_input_answers(
@@ -2039,7 +2195,7 @@ def test_delete_ils_input_answers():
 def test_delete_ils_perception_answers():
     uow = FakeUnitOfWork()
     ils_perception_answers = {}
-    for key in ils_complete:
+    for key in questionnaire_ils_complete:
         if key.startswith("si"):
             ils_perception_answers[key] = "a"
     services.create_ils_perception_answers(
@@ -2056,7 +2212,7 @@ def test_delete_ils_perception_answers():
 def test_delete_ils_processing_answers():
     uow = FakeUnitOfWork()
     ils_processing_answers = {}
-    for key in ils_complete:
+    for key in questionnaire_ils_complete:
         if key.startswith("ar"):
             ils_processing_answers[key] = "a"
     services.create_ils_processing_answers(
@@ -2073,7 +2229,7 @@ def test_delete_ils_processing_answers():
 def test_delete_ils_understanding_answers():
     uow = FakeUnitOfWork()
     ils_understanding_answers = {}
-    for key in ils_complete:
+    for key in questionnaire_ils_complete:
         if key.startswith("sg"):
             ils_understanding_answers[key] = "a"
     services.create_ils_understanding_answers(
@@ -2135,10 +2291,10 @@ def test_delete_questionnaire_ils(full_version):
     services.create_learning_characteristics(uow=uow, student_id=1)
     questionnaire_ils_answers = {}
     if full_version:
-        for key in ils_complete:
+        for key in questionnaire_ils_complete:
             questionnaire_ils_answers[key] = "a"
     else:
-        for key in ils_short:
+        for key in questionnaire_ils_short:
             questionnaire_ils_answers[key] = "a"
     services.create_questionnaire_ils(
         uow=uow,
@@ -2153,7 +2309,7 @@ def test_delete_questionnaire_ils(full_version):
     assert entries_beginning - 1 == entries_after
 
 
-def test_create_course():
+def test_create_course_without_start_date():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     entries_beginning = len(uow.course.course)
@@ -2167,6 +2323,7 @@ def test_create_course():
         university=university_example,
         created_by=1,
         created_at="2023-01-01",
+        start_date=None,
     )
     assert type(result) is dict
     assert result != {}
@@ -2178,6 +2335,34 @@ def test_create_course():
     assert (
         entries_beginning_course_creator_course + 1
         == entries_after_course_creator_course
+    )
+
+
+def test_create_course_with_start_date():
+    uow = FakeUnitOfWork()
+    create_course_creator_for_tests(uow)
+    entries_before = len(uow.course.course)
+    entries_before_course_creator_course = len(
+        uow.course_creator_course.course_creator_course
+    )
+    result = services.create_course(
+        uow=uow,
+        lms_id=1,
+        name="Test Course",
+        university=university_example,
+        created_by=1,
+        created_at="2023-01-01",
+        start_date="2024-01-01",
+    )
+    assert type(result) is dict
+    assert result != {}
+    entries_after = len(uow.course.course)
+    entries_after_course_creator_course = len(
+        uow.course_creator_course.course_creator_course
+    )
+    assert entries_before + 1 == entries_after
+    assert (
+        entries_before_course_creator_course + 1 == entries_after_course_creator_course
     )
 
 
@@ -2202,9 +2387,207 @@ def test_get_moodle_rest_url_for_completion_status():
     result = services.get_moodle_rest_url_for_completion_status(
         uow=uow,
         course_id=1,
-        student_id=1,
+        lms_user_id=1,
     )
     assert result == {"statuses": [{"cmid": 1, "state": 0, "timecompleted": 0}]}
+
+
+@mock.patch(
+    "requests.get",
+    mock.Mock(
+        side_effect=lambda k: mock.Mock(
+            status_code=200,
+            json=lambda: [
+                {
+                    "id": 2,
+                    "shortname": "HASKI",
+                    "categoryid": 0,
+                    "categorysortorder": 1,
+                    "fullname": "HASKI",
+                    "displayname": "HASKI",
+                    "idnumber": "",
+                    "summary": "Moodle powered by Bitnami",
+                    "summaryformat": 1,
+                    "format": "site",
+                    "showgrades": 1,
+                    "newsitems": 3,
+                    "startdate": 0,
+                    "enddate": 0,
+                    "numsections": 1,
+                    "maxbytes": 0,
+                    "showreports": 0,
+                    "visible": 1,
+                    "groupmode": 0,
+                    "groupmodeforce": 0,
+                    "defaultgroupingid": 0,
+                    "timecreated": 1683716308,
+                    "timemodified": 1683716377,
+                    "enablecompletion": 0,
+                    "completionnotify": 0,
+                    "lang": "",
+                    "forcetheme": "",
+                    "courseformatoptions": [{"name": "numsections", "value": 1}],
+                    "showactivitydates": False,
+                    "showcompletionconditions": None,
+                }
+            ],
+        )
+    ),
+)
+def test_get_courses_from_moodle():
+    uow = FakeUnitOfWork()
+    create_course_creator_for_tests(uow)
+    create_course_for_tests(uow)
+
+    result = services.get_courses_from_moodle(
+        uow=uow,
+    )
+
+    assert result == [
+        {
+            "id": 2,
+            "shortname": "HASKI",
+            "fullname": "HASKI",
+            "startdate": 0,
+            "enddate": 0,
+            "timecreated": 1683716308,
+            "timemodified": 1683716377,
+        }
+    ]
+
+
+@mock.patch(
+    "requests.get",
+    mock.Mock(
+        side_effect=lambda k: mock.Mock(
+            status_code=200,
+            json=lambda: [
+                {
+                    "id": 76,
+                    "name": "Erste Schritte",
+                    "visible": 1,
+                    "summary": "",
+                    "summaryformat": 1,
+                    "section": 0,
+                    "hiddenbynumsections": 0,
+                    "uservisible": True,
+                    "modules": [
+                        {
+                            "id": 513,
+                            "url": "https://ke.moodle.haski.app/feedback/id=513",
+                            "name": "Begriffserklärung HASKI",
+                            "instance": 84,
+                            "contextid": 838,
+                            "visible": 1,
+                            "uservisible": True,
+                            "visibleoncoursepage": 1,
+                            "modicon": "https://ke.moodle.haski.app/filtericon=1",
+                            "modname": "feedback",
+                            "modplural": "Feedback",
+                            "availability": None,
+                            "indent": 0,
+                            "onclick": "",
+                            "afterlink": None,
+                            "customdata": '{""}',
+                            "noviewlink": False,
+                            "completion": 2,
+                            "completiondata": {
+                                "state": 0,
+                                "timecompleted": 0,
+                                "overrideby": None,
+                                "valueused": False,
+                                "hascompletion": True,
+                                "isautomatic": True,
+                                "istrackeduser": True,
+                                "uservisible": True,
+                                "details": [
+                                    {
+                                        "rulename": "completionsubmit",
+                                        "rulevalue": {
+                                            "status": 0,
+                                            "description": "Submit feedback",
+                                        },
+                                    }
+                                ],
+                            },
+                            "downloadcontent": 1,
+                            "dates": [],
+                        },
+                        {
+                            "id": 601,
+                            "url": "https://ke.moodle.haski.app/h5pactivity?id=601",
+                            "name": "Freiwilliges Emotionsbarometer",
+                            "instance": 384,
+                            "contextid": 926,
+                            "visible": 1,
+                            "uservisible": True,
+                            "visibleoncoursepage": 1,
+                            "modicon": "https://ke.moodle.haski.app/filtericon=1",
+                            "modname": "h5pactivity",
+                            "modplural": "H5P",
+                            "availability": True,
+                            "indent": 0,
+                            "onclick": None,
+                            "afterlink": None,
+                            "customdata": '""',
+                            "noviewlink": False,
+                            "completion": 2,
+                            "completiondata": {
+                                "state": 1,
+                                "timecompleted": 1715080195,
+                                "overrideby": None,
+                                "valueused": True,
+                                "hascompletion": True,
+                                "isautomatic": True,
+                                "istrackeduser": False,
+                                "uservisible": True,
+                                "details": [
+                                    {
+                                        "rulename": "completionview",
+                                        "rulevalue": {
+                                            "status": 1,
+                                            "description": "View",
+                                        },
+                                    }
+                                ],
+                            },
+                            "downloadcontent": 1,
+                            "dates": [],
+                        },
+                    ],
+                },
+            ],
+        )
+    ),
+)
+def test_get_topics_and_elements_from_moodle_course():
+    uow = FakeUnitOfWork()
+    create_course_creator_for_tests(uow)
+    create_course_for_tests(uow)
+
+    result = services.get_topics_and_elements_from_moodle_course(
+        uow=uow,
+        course_id=1,
+    )
+    print(result)
+    assert result == [
+        {
+            "lms_learning_elements": [
+                {
+                    "lms_activity_type": "feedback",
+                    "lms_id": 513,
+                    "lms_learning_element_name": "Begriffserklärung HASKI",
+                },
+                {
+                    "lms_activity_type": "h5pactivity",
+                    "lms_id": 601,
+                    "lms_learning_element_name": "Freiwilliges Emotionsbarometer",
+                },
+            ],
+            "topic_lms_id": 76,
+            "topic_lms_name": "Erste Schritte",
+        },
+    ]
 
 
 @mock.patch(
@@ -2231,7 +2614,7 @@ def test_get_activity_status_for_student_for_course():
     result = services.get_activity_status_for_student_for_course(
         uow=uow,
         course_id=1,
-        student_id=1,
+        lms_user_id=1,
     )
     assert result == [
         {"cmid": 1, "state": 0, "timecompleted": 0},
@@ -2278,7 +2661,7 @@ def test_get_course_by_id():
     assert result != {}
 
 
-def test_update_course():
+def test_update_course_without_start_date():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_course_for_tests(uow)
@@ -2289,6 +2672,25 @@ def test_update_course():
         lms_id=1,
         name="Test Course 2",
         university=university_example,
+        start_date=None,
+    )
+    assert type(result) is dict
+    entries_after = len(uow.course.course)
+    assert entries_beginning == entries_after
+
+
+def test_update_course_with_start_date():
+    uow = FakeUnitOfWork()
+    create_course_creator_for_tests(uow)
+    create_course_for_tests(uow)
+    entries_beginning = len(uow.course.course)
+    result = services.update_course(
+        uow=uow,
+        course_id=1,
+        lms_id=1,
+        name="Test Course 2",
+        university=university_example,
+        start_date="2024-01-01",
     )
     assert type(result) is dict
     entries_after = len(uow.course.course)
@@ -2631,6 +3033,7 @@ def test_add_student_to_course():
     create_student_for_tests(uow)
     create_course_for_tests(uow)
     create_topic_for_tests(uow)
+    create_learning_path_learning_element_algorithm_for_tests(uow)
     create_learning_element_for_tests_1(uow)
     entries_beginning_course = len(uow.student_course.student_course)
     entries_beginning_topic = len(uow.student_topic.student_topic)
@@ -2796,6 +3199,19 @@ def test_delete_learning_paths():
     assert entries_beginning_path_le - 1 == entries_after_path_le
 
 
+def test_get_courses_by_uni():
+    uow = FakeUnitOfWork()
+    create_course_creator_for_tests(uow)
+    create_student_for_tests(uow)
+    create_course_for_tests(uow)
+    create_course_with_start_date_for_tests(uow)
+    add_student_to_course_for_tests(uow)
+    result = services.get_courses_by_uni(uow=uow, university=university_example)
+    assert type(result) is dict
+    assert len(result["courses"]) == 2
+    assert result != {}
+
+
 def test_get_courses_by_student_id():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
@@ -2868,6 +3284,7 @@ def test_get_les_for_course_id():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
+    create_learning_path_learning_element_algorithm_for_tests(uow)
     create_course_for_tests(uow)
     create_topic_for_tests(uow)
     create_learning_element_for_tests_1(uow)
@@ -2883,6 +3300,7 @@ def test_get_les_for_course_and_topic_id():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
+    create_learning_path_learning_element_algorithm_for_tests(uow)
     create_course_for_tests(uow)
     create_topic_for_tests(uow)
     create_learning_element_for_tests_1(uow)
@@ -2897,6 +3315,7 @@ def test_get_les_for_course_and_topic_id():
 def test_get_learning_element_recommendation():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
+    create_learning_path_learning_element_algorithm_for_tests(uow)
     create_student_for_tests(uow)
     create_course_for_tests(uow)
     create_topic_for_tests(uow)
@@ -2914,6 +3333,7 @@ def test_get_learning_path():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
+    create_learning_path_learning_element_algorithm_for_tests(uow)
     create_course_for_tests(uow)
     create_topic_for_tests(uow)
     create_learning_element_for_tests_1(uow)
@@ -2957,13 +3377,64 @@ def test_get_learning_path_algorithm_by_short_name():
     assert result != {}
 
 
+def test_create_learning_path_learning_element_algorithm():
+    uow = FakeUnitOfWork()
+    create_topic_for_tests(uow)
+    create_learning_path_algorithm_for_tests(uow)
+    initial_entries = len(uow.lpath_le_algorithm.lpath_le_algorithm)
+    result = services.create_learning_path_learning_element_algorithm(
+        uow=uow, topic_id=1, algorithm_id=1
+    )
+    entries = len(uow.lpath_le_algorithm.lpath_le_algorithm)
+    assert isinstance(result, dict)
+    assert result != {}
+    assert initial_entries + 1 == entries
+
+
+def test_get_lpath_le_algorithm_by_topic():
+    uow = FakeUnitOfWork()
+    create_learning_path_algorithm_for_tests(uow)
+    create_learning_path_learning_element_algorithm_for_tests(uow)
+    result = services.get_lpath_le_algorithm_by_topic(uow=uow, topic_id=1)
+    assert isinstance(result, dict)
+    assert result != {}
+
+
+def test_update_learning_path_learning_element_algorithm():
+    uow = FakeUnitOfWork()
+    create_topic_for_tests(uow)
+    create_learning_path_algorithm_for_tests(uow)
+    create_learning_path_learning_element_algorithm_for_tests(uow)
+    result = services.update_learning_path_learning_element_algorithm(
+        uow=uow,
+        topic_id=1,
+        algorithm_short_name="aco",
+    )
+    assert isinstance(result, dict)
+    assert result != {}
+
+
+def test_update_student_lpath_le_algorithm():
+    uow = FakeUnitOfWork()
+    create_topic_for_tests(uow)
+    create_student_for_tests(uow)
+    create_learning_path_algorithm_for_tests(uow)
+    result = services.update_student_lpath_le_algorithm(
+        uow=uow,
+        student_id=1,
+        topic_id=1,
+        algorithm_id=1,
+    )
+    assert isinstance(result, dict)
+    assert result != {}
+
+
 def test_get_sub_topics():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
+    create_learning_path_learning_element_algorithm_for_tests(uow)
     create_course_for_tests(uow)
-    create_topic_for_tests(uow)
-    create_sub_topic_for_tests(uow)
     create_learning_element_for_tests_1(uow)
     add_student_to_course_for_tests(uow)
     add_student_topic_visit_for_tests(uow)
@@ -2980,9 +3451,8 @@ def test_get_topics_by_student_and_course_id():
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
     create_course_for_tests(uow)
-    create_topic_for_tests(uow)
-    create_sub_topic_for_tests(uow)
     create_learning_element_for_tests_1(uow)
+    create_learning_path_learning_element_algorithm_for_tests(uow)
     add_student_to_course_for_tests(uow)
     add_student_topic_visit_for_tests(uow)
     add_student_sub_topic_visit_for_tests(uow)

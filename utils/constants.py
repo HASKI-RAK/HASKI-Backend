@@ -33,6 +33,11 @@ name_zv = "zusatzmaterial_visuell"
 name_an = "animation"
 name_ko = "kollaborativ"
 
+role_student_string = "student"
+role_admin_string = "admin"
+role_course_creator_string = "course creator"
+role_teacher_string = "teacher"
+
 name_perception_dimension = "perception_dimension"
 name_input_dimension = "input_dimension"
 name_processing_dimension = "processing_dimension"
