@@ -10,9 +10,9 @@ from utils.constants import (
 # Moodle Admin: Administrator
 # Moodle Student: Learner
 lti_roles = {
-    "http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor": role_course_creator_string,
-    "http://purl.imsglobal.org/vocab/lis/v2/membership#Learner": role_student_string,
-    "http://purl.imsglobal.org/vocab/lis/v2/membership#Administrator": role_admin_string,
+    "http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor": role_course_creator_string, # noqa: E501
+    "http://purl.imsglobal.org/vocab/lis/v2/membership#Learner": role_student_string, # noqa: E501
+    "http://purl.imsglobal.org/vocab/lis/v2/membership#Administrator": role_admin_string, # noqa: E501
 }
 
 lti_permissions = {
