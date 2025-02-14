@@ -793,52 +793,7 @@ def create_user(
                 # learning_paths
                 student = create_student(uow, user)
                 # course_creator get a standard learning characteristic
-                create_questionnaire_ils(uow, student["id"], {
-                    'ar_10_f37': 'a',
-                    'ar_11_f41': 'a',
-                    'ar_1_f1': 'a',
-                    'ar_2_f5': 'a',
-                    'ar_3_f9': 'a',
-                    'ar_4_f13': 'a',
-                    'ar_5_f17': 'a',
-                    'ar_6_f21': 'a',
-                    'ar_7_f25': 'a',
-                    'ar_8_f29': 'a',
-                    'ar_9_f33': 'a',
-                    'sg_10_f40': 'b',
-                    'sg_11_f44': 'b',
-                    'sg_1_f4': 'b',
-                    'sg_2_f8': 'b',
-                    'sg_3_f12': 'b',
-                    'sg_4_f16': 'b',
-                    'sg_5_f20': 'b',
-                    'sg_6_f24': 'b',
-                    'sg_7_f28': 'b',
-                    'sg_8_f32': 'b',
-                    'sg_9_f36': 'b',
-                    'si_10_f38': 'a',
-                    'si_11_f42': 'a',
-                    'si_1_f2': 'a',
-                    'si_2_f6': 'a',
-                    'si_3_f10': 'a',
-                    'si_4_f14': 'a',
-                    'si_5_f18': 'a',
-                    'si_6_f22': 'a',
-                    'si_7_f26': 'a',
-                    'si_8_f30': 'a',
-                    'si_9_f34': 'a',
-                    'vv_10_f39': 'b',
-                    'vv_11_f43': 'b',
-                    'vv_1_f3': 'b',
-                    'vv_2_f7': 'b',
-                    'vv_3_f11': 'b',
-                    'vv_4_f15': 'b',
-                    'vv_5_f19': 'b',
-                    'vv_6_f23': 'b',
-                    'vv_7_f27': 'b',
-                    'vv_8_f31': 'b',
-                    'vv_9_f35': 'b'
-                })
+                create_questionnaire_ils(uow, student["id"], get_default_questionnaire())
                 user.role_id = role_course_creator["id"]
             case const.role_student_string:
                 role = create_student(uow, user)
@@ -848,6 +803,56 @@ def create_user(
                 user.role_id = role["id"]
         result = user.serialize()
     return result
+
+
+def get_default_questionnaire() -> dict:
+    #11 act, 11 sen, 11 verb, 11 glo
+    return ({
+        'ar_10_f37': 'a',
+        'ar_11_f41': 'a',
+        'ar_1_f1': 'a',
+        'ar_2_f5': 'a',
+        'ar_3_f9': 'a',
+        'ar_4_f13': 'a',
+        'ar_5_f17': 'a',
+        'ar_6_f21': 'a',
+        'ar_7_f25': 'a',
+        'ar_8_f29': 'a',
+        'ar_9_f33': 'a',
+        'sg_10_f40': 'b',
+        'sg_11_f44': 'b',
+        'sg_1_f4': 'b',
+        'sg_2_f8': 'b',
+        'sg_3_f12': 'b',
+        'sg_4_f16': 'b',
+        'sg_5_f20': 'b',
+        'sg_6_f24': 'b',
+        'sg_7_f28': 'b',
+        'sg_8_f32': 'b',
+        'sg_9_f36': 'b',
+        'si_10_f38': 'a',
+        'si_11_f42': 'a',
+        'si_1_f2': 'a',
+        'si_2_f6': 'a',
+        'si_3_f10': 'a',
+        'si_4_f14': 'a',
+        'si_5_f18': 'a',
+        'si_6_f22': 'a',
+        'si_7_f26': 'a',
+        'si_8_f30': 'a',
+        'si_9_f34': 'a',
+        'vv_10_f39': 'b',
+        'vv_11_f43': 'b',
+        'vv_1_f3': 'b',
+        'vv_2_f7': 'b',
+        'vv_3_f11': 'b',
+        'vv_4_f15': 'b',
+        'vv_5_f19': 'b',
+        'vv_6_f23': 'b',
+        'vv_7_f27': 'b',
+        'vv_8_f31': 'b',
+        'vv_9_f35': 'b'
+    })
 
 
 def create_news(
