@@ -4173,12 +4173,7 @@ class TestApi:
         else:
             topic_id_use = topic_id
         url = (
-            path_lms_course
-            + "/"
-            + str(course_id)
-            + "/"
-            + str(moodle_course_id)
-            + path_topic
+            path_lms_topic
             + "/"
             + str(topic_id_use)
             + "/"
@@ -4750,12 +4745,7 @@ class TestApi:
         else:
             topic_id_use = sub_topic_id
         url = (
-            path_lms_course
-            + "/"
-            + str(course_id_use)
-            + "/"
-            + str(moodle_course_id)
-            + path_topic
+            path_lms_topic
             + "/"
             + str(topic_id_use)
             + "/"

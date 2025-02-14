@@ -335,7 +335,15 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
+    def delete_student_topic_by_topic_id(self, student_id):
+        raise NotImplementedError
+
+    @abc.abstractmethod
     def delete_student_topic_visit(self, student_id):
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def delete_student_topic_visit_by_topic_id(self, student_id):
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -467,6 +475,10 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
 
     @abc.abstractmethod
     def get_learning_paths_by_course_id(self, course_id):
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def get_learning_paths_by_topic_id(self, topic_id):
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -1302,9 +1314,17 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
     def delete_student_topic(self, student_id):
         self.session.query(DM.StudentTopic).filter_by(student_id=student_id).delete()
 
+    def delete_student_topic_by_topic_id(self, topic_id):
+        self.session.query(DM.StudentTopic).filter_by(topic_id=topic_id).delete()
+
     def delete_student_topic_visit(self, student_id):
         self.session.query(DM.StudentTopicVisit).filter_by(
             student_id=student_id
+        ).delete()
+
+    def delete_student_topic_visit_by_topic_id(self, topic_id):
+        self.session.query(DM.StudentTopicVisit).filter_by(
+            topic_id=topic_id
         ).delete()
 
     def delete_teacher(self, user_id):
@@ -1516,6 +1536,12 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
     def get_learning_paths_by_course_id(self, course_id):
         result = (
             self.session.query(TM.LearningPath).filter_by(course_id=course_id).all()
+        )
+        return result
+
+    def get_learning_paths_by_topic_id(self, topic_id):
+        result = (
+            self.session.query(TM.LearningPath).filter_by(topic_id=topic_id).all()
         )
         return result
 

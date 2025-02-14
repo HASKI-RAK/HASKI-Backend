@@ -242,7 +242,7 @@ def post_course(data: Dict[str, Any]):
 @app.route("/lms/course/<course_id>/<lms_course_id>", methods=["PUT", "DELETE"])
 @cross_origin(supports_credentials=True)
 @json_only(ignore=["DELETE"])
-def course_management(data: Dict[str, Any], course_id, lms_course_id):
+def course_administration(data: Dict[str, Any], course_id, lms_course_id):
     method = request.method
     match method:
         case "PUT":
@@ -282,21 +282,17 @@ def course_management(data: Dict[str, Any], course_id, lms_course_id):
                 raise err.MissingParameterError()
         case "DELETE":
             topics = services.get_topics_for_course_id(unit_of_work.SqlAlchemyUnitOfWork(), course_id)
-            students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
             services.delete_learning_paths_by_course_id(unit_of_work.SqlAlchemyUnitOfWork(), course_id)
-            for student in students:
-                services.delete_student_topic(unit_of_work.SqlAlchemyUnitOfWork(), student["id"])
             for topic in topics:
-                #student_rating und learning_element rating müsste man noch löschen, beide haben Topic_id
+                #student_rating and learning_element rating need to be deleted, both have topic_id
+                services.delete_student_topic_by_topic_id(unit_of_work.SqlAlchemyUnitOfWork(), topic["id"])
                 learning_elements = services.get_learning_elements_for_topic_id(unit_of_work.SqlAlchemyUnitOfWork(), topic["id"])
                 services.delete_learning_path_learning_element_algorithm(unit_of_work.SqlAlchemyUnitOfWork(), topic["id"])
                 services.delete_student_lpath_le_algorithm(unit_of_work.SqlAlchemyUnitOfWork(), topic["id"])
                 for learning_element in learning_elements:
-                    #services.delete_topic_learning_element_by_learning_element(unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"])
                     services.delete_student_learning_element_by_learning_element_id(unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"])
                     services.delete_learning_element(unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"])
                 services.delete_topic(unit_of_work.SqlAlchemyUnitOfWork(), topic["id"])
-
             services.delete_course(unit_of_work.SqlAlchemyUnitOfWork(), course_id)
             result = {"message": cons.deletion_message}
             status_code = 200
@@ -587,13 +583,13 @@ def add_all_students_to_all_topics(course_id):
 
 
 @app.route(
-    "/lms/course/<course_id>/<lms_course_id>/topic/<topic_id>/" + "<lms_topic_id>",
+    "/lms/topic/<topic_id>/<lms_topic_id>",
     methods=["PUT", "DELETE"],
 )
 @cross_origin(supports_credentials=True)
 @json_only(ignore=["DELETE"])
 def topic_administration(
-    data: Dict[str, Any], course_id, lms_course_id, topic_id, lms_topic_id
+    data: Dict[str, Any], topic_id, lms_topic_id
 ):
     method = request.method
     match method:
@@ -646,6 +642,15 @@ def topic_administration(
             else:
                 raise err.MissingParameterError()
         case "DELETE":
+            services.delete_learning_paths_by_topic_id(unit_of_work.SqlAlchemyUnitOfWork(), topic_id)
+            services.delete_student_topic_by_topic_id(unit_of_work.SqlAlchemyUnitOfWork(), topic_id)
+            #student_rating and learning_element rating need to be deleted, both have topic_id
+            learning_elements = services.get_learning_elements_for_topic_id(unit_of_work.SqlAlchemyUnitOfWork(), topic_id)
+            services.delete_learning_path_learning_element_algorithm(unit_of_work.SqlAlchemyUnitOfWork(), topic_id)
+            services.delete_student_lpath_le_algorithm(unit_of_work.SqlAlchemyUnitOfWork(), topic_id)
+            for learning_element in learning_elements:
+                services.delete_student_learning_element_by_learning_element_id(unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"])
+                services.delete_learning_element(unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"])
             services.delete_topic(unit_of_work.SqlAlchemyUnitOfWork(), topic_id)
             result = {"message": cons.deletion_message}
             status_code = 200
@@ -1361,7 +1366,7 @@ def get_course_by_course_id(user_id, lms_user_id, student_id, course_id):
 
 
 @app.route(
-    "/user/<user_id>/<lms_user_id>/student/<student_id>/course" + "/<course_id>/topic",
+    "/user/<user_id>/<lms_user_id>/student/<student_id>/course/<course_id>/topic",
     methods=["GET"],
 )
 @cross_origin(supports_credentials=True)

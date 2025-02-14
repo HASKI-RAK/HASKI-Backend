@@ -1074,6 +1074,16 @@ def delete_learning_paths_by_course_id(uow: unit_of_work.AbstractUnitOfWork, cou
             uow.commit()
 
 
+def delete_learning_paths_by_topic_id(uow: unit_of_work.AbstractUnitOfWork, topic_id):
+    with uow:
+        paths = get_learning_paths_by_topic_id(uow, topic_id)
+        for path in paths:
+            delete_learning_path_learning_element(uow, path["id"])
+            delete_learning_path_topic(uow, path["id"])
+            uow.learning_path.delete_learning_path(path["id"])
+            uow.commit()
+
+
 def delete_learning_path_learning_element(
     uow: unit_of_work.AbstractUnitOfWork, learning_path_id
 ):
@@ -1285,7 +1295,20 @@ def delete_student_topic(uow: unit_of_work.AbstractUnitOfWork, student_id):
         uow.commit()
 
 
-def delete_student_topic_visit(uow: unit_of_work.AbstractUnitOfWork, student_id):
+def delete_student_topic_by_topic_id(uow: unit_of_work.AbstractUnitOfWork, topic_id):
+    with uow:
+        delete_student_topic_visit_by_topic_id(uow, topic_id)
+        uow.student_topic.delete_student_topic_by_topic_id(topic_id)
+        uow.commit()
+
+
+def delete_student_topic_visit(uow: unit_of_work.AbstractUnitOfWork, topic_id):
+    with uow:
+        uow.student_topic_visit.delete_student_topic_visit_by_topic_id(topic_id)
+        uow.commit()
+
+
+def delete_student_topic_visit_by_topic_id(uow: unit_of_work.AbstractUnitOfWork, student_id):
     with uow:
         uow.student_topic_visit.delete_student_topic_visit(student_id)
         uow.commit()
@@ -1697,6 +1720,16 @@ def get_learning_paths_by_student_id(uow: unit_of_work.AbstractUnitOfWork, stude
 def get_learning_paths_by_course_id(uow: unit_of_work.AbstractUnitOfWork, course_id) -> list:
     with uow:
         paths = uow.learning_path.get_learning_paths_by_course_id(course_id)
+        result = []
+        for path in paths:
+            path.path = None
+            result.append(path.serialize())
+        return result
+
+
+def get_learning_paths_by_topic_id(uow: unit_of_work.AbstractUnitOfWork, topic_id) -> list:
+    with uow:
+        paths = uow.learning_path.get_learning_paths_by_topic_id(topic_id)
         result = []
         for path in paths:
             path.path = None
