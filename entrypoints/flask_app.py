@@ -281,17 +281,33 @@ def course_administration(data: Dict[str, Any], course_id, lms_course_id):
             else:
                 raise err.MissingParameterError()
         case "DELETE":
-            topics = services.get_topics_for_course_id(unit_of_work.SqlAlchemyUnitOfWork(), course_id)
-            services.delete_learning_paths_by_course_id(unit_of_work.SqlAlchemyUnitOfWork(), course_id)
+            topics = services.get_topics_for_course_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), course_id
+            )
+            services.delete_learning_paths_by_course_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), course_id
+            )
             for topic in topics:
-                #student_rating and learning_element rating need to be deleted, both have topic_id
-                services.delete_student_topic_by_topic_id(unit_of_work.SqlAlchemyUnitOfWork(), topic["id"])
-                learning_elements = services.get_learning_elements_for_topic_id(unit_of_work.SqlAlchemyUnitOfWork(), topic["id"])
-                services.delete_learning_path_learning_element_algorithm(unit_of_work.SqlAlchemyUnitOfWork(), topic["id"])
-                services.delete_student_lpath_le_algorithm(unit_of_work.SqlAlchemyUnitOfWork(), topic["id"])
+                # student_rating and learning_element rating need to be deleted, both have topic_id
+                services.delete_student_topic_by_topic_id(
+                    unit_of_work.SqlAlchemyUnitOfWork(), topic["id"]
+                )
+                learning_elements = services.get_learning_elements_for_topic_id(
+                    unit_of_work.SqlAlchemyUnitOfWork(), topic["id"]
+                )
+                services.delete_learning_path_learning_element_algorithm(
+                    unit_of_work.SqlAlchemyUnitOfWork(), topic["id"]
+                )
+                services.delete_student_lpath_le_algorithm(
+                    unit_of_work.SqlAlchemyUnitOfWork(), topic["id"]
+                )
                 for learning_element in learning_elements:
-                    services.delete_student_learning_element_by_learning_element_id(unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"])
-                    services.delete_learning_element(unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"])
+                    services.delete_student_learning_element_by_learning_element_id(
+                        unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"]
+                    )
+                    services.delete_learning_element(
+                        unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"]
+                    )
                 services.delete_topic(unit_of_work.SqlAlchemyUnitOfWork(), topic["id"])
             services.delete_course(unit_of_work.SqlAlchemyUnitOfWork(), course_id)
             result = {"message": cons.deletion_message}
@@ -588,9 +604,7 @@ def add_all_students_to_all_topics(course_id):
 )
 @cross_origin(supports_credentials=True)
 @json_only(ignore=["DELETE"])
-def topic_administration(
-    data: Dict[str, Any], topic_id, lms_topic_id
-):
+def topic_administration(data: Dict[str, Any], topic_id, lms_topic_id):
     method = request.method
     match method:
         case "PUT":
@@ -642,15 +656,29 @@ def topic_administration(
             else:
                 raise err.MissingParameterError()
         case "DELETE":
-            services.delete_learning_paths_by_topic_id(unit_of_work.SqlAlchemyUnitOfWork(), topic_id)
-            services.delete_student_topic_by_topic_id(unit_of_work.SqlAlchemyUnitOfWork(), topic_id)
-            #student_rating and learning_element rating need to be deleted, both have topic_id
-            learning_elements = services.get_learning_elements_for_topic_id(unit_of_work.SqlAlchemyUnitOfWork(), topic_id)
-            services.delete_learning_path_learning_element_algorithm(unit_of_work.SqlAlchemyUnitOfWork(), topic_id)
-            services.delete_student_lpath_le_algorithm(unit_of_work.SqlAlchemyUnitOfWork(), topic_id)
+            services.delete_learning_paths_by_topic_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), topic_id
+            )
+            services.delete_student_topic_by_topic_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), topic_id
+            )
+            # student_rating and learning_element rating need to be deleted, both have topic_id
+            learning_elements = services.get_learning_elements_for_topic_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), topic_id
+            )
+            services.delete_learning_path_learning_element_algorithm(
+                unit_of_work.SqlAlchemyUnitOfWork(), topic_id
+            )
+            services.delete_student_lpath_le_algorithm(
+                unit_of_work.SqlAlchemyUnitOfWork(), topic_id
+            )
             for learning_element in learning_elements:
-                services.delete_student_learning_element_by_learning_element_id(unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"])
-                services.delete_learning_element(unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"])
+                services.delete_student_learning_element_by_learning_element_id(
+                    unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"]
+                )
+                services.delete_learning_element(
+                    unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"]
+                )
             services.delete_topic(unit_of_work.SqlAlchemyUnitOfWork(), topic_id)
             result = {"message": cons.deletion_message}
             status_code = 200
@@ -812,9 +840,15 @@ def learning_element_administration(
             else:
                 raise err.MissingParameterError()
         case "DELETE":
-            services.delete_learning_path_learning_element_by_le_id(unit_of_work.SqlAlchemyUnitOfWork(), learning_element_id)
-            services.delete_student_learning_element_by_learning_element_id(unit_of_work.SqlAlchemyUnitOfWork(), learning_element_id)
-            services.delete_learning_element(unit_of_work.SqlAlchemyUnitOfWork(), learning_element_id)
+            services.delete_learning_path_learning_element_by_le_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), learning_element_id
+            )
+            services.delete_student_learning_element_by_learning_element_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), learning_element_id
+            )
+            services.delete_learning_element(
+                unit_of_work.SqlAlchemyUnitOfWork(), learning_element_id
+            )
             result = {"message": cons.deletion_message}
             status_code = 200
             return jsonify(result), status_code

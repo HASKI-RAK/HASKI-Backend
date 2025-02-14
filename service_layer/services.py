@@ -402,7 +402,9 @@ def create_learning_path(
         learning_elements = get_learning_elements_for_topic_id(uow, topic_id)
         if learning_elements == []:
             raise err.NoLearningElementsError()
-        paths_exisiting = get_learning_paths_by_student_id(uow=uow, student_id=student_id)
+        paths_exisiting = get_learning_paths_by_student_id(
+            uow=uow, student_id=student_id
+        )
         for path_exisiting in paths_exisiting:
             condition1 = int(path_exisiting["course_id"]) == int(course_id)
             condition2 = (
@@ -793,7 +795,9 @@ def create_user(
                 # learning_paths
                 student = create_student(uow, user)
                 # course_creator get a standard learning characteristic
-                create_questionnaire_ils(uow, student["id"], get_default_questionnaire())
+                create_questionnaire_ils(
+                    uow, student["id"], get_default_questionnaire()
+                )
                 user.role_id = role_course_creator["id"]
             case const.role_student_string:
                 role = create_student(uow, user)
@@ -806,53 +810,53 @@ def create_user(
 
 
 def get_default_questionnaire() -> dict:
-    #11 act, 11 sen, 11 verb, 11 glo
-    return ({
-        'ar_10_f37': 'a',
-        'ar_11_f41': 'a',
-        'ar_1_f1': 'a',
-        'ar_2_f5': 'a',
-        'ar_3_f9': 'a',
-        'ar_4_f13': 'a',
-        'ar_5_f17': 'a',
-        'ar_6_f21': 'a',
-        'ar_7_f25': 'a',
-        'ar_8_f29': 'a',
-        'ar_9_f33': 'a',
-        'sg_10_f40': 'b',
-        'sg_11_f44': 'b',
-        'sg_1_f4': 'b',
-        'sg_2_f8': 'b',
-        'sg_3_f12': 'b',
-        'sg_4_f16': 'b',
-        'sg_5_f20': 'b',
-        'sg_6_f24': 'b',
-        'sg_7_f28': 'b',
-        'sg_8_f32': 'b',
-        'sg_9_f36': 'b',
-        'si_10_f38': 'a',
-        'si_11_f42': 'a',
-        'si_1_f2': 'a',
-        'si_2_f6': 'a',
-        'si_3_f10': 'a',
-        'si_4_f14': 'a',
-        'si_5_f18': 'a',
-        'si_6_f22': 'a',
-        'si_7_f26': 'a',
-        'si_8_f30': 'a',
-        'si_9_f34': 'a',
-        'vv_10_f39': 'b',
-        'vv_11_f43': 'b',
-        'vv_1_f3': 'b',
-        'vv_2_f7': 'b',
-        'vv_3_f11': 'b',
-        'vv_4_f15': 'b',
-        'vv_5_f19': 'b',
-        'vv_6_f23': 'b',
-        'vv_7_f27': 'b',
-        'vv_8_f31': 'b',
-        'vv_9_f35': 'b'
-    })
+    # 11 act, 11 sen, 11 verb, 11 glo
+    return {
+        "ar_10_f37": "a",
+        "ar_11_f41": "a",
+        "ar_1_f1": "a",
+        "ar_2_f5": "a",
+        "ar_3_f9": "a",
+        "ar_4_f13": "a",
+        "ar_5_f17": "a",
+        "ar_6_f21": "a",
+        "ar_7_f25": "a",
+        "ar_8_f29": "a",
+        "ar_9_f33": "a",
+        "sg_10_f40": "b",
+        "sg_11_f44": "b",
+        "sg_1_f4": "b",
+        "sg_2_f8": "b",
+        "sg_3_f12": "b",
+        "sg_4_f16": "b",
+        "sg_5_f20": "b",
+        "sg_6_f24": "b",
+        "sg_7_f28": "b",
+        "sg_8_f32": "b",
+        "sg_9_f36": "b",
+        "si_10_f38": "a",
+        "si_11_f42": "a",
+        "si_1_f2": "a",
+        "si_2_f6": "a",
+        "si_3_f10": "a",
+        "si_4_f14": "a",
+        "si_5_f18": "a",
+        "si_6_f22": "a",
+        "si_7_f26": "a",
+        "si_8_f30": "a",
+        "si_9_f34": "a",
+        "vv_10_f39": "b",
+        "vv_11_f43": "b",
+        "vv_1_f3": "b",
+        "vv_2_f7": "b",
+        "vv_3_f11": "b",
+        "vv_4_f15": "b",
+        "vv_5_f19": "b",
+        "vv_6_f23": "b",
+        "vv_7_f27": "b",
+        "vv_8_f31": "b",
+        "vv_9_f35": "b",
+    }
 
 
 def create_news(
@@ -960,8 +964,8 @@ def delete_course(uow: unit_of_work.AbstractUnitOfWork, course_id):
     with uow:
         all_students = get_all_students(uow)
         for student in all_students:
-            delete_student_course(uow, student['id'], course_id)
-        #search for learning_path_id and delete learning_path_learning_element, learning_path_topic, learning_path_learning_element_algorithm
+            delete_student_course(uow, student["id"], course_id)
+        # search for learning_path_id and delete learning_path_learning_element, learning_path_topic, learning_path_learning_element_algorithm
         delete_course_topic_by_course(uow, course_id)
         delete_course_creator_course(uow, course_id)
         uow.course.delete_course(course_id)
@@ -1038,9 +1042,7 @@ def delete_ils_understanding_answers(
         return {}
 
 
-def delete_learning_element(
-    uow: unit_of_work.AbstractUnitOfWork, learning_element_id
-):
+def delete_learning_element(uow: unit_of_work.AbstractUnitOfWork, learning_element_id):
     with uow:
         delete_topic_learning_element_by_learning_element(uow, learning_element_id)
         uow.learning_element.delete_learning_element(learning_element_id)
@@ -1054,7 +1056,9 @@ def delete_learning_path(uow: unit_of_work.AbstractUnitOfWork, learning_path_id)
         uow.commit()
 
 
-def delete_learning_paths_by_student_id(uow: unit_of_work.AbstractUnitOfWork, student_id):
+def delete_learning_paths_by_student_id(
+    uow: unit_of_work.AbstractUnitOfWork, student_id
+):
     with uow:
         paths = get_learning_paths_by_student_id(uow, student_id)
         for path in paths:
@@ -1095,7 +1099,7 @@ def delete_learning_path_learning_element(
 
 
 def delete_learning_path_learning_element_by_le_id(
-        uow: unit_of_work.AbstractUnitOfWork, learning_element_id
+    uow: unit_of_work.AbstractUnitOfWork, learning_element_id
 ):
     with uow:
         uow.learning_path_learning_element.delete_learning_path_learning_element_by_le_id(
@@ -1105,22 +1109,16 @@ def delete_learning_path_learning_element_by_le_id(
 
 
 def delete_learning_path_learning_element_algorithm(
-        uow: unit_of_work.AbstractUnitOfWork, topic_id
+    uow: unit_of_work.AbstractUnitOfWork, topic_id
 ):
     with uow:
-        uow.lpath_le_algorithm.delete_learning_path_learning_element_algorithm(
-            topic_id
-        )
+        uow.lpath_le_algorithm.delete_learning_path_learning_element_algorithm(topic_id)
         uow.commit()
 
 
-def delete_student_lpath_le_algorithm(
-        uow: unit_of_work.AbstractUnitOfWork, topic_id
-):
+def delete_student_lpath_le_algorithm(uow: unit_of_work.AbstractUnitOfWork, topic_id):
     with uow:
-        uow.lpath_le_algorithm.delete_student_lpath_le_algorithm(
-            topic_id
-        )
+        uow.lpath_le_algorithm.delete_student_lpath_le_algorithm(topic_id)
         uow.commit()
 
 
@@ -1258,7 +1256,9 @@ def delete_learning_style(uow: unit_of_work.AbstractUnitOfWork, characteristic_i
         return {}
 
 
-def delete_student_course(uow: unit_of_work.AbstractUnitOfWork, student_id, course_id=None):
+def delete_student_course(
+    uow: unit_of_work.AbstractUnitOfWork, student_id, course_id=None
+):
     with uow:
         uow.student_course.delete_student_course(student_id, course_id)
         uow.commit()
@@ -1271,10 +1271,16 @@ def delete_student_learning_element(uow: unit_of_work.AbstractUnitOfWork, studen
         uow.commit()
 
 
-def delete_student_learning_element_by_learning_element_id(uow: unit_of_work.AbstractUnitOfWork, learning_element_id):
+def delete_student_learning_element_by_learning_element_id(
+    uow: unit_of_work.AbstractUnitOfWork, learning_element_id
+):
     with uow:
-        delete_student_learning_element_visit_by_learning_element_id(uow, learning_element_id)
-        uow.student_learning_element.delete_student_learning_element_by_learning_element_id(learning_element_id)
+        delete_student_learning_element_visit_by_learning_element_id(
+            uow, learning_element_id
+        )
+        uow.student_learning_element.delete_student_learning_element_by_learning_element_id(
+            learning_element_id
+        )
         uow.commit()
 
 
@@ -1289,7 +1295,7 @@ def delete_student_learning_element_visit(
 
 
 def delete_student_learning_element_visit_by_learning_element_id(
-        uow: unit_of_work.AbstractUnitOfWork, learning_element_id
+    uow: unit_of_work.AbstractUnitOfWork, learning_element_id
 ):
     with uow:
         uow.student_learning_element_visit.delete_student_learning_element_visit_by_learning_element_id(
@@ -1318,7 +1324,9 @@ def delete_student_topic_visit(uow: unit_of_work.AbstractUnitOfWork, topic_id):
         uow.commit()
 
 
-def delete_student_topic_visit_by_topic_id(uow: unit_of_work.AbstractUnitOfWork, student_id):
+def delete_student_topic_visit_by_topic_id(
+    uow: unit_of_work.AbstractUnitOfWork, student_id
+):
     with uow:
         uow.student_topic_visit.delete_student_topic_visit(student_id)
         uow.commit()
@@ -1717,7 +1725,9 @@ def get_learning_path(
         return result
 
 
-def get_learning_paths_by_student_id(uow: unit_of_work.AbstractUnitOfWork, student_id) -> list:
+def get_learning_paths_by_student_id(
+    uow: unit_of_work.AbstractUnitOfWork, student_id
+) -> list:
     with uow:
         paths = uow.learning_path.get_learning_paths_by_student_id(student_id)
         result = []
@@ -1727,7 +1737,9 @@ def get_learning_paths_by_student_id(uow: unit_of_work.AbstractUnitOfWork, stude
         return result
 
 
-def get_learning_paths_by_course_id(uow: unit_of_work.AbstractUnitOfWork, course_id) -> list:
+def get_learning_paths_by_course_id(
+    uow: unit_of_work.AbstractUnitOfWork, course_id
+) -> list:
     with uow:
         paths = uow.learning_path.get_learning_paths_by_course_id(course_id)
         result = []
@@ -1737,7 +1749,9 @@ def get_learning_paths_by_course_id(uow: unit_of_work.AbstractUnitOfWork, course
         return result
 
 
-def get_learning_paths_by_topic_id(uow: unit_of_work.AbstractUnitOfWork, topic_id) -> list:
+def get_learning_paths_by_topic_id(
+    uow: unit_of_work.AbstractUnitOfWork, topic_id
+) -> list:
     with uow:
         paths = uow.learning_path.get_learning_paths_by_topic_id(topic_id)
         result = []

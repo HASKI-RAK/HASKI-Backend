@@ -315,7 +315,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
 
     @abc.abstractmethod
     def delete_student_course(self, student_id, course_id=None):
-        #Delete a student's course(s). Optionally, delete only the record for a specific course.
+        # Delete a student's course(s). Optionally, delete only the record for a specific course.
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -323,7 +323,9 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def delete_student_learning_element_by_learning_element_id(self, learning_element_id):
+    def delete_student_learning_element_by_learning_element_id(
+        self, learning_element_id
+    ):
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -331,7 +333,9 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def delete_student_learning_element_visit_by_learning_element_id(self, learning_element_id):
+    def delete_student_learning_element_visit_by_learning_element_id(
+        self, learning_element_id
+    ):
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -1293,7 +1297,9 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             raise err.NoValidIdError()
 
     def delete_student_course(self, student_id, course_id=None):
-        student_courses = self.session.query(DM.StudentCourse).filter_by(student_id=student_id)
+        student_courses = self.session.query(DM.StudentCourse).filter_by(
+            student_id=student_id
+        )
         if course_id is not None:
             query_course = student_courses.filter_by(course_id=course_id)
             query_course.delete()
@@ -1305,7 +1311,9 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             student_id=student_id
         ).delete()
 
-    def delete_student_learning_element_by_learning_element_id(self, learning_element_id):
+    def delete_student_learning_element_by_learning_element_id(
+        self, learning_element_id
+    ):
         self.session.query(DM.StudentLearningElement).filter_by(
             learning_element_id=learning_element_id
         ).delete()
@@ -1315,7 +1323,9 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             student_id=student_id
         ).delete()
 
-    def delete_student_learning_element_visit_by_learning_element_id(self, learning_element_id):
+    def delete_student_learning_element_visit_by_learning_element_id(
+        self, learning_element_id
+    ):
         self.session.query(DM.StudentLearningElementVisit).filter_by(
             learning_element_id=learning_element_id
         ).delete()
@@ -1332,9 +1342,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         ).delete()
 
     def delete_student_topic_visit_by_topic_id(self, topic_id):
-        self.session.query(DM.StudentTopicVisit).filter_by(
-            topic_id=topic_id
-        ).delete()
+        self.session.query(DM.StudentTopicVisit).filter_by(topic_id=topic_id).delete()
 
     def delete_teacher(self, user_id):
         teacher = self.get_teacher_by_id(user_id)
@@ -1549,9 +1557,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         return result
 
     def get_learning_paths_by_topic_id(self, topic_id):
-        result = (
-            self.session.query(TM.LearningPath).filter_by(topic_id=topic_id).all()
-        )
+        result = self.session.query(TM.LearningPath).filter_by(topic_id=topic_id).all()
         return result
 
     def get_learning_path_algorithm_by_id(self, id: int) -> TM.LearningPathAlgorithm:

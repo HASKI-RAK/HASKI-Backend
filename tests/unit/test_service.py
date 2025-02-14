@@ -516,7 +516,9 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         for remove in to_remove:
             self.student_learning_element.remove(remove)
 
-    def delete_student_learning_element_by_learning_element_id(self, learning_element_id):
+    def delete_student_learning_element_by_learning_element_id(
+        self, learning_element_id
+    ):
         to_remove = []
         for i in self.student_learning_element:
             if i.learning_element_id == learning_element_id:
@@ -532,7 +534,9 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         for remove in to_remove:
             self.student_learning_element_visit.remove(remove)
 
-    def delete_student_learning_element_visit_by_learning_element_id(self, learning_element_id):
+    def delete_student_learning_element_visit_by_learning_element_id(
+        self, learning_element_id
+    ):
         to_remove = []
         for i in self.student_learning_element_visit:
             if i.self.learning_element_id == learning_element_id:
@@ -3080,9 +3084,7 @@ def test_delete_learning_element():
     uow = FakeUnitOfWork()
     create_learning_element_for_tests_1(uow)
     entries_beginning = len(uow.learning_element.learning_element)
-    result = services.delete_learning_element(
-        uow=uow, learning_element_id=1
-    )
+    result = services.delete_learning_element(uow=uow, learning_element_id=1)
     assert type(result) is dict
     assert result == {}
     entries_after = len(uow.learning_element.learning_element)

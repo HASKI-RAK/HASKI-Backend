@@ -4173,13 +4173,7 @@ class TestApi:
             input["parent_id"] = topic_id
         else:
             topic_id_use = topic_id
-        url = (
-            path_lms_topic
-            + "/"
-            + str(topic_id_use)
-            + "/"
-            + str(moodle_topic_id)
-        )
+        url = path_lms_topic + "/" + str(topic_id_use) + "/" + str(moodle_topic_id)
         r = client_class.put(url, json=input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -4725,13 +4719,7 @@ class TestApi:
             topic_id_use = 99999
         else:
             topic_id_use = sub_topic_id
-        url = (
-            path_lms_topic
-            + "/"
-            + str(topic_id_use)
-            + "/"
-            + str(moodle_topic_id)
-        )
+        url = path_lms_topic + "/" + str(topic_id_use) + "/" + str(moodle_topic_id)
         r = client_class.delete(url)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
