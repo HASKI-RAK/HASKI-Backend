@@ -45,6 +45,7 @@ path_lms_course = "/lms/course"
 path_lms_topic = "/lms/topic"
 path_lms_student = "/lms/student"
 path_lms_user = "/lms/user"
+path_lms_learning_element = "/lms/learningElement"
 path_questionnaire_ils = "/questionnaire/ils"
 path_questionnaire_list_k = "/questionnaire/listk"
 path_recommendation = "/recommendation"
@@ -4264,17 +4265,7 @@ class TestApi:
     ):
         global course_id, sub_topic_id, learning_element_id
         url = (
-            path_lms_course
-            + "/"
-            + str(course_id)
-            + "/"
-            + str(moodle_course_id)
-            + path_topic
-            + "/"
-            + str(sub_topic_id)
-            + "/"
-            + str(moodle_topic_id)
-            + path_learning_element
+            path_lms_learning_element
             + "/"
             + str(learning_element_id)
             + "/"
@@ -4689,17 +4680,7 @@ class TestApi:
         else:
             learning_element_id_use = learning_element_id
         url = (
-            path_lms_course
-            + "/"
-            + str(course_id_use)
-            + "/"
-            + str(moodle_course_id)
-            + path_topic
-            + "/"
-            + str(topic_id_use)
-            + "/"
-            + str(moodle_topic_id)
-            + path_learning_element
+            path_lms_learning_element
             + "/"
             + str(learning_element_id_use)
             + "/"

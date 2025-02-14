@@ -731,19 +731,13 @@ def create_learning_element(data: Dict[str, Any], topic_id):
 
 
 @app.route(
-    "/lms/course/<course_id>/<lms_course_id>/topic/<topic_id>/"
-    + "<lms_topic_id>/learningElement/<learning_element_id>/"
-    + "<lms_learning_element_id>",
+    "/lms/learningElement/<learning_element_id>/<lms_learning_element_id>",
     methods=["PUT", "DELETE"],
 )
 @cross_origin(supports_credentials=True)
 @json_only(ignore=["DELETE"])
 def learning_element_administration(
     data: Dict[str, Any],
-    course_id,
-    lms_course_id,
-    topic_id,
-    lms_topic_id,
     learning_element_id,
     lms_learning_element_id,
 ):
@@ -818,10 +812,9 @@ def learning_element_administration(
             else:
                 raise err.MissingParameterError()
         case "DELETE":
-            services.delete_learning_element(
-                unit_of_work.SqlAlchemyUnitOfWork(),
-                learning_element_id,
-            )
+            services.delete_learning_path_learning_element_by_le_id(unit_of_work.SqlAlchemyUnitOfWork(), learning_element_id)
+            services.delete_student_learning_element_by_learning_element_id(unit_of_work.SqlAlchemyUnitOfWork(), learning_element_id)
+            services.delete_learning_element(unit_of_work.SqlAlchemyUnitOfWork(), learning_element_id)
             result = {"message": cons.deletion_message}
             status_code = 200
             return jsonify(result), status_code

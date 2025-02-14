@@ -286,6 +286,10 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
+    def delete_learning_path_learning_element_by_le_id(self, learning_element_id):
+        raise NotImplementedError
+
+    @abc.abstractmethod
     def delete_learning_path_learning_element_algorithm(self, topic_id):
         raise NotImplementedError
 
@@ -335,7 +339,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def delete_student_topic_by_topic_id(self, student_id):
+    def delete_student_topic_by_topic_id(self, topic_id):
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -343,7 +347,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def delete_student_topic_visit_by_topic_id(self, student_id):
+    def delete_student_topic_visit_by_topic_id(self, topic_id):
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -374,7 +378,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def get_admin_by_id(self, user_id, lms_user_id, admin_id) -> UA.Admin:
+    def get_admin_by_id(self, user_id) -> UA.Admin:
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -436,7 +440,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def get_knowledge(self, characteristic_id, knowledge) -> LM.Knowledge:
+    def get_knowledge(self, characteristic_id) -> LM.Knowledge:
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -1219,6 +1223,11 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
     def delete_learning_path_learning_element(self, learning_path_id):
         self.session.query(TM.LearningPathLearningElement).filter_by(
             learning_path_id=learning_path_id
+        ).delete()
+
+    def delete_learning_path_learning_element_by_le_id(self, learning_element_id):
+        self.session.query(TM.LearningPathLearningElement).filter_by(
+            learning_element_id=learning_element_id
         ).delete()
 
     def delete_learning_path_learning_element_algorithm(self, topic_id):

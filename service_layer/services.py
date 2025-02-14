@@ -1094,6 +1094,16 @@ def delete_learning_path_learning_element(
         uow.commit()
 
 
+def delete_learning_path_learning_element_by_le_id(
+        uow: unit_of_work.AbstractUnitOfWork, learning_element_id
+):
+    with uow:
+        uow.learning_path_learning_element.delete_learning_path_learning_element_by_le_id(
+            learning_element_id
+        )
+        uow.commit()
+
+
 def delete_learning_path_learning_element_algorithm(
         uow: unit_of_work.AbstractUnitOfWork, topic_id
 ):
