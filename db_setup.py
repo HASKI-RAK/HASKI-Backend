@@ -660,9 +660,7 @@ def setup_db(
             ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
             student_id integer NOT NULL,
             learning_element_id integer NOT NULL,
-            favorite boolean NOT NULL,
-            done boolean NOT NULL,
-            done_at timestamp without time zone,
+            is_favorite boolean NOT NULL,
             CONSTRAINT student_learning_element_pkey PRIMARY KEY (id),
             CONSTRAINT learning_element_id FOREIGN KEY (learning_element_id)
                 REFERENCES public.learning_element (id) MATCH SIMPLE

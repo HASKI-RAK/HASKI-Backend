@@ -258,21 +258,19 @@ class StudentTopicVisit:
 
 class StudentLearningElement:
     def __init__(
-        self, student_id, learning_element_id, done=False, done_at=None
+        self, student_id, learning_element_id, is_favorite=False
     ) -> None:
         self.id = None
         self.student_id = student_id
         self.learning_element_id = learning_element_id
-        self.done = done
-        self.done_at = done_at
+        self.is_favorite = is_favorite
 
     def serialize(self):
         return {
             "id": self.id,
             "student_id": self.student_id,
             "learning_element_id": self.learning_element_id,
-            "done": self.done,
-            "done_at": self.done_at,
+            "is_favorite": self.is_favorite,
         }
 
 

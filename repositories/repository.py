@@ -30,6 +30,10 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
+    def add_student_learning_element(self, student_learning_element):
+        raise NotImplementedError
+
+    @abc.abstractmethod
     def add_student_learning_element_visit(self, student_learning_element_visit):
         raise NotImplementedError
 
@@ -501,9 +505,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def get_student_learning_element(
-        self, student_id
-    ) -> DM.StudentLearningElement:
+    def get_student_learning_element(self, student_id) -> DM.StudentLearningElement:
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -675,7 +677,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         except Exception:
             raise err.CreationError()
 
-    def add_student_to_learning_element(self, student_learning_element):
+    def add_student_to_learning_element(self, student_learning_element) -> DM.StudentLearningElement:
         try:
             self.session.add(student_learning_element)
         except IntegrityError:
@@ -686,6 +688,14 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
     def add_student_to_topic(self, student_topic):
         try:
             self.session.add(student_topic)
+        except IntegrityError:
+            raise err.ForeignKeyViolation()
+        except Exception:
+            raise err.CreationError()
+
+    def add_student_learning_element(self, student_learning_element):
+        try:
+            self.session.add(student_learning_element)
         except IntegrityError:
             raise err.ForeignKeyViolation()
         except Exception:
@@ -1590,10 +1600,8 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         except Exception:
             raise err.DatabaseQueryError()
 
-    def get_student_learning_element(
-        self, student_id
-    ) -> DM.StudentLearningElement:
-        result = self.session.query(UA.Student).filter_by(id=student_id).all()
+    def get_student_learning_element(self, student_id) -> DM.StudentLearningElement:
+        result = self.session.query(UA.Student).filter_by(student_id=student_id).all()
         if result == []:
             raise err.NoValidIdError()
         else:

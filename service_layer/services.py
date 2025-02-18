@@ -513,15 +513,16 @@ def create_learning_style(
         uow.commit()
         result = learning_style.serialize()
         return result
-    
+
 
 def create_student_learning_element(
-    uow: unit_of_work.AbstractUnitOfWork,
-    student_id,
-    learning_element_id
+    uow: unit_of_work.AbstractUnitOfWork, student_id, learning_element_id
 ) -> dict:
     with uow:
-        student_learning_element = DM.StudentLearningElement(student_id, learning_element_id)
+        student_learning_element = DM.StudentLearningElement(
+            student_id, learning_element_id
+        )
+        uow.student.add_student_learning_element(student_learning_element)
         uow.commit()
         result = student_learning_element.serialize()
         return result
@@ -1605,16 +1606,18 @@ def get_default_learning_path_by_university(
 
 
 def get_student_learning_element_by_student_id(
-        uow: unit_of_work.AbstractUnitOfWork,
-        student_id    
+    uow: unit_of_work.AbstractUnitOfWork, student_id
 ) -> dict:
     with uow:
         backend_response_student_id = uow.student.get_student_by_id(student_id)
-        backend_response = uow.learning_element.get_student_learning_element(backend_response_student_id)
+        backend_response = uow.learning_element.get_student_learning_element(
+            backend_response_student_id
+        )
 
         result = dict()
         result["student_learning_element"] = [
-            student_learning_element.serialize() for student_learning_element in backend_response
+            student_learning_element.serialize()
+            for student_learning_element in backend_response
         ]
         return result
 
