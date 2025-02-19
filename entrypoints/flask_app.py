@@ -805,6 +805,20 @@ def student_learning_element_get(student_id):
 
 
 @app.route(
+    "/lms/student/<student_id>/learningElement/<learning_element_id>/favorite",
+    methods=["DELETE"],
+)
+@cross_origin(supports_credentials=True)
+def student_learning_element_delete_element(student_id, learning_element_id):
+    result = services.delete_student_learning_element_by_element(
+        unit_of_work.SqlAlchemyUnitOfWork(), student_id, learning_element_id
+    )
+    status_code = 200
+    return jsonify(result), status_code
+
+
+
+@app.route(
     "/lms/student/<student_id>/<lms_user_id>/learningElement/"
     + "<learning_element_id>",
     methods=["POST"],

@@ -1045,6 +1045,17 @@ def delete_student(uow: unit_of_work.AbstractUnitOfWork, user_id):
         return {}
 
 
+def delete_student_learning_element_by_element(
+        uow: unit_of_work.AbstractUnitOfWork, 
+        student_id, learning_element_id):
+    with uow:
+        uow.student_learning_element.delete_student_learning_element(
+            student_id, learning_element_id
+        )
+        uow.commit()
+    
+
+
 def delete_teacher(uow: unit_of_work.AbstractUnitOfWork, user_id):
     with uow:
         teacher = uow.teacher.get_teacher_by_id(user_id)
