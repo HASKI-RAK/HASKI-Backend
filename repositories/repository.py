@@ -1601,7 +1601,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             raise err.DatabaseQueryError()
 
     def get_student_learning_element(self, student_id) -> DM.StudentLearningElement:
-        result = self.session.query(UA.Student).filter_by(student_id=student_id).all()
+        result = self.session.query(DM.StudentLearningElement).filter_by(student_id=student_id).filter_by(is_favorite=True).all()
         if result == []:
             raise err.NoValidIdError()
         else:

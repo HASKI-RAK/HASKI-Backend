@@ -1609,9 +1609,9 @@ def get_student_learning_element_by_student_id(
     uow: unit_of_work.AbstractUnitOfWork, student_id
 ) -> dict:
     with uow:
-        backend_response_student_id = uow.student.get_student_by_id(student_id)
+        
         backend_response = uow.learning_element.get_student_learning_element(
-            backend_response_student_id
+            student_id
         )
 
         result = dict()
