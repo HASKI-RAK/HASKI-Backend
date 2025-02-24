@@ -2404,6 +2404,16 @@ def update_student_learning_element(
         uow.commit()
 
 
+def update_student_learning_element_favorite(
+    uow: unit_of_work.AbstractUnitOfWork, student_id, learning_element_id, is_favorite
+):
+    with uow:
+        uow.student_learning_element.update_student_learning_element_favorite(
+            student_id, learning_element_id, is_favorite
+        )
+        uow.commit()
+
+
 def update_topic(
     uow: unit_of_work.AbstractUnitOfWork,
     topic_id,
