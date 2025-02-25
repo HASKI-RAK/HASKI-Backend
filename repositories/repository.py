@@ -1979,7 +1979,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         except Exception:
             raise err.NoValidIdError
 
-def update_student_learning_element_favorite(
+    def update_student_learning_element_favorite(
         self, student_id, learning_element_id, is_favorite
     ):
         try:

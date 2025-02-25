@@ -257,9 +257,7 @@ class StudentTopicVisit:
 
 
 class StudentLearningElement:
-    def __init__(
-        self, student_id, learning_element_id, is_favorite=True
-    ) -> None:
+    def __init__(self, student_id, learning_element_id, is_favorite=False) -> None:
         self.id = None
         self.student_id = student_id
         self.learning_element_id = learning_element_id

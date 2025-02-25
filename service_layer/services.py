@@ -1046,14 +1046,13 @@ def delete_student(uow: unit_of_work.AbstractUnitOfWork, user_id):
 
 
 def delete_student_learning_element_by_element(
-        uow: unit_of_work.AbstractUnitOfWork, 
-        student_id, learning_element_id):
+    uow: unit_of_work.AbstractUnitOfWork, student_id, learning_element_id
+):
     with uow:
         uow.student_learning_element.delete_student_learning_element(
             student_id, learning_element_id
         )
         uow.commit()
-    
 
 
 def delete_teacher(uow: unit_of_work.AbstractUnitOfWork, user_id):
@@ -1620,10 +1619,8 @@ def get_student_learning_element_by_student_id(
     uow: unit_of_work.AbstractUnitOfWork, student_id
 ) -> dict:
     with uow:
-        
-        backend_response = uow.learning_element.get_student_learning_element(
-            student_id
-        )
+
+        backend_response = uow.learning_element.get_student_learning_element(student_id)
 
         result = dict()
         result["student_learning_element"] = [
@@ -2406,12 +2403,18 @@ def update_student_learning_element(
 
 def update_student_learning_element_favorite(
     uow: unit_of_work.AbstractUnitOfWork, student_id, learning_element_id, is_favorite
-):
+) -> dict:
     with uow:
+        student_learning_element = DM.StudentLearningElement(student_id, learning_element_id, is_favorite)
+        leaning_elemenmmts = uow.student_learning_element.get_student_learning_element(student_id)
+        print([x.learning_element_id for x in leaning_elemenmmts])
+        if not int(learning_element_id) in [x.learning_element_id for x in leaning_elemenmmts]:
+            uow.student_learning_element.add_student_learning_element(student_learning_element)
         uow.student_learning_element.update_student_learning_element_favorite(
             student_id, learning_element_id, is_favorite
         )
         uow.commit()
+        return student_learning_element.serialize()
 
 
 def update_topic(
