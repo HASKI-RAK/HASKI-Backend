@@ -505,7 +505,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def get_student_learning_element(self, student_id) -> DM.StudentLearningElement:
+    def get_student_learning_element(self, student_id, learning_element_id) -> DM.StudentLearningElement:
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -1606,10 +1606,10 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         except Exception:
             raise err.DatabaseQueryError()
 
-    def get_student_learning_element(self, student_id) -> DM.StudentLearningElement:
-        result = self.session.query(DM.StudentLearningElement).filter_by(student_id=student_id).filter_by(is_favorite=True).all()
+    def get_student_learning_element(self, student_id, learning_element_id) -> DM.StudentLearningElement:
+        result = self.session.query(DM.StudentLearningElement).filter_by(student_id=student_id).filter_by(learning_element_id=learning_element_id).all()
         if result == []:
-            raise err.NoValidIdError()
+            return None
         else:
             return result
 

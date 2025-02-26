@@ -1616,11 +1616,11 @@ def get_default_learning_path_by_university(
 
 
 def get_student_learning_element_by_student_id(
-    uow: unit_of_work.AbstractUnitOfWork, student_id
+    uow: unit_of_work.AbstractUnitOfWork, student_id, learning_element_id
 ) -> dict:
     with uow:
 
-        backend_response = uow.learning_element.get_student_learning_element(student_id)
+        backend_response = uow.learning_element.get_student_learning_element(student_id, learning_element_id)
 
         result = dict()
         result["student_learning_element"] = [
@@ -2406,9 +2406,8 @@ def update_student_learning_element_favorite(
 ) -> dict:
     with uow:
         student_learning_element = DM.StudentLearningElement(student_id, learning_element_id, is_favorite)
-        leaning_elemenmmts = uow.student_learning_element.get_student_learning_element(student_id)
-        print([x.learning_element_id for x in leaning_elemenmmts])
-        if not int(learning_element_id) in [x.learning_element_id for x in leaning_elemenmmts]:
+        learning_element = uow.student_learning_element.get_student_learning_element(student_id, learning_element_id)
+        if not learning_element:
             uow.student_learning_element.add_student_learning_element(student_learning_element)
         uow.student_learning_element.update_student_learning_element_favorite(
             student_id, learning_element_id, is_favorite

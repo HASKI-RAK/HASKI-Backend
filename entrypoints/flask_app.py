@@ -817,13 +817,13 @@ def student_learning_element_update(student_id, learning_element_id):
 
 
 @app.route(
-    "/lms/student/<student_id>/favorite",
+    "/lms/student/<student_id>/learningElement/<learning_element_id>/favorite",
     methods=["GET"],
 )
 @cross_origin(supports_credentials=True)
-def student_learning_element_get(student_id):
+def student_learning_element_get(student_id, learning_element_id):
     result = services.get_student_learning_element_by_student_id(
-        unit_of_work.SqlAlchemyUnitOfWork(), student_id
+        unit_of_work.SqlAlchemyUnitOfWork(), student_id, learning_element_id
     )
     status_code = 200
     return jsonify(result), status_code
