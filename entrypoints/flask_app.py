@@ -288,7 +288,7 @@ def course_administration(data: Dict[str, Any], course_id, lms_course_id):
                 unit_of_work.SqlAlchemyUnitOfWork(), course_id
             )
             for topic in topics:
-                # student_rating and learning_element rating need to be deleted, both have topic_id
+                # student and learning_element rating need to be deleted (topic_id)
                 services.delete_student_topic_by_topic_id(
                     unit_of_work.SqlAlchemyUnitOfWork(), topic["id"]
                 )
@@ -662,7 +662,7 @@ def topic_administration(data: Dict[str, Any], topic_id, lms_topic_id):
             services.delete_student_topic_by_topic_id(
                 unit_of_work.SqlAlchemyUnitOfWork(), topic_id
             )
-            # student_rating and learning_element rating need to be deleted, both have topic_id
+            # student and learning_element rating need to be deleted, both have topic_id
             learning_elements = services.get_learning_elements_for_topic_id(
                 unit_of_work.SqlAlchemyUnitOfWork(), topic_id
             )

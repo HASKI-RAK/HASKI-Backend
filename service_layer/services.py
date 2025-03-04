@@ -965,7 +965,6 @@ def delete_course(uow: unit_of_work.AbstractUnitOfWork, course_id):
         all_students = get_all_students(uow)
         for student in all_students:
             delete_student_course(uow, student["id"], course_id)
-        # search for learning_path_id and delete learning_path_learning_element, learning_path_topic, learning_path_learning_element_algorithm
         delete_course_topic_by_course(uow, course_id)
         delete_course_creator_course(uow, course_id)
         uow.course.delete_course(course_id)
@@ -1102,7 +1101,7 @@ def delete_learning_path_learning_element_by_le_id(
     uow: unit_of_work.AbstractUnitOfWork, learning_element_id
 ):
     with uow:
-        uow.learning_path_learning_element.delete_learning_path_learning_element_by_le_id(
+        uow.learning_path_learning_element.delete_learning_path_learning_element_by_le_id(  # noqa: E501
             learning_element_id
         )
         uow.commit()
@@ -1278,7 +1277,7 @@ def delete_student_learning_element_by_learning_element_id(
         delete_student_learning_element_visit_by_learning_element_id(
             uow, learning_element_id
         )
-        uow.student_learning_element.delete_student_learning_element_by_learning_element_id(
+        uow.student_learning_element.delete_student_learning_element_by_learning_element_id(  # noqa: E501
             learning_element_id
         )
         uow.commit()
@@ -1298,7 +1297,7 @@ def delete_student_learning_element_visit_by_learning_element_id(
     uow: unit_of_work.AbstractUnitOfWork, learning_element_id
 ):
     with uow:
-        uow.student_learning_element_visit.delete_student_learning_element_visit_by_learning_element_id(
+        uow.student_learning_element_visit.delete_student_learning_element_visit_by_learning_element_id(  # noqa: E501
             learning_element_id
         )
         uow.commit()

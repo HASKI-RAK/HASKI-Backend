@@ -4661,14 +4661,6 @@ class TestApi:
         error_le,
     ):
         global course_id, sub_topic_id, learning_element_id
-        if error_course:
-            course_id_use = 99999
-        else:
-            course_id_use = course_id
-        if error_topic:
-            topic_id_use = 99999
-        else:
-            topic_id_use = sub_topic_id
         if error_le:
             learning_element_id_use = 99999
         else:
@@ -4711,10 +4703,6 @@ class TestApi:
         error_topic,
     ):
         global course_id, sub_topic_id
-        if error_course:
-            course_id_use = 99999
-        else:
-            course_id_use = course_id
         if error_topic:
             topic_id_use = 99999
         else:

@@ -315,7 +315,6 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
 
     @abc.abstractmethod
     def delete_student_course(self, student_id, course_id=None):
-        # Delete a student's course(s). Optionally, delete only the record for a specific course.
         raise NotImplementedError
 
     @abc.abstractmethod
