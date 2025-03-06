@@ -301,9 +301,13 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     @abc.abstractmethod
     def delete_student_course(self, student_id):
         raise NotImplementedError
+    
+    @abc.abstractmethod
+    def delete_student_learning_element_by_element(self, student_id, learning_element_id):
+        raise NotImplementedError
 
     @abc.abstractmethod
-    def delete_student_learning_element(self, student_id, learning_element_id):
+    def delete_student_learning_element(self, student_id):
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -1202,10 +1206,15 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
     def delete_student_course(self, student_id):
         self.session.query(DM.StudentCourse).filter_by(student_id=student_id).delete()
 
-    def delete_student_learning_element(self, student_id, learning_element_id):
+    def delete_student_learning_element_by_element(self, student_id, learning_element_id):
         self.session.query(DM.StudentLearningElement).filter_by(
             student_id=student_id
         ).filter_by(learning_element_id=learning_element_id).delete()
+
+    def delete_student_learning_element(self, student_id):
+        self.session.query(DM.StudentLearningElement).filter_by(
+            student_id=student_id
+        ).delete()
 
     def delete_student_learning_element_visit(self, student_id):
         self.session.query(DM.StudentLearningElementVisit).filter_by(

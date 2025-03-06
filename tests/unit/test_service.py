@@ -470,6 +470,14 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         for remove in to_remove:
             self.student_course.remove(remove)
 
+    def delete_student_learning_element_by_element(self, student_id, learning_element_id):
+        to_remove = []
+        for i in self.student_learning_element:
+            if i.student_id == student_id and i.learning_element_id == learning_element_id:
+                to_remove.append(i)
+        for remove in to_remove:
+            self.student_learning_element.remove(remove)
+
     def delete_student_learning_element(self, student_id):
         to_remove = []
         for i in self.student_learning_element:

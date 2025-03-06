@@ -2995,6 +2995,46 @@ class TestApi:
             for entry in response["news"]:
                 assert key in entry.keys()
 
+    # Get favorite with user_id and learning_element_id
+    @pytest.mark.parametrize(
+        "student_id, learning_element_id, keys_expected,\
+                            status_code_expected",
+        [
+            # Working Example
+            (
+                1,
+                4,
+                [
+                    "student_id",
+                    "learning_element_id",
+                    "is_favorite",
+                ],
+                200,
+            ),
+            # Missing learningElementId
+            (
+                1,
+                2,
+                [
+                    "error",
+                    "message",
+                ],
+                404,
+            ),
+        ],
+    )
+    def test_get_favorite(
+        self, client_class, student_id, learning_element_id, keys_expected, status_code_expected
+    ):
+        url = path_lms_student + str(student_id) + "/learningElement/" + str(learning_element_id) + "/favorite"
+        r = client_class.get(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        assert "student_learning_element" in response.keys()
+        for key in keys_expected:
+            for entry in response["student_learning_element"]:
+                assert key in entry.keys()
+
     # PUT METHODS
     # Update the settings of a User
     @pytest.mark.parametrize(

@@ -821,7 +821,7 @@ def student_learning_element_update(student_id, learning_element_id):
     methods=["GET"],
 )
 @cross_origin(supports_credentials=True)
-def student_learning_element_get(student_id, learning_element_id):
+def student_learning_element_get_favorite(student_id, learning_element_id):
     result = services.get_student_learning_element_by_student_id(
         unit_of_work.SqlAlchemyUnitOfWork(), student_id, learning_element_id
     )

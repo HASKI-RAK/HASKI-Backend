@@ -1049,7 +1049,7 @@ def delete_student_learning_element_by_element(
     uow: unit_of_work.AbstractUnitOfWork, student_id, learning_element_id
 ):
     with uow:
-        uow.student_learning_element.delete_student_learning_element(
+        uow.student_learning_element.delete_student_learning_element_by_element(
             student_id, learning_element_id
         )
         uow.commit()
@@ -1132,6 +1132,12 @@ def delete_learning_style(uow: unit_of_work.AbstractUnitOfWork, characteristic_i
 def delete_student_course(uow: unit_of_work.AbstractUnitOfWork, student_id):
     with uow:
         uow.student_course.delete_student_course(student_id)
+        uow.commit()
+
+
+def delete_student_learning_element_by_element(uow: unit_of_work.AbstractUnitOfWork, student_id, learning_element_id):
+    with uow:
+        uow.student_learning_element.delete_student_learning_element_by_element(student_id, learning_element_id)
         uow.commit()
 
 
