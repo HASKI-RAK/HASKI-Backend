@@ -674,10 +674,10 @@ def topic_administration(data: Dict[str, Any], topic_id, lms_topic_id):
             )
             for learning_element in learning_elements:
                 services.delete_student_learning_element_by_learning_element_id(
-                    unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"]
+                    unit_of_work.SqlAlchemyUnitOfWork(), learning_element["learning_element_id"]
                 )
                 services.delete_learning_element(
-                    unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"]
+                    unit_of_work.SqlAlchemyUnitOfWork(), learning_element["learning_element_id"]
                 )
             services.delete_topic(unit_of_work.SqlAlchemyUnitOfWork(), topic_id)
             result = {"message": cons.deletion_message}
@@ -745,6 +745,14 @@ def create_learning_element(data: Dict[str, Any], topic_id):
                             data["created_by"],
                             created_at,
                             data["university"],
+                        )
+                        students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
+                        for student in students:
+                            student_id = student["id"]
+                            services.add_student_to_learning_element(
+                            unit_of_work.SqlAlchemyUnitOfWork(),
+                            learning_element["id"],
+                            student_id
                         )
                         status_code = 201
                         return jsonify(learning_element), status_code

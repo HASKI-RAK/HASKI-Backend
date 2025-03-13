@@ -61,18 +61,16 @@ def add_student_to_course(
 
 
 def add_student_to_learning_element(
-    uow: unit_of_work.AbstractUnitOfWork, student_id, topic_id
+    uow: unit_of_work.AbstractUnitOfWork, learning_element_id, student_id
 ):
     with uow:
-        learning_elements = get_learning_elements_for_topic_id(uow, topic_id)
-        for le in learning_elements:
-            student_learning_element = DM.StudentLearningElement(
-                student_id, le["learning_element_id"]
-            )
-            uow.student_learning_element.add_student_to_learning_element(
-                student_learning_element
-            )
-            uow.commit()
+        student_learning_element = DM.StudentLearningElement(
+            student_id, learning_element_id
+        )
+        uow.student_learning_element.add_student_to_learning_element(
+            student_learning_element
+        )
+        uow.commit()
 
 
 def add_student_to_topics(uow: unit_of_work.AbstractUnitOfWork, student_id, course_id):
@@ -82,7 +80,6 @@ def add_student_to_topics(uow: unit_of_work.AbstractUnitOfWork, student_id, cour
             student_topic = DM.StudentTopic(student_id, topic["topic_id"])
             uow.student_topic.add_student_to_topic(student_topic)
             uow.commit()
-            add_student_to_learning_element(uow, student_id, topic["topic_id"])
             topic_algorithm = get_lpath_le_algorithm_by_topic(uow, topic["topic_id"])
             if topic_algorithm != {}:
                 add_student_lpath_le_algorithm(
