@@ -171,7 +171,7 @@ learning_element_solution = Table(
     "learning_element_solution",
     mapper_registry.metadata,
     Column("id", Integer, primary_key=True, autoincrement=True),
-    Column("learning_element_id", Integer, nullable=False),
+    Column("learning_element_lms_id", Integer, nullable=False),
     Column("solution_lms_id", Integer, nullable=False),
 )
 

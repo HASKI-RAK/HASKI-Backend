@@ -4728,11 +4728,11 @@ class TestApi:
 
     # Create Learning Element Solution
     @pytest.mark.parametrize(
-        "le_element_id, keys_expected,\
+        "le_element_lms_id, keys_expected,\
                             status_code_expected, error",
         [
             # Working Example
-            (1, ["id", "learning_element_id", "solution_lms_id"], 201, False),
+            (1, ["id", "learning_element_lms_id", "solution_lms_id"], 201, False),
             # Solution already exists
             (1, [], 400, True),
         ],
@@ -4757,11 +4757,11 @@ class TestApi:
 
     # Get Learning Element Solution
     @pytest.mark.parametrize(
-        "learning_element_id, keys_expected,\
+        "learning_element_lms_id, keys_expected,\
                             status_code_expected",
         [
             # Working Example
-            (1, ["id", "learning_element_id", "solution_lms_id"], 200),
+            (1, ["id", "learning_element_lms_id", "solution_lms_id"], 200),
         ],
     )
     def test_get_learning_element_solution(

@@ -30,11 +30,11 @@ def add_course_creator_to_course(
 
 
 def add_learning_element_solution(
-    uow: unit_of_work.AbstractUnitOfWork, learning_element_id, solution_lms_id
+    uow: unit_of_work.AbstractUnitOfWork, learning_element_lms_id, solution_lms_id
 ) -> dict:
     with uow:
         learning_element_solution = DM.LearningElementSolution(
-            learning_element_id, solution_lms_id
+            learning_element_lms_id, solution_lms_id
         )
         uow.learning_element_solution.add_learning_element_solution(
             learning_element_solution
@@ -991,11 +991,11 @@ def delete_learning_element(
 
 
 def delete_learning_element_solution(
-    uow: unit_of_work.AbstractUnitOfWork, learning_element_id
+    uow: unit_of_work.AbstractUnitOfWork, learning_element_lms_id
 ) -> None:
     with uow:
         uow.learning_element_solution.delete_learning_element_solution(
-            learning_element_id
+            learning_element_lms_id
         )
         uow.commit()
 
@@ -2303,12 +2303,12 @@ def get_learning_element_ratings(uow: unit_of_work.AbstractUnitOfWork) -> list:
 
 
 def get_learning_element_solution(
-    uow: unit_of_work.AbstractUnitOfWork, learning_element_id: int
+    uow: unit_of_work.AbstractUnitOfWork, learning_element_lms_id: int
 ) -> dict:
     with uow:
         learning_element_solution = (
             uow.learning_element_solution.get_learning_element_solution(
-                learning_element_id
+                learning_element_lms_id
             )
         )
         if learning_element_solution == []:

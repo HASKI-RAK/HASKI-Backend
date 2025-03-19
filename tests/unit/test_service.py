@@ -403,10 +403,10 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         for remove in to_remove:
             self.learning_element.remove(remove)
 
-    def delete_learning_element_solution(self, learning_element_id):
+    def delete_learning_element_solution(self, learning_element_lms_id):
         to_remove = []
         for i in self.learning_element_solution:
-            if i.learning_element_id == learning_element_id:
+            if i.learning_element_lms_id == learning_element_lms_id:
                 to_remove.append(i)
         for remove in to_remove:
             self.learning_element_solution.remove(remove)
@@ -732,10 +732,10 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 result.append(i)
         return result
 
-    def get_learning_element_solution(self, learning_element_id):
+    def get_learning_element_solution(self, learning_element_lms_id):
         result = []
         for i in self.learning_element_solution:
-            if i.learning_element_id == learning_element_id:
+            if i.learning_element_lms_id == learning_element_lms_id:
                 result.append(i)
         return result
 
@@ -1566,7 +1566,7 @@ def create_news_for_tests(uow):
 
 def add_learning_element_solution_for_tests(uow):
     services.add_learning_element_solution(
-        uow=uow, learning_element_id=1, solution_lms_id=4
+        uow=uow, learning_element_lms_id=1, solution_lms_id=4
     )
 
 
@@ -3573,7 +3573,7 @@ def test_get_learning_element_ratings():
 def test_add_learning_element_solution():
     uow = FakeUnitOfWork()
     result = services.add_learning_element_solution(
-        uow=uow, learning_element_id=1, solution_lms_id="Test Solution"
+        uow=uow, learning_element_lms_id=1, solution_lms_id="Test Solution"
     )
     assert type(result) is dict
     assert result != {}
@@ -3582,7 +3582,7 @@ def test_add_learning_element_solution():
 def test_get_learning_element_solution():
     uow = FakeUnitOfWork()
     add_learning_element_solution_for_tests(uow=uow)
-    result = services.get_learning_element_solution(uow=uow, learning_element_id=1)
+    result = services.get_learning_element_solution(uow=uow, learning_element_lms_id=1)
     assert type(result) is dict
     assert result != {}
 

@@ -214,7 +214,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def delete_learning_element_solution(self, learning_element_id):
+    def delete_learning_element_solution(self, learning_element_lms_id):
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -479,7 +479,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
 
     @abc.abstractmethod
     def get_learning_element_solution(
-        self, learning_element_id
+        self, learning_element_lms_id
     ) -> DM.LearningElementSolution:
         raise NotImplementedError
 
@@ -1108,13 +1108,13 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         else:
             raise err.NoValidIdError()
 
-    def delete_learning_element_solution(self, learning_element_id):
+    def delete_learning_element_solution(self, learning_element_lms_id):
         learning_element_solution = self.get_learning_element_solution(
-            learning_element_id
+            learning_element_lms_id
         )
         if learning_element_solution != []:
             self.session.query(DM.LearningElementSolution).filter_by(
-                learning_element_id=learning_element_id
+                learning_element_lms_id=learning_element_lms_id
             ).delete()
         else:
             raise err.NoValidIdError()
@@ -1466,11 +1466,11 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         return result
 
     def get_learning_element_solution(
-        self, learning_element_id
+        self, learning_element_lms_id
     ) -> DM.LearningElementSolution:
         result = (
             self.session.query(DM.LearningElementSolution)
-            .filter_by(learning_element_id=learning_element_id)
+            .filter_by(learning_element_lms_id=learning_element_lms_id)
             .all()
         )
         return result
