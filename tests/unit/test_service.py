@@ -230,6 +230,10 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         student.id = len(self.student) + 1
         self.student.add(student)
 
+    def add_student_learning_element(self, student_learning_element):
+        student_learning_element.id = len(self.student_learning_element) + 1
+        self.student_learning_element.add(student_learning_element)
+
     def add_student_lpath_le_algorithm(
         self, student_learning_path_learning_element_algorithm
     ):
@@ -1103,6 +1107,22 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
             to_update.id = len(self.student_learning_element)
             to_update.done_at = visit_time
             to_update.done = True
+            self.student_learning_element.add(to_update)
+    
+    def update_student_learning_element_favorite(self, student_id, learning_element_id, is_favorite):
+        to_update = next(
+            (
+                p
+                for p in self.student_learning_element
+                if p.student_id == student_id
+                and p.learning_element_id == learning_element_id
+            ),
+            None,
+        )
+        if to_update is not None:
+            self.student_learning_element.remove(to_update)
+            to_update.id = len(self.student_learning_element)
+            to_update.favorite = is_favorite
             self.student_learning_element.add(to_update)
 
     def update_topic(self, topic_id, topic):
