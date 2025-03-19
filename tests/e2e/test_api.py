@@ -2995,6 +2995,37 @@ class TestApi:
             for entry in response["news"]:
                 assert key in entry.keys()
 
+    # Put favorite with user_id and learning_element_id
+    @pytest.mark.parametrize(
+        "student_id, learning_element_id, , request_body, \
+                            keys_expected,\
+                            status_code_expected",
+        [
+            # Working Example
+            (
+                1,
+                1,
+                {"is_favorite": True},
+                [
+                    "student_id",
+                    "learning_element_id",
+                    "is_favorite",
+                ],
+                201,
+            ),
+            # Missing learningElementId
+        ],
+    )
+    def test_put_favorite(
+        self, client_class, student_id, learning_element_id, request_body, keys_expected, status_code_expected
+    ):
+        url = path_lms_student + "/" + str(student_id) + "/learningElement/" + str(learning_element_id) + "/favorite"
+        r = client_class.put(url, json=request_body)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+
     # Get favorite with user_id and learning_element_id
     @pytest.mark.parametrize(
         "student_id, learning_element_id, keys_expected,\
@@ -3003,7 +3034,7 @@ class TestApi:
             # Working Example
             (
                 1,
-                4,
+                1,
                 [
                     "student_id",
                     "learning_element_id",
@@ -3012,21 +3043,12 @@ class TestApi:
                 200,
             ),
             # Missing learningElementId
-            (
-                1,
-                2,
-                [
-                    "error",
-                    "message",
-                ],
-                404,
-            ),
         ],
     )
     def test_get_favorite(
         self, client_class, student_id, learning_element_id, keys_expected, status_code_expected
     ):
-        url = path_lms_student + str(student_id) + "/learningElement/" + str(learning_element_id) + "/favorite"
+        url = path_lms_student + "/" + str(student_id) + "/learningElement/" + str(learning_element_id) + "/favorite"
         r = client_class.get(url)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
