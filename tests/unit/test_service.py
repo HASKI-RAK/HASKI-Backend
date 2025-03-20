@@ -474,10 +474,15 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         for remove in to_remove:
             self.student_course.remove(remove)
 
-    def delete_student_learning_element_by_element(self, student_id, learning_element_id):
+    def delete_student_learning_element_by_element(
+        self, student_id, learning_element_id
+    ):
         to_remove = []
         for i in self.student_learning_element:
-            if i.student_id == student_id and i.learning_element_id == learning_element_id:
+            if (
+                i.student_id == student_id
+                and i.learning_element_id == learning_element_id
+            ):
                 to_remove.append(i)
         for remove in to_remove:
             self.student_learning_element.remove(remove)
@@ -1108,8 +1113,10 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
             to_update.done_at = visit_time
             to_update.done = True
             self.student_learning_element.add(to_update)
-    
-    def update_student_learning_element_favorite(self, student_id, learning_element_id, is_favorite):
+
+    def update_student_learning_element_favorite(
+        self, student_id, learning_element_id, is_favorite
+    ):
         to_update = next(
             (
                 p
@@ -2308,7 +2315,9 @@ def test_get_activity_status_for_student_for_learning_element_for_course():
 def test_get_student_learning_element_by_student_id():
     uow = FakeUnitOfWork()
     create_student_learning_element_for_tests(uow)
-    result = services.get_student_learning_element_by_student_id(uow=uow, student_id=1, learning_element_id=1)
+    result = services.get_student_learning_element_by_student_id(
+        uow=uow, student_id=1, learning_element_id=1
+    )
     assert type(result) is dict
     assert result != {}
 
@@ -2316,7 +2325,9 @@ def test_get_student_learning_element_by_student_id():
 def test_update_student_learning_element_favorite():
     uow = FakeUnitOfWork()
     create_student_learning_element_for_tests(uow)
-    result = services.update_student_learning_element_favorite(uow=uow, student_id=1, learning_element_id=1, is_favorite=True)
+    result = services.update_student_learning_element_favorite(
+        uow=uow, student_id=1, learning_element_id=1, is_favorite=True
+    )
     assert type(result) is dict
     assert result != {}
 

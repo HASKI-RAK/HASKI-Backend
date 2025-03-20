@@ -3013,13 +3013,33 @@ class TestApi:
                 ],
                 201,
             ),
-            # Missing learningElementId
+            # Missing body
+            (
+                1,
+                1,
+                {},
+                ["error", "message"],
+                400,
+            ),
         ],
     )
     def test_put_favorite(
-        self, client_class, student_id, learning_element_id, request_body, keys_expected, status_code_expected
+        self,
+        client_class,
+        student_id,
+        learning_element_id,
+        request_body,
+        keys_expected,
+        status_code_expected,
     ):
-        url = path_lms_student + "/" + str(student_id) + "/learningElement/" + str(learning_element_id) + "/favorite"
+        url = (
+            path_lms_student
+            + "/"
+            + str(student_id)
+            + "/learningElement/"
+            + str(learning_element_id)
+            + "/favorite"
+        )
         r = client_class.put(url, json=request_body)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -3042,13 +3062,24 @@ class TestApi:
                 ],
                 200,
             ),
-            # Missing learningElementId
         ],
     )
     def test_get_favorite(
-        self, client_class, student_id, learning_element_id, keys_expected, status_code_expected
+        self,
+        client_class,
+        student_id,
+        learning_element_id,
+        keys_expected,
+        status_code_expected,
     ):
-        url = path_lms_student + "/" + str(student_id) + "/learningElement/" + str(learning_element_id) + "/favorite"
+        url = (
+            path_lms_student
+            + "/"
+            + str(student_id)
+            + "/learningElement/"
+            + str(learning_element_id)
+            + "/favorite"
+        )
         r = client_class.get(url)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))

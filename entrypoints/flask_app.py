@@ -775,29 +775,6 @@ def post_student_topic_visit(data: Dict[str, Any], student_id, lms_user_id, topi
 
 @app.route(
     "/lms/student/<student_id>/learningElement/<learning_element_id>/favorite",
-    methods=["POST"],
-)
-@cross_origin(supports_credentials=True)
-# @json_only()
-def student_learning_element_creation(
-    student_id, learning_element_id, is_favorite: bool
-):
-    result = services.update_student_learning_element_favorite(
-        unit_of_work.SqlAlchemyUnitOfWork(),
-        student_id,
-        learning_element_id,
-        is_favorite,
-    )
-
-    if result is None:
-        raise err.MissingParameterError()
-
-    status_code = 201
-    return jsonify(result), status_code
-
-
-@app.route(
-    "/lms/student/<student_id>/learningElement/<learning_element_id>/favorite",
     methods=["PUT"],
 )
 @cross_origin(supports_credentials=True)
@@ -809,7 +786,7 @@ def student_learning_element_update(student_id, learning_element_id):
         unit_of_work.SqlAlchemyUnitOfWork(),
         student_id,
         learning_element_id,
-        data["is_favorite"]
+        data["is_favorite"],
     )
 
     status_code = 201

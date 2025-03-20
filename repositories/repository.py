@@ -301,9 +301,11 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     @abc.abstractmethod
     def delete_student_course(self, student_id):
         raise NotImplementedError
-    
+
     @abc.abstractmethod
-    def delete_student_learning_element_by_element(self, student_id, learning_element_id):
+    def delete_student_learning_element_by_element(
+        self, student_id, learning_element_id
+    ):
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -509,7 +511,9 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def get_student_learning_element(self, student_id, learning_element_id) -> DM.StudentLearningElement:
+    def get_student_learning_element(
+        self, student_id, learning_element_id
+    ) -> DM.StudentLearningElement:
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -687,7 +691,9 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         except Exception:
             raise err.CreationError()
 
-    def add_student_to_learning_element(self, student_learning_element) -> DM.StudentLearningElement:
+    def add_student_to_learning_element(
+        self, student_learning_element
+    ) -> DM.StudentLearningElement:
         try:
             self.session.add(student_learning_element)
         except IntegrityError:
@@ -1206,7 +1212,9 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
     def delete_student_course(self, student_id):
         self.session.query(DM.StudentCourse).filter_by(student_id=student_id).delete()
 
-    def delete_student_learning_element_by_element(self, student_id, learning_element_id):
+    def delete_student_learning_element_by_element(
+        self, student_id, learning_element_id
+    ):
         self.session.query(DM.StudentLearningElement).filter_by(
             student_id=student_id
         ).filter_by(learning_element_id=learning_element_id).delete()
@@ -1615,8 +1623,15 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         except Exception:
             raise err.DatabaseQueryError()
 
-    def get_student_learning_element(self, student_id, learning_element_id) -> DM.StudentLearningElement:
-        result = self.session.query(DM.StudentLearningElement).filter_by(student_id=student_id).filter_by(learning_element_id=learning_element_id).all()
+    def get_student_learning_element(
+        self, student_id, learning_element_id
+    ) -> DM.StudentLearningElement:
+        result = (
+            self.session.query(DM.StudentLearningElement)
+            .filter_by(student_id=student_id)
+            .filter_by(learning_element_id=learning_element_id)
+            .all()
+        )
         if result == []:
             return None
         else:

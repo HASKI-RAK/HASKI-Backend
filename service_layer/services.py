@@ -1135,9 +1135,13 @@ def delete_student_course(uow: unit_of_work.AbstractUnitOfWork, student_id):
         uow.commit()
 
 
-def delete_student_learning_element_by_element(uow: unit_of_work.AbstractUnitOfWork, student_id, learning_element_id):
+def delete_student_learning_element_by_element(
+    uow: unit_of_work.AbstractUnitOfWork, student_id, learning_element_id
+):
     with uow:
-        uow.student_learning_element.delete_student_learning_element_by_element(student_id, learning_element_id)
+        uow.student_learning_element.delete_student_learning_element_by_element(
+            student_id, learning_element_id
+        )
         uow.commit()
 
 
@@ -1626,7 +1630,9 @@ def get_student_learning_element_by_student_id(
 ) -> dict:
     with uow:
 
-        backend_response = uow.learning_element.get_student_learning_element(student_id, learning_element_id)
+        backend_response = uow.learning_element.get_student_learning_element(
+            student_id, learning_element_id
+        )
 
         result = dict()
         result["student_learning_element"] = [
@@ -2411,10 +2417,16 @@ def update_student_learning_element_favorite(
     uow: unit_of_work.AbstractUnitOfWork, student_id, learning_element_id, is_favorite
 ) -> dict:
     with uow:
-        student_learning_element = DM.StudentLearningElement(student_id, learning_element_id, is_favorite)
-        learning_element = uow.student_learning_element.get_student_learning_element(student_id, learning_element_id)
+        student_learning_element = DM.StudentLearningElement(
+            student_id, learning_element_id, is_favorite
+        )
+        learning_element = uow.student_learning_element.get_student_learning_element(
+            student_id, learning_element_id
+        )
         if not learning_element:
-            uow.student_learning_element.add_student_learning_element(student_learning_element)
+            uow.student_learning_element.add_student_learning_element(
+                student_learning_element
+            )
         uow.student_learning_element.update_student_learning_element_favorite(
             student_id, learning_element_id, is_favorite
         )

@@ -1296,172 +1296,81 @@ sql = """
 """
 cursor.execute(sql)
 
-# create Student completed learning element
+# create Student favorited learning element
 sql = """
     INSERT INTO student_learning_element (student_id, learning_element_id,\
-    done, done_at)
-    VALUES (1, 1, true, '2023-07-14 15:05:45')
+    is_favorite)
+    VALUES (1, 1, true)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_learning_element (student_id, learning_element_id,\
-    done, done_at)
-    VALUES (1, 2, true, '2023-07-14 15:45:45')
+    is_favorite)
+    VALUES (1, 2, false)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_learning_element (student_id, learning_element_id,\
-    done, done_at)
-    VALUES (1, 3, true, '2023-07-14 16:05:45')
+    is_favorite)
+    VALUES (1, 3, false)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_learning_element (student_id, learning_element_id,\
-    done, done_at)
-    VALUES (1, 4, true, '2023-07-14 16:45:45')
+    is_favorite)
+    VALUES (1, 4, false)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_learning_element (student_id, learning_element_id,\
-    done, done_at)
-    VALUES (1, 5, true, '2023-07-14 17:05:45')
+    is_favorite)
+    VALUES (1, 8, false)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_learning_element (student_id, learning_element_id,\
-    done, done_at)
-    VALUES (1, 6, true, '2023-07-14 17:45:45')
+    is_favorite)
+    VALUES (1, 9, false)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_learning_element (student_id, learning_element_id,\
-    done, done_at)
-    VALUES (1, 7, true, '2023-07-14 18:05:45')
+    is_favorite)
+    VALUES (1, 10, false)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_learning_element (student_id, learning_element_id,\
-    done, done_at)
-    VALUES (1, 8, true, '2023-07-14 18:45:45')
+    is_favorite)
+    VALUES (1, 11, true)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_learning_element (student_id, learning_element_id,\
-    done, done_at)
-    VALUES (1, 9, true, '2023-07-15 9:55:45')
+    is_favorite)
+    VALUES (2, 1, false)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_learning_element (student_id, learning_element_id,\
-    done, done_at)
-    VALUES (1, 10, true, '2023-07-15 15:05:45')
+    is_favorite)
+    VALUES (2, 2, true)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO student_learning_element (student_id, learning_element_id,\
-    done, done_at)
-    VALUES (1, 11, true, '2023-07-16 14:05:45')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_learning_element (student_id, learning_element_id,\
-    done, done_at)
-    VALUES (2, 1, true, '2023-07-14 16:05:45')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_learning_element (student_id, learning_element_id,\
-    done, done_at)
-    VALUES (2, 2, true, '2023-07-14 15:30:45')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_learning_element (student_id, learning_element_id,\
-    done, done_at)
-    VALUES (2, 3, true, '2023-07-14 16:07:45')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_learning_element (student_id, learning_element_id,\
-    done, done_at)
-    VALUES (2, 4, true, '2023-07-14 16:45:45')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_learning_element (student_id, learning_element_id,\
-    done, done_at)
-    VALUES (2, 5, true, '2023-07-14 17:05:45')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_learning_element (student_id, learning_element_id,\
-    done, done_at)
-    VALUES (2, 6, true, '2023-07-14 17:45:45')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_learning_element (student_id, learning_element_id,\
-    done, done_at)
-    VALUES (2, 7, true, '2023-07-14 18:05:45')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_learning_element (student_id, learning_element_id,\
-    done, done_at)
-    VALUES (2, 8, true, '2023-07-14 18:45:45')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_learning_element (student_id, learning_element_id,\
-    done, done_at)
-    VALUES (3, 1, true, '2023-07-14 16:05:45')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_learning_element (student_id, learning_element_id,\
-    done, done_at)
-    VALUES (3, 2, true, '2023-07-14 15:30:45')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_learning_element (student_id, learning_element_id,\
-    done, done_at)
-    VALUES (3, 5, true, '2023-07-14 17:05:45')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_learning_element (student_id, learning_element_id,\
-    done, done_at)
-    VALUES (3, 6, true, '2023-07-14 17:45:45')
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO student_learning_element (student_id, learning_element_id,\
-    done, done_at)
-    VALUES (3, 8, true, '2023-07-14 21:45:45')
+    is_favorite)
+    VALUES (2, 3, false)
 """
 cursor.execute(sql)
 
