@@ -20,147 +20,147 @@ cursor = conn.cursor()
 
 # Create default learning path for HS-KE
 sql = """
-    INSERT INTO default_learning_path (classification, position, university)
-    VALUES ('KÜ', 1, 'HS-KE')
+    INSERT INTO default_learning_path (classification, position, disabled, university)
+    VALUES ('KÜ', 1, true, 'HS-KE')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO default_learning_path (classification, position, university)
-    VALUES ('EK', 2, 'HS-KE')
+    INSERT INTO default_learning_path (classification, position, disabled, university)
+    VALUES ('EK', 2, true, 'HS-KE')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO default_learning_path (classification, position, university)
-    VALUES ('AN', 3, 'HS-KE')
+    INSERT INTO default_learning_path (classification, position, disabled, university)
+    VALUES ('AN', 3, true, 'HS-KE')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO default_learning_path (classification, position, university)
-    VALUES ('SE', 4, 'HS-KE')
+    INSERT INTO default_learning_path (classification, position, disabled, university)
+    VALUES ('SE', 4, true, 'HS-KE')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO default_learning_path (classification, position, university)
-    VALUES ('BE', 5, 'HS-KE')
+    INSERT INTO default_learning_path (classification, position, disabled, university)
+    VALUES ('BE', 5, true, 'HS-KE')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO default_learning_path (classification, position, university)
-    VALUES ('ÜB', 6, 'HS-KE')
+    INSERT INTO default_learning_path (classification, position, disabled, university)
+    VALUES ('ÜB', 6, true, 'HS-KE')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO default_learning_path (classification, position, university)
-    VALUES ('ZF', 7, 'HS-KE')
+    INSERT INTO default_learning_path (classification, position, disabled, university)
+    VALUES ('ZF', 7, true, 'HS-KE')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO default_learning_path (classification, position, university)
-    VALUES ('ZL', 8, 'HS-KE')
+    INSERT INTO default_learning_path (classification, position, disabled, university)
+    VALUES ('ZL', 8, true, 'HS-KE')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO default_learning_path (classification, position, university)
-    VALUES ('RQ', 9, 'HS-KE')
+    INSERT INTO default_learning_path (classification, position, disabled, university)
+    VALUES ('RQ', 9, true, 'HS-KE')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO default_learning_path (classification, position, university)
-    VALUES ('FO', 10, 'HS-KE')
+    INSERT INTO default_learning_path (classification, position, disabled, university)
+    VALUES ('FO', 10, true, 'HS-KE')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO default_learning_path (classification, position, university)
-    VALUES ('LZ', 11, 'HS-KE')
+    INSERT INTO default_learning_path (classification, position, disabled, university)
+    VALUES ('LZ', 11, true, 'HS-KE')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO default_learning_path (classification, position, university)
-    VALUES ('AB', 12, 'HS-KE')
+    INSERT INTO default_learning_path (classification, position, disabled, university)
+    VALUES ('AB', 12, true,'HS-KE')
 """
 cursor.execute(sql)
 
 # Create default learning path for TH-AB
 sql = """
-    INSERT INTO default_learning_path (classification, position, university)
-    VALUES ('KÜ', 1, 'TH-AB')
+    INSERT INTO default_learning_path (classification, position, disabled, university)
+    VALUES ('KÜ', 1, true, 'TH-AB')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO default_learning_path (classification, position, university)
-    VALUES ('ZL', 2, 'TH-AB')
+    INSERT INTO default_learning_path (classification, position, disabled, university)
+    VALUES ('ZL', 2, true, 'TH-AB')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO default_learning_path (classification, position, university)
-    VALUES ('EK', 3, 'TH-AB')
+    INSERT INTO default_learning_path (classification, position, disabled, university)
+    VALUES ('EK', 3, true, 'TH-AB')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO default_learning_path (classification, position, university)
-    VALUES ('AN', 4, 'TH-AB')
+    INSERT INTO default_learning_path (classification, position, disabled, university)
+    VALUES ('AN', 4, true, 'TH-AB')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO default_learning_path (classification, position, university)
-    VALUES ('BE', 5, 'TH-AB')
+    INSERT INTO default_learning_path (classification, position, disabled, university)
+    VALUES ('BE', 5, true, 'TH-AB')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO default_learning_path (classification, position, university)
-    VALUES ('SE', 6, 'TH-AB')
+    INSERT INTO default_learning_path (classification, position, disabled, university)
+    VALUES ('SE', 6, true, 'TH-AB')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO default_learning_path (classification, position, university)
-    VALUES ('AB', 7, 'TH-AB')
+    INSERT INTO default_learning_path (classification, position, disabled, university)
+    VALUES ('AB', 7, true, 'TH-AB')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO default_learning_path (classification, position, university)
-    VALUES ('ÜB', 8, 'TH-AB')
+    INSERT INTO default_learning_path (classification, position, disabled, university)
+    VALUES ('ÜB', 8, true, 'TH-AB')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO default_learning_path (classification, position, university)
-    VALUES ('LZ', 9, 'TH-AB')
+    INSERT INTO default_learning_path (classification, position, disabled, university)
+    VALUES ('LZ', 9, true, 'TH-AB')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO default_learning_path (classification, position, university)
-    VALUES ('ZF', 10, 'TH-AB')
+    INSERT INTO default_learning_path (classification, position, disabled, university)
+    VALUES ('ZF', 10, true, 'TH-AB')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO default_learning_path (classification, position, university)
-    VALUES ('RQ', 11, 'TH-AB')
+    INSERT INTO default_learning_path (classification, position, disabled, university)
+    VALUES ('RQ', 11, true, 'TH-AB')
 """
 cursor.execute(sql)
 
 sql = """
-    INSERT INTO default_learning_path (classification, position, university)
-    VALUES ('FO', 12, 'TH-AB')
+    INSERT INTO default_learning_path (classification, position, disabled, university)
+    VALUES ('FO', 12, true, 'TH-AB')
 """
 cursor.execute(sql)
 

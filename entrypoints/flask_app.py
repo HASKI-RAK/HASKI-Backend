@@ -3,7 +3,7 @@ import json
 import os
 import re
 from datetime import datetime
-from typing import Any, Dict
+from typing import Any, Dict, Union, List
 
 from flask import Flask, jsonify, make_response, request
 from flask.wrappers import Response
@@ -1763,6 +1763,67 @@ def get_learning_path(user_id, lms_user_id, student_id, course_id, topic_id):
             )
             status_code = 200
             return jsonify(result), status_code
+
+
+@app.route(
+    "/university/<university>/disabledClassifications",
+    methods=["GET"],
+    )
+@cross_origin(supports_credentials=True)
+def get_disabled_classifications(university):
+    method = request.method
+    match method:
+        case "GET":
+            default_path = services.get_default_learning_path_by_university(
+                unit_of_work.SqlAlchemyUnitOfWork(),
+                university,
+            )
+            disabled_classifications = [
+                item["classification"] for item in default_path if item["disabled"]
+            ]
+            status_code = 200
+            return jsonify(disabled_classifications), status_code
+
+
+@app.route(
+    "/user/<user_id>/<lms_user_id>/defaultLearningPath",
+    methods=["POST"],
+    )
+@cross_origin(supports_credentials=True)
+@json_only()
+def create_default_learning_path(data: List[Dict[str, Union[str, int, bool]]], user_id, lms_user_id):
+    method = request.method
+    match method:
+        case "POST":
+            condition1 = all(
+                ("classification" in item and "position" in item and "disabled" in item and "university" in item)
+                for item in data
+            )
+            if condition1:
+                user = services.get_user_by_id(
+                    unit_of_work.SqlAlchemyUnitOfWork(), user_id, lms_user_id
+                )
+                permitted_roles = [
+                    role_admin_string,
+                    role_course_creator_string,
+                    role_teacher_string,
+                ]
+                condition2 = user["role"] in permitted_roles
+                if condition2:
+                    condition3 = services.get_default_learning_path_by_university(unit_of_work.SqlAlchemyUnitOfWork(), user["university"])
+                    if condition3:
+                        services.delete_default_learning_path_by_university(unit_of_work.SqlAlchemyUnitOfWork(), user["university"])
+                    results = []
+                    for item in data:
+                        results.append(services.create_default_learning_path_element(
+                            unit_of_work.SqlAlchemyUnitOfWork(),
+                            item["classification"],
+                            item["position"],
+                            item["disabled"],
+                            user["university"],
+                        ))
+                    status_code = 201
+                    return jsonify(results), status_code
 
 
 # User Endpoints

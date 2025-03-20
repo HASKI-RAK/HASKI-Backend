@@ -175,10 +175,11 @@ class LearningPathLearningElementAlgorithm:
 
 
 class DefaultLearningPathElement:
-    def __init__(self, classification: str, position: int, university: str) -> None:
+    def __init__(self, classification: str, position: int, disabled: bool, university: str) -> None:
         self.id = None
         self.classification = classification
         self.position = position
+        self.disabled = disabled
         self.university = university
 
     def serialize(self):
@@ -186,5 +187,6 @@ class DefaultLearningPathElement:
             "id": self.id,
             "classification": self.classification,
             "position": self.position,
+            "disabled": self.disabled,
             "university": self.university,
         }

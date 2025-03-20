@@ -214,11 +214,12 @@ def create_default_learning_path_element(
     uow: unit_of_work.AbstractUnitOfWork,
     classification: str,
     position: int,
+    disabled: bool,
     university: str,
 ) -> dict:
     with uow:
         default_learning_path_element = TM.DefaultLearningPathElement(
-            classification=classification, position=position, university=university
+            classification=classification, position=position, disabled=disabled, university=university
         )
         uow.default_learning_path.create_default_learning_path_element(
             default_learning_path_element
@@ -1676,6 +1677,15 @@ def get_default_learning_path_by_university(
         for elements in path:
             results.append(elements.serialize())
         return results
+
+
+def delete_default_learning_path_by_university(
+    uow: unit_of_work.AbstractUnitOfWork, university: str
+):
+    with uow:
+        uow.default_learning_path.delete_default_learning_path_by_uni(university)
+        uow.commit()
+        return {}
 
 
 def get_sub_topic_by_topic_id(
