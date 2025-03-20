@@ -3767,6 +3767,39 @@ class TestApi:
             for entry in response["student_learning_element"]:
                 assert key in entry.keys()
 
+    # Delete favorite with user_id and learning_element_id
+    @pytest.mark.parametrize(
+        "student_id, learning_element_id,\
+                            status_code_expected",
+        [
+            # Working Example
+            (
+                1,
+                1,
+                200,
+            ),
+        ],
+    )
+    def test_delete_favorite(
+        self,
+        client_class,
+        student_id,
+        learning_element_id,
+        status_code_expected,
+    ):
+        url = (
+            path_lms_student
+            + "/"
+            + str(student_id)
+            + "/learningElement/"
+            + str(learning_element_id)
+            + "/favorite"
+        )
+        r = client_class.delete(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        assert response == None
+
     # Get logbuffer entries for a user
     @pytest.mark.parametrize(
         "user_id, keys_expected,\

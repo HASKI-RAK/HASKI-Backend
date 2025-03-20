@@ -686,7 +686,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         self, student_id, learning_element_id, is_favorite
     ):
         raise NotImplementedError
-    
+
     def update_student_lpath_le_algorithm(
         self, student_id, topic_id, algorithm_id
     ) -> None:

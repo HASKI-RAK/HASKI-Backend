@@ -324,8 +324,8 @@ class TestOIDCLoginFlask(unittest.TestCase):
                     with patch(
                         "service_layer.service.SessionServiceFlask.get"
                     ) as mock_get_session:
-                        mock_get_session.side_effect = (
-                            lambda nonce, key: "valid_state"
+                        mock_get_session.side_effect = lambda nonce, key: (
+                            "valid_state"
                             if key == "state" and nonce == "valid_nonce"
                             else None
                         )
@@ -467,8 +467,8 @@ class TestOIDCLoginFlask(unittest.TestCase):
                     with patch(
                         "service_layer.service.SessionServiceFlask.get"
                     ) as mock_get_session:
-                        mock_get_session.side_effect = (
-                            lambda nonce, key: "valid_state"
+                        mock_get_session.side_effect = lambda nonce, key: (
+                            "valid_state"
                             if key == "state" and nonce == "valid_nonce"
                             else None
                         )
