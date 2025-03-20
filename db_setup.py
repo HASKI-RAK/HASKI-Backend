@@ -62,6 +62,7 @@ def setup_db(
     cursor.execute("DROP TABLE IF EXISTS haski_user")
     cursor.execute("DROP TABLE IF EXISTS settings")
     cursor.execute("DROP TABLE IF EXISTS contact_form")
+    cursor.execute("DROP TABLE IF EXISTS logbuffer")
     cursor.execute("DROP TABLE IF EXISTS news")
     cursor.execute("DROP TABLE IF EXISTS admin")
     cursor.execute("DROP TABLE IF EXISTS course_creator")
@@ -98,6 +99,7 @@ def setup_db(
         "DROP TABLE IF EXISTS student_learning_path_learning_element_algorithm"
     )
     cursor.execute("DROP TABLE IF EXISTS learning_path_algorithm")
+    cursor.execute("DROP TABLE IF EXISTS learning_path_learning_element_algorithm")
     cursor.execute("DROP TABLE IF EXISTS student_rating")
     cursor.execute("DROP TABLE IF EXISTS learning_element_rating")
 
@@ -165,6 +167,29 @@ def setup_db(
         TABLESPACE pg_default;
 
         ALTER TABLE IF EXISTS public.contact_form
+            OWNER to postgres;
+    """
+    cursor.execute(sql)
+
+    sql = """
+        CREATE TABLE IF NOT EXISTS public.logbuffer
+        (
+            id integer NOT NULL GENERATED ALWAYS AS IDENTITY
+            ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+            user_id integer NOT NULL,
+            content text COLLATE pg_catalog."default",
+            date timestamp without time zone NOT NULL,
+            CONSTRAINT logbuffer_pkey PRIMARY KEY (id),
+            CONSTRAINT user_id FOREIGN KEY (user_id)
+                REFERENCES public."haski_user" (id) MATCH SIMPLE
+                ON UPDATE NO ACTION
+                ON DELETE NO ACTION
+                NOT VALID
+        )
+
+        TABLESPACE pg_default;
+
+        ALTER TABLE IF EXISTS public.logbuffer
             OWNER to postgres;
     """
     cursor.execute(sql)
@@ -277,6 +302,7 @@ def setup_db(
             lms_id integer NOT NULL,
             name text COLLATE pg_catalog."default" NOT NULL,
             university text COLLATE pg_catalog."default" NOT NULL,
+            start_date timestamp without time zone,
             CONSTRAINT course_pkey PRIMARY KEY (id)
         )
 
@@ -1003,10 +1029,15 @@ def setup_db(
             ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
             classification text NOT NULL,
             position integer NOT NULL,
-            university text NOT NULL
+            university text NOT NULL,
+            CONSTRAINT default_learning_path_pkey PRIMARY KEY (id)
         )
-        """
 
+        TABLESPACE pg_default;
+
+        ALTER TABLE IF EXISTS public.default_learning_path
+            OWNER to postgres;
+    """
     cursor.execute(sql)
 
     sql = """
@@ -1016,10 +1047,15 @@ def setup_db(
         ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
         student_id integer NOT NULL,
         topic_id integer NOT NULL,
-        algorithm_id integer NOT NULL
+        algorithm_id integer NOT NULL,
+        CONSTRAINT student_le_path_le_element_algorithm_pkey PRIMARY KEY (id)
     )
-    """
 
+    TABLESPACE pg_default;
+
+    ALTER TABLE IF EXISTS public.student_learning_path_learning_element_algorithm
+        OWNER to postgres;
+    """
     cursor.execute(sql)
 
     sql = """
@@ -1028,8 +1064,35 @@ def setup_db(
         id integer NOT NULL GENERATED ALWAYS AS IDENTITY
         ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
         short_name text NOT NULL,
-        full_name text
+        full_name text,
+        CONSTRAINT learning_path_algorithm_pkey PRIMARY KEY (id)
     )
+
+    TABLESPACE pg_default;
+
+    ALTER TABLE IF EXISTS public.learning_path_algorithm
+        OWNER to postgres;
+    """
+
+    cursor.execute(sql)
+
+    sql = """
+        CREATE TABLE IF NOT EXISTS public.learning_path_learning_element_algorithm
+        (
+            id integer NOT NULL GENERATED ALWAYS AS IDENTITY
+            ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+            topic_id integer NOT NULL,
+            algorithm_id integer NOT NULL,
+            CONSTRAINT learning_path_learning_element_algorithm_pkey PRIMARY KEY (id),
+            FOREIGN KEY (topic_id) REFERENCES public.topic (id),
+            FOREIGN KEY (algorithm_id) REFERENCES public.learning_path_algorithm (id),
+            UNIQUE (topic_id)
+        )
+
+        TABLESPACE pg_default;
+
+        ALTER TABLE IF EXISTS public.learning_path_learning_element_algorithm
+            OWNER to postgres;
     """
 
     cursor.execute(sql)

@@ -531,6 +531,21 @@ sql = """
 """
 cursor.execute(sql)
 
+# create logbuffer
+sql = """
+    INSERT INTO logbuffer (user_id, content, date)
+    VALUES (1, 'Fehler beim Abrufen der Kursdaten',\
+    '2023-07-13 16:00:00')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO logbuffer (user_id, content, date)
+    VALUES (5, 'Test buffer message. Error btw.',\
+    '2023-07-13 16:00:00')
+"""
+cursor.execute(sql)
+
 # create news
 sql = """
     INSERT INTO news (language_id, news_content, expiration_date, created_at)
@@ -579,7 +594,7 @@ sql = """
     INSERT INTO student_course (student_id, course_id, perception_dimension,\
     perception_value, input_dimension, input_value, processing_dimension,\
     processing_value, understanding_dimension, understanding_value)
-    VALUES (2, 1, 'ref', 3, 'int', 7, 'vrb', 5, 'glb', 11)
+    VALUES (2, 1, 'ref', 3, 'int', 7, 'vrb', 5, 'glo', 11)
 """
 cursor.execute(sql)
 
@@ -587,7 +602,7 @@ sql = """
     INSERT INTO student_course (student_id, course_id, perception_dimension,\
     perception_value, input_dimension, input_value, processing_dimension,\
     processing_value, understanding_dimension, understanding_value)
-    VALUES (2, 2, 'ref', 9, 'int', 3, 'vrb', 11, 'glb', 11)
+    VALUES (2, 2, 'ref', 9, 'int', 3, 'vrb', 11, 'glo', 11)
 """
 cursor.execute(sql)
 
@@ -595,7 +610,7 @@ sql = """
     INSERT INTO student_course (student_id, course_id, perception_dimension,\
     perception_value, input_dimension, input_value, processing_dimension,\
     processing_value, understanding_dimension, understanding_value)
-    VALUES (3, 2, 'act', 7, 'int', 3, 'vis', 7, 'glb', 11)
+    VALUES (3, 2, 'act', 7, 'int', 3, 'vis', 7, 'glo', 11)
 """
 cursor.execute(sql)
 
@@ -1618,7 +1633,7 @@ sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension,\
     perception_value, input_dimension, input_value, processing_dimension,\
     processing_value, understanding_dimension, understanding_value)
-    VALUES (2, 'sns', 7, 'vis', 5, 'act', 11, 'glb', 11)
+    VALUES (2, 'sns', 7, 'vis', 5, 'act', 11, 'glo', 11)
 """
 cursor.execute(sql)
 
@@ -1626,7 +1641,7 @@ sql = """
     INSERT INTO learning_style (characteristic_id, perception_dimension,\
     perception_value, input_dimension, input_value, processing_dimension,\
     processing_value, understanding_dimension, understanding_value)
-    VALUES (3, 'sns', 1, 'vrb', 11, 'ref', 3, 'glb', 1)
+    VALUES (3, 'sns', 1, 'vrb', 11, 'ref', 3, 'glo', 1)
 """
 cursor.execute(sql)
 
@@ -1959,6 +1974,55 @@ sql = """
     INSERT INTO learning_path_algorithm (short_name, full_name)
     VALUES ('graf', 'Graf et al.')
 """
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_algorithm (short_name, full_name)
+    VALUES ('tyche', 'Tyche')
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_algorithm (short_name, full_name)
+    VALUES ('nestor', 'Nestor')
+"""
+cursor.execute(sql)
+
+# create default learning path algorithm for the topics
+sql = """
+    INSERT INTO learning_path_learning_element_algorithm (topic_id, algorithm_id)
+    VALUES (1, 1)
+    """
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element_algorithm (topic_id, algorithm_id)
+    VALUES (2, 1)
+    """
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element_algorithm (topic_id, algorithm_id)
+    VALUES (3, 1)
+    """
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element_algorithm (topic_id, algorithm_id)
+    VALUES (4, 2)
+    """
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element_algorithm (topic_id, algorithm_id)
+    VALUES (5, 3)
+    """
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element_algorithm (topic_id, algorithm_id)
+    VALUES (6, 4)
+    """
 cursor.execute(sql)
 
 # Create learning path algorithms per student per topic
