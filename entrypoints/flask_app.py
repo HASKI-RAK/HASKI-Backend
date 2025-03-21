@@ -1785,6 +1785,7 @@ def get_disabled_classifications(university):
             return jsonify(disabled_classifications), status_code
 
 
+#Create/Overwrite default learning path for all students in a university
 @app.route(
     "/user/<user_id>/<lms_user_id>/defaultLearningPath",
     methods=["POST"],
@@ -1822,6 +1823,43 @@ def create_default_learning_path(data: List[Dict[str, Union[str, int, bool]]], u
                             item["disabled"],
                             user["university"],
                         ))
+                    #Recalculate "Default" learningpaths for all students
+                    courses = services.get_courses_by_uni(unit_of_work.SqlAlchemyUnitOfWork(),user['university'])
+                    students = services.get_all_students(
+                        unit_of_work.SqlAlchemyUnitOfWork()
+                    )
+                    for student in students:
+                        student_user_id = services.get_user_by_id(
+                            unit_of_work.SqlAlchemyUnitOfWork(),
+                            student["user_id"],
+                            None,
+                        )
+                        for course in courses["courses"]:
+                            topics = services.get_topics_for_course_id(unit_of_work.SqlAlchemyUnitOfWork(), course["id"])
+                            for topic in topics:
+                                current_topic = services.get_topic_by_id(
+                                    unit_of_work.SqlAlchemyUnitOfWork(),
+                                    None,
+                                    None,
+                                    course['id'],
+                                    None,
+                                    topic['id'],
+                                )
+
+                                results_learning_pahts = []
+
+                                if current_topic["contains_le"]:
+                                    results_learning_pahts.append(
+                                        services.create_learning_path(
+                                            unit_of_work.SqlAlchemyUnitOfWork(),
+                                            student_user_id["id"],
+                                            student_user_id["lms_user_id"],
+                                            student["id"],
+                                            course["id"],
+                                            topic["id"],
+                                            "default",
+                                        )
+                                    )
                     status_code = 201
                     return jsonify(results), status_code
 
