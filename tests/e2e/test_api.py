@@ -45,6 +45,7 @@ path_lms_course = "/lms/course"
 path_lms_topic = "/lms/topic"
 path_lms_student = "/lms/student"
 path_lms_user = "/lms/user"
+path_lms_learning_element = "/lms/learningElement"
 path_questionnaire_ils = "/questionnaire/ils"
 path_questionnaire_list_k = "/questionnaire/listk"
 path_recommendation = "/recommendation"
@@ -4172,18 +4173,7 @@ class TestApi:
             input["parent_id"] = topic_id
         else:
             topic_id_use = topic_id
-        url = (
-            path_lms_course
-            + "/"
-            + str(course_id)
-            + "/"
-            + str(moodle_course_id)
-            + path_topic
-            + "/"
-            + str(topic_id_use)
-            + "/"
-            + str(moodle_topic_id)
-        )
+        url = path_lms_topic + "/" + str(topic_id_use) + "/" + str(moodle_topic_id)
         r = client_class.put(url, json=input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -4269,17 +4259,7 @@ class TestApi:
     ):
         global course_id, sub_topic_id, learning_element_id
         url = (
-            path_lms_course
-            + "/"
-            + str(course_id)
-            + "/"
-            + str(moodle_course_id)
-            + path_topic
-            + "/"
-            + str(sub_topic_id)
-            + "/"
-            + str(moodle_topic_id)
-            + path_learning_element
+            path_lms_learning_element
             + "/"
             + str(learning_element_id)
             + "/"
@@ -4681,30 +4661,12 @@ class TestApi:
         error_le,
     ):
         global course_id, sub_topic_id, learning_element_id
-        if error_course:
-            course_id_use = 99999
-        else:
-            course_id_use = course_id
-        if error_topic:
-            topic_id_use = 99999
-        else:
-            topic_id_use = sub_topic_id
         if error_le:
             learning_element_id_use = 99999
         else:
             learning_element_id_use = learning_element_id
         url = (
-            path_lms_course
-            + "/"
-            + str(course_id_use)
-            + "/"
-            + str(moodle_course_id)
-            + path_topic
-            + "/"
-            + str(topic_id_use)
-            + "/"
-            + str(moodle_topic_id)
-            + path_learning_element
+            path_lms_learning_element
             + "/"
             + str(learning_element_id_use)
             + "/"
@@ -4741,26 +4703,11 @@ class TestApi:
         error_topic,
     ):
         global course_id, sub_topic_id
-        if error_course:
-            course_id_use = 99999
-        else:
-            course_id_use = course_id
         if error_topic:
             topic_id_use = 99999
         else:
             topic_id_use = sub_topic_id
-        url = (
-            path_lms_course
-            + "/"
-            + str(course_id_use)
-            + "/"
-            + str(moodle_course_id)
-            + path_topic
-            + "/"
-            + str(topic_id_use)
-            + "/"
-            + str(moodle_topic_id)
-        )
+        url = path_lms_topic + "/" + str(topic_id_use) + "/" + str(moodle_topic_id)
         r = client_class.delete(url)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
