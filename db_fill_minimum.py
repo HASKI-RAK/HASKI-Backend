@@ -4,9 +4,9 @@ import psycopg2
 
 # Establishing the connection
 conn = psycopg2.connect(
-    database=os.environ.get("DB_NAME", "haski_2"),
+    database=os.environ.get("DB_NAME", "haski"),
     user="postgres",
-    password=os.environ.get("DB_PASSWORD", "genericPassword"),
+    password=os.environ.get("DB_PASSWORD", "postgres"),
     host=os.environ.get("DB_HOST", "127.0.0.1"),
     port=os.environ.get("DB_PORT", 5432),
 )
