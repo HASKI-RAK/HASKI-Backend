@@ -813,9 +813,7 @@ def create_user(
 
 def get_default_questionnaire() -> dict:
     # 11 act, 11 sen, 11 verb, 11 glo
-    return {
-        const.ils_questionnaire_prefill
-    }
+    return const.ils_questionnaire_prefill
 
 
 def create_news(
