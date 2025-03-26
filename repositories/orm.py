@@ -376,8 +376,7 @@ student_learning_element = Table(
     Column("id", Integer, primary_key=True, autoincrement=True),
     Column("student_id", Integer, nullable=False),
     Column("learning_element_id", Integer, nullable=False),
-    Column("done", Boolean, nullable=False),
-    Column("done_at", Date, nullable=True),
+    Column("is_favorite", Boolean, nullable=False),
 )
 
 student_learning_element_visit = Table(

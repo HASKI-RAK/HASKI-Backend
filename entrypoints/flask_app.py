@@ -928,6 +928,52 @@ def post_student_topic_visit(data: Dict[str, Any], student_id, lms_user_id, topi
 
 
 @app.route(
+    "/lms/student/<student_id>/learningElement/<learning_element_id>/favorite",
+    methods=["PUT"],
+)
+@cross_origin(supports_credentials=True)
+def student_learning_element_update(student_id, learning_element_id):
+    data = request.get_json()
+    if "is_favorite" not in data:
+        raise err.MissingParameterError()
+    result = services.update_student_learning_element_favorite(
+        unit_of_work.SqlAlchemyUnitOfWork(),
+        student_id,
+        learning_element_id,
+        data["is_favorite"],
+    )
+
+    status_code = 201
+    return jsonify(result), status_code
+
+
+@app.route(
+    "/lms/student/<student_id>/learningElement/<learning_element_id>/favorite",
+    methods=["GET"],
+)
+@cross_origin(supports_credentials=True)
+def student_learning_element_get_favorite(student_id, learning_element_id):
+    result = services.get_student_learning_element_by_student_id(
+        unit_of_work.SqlAlchemyUnitOfWork(), student_id, learning_element_id
+    )
+    status_code = 200
+    return jsonify(result), status_code
+
+
+@app.route(
+    "/lms/student/<student_id>/learningElement/<learning_element_id>/favorite",
+    methods=["DELETE"],
+)
+@cross_origin(supports_credentials=True)
+def student_learning_element_delete_element(student_id, learning_element_id):
+    result = services.delete_student_learning_element_by_element(
+        unit_of_work.SqlAlchemyUnitOfWork(), student_id, learning_element_id
+    )
+    status_code = 200
+    return jsonify(result), status_code
+
+
+@app.route(
     "/lms/student/<student_id>/<lms_user_id>/learningElement/"
     + "<learning_element_id>",
     methods=["POST"],

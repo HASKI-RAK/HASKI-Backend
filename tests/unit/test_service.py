@@ -244,6 +244,10 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         student.id = len(self.student) + 1
         self.student.add(student)
 
+    def add_student_learning_element(self, student_learning_element):
+        student_learning_element.id = len(self.student_learning_element) + 1
+        self.student_learning_element.add(student_learning_element)
+
     def add_student_lpath_le_algorithm(
         self, student_learning_path_learning_element_algorithm
     ):
@@ -507,6 +511,19 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 to_remove.append(i)
         for remove in to_remove:
             self.student_course.remove(remove)
+
+    def delete_student_learning_element_by_element(
+        self, student_id, learning_element_id
+    ):
+        to_remove = []
+        for i in self.student_learning_element:
+            if (
+                i.student_id == student_id
+                and i.learning_element_id == learning_element_id
+            ):
+                to_remove.append(i)
+        for remove in to_remove:
+            self.student_learning_element.remove(remove)
 
     def delete_student_learning_element(self, student_id):
         to_remove = []
@@ -1238,6 +1255,24 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
             to_update.topic_id = topic_id
             self.student_learning_path_learning_element_algorithm.add(to_update)
 
+    def update_student_learning_element_favorite(
+        self, student_id, learning_element_id, is_favorite
+    ):
+        to_update = next(
+            (
+                p
+                for p in self.student_learning_element
+                if p.student_id == student_id
+                and p.learning_element_id == learning_element_id
+            ),
+            None,
+        )
+        if to_update is not None:
+            self.student_learning_element.remove(to_update)
+            to_update.id = len(self.student_learning_element)
+            to_update.favorite = is_favorite
+            self.student_learning_element.add(to_update)
+
     def update_topic(self, topic_id, topic):
         to_remove = next((p for p in self.topic if p.id == topic_id), None)
         if to_remove is not None:
@@ -1668,6 +1703,14 @@ def create_student_rating_for_tests(uow):
         rating_value=1200,
         rating_deviation=250,
         timestamp=datetime.datetime.now(),
+    )
+
+
+def create_student_learning_element_for_tests(uow):
+    services.create_student_learning_element(
+        uow=uow,
+        student_id=1,
+        learning_element_id=1,
     )
 
 
@@ -2716,6 +2759,26 @@ def test_get_activity_status_for_student_for_learning_element_for_course():
         learning_element_id=2,
     )
     assert result == [{"cmid": 2, "state": 0, "timecompleted": 0}]
+
+
+def test_get_student_learning_element_by_student_id():
+    uow = FakeUnitOfWork()
+    create_student_learning_element_for_tests(uow)
+    result = services.get_student_learning_element_by_student_id(
+        uow=uow, student_id=1, learning_element_id=1
+    )
+    assert type(result) is dict
+    assert result != {}
+
+
+def test_update_student_learning_element_favorite():
+    uow = FakeUnitOfWork()
+    create_student_learning_element_for_tests(uow)
+    result = services.update_student_learning_element_favorite(
+        uow=uow, student_id=1, learning_element_id=1, is_favorite=True
+    )
+    assert type(result) is dict
+    assert result != {}
 
 
 def test_get_course_by_id():

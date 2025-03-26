@@ -474,8 +474,7 @@ CREATE TABLE IF NOT EXISTS public.student_learning_element
     id integer NOT NULL,
     student_id integer NOT NULL,
     learning_element_id integer NOT NULL,
-    done boolean NOT NULL,
-    done_at timestamp without time zone,
+    favorite boolean NOT NULL,
     CONSTRAINT student_learning_element_pkey PRIMARY KEY (id),
     CONSTRAINT learning_element_id FOREIGN KEY (learning_element_id)
         REFERENCES public.learning_element (id) MATCH SIMPLE
