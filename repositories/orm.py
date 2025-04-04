@@ -173,6 +173,7 @@ learning_element_solution = Table(
     Column("id", Integer, primary_key=True, autoincrement=True),
     Column("learning_element_lms_id", Integer, nullable=False),
     Column("solution_lms_id", Integer, nullable=False),
+    Column("activity_type", String, nullable=False),
 )
 
 learning_path = Table(

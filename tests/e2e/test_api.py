@@ -4728,11 +4728,16 @@ class TestApi:
 
     # Create Learning Element Solution
     @pytest.mark.parametrize(
-        "le_element_lms_id, keys_expected,\
+        "input, le_element_lms_id, keys_expected,\
                             status_code_expected, error",
         [
             # Working Example
-            (1, ["id", "learning_element_lms_id", "solution_lms_id"], 201, False),
+            (
+             {"activity_type": "resource", "solution_lms_id": 1},
+             1,
+             ["id", "learning_element_lms_id", "solution_lms_id", "activity_type"],
+             201,
+             False),
             # Solution already exists
             (1, [], 400, True),
         ],
@@ -4740,15 +4745,13 @@ class TestApi:
     def test_add_learning_element_solution(
         self, client_class, le_element_id, keys_expected, status_code_expected, error
     ):
-        solution_lms_id = 4
         url = (
             path_learning_element
             + "/"
             + str(le_element_id)
-            + "/solution/"
-            + str(solution_lms_id)
+            + "/solution"
         )
-        r = client_class.post(url)
+        r = client_class.post(url, json=input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
         if not error:
@@ -4761,7 +4764,10 @@ class TestApi:
                             status_code_expected",
         [
             # Working Example
-            (1, ["id", "learning_element_lms_id", "solution_lms_id"], 200),
+            (1, ["id",
+                 "learning_element_lms_id",
+                 "solution_lms_id",
+                 "activity_type"], 200),
         ],
     )
     def test_get_learning_element_solution(

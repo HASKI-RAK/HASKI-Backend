@@ -30,11 +30,14 @@ def add_course_creator_to_course(
 
 
 def add_learning_element_solution(
-    uow: unit_of_work.AbstractUnitOfWork, learning_element_lms_id, solution_lms_id
+    uow: unit_of_work.AbstractUnitOfWork,
+    learning_element_lms_id: int,
+    solution_lms_id: int,
+    activity_type: str
 ) -> dict:
     with uow:
         learning_element_solution = DM.LearningElementSolution(
-            learning_element_lms_id, solution_lms_id
+            learning_element_lms_id, solution_lms_id, activity_type
         )
         uow.learning_element_solution.add_learning_element_solution(
             learning_element_solution

@@ -1566,7 +1566,7 @@ def create_news_for_tests(uow):
 
 def add_learning_element_solution_for_tests(uow):
     services.add_learning_element_solution(
-        uow=uow, learning_element_lms_id=1, solution_lms_id=4
+        uow=uow, learning_element_lms_id=1, solution_lms_id=4, activity_type="resource"
     )
 
 
