@@ -10,6 +10,7 @@ from werkzeug.wrappers.response import Response
 import service_layer.crypto.JWTKeyManagement as JWTKeyManagement
 import service_layer.lti.config.ToolConfigJson as ToolConfigJson
 import service_layer.service.SessionServiceFlask as SessionServiceFlask
+import utils.constants as const
 import utils.logger as logger
 from errors import errors as err
 from service_layer import services, unit_of_work
@@ -300,7 +301,10 @@ class OIDCLoginFlask(OIDCLogin):
                     ).get_role(),
                 )
                 # Add "student"/"course creator" to student_course, on basis of his uni
-                if user["role"] == "student" or user["role"] == "course creator":
+                if (
+                    user["role"] == const.role_student_string
+                    or user["role"] == const.role_course_creator_string
+                ):
                     courses = services.get_courses_by_uni(
                         unit_of_work.SqlAlchemyUnitOfWork(),
                         university=user["university"],
@@ -316,7 +320,10 @@ class OIDCLoginFlask(OIDCLogin):
                         )
             # course creators also has a student_id, to be able to see the courses,
             # topics and learning elements they created.
-            if user["role"] == "student" or user["role"] == "course creator":
+            if (
+                user["role"] == const.role_student_string
+                or user["role"] == const.role_course_creator_string
+            ):
                 user = services.get_student_by_user_id(
                     unit_of_work.SqlAlchemyUnitOfWork(), user["id"]
                 )

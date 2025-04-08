@@ -3,6 +3,8 @@ from unittest import mock
 
 import pytest
 
+import utils.constants as const
+
 user_id_admin = 0
 admin_id = 0
 user_id_course_creator = 0
@@ -29,6 +31,7 @@ path_courses = "/courses"
 path_contactform = "/contactform"
 path_content = "/content"
 path_news = "/news"
+path_logbuffer = "/logbuffer"
 path_knowledge = "/knowledge"
 path_logs = "/logs"
 path_frontend_logs = "/logs/frontend"
@@ -39,8 +42,10 @@ path_learning_path = "/learningPath"
 path_learning_strategy = "/learningStrategy"
 path_learning_style = "/learningStyle"
 path_lms_course = "/lms/course"
+path_lms_topic = "/lms/topic"
 path_lms_student = "/lms/student"
 path_lms_user = "/lms/user"
+path_lms_learning_element = "/lms/learningElement"
 path_questionnaire_ils = "/questionnaire/ils"
 path_questionnaire_list_k = "/questionnaire/listk"
 path_recommendation = "/recommendation"
@@ -54,7 +59,6 @@ path_user = "/user"
 path_algorithm = "/algorithm"
 path_student_algorithm = "/studentAlgorithm"
 path_teacher_algorithm = "/teacherAlgorithm"
-path_v2 = "/v2"
 path_rating = "/rating"
 path_solution = "/solution"
 
@@ -382,19 +386,19 @@ class TestApi:
             assert key in response.keys()
         if save_id:
             match input["role"].lower():
-                case "admin":
+                case const.role_admin_string:
                     global user_id_admin, admin_id
                     user_id_admin = response["id"]
                     admin_id = response["role_id"]
-                case "course creator":
+                case const.role_course_creator_string:
                     global user_id_course_creator, course_creator_id
                     user_id_course_creator = response["id"]
                     course_creator_id = response["role_id"]
-                case "teacher":
+                case const.role_teacher_string:
                     global user_id_teacher, teacher_id
                     user_id_teacher = response["id"]
                     teacher_id = response["role_id"]
-                case "student":
+                case const.role_student_string:
                     global user_id_student, student_id
                     user_id_student = response["id"]
                     student_id = response["role_id"]
@@ -656,14 +660,7 @@ class TestApi:
         save_id,
     ):
         global course_id, topic_id, sub_topic_id
-        url = (
-            path_lms_course
-            + "/"
-            + str(course_id)
-            + "/"
-            + str(moodle_course_id)
-            + path_topic
-        )
+        url = path_lms_course + "/" + str(course_id) + path_topic
         if topic_id != 0:
             input["parent_id"] = topic_id
         r = client_class.post(url, json=input)
@@ -773,19 +770,7 @@ class TestApi:
     ):
         global course_id
         global sub_topic_id
-        url = (
-            path_lms_course
-            + "/"
-            + str(course_id)
-            + "/"
-            + str(moodle_course_id)
-            + path_topic
-            + "/"
-            + str(sub_topic_id)
-            + "/"
-            + str(moodle_topic_id)
-            + path_learning_element
-        )
+        url = path_lms_topic + "/" + str(sub_topic_id) + path_learning_element
         r = client_class.post(url, json=input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -1089,7 +1074,6 @@ class TestApi:
             + str(sub_topic_id)
             + path_student_algorithm
         )
-
         r = client_class.post(url, json=input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -1522,6 +1506,57 @@ class TestApi:
             for response in responses:
                 assert key in response.keys()
 
+    # Learning paths are calculated for all students
+    @pytest.mark.parametrize(
+        "input, moodle_user_id, keys_expected, status_code_expected",
+        [
+            (
+                {
+                    "university": "TH-AB",  # Added required key
+                    "role": "teacher",  # Added required key
+                },
+                4,
+                [
+                    "id",
+                    "course_id",
+                    "topic_id",
+                    "student_id",
+                    "based_on",
+                    "path",
+                    "calculated_on",
+                ],
+                201,
+            ),
+        ],
+    )
+    def test_post_calculate_learning_path_for_all_students(
+        self, client_class, input, moodle_user_id, keys_expected, status_code_expected
+    ):
+        global user_id_course_creator, course_id, sub_topic_id, user_id_student
+        url = (
+            "/v2"
+            + path_user
+            + "/"
+            + str(user_id_student)
+            + path_course
+            + "/"
+            + str(course_id)
+            + path_topic
+            + "/"
+            + str(1)
+            + path_learning_path
+        )
+        r = client_class.post(url, json=input)
+        assert r.status_code == status_code_expected
+        responses = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            for response in responses:
+                assert key in response.keys()
+        # Save course_id if needed
+        # if save_id:
+        #     global course_id
+        #     course_id = responses[0]["id"]
+
     @pytest.mark.parametrize(
         "keys_expected, status_code_expected",
         [
@@ -1933,6 +1968,41 @@ class TestApi:
     )
     def test_post_news(self, client_class, input, keys_expected, status_code_expected):
         url = path_news
+        r = client_class.post(url, json=input)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+
+    # Post the logbuffer
+    @pytest.mark.parametrize(
+        "input, keys_expected,\
+                            status_code_expected",
+        [
+            # Working Example
+            (
+                {
+                    "user_id": "4",
+                    "content": "Test text",
+                    "date": "2028-08-01T13:37:42Z",
+                },
+                [
+                    "id",
+                    "user_id",
+                    "content",
+                    "date",
+                ],
+                201,
+            ),
+            # Missing Parameter
+            ({}, ["error", "message"], 400),
+        ],
+    )
+    def test_post_logbuffer(
+        self, client_class, input, keys_expected, status_code_expected
+    ):
+        user_id_student = 4
+        url = path_user + "/" + str(user_id_student) + path_logbuffer
         r = client_class.post(url, json=input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -2663,7 +2733,7 @@ class TestApi:
         url = (
             path_user
             + "/"
-            + str(user_id_student)
+            + str(4)
             + path_topic
             + "/"
             + str(topic_id)
@@ -3606,6 +3676,35 @@ class TestApi:
             for entry in response["news"]:
                 assert key in entry.keys()
 
+    # Get logbuffer entries for a user
+    @pytest.mark.parametrize(
+        "user_id, keys_expected,\
+                            status_code_expected",
+        [
+            # Working Example
+            (
+                4,
+                [
+                    "user_id",
+                    "content",
+                    "date",
+                ],
+                200,
+            ),
+        ],
+    )
+    def test_get_logbuffer(
+        self, client_class, user_id, keys_expected, status_code_expected
+    ):
+        url = path_user + "/" + str(user_id) + path_logbuffer
+        r = client_class.get(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        assert "log" in response.keys()
+        for key in keys_expected:
+            for entry in response["log"]:
+                assert key in entry.keys()
+
     # PUT METHODS
     # Update the settings of a User
     @pytest.mark.parametrize(
@@ -4075,18 +4174,7 @@ class TestApi:
             input["parent_id"] = topic_id
         else:
             topic_id_use = topic_id
-        url = (
-            path_lms_course
-            + "/"
-            + str(course_id)
-            + "/"
-            + str(moodle_course_id)
-            + path_topic
-            + "/"
-            + str(topic_id_use)
-            + "/"
-            + str(moodle_topic_id)
-        )
+        url = path_lms_topic + "/" + str(topic_id_use) + "/" + str(moodle_topic_id)
         r = client_class.put(url, json=input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -4172,17 +4260,7 @@ class TestApi:
     ):
         global course_id, sub_topic_id, learning_element_id
         url = (
-            path_lms_course
-            + "/"
-            + str(course_id)
-            + "/"
-            + str(moodle_course_id)
-            + path_topic
-            + "/"
-            + str(sub_topic_id)
-            + "/"
-            + str(moodle_topic_id)
-            + path_learning_element
+            path_lms_learning_element
             + "/"
             + str(learning_element_id)
             + "/"
@@ -4195,78 +4273,48 @@ class TestApi:
             assert key in response.keys()
 
     @pytest.mark.parametrize(
-        "input, keys_expected, status_code_expected,\
-                            save_id",
+        "keys_expected, status_code_expected, save_id",
         [
             # Working Example
             (
-                {
-                    "name": "Test Course with all students in it",
-                    "lms_id": 3,
-                    "created_at": "2024-09-04T13:37:42Z",
-                    "university": "HS-KE",
-                    "start_date": "2024-09-04T13:37:42Z",
-                },
-                [
-                    "id",
-                    "name",
-                    "lms_id",
-                    "created_at",
-                    "created_by",
-                    "university",
-                    "start_date",
-                ],
+                ["CREATED", "course_id", "students_added"],
                 201,
                 True,
             ),
-            # Missing Parameter
-            (
-                {"name": "Test Course", "university": "HS-KE"},
-                ["error", "message"],
-                400,
-                False,
-            ),
-            # Parameter with wrong data type
-            (
-                {
-                    "name": "Test Course",
-                    "lms_id": "3",
-                    "created_at": "2024-09-041T13:37:42Z",
-                    "university": "HS-KE",
-                    "start_date": "2024-09-04T13:37:42Z",
-                },
-                ["error", "message"],
-                400,
-                False,
-            ),
-            # Course already exists
-            (
-                {
-                    "name": "Test Course",
-                    "lms_id": 3,
-                    "created_at": "2024-09-04T13:37:42Z",
-                    "university": "HS-KE",
-                    "start_date": "2024-09-04T13:37:42Z",
-                },
-                ["error", "message"],
-                400,
-                False,
-            ),
         ],
     )
-    def test_api_create_course_and_add_all_students(
-        self, client_class, input, keys_expected, status_code_expected, save_id
+    def test_api_add_all_students_to_course(
+        self, client_class, keys_expected, status_code_expected, save_id
     ):
-        input["created_by"] = user_id_course_creator
-        url = path_v2 + path_lms_course
-        r = client_class.post(url, json=input)
+        url = path_course + "/" + str("1") + "/allStudents"
+        r = client_class.post(url)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
         for key in keys_expected:
             assert key in response.keys()
-        if save_id:
-            global course_id
-            course_id = response["id"]
+
+    @pytest.mark.parametrize(
+        "keys_expected, status_code_expected, save_id",
+        [
+            # Working Example
+            (
+                ["CREATED", "course_id", "students_added"],
+                201,
+                True,
+            ),
+        ],
+    )
+    def test_api_add_all_students_to_topics(
+        self, client_class, keys_expected, status_code_expected, save_id
+    ):
+        global course_id
+        course_id_use = course_id
+        url = path_course + "/" + str(course_id_use) + "/topics" + "/allStudents"
+        r = client_class.post(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
 
     # DELETE METHODS
     # Reset User Settings
@@ -4614,30 +4662,12 @@ class TestApi:
         error_le,
     ):
         global course_id, sub_topic_id, learning_element_id
-        if error_course:
-            course_id_use = 99999
-        else:
-            course_id_use = course_id
-        if error_topic:
-            topic_id_use = 99999
-        else:
-            topic_id_use = sub_topic_id
         if error_le:
             learning_element_id_use = 99999
         else:
             learning_element_id_use = learning_element_id
         url = (
-            path_lms_course
-            + "/"
-            + str(course_id_use)
-            + "/"
-            + str(moodle_course_id)
-            + path_topic
-            + "/"
-            + str(topic_id_use)
-            + "/"
-            + str(moodle_topic_id)
-            + path_learning_element
+            path_lms_learning_element
             + "/"
             + str(learning_element_id_use)
             + "/"
@@ -4674,26 +4704,11 @@ class TestApi:
         error_topic,
     ):
         global course_id, sub_topic_id
-        if error_course:
-            course_id_use = 99999
-        else:
-            course_id_use = course_id
         if error_topic:
             topic_id_use = 99999
         else:
             topic_id_use = sub_topic_id
-        url = (
-            path_lms_course
-            + "/"
-            + str(course_id_use)
-            + "/"
-            + str(moodle_course_id)
-            + path_topic
-            + "/"
-            + str(topic_id_use)
-            + "/"
-            + str(moodle_topic_id)
-        )
+        url = path_lms_topic + "/" + str(topic_id_use) + "/" + str(moodle_topic_id)
         r = client_class.delete(url)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
