@@ -3359,7 +3359,7 @@ def test_delete_default_learning_path_by_uni():
     entries_beginning_path = len(uow.default_learning_path.default_learning_path)
     result = services.delete_default_learning_path_by_uni(uow=uow, university="HS-KE")
     assert result == {}
-    entries_after_path =  len(uow.default_learning_path.default_learning_path)
+    entries_after_path = len(uow.default_learning_path.default_learning_path)
     assert entries_beginning_path == 10
     assert entries_after_path == 0
 
