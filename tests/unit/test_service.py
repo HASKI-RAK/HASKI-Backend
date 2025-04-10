@@ -1616,7 +1616,7 @@ def create_default_learning_path_for_tests(uow):
             classification=classification,
             position=index,
             disabled=False,
-            university="TH-AB",
+            university="HS-KE",
         )
 
 
@@ -3347,10 +3347,21 @@ def test_get_default_learning_path_by_university():
     uow = FakeUnitOfWork()
     create_default_learning_path_for_tests(uow)
     result = services.get_default_learning_path_by_university(
-        uow=uow, university=university_example
+        uow=uow, university="HS-KE"
     )
     assert isinstance(result, list)
     assert result != []
+
+
+def test_delete_default_learning_path_by_uni():
+    uow = FakeUnitOfWork()
+    create_default_learning_path_for_tests(uow)
+    entries_beginning_path = len(uow.default_learning_path.default_learning_path)
+    result = services.delete_default_learning_path_by_uni(uow=uow, university="HS-KE")
+    assert result == {}
+    entries_after_path =  len(uow.default_learning_path.default_learning_path)
+    assert entries_beginning_path == 10
+    assert entries_after_path == 0
 
 
 def test_get_learning_strategy_by_student_id():
