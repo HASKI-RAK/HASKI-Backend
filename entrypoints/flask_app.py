@@ -1855,7 +1855,7 @@ def create_default_learning_path(
     method = request.method
     match method:
         case "POST":
-            condition1 = all(
+            condition1 = bool(data) and all(
                 (
                     "classification" in item
                     and "position" in item
@@ -1935,6 +1935,8 @@ def create_default_learning_path(
                                         )
                                     )
                     return make_response(jsonify(results), http.HTTPStatus.CREATED)
+            else:
+                return make_response(http.HTTPStatus.BAD_REQUEST)
 
 
 # User Endpoints
