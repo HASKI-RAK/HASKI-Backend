@@ -1823,15 +1823,15 @@ def get_learning_path(user_id, lms_user_id, student_id, course_id, topic_id):
             return jsonify(result), status_code
 
 
-# Create/Overwrite default learning path for all students in a university
+# get default learning path for all students in a university
 @app.route(
     "/user/<user_id>/<lms_user_id>/defaultLearningPath",
     methods=["GET", "POST"],
 )
 @cross_origin(supports_credentials=True)
-@json_only(ignore=["GET"])
-def create_default_learning_path(
-    data: List[Dict[str, Union[str, int, bool]]], user_id, lms_user_id
+@json_only()
+def get_default_learning_path(
+    user_id, lms_user_id
 ):
     method = request.method
     match method:
@@ -1843,13 +1843,27 @@ def create_default_learning_path(
                 unit_of_work.SqlAlchemyUnitOfWork(), user["university"]
             )
             return make_response(jsonify(result), http.HTTPStatus.OK)
+
+
+# Create/Overwrite default learning path for all students in a university
+@app.route(
+    "/user/<user_id>/<lms_user_id>/defaultLearningPath",
+    methods=["POST"],
+)
+@cross_origin(supports_credentials=True)
+@json_only()
+def create_default_learning_path(
+        data: List[Dict[str, Union[str, int, bool]]], user_id, lms_user_id
+):
+    method = request.method
+    match method:
         case "POST":
             condition1 = all(
                 (
-                    "classification" in item
-                    and "position" in item
-                    and "disabled" in item
-                    and "university" in item
+                        "classification" in item
+                        and "position" in item
+                        and "disabled" in item
+                        and "university" in item
                 )
                 for item in data
             )
