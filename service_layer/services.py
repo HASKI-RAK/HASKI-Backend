@@ -1803,7 +1803,7 @@ def get_default_learning_path_by_university(
         return results
 
 
-def delete_default_learning_path_by_university(
+def delete_default_learning_path_by_uni(
     uow: unit_of_work.AbstractUnitOfWork, university: str
 ):
     with uow:

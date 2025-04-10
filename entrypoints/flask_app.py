@@ -1837,15 +1837,8 @@ def create_default_learning_path(data: List[Dict[str, Union[str, int, bool]]], u
             user = services.get_user_by_id(
                 unit_of_work.SqlAlchemyUnitOfWork(), user_id, lms_user_id
             )
-            permitted_roles = [
-                role_admin_string,
-                role_course_creator_string,
-                role_teacher_string,
-            ]
-            condition2 = user["role"] in permitted_roles
-            if condition2:
-                result = services.get_default_learning_path_by_university(unit_of_work.SqlAlchemyUnitOfWork(), user["university"])
-                return make_response(jsonify(result), http.HTTPStatus.OK)
+            result = services.get_default_learning_path_by_university(unit_of_work.SqlAlchemyUnitOfWork(), user["university"])
+            return make_response(jsonify(result), http.HTTPStatus.OK)
         case "POST":
             condition1 = all(
                 ("classification" in item and "position" in item and "disabled" in item and "university" in item)
@@ -1864,7 +1857,7 @@ def create_default_learning_path(data: List[Dict[str, Union[str, int, bool]]], u
                 if condition2:
                     condition3 = services.get_default_learning_path_by_university(unit_of_work.SqlAlchemyUnitOfWork(), user["university"])
                     if condition3:
-                        services.delete_default_learning_path_by_university(unit_of_work.SqlAlchemyUnitOfWork(), user["university"])
+                        services.delete_default_learning_path_by_uni(unit_of_work.SqlAlchemyUnitOfWork(), user["university"])
                     results = []
                     for item in data:
                         results.append(services.create_default_learning_path_element(

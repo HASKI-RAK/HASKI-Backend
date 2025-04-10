@@ -452,6 +452,14 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         for remove in to_remove:
             self.learning_path_topic.remove(remove)
 
+    def delete_default_learning_path_by_uni(self, university):
+        to_remove = []
+        for i in self.default_learning_path:
+            if i.university == university:
+                to_remove.append(i)
+        for remove in to_remove:
+            self.default_learning_path.remove(remove)
+
     def delete_learning_strategy(self, characteristic_id):
         to_remove = []
         for i in self.learning_strategy:
@@ -1604,7 +1612,7 @@ def create_default_learning_path_for_tests(uow):
     classifications = ["KÜ", "ZL", "EK", "AN", "BE", "SE", "AB", "ÜB", "LZ", "ZF"]
     for index, classification in enumerate(classifications):
         services.create_default_learning_path_element(
-            uow=uow, classification=classification, position=index, university="TH-AB"
+            uow=uow, classification=classification, position=index, disabled= False, university="TH-AB"
         )
 
 
@@ -3318,12 +3326,17 @@ def test_create_default_learning_path():
     create_default_learning_path_for_tests(uow)
     initial_entries = len(uow.default_learning_path.default_learning_path)
     result = services.create_default_learning_path_element(
-        uow=uow, classification="KÜ", position=1, university="TH-AB"
+        uow=uow, classification="KÜ", position=1, disabled=False, university="TH-AB"
+    )
+    result_disabled = services.create_default_learning_path_element(
+        uow=uow, classification="EK", position=2, disabled=True, university="TH-AB"
     )
     entries = len(uow.default_learning_path.default_learning_path)
     assert isinstance(result, dict)
+    assert isinstance(result_disabled, dict)
     assert result != {}
-    assert initial_entries + 1 == entries
+    assert result_disabled != {}
+    assert initial_entries + 2 == entries
 
 
 def test_get_default_learning_path_by_university():
