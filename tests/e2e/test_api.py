@@ -1465,6 +1465,98 @@ class TestApi:
         for key in keys_exp:
             assert key in response.keys()
 
+    # Default Learning Path is calculated
+    @pytest.mark.parametrize(
+        "input, moodle_user_id, keys_exp,\
+                            status_code_exp",
+        [
+            # Working Example
+            (
+                [
+                    {
+                        "classification": "KÜ",
+                        "position": 1,
+                        "disabled": False,
+                        "university": "HS-KE",
+                    }
+                ],
+                1,
+                ["classification", "position", "disabled", "university"],
+                201,
+            ),
+            (
+                [
+                    {
+                        "classification": "EK",
+                        "position": 1,
+                        "disabled": False,
+                        "university": "HS-KE",
+                    }
+                ],
+                1,
+                ["classification", "position", "disabled", "university"],
+                201,
+            ),
+            # Missing Parameter
+            ({}, 1, ["error", "message"], 500),
+        ],
+    )
+    def test_post_learning_path_default(
+        self, client_class, input, moodle_user_id, keys_exp, status_code_exp
+    ):
+        global user_id_student, student_id, course_id2, sub_topic_id2
+        client_post = client_class.post(
+            (
+                path_user
+                + "/"
+                + str(user_id_admin)
+                + "/"
+                + str(moodle_user_id)
+                + "/defaultLearningPath"
+            ),
+            json=input,
+        )
+        assert client_post.status_code == status_code_exp
+        response = json.loads(client_post.data.decode("utf-8").strip("\n"))
+        if input == {}:
+            expected_keys = set(["error", "message"])
+            assert expected_keys <= set(response.keys())
+        else:
+            for item in response:
+                assert set(keys_exp) <= set(item.keys())
+
+    @pytest.mark.parametrize(
+        "moodle_user_id, keys_exp, status_code_exp",
+        [
+            # Working Example
+            (
+                1,
+                ["id", "classification", "position", "disabled", "university"],
+                200,
+            ),
+        ],
+    )
+    def test_get_learning_path_default(
+        self, client_class, moodle_user_id, keys_exp, status_code_exp
+    ):
+        global user_id_student, student_id, course_id2, sub_topic_id2
+        client_get = client_class.get(
+            path_user
+            + "/"
+            + str(user_id_admin)
+            + "/"
+            + str(moodle_user_id)
+            + "/defaultLearningPath"
+        )
+        assert client_get.status_code == status_code_exp
+        response = json.loads(client_get.data.decode("utf-8").strip("\n"))
+        if input == {}:
+            expected_keys = set(["error", "message"])
+            assert expected_keys <= set(response.keys())
+        else:
+            for item in response:
+                assert set(keys_exp) <= set(item.keys())
+
     # Learning paths are calculated
     @pytest.mark.parametrize(
         "input, moodle_user_id, keys_expected,\
