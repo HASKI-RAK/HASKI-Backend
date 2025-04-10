@@ -1826,10 +1826,9 @@ def get_learning_path(user_id, lms_user_id, student_id, course_id, topic_id):
 # get default learning path for all students in a university
 @app.route(
     "/user/<user_id>/<lms_user_id>/defaultLearningPath",
-    methods=["GET", "POST"],
+    methods=["GET"],
 )
 @cross_origin(supports_credentials=True)
-@json_only()
 def get_default_learning_path(user_id, lms_user_id):
     method = request.method
     match method:
