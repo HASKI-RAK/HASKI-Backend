@@ -1830,9 +1830,7 @@ def get_learning_path(user_id, lms_user_id, student_id, course_id, topic_id):
 )
 @cross_origin(supports_credentials=True)
 @json_only()
-def get_default_learning_path(
-    user_id, lms_user_id
-):
+def get_default_learning_path(user_id, lms_user_id):
     method = request.method
     match method:
         case "GET":
@@ -1853,17 +1851,17 @@ def get_default_learning_path(
 @cross_origin(supports_credentials=True)
 @json_only()
 def create_default_learning_path(
-        data: List[Dict[str, Union[str, int, bool]]], user_id, lms_user_id
+    data: List[Dict[str, Union[str, int, bool]]], user_id, lms_user_id
 ):
     method = request.method
     match method:
         case "POST":
             condition1 = all(
                 (
-                        "classification" in item
-                        and "position" in item
-                        and "disabled" in item
-                        and "university" in item
+                    "classification" in item
+                    and "position" in item
+                    and "disabled" in item
+                    and "university" in item
                 )
                 for item in data
             )
