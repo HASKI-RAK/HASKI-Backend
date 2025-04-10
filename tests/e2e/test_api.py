@@ -1484,6 +1484,19 @@ class TestApi:
                 ["classification", "position", "disabled", "university"],
                 201,
             ),
+            (
+                    [
+                        {
+                            "classification": "EK",
+                            "position": 1,
+                            "disabled": False,
+                            "university": "HS-KE",
+                        }
+                    ],
+                    1,
+                    ["classification", "position", "disabled", "university"],
+                    201,
+            ),
             # Missing Parameter
             ({}, 1, ["error", "message"], 500),
         ],
