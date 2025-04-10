@@ -1399,7 +1399,9 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             raise err.NoValidIdError()
 
     def delete_default_learning_path_by_uni(self, university):
-        self.session.query(TM.DefaultLearningPathElement).filter_by(university=university).delete()
+        self.session.query(TM.DefaultLearningPathElement).filter_by(
+            university=university
+        ).delete()
 
     def get_admin_by_id(
         self,

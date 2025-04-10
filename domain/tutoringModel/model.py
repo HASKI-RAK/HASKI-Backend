@@ -175,7 +175,9 @@ class LearningPathLearningElementAlgorithm:
 
 
 class DefaultLearningPathElement:
-    def __init__(self, classification: str, position: int, disabled: bool, university: str) -> None:
+    def __init__(
+        self, classification: str, position: int, disabled: bool, university: str
+    ) -> None:
         self.id = None
         self.classification = classification
         self.position = position

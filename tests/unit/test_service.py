@@ -1612,7 +1612,11 @@ def create_default_learning_path_for_tests(uow):
     classifications = ["KÜ", "ZL", "EK", "AN", "BE", "SE", "AB", "ÜB", "LZ", "ZF"]
     for index, classification in enumerate(classifications):
         services.create_default_learning_path_element(
-            uow=uow, classification=classification, position=index, disabled= False, university="TH-AB"
+            uow=uow,
+            classification=classification,
+            position=index,
+            disabled=False,
+            university="TH-AB",
         )
 
 

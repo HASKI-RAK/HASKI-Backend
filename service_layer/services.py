@@ -221,7 +221,10 @@ def create_default_learning_path_element(
 ) -> dict:
     with uow:
         default_learning_path_element = TM.DefaultLearningPathElement(
-            classification=classification, position=position, disabled=disabled, university=university
+            classification=classification,
+            position=position,
+            disabled=disabled,
+            university=university,
         )
         uow.default_learning_path.create_default_learning_path_element(
             default_learning_path_element
