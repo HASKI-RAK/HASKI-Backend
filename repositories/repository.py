@@ -715,12 +715,6 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def update_student_learning_element(
-        self, student_id, learning_element_id, visit_time
-    ):
-        raise NotImplementedError
-
-    @abc.abstractmethod
     def update_student_learning_element_favorite(
         self, student_id, learning_element_id, is_favorite
     ):
@@ -2169,20 +2163,6 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
                 )
             )
         else:
-            raise err.NoValidIdError
-
-    def update_student_learning_element(
-        self, student_id, learning_element_id, visit_time
-    ):
-        try:
-            self.session.query(DM.StudentLearningElement).filter_by(
-                student_id=student_id
-            ).filter_by(learning_element_id=learning_element_id).update(
-                {
-                    DM.StudentLearningElement.done_at: visit_time,
-                }
-            )
-        except Exception:
             raise err.NoValidIdError
 
     def update_student_learning_element_favorite(

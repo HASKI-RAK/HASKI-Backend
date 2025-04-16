@@ -1316,7 +1316,7 @@ class TestApi:
             # Working Example
             (
                 {"visit_start": "2023-08-01T13:37:42Z"},
-                4,
+                1,
                 ["student_id", "learning_element_id", "visit_start", "visit_end"],
                 201,
             ),

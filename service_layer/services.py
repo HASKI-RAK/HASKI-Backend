@@ -100,9 +100,6 @@ def add_student_learning_element_visit(
 ) -> dict:
     with uow:
         update_previous_learning_element_visit(uow, student_id, visit_start)
-        update_student_learning_element(
-            uow, student_id, learning_element_id, visit_start
-        )
         student_learning_element_visit = DM.StudentLearningElementVisit(
             student_id, learning_element_id, visit_start
         )
@@ -2760,16 +2757,6 @@ def update_settings_for_user(
         uow.settings.update_settings(user_id, settings)
         uow.commit()
         return settings.serialize()
-
-
-def update_student_learning_element(
-    uow: unit_of_work.AbstractUnitOfWork, student_id, learning_element_id, visit_time
-):
-    with uow:
-        uow.student_learning_element.update_student_learning_element(
-            student_id, learning_element_id, visit_time
-        )
-        uow.commit()
 
 
 def update_student_learning_element_favorite(
