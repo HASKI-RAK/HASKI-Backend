@@ -3799,7 +3799,7 @@ class TestApi:
         r = client_class.delete(url)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
-        assert response == None
+        assert response is None
 
     # Get logbuffer entries for a user
     @pytest.mark.parametrize(
