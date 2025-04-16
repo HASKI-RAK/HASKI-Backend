@@ -432,6 +432,22 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         for remove in to_remove:
             self.learning_path_learning_element.remove(remove)
 
+    def delete_learning_path_learning_element_by_le_id(self, learning_element_id):
+        to_remove = []
+        for i in self.learning_path_learning_element:
+            if i.learning_element_id == learning_element_id:
+                to_remove.append(i)
+        for remove in to_remove:
+            self.learning_path_learning_element.remove(remove)
+
+    def delete_learning_path_learning_element_algorithm(self, topic_id):
+        to_remove = []
+        for i in self.learning_path_learning_element_algorithm:
+            if i.topic_id == topic_id:
+                to_remove.append(i)
+        for remove in to_remove:
+            self.learning_path_learning_element_algorithm.remove(remove)
+
     def delete_learning_path_topic(self, learning_path_id):
         to_remove = []
         for i in self.learning_path_topic:
@@ -488,7 +504,7 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         for remove in to_remove:
             self.student.remove(remove)
 
-    def delete_student_course(self, student_id):
+    def delete_student_course(self, student_id, course_id=None):
         to_remove = []
         for i in self.student_course:
             if i.student_id == student_id:
@@ -517,10 +533,30 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         for remove in to_remove:
             self.student_learning_element.remove(remove)
 
+    def delete_student_learning_element_by_learning_element_id(
+        self, learning_element_id
+    ):
+        to_remove = []
+        for i in self.student_learning_element:
+            if i.learning_element_id == learning_element_id:
+                to_remove.append(i)
+        for remove in to_remove:
+            self.student_learning_element.remove(remove)
+
     def delete_student_learning_element_visit(self, student_id):
         to_remove = []
         for i in self.student_learning_element_visit:
             if i.self.student_id == student_id:
+                to_remove.append(i)
+        for remove in to_remove:
+            self.student_learning_element_visit.remove(remove)
+
+    def delete_student_learning_element_visit_by_learning_element_id(
+        self, learning_element_id
+    ):
+        to_remove = []
+        for i in self.student_learning_element_visit:
+            if i.self.learning_element_id == learning_element_id:
                 to_remove.append(i)
         for remove in to_remove:
             self.student_learning_element_visit.remove(remove)
@@ -533,10 +569,26 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         for remove in to_remove:
             self.student_topic.remove(remove)
 
+    def delete_student_topic_by_topic_id(self, topic_id):
+        to_remove = []
+        for i in self.student_topic:
+            if i.topic_id == topic_id:
+                to_remove.append(i)
+        for remove in to_remove:
+            self.student_topic.remove(remove)
+
     def delete_student_topic_visit(self, student_id):
         to_remove = []
         for i in self.student_topic_visit:
             if i.student_id == student_id:
+                to_remove.append(i)
+        for remove in to_remove:
+            self.student_topic_visit.remove(remove)
+
+    def delete_student_topic_visit_by_topic_id(self, topic_id):
+        to_remove = []
+        for i in self.student_topic_visit:
+            if i.topic_id == topic_id:
                 to_remove.append(i)
         for remove in to_remove:
             self.student_topic_visit.remove(remove)
@@ -761,10 +813,24 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 result.append(i)
         return result
 
-    def get_learning_paths(self, student_id):
+    def get_learning_paths_by_student_id(self, student_id):
         result = []
         for i in self.learning_path:
             if i.student_id == student_id:
+                result.append(i)
+        return result
+
+    def get_learning_paths_by_course_id(self, course_id):
+        result = []
+        for i in self.learning_path:
+            if i.course_id == course_id:
+                result.append(i)
+        return result
+
+    def get_learning_paths_by_topic_id(self, topic_id):
+        result = []
+        for i in self.learning_path:
+            if i.topic_id == topic_id:
                 result.append(i)
         return result
 
@@ -3081,9 +3147,7 @@ def test_delete_learning_element():
     uow = FakeUnitOfWork()
     create_learning_element_for_tests_1(uow)
     entries_beginning = len(uow.learning_element.learning_element)
-    result = services.delete_learning_element(
-        uow=uow, course_id=1, topic_id=1, learning_element_id=1
-    )
+    result = services.delete_learning_element(uow=uow, learning_element_id=1)
     assert type(result) is dict
     assert result == {}
     entries_after = len(uow.learning_element.learning_element)
@@ -3240,7 +3304,7 @@ def test_create_learning_path(number_of_les, algorithm):
         assert entries_after_path_le == entries_after_path_le_2
 
 
-def test_delete_learning_paths():
+def test_delete_learning_paths_by_student_id():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
@@ -3252,7 +3316,7 @@ def test_delete_learning_paths():
     entries_beginning_path_le = len(
         uow.learning_path_learning_element.learning_path_learning_element
     )
-    result = services.delete_learning_paths(uow=uow, student_id=1)
+    result = services.delete_learning_paths_by_student_id(uow=uow, student_id=1)
     assert result is None
     entries_after_path = len(uow.learning_path.learning_path)
     entries_after_path_le = len(
