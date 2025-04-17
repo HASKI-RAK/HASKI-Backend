@@ -2475,31 +2475,43 @@ def get_learning_element_solution(learning_element_lms_id: int):
 
 
 @app.route(
-    "/learningElement/<learning_element_lms_id>/solution/<solution_lms_id>",
+    "/learningElement/<learning_element_lms_id>/solution",
     methods=["POST", "DELETE"]
 )
 @cross_origin(supports_credentials=True)
+@json_only(ignore=["GET"])
 def post_or_delete_learning_element_solution(
-    learning_element_lms_id: int, solution_lms_id: int
+    data: Dict[str, Any], learning_element_lms_id: int
 ):
     entry = services.get_learning_element_solution(
-        uow=unit_of_work.SqlAlchemyUnitOfWork(), learning_element_lms_id=learning_element_lms_id
+        uow=unit_of_work.SqlAlchemyUnitOfWork(),
+        learning_element_lms_id=learning_element_lms_id
     )
-    condition = entry == {}
+    condition1 = entry == {}
     match request.method:
         case "POST":
-            if condition:
-                result = services.add_learning_element_solution(
-                    uow=unit_of_work.SqlAlchemyUnitOfWork(),
-                    learning_element_lms_id=learning_element_lms_id,
-                    solution_lms_id=solution_lms_id,
-                )
-                status_code = 201
-                return jsonify(result), status_code
+            if condition1:
+                condition2 = "activity_type" not in data
+                condition3 = type(data["activity_type"]) is str
+                condition4 = "solution_lms_id" not in data
+                condition5 = type(data["solution_lms_id"]) is int
+                if condition2 and condition4:
+                    raise err.MissingParameterError()
+                elif condition3 and condition5:
+                    result = services.add_learning_element_solution(
+                        uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                        learning_element_lms_id=learning_element_lms_id,
+                        solution_lms_id=data["solution_lms_id"],
+                        activity_type=data["activity_type"],
+                    )
+                    status_code = 201
+                    return jsonify(result), status_code
+                else:
+                    raise err.WrongParameterValueError()
             else:
                 raise err.AlreadyExisting()
         case "DELETE":
-            if not condition:
+            if not condition1:
                 services.delete_learning_element_solution(
                     uow=unit_of_work.SqlAlchemyUnitOfWork(),
                     learning_element_lms_id=learning_element_lms_id,
