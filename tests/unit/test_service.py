@@ -814,13 +814,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 result.append(i)
         return result
 
-    def get_learning_element_solution(self, learning_element_lms_id):
-        result = []
-        for i in self.learning_element_solution:
-            if i.learning_element_lms_id == learning_element_lms_id:
-                result.append(i)
-        return result
-
     def get_learning_path(self, student_id, course_id, topic_id):
         result = []
         for i in self.learning_path:
@@ -1678,12 +1671,6 @@ def create_logbuffer_for_tests(uow):
         user_id=1,
         content="random text",
         date=datetime.datetime.now(),
-    )
-
-
-def add_learning_element_solution_for_tests(uow):
-    services.add_learning_element_solution(
-        uow=uow, learning_element_lms_id=1, solution_lms_id=4
     )
 
 

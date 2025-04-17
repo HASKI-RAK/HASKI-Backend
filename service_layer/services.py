@@ -34,7 +34,7 @@ def add_learning_element_solution(
     uow: unit_of_work.AbstractUnitOfWork,
     learning_element_lms_id: int,
     solution_lms_id: int,
-    activity_type: str
+    activity_type: str,
 ) -> dict:
     with uow:
         learning_element_solution = DM.LearningElementSolution(

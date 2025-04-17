@@ -2475,8 +2475,7 @@ def get_learning_element_solution(learning_element_lms_id: int):
 
 
 @app.route(
-    "/learningElement/<learning_element_lms_id>/solution",
-    methods=["POST", "DELETE"]
+    "/learningElement/<learning_element_lms_id>/solution", methods=["POST", "DELETE"]
 )
 @cross_origin(supports_credentials=True)
 @json_only(ignore=["GET"])
@@ -2485,7 +2484,7 @@ def post_or_delete_learning_element_solution(
 ):
     entry = services.get_learning_element_solution(
         uow=unit_of_work.SqlAlchemyUnitOfWork(),
-        learning_element_lms_id=learning_element_lms_id
+        learning_element_lms_id=learning_element_lms_id,
     )
     condition1 = entry == {}
     match request.method:
