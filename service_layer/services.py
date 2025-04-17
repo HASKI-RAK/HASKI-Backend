@@ -67,7 +67,7 @@ def add_student_to_learning_element(
         student_learning_element = DM.StudentLearningElement(
             student_id, learning_element_id
         )
-        uow.student_learning_element.add_student_to_learning_element(
+        uow.student_learning_element.add_student_learning_element(
             student_learning_element
         )
         uow.commit()

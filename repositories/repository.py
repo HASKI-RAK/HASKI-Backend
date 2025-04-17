@@ -22,10 +22,6 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def add_student_to_learning_element(self, student_learning_element):
-        raise NotImplementedError
-
-    @abc.abstractmethod
     def add_student_to_topic(self, student_topic):
         raise NotImplementedError
 
@@ -761,16 +757,6 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
                 raise err.AlreadyExisting()
         try:
             self.session.add(student_course)
-        except IntegrityError:
-            raise err.ForeignKeyViolation()
-        except Exception:
-            raise err.CreationError()
-
-    def add_student_to_learning_element(
-        self, student_learning_element
-    ) -> DM.StudentLearningElement:
-        try:
-            self.session.add(student_learning_element)
         except IntegrityError:
             raise err.ForeignKeyViolation()
         except Exception:
