@@ -403,3 +403,17 @@ class LearningElementRating:
             "deviation": updated_rating.deviation,
             "timestamp": updated_rating.timestamp,
         }
+
+
+class LearningElementSolution:
+    def __init__(self, learning_element_lms_id, solution_lms_id) -> None:
+        self.id = None
+        self.learning_element_lms_id = learning_element_lms_id
+        self.solution_lms_id = solution_lms_id
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "learning_element_lms_id": self.learning_element_lms_id,
+            "solution_lms_id": self.solution_lms_id,
+        }

@@ -2461,5 +2461,55 @@ def get_learning_element_ratings():
             return jsonify(result), status_code
 
 
+@app.route("/learningElement/<learning_element_lms_id>/solution", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_learning_element_solution(learning_element_lms_id: int):
+    match request.method:
+        case "GET":
+            result = services.get_learning_element_solution(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                learning_element_lms_id=learning_element_lms_id,
+            )
+            status_code = 200
+            return jsonify(result), status_code
+
+
+@app.route(
+    "/learningElement/<learning_element_lms_id>/solution/<solution_lms_id>",
+    methods=["POST", "DELETE"]
+)
+@cross_origin(supports_credentials=True)
+def post_or_delete_learning_element_solution(
+    learning_element_lms_id: int, solution_lms_id: int
+):
+    entry = services.get_learning_element_solution(
+        uow=unit_of_work.SqlAlchemyUnitOfWork(), learning_element_lms_id=learning_element_lms_id
+    )
+    condition = entry == {}
+    match request.method:
+        case "POST":
+            if condition:
+                result = services.add_learning_element_solution(
+                    uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                    learning_element_lms_id=learning_element_lms_id,
+                    solution_lms_id=solution_lms_id,
+                )
+                status_code = 201
+                return jsonify(result), status_code
+            else:
+                raise err.AlreadyExisting()
+        case "DELETE":
+            if not condition:
+                services.delete_learning_element_solution(
+                    uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                    learning_element_lms_id=learning_element_lms_id,
+                )
+                result = {"message": cons.deletion_message}
+                status_code = 200
+                return jsonify(result), status_code
+            else:
+                raise err.NoContentWarning()
+
+
 if __name__ == "__main__":
     app.run(port=5000, debug=True)

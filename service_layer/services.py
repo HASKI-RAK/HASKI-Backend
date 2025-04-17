@@ -30,6 +30,21 @@ def add_course_creator_to_course(
         return result
 
 
+def add_learning_element_solution(
+    uow: unit_of_work.AbstractUnitOfWork, learning_element_lms_id, solution_lms_id
+) -> dict:
+    with uow:
+        learning_element_solution = DM.LearningElementSolution(
+            learning_element_lms_id, solution_lms_id
+        )
+        uow.learning_element_solution.add_learning_element_solution(
+            learning_element_solution
+        )
+        uow.commit()
+        result = learning_element_solution.serialize()
+        return result
+
+
 def add_student_to_course(
     uow: unit_of_work.AbstractUnitOfWork, student_id, course_id
 ) -> dict:
@@ -1008,6 +1023,16 @@ def delete_learning_element(uow: unit_of_work.AbstractUnitOfWork, learning_eleme
         uow.learning_element.delete_learning_element(learning_element_id)
         uow.commit()
         return {}
+
+
+def delete_learning_element_solution(
+    uow: unit_of_work.AbstractUnitOfWork, learning_element_lms_id
+) -> None:
+    with uow:
+        uow.learning_element_solution.delete_learning_element_solution(
+            learning_element_lms_id
+        )
+        uow.commit()
 
 
 def delete_learning_path(uow: unit_of_work.AbstractUnitOfWork, learning_path_id):
@@ -2442,6 +2467,22 @@ def get_learning_element_ratings(uow: unit_of_work.AbstractUnitOfWork) -> list:
         for element in learning_element_ratings:
             results.append(element.serialize())
         return results
+
+
+def get_learning_element_solution(
+    uow: unit_of_work.AbstractUnitOfWork, learning_element_lms_id: int
+) -> dict:
+    with uow:
+        learning_element_solution = (
+            uow.learning_element_solution.get_learning_element_solution(
+                learning_element_lms_id
+            )
+        )
+        if learning_element_solution == []:
+            result = {}
+        else:
+            result = learning_element_solution[0].serialize()
+        return result
 
 
 def get_moodle_course_content(
