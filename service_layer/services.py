@@ -67,7 +67,7 @@ def add_student_to_learning_element(
         student_learning_element = DM.StudentLearningElement(
             student_id, learning_element_id
         )
-        uow.student_learning_element.add_student_to_learning_element(
+        uow.student_learning_element.add_student_learning_element(
             student_learning_element
         )
         uow.commit()
@@ -100,9 +100,6 @@ def add_student_learning_element_visit(
 ) -> dict:
     with uow:
         update_previous_learning_element_visit(uow, student_id, visit_start)
-        update_student_learning_element(
-            uow, student_id, learning_element_id, visit_start
-        )
         student_learning_element_visit = DM.StudentLearningElementVisit(
             student_id, learning_element_id, visit_start
         )
@@ -528,6 +525,19 @@ def create_learning_style(
         uow.learning_style.create_learning_style(learning_style)
         uow.commit()
         result = learning_style.serialize()
+        return result
+
+
+def create_student_learning_element(
+    uow: unit_of_work.AbstractUnitOfWork, student_id, learning_element_id
+) -> dict:
+    with uow:
+        student_learning_element = DM.StudentLearningElement(
+            student_id, learning_element_id
+        )
+        uow.student.add_student_learning_element(student_learning_element)
+        uow.commit()
+        result = student_learning_element.serialize()
         return result
 
 
@@ -1220,6 +1230,16 @@ def delete_student_course(
         uow.commit()
 
 
+def delete_student_learning_element_by_element(
+    uow: unit_of_work.AbstractUnitOfWork, student_id, learning_element_id
+):
+    with uow:
+        uow.student_learning_element.delete_student_learning_element_by_element(
+            student_id, learning_element_id
+        )
+        uow.commit()
+
+
 def delete_student_learning_element(uow: unit_of_work.AbstractUnitOfWork, student_id):
     with uow:
         delete_student_learning_element_visit(uow, student_id)
@@ -1800,6 +1820,22 @@ def get_default_learning_path_by_university(
         for elements in path:
             results.append(elements.serialize())
         return results
+
+
+def get_student_learning_element_by_student_id(
+    uow: unit_of_work.AbstractUnitOfWork, student_id, learning_element_id
+) -> dict:
+    with uow:
+        backend_response = uow.learning_element.get_student_learning_element(
+            student_id, learning_element_id
+        )
+
+        result = dict()
+        result["student_learning_element"] = [
+            student_learning_element.serialize()
+            for student_learning_element in backend_response
+        ]
+        return result
 
 
 def get_sub_topic_by_topic_id(
@@ -2712,14 +2748,25 @@ def update_settings_for_user(
         return settings.serialize()
 
 
-def update_student_learning_element(
-    uow: unit_of_work.AbstractUnitOfWork, student_id, learning_element_id, visit_time
-):
+def update_student_learning_element_favorite(
+    uow: unit_of_work.AbstractUnitOfWork, student_id, learning_element_id, is_favorite
+) -> dict:
     with uow:
-        uow.student_learning_element.update_student_learning_element(
-            student_id, learning_element_id, visit_time
+        student_learning_element = DM.StudentLearningElement(
+            student_id, learning_element_id, is_favorite
+        )
+        learning_element = uow.student_learning_element.get_student_learning_element(
+            student_id, learning_element_id
+        )
+        if not learning_element:
+            uow.student_learning_element.add_student_learning_element(
+                student_learning_element
+            )
+        uow.student_learning_element.update_student_learning_element_favorite(
+            student_id, learning_element_id, is_favorite
         )
         uow.commit()
+        return student_learning_element.serialize()
 
 
 def update_topic(

@@ -22,11 +22,11 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def add_student_to_learning_element(self, student_learning_element):
+    def add_student_to_topic(self, student_topic):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def add_student_to_topic(self, student_topic):
+    def add_student_learning_element(self, student_learning_element):
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -315,6 +315,12 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
 
     @abc.abstractmethod
     def delete_student_course(self, student_id, course_id=None):
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def delete_student_learning_element_by_element(
+        self, student_id, learning_element_id
+    ):
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -705,12 +711,11 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def update_student_learning_element(
-        self, student_id, learning_element_id, visit_time
+    def update_student_learning_element_favorite(
+        self, student_id, learning_element_id, is_favorite
     ):
         raise NotImplementedError
 
-    @abc.abstractmethod
     def update_student_lpath_le_algorithm(
         self, student_id, topic_id, algorithm_id
     ) -> None:
@@ -757,17 +762,17 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         except Exception:
             raise err.CreationError()
 
-    def add_student_to_learning_element(self, student_learning_element):
+    def add_student_to_topic(self, student_topic):
         try:
-            self.session.add(student_learning_element)
+            self.session.add(student_topic)
         except IntegrityError:
             raise err.ForeignKeyViolation()
         except Exception:
             raise err.CreationError()
 
-    def add_student_to_topic(self, student_topic):
+    def add_student_learning_element(self, student_learning_element):
         try:
-            self.session.add(student_topic)
+            self.session.add(student_learning_element)
         except IntegrityError:
             raise err.ForeignKeyViolation()
         except Exception:
@@ -1305,6 +1310,13 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         else:
             student_courses.delete()
 
+    def delete_student_learning_element_by_element(
+        self, student_id, learning_element_id
+    ):
+        self.session.query(DM.StudentLearningElement).filter_by(
+            student_id=student_id
+        ).filter_by(learning_element_id=learning_element_id).delete()
+
     def delete_student_learning_element(self, student_id):
         self.session.query(DM.StudentLearningElement).filter_by(
             student_id=student_id
@@ -1771,15 +1783,16 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
     def get_student_learning_element(
         self, student_id, learning_element_id
     ) -> DM.StudentLearningElement:
-        try:
-            return (
-                self.session.query(DM.StudentLearningElement)
-                .filter_by(student_id=student_id)
-                .filter_by(learning_element_id=learning_element_id)
-                .all()
-            )
-        except Exception:
-            raise err.DatabaseQueryError()
+        result = (
+            self.session.query(DM.StudentLearningElement)
+            .filter_by(student_id=student_id)
+            .filter_by(learning_element_id=learning_element_id)
+            .all()
+        )
+        if result == []:
+            return None
+        else:
+            return result
 
     def get_student_lpath_le_algorithm(
         self, student_id, topic_id
@@ -2138,16 +2151,15 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         else:
             raise err.NoValidIdError
 
-    def update_student_learning_element(
-        self, student_id, learning_element_id, visit_time
+    def update_student_learning_element_favorite(
+        self, student_id, learning_element_id, is_favorite
     ):
         try:
             self.session.query(DM.StudentLearningElement).filter_by(
                 student_id=student_id
             ).filter_by(learning_element_id=learning_element_id).update(
                 {
-                    DM.StudentLearningElement.done: True,
-                    DM.StudentLearningElement.done_at: visit_time,
+                    DM.StudentLearningElement.is_favorite: is_favorite,
                 }
             )
         except Exception:
