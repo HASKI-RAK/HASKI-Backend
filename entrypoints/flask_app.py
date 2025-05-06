@@ -1767,34 +1767,42 @@ def post_calculate_rating(
                 learning_element_id=learning_element_by_lms["id"],
             )
 
-            # Get classification of learning element id.
-            classification = learning_element["classification"]
-            available_classification = ["ÜB", "SE"]
-            condition = classification in available_classification
-
             # Init result.
             result = {}
 
-            # Check the condition.
-            if condition:
-                # Get the attempt from moodle.
-                response = services.get_moodle_most_recent_attempt_by_user(
-                    uow=uow,
-                    course_id=int(course_id),
-                    learning_element_id=int(learning_element_lms_id),
-                    lms_user_id=str(user["lms_user_id"]),
-                )
+            # Get the activity type.
+            activity_type = learning_element["activity_type"]
+            print(activity_type)
+            available_activity_types = ["h5pactivity"]
+            condition_1 = activity_type in available_activity_types
+            
+            # Check the first condition.
+            if condition_1:
+                # Get classification of learning element id.
+                classification = learning_element["classification"]
+                available_classification = ["ÜB", "SE"]
+                condition_2 = classification in available_classification
 
-                # Update the ratings.
-                if response != {}:
-                    result = services.update_ratings(
+                # Check the second condition.
+                if condition_2:
+                    # Get the attempt from moodle.
+                    response = services.get_moodle_most_recent_attempt_by_user(
                         uow=uow,
-                        student_id=student["id"],
-                        learning_element_id=int(learning_element["id"]),
-                        topic_id=int(topic_id),
-                        attempt_result=response.get("success", 0),
-                        timestamp=datetime.fromtimestamp(response["timecreated"]),
+                        course_id=int(course_id),
+                        learning_element_id=int(learning_element_lms_id),
+                        lms_user_id=str(user["lms_user_id"]),
                     )
+
+                    # Update the ratings.
+                    if response != {}:
+                        result = services.update_ratings(
+                            uow=uow,
+                            student_id=student["id"],
+                            learning_element_id=int(learning_element["id"]),
+                            topic_id=int(topic_id),
+                            attempt_result=response.get("success", 0),
+                            timestamp=datetime.fromtimestamp(response["timecreated"]),
+                        )
 
             # Return result with status code.
             status_code = 201
