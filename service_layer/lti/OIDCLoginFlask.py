@@ -321,7 +321,9 @@ class OIDCLoginFlask(OIDCLogin):
                 # Calculate learning paths for course creators
                 if(
                     user["role"] == const.role_course_creator_string
+                    and services.get_default_learning_path_by_university(unit_of_work.SqlAlchemyUnitOfWork(), user["university"])
                 ):
+                    print(services.get_default_learning_path_by_university(unit_of_work.SqlAlchemyUnitOfWork(), user["university"]))
                     courses = services.get_courses_by_uni(
                         unit_of_work.SqlAlchemyUnitOfWork(),
                         university=user["university"],
