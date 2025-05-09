@@ -319,9 +319,7 @@ class OIDCLoginFlask(OIDCLogin):
                             student_id=student["id"],
                         )
                 # Calculate learning paths for course creators
-                if(
-                    user["role"] == const.role_course_creator_string
-                ):
+                if user["role"] == const.role_course_creator_string:
                     courses = services.get_courses_by_uni(
                         unit_of_work.SqlAlchemyUnitOfWork(),
                         university=user["university"],
@@ -334,17 +332,28 @@ class OIDCLoginFlask(OIDCLogin):
                         topics = [
                             topic
                             for topic in services.get_topics_by_student_and_course_id(
-                                unit_of_work.SqlAlchemyUnitOfWork(), user["id"], user["lms_user_id"], student["id"], course["id"]
+                                unit_of_work.SqlAlchemyUnitOfWork(),
+                                user["id"],
+                                user["lms_user_id"],
+                                student["id"],
+                                course["id"],
                             )["topics"]
                         ]
                         for topic in topics:
                             if topic["contains_le"]:
                                 # Get algorithm for the topic.
                                 algorithm = services.get_student_lpath_le_algorithm(
-                                    unit_of_work.SqlAlchemyUnitOfWork(), student["id"], topic["id"]
-                                ) or services.get_lpath_le_algorithm_by_topic(unit_of_work.SqlAlchemyUnitOfWork(), topic["id"])
-                                lpath_algorithm = services.get_learning_path_algorithm_by_id(
-                                    unit_of_work.SqlAlchemyUnitOfWork(), algorithm["algorithm_id"]
+                                    unit_of_work.SqlAlchemyUnitOfWork(),
+                                    student["id"],
+                                    topic["id"],
+                                ) or services.get_lpath_le_algorithm_by_topic(
+                                    unit_of_work.SqlAlchemyUnitOfWork(), topic["id"]
+                                )
+                                lpath_algorithm = (
+                                    services.get_learning_path_algorithm_by_id(
+                                        unit_of_work.SqlAlchemyUnitOfWork(),
+                                        algorithm["algorithm_id"],
+                                    )
                                 )
                                 services.create_learning_path(
                                     unit_of_work.SqlAlchemyUnitOfWork(),
