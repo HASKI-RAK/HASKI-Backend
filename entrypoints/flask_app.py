@@ -3,7 +3,7 @@ import json
 import os
 import re
 from datetime import datetime
-from typing import Any, Dict
+from typing import Any, Dict, List, Union
 
 from flask import Flask, jsonify, make_response, request
 from flask.wrappers import Response
@@ -1821,6 +1821,122 @@ def get_learning_path(user_id, lms_user_id, student_id, course_id, topic_id):
             )
             status_code = 200
             return jsonify(result), status_code
+
+
+# get default learning path for all students in a university
+@app.route(
+    "/user/<user_id>/<lms_user_id>/defaultLearningPath",
+    methods=["GET"],
+)
+@cross_origin(supports_credentials=True)
+def get_default_learning_path(user_id, lms_user_id):
+    method = request.method
+    match method:
+        case "GET":
+            user = services.get_user_by_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), user_id, lms_user_id
+            )
+            result = services.get_default_learning_path_by_university(
+                unit_of_work.SqlAlchemyUnitOfWork(), user["university"]
+            )
+            return make_response(jsonify(result), http.HTTPStatus.OK)
+
+
+# Create/Overwrite default learning path for all students in a university
+@app.route(
+    "/user/<user_id>/<lms_user_id>/defaultLearningPath",
+    methods=["POST"],
+)
+@cross_origin(supports_credentials=True)
+@json_only()
+def create_default_learning_path(
+    data: List[Dict[str, Union[str, int, bool]]], user_id, lms_user_id
+):
+    method = request.method
+    match method:
+        case "POST":
+            condition1 = bool(data) and all(
+                (
+                    "classification" in item
+                    and "position" in item
+                    and "disabled" in item
+                    and "university" in item
+                )
+                for item in data
+            )
+            if condition1:
+                user = services.get_user_by_id(
+                    unit_of_work.SqlAlchemyUnitOfWork(), user_id, lms_user_id
+                )
+                permitted_roles = [
+                    role_admin_string,
+                    role_course_creator_string,
+                    role_teacher_string,
+                ]
+                condition2 = user["role"] in permitted_roles
+                if condition2:
+                    condition3 = services.get_default_learning_path_by_university(
+                        unit_of_work.SqlAlchemyUnitOfWork(), user["university"]
+                    )
+                    if condition3:
+                        services.delete_default_learning_path_by_uni(
+                            unit_of_work.SqlAlchemyUnitOfWork(), user["university"]
+                        )
+                    results = []
+                    for item in data:
+                        results.append(
+                            services.create_default_learning_path_element(
+                                unit_of_work.SqlAlchemyUnitOfWork(),
+                                item["classification"],
+                                item["position"],
+                                item["disabled"],
+                                user["university"],
+                            )
+                        )
+                    # Recalculate "Default" learningpaths for all students
+                    courses = services.get_courses_by_uni(
+                        unit_of_work.SqlAlchemyUnitOfWork(), user["university"]
+                    )
+                    students = services.get_all_students(
+                        unit_of_work.SqlAlchemyUnitOfWork()
+                    )
+                    for student in students:
+                        student_user_id = services.get_user_by_id(
+                            unit_of_work.SqlAlchemyUnitOfWork(),
+                            student["user_id"],
+                            None,
+                        )
+                        for course in courses["courses"]:
+                            topics = services.get_topics_for_course_id(
+                                unit_of_work.SqlAlchemyUnitOfWork(), course["id"]
+                            )
+                            for topic in topics:
+                                current_topic = services.get_topic_by_id(
+                                    unit_of_work.SqlAlchemyUnitOfWork(),
+                                    None,
+                                    None,
+                                    course["id"],
+                                    None,
+                                    topic["id"],
+                                )
+
+                                results_learning_pahts = []
+
+                                if current_topic["contains_le"]:
+                                    results_learning_pahts.append(
+                                        services.create_learning_path(
+                                            unit_of_work.SqlAlchemyUnitOfWork(),
+                                            student_user_id["id"],
+                                            student_user_id["lms_user_id"],
+                                            student["id"],
+                                            course["id"],
+                                            topic["id"],
+                                            "default",
+                                        )
+                                    )
+                    return make_response(jsonify(results), http.HTTPStatus.CREATED)
+            else:
+                return make_response(http.HTTPStatus.BAD_REQUEST)
 
 
 # User Endpoints
