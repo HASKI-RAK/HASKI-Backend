@@ -11,7 +11,7 @@ DEFAULT_DB_HOST = "localhost"
 DEFAULT_DB_PORT = 5432
 DEFAULT_DB_PASSWORD = "postgres"  # Does not matter for local development
 DEFAULT_DB_USER = "postgres"
-DEFAULT_DB_NAME = "haski"
+DEFAULT_DB_NAME = "haski_3"
 
 
 def setup_db(
@@ -1115,7 +1115,6 @@ def setup_db(
         ALTER TABLE IF EXISTS public.student_rating
             OWNER to postgres;
     """
-
     cursor.execute(sql)
 
     sql = """
@@ -1135,8 +1134,46 @@ def setup_db(
         ALTER TABLE IF EXISTS public.learning_element_rating
             OWNER to postgres;
     """
-
     cursor.execute(sql)
+
+
+    # Create learning path algorithms
+    sql = """
+          INSERT INTO learning_path_algorithm (short_name, full_name)
+          VALUES ('default', 'Default Learning Path Algorithm') \
+          """
+    cursor.execute(sql)
+
+    sql = """
+          INSERT INTO learning_path_algorithm (short_name, full_name)
+          VALUES ('aco', 'Ant Colony Optimization') \
+          """
+    cursor.execute(sql)
+
+    sql = """
+          INSERT INTO learning_path_algorithm (short_name, full_name)
+          VALUES ('ga', 'Genetic Algorithm') \
+          """
+    cursor.execute(sql)
+
+    sql = """
+          INSERT INTO learning_path_algorithm (short_name, full_name)
+          VALUES ('graf', 'Graf et al.') \
+          """
+    cursor.execute(sql)
+
+    sql = """
+          INSERT INTO learning_path_algorithm (short_name, full_name)
+          VALUES ('tyche', 'Tyche') \
+          """
+    cursor.execute(sql)
+
+    sql = """
+          INSERT INTO learning_path_algorithm (short_name, full_name)
+          VALUES ('nestor', 'Nestor') \
+          """
+    cursor.execute(sql)
+
 
     conn.commit()
     # Closing the connection
