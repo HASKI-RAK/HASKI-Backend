@@ -431,9 +431,9 @@ def setup_db(
     # Create learning path learning elements (which learning element belongs to which learning path)
     sql = """
           INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position) VALUES (1, 1, true, 1);
-          INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position) VALUES (2, 1, true, 1);
+          INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position) VALUES (2, 1, true, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position) VALUES (1, 2, true, 1);
-          INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position) VALUES (2, 2, true, 1);
+          INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position) VALUES (2, 2, true, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position) VALUES (3, 3, true, 1);
           INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position) VALUES (4, 3, false, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position) VALUES (5, 3, false, 3);
@@ -455,7 +455,7 @@ def setup_db(
           INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position) VALUES (11, 10, true, 1);
           INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position) VALUES (12, 10, false, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position) VALUES (1, 11, true, 1);
-          INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position) VALUES (2, 11, true, 1);
+          INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position) VALUES (2, 11, true, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position) VALUES (3, 12, true, 1);
           INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position) VALUES (4, 12, false, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position) VALUES (5, 12, false, 3);
@@ -467,7 +467,7 @@ def setup_db(
           INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position) VALUES (11, 15, true, 1);
           INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position) VALUES (12, 15, false, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position) VALUES (1, 16, true, 1);
-          INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position) VALUES (2, 16, true, 1);
+          INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position) VALUES (2, 16, true, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position) VALUES (3, 17, true, 1);
           INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position) VALUES (4, 17, false, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, learning_path_id, recommended, position) VALUES (5, 17, false, 3);
