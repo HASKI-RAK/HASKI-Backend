@@ -1137,7 +1137,6 @@ def setup_db(
     """
     cursor.execute(sql)
 
-
     # Create learning path algorithms
     sql = """
           INSERT INTO learning_path_algorithm (short_name, full_name)
@@ -1174,7 +1173,6 @@ def setup_db(
           VALUES ('nestor', 'Nestor') \
           """
     cursor.execute(sql)
-
 
     conn.commit()
     # Closing the connection
