@@ -324,8 +324,8 @@ class OIDCLoginFlask(OIDCLogin):
                     "role"
                 ] == const.role_course_creator_string and
                         services.get_default_learning_path_by_university(
-                            unit_of_work.SqlAlchemyUnitOfWork(), user["university"]
-                        )):
+                    unit_of_work.SqlAlchemyUnitOfWork(), user["university"]
+                )):
                     # fmt: on
                     courses = services.get_courses_by_uni(
                         unit_of_work.SqlAlchemyUnitOfWork(),
