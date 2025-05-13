@@ -56,13 +56,13 @@ def setup_db(
     # Create course
     sql = """
           INSERT INTO course (lms_id, name, university, start_date)
-          VALUES (2, 'Kurs-1', 'HS-KE', '2025-05-09 10:42:51');
+          VALUES (2, 'Software Engineering', 'HS-KE', '2025-05-09 10:42:51');
     
           INSERT INTO course (lms_id, name, university, start_date)
-          VALUES (3, 'Kurs-2', 'HS-KE', '2025-05-12 08:36:03');
+          VALUES (3, 'Software Architektur', 'HS-KE', '2025-05-12 08:36:03');
               
           INSERT INTO course (lms_id, name, university, start_date)
-          VALUES (4, 'Kurs-3', 'HS-KE', '2125-05-12 08:36:03');
+          VALUES (4, 'Software Testing', 'HS-KE', '2125-05-12 08:36:03');
     """
     cursor.execute(sql)
 
@@ -91,23 +91,23 @@ def setup_db(
     sql = """
           INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, \
                              created_by, created_at, last_updated)
-          VALUES (1, true, NULL, true, 'General', 'HS-KE', 'Admin User', '2025-05-09 00:00:00', NULL);
+          VALUES (1, true, NULL, true, 'Entwurfsmuster', 'HS-KE', 'Admin User', '2025-05-09 00:00:00', NULL);
     
           INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, \
                              created_by, created_at, last_updated)
-          VALUES (3, true, NULL, true, 'Strat', 'HS-KE', 'Admin User', '2025-05-12 00:00:00', NULL);
+          VALUES (3, true, NULL, true, 'Metriken', 'HS-KE', 'Admin User', '2025-05-12 00:00:00', NULL);
     
           INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, \
                              created_by, created_at, last_updated)
-          VALUES (6, true, NULL, true, 'General', 'HS-KE', 'Admin User', '2025-05-12 00:00:00', NULL);
+          VALUES (6, true, NULL, true, 'Allgemeine Informationen', 'HS-KE', 'Admin User', '2025-05-12 00:00:00', NULL);
     
           INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, \
                              created_by, created_at, last_updated)
-          VALUES (8, true, NULL, true, 'Topic 2', 'HS-KE', 'Admin User', '2025-05-12 00:00:00', NULL);
+          VALUES (8, true, NULL, true, 'Architektur Prinzipien', 'HS-KE', 'Admin User', '2025-05-12 00:00:00', NULL);
     
           INSERT INTO topic (lms_id, is_topic, parent_id, contains_le, name, university, \
                              created_by, created_at, last_updated)
-          VALUES (9, true, NULL, true, 'Topic 3', 'HS-KE', 'Admin User', '2025-05-12 00:00:00', NULL);
+          VALUES (9, true, NULL, true, 'Redundanz', 'HS-KE', 'Admin User', '2025-05-12 00:00:00', NULL);
     """
     cursor.execute(sql)
 
@@ -316,51 +316,51 @@ def setup_db(
     sql = """
           INSERT INTO learning_element (lms_id, activity_type, classification, name, \
                                         university, created_by, created_at, last_updated)
-          VALUES (3, 'feedback', 'AN', 'ILS Fragebogen', 'HS-KE', 'Admin User', '2025-05-09 00:00:00', NULL);
+          VALUES (3, 'h5pactivity', 'EK', 'Adapter Muster', 'HS-KE', 'Admin User', '2025-05-09 00:00:00', NULL);
               
           INSERT INTO learning_element (lms_id, activity_type, classification, name, \
                                         university, created_by, created_at, last_updated)
-          VALUES (12, 'book', 'AN', 'hello', 'HS-KE', 'Admin User', '2025-05-09 00:00:00', NULL);
+          VALUES (12, 'h5pactivity', 'SE', 'Fassade Muster', 'HS-KE', 'Admin User', '2025-05-09 00:00:00', NULL);
               
           INSERT INTO learning_element (lms_id, activity_type, classification, name, \
                                         university, created_by, created_at, last_updated)
-          VALUES (8, 'h5pactivity', 'EK', 'Adapter - Kurzübersicht', 'HS-KE', 'Student eleven', '2025-05-12 00:00:00', NULL);
+          VALUES (8, 'h5pactivity', 'EK', 'Halstead Metrik', 'HS-KE', 'Admin User', '2025-05-12 00:00:00', NULL);
               
           INSERT INTO learning_element (lms_id, activity_type, classification, name, \
                                         university, created_by, created_at, last_updated)
-          VALUES (10, 'h5pactivity', 'BE', 'Adapter - leicht 1', 'HS-KE', 'Student eleven', '2025-05-12 00:00:00', NULL);
+          VALUES (10, 'h5pactivity', 'BE', 'Lines of Code', 'HS-KE', 'Admin User', '2025-05-12 00:00:00', NULL);
               
           INSERT INTO learning_element (lms_id, activity_type, classification, name, \
                                        university, created_by, created_at, last_updated)
-          VALUES (9, 'h5pactivity', 'SE', 'Adapter - leicht 2', 'HS-KE', 'Student eleven', '2025-05-12 00:00:00', NULL);
+          VALUES (9, 'h5pactivity', 'SE', 'Zyklomatische Komplexität', 'HS-KE', 'Admin User', '2025-05-12 00:00:00', NULL);
               
           INSERT INTO learning_element (lms_id, activity_type, classification, name, \
                                         university, created_by, created_at, last_updated)
-          VALUES (5, 'forum', 'FO', 'Announcements', 'HS-KE', 'Student eleven', '2025-05-12 00:00:00', NULL);
+          VALUES (5, 'forum', 'FO', 'Definition Software Architektur', 'HS-KE', 'Admin User', '2025-05-12 00:00:00', NULL);
               
           INSERT INTO learning_element (lms_id, activity_type, classification, name, \
                                         university, created_by, created_at, last_updated)
-          VALUES (27, 'resource', 'BE', '978-3-319-02192-8', 'HS-KE', 'Student eleven', '2025-05-12 00:00:00', NULL);
+          VALUES (27, 'h5pactivity', 'BE', 'Funktionale Anforderungen', 'HS-KE', 'Admin User', '2025-05-12 00:00:00', NULL);
               
           INSERT INTO learning_element (lms_id, activity_type, classification, name, \
                                         university, created_by, created_at, last_updated)
-          VALUES (45, 'h5pactivity', 'AN', 'Zustand Übung 1 leicht', 'HS-KE', 'Student eleven', '2025-05-12 00:00:00', NULL);
+          VALUES (45, 'h5pactivity', 'BE', 'Nichtfunktionale Anforderungen', 'HS-KE', 'Admin User', '2025-05-12 00:00:00', NULL);
               
           INSERT INTO learning_element (lms_id, activity_type, classification, name, \
                                         university, created_by, created_at, last_updated)
-          VALUES (11, 'assign', 'LZ', 'Test assignment', 'HS-KE', 'Student eleven', '2025-05-12 00:00:00', NULL);
+          VALUES (11, 'h5pactivity', 'LZ', 'Hohe Kohäsion', 'HS-KE', 'Admin User', '2025-05-12 00:00:00', NULL);
               
           INSERT INTO learning_element (lms_id, activity_type, classification, name, \
                                         university, created_by, created_at, last_updated)
-          VALUES (17, 'assign', 'ÜB', 'Open Assignment maybe not that important', 'HS-KE', 'Student eleven', '2025-05-12 00:00:00', NULL);
+          VALUES (17, 'h5pactivity', 'ÜB', 'Open closed principle', 'HS-KE', 'Admin User', '2025-05-12 00:00:00', NULL);
               
           INSERT INTO learning_element (lms_id, activity_type, classification, name, \
                                         university, created_by, created_at, last_updated)
-          VALUES (21, 'folder', 'AN', 'This is a folder', 'HS-KE', 'Student eleven', '2025-05-12 00:00:00', NULL);
+          VALUES (21, 'h5pactivity', 'AN', 'Standby-Redundanz', 'HS-KE', 'Admin User', '2025-05-12 00:00:00', NULL);
               
           INSERT INTO learning_element (lms_id, activity_type, classification, name, \
                                         university, created_by, created_at, last_updated)
-          VALUES (25, 'page', 'ZF', 'What is a Page', 'HS-KE', 'Student eleven', '2025-05-12 00:00:00', NULL);
+          VALUES (25, 'h5pactivity', 'ZF', 'Heiße Redundanz', 'HS-KE', 'Admin User', '2025-05-12 00:00:00', NULL);
     """
     cursor.execute(sql)
 
