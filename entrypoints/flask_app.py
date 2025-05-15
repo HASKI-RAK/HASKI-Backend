@@ -928,39 +928,24 @@ def post_student_topic_visit(data: Dict[str, Any], student_id, lms_user_id, topi
 
 
 @app.route(
-    "/lms/student/<student_id>/<lms_user_id>/learningElement/"
+    "/lms/student/<student_id>/learningElement/"
     + "<learning_element_id>",
     methods=["POST"],
 )
 @cross_origin(supports_credentials=True)
-@json_only()
-def post_student_learning_element_id_visit(
-    data: Dict[str, Any], student_id, lms_user_id, learning_element_id
-):
-    method = request.method
-    match method:
-        case "POST":
-            condition1 = data is not None
-            condition2 = "visit_start" in data
-            if condition1 and condition2:
-                condition3 = type(data["visit_start"]) is str
-                condition4 = re.search(cons.date_format_search, data["visit_start"])
-                if condition3 and condition4:
-                    visit_start = datetime.strptime(
-                        data["visit_start"], cons.date_format
-                    ).date()
-                    result = services.add_student_learning_element_visit(
-                        unit_of_work.SqlAlchemyUnitOfWork(),
-                        student_id,
-                        learning_element_id,
-                        visit_start,
-                    )
-                    status_code = 201
-                    return jsonify(result), status_code
-                else:
-                    raise err.WrongParameterValueError()
-            else:
-                raise err.MissingParameterError()
+def post_student_learning_element(student_id, learning_element_id):
+    data = request.get_json()
+    if "is_favorite" not in data:
+        raise err.MissingParameterError()
+    result = services.update_student_learning_element_favorite(
+        unit_of_work.SqlAlchemyUnitOfWork(),
+        student_id,
+        learning_element_id,
+        data["is_favorite"],
+    )
+
+    status_code = 201
+    return jsonify(result), status_code
 
 
 @app.route(
