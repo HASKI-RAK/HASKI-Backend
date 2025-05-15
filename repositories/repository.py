@@ -30,10 +30,6 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def add_student_learning_element_visit(self, student_learning_element_visit):
-        raise NotImplementedError
-
-    @abc.abstractmethod
     def add_student_topic_visit(self, student_topic_visit):
         raise NotImplementedError
 
@@ -329,16 +325,6 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
 
     @abc.abstractmethod
     def delete_student_learning_element_by_learning_element_id(
-        self, learning_element_id
-    ):
-        raise NotImplementedError
-
-    @abc.abstractmethod
-    def delete_student_learning_element_visit(self, student_id):
-        raise NotImplementedError
-
-    @abc.abstractmethod
-    def delete_student_learning_element_visit_by_learning_element_id(
         self, learning_element_id
     ):
         raise NotImplementedError
@@ -699,10 +685,6 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def update_previous_learning_element_visit(self, student_id, visit_time):
-        raise NotImplementedError
-
-    @abc.abstractmethod
     def update_previous_topic_visit(self, student_id, visit_time):
         raise NotImplementedError
 
@@ -773,14 +755,6 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
     def add_student_learning_element(self, student_learning_element):
         try:
             self.session.add(student_learning_element)
-        except IntegrityError:
-            raise err.ForeignKeyViolation()
-        except Exception:
-            raise err.CreationError()
-
-    def add_student_learning_element_visit(self, student_learning_element_visit):
-        try:
-            self.session.add(student_learning_element_visit)
         except IntegrityError:
             raise err.ForeignKeyViolation()
         except Exception:
@@ -1326,18 +1300,6 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         self, learning_element_id
     ):
         self.session.query(DM.StudentLearningElement).filter_by(
-            learning_element_id=learning_element_id
-        ).delete()
-
-    def delete_student_learning_element_visit(self, student_id):
-        self.session.query(DM.StudentLearningElementVisit).filter_by(
-            student_id=student_id
-        ).delete()
-
-    def delete_student_learning_element_visit_by_learning_element_id(
-        self, learning_element_id
-    ):
-        self.session.query(DM.StudentLearningElementVisit).filter_by(
             learning_element_id=learning_element_id
         ).delete()
 
@@ -2112,16 +2074,6 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
                 .update(updated_learning_style)
             )
         else:
-            raise err.NoValidIdError
-
-    def update_previous_learning_element_visit(self, student_id, visit_time):
-        try:
-            self.session.query(DM.StudentLearningElementVisit).filter_by(
-                student_id=student_id
-            ).filter_by(visit_end=None).update(
-                {DM.StudentLearningElementVisit.visit_end: visit_time}
-            )
-        except Exception:
             raise err.NoValidIdError
 
     def update_previous_topic_visit(self, student_id, visit_time):

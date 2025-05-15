@@ -379,16 +379,6 @@ student_learning_element = Table(
     Column("is_favorite", Boolean, nullable=False),
 )
 
-student_learning_element_visit = Table(
-    "student_learning_element_visit",
-    mapper_registry.metadata,
-    Column("id", Integer, primary_key=True, autoincrement=True),
-    Column("student_id", Integer, nullable=False),
-    Column("learning_element_id", Integer, nullable=False),
-    Column("visit_start", Date, nullable=False),
-    Column("visit_end", Date, nullable=True),
-)
-
 student_learning_path_learning_element_algorithm = Table(
     "student_learning_path_learning_element_algorithm",
     mapper_registry.metadata,
@@ -620,11 +610,6 @@ def start_mappers():
     mapper_registry.map_imperatively(
         DM.StudentLearningElement,
         student_learning_element,
-    )
-
-    mapper_registry.map_imperatively(
-        DM.StudentLearningElementVisit,
-        student_learning_element_visit,
     )
 
     mapper_registry.map_imperatively(

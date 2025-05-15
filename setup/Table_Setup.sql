@@ -491,32 +491,6 @@ TABLESPACE pg_default;
 ALTER TABLE IF EXISTS public.student_learning_element
     OWNER to postgres;
 
--- Student Learning Element Visit
-DROP TABLE IF EXISTS public.student_learning_element_visit;
-
-CREATE TABLE IF NOT EXISTS public.student_learning_element_visit
-(
-    id integer NOT NULL,
-    student_id integer NOT NULL,
-    learning_element_id integer NOT NULL,
-    visit_start timestamp without time zone NOT NULL,
-    visit_end timestamp without time zone,
-    CONSTRAINT student_learning_element_visit_pkey PRIMARY KEY (id),
-    CONSTRAINT learning_element_id FOREIGN KEY (learning_element_id)
-        REFERENCES public.learning_element (id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION,
-    CONSTRAINT student_id FOREIGN KEY (student_id)
-        REFERENCES public.student (id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
-)
-
-TABLESPACE pg_default;
-
-ALTER TABLE IF EXISTS public.student_learning_element_visit
-    OWNER to postgres;
-
 -- Learning Element Rating
 DROP TABLE IF EXISTS public.learning_element_rating;
 
