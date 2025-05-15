@@ -928,11 +928,12 @@ def post_student_topic_visit(data: Dict[str, Any], student_id, lms_user_id, topi
 
 
 @app.route(
-    "/lms/student/<student_id>/learningElement/<learning_element_id>/favorite",
-    methods=["PUT"],
+    "/lms/student/<student_id>/learningElement/"
+    + "<learning_element_id>",
+    methods=["POST"],
 )
 @cross_origin(supports_credentials=True)
-def student_learning_element_update(student_id, learning_element_id):
+def post_student_learning_element(student_id, learning_element_id):
     data = request.get_json()
     if "is_favorite" not in data:
         raise err.MissingParameterError()
@@ -945,68 +946,6 @@ def student_learning_element_update(student_id, learning_element_id):
 
     status_code = 201
     return jsonify(result), status_code
-
-
-@app.route(
-    "/lms/student/<student_id>/learningElement/<learning_element_id>/favorite",
-    methods=["GET"],
-)
-@cross_origin(supports_credentials=True)
-def student_learning_element_get_favorite(student_id, learning_element_id):
-    result = services.get_student_learning_element_by_student_id(
-        unit_of_work.SqlAlchemyUnitOfWork(), student_id, learning_element_id
-    )
-    status_code = 200
-    return jsonify(result), status_code
-
-
-@app.route(
-    "/lms/student/<student_id>/learningElement/<learning_element_id>/favorite",
-    methods=["DELETE"],
-)
-@cross_origin(supports_credentials=True)
-def student_learning_element_delete_element(student_id, learning_element_id):
-    result = services.delete_student_learning_element_by_element(
-        unit_of_work.SqlAlchemyUnitOfWork(), student_id, learning_element_id
-    )
-    status_code = 200
-    return jsonify(result), status_code
-
-
-@app.route(
-    "/lms/student/<student_id>/<lms_user_id>/learningElement/"
-    + "<learning_element_id>",
-    methods=["POST"],
-)
-@cross_origin(supports_credentials=True)
-@json_only()
-def post_student_learning_element_id_visit(
-    data: Dict[str, Any], student_id, lms_user_id, learning_element_id
-):
-    method = request.method
-    match method:
-        case "POST":
-            condition1 = data is not None
-            condition2 = "visit_start" in data
-            if condition1 and condition2:
-                condition3 = type(data["visit_start"]) is str
-                condition4 = re.search(cons.date_format_search, data["visit_start"])
-                if condition3 and condition4:
-                    visit_start = datetime.strptime(
-                        data["visit_start"], cons.date_format
-                    ).date()
-                    result = services.add_student_learning_element_visit(
-                        unit_of_work.SqlAlchemyUnitOfWork(),
-                        student_id,
-                        learning_element_id,
-                        visit_start,
-                    )
-                    status_code = 201
-                    return jsonify(result), status_code
-                else:
-                    raise err.WrongParameterValueError()
-            else:
-                raise err.MissingParameterError()
 
 
 @app.route(
