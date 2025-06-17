@@ -578,6 +578,225 @@ class TestOIDCLoginFlask(unittest.TestCase):
                                     response = self.oidc_login.get_cookie_expiration()
                                     assert response.status == "200 OK"
 
+    def test_lti_launch_from_id_token_user_does_not_exist_in_db_role_course_creator(self):
+        # Create a mock request with the necessary attributes
+        request_mock = MagicMock()
+        request_mock.form = MagicMock()
+        request_mock.form.get = MagicMock(
+            side_effect=lambda k, type=str: {
+                "state": "valid_state_jwt",
+                "iss": "https://moodle.haski.app",
+                "client_id": "VRCKkhKlZtHNHtD",
+                "login_hint": "student",
+                "lti_message_hint": "message_hint",
+                "target_link_uri": "https://backend.ke.haski.app/lti_launch",
+                "id_token": "valid_id_token_jwt",
+            }.get(k, "")
+        )
+        request_mock.referrer = "https://example.com"
+        self.oidc_login._request = request_mock
+
+        jwt_payload = {
+            "nonce": "valid_nonce",
+            "iat": (
+                    datetime.datetime.utcnow() - datetime.timedelta(minutes=5)
+            ).timestamp(),
+            "exp": (
+                    datetime.datetime.utcnow() + datetime.timedelta(minutes=5)
+            ).timestamp(),
+            "iss": os.environ.get("BACKEND_URL", "https://backend.haski.app"),
+            "kid": "backendprivatekey",
+            "state": "valid_state",
+            "sub": "user123",
+            "name": "Test User",
+            "https://purl.imsglobal.org/spec/lti/claim/tool_platform": {
+                "name": "Test University"
+            },
+            "https://purl.imsglobal.org/spec/lti/claim/roles": ["student"],
+        }
+
+        with patch(
+                "service_layer.crypto.JWTKeyManagement.verify_jwt", return_value=jwt_payload
+        ):
+            with patch(
+                    "service_layer.crypto.JWTKeyManagement.generate_nonce_jwt",
+                    return_value="mocked_nonce_jwt",
+            ):
+                with patch("service_layer.service.SessionServiceFlask.set"):
+                    with patch(
+                            "service_layer.service.SessionServiceFlask.get"
+                    ) as mock_get_session:
+                        mock_get_session.side_effect = (
+                            lambda nonce, key: "valid_state"
+                            if key == "state" and nonce == "valid_nonce"
+                            else None
+                        )
+                        with patch(
+                                "service_layer.services.get_user_by_lms_id",
+                                return_value={},
+                        ):
+                            with patch(
+                                    "service_layer.services.create_user",
+                                    return_value={
+                                        "id": 1,
+                                        "name": "Test User",
+                                        "role": "course creator",
+                                        "lms_user_id": "2",
+                                        "university": "HS-KE",
+                                    },
+                            ):
+                                with patch(
+                                        "service_layer.services." "get_courses_by_uni",
+                                        return_value={
+                                            "courses": [
+                                                {
+                                                    "id": 1,
+                                                    "name": "course-1",
+                                                    "university": "HS-KE",
+                                                }
+                                            ],
+                                        },
+                                ):
+                                    with patch(
+                                            "service_layer.services."
+                                            "get_student_by_user_id",
+                                            return_value={
+                                                "id": 1,
+                                                "name": "Test User",
+                                                "role": "course creator",
+                                                "university": "HS-KE",
+                                            },
+                                    ):
+                                        with patch(
+                                                "service_layer.services."
+                                                "add_student_to_course",
+                                                return_value={
+                                                    "state": "ok",
+                                                },
+                                        ):
+                                            with patch("flask.redirect"):
+                                                with patch(
+                                                        "service_layer."
+                                                        "lti.config."
+                                                        "ToolConfigJson.get_platform",
+                                                        return_valule="moodle",
+                                                ):
+                                                    with patch(
+                                                            "service_layer."
+                                                            "lti.config."
+                                                            "ToolConfigJson."
+                                                            "decode_platform",
+                                                            return_valule="moodle_decoded",
+                                                    ):
+                                                        with patch(
+                                                                "service_layer."
+                                                                "services."
+                                                                "get_student_by_user_id",
+                                                                return_value={
+                                                                    "id": 1,
+                                                                    "name": "Test User",
+                                                                    "role": "course creator",
+                                                                },
+                                                        ):
+                                                            with patch(
+                                                                "service_layer."
+                                                                "services."
+                                                                "get_default_learning_path_by_university",
+                                                                return_value=[
+                                                                    {'id': 1, 'classification': 'LZ', 'position': 1, 'disabled': False, 'university': 'HS-KE'},
+                                                                    {'id': 2, 'classification': 'FO', 'position': 2, 'disabled': False, 'university': 'HS-KE'},
+                                                                    {'id': 3, 'classification': 'BE', 'position': 3, 'disabled': False, 'university': 'HS-KE'},
+                                                                    {'id': 4, 'classification': 'AB', 'position': 4, 'disabled': False, 'university': 'HS-KE'},
+                                                                    {'id': 5, 'classification': 'ÜB', 'position': 5, 'disabled': False, 'university': 'HS-KE'},
+                                                                    {'id': 6, 'classification': 'ZF', 'position': 6, 'disabled': False, 'university': 'HS-KE'},
+                                                                    {'id': 7, 'classification': 'ZL', 'position': 7, 'disabled': False, 'university': 'HS-KE'}, 
+                                                                    {'id': 8, 'classification': 'EK', 'position': 9000, 'disabled': True, 'university': 'HS-KE'}, 
+                                                                    {'id': 9, 'classification': 'KÜ', 'position': 9001, 'disabled': True, 'university': 'HS-KE'}, 
+                                                                    {'id': 10, 'classification': 'AN', 'position': 9002, 'disabled': True, 'university': 'HS-KE'}, 
+                                                                    {'id': 11, 'classification': 'RQ', 'position': 9003, 'disabled': True, 'university': 'HS-KE'}, 
+                                                                    {'id': 12, 'classification': 'SE', 'position': 9004, 'disabled': True, 'university': 'HS-KE'}]
+                                                            ):
+                                                                with patch(
+                                                            "service_layer."
+                                                                  "services."
+                                                                  "get_topics_by_student_and_course_id",
+                                                                    return_value={
+                                                                        'topics':
+                                                                            [
+                                                                                {
+                                                                                    'id': 1,
+                                                                                    'lms_id': 1,
+                                                                                    'is_topic': True,
+                                                                                    'parent_id': None,
+                                                                                    'contains_le': True,
+                                                                                    'name': 'General',
+                                                                                    'university': 'New Site',
+                                                                                    'created_by': 'muster student',
+                                                                                    'created_at': datetime.datetime(2025, 6, 17, 0, 0),
+                                                                                    'last_updated': None,
+                                                                                    'student_topic': {'id': 4, 'student_id': 4, 'topic_id': 1, 'done': False, 'done_at': None, 'visits': []}
+                                                                                }
+                                                                            ]
+                                                                    }
+                                                                ):
+                                                                    with patch(
+                                                                        "service_layer."
+                                                                        "services."
+                                                                        "get_student_lpath_le_algorithm",
+                                                                        return_value={
+                                                                            'id': 7,
+                                                                            'student_id': 5,
+                                                                            'topic_id': 1,
+                                                                            'algorithm_id': 4
+                                                                        }
+
+                                                                    ):
+                                                                        with patch(
+                                                                            "service_layer."
+                                                                            "services."
+                                                                            "get_learning_path_algorithm_by_id",
+                                                                            return_value={
+                                                                                'id': 4,
+                                                                                'short_name': 'graf',
+                                                                                'full_name': 'Graf et al.'
+                                                                            }
+                                                                        ):
+                                                                            with patch(
+                                                                                "service_layer."
+                                                                                "services."
+                                                                                "create_learning_path",
+                                                                                return_value={
+                                                                                    'id': 5,
+                                                                                    'student_id': 5,
+                                                                                    'course_id': 1,
+                                                                                    'topic_id': 1, 'based_on': 'graf',
+                                                                                    'path': 'FO',
+                                                                                    'calculated_on': datetime.datetime(2025, 6, 17, 16, 4, 4, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200)))
+                                                                                }
+                                                                            ):
+                                                                                self.oidc_login.id_token = (
+                                                                                    MagicMock()
+                                                                                )  # noqa: E501
+                                                                                self.oidc_login.id_token.nonce = (  # noqa: E501
+                                                                                    "valid_nonce"
+                                                                                )
+                                                                                self.oidc_login.id_token.sub = (  # noqa: E501
+                                                                                    "user123"
+                                                                                )
+                                                                                self.oidc_login.id_token.name = "Test User"  # noqa: E501
+                                                                                self.oidc_login.id_token.__getitem__.side_effect = (  # noqa: E501
+                                                                                    jwt_payload.__getitem__
+                                                                                )
+
+                                                                                response = (
+                                                                                    self.oidc_login.lti_launch_from_id_token()  # noqa: E501
+                                                                                )
+
+                                                                                assert (
+                                                                                        response.status
+                                                                                        == "302 FOUND"
+                                                                                )  # noqa: E501
+
     def test_get_logout(self):
         with patch.object(
             self.oidc_login, "_request", _request=MagicMock
