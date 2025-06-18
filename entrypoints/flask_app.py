@@ -1605,13 +1605,11 @@ def post_calculate_learning_path(_: Dict[str, Any], user_id: str, lms_user_id: s
 
             for course in courses["courses"]:
                 # Get every available topic in all course.
-                topics = [
-                    topic
-                    for topic in services.get_topics_by_student_and_course_id(
+                topics = list(
+                    services.get_topics_by_student_and_course_id(
                         uow, user_id, lms_user_id, student["id"], course["id"]
                     )["topics"]
-                ]
-
+                )
                 for topic in topics:
                     if topic["contains_le"]:
                         # Get algorithm for the topic.

@@ -336,16 +336,15 @@ class OIDCLoginFlask(OIDCLogin):
                     )
                     for course in courses["courses"]:
                         # Get every available topic in all course.
-                        topics = [
-                            topic
-                            for topic in services.get_topics_by_student_and_course_id(
+                        topics = list(
+                            services.get_topics_by_student_and_course_id(
                                 unit_of_work.SqlAlchemyUnitOfWork(),
                                 user["id"],
                                 user["lms_user_id"],
                                 student["id"],
-                                course["id"],
+                                course["id"]
                             )["topics"]
-                        ]
+                        )
                         for topic in topics:
                             if topic["contains_le"]:
                                 # Get algorithm for the topic.
