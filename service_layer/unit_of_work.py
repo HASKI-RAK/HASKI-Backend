@@ -41,6 +41,7 @@ class AbstractUnitOfWork(abc.ABC):
     logbuffer: repository.AbstractRepository
     student: repository.AbstractRepository
     student_course: repository.AbstractRepository
+    student_experience_points: repository.AbstractRepository
     student_learning_element: repository.AbstractRepository
     student_learning_element_visit: repository.AbstractRepository
     student_lpath_le_algorithm: repository.AbstractRepository
@@ -115,6 +116,7 @@ class SqlAlchemyUnitOfWork(AbstractUnitOfWork):  # pragma: no cover
         self.default_learning_path = repository.SqlAlchemyRepository(self.session)
         self.student = repository.SqlAlchemyRepository(self.session)
         self.student_course = repository.SqlAlchemyRepository(self.session)
+        self.student_experience_points = repository.SqlAlchemyRepository(self.session)
         self.student_learning_element = repository.SqlAlchemyRepository(self.session)
         self.student_learning_element_visit = repository.SqlAlchemyRepository(
             self.session

@@ -165,6 +165,13 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     @abc.abstractmethod
     def create_student(self, student: UA.Student) -> UA.Student:
         raise NotImplementedError
+    
+    @abc.abstractmethod
+    def create_student_experience_points(
+        self,
+        student: LM.StudentExperiencePoints
+    ) -> LM.StudentExperiencePoints:
+        raise NotImplementedError
 
     @abc.abstractmethod
     def add_student_lpath_le_algorithm(
@@ -315,6 +322,10 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
 
     @abc.abstractmethod
     def delete_student_course(self, student_id, course_id=None):
+        raise NotImplementedError
+    
+    @abc.abstractmethod
+    def delete_student_experience_points(self, student_id: int) -> None:
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -559,7 +570,11 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     @abc.abstractmethod
     def get_student_course(self, student_id, course_id):
         raise NotImplementedError
-
+    
+    @abc.abstractmethod
+    def get_student_experience_points(self, student_id: int) -> LM.StudentExperiencePoints:
+        raise NotImplementedError
+    
     @abc.abstractmethod
     def get_student_learning_element(
         self, student_id, learning_element_id
@@ -702,6 +717,12 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
 
     @abc.abstractmethod
     def update_settings(self, user_id, settings) -> UA.Settings:
+        raise NotImplementedError
+    
+    @abc.abstractmethod
+    def update_student_experience_points(
+        self, student_id: int, experience_points: int
+    ) -> LM.StudentExperiencePoints:
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -1029,6 +1050,14 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             raise err.ForeignKeyViolation()
         except Exception:
             raise err.CreationError()
+        
+    def create_student_experience_points(
+            self, student_experience_points: LM.StudentExperiencePoints
+        ) -> LM.StudentExperiencePoints:
+        try:
+            self.session.add(student_experience_points)
+        except Exception:
+            raise err.CreationError()
 
     def add_student_lpath_le_algorithm(
         self,
@@ -1304,6 +1333,11 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             query_course.delete()
         else:
             student_courses.delete()
+
+    def delete_student_experience_points(self, student_i: int) -> None:
+        self.session.query(LM.StudentExperiencePoints).filter_by(
+            student_id=student_id
+        ).delete()
 
     def delete_student_learning_element(self, student_id):
         self.session.query(DM.StudentLearningElement).filter_by(
@@ -1767,6 +1801,17 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             return self.session.query(UA.Student).filter_by(university=university).all()
         except Exception:
             raise err.DatabaseQueryError()
+        
+    def get_student_experience_points(
+            self, student_id: int) -> LM.StudentExperiencePoints:
+        try:
+            return (
+                self.session.query(LM.StudentExperiencePoints)
+                .filter_by(student_id=student_id)
+                .all()
+            )
+        except Exception:
+            raise err.DatabaseQueryError()
 
     def get_student_learning_element(
         self, student_id, learning_element_id
@@ -2152,6 +2197,27 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             )
         except Exception:
             raise err.NoValidIdError
+        
+    def update_student_experience_points(
+        self, student_id: int, earned_experience_points: int
+        ) -> LM.StudentExperiencePoints:
+        entry = self.get_student_experience_points(student_id)
+        if entry !=[]:
+            updated_xp = entry.experience_points += experience_points
+            return (
+                self.session.query(LM.StudentExperiencePoints)
+                .filter_by(student_id=student_id)
+                .update(
+                    {
+                        LM.StudentExperiencePoints.experience_points: updated_xp,
+                    }
+                )
+            )
+        else:
+            raise err.NoValidIdError
+        
+
+
 
     def update_topic(self, topic_id, topic) -> DM.Topic:
         topic_exist = self.get_topic_by_id(topic_id)

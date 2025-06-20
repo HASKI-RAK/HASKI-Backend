@@ -1138,6 +1138,23 @@ def setup_db(
 
     cursor.execute(sql)
 
+    sql = """
+        CREATE TABLE IF NOT EXISTS public.student_experience_points
+        (
+            id integer NOT NULL GENERATED ALWAYS AS IDENTITY
+            ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+            student_id integer NOT NULL,
+            experience_points integer NOT NULL DEFAULT 0
+        )
+
+        TABLESPACE pg_default;
+
+        ALTER TABLE IF EXISTS public.student_experience_points
+            OWNER to postgres;
+    """
+
+    cursor.execute(sql)
+
     conn.commit()
     # Closing the connection
     conn.close()

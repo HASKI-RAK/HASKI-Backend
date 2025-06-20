@@ -833,6 +833,20 @@ def create_news(
         result = news.serialize()
         return result
 
+def create_student_experience_points(
+    uow: unit_of_work.AbstracUnitOfWork,
+    student_id: int,
+    experience_points,
+):
+    with uow:
+        student_experience_points = LM.StudentExperiencePoints(
+            student_id=student_id,
+            experience_points=experience_points
+        )
+        uow.student_experience_points.create_student_experience_points(
+            student_experience_points)
+        uow.commit()
+        return student_experience_points.serialize()
 
 def create_student_rating(
     uow: unit_of_work.AbstractUnitOfWork,
@@ -1217,6 +1231,13 @@ def delete_student_course(
 ):
     with uow:
         uow.student_course.delete_student_course(student_id, course_id)
+        uow.commit()
+
+def delete_student_experience_points(
+    uow: unit_of_work.AbstractUnitOfWork, student_id
+) -> None:
+    with uow:
+        uow.student_experience_points.delete_student_experience_points(student_id)
         uow.commit()
 
 

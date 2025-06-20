@@ -370,6 +370,14 @@ student_course = Table(
     Column("understanding_value", Integer, nullable=False),
 )
 
+student_experience_points = Table(
+    "student_experience_points",
+    mapper_registry.metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("student_id", Integer, nullable=False),
+    Column("experience_points", Integer, nullable=False),
+)
+
 student_learning_element = Table(
     "student_learning_element",
     mapper_registry.metadata,
@@ -616,6 +624,12 @@ def start_mappers():
     mapper_registry.map_imperatively(
         DM.StudentCourse,
         student_course,
+    )
+
+    mapper_registry.map_imperatively
+    (
+        DM.StudentExperiencePoints,
+        student_experience_points,
     )
 
     mapper_registry.map_imperatively(
