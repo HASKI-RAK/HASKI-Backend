@@ -31,6 +31,7 @@ class GeneticAlgorithm:
         self.cross_rate = 0.9
         self.pop_size = 100
         self.first_is_present = False
+        self.dimensionen = 4
 
         if learning_elements is not None:
             #  convert learning element into
@@ -86,6 +87,17 @@ class GeneticAlgorithm:
             le_coord[:, :, 3],
         )
         return (line_x, line_y, line_z, line_k)
+     
+    def get_lines_paths2(self, new_pop):
+        """This function extracts all the positions (X,Y,Z,K,..) 
+        in the space of the generated trajectories."""
+        
+        le_coord = self.le_coordinate[new_pop]
+        
+        # all columns from `le_coord` dynamically to handle any number of dimensions
+        lines = [le_coord[:, :, i] for i in range(le_coord.shape[2])]
+        
+        return tuple(lines)
 
     def get_fitness(self, line_x, line_y, line_z, line_k):
         """Function to calculate the fitness function for GA"""
@@ -98,6 +110,22 @@ class GeneticAlgorithm:
             + np.square(np.diff(line_k))
         )
         fitness = np.sum(np.sqrt(total_sum), 1)
+        return fitness
+
+    def get_fitness_2(self, *lines):
+        """Calcula la función de aptitud para múltiples variables"""
+        
+        # Stellen Sie sicher, dass alle Einträge die gleiche Form haben.
+        shape = lines[0].shape
+        for line in lines:
+            assert line.shape == shape, "The dimensions of the arrays do not match."
+        
+        # a score is evaluated for each individual, which is
+        # calculated using the fitness function: dtype=np.float64)
+        total_sum = np.sum([np.square(np.diff(line, axis=1)) for line in lines], axis=0)        
+        
+        fitness = np.sum(np.sqrt(total_sum), axis=1)
+
         return fitness
 
     def crossover(self, parent, pop):
@@ -157,9 +185,11 @@ class GeneticAlgorithm:
         valid = False
         while i < self.n_generation or valid:
             new_pop = self.valid_population()
-            lx, ly, lz, lk = self.get_lines_paths(new_pop)
-            fitness = self.get_fitness(lx, ly, lz, lk)
-
+            lx, ly, lz, lk = self.get_lines_paths2(new_pop)
+            #lx, ly, lz, lk = self.get_lines_paths(new_pop)
+            #fitness = self.get_fitness(lx, ly, lz, lk)
+            fitness = self.get_fitness_2(lx, ly, lz, lk)
+           
             # sort population
             best_index = np.argsort(fitness)
             fitness = fitness[best_index]
