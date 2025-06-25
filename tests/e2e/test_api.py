@@ -1308,44 +1308,6 @@ class TestApi:
         for key in keys_expected:
             assert key in response.keys()
 
-    # Student visits Learning Element
-    @pytest.mark.parametrize(
-        "input, moodle_user_id, keys_expected,\
-                            status_code_expected",
-        [
-            # Working Example
-            (
-                {"visit_start": "2023-08-01T13:37:42Z"},
-                1,
-                ["student_id", "learning_element_id", "visit_start", "visit_end"],
-                201,
-            ),
-            # Wrong data format
-            ({"visit_start_time": "01.01.2023"}, 4, ["error", "message"], 400),
-            # Missing Parameter
-            ({"previous_learning_element_id": 1}, 4, ["error", "message"], 400),
-        ],
-    )
-    def test_post_learning_element_visit(
-        self, client_class, input, moodle_user_id, keys_expected, status_code_expected
-    ):
-        global student_id, learning_element_id
-        url = (
-            path_lms_student
-            + "/"
-            + str(student_id)
-            + "/"
-            + str(moodle_user_id)
-            + path_learning_element
-            + "/"
-            + str(learning_element_id)
-        )
-        r = client_class.post(url, json=input)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        for key in keys_expected:
-            assert key in response.keys()
-
     # Learning Path is calculated
     @pytest.mark.parametrize(
         "input, moodle_user_id, keys_expected,\

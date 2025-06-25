@@ -99,7 +99,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         self.student = set(student)
         self.student_course = set(student_course)
         self.student_learning_element = set(student_learning_element)
-        self.student_learning_element_visit = set(student_learning_element_visit)
         self.student_learning_path_learning_element_algorithm = set(
             student_learning_path_learning_element_algorithm
         )
@@ -115,10 +114,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
     def add_course_creator_to_course(self, course_creator_course):
         course_creator_course.id = len(self.course_creator_course) + 1
         self.course_creator_course.add(course_creator_course)
-
-    def add_student_learning_element_visit(self, student_learning_element_vist):
-        student_learning_element_vist.id = len(self.student_learning_element_visit) + 1
-        self.student_learning_element_visit.add(student_learning_element_vist)
 
     def add_student_to_course(self, student_course):
         student_course.id = len(self.student_course) + 1
@@ -542,14 +537,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 to_remove.append(i)
         for remove in to_remove:
             self.student_learning_element.remove(remove)
-
-    def delete_student_learning_element_visit(self, student_id):
-        to_remove = []
-        for i in self.student_learning_element_visit:
-            if i.self.student_id == student_id:
-                to_remove.append(i)
-        for remove in to_remove:
-            self.student_learning_element_visit.remove(remove)
 
     def delete_student_learning_element_visit_by_learning_element_id(
         self, learning_element_id
@@ -3201,24 +3188,6 @@ def test_create_course_creator_course():
         uow=uow, created_by=1, course_id=1, created_at="2023-01-01"
     )
     entries_after = len(uow.course_creator_course.course_creator_course)
-    assert type(result) == dict
-    assert result != {}
-    assert entries_beginning + 1 == entries_after
-
-
-def test_student_learning_element_visit():
-    uow = FakeUnitOfWork()
-    create_learning_element_for_tests_1(uow)
-    create_student_for_tests(uow)
-    entries_beginning = len(
-        uow.student_learning_element_visit.student_learning_element_visit
-    )
-    result = services.add_student_learning_element_visit(
-        uow=uow, student_id=1, learning_element_id=1, visit_start="2023-01-01"
-    )
-    entries_after = len(
-        uow.student_learning_element_visit.student_learning_element_visit
-    )
     assert type(result) == dict
     assert result != {}
     assert entries_beginning + 1 == entries_after
