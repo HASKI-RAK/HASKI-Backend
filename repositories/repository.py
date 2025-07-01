@@ -2203,7 +2203,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         ) -> LM.StudentExperiencePoints:
         entry = self.get_student_experience_points(student_id)
         if entry !=[]:
-            updated_xp = entry.experience_points += experience_points
+            updated_xp = entry.experience_points + earned_experience_points
             return (
                 self.session.query(LM.StudentExperiencePoints)
                 .filter_by(student_id=student_id)

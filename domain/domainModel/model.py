@@ -403,3 +403,23 @@ class LearningElementRating:
             "deviation": updated_rating.deviation,
             "timestamp": updated_rating.timestamp,
         }
+
+
+class Badge:
+    def __init__(self, name, description, icon_id, course_id, topic_id) -> None:
+        self.id = None
+        self.name = name
+        self.description = description
+        self.icon_id = icon_id
+        self.course_id = course_id
+        self.topic_id = topic_id
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "description": self.description,
+            "icon_id": self.icon_id,
+            "course_id": self.course_id,
+            "topic_id": self.topic_id,
+        }

@@ -84,6 +84,7 @@ class SqlAlchemyUnitOfWork(AbstractUnitOfWork):  # pragma: no cover
     def __enter__(self):
         self.session = self.session_factory()
         self.admin = repository.SqlAlchemyRepository(self.session)
+        self.badge = repository.SqlAlchemyRepository(self.session)
         self.course = repository.SqlAlchemyRepository(self.session)
         self.course_creator = repository.SqlAlchemyRepository(self.session)
         self.course_creator_course = repository.SqlAlchemyRepository(self.session)
@@ -115,6 +116,7 @@ class SqlAlchemyUnitOfWork(AbstractUnitOfWork):  # pragma: no cover
         self.logbuffer = repository.SqlAlchemyRepository(self.session)
         self.default_learning_path = repository.SqlAlchemyRepository(self.session)
         self.student = repository.SqlAlchemyRepository(self.session)
+        self.student_badge = repository.SqlAlchemyRepository(self.session)
         self.student_course = repository.SqlAlchemyRepository(self.session)
         self.student_experience_points = repository.SqlAlchemyRepository(self.session)
         self.student_learning_element = repository.SqlAlchemyRepository(self.session)

@@ -1155,6 +1155,41 @@ def setup_db(
 
     cursor.execute(sql)
 
+    sql = """
+        CREATE TABLE IF NOT EXISTS public.badge
+        (
+            id integer NOT NULL GENERATED ALWAYS AS IDENTITY
+            ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+            name text COLLATE pg_catalog."default" NOT NULL,
+            description text COLLATE pg_catalog."default" NOT NULL,
+            icon_id integer NOT NULL,
+            course_id integer NOT NULL,
+            topic_id integer NOT NULL,
+        )
+
+        TABLESPACE pg_default;
+        ALTER TABLE IF EXISTS public.badge
+            OWNER to postgres;
+    """
+
+    cursor.execute(sql)
+
+    sql = """
+        CREATE TABLE IF NOT EXISTS public.student_badge
+        (
+            id integer NOT NULL GENERATED ALWAYS AS IDENTITY
+            ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+            student_id integer NOT NULL,
+            badge_id integer NOT NULL,
+            )
+            
+            TABLESPACE pg_default;
+            ALTER TABLE IF EXISTS public.student_badge
+                OWNER to postgres;
+    """
+
+    cursor.execute(sql)
+
     conn.commit()
     # Closing the connection
     conn.close()

@@ -15,6 +15,17 @@ admin = Table(
     Column("user_id", Integer, nullable=False),
 )
 
+badge = Table(
+    "badge",
+    mapper_registry.metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("name", String, nullable=False),
+    Column("description", String, nullable=False),
+    Column("image_id", String, nullable=False),
+    Column("course_id", Integer, nullable=False),
+    Column("topic_id", Integer, nullable=False),
+)
+
 course = Table(
     "course",
     mapper_registry.metadata,
@@ -503,6 +514,10 @@ def start_mappers():
         admin,
     )
     mapper_registry.map_imperatively(
+        DM.Badge,
+        badge,
+    )
+    mapper_registry.map_imperatively(
         DM.Course,
         course,
     )
@@ -628,7 +643,7 @@ def start_mappers():
 
     mapper_registry.map_imperatively
     (
-        DM.StudentExperiencePoints,
+        LM.StudentExperiencePoints,
         student_experience_points,
     )
 
