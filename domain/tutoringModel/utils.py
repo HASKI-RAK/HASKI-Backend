@@ -92,7 +92,6 @@ def get_coordinates(learning_style, list_of_les):
     return coordinates
 
 
-
 # Calculate the coordinates for the LEs
 def get_coordinates_plus(learning_style, list_of_les):
     coordinates = {}
@@ -273,9 +272,7 @@ def get_learning_path_as_str(result_ga):
     return str_learning_path
 
 
-
 def normalize_array(data, new_min=-12, new_max=13):
     old_min = np.min(data)
     old_max = np.max(data)
     return new_min + (data - old_min) * (new_max - new_min) / (old_max - old_min)
-
