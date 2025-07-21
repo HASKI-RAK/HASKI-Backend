@@ -389,6 +389,10 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
+    def delete_default_learning_path_by_uni(self, university):
+        raise NotImplementedError
+
+    @abc.abstractmethod
     def get_admin_by_id(self, user_id) -> UA.Admin:
         raise NotImplementedError
 
@@ -1426,6 +1430,11 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             ).delete()
         else:
             raise err.NoValidIdError()
+
+    def delete_default_learning_path_by_uni(self, university):
+        self.session.query(TM.DefaultLearningPathElement).filter_by(
+            university=university
+        ).delete()
 
     def get_admin_by_id(
         self,
