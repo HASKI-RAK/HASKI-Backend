@@ -2488,6 +2488,25 @@ def get_learning_element_solution(
         return result
 
 
+def get_topic_solutions(
+        uow: unit_of_work.AbstractUnitOfWork, topic_id: int
+) -> dict:
+    with uow:
+        topic_learning_elements = get_learning_elements_for_topic_id(uow, topic_id)
+        result = []
+        for learning_element in topic_learning_elements:
+            learning_element_lms_id = learning_element["learning_element_id"]
+            # Get the solution for each learning element
+            learning_element_solution = (
+                uow.learning_element_solution.get_learning_element_solution(
+                    learning_element_lms_id
+                )
+            )
+            if learning_element_solution:
+                result.append(learning_element_solution[0].serialize())
+        return result
+
+
 def get_moodle_course_content(
     uow: unit_of_work.AbstractUnitOfWork, course_id: int
 ) -> dict:

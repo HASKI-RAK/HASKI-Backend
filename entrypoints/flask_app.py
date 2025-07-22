@@ -2476,6 +2476,20 @@ def get_learning_element_solution(learning_element_lms_id: int):
             return jsonify(result), status_code
 
 
+@app.route("/topic/<topic_id>/learningPath/solution", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_topic_solutions(topic_id: int):
+    match request.method:
+        case "GET":
+            result = services.get_topic_solutions(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                topic_id=topic_id,
+            )
+            status_code = 200
+            print(result)
+            return jsonify(result), status_code
+
+
 @app.route(
     "/learningElement/<learning_element_lms_id>/solution",
     methods=["POST", "DELETE"]
