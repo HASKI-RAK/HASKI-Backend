@@ -706,7 +706,7 @@ class TestApi:
                 True,
             ),
             # Working example for LE 2
-                        (
+            (
                 {
                     "lms_id": 2,
                     "activity_type": "h5pactivity",
@@ -732,7 +732,7 @@ class TestApi:
                 True,
             ),
             # Working example for LE 3
-                        (
+            (
                 {
                     "lms_id": 3,
                     "activity_type": "h5pactivity",
