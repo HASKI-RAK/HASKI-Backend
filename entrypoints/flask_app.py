@@ -2499,6 +2499,7 @@ def get_topic_solutions(topic_id: int):
     methods=["POST"]
 )
 @cross_origin(supports_credentials=True)
+@json_only()
 def post_learning_element_solution(
     data: Dict[str, Any], learning_element_lms_id: int
 ):
