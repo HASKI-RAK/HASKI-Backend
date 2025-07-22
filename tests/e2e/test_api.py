@@ -679,13 +679,65 @@ class TestApi:
                             moodle_topic_id, keys_expected, \
                             status_code_expected, save_id",
         [
-            # Working Example for LE
+            # Working Example for LE 1
             (
                 {
                     "lms_id": 1,
                     "activity_type": "Quiz",
                     "classification": "ÜB",
                     "name": "Test Learning Element",
+                    "created_by": "Maria Musterfrau",
+                    "created_at": "2023-08-01T13:37:42Z",
+                    "university": "TH-AB",
+                },
+                1,
+                1,
+                [
+                    "id",
+                    "lms_id",
+                    "activity_type",
+                    "classification",
+                    "name",
+                    "created_by",
+                    "created_at",
+                    "university",
+                ],
+                201,
+                True,
+            ),
+            # Working example for LE 2
+                        (
+                {
+                    "lms_id": 2,
+                    "activity_type": "h5pactivity",
+                    "classification": "ÜB",
+                    "name": "Test Learning Element 2",
+                    "created_by": "Maria Musterfrau",
+                    "created_at": "2023-08-01T13:37:42Z",
+                    "university": "TH-AB",
+                },
+                1,
+                1,
+                [
+                    "id",
+                    "lms_id",
+                    "activity_type",
+                    "classification",
+                    "name",
+                    "created_by",
+                    "created_at",
+                    "university",
+                ],
+                201,
+                True,
+            ),
+            # Working example for LE 3
+                        (
+                {
+                    "lms_id": 3,
+                    "activity_type": "h5pactivity",
+                    "classification": "KÜ",
+                    "name": "Test Learning Element 2",
                     "created_by": "Maria Musterfrau",
                     "created_at": "2023-08-01T13:37:42Z",
                     "university": "TH-AB",
@@ -1878,27 +1930,28 @@ class TestApi:
         mock_get.side_effect = [mock_response_1, mock_response_2]
 
         user_id_student = 4
-        learning_element_id = 1
-        url = (
-            path_user
-            + "/"
-            + str(user_id_student)
-            + path_course
-            + "/"
-            + str(course_id)
-            + path_topic
-            + "/"
-            + str(topic_id)
-            + path_learning_element
-            + "/"
-            + str(learning_element_id)
-            + path_rating
-        )
-        r = client_class.post(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        for key in response.keys():
-            assert key in keys_expected
+        learning_element_ids = [1, 2, 3]
+        for learning_element_id in learning_element_ids:
+            url = (
+                path_user
+                + "/"
+                + str(user_id_student)
+                + path_course
+                + "/"
+                + str(course_id)
+                + path_topic
+                + "/"
+                + str(topic_id)
+                + path_learning_element
+                + "/"
+                + str(learning_element_id)
+                + path_rating
+            )
+            r = client_class.post(url)
+            assert r.status_code == status_code_expected
+            response = json.loads(r.data.decode("utf-8").strip("\n"))
+            for key in response.keys():
+                assert key in keys_expected
 
     # Post a Contact Form
     @pytest.mark.parametrize(
