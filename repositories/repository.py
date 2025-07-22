@@ -1176,8 +1176,6 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             self.session.query(DM.LearningElementSolution).filter_by(
                 learning_element_lms_id=learning_element_lms_id
             ).delete()
-        else:
-            raise err.NoValidIdError()
 
     def delete_ils_input_answers(self, questionnaire_ils_id):
         ils_input_answers = self.get_ils_input_answers_by_id(questionnaire_ils_id)

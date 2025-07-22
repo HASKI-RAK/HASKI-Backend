@@ -305,6 +305,10 @@ def course_administration(data: Dict[str, Any], course_id, lms_course_id):
                     services.delete_student_learning_element_by_learning_element_id(
                         unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"]
                     )
+                    services.delete_learning_element_solution(
+                        unit_of_work.SqlAlchemyUnitOfWork(),
+                        learning_element["learning_element_id"],
+                    )
                     services.delete_learning_element(
                         unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"]
                     )
@@ -677,11 +681,11 @@ def topic_administration(data: Dict[str, Any], topic_id, lms_topic_id):
                     unit_of_work.SqlAlchemyUnitOfWork(),
                     learning_element["learning_element_id"],
                 )
-                services.delete_learning_element(
+                services.delete_learning_element_solution(
                     unit_of_work.SqlAlchemyUnitOfWork(),
                     learning_element["learning_element_id"],
                 )
-                services.delete_learning_element_solution(
+                services.delete_learning_element(
                     unit_of_work.SqlAlchemyUnitOfWork(),
                     learning_element["learning_element_id"],
                 )
