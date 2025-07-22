@@ -1116,7 +1116,7 @@ def setup_db(
         ALTER TABLE IF EXISTS public.student_rating
             OWNER to postgres;
     """
-    
+
     cursor.execute(sql)
 
     sql = """
