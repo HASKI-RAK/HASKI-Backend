@@ -2492,11 +2492,10 @@ def get_topic_solutions(topic_id: int):
 
 @app.route(
     "/learningElement/<learning_element_lms_id>/solution",
-    methods=["POST", "DELETE"]
+    methods=["POST"]
 )
 @cross_origin(supports_credentials=True)
-@json_only(ignore=["GET"])
-def post_or_delete_learning_element_solution(
+def post_learning_element_solution(
     data: Dict[str, Any], learning_element_lms_id: int
 ):
     entry = services.get_learning_element_solution(
@@ -2526,6 +2525,22 @@ def post_or_delete_learning_element_solution(
                     raise err.WrongParameterValueError()
             else:
                 raise err.AlreadyExisting()
+
+
+@app.route(
+    "/learningElement/<learning_element_lms_id>/solution",
+    methods=["DELETE"]
+)
+@cross_origin(supports_credentials=True)
+def delete_learning_element_solution(
+       learning_element_lms_id: int
+):
+    entry = services.get_learning_element_solution(
+        uow=unit_of_work.SqlAlchemyUnitOfWork(),
+        learning_element_lms_id=learning_element_lms_id
+    )
+    condition1 = entry == {}
+    match request.method:
         case "DELETE":
             if not condition1:
                 services.delete_learning_element_solution(
