@@ -2390,6 +2390,7 @@ def post_create_student_rating(student_id: str, topic_id: str):
             status_code = 201
             return jsonify(result), status_code
 
+
 @app.route("/user/<user_id>/student/<student_id>/rating", methods=["GET"])
 @cross_origin(supports_credentials=True)
 def get_student_ratings(user_id: str, student_id: str):
@@ -2407,6 +2408,7 @@ def get_student_ratings(user_id: str, student_id: str):
             else:
                 raise err.WrongParameterValueError()
 
+
 @app.route(
     "/topic/<topic_id>/learningElement/<learning_element_id>/rating", methods=["POST"]
 )
@@ -2422,6 +2424,7 @@ def post_create_learning_element_rating(topic_id: str, learning_element_id: str)
             )
             status_code = 201
             return jsonify(result), status_code
+
 
 @app.route("/learningElement/rating", methods=["GET"])
 @cross_origin(supports_credentials=True)
