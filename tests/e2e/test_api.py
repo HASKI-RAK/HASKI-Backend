@@ -1750,40 +1750,6 @@ class TestApi:
             ),
         ],
     )
-    def test_get_student_ratings_on_topic(
-        self, client_class, keys_expected, status_code_expected
-    ):
-        url = (
-            path_student
-            + "/"
-            + str(student_id)
-            + path_topic
-            + "/"
-            + str(topic_id)
-            + path_rating
-        )
-        r = client_class.get(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        for key in response[0].keys():
-            assert key in keys_expected
-
-    @pytest.mark.parametrize(
-        "keys_expected, status_code_expected",
-        [
-            (
-                {
-                    "id",
-                    "student_id",
-                    "topic_id",
-                    "rating_value",
-                    "rating_deviation",
-                    "timestamp",
-                },
-                200,
-            ),
-        ],
-    )
     def test_get_student_ratings(
         self, client_class, keys_expected, status_code_expected
     ):
@@ -1836,40 +1802,6 @@ class TestApi:
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
         for key in response.keys():
-            assert key in keys_expected
-
-    @pytest.mark.parametrize(
-        "keys_expected, status_code_expected",
-        [
-            (
-                {
-                    "id",
-                    "learning_element_id",
-                    "topic_id",
-                    "rating_value",
-                    "rating_deviation",
-                    "timestamp",
-                },
-                200,
-            ),
-        ],
-    )
-    def test_get_learning_element_ratings_on_topic(
-        self, client_class, keys_expected, status_code_expected
-    ):
-        url = (
-            path_topic
-            + "/"
-            + str(topic_id)
-            + path_learning_element
-            + "/"
-            + str(learning_element_id)
-            + path_rating
-        )
-        r = client_class.get(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        for key in response[0].keys():
             assert key in keys_expected
 
     @pytest.mark.parametrize(

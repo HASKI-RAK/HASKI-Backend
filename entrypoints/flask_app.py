@@ -2390,21 +2390,6 @@ def post_create_student_rating(student_id: str, topic_id: str):
             status_code = 201
             return jsonify(result), status_code
 
-
-@app.route("/student/<student_id>/topic/<topic_id>/rating", methods=["GET"])
-@cross_origin(supports_credentials=True)
-def get_student_ratings_on_topic(student_id: str, topic_id: str):
-    match request.method:
-        case "GET":
-            result = services.get_student_ratings_on_topic(
-                uow=unit_of_work.SqlAlchemyUnitOfWork(),
-                student_id=int(student_id),
-                topic_id=int(topic_id),
-            )
-            status_code = 200
-            return jsonify(result), status_code
-
-
 @app.route("/user/<user_id>/student/<student_id>/rating", methods=["GET"])
 @cross_origin(supports_credentials=True)
 def get_student_ratings(user_id: str, student_id: str):
@@ -2422,7 +2407,6 @@ def get_student_ratings(user_id: str, student_id: str):
             else:
                 raise err.WrongParameterValueError()
 
-
 @app.route(
     "/topic/<topic_id>/learningElement/<learning_element_id>/rating", methods=["POST"]
 )
@@ -2438,23 +2422,6 @@ def post_create_learning_element_rating(topic_id: str, learning_element_id: str)
             )
             status_code = 201
             return jsonify(result), status_code
-
-
-@app.route(
-    "/topic/<topic_id>/learningElement/<learning_element_id>/rating", methods=["GET"]
-)
-@cross_origin(supports_credentials=True)
-def get_learning_element_ratings_on_topic(topic_id: str, learning_element_id: str):
-    match request.method:
-        case "GET":
-            result = services.get_learning_element_ratings_on_topic(
-                uow=unit_of_work.SqlAlchemyUnitOfWork(),
-                topic_id=int(topic_id),
-                learning_element_id=int(learning_element_id),
-            )
-            status_code = 200
-            return jsonify(result), status_code
-
 
 @app.route("/learningElement/rating", methods=["GET"])
 @cross_origin(supports_credentials=True)
