@@ -1001,6 +1001,7 @@ def setup_db(
             ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
             classification text NOT NULL,
             position integer NOT NULL,
+            disabled boolean NOT NULL,
             university text NOT NULL,
             CONSTRAINT default_learning_path_pkey PRIMARY KEY (id)
         )

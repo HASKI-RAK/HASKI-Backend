@@ -578,6 +578,320 @@ class TestOIDCLoginFlask(unittest.TestCase):
                                     response = self.oidc_login.get_cookie_expiration()
                                     assert response.status == "200 OK"
 
+    def test_lti_launch_from_id_token_user_does_not_exist_in_db_role_course_creator(
+        self,
+    ):
+        # Create a mock request with the necessary attributes
+        request_mock = MagicMock()
+        request_mock.form = MagicMock()
+        request_mock.form.get = MagicMock(
+            side_effect=lambda k, type=str: {
+                "state": "valid_state_jwt",
+                "iss": "https://moodle.haski.app",
+                "client_id": "VRCKkhKlZtHNHtD",
+                "login_hint": "student",
+                "lti_message_hint": "message_hint",
+                "target_link_uri": "https://backend.ke.haski.app/lti_launch",
+                "id_token": "valid_id_token_jwt",
+            }.get(k, "")
+        )
+        request_mock.referrer = "https://example.com"
+        self.oidc_login._request = request_mock
+
+        jwt_payload = {
+            "nonce": "valid_nonce",
+            "iat": (
+                datetime.datetime.utcnow() - datetime.timedelta(minutes=5)
+            ).timestamp(),
+            "exp": (
+                datetime.datetime.utcnow() + datetime.timedelta(minutes=5)
+            ).timestamp(),
+            "iss": os.environ.get("BACKEND_URL", "https://backend.haski.app"),
+            "kid": "backendprivatekey",
+            "state": "valid_state",
+            "sub": "user123",
+            "name": "Test User",
+            "https://purl.imsglobal.org/spec/lti/claim/tool_platform": {
+                "name": "Test University"
+            },
+            "https://purl.imsglobal.org/spec/lti/claim/roles": ["student"],
+        }
+
+        with patch(
+            "service_layer.crypto.JWTKeyManagement.verify_jwt", return_value=jwt_payload
+        ):
+            with patch(
+                "service_layer.crypto.JWTKeyManagement.generate_nonce_jwt",
+                return_value="mocked_nonce_jwt",
+            ):
+                with patch("service_layer.service.SessionServiceFlask.set"):
+                    with patch(
+                        "service_layer.service.SessionServiceFlask.get"
+                    ) as mock_get_session:
+                        mock_get_session.side_effect = (
+                            lambda nonce, key: "valid_state"
+                            if key == "state" and nonce == "valid_nonce"
+                            else None
+                        )
+                        with patch(
+                            "service_layer.services.get_user_by_lms_id",
+                            return_value={},
+                        ):
+                            with patch(
+                                "service_layer.services.create_user",
+                                return_value={
+                                    "id": 1,
+                                    "name": "Test User",
+                                    "role": "course creator",
+                                    "lms_user_id": "2",
+                                    "university": "HS-KE",
+                                },
+                            ):
+                                with patch(
+                                    "service_layer.services." "get_courses_by_uni",
+                                    return_value={
+                                        "courses": [
+                                            {
+                                                "id": 1,
+                                                "name": "course-1",
+                                                "university": "HS-KE",
+                                            }
+                                        ],
+                                    },
+                                ):
+                                    with patch(
+                                        "service_layer.services."
+                                        "get_student_by_user_id",
+                                        return_value={
+                                            "id": 1,
+                                            "name": "Test User",
+                                            "role": "course creator",
+                                            "university": "HS-KE",
+                                        },
+                                    ):
+                                        with patch(
+                                            "service_layer.services."
+                                            "add_student_to_course",
+                                            return_value={
+                                                "state": "ok",
+                                            },
+                                        ):
+                                            with patch("flask.redirect"):
+                                                with patch(
+                                                    "service_layer."
+                                                    "lti.config."
+                                                    "ToolConfigJson.get_platform",
+                                                    return_valule="moodle",
+                                                ):
+                                                    with patch(
+                                                        "service_layer."
+                                                        "lti.config."
+                                                        "ToolConfigJson."
+                                                        "decode_platform",
+                                                        return_valule="moodle_decoded",
+                                                    ):
+                                                        with patch(
+                                                            "service_layer."
+                                                            "services."
+                                                            "get_student_by_user_id",
+                                                            return_value={
+                                                                "id": 1,
+                                                                "name": "Test User",
+                                                                "role": "course creator",  # noqa: E501
+                                                            },
+                                                        ):
+                                                            with patch(
+                                                                "service_layer."
+                                                                "services."
+                                                                "get_default_learning_path_by_university",  # noqa: E501
+                                                                return_value=[
+                                                                    {
+                                                                        "id": 1,
+                                                                        "classification": "LZ",  # noqa: E501
+                                                                        "position": 1,
+                                                                        "disabled": False,  # noqa: E501
+                                                                        "university": "HS-KE",  # noqa: E501
+                                                                    },
+                                                                    {
+                                                                        "id": 2,
+                                                                        "classification": "FO",  # noqa: E501
+                                                                        "position": 2,
+                                                                        "disabled": False,  # noqa: E501
+                                                                        "university": "HS-KE",  # noqa: E501
+                                                                    },
+                                                                    {
+                                                                        "id": 3,
+                                                                        "classification": "BE",  # noqa: E501
+                                                                        "position": 3,
+                                                                        "disabled": False,  # noqa: E501
+                                                                        "university": "HS-KE",  # noqa: E501
+                                                                    },
+                                                                    {
+                                                                        "id": 4,
+                                                                        "classification": "AB",  # noqa: E501
+                                                                        "position": 4,
+                                                                        "disabled": False,  # noqa: E501
+                                                                        "university": "HS-KE",  # noqa: E501
+                                                                    },
+                                                                    {
+                                                                        "id": 5,
+                                                                        "classification": "ÜB",  # noqa: E501
+                                                                        "position": 5,
+                                                                        "disabled": False,  # noqa: E501
+                                                                        "university": "HS-KE",  # noqa: E501
+                                                                    },
+                                                                    {
+                                                                        "id": 6,
+                                                                        "classification": "ZF",  # noqa: E501
+                                                                        "position": 6,
+                                                                        "disabled": False,  # noqa: E501
+                                                                        "university": "HS-KE",  # noqa: E501
+                                                                    },
+                                                                    {
+                                                                        "id": 7,
+                                                                        "classification": "ZL",  # noqa: E501
+                                                                        "position": 7,
+                                                                        "disabled": False,  # noqa: E501
+                                                                        "university": "HS-KE",  # noqa: E501
+                                                                    },
+                                                                    {
+                                                                        "id": 8,
+                                                                        "classification": "EK",  # noqa: E501
+                                                                        "position": 9000,  # noqa: E501
+                                                                        "disabled": True,  # noqa: E501
+                                                                        "university": "HS-KE",  # noqa: E501
+                                                                    },
+                                                                    {
+                                                                        "id": 9,
+                                                                        "classification": "KÜ",  # noqa: E501
+                                                                        "position": 9001,  # noqa: E501
+                                                                        "disabled": True,  # noqa: E501
+                                                                        "university": "HS-KE",  # noqa: E501
+                                                                    },
+                                                                    {
+                                                                        "id": 10,
+                                                                        "classification": "AN",  # noqa: E501
+                                                                        "position": 9002,  # noqa: E501
+                                                                        "disabled": True,  # noqa: E501
+                                                                        "university": "HS-KE",  # noqa: E501
+                                                                    },
+                                                                    {
+                                                                        "id": 11,
+                                                                        "classification": "RQ",  # noqa: E501
+                                                                        "position": 9003,  # noqa: E501
+                                                                        "disabled": True,  # noqa: E501
+                                                                        "university": "HS-KE",  # noqa: E501
+                                                                    },
+                                                                    {
+                                                                        "id": 12,
+                                                                        "classification": "SE",  # noqa: E501
+                                                                        "position": 9004,  # noqa: E501
+                                                                        "disabled": True,  # noqa: E501
+                                                                        "university": "HS-KE",  # noqa: E501
+                                                                    },
+                                                                ],
+                                                            ):
+                                                                with patch(
+                                                                    "service_layer."  # noqa: E501
+                                                                    "services."
+                                                                    "get_topics_by_student_and_course_id",  # noqa: E501
+                                                                    return_value={
+                                                                        "topics": [
+                                                                            {
+                                                                                "id": 1,  # noqa: E501
+                                                                                "lms_id": 1,  # noqa: E501
+                                                                                "is_topic": True,  # noqa: E501
+                                                                                "parent_id": None,  # noqa: E501
+                                                                                "contains_le": True,  # noqa: E501
+                                                                                "name": "General",  # noqa: E501
+                                                                                "university": "New Site",  # noqa: E501
+                                                                                "created_by": "muster student",  # noqa: E501
+                                                                                "created_at": datetime.datetime(  # noqa: E501
+                                                                                    2025,  # noqa: E501
+                                                                                    6,  # noqa: E501
+                                                                                    17,  # noqa: E501
+                                                                                    0,  # noqa: E501
+                                                                                    0,  # noqa: E501
+                                                                                ),
+                                                                                "last_updated": None,  # noqa: E501
+                                                                                "student_topic": {  # noqa: E501
+                                                                                    "id": 4,  # noqa: E501
+                                                                                    "student_id": 4,  # noqa: E501
+                                                                                    "topic_id": 1,  # noqa: E501
+                                                                                    "done": False,  # noqa: E501
+                                                                                    "done_at": None,  # noqa: E501
+                                                                                    "visits": [],  # noqa: E501
+                                                                                },
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                ):
+                                                                    with patch(
+                                                                        "service_layer."  # noqa: E501
+                                                                        "services."
+                                                                        "get_student_lpath_le_algorithm",  # noqa: E501
+                                                                        return_value={
+                                                                            "id": 7,
+                                                                            "student_id": 5,  # noqa: E501
+                                                                            "topic_id": 1,  # noqa: E501
+                                                                            "algorithm_id": 4,  # noqa: E501
+                                                                        },
+                                                                    ):
+                                                                        with patch(
+                                                                            "service_layer."  # noqa: E501
+                                                                            "services."
+                                                                            "get_learning_path_algorithm_by_id",  # noqa: E501
+                                                                            return_value={  # noqa: E501
+                                                                                "id": 4,  # noqa: E501
+                                                                                "short_name": "graf",  # noqa: E501
+                                                                                "full_name": "Graf et al.",  # noqa: E501
+                                                                            },
+                                                                        ):
+                                                                            with patch(
+                                                                                "service_layer."  # noqa: E501
+                                                                                "services."  # noqa: E501
+                                                                                "create_learning_path",  # noqa: E501
+                                                                                return_value={  # noqa: E501
+                                                                                    "id": 5,  # noqa: E501
+                                                                                    "student_id": 5,  # noqa: E501
+                                                                                    "course_id": 1,  # noqa: E501
+                                                                                    "topic_id": 1,  # noqa: E501
+                                                                                    "based_on": "graf",  # noqa: E501
+                                                                                    "path": "FO",  # noqa: E501
+                                                                                    "calculated_on": datetime.datetime(  # noqa: E501
+                                                                                        2025,  # noqa: E501
+                                                                                        6,  # noqa: E501
+                                                                                        17,  # noqa: E501
+                                                                                        16,  # noqa: E501
+                                                                                        4,  # noqa: E501
+                                                                                        4,  # noqa: E501
+                                                                                        tzinfo=datetime.timezone(  # noqa: E501
+                                                                                            datetime.timedelta(  # noqa: E501
+                                                                                                seconds=7200  # noqa: E501
+                                                                                            )  # noqa: E501
+                                                                                        ),  # noqa: E501
+                                                                                    ),
+                                                                                },
+                                                                            ):
+                                                                                self.oidc_login.id_token = (  # noqa: E501
+                                                                                    MagicMock()  # noqa: E501
+                                                                                )  # noqa: E501
+                                                                                self.oidc_login.id_token.nonce = "valid_nonce"  # noqa: E501
+                                                                                self.oidc_login.id_token.sub = "user123"  # noqa: E501
+                                                                                self.oidc_login.id_token.name = "Test User"  # noqa: E501
+                                                                                self.oidc_login.id_token.__getitem__.side_effect = (  # noqa: E501
+                                                                                    jwt_payload.__getitem__  # noqa: E501
+                                                                                )
+
+                                                                                response = (  # noqa: E501
+                                                                                    self.oidc_login.lti_launch_from_id_token()  # noqa: E501
+                                                                                )
+
+                                                                                assert (  # noqa: E501
+                                                                                    response.status  # noqa: E501
+                                                                                    == "302 FOUND"  # noqa: E501
+                                                                                )  # noqa: E501
+
     def test_get_logout(self):
         with patch.object(
             self.oidc_login, "_request", _request=MagicMock

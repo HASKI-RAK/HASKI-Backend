@@ -197,11 +197,15 @@ def create_default_learning_path_element(
     uow: unit_of_work.AbstractUnitOfWork,
     classification: str,
     position: int,
+    disabled: bool,
     university: str,
 ) -> dict:
     with uow:
         default_learning_path_element = TM.DefaultLearningPathElement(
-            classification=classification, position=position, university=university
+            classification=classification,
+            position=position,
+            disabled=disabled,
+            university=university,
         )
         uow.default_learning_path.create_default_learning_path_element(
             default_learning_path_element
@@ -1796,6 +1800,15 @@ def get_student_learning_element_by_student_id(
             for student_learning_element in backend_response
         ]
         return result
+
+
+def delete_default_learning_path_by_uni(
+    uow: unit_of_work.AbstractUnitOfWork, university: str
+):
+    with uow:
+        uow.default_learning_path.delete_default_learning_path_by_uni(university)
+        uow.commit()
+        return {}
 
 
 def get_sub_topic_by_topic_id(
