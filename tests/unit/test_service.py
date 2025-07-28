@@ -3841,6 +3841,12 @@ def test_get_recommended_exercises_for_student_in_topic():
     create_learning_element_for_tests_3(uow)
     create_learning_path_learning_element_algorithm_for_tests(uow)
     add_student_to_course_for_tests(uow)
+    results = services.get_recommended_exercises_for_student_in_topic(
+        uow=uow, user_id=1, lms_user_id=1, student_id=1, course_id=1, topic_id=1
+    )
+    assert isinstance(results, list)
+    assert results == []
+
     create_student_rating_for_tests(uow)
     create_learning_element_rating_for_tests_2(uow)
     results = services.get_recommended_exercises_for_student_in_topic(

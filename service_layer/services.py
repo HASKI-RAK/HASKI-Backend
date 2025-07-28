@@ -2947,13 +2947,13 @@ def get_recommended_exercises_for_student_in_topic(
     )
 
     # Check if there are any ratings.
-    if not student_ratings_on_topic:  # TODO untested
+    if not student_ratings_on_topic:
         return []
 
     # Get the most recent student rating on the topic.
     most_recent_student_rating = max(
         student_ratings_on_topic, key=lambda x: x["timestamp"]
-    )  # todo: untested
+    )
 
     # Get all topic learning elements of topic id.
     topic_learning_elements = get_learning_elements_for_topic_id(uow, topic_id=topic_id)
