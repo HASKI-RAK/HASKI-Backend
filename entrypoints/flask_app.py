@@ -2458,6 +2458,34 @@ def get_learning_element_ratings():
             status_code = 200
             return jsonify(result), status_code
 
+# TODO replace other recommendation endpoint with this one
+@app.route("/user/<user_id>/course/<course_id>/topic/<topic_id>/learningElement/recommendation", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_learning_element_recommendation_2(user_id: str, course_id: str, topic_id: str):
+    match request.method:
+        case "GET":
+            # uow
+            uow = unit_of_work.SqlAlchemyUnitOfWork()
+
+            # Get user by user id.
+            user = services.get_user_by_id(uow=uow, user_id=user_id, lms_user_id=None)
+
+            # Get student by user id.
+            student = services.get_student_by_user_id(uow=uow, user_id=user_id)
+
+            # Get all recommended exercises for student in topic.
+            results = services.get_recommended_exercises_for_student_in_topic(
+                uow=uow,
+                user_id=user_id,
+                lms_user_id=user["lms_user_id"],
+                student_id=student["id"],
+                topic_id=topic_id,
+                course_id=course_id
+            )
+
+            status_code = 200
+            return jsonify(results), status_code
+
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)

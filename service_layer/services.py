@@ -1616,6 +1616,7 @@ def get_learning_elements_for_topic_id(
             return []
 
 
+# TODO Overwrite this function with the contents of the endpoint
 def get_learning_element_recommendation(
     uow: unit_of_work.AbstractUnitOfWork,
     user_id,
@@ -2562,7 +2563,6 @@ def get_moodle_most_recent_attempt_by_user(
 
         return {}
 
-
 def update_course(
     uow: unit_of_work.AbstractUnitOfWork,
     course_id,
@@ -2813,6 +2813,7 @@ def update_student_lpath_le_algorithm(
         return student_lpath_le_algorithm.serialize()
 
 
+# todo missing test_update_ratings
 def update_ratings(
     uow: unit_of_work.AbstractUnitOfWork,
     student_id: int,
@@ -2930,6 +2931,68 @@ def update_ratings(
             "learning_element_rating": updated_learning_element_rating,
         }
 
+def get_recommended_exercises_for_student_in_topic(
+    uow: unit_of_work.AbstractUnitOfWork,
+    user_id: int,
+    lms_user_id: int,
+    student_id: int,
+    topic_id: int,
+    course_id: int,
+) -> list:
+     # Get all student ratings on topic.
+    student_ratings_on_topic = get_student_ratings_on_topic(
+        uow=uow, student_id=student_id, topic_id=topic_id
+    )
+
+    # Check if there are any ratings.
+    if not student_ratings_on_topic: # TODO untested
+        return []
+
+    # Get the most recent student rating on the topic.
+    most_recent_student_rating = max(student_ratings_on_topic, key=lambda x: x["timestamp"]) # todo: untested
+    
+    # Get all topic learning elements of topic id.
+    topic_learning_elements = get_learning_elements_for_topic_id(
+        uow, topic_id=topic_id
+    )
+
+    # Get all learning elements in topic.
+    learning_elements_in_topic = [
+        get_learning_element_by_id(
+            uow=uow, 
+            user_id=user_id,
+            lms_user_id=lms_user_id,
+            student_id=student_id,
+            course_id=course_id,
+            topic_id=topic_id,
+            learning_element_id=learning_element["learning_element_id"]
+        ) for learning_element in topic_learning_elements
+    ]
+
+    # Filter out all learning elements except exercises (ÜB).
+    exercises_in_topic = [
+        learning_element for learning_element in learning_elements_in_topic
+        if learning_element["classification"] == "ÜB"
+    ]
+
+    # Compare the most recent student rating with the most recent rating on each exercise
+    # and sort the exercises based on the absolute difference between the ratings
+    # with the least distance first.
+    recommended_exercises = sorted(
+        exercises_in_topic,
+        key=lambda exercise: abs(
+            # Get the most recent rating of each exercise in the topic.
+            max(
+                get_learning_element_ratings_on_topic(
+                    uow, topic_id=topic_id, learning_element_id=exercise["id"],
+                ),
+                key=lambda x: x["timestamp"],
+                default={"rating_value": float("inf")}
+            )["rating_value"] - most_recent_student_rating["rating_value"]
+        )
+    )
+
+    return recommended_exercises
 
 # ##### TEST ENDPOINT #####
 
