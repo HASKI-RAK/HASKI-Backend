@@ -1572,6 +1572,7 @@ def create_learning_element_for_tests_2(uow):
             university=university_example,
         )
 
+
 def create_learning_element_for_tests_3(uow):
     list_of_les = [
         cons.abbreviation_ex,
@@ -1592,6 +1593,7 @@ def create_learning_element_for_tests_3(uow):
             created_by=user_name_example,
             university=university_example,
         )
+
 
 def create_course_topic_for_tests(uow):
     services.create_course_topic(uow=uow, course_id=1, topic_id=1)
@@ -1714,6 +1716,7 @@ def create_learning_element_rating_for_tests_1(uow):
         timestamp=datetime.datetime.now(),
     )
 
+
 def create_learning_element_rating_for_tests_2(uow):
     list_of_ratings = [
         1200,
@@ -1722,7 +1725,7 @@ def create_learning_element_rating_for_tests_2(uow):
         1500,
         1600,
     ]
-    for i in range (len(list_of_ratings)):
+    for i in range(len(list_of_ratings)):
         services.create_learning_element_rating(
             uow=uow,
             learning_element_id=i + 1,
@@ -3442,6 +3445,7 @@ def test_get_les_for_course_and_topic_id():
     assert type(result) is dict
     assert result != {}
 
+
 # todo remove
 def test_get_learning_element_recommendation():
     uow = FakeUnitOfWork()
@@ -3826,6 +3830,7 @@ def test_get_moodle_most_recent_attempt_by_user(mock_get):
         uow=uow, course_id=1, learning_element_id=1, lms_user_id="1"
     )
     assert result == {"timecreated": 2}
+
 
 def test_get_recommended_exercises_for_student_in_topic():
     uow = FakeUnitOfWork()
