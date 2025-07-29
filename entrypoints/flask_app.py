@@ -2472,7 +2472,7 @@ def get_learning_element_ratings():
 def get_learning_element_solution(learning_element_lms_id: int):
     match request.method:
         case "GET":
-            result = services.get_learning_element_solution(
+            result = services.get_learning_element_solution_by_learning_element_lms_id(
                 uow=unit_of_work.SqlAlchemyUnitOfWork(),
                 learning_element_lms_id=learning_element_lms_id,
             )
@@ -2503,7 +2503,7 @@ def get_topic_solutions(topic_id: int):
 def post_learning_element_solution(
     data: Dict[str, Any], learning_element_lms_id: int
 ):
-    entry = services.get_learning_element_solution(
+    entry = services.get_learning_element_solution_by_learning_element_lms_id(
         uow=unit_of_work.SqlAlchemyUnitOfWork(),
         learning_element_lms_id=learning_element_lms_id
     )
@@ -2533,24 +2533,25 @@ def post_learning_element_solution(
 
 
 @app.route(
-    "/learningElement/<learning_element_lms_id>/solution",
+    "/learningElement/<learning_element_id>/solution",
     methods=["DELETE"]
 )
 @cross_origin(supports_credentials=True)
 def delete_learning_element_solution(
-       learning_element_lms_id: int
+       learning_element_id: int
 ):
-    entry = services.get_learning_element_solution(
+    entry = services.get_learning_element_solution_by_learning_element_id(
         uow=unit_of_work.SqlAlchemyUnitOfWork(),
-        learning_element_lms_id=learning_element_lms_id
+        learning_element_id=learning_element_id
     )
     condition1 = entry == {}
     match request.method:
         case "DELETE":
             if not condition1:
+
                 services.delete_learning_element_solution(
                     uow=unit_of_work.SqlAlchemyUnitOfWork(),
-                    learning_element_lms_id=learning_element_lms_id,
+                    learning_element_id=learning_element_id,
                 )
                 result = {"message": cons.deletion_message}
                 status_code = 200

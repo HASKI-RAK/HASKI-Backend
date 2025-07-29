@@ -1028,13 +1028,16 @@ def delete_learning_element(uow: unit_of_work.AbstractUnitOfWork, learning_eleme
         return {}
 
 
+#Delete the solution associated with the learning element
 def delete_learning_element_solution(
-    uow: unit_of_work.AbstractUnitOfWork, learning_element_lms_id
+    uow: unit_of_work.AbstractUnitOfWork, learning_element_id
 ) -> None:
     with uow:
-        uow.learning_element_solution.delete_learning_element_solution(
-            learning_element_lms_id
-        )
+        learning_element = uow.learning_element.get_learning_element_by_id(learning_element_id)
+        if learning_element[0] is not None:
+            uow.learning_element_solution.delete_learning_element_solution(
+                learning_element[0].lms_id
+            )
         uow.commit()
 
 
@@ -2472,20 +2475,30 @@ def get_learning_element_ratings(uow: unit_of_work.AbstractUnitOfWork) -> list:
         return results
 
 
-def get_learning_element_solution(
-    uow: unit_of_work.AbstractUnitOfWork, learning_element_lms_id: int
+def get_learning_element_solution_by_learning_element_id(
+    uow: unit_of_work.AbstractUnitOfWork, learning_element_id: int
 ) -> dict:
     with uow:
-        learning_element_solution = (
-            uow.learning_element_solution.get_learning_element_solution(
-                learning_element_lms_id
-            )
-        )
-        if learning_element_solution == []:
-            result = {}
-        else:
-            result = learning_element_solution[0].serialize()
-        return result
+        learning_element = uow.learning_element.get_learning_element_by_id(learning_element_id)
+        result = {}
+        if not learning_element:
+            return result
+        lms_id = learning_element[0].lms_id
+        solution = uow.learning_element_solution.get_learning_element_solution(lms_id)
+        if not solution:
+            return result
+        return solution[0].serialize()
+
+
+def get_learning_element_solution_by_learning_element_lms_id(
+        uow: unit_of_work.AbstractUnitOfWork, learning_element_lms_id: int
+) -> dict:
+    with uow:
+        result={}
+        solution = uow.learning_element_solution.get_learning_element_solution(learning_element_lms_id)
+        if not solution:
+            return result
+        return solution[0].serialize()
 
 
 def get_topic_solutions(
