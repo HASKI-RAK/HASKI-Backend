@@ -2462,7 +2462,7 @@ def get_learning_element_ratings():
 # TODO replace other recommendation endpoint with this one
 @app.route(
     "/user/<user_id>/course/<course_id>/topic/<topic_id>/"
-    + "learningElement/recommendation",
+    + "/recommendation",
     methods=["GET"],
 )
 @cross_origin(supports_credentials=True)

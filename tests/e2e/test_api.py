@@ -3796,6 +3796,41 @@ class TestApi:
             for entry in response["log"]:
                 assert key in entry.keys()
 
+    @pytest.mark.parametrize(
+            "user_id, keys_expected, status_code_expected",
+            [
+                (
+                    4,
+                    [
+                        "user_id",
+                        "recommendations",
+                    ],
+                    200,
+                ),
+            ]
+    )
+    def test_get_learning_element_recommendation(
+            self, client_class, user_id, keys_expected, status_code_expected
+    ):
+        global topic_id
+        course_id = 1
+        url = (
+            path_user
+            + "/"
+            + str(user_id)
+            + path_course
+            + "/"
+            + str(course_id)
+            + path_topic
+            + "/"
+            + str(topic_id)
+            + path_recommendation
+        )
+        r = client_class.get(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        assert response == []
+
     # PUT METHODS
     # Update the settings of a User
     @pytest.mark.parametrize(
