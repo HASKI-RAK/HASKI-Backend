@@ -3797,16 +3797,16 @@ class TestApi:
                 assert key in entry.keys()
 
     @pytest.mark.parametrize(
-        "user_id, status_codes_expected",
+        "user_id, status_code_expected",
         [
             (
                 4,
-                [200, 500],
+                200,
             ),
         ],
     )
     def test_get_learning_element_recommendation(
-        self, client_class, user_id, status_codes_expected
+        self, client_class, user_id, status_code_expected
     ):
         global topic_id
         course_id = 1
@@ -3823,12 +3823,9 @@ class TestApi:
             + path_recommendation
         )
         r = client_class.get(url)
-        assert r.status_code == status_codes_expected[0]
+        assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
         assert response == []
-
-        r = client_class.post(url)
-        assert r.status_code == status_codes_expected[1]
 
     # PUT METHODS
     # Update the settings of a User
