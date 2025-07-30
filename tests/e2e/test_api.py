@@ -3797,20 +3797,20 @@ class TestApi:
                 assert key in entry.keys()
 
     @pytest.mark.parametrize(
-            "user_id, keys_expected, status_code_expected",
-            [
-                (
-                    4,
-                    [
-                        "user_id",
-                        "recommendations",
-                    ],
-                    200,
-                ),
-            ]
+        "user_id, keys_expected, status_code_expected",
+        [
+            (
+                4,
+                [
+                    "user_id",
+                    "recommendations",
+                ],
+                200,
+            ),
+        ],
     )
     def test_get_learning_element_recommendation(
-            self, client_class, user_id, keys_expected, status_code_expected
+        self, client_class, user_id, keys_expected, status_code_expected
     ):
         global topic_id
         course_id = 1
