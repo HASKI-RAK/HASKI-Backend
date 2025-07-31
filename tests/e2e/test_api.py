@@ -3729,132 +3729,6 @@ class TestApi:
             for entry in response["news"]:
                 assert key in entry.keys()
 
-    # Put favorite with user_id and learning_element_id
-    @pytest.mark.parametrize(
-        "student_id, learning_element_id, , request_body, \
-                            keys_expected,\
-                            status_code_expected",
-        [
-            # Working Example
-            (
-                1,
-                1,
-                {"is_favorite": True},
-                [
-                    "student_id",
-                    "learning_element_id",
-                    "is_favorite",
-                ],
-                201,
-            ),
-            # Missing body
-            (
-                1,
-                1,
-                {},
-                ["error", "message"],
-                400,
-            ),
-        ],
-    )
-    def test_put_favorite(
-        self,
-        client_class,
-        student_id,
-        learning_element_id,
-        request_body,
-        keys_expected,
-        status_code_expected,
-    ):
-        url = (
-            path_lms_student
-            + "/"
-            + str(student_id)
-            + "/learningElement/"
-            + str(learning_element_id)
-            + "/favorite"
-        )
-        r = client_class.put(url, json=request_body)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        for key in keys_expected:
-            assert key in response.keys()
-
-    # Get favorite with user_id and learning_element_id
-    @pytest.mark.parametrize(
-        "student_id, learning_element_id, keys_expected,\
-                            status_code_expected",
-        [
-            # Working Example
-            (
-                1,
-                1,
-                [
-                    "student_id",
-                    "learning_element_id",
-                    "is_favorite",
-                ],
-                200,
-            ),
-        ],
-    )
-    def test_get_favorite(
-        self,
-        client_class,
-        student_id,
-        learning_element_id,
-        keys_expected,
-        status_code_expected,
-    ):
-        url = (
-            path_lms_student
-            + "/"
-            + str(student_id)
-            + "/learningElement/"
-            + str(learning_element_id)
-            + "/favorite"
-        )
-        r = client_class.get(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        assert "student_learning_element" in response.keys()
-        for key in keys_expected:
-            for entry in response["student_learning_element"]:
-                assert key in entry.keys()
-
-    # Delete favorite with user_id and learning_element_id
-    @pytest.mark.parametrize(
-        "student_id, learning_element_id,\
-                            status_code_expected",
-        [
-            # Working Example
-            (
-                1,
-                1,
-                200,
-            ),
-        ],
-    )
-    def test_delete_favorite(
-        self,
-        client_class,
-        student_id,
-        learning_element_id,
-        status_code_expected,
-    ):
-        url = (
-            path_lms_student
-            + "/"
-            + str(student_id)
-            + "/learningElement/"
-            + str(learning_element_id)
-            + "/favorite"
-        )
-        r = client_class.delete(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        assert response is None
-
     # Get logbuffer entries for a user
     @pytest.mark.parametrize(
         "user_id, keys_expected,\
@@ -3883,6 +3757,49 @@ class TestApi:
         for key in keys_expected:
             for entry in response["log"]:
                 assert key in entry.keys()
+
+    # Post student_learning_element with is_favorite status
+    @pytest.mark.parametrize(
+        "student_id, learning_element_id, request_body, keys_expected,\
+                            status_code_expected",
+        [
+            # Working Example
+            (
+                1,
+                1,
+                {"is_favorite": True},
+                [
+                    "student_id",
+                    "learning_element_id",
+                    "is_favorite",
+                ],
+                201,
+            ),
+            # Missing body
+            (
+                1,
+                1,
+                {},
+                ["error", "message"],
+                400,
+            ),
+        ],
+    )
+    def test_post_student_learning_element(
+        self,
+        client_class, 
+        student_id,
+        learning_element_id, 
+        request_body, 
+        keys_expected, 
+        status_code_expected,
+    ):
+        url = path_lms_student + "/" + str(student_id) + path_learning_element + "/" + str(learning_element_id)
+        r = client_class.post(url, json=request_body)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
 
     # PUT METHODS
     # Update the settings of a User
