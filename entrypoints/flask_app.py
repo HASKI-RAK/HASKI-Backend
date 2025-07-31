@@ -928,8 +928,7 @@ def post_student_topic_visit(data: Dict[str, Any], student_id, lms_user_id, topi
 
 
 @app.route(
-    "/lms/student/<student_id>/learningElement/"
-    + "<learning_element_id>",
+    "/lms/student/<student_id>/learningElement/" + "<learning_element_id>",
     methods=["POST"],
 )
 @cross_origin(supports_credentials=True)

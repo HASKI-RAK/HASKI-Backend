@@ -1786,22 +1786,6 @@ def get_default_learning_path_by_university(
         return results
 
 
-def get_student_learning_element_by_student_id(
-    uow: unit_of_work.AbstractUnitOfWork, student_id, learning_element_id
-) -> dict:
-    with uow:
-        backend_response = uow.learning_element.get_student_learning_element(
-            student_id, learning_element_id
-        )
-
-        result = dict()
-        result["student_learning_element"] = [
-            student_learning_element.serialize()
-            for student_learning_element in backend_response
-        ]
-        return result
-
-
 def delete_default_learning_path_by_uni(
     uow: unit_of_work.AbstractUnitOfWork, university: str
 ):

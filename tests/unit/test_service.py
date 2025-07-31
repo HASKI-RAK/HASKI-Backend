@@ -2760,16 +2760,6 @@ def test_get_activity_status_for_student_for_learning_element_for_course():
     assert result == [{"cmid": 2, "state": 0, "timecompleted": 0}]
 
 
-def test_get_student_learning_element_by_student_id():
-    uow = FakeUnitOfWork()
-    create_student_learning_element_for_tests(uow)
-    result = services.get_student_learning_element_by_student_id(
-        uow=uow, student_id=1, learning_element_id=1
-    )
-    assert type(result) is dict
-    assert result != {}
-
-
 def test_update_student_learning_element_favorite():
     uow = FakeUnitOfWork()
     create_student_learning_element_for_tests(uow)

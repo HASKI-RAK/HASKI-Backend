@@ -3787,14 +3787,21 @@ class TestApi:
     )
     def test_post_student_learning_element(
         self,
-        client_class, 
+        client_class,
         student_id,
-        learning_element_id, 
-        request_body, 
-        keys_expected, 
+        learning_element_id,
+        request_body,
+        keys_expected,
         status_code_expected,
     ):
-        url = path_lms_student + "/" + str(student_id) + path_learning_element + "/" + str(learning_element_id)
+        url = (
+            path_lms_student
+            + "/"
+            + str(student_id)
+            + path_learning_element
+            + "/"
+            + str(learning_element_id)
+        )
         r = client_class.post(url, json=request_body)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
