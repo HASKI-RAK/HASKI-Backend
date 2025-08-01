@@ -834,7 +834,7 @@ def create_news(
         return result
 
 def create_student_experience_points(
-    uow: unit_of_work.AbstracUnitOfWork,
+    uow: unit_of_work.AbstractUnitOfWork,
     student_id: int,
     experience_points,
 ):
