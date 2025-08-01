@@ -355,6 +355,7 @@ default_learning_path = Table(
     Column("id", Integer, primary_key=True, autoincrement=True),
     Column("classification", String, nullable=False),
     Column("position", Integer, nullable=False),
+    Column("disabled", Boolean, nullable=False),
     Column("university", String, nullable=False),
 )
 
