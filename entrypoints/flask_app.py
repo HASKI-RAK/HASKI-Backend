@@ -936,7 +936,7 @@ def post_student_learning_element(student_id, learning_element_id):
     data = request.get_json()
     if "is_favorite" not in data:
         raise err.MissingParameterError()
-    result = services.update_student_learning_element_favorite(
+    result = services.update_student_learning_element(
         unit_of_work.SqlAlchemyUnitOfWork(),
         student_id,
         learning_element_id,

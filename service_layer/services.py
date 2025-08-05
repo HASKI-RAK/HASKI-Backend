@@ -2695,7 +2695,7 @@ def update_settings_for_user(
         return settings.serialize()
 
 
-def update_student_learning_element_favorite(
+def update_student_learning_element(
     uow: unit_of_work.AbstractUnitOfWork, student_id, learning_element_id, is_favorite
 ) -> dict:
     with uow:
@@ -2709,7 +2709,7 @@ def update_student_learning_element_favorite(
             uow.student_learning_element.add_student_learning_element(
                 student_learning_element
             )
-        uow.student_learning_element.update_student_learning_element_favorite(
+        uow.student_learning_element.update_student_learning_element(
             student_id, learning_element_id, is_favorite
         )
         uow.commit()

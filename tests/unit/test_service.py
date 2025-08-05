@@ -1250,7 +1250,7 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
             to_update.topic_id = topic_id
             self.student_learning_path_learning_element_algorithm.add(to_update)
 
-    def update_student_learning_element_favorite(
+    def update_student_learning_element(
         self, student_id, learning_element_id, is_favorite
     ):
         to_update = next(
@@ -2760,10 +2760,10 @@ def test_get_activity_status_for_student_for_learning_element_for_course():
     assert result == [{"cmid": 2, "state": 0, "timecompleted": 0}]
 
 
-def test_update_student_learning_element_favorite():
+def test_update_student_learning_element():
     uow = FakeUnitOfWork()
     create_student_learning_element_for_tests(uow)
-    result = services.update_student_learning_element_favorite(
+    result = services.update_student_learning_element(
         uow=uow, student_id=1, learning_element_id=1, is_favorite=True
     )
     assert type(result) is dict

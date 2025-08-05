@@ -697,7 +697,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def update_student_learning_element_favorite(
+    def update_student_learning_element(
         self, student_id, learning_element_id, is_favorite
     ):
         raise NotImplementedError
@@ -2112,7 +2112,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         else:
             raise err.NoValidIdError
 
-    def update_student_learning_element_favorite(
+    def update_student_learning_element(
         self, student_id, learning_element_id, is_favorite
     ):
         try:
