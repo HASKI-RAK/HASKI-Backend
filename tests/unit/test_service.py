@@ -1198,26 +1198,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         settings.id = len(self.settings)
         self.settings.add(settings)
 
-    def update_student_learning_element(
-        self, student_id, learning_element_id, visit_time
-    ):
-        to_update = next(
-            (
-                p
-                for p in self.student_learning_element
-                if p.student_id == student_id
-                and p.learning_element_id == learning_element_id
-                and p.visit_start is None
-            ),
-            None,
-        )
-        if to_update is not None:
-            self.student_learning_element.remove(to_update)
-            to_update.id = len(self.student_learning_element)
-            to_update.done_at = visit_time
-            to_update.done = True
-            self.student_learning_element.add(to_update)
-
     def update_learning_path_learning_element_algorithm(
         self, topic_id, algorithm_short_name
     ) -> None:
