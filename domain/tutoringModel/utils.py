@@ -93,15 +93,16 @@ def get_coordinates(learning_style, list_of_les):
 
 
 # Calculate the coordinates for the LEs
-def get_coordinates_plus(learning_style, list_of_les):
+def get_coordinates_plus(learning_style, list_of_les, dimentions):
+
     coordinates = {}
     for elememnt in list_of_les:
         if elememnt == cons.abbreviation_ct:
-            coordinates[cons.abbreviation_ct] = (13, 13, 13, 13, 13, 13)
+            coordinates[cons.abbreviation_ct] = (13,) * dimentions
         elif elememnt == cons.abbreviation_co:
-            coordinates[cons.abbreviation_co] = (12, 12, 12, 12, 12, 12)
+            coordinates[cons.abbreviation_co] = (12,) * dimentions
         elif elememnt == cons.abbreviation_as:
-            coordinates[cons.abbreviation_as] = (-12, -12, -12, -12, -12, -12)
+            coordinates[cons.abbreviation_as] = (-12,) * dimentions
         elif elememnt == cons.abbreviation_cc:
             if (
                 learning_style["processing_dimension"] == "ref"
@@ -111,16 +112,16 @@ def get_coordinates_plus(learning_style, list_of_les):
                     learning_style["processing_value"]
                     > learning_style["understanding_value"]
                 ):
-                    coordinates[cons.abbreviation_cc] = (11, 11, 11, 11, 11, 11)
+                    coordinates[cons.abbreviation_cc] = (11,) * dimentions
                 else:
-                    coordinates[cons.abbreviation_cc] = (0, 0, 0, 0, 0, 0)
+                    coordinates[cons.abbreviation_cc] = (0,) * dimentions
             elif (
                 learning_style["processing_dimension"] == "ref"
                 or learning_style["understanding_dimension"] == "glo"
             ):
-                coordinates[cons.abbreviation_cc] = (11, 11, 11, 11, 11, 11)
+                coordinates[cons.abbreviation_cc] =(11,) * dimentions
             else:
-                coordinates[cons.abbreviation_cc] = (0, 0, 0, 0, 0, 0)
+                coordinates[cons.abbreviation_cc] = (0,) * dimentions
         else:
             coordinate = list()
             if learning_style["processing_dimension"] == "act":
@@ -155,7 +156,8 @@ def get_coordinates_plus(learning_style, list_of_les):
                 coordinate.append(
                     learning_style["understanding_value"] * influence[elememnt][7]
                 )
-            coordinates[elememnt] = tuple(coordinate)
+
+
     return coordinates
 
 
