@@ -1213,6 +1213,7 @@ def delete_student_learning_element_by_element(
             student_id, learning_element_id
         )
         uow.commit()
+        return {}
 
 
 def delete_student_learning_element(uow: unit_of_work.AbstractUnitOfWork, student_id):

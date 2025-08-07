@@ -57,7 +57,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         student=[],
         student_course=[],
         student_learning_element=[],
-        student_learning_element_visit=[],
         student_learning_path_learning_element_algorithm=[],
         student_rating=[],
         student_topic=[],
@@ -545,16 +544,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 to_remove.append(i)
         for remove in to_remove:
             self.student_learning_element.remove(remove)
-
-    def delete_student_learning_element_visit_by_learning_element_id(
-        self, learning_element_id
-    ):
-        to_remove = []
-        for i in self.student_learning_element_visit:
-            if i.self.learning_element_id == learning_element_id:
-                to_remove.append(i)
-        for remove in to_remove:
-            self.student_learning_element_visit.remove(remove)
 
     def delete_student_topic(self, student_id):
         to_remove = []
@@ -1161,21 +1150,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         learning_style.id = len(self.learning_style)
         self.learning_style.add(learning_style)
 
-    def update_previous_learning_element_visit(self, student_id, visit_time):
-        to_update = next(
-            (
-                p
-                for p in self.student_learning_element_visit
-                if p.student_id == student_id and p.visit_start is None
-            ),
-            None,
-        )
-        if to_update is not None:
-            self.student_learning_element_visit.remove(to_update)
-            to_update.id = len(self.student_learning_element_visit)
-            to_update.visit_end = visit_time
-            self.student_learning_element_visit.add(to_update)
-
     def update_previous_topic_visit(self, student_id, visit_time):
         to_update = next(
             (
@@ -1299,7 +1273,6 @@ class FakeUnitOfWork(unit_of_work.AbstractUnitOfWork):  # pragma: no cover
         self.student = FakeRepository()
         self.student_course = FakeRepository()
         self.student_learning_element = FakeRepository()
-        self.student_learning_element_visit = FakeRepository()
         self.student_lpath_le_algorithm = FakeRepository()
         self.student_rating = FakeRepository()
         self.student_topic = FakeRepository()
@@ -1693,6 +1666,16 @@ def create_learning_element_rating_for_tests(uow):
         rating_value=1200,
         rating_deviation=250,
         timestamp=datetime.datetime.now(),
+    )
+
+
+
+def create_student_learning_element_for_tests(uow):
+    services.update_student_learning_element(
+        uow=uow,
+        student_id=1,
+        learning_element_id=1,
+        is_favorite= True,
     )
 
 
@@ -2739,6 +2722,18 @@ def test_update_student_learning_element():
     )
     assert type(result) is dict
     assert result != {}
+
+def test_delete_student_learning_element():
+    uow = FakeUnitOfWork()
+    create_student_learning_element_for_tests(uow)
+    entries_beginning = len(uow.student_learning_element.student_learning_element)
+    result = services.delete_student_learning_element_by_element(
+        uow=uow, student_id=1, learning_element_id=1
+    )
+    assert type(result) is dict
+    assert result == {}
+    entries_after = len(uow.student_learning_element.student_learning_element)
+    assert entries_beginning - 1 == entries_after
 
 
 def test_get_course_by_id():
