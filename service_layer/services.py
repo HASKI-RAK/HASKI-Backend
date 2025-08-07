@@ -516,19 +516,6 @@ def create_learning_style(
         return result
 
 
-def create_student_learning_element(
-    uow: unit_of_work.AbstractUnitOfWork, student_id, learning_element_id
-) -> dict:
-    with uow:
-        student_learning_element = DM.StudentLearningElement(
-            student_id, learning_element_id
-        )
-        uow.student.add_student_learning_element(student_learning_element)
-        uow.commit()
-        result = student_learning_element.serialize()
-        return result
-
-
 def create_questionnaire_list_k(
     uow: unit_of_work.AbstractUnitOfWork, student_id, list_k_answers
 ) -> dict:

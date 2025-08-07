@@ -1685,14 +1685,6 @@ def create_student_rating_for_tests(uow):
     )
 
 
-def create_student_learning_element_for_tests(uow):
-    services.create_student_learning_element(
-        uow=uow,
-        student_id=1,
-        learning_element_id=1,
-    )
-
-
 def create_learning_element_rating_for_tests(uow):
     services.create_learning_element_rating(
         uow=uow,
@@ -2742,7 +2734,6 @@ def test_get_activity_status_for_student_for_learning_element_for_course():
 
 def test_update_student_learning_element():
     uow = FakeUnitOfWork()
-    create_student_learning_element_for_tests(uow)
     result = services.update_student_learning_element(
         uow=uow, student_id=1, learning_element_id=1, is_favorite=True
     )
