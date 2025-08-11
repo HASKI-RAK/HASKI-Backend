@@ -94,7 +94,6 @@ def get_coordinates(learning_style, list_of_les):
 
 # Calculate the coordinates for the LEs
 def get_coordinates_plus(learning_style, list_of_les, dimentions):
-
     coordinates = {}
     for elememnt in list_of_les:
         if elememnt == cons.abbreviation_ct:
@@ -119,7 +118,7 @@ def get_coordinates_plus(learning_style, list_of_les, dimentions):
                 learning_style["processing_dimension"] == "ref"
                 or learning_style["understanding_dimension"] == "glo"
             ):
-                coordinates[cons.abbreviation_cc] =(11,) * dimentions
+                coordinates[cons.abbreviation_cc] = (11,) * dimentions
             else:
                 coordinates[cons.abbreviation_cc] = (0,) * dimentions
         else:
@@ -156,7 +155,6 @@ def get_coordinates_plus(learning_style, list_of_les, dimentions):
                 coordinate.append(
                     learning_style["understanding_value"] * influence[elememnt][7]
                 )
-
 
     return coordinates
 

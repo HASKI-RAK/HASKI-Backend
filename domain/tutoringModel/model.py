@@ -41,7 +41,7 @@ class LearningPath:
         elif algorithm == "aco":
             list_of_les_classifications = self.prepare_le_for_aco(list_of_les)
             coordinates = get_coordinates(learning_style, list_of_les_classifications)
-            start_point = {"Start": (15, 15, 15, 15)}
+            start_point = {"Start": (15, 15, 15, 15)}  # modificar para multidimensional
             start_point.update(coordinates)
             path = aco.AntColonySolver()
             result = path.solve(list(start_point.items()))
