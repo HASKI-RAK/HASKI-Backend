@@ -1669,13 +1669,12 @@ def create_learning_element_rating_for_tests(uow):
     )
 
 
-
 def create_student_learning_element_for_tests(uow):
     services.update_student_learning_element(
         uow=uow,
         student_id=1,
         learning_element_id=1,
-        is_favorite= True,
+        is_favorite=True,
     )
 
 
@@ -2722,6 +2721,7 @@ def test_update_student_learning_element():
     )
     assert type(result) is dict
     assert result != {}
+
 
 def test_delete_student_learning_element():
     uow = FakeUnitOfWork()
