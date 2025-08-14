@@ -77,18 +77,6 @@ class GeneticAlgorithm:
         return new_pop
 
     def get_lines_paths(self, new_pop):
-        """This function extract all the positions X,Y,Z,K.
-        in the space of the generated trajectories"""
-        le_coord = self.le_coordinate[new_pop]
-        line_x, line_y, line_z, line_k = (
-            le_coord[:, :, 0],
-            le_coord[:, :, 1],
-            le_coord[:, :, 2],
-            le_coord[:, :, 3],
-        )
-        return (line_x, line_y, line_z, line_k)
-
-    def get_lines_paths2(self, new_pop):
         """This function extracts all the positions (X,Y,Z,K,..)
         in the space of the generated trajectories."""
 
@@ -99,20 +87,7 @@ class GeneticAlgorithm:
 
         return tuple(lines)
 
-    def get_fitness(self, line_x, line_y, line_z, line_k):
-        """Function to calculate the fitness function for GA"""
-        # a score is evaluated for each individual, which is
-        # calculated using the fitness function: dtype=np.float64)
-        total_sum = (
-            np.square(np.diff(line_x))
-            + np.square(np.diff(line_y))
-            + np.square(np.diff(line_z))
-            + np.square(np.diff(line_k))
-        )
-        fitness = np.sum(np.sqrt(total_sum), 1)
-        return fitness
-
-    def get_fitness_2(self, *lines):
+    def get_fitness(self, *lines):
         """Calcula la función de aptitud para múltiples variables"""
 
         # Stellen Sie sicher, dass alle Einträge die gleiche Form haben.
@@ -185,10 +160,10 @@ class GeneticAlgorithm:
         valid = False
         while i < self.n_generation or valid:
             new_pop = self.valid_population()
-            lx, ly, lz, lk = self.get_lines_paths2(new_pop)
+            lx, ly, lz, lk = self.get_lines_paths(new_pop)
             # lx, ly, lz, lk = self.get_lines_paths(new_pop)
             # fitness = self.get_fitness(lx, ly, lz, lk)
-            fitness = self.get_fitness_2(lx, ly, lz, lk)
+            fitness = self.get_fitness(lx, ly, lz, lk)
 
             # sort population
             best_index = np.argsort(fitness)
