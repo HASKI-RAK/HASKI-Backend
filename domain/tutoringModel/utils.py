@@ -26,15 +26,15 @@ influence = {
 
 
 # Calculate the coordinates for the LEs
-def get_coordinates(learning_style, list_of_les):
+def get_coordinates(learning_style, list_of_les, dimentions=4):
     coordinates = {}
     for elememnt in list_of_les:
         if elememnt == cons.abbreviation_ct:
-            coordinates[cons.abbreviation_ct] = (13, 13, 13, 13)
+            coordinates[cons.abbreviation_ct] = (13,) * dimentions
         elif elememnt == cons.abbreviation_co:
-            coordinates[cons.abbreviation_co] = (12, 12, 12, 12)
+            coordinates[cons.abbreviation_co] = (12,) * dimentions
         elif elememnt == cons.abbreviation_as:
-            coordinates[cons.abbreviation_as] = (-12, -12, -12, -12)
+            coordinates[cons.abbreviation_as] = (-12,) * dimentions
         elif elememnt == cons.abbreviation_cc:
             if (
                 learning_style["processing_dimension"] == "ref"
@@ -44,16 +44,16 @@ def get_coordinates(learning_style, list_of_les):
                     learning_style["processing_value"]
                     > learning_style["understanding_value"]
                 ):
-                    coordinates[cons.abbreviation_cc] = (11, 11, 11, 11)
+                    coordinates[cons.abbreviation_cc] = (11,) * dimentions
                 else:
-                    coordinates[cons.abbreviation_cc] = (0, 0, 0, 0)
+                    coordinates[cons.abbreviation_cc] = (0,) * dimentions
             elif (
                 learning_style["processing_dimension"] == "ref"
                 or learning_style["understanding_dimension"] == "glo"
             ):
-                coordinates[cons.abbreviation_cc] = (11, 11, 11, 11)
+                coordinates[cons.abbreviation_cc] = (11,) * dimentions
             else:
-                coordinates[cons.abbreviation_cc] = (0, 0, 0, 0)
+                coordinates[cons.abbreviation_cc] = (0,) * dimentions
         else:
             coordinate = list()
             if learning_style["processing_dimension"] == "act":
@@ -203,3 +203,9 @@ def get_learning_path_as_str(result_ga):
         str_learning_path = str_learning_path[:-2]
 
     return str_learning_path
+
+
+def normalize_array(data, new_min=-12, new_max=13):
+    old_min = np.min(data)
+    old_max = np.max(data)
+    return new_min + (data - old_min) * (new_max - new_min) / (old_max - old_min)
