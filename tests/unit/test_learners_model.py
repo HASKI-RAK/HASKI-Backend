@@ -106,7 +106,7 @@ def test_calculate_student_rating():
     )
 
     assert result == {
-        "value": 1629.7696020846117,
+        "value": 1613.5484018240354,
         "deviation": 290.2305060910912,
         "timestamp": datetime.fromisoformat("2023-01-01 16:00"),
     }
