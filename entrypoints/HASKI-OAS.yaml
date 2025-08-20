@@ -1064,7 +1064,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GeneralError" #ToDo
-  /user/{user_id}/{lms_user_id}/student/{student_id}/course/{course_id}/topic/{topic_id}/recommendation:
+  /user/{user_id}/{lms_user_id}/student/{student_id}/course/{course_id}/topic/{topic_id}/recommendation: # TODO: überarbeiten
     get:
       tags:
         - "HASKI-intern"
@@ -2804,6 +2804,317 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/GeneralError"
+  /student/{student_id}/topic/{topic_id}/rating:
+    post:
+      tags:
+        - "Rating"
+      summary: "Post create student rating"
+      description: "Post to create the rating of a student on a topic."
+      operationId: "postCreateStudentRating"
+      parameters:
+        - name: "student_id"
+          in: "path"
+          description: "The ID of the student"
+          required: true
+          schema:
+            type: "string"
+          example: "1"
+        - name: "topic_id"
+          in: "path"
+          description: "The ID of the topic"
+          required: true
+          schema:
+            type: "string"
+          example: "1"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StudentRating"
+      responses:
+        "201":
+          description: "Successful Operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StudentRating"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeneralError"
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeneralError"
+  /topic/{topic_id}/learningElement/{learning_element_id}/rating:
+    post:
+      tags:
+        - "Rating"
+      summary: "Post create learning element rating"
+      description: "Post to create the rating of a learning element in a topic."
+      operationId: "postCreateLearningElementRating"
+      parameters:
+        - name: "topic_id"
+          in: "path"
+          description: "The ID of the topic"
+          required: true
+          schema:
+            type: "string"
+          example: "1"
+        - name: "learning_element_id"
+          in: "path"
+          description: "The ID of the learning element"
+          required: true
+          schema:
+            type: "string"
+          example: "1"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LearningElementRating"
+      responses:
+        "201":
+          description: "Successful Operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LearningElementRating"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeneralError"
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeneralError"
+  user/{user_id}/course/{course_id}/topic/{topic_id}/learningElement/{learning_element_lms_id}/rating:
+    post:
+      tags:
+        - "Rating"
+      summary: "Post calculate rating"
+      description: "Post to calculate the rating of a student and learning element."
+      operationId: "postCalculateRating"
+      parameters:
+        - name: "user_id"
+          in: "path"
+          description: "The ID of the user"
+          required: true
+          schema:
+            type: "string"
+          example: "1"
+        - name: "course_id"
+          in: "path"
+          description: "The ID of the course"
+          required: true
+          schema:
+            type: "string"
+          example: "1"
+        - name: "topic_id"
+          in: "path"
+          description: "The ID of the topic"
+          required: true
+          schema:
+            type: "string"
+          example: "1"
+        - name: "learning_element_lms_id"
+          in: "path"
+          description: "The LMS ID of the learning element"
+          required: true
+          schema:
+            type: "string"
+          example: "1"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                student_rating:
+                  schema:
+                    $ref: "#/components/schemas/StudentRating"
+                learning_element_rating:
+                  schema:
+                    $ref: "#/components/schemas/LearningElementRating"
+      responses:
+        "201":
+          description: "Successful Operation"
+          content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                student_rating:
+                  schema:
+                    $ref: "#/components/schemas/StudentRating"
+                learning_element_rating:
+                  schema:
+                    $ref: "#/components/schemas/LearningElementRating"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeneralError"
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeneralError"
+  /user/{user_id}/student/{student_id}/rating:
+    get:
+      tags:
+        - "Rating"
+      summary: "Get student ratings"
+      description: "Get all ratings of a student."
+      operationId: "getStudentRatings"
+      parameters:
+        - name: "user_id"
+          in: "path"
+          description: "The ID of the user"
+          required: true
+          schema:
+            type: "string"
+          example: "1"
+        - name: "student_id"
+          in: "path"
+          description: "The ID of the student"
+          required: true
+          schema:
+            type: "string"
+          example: "1"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "array"
+              items:
+                $ref: "#/components/schemas/StudentRating"
+      responses:
+        "200":
+          description: "Successful Operation"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/StudentRating"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeneralError"
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeneralError"
+  /learningElement/rating:
+    get:
+      tags:
+        - "Rating"
+      summary: "Get learning element ratings"
+      description: "Get all ratings of each learning element."
+      operationId: "getLearningElementRatings"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "array"
+              items:
+                $ref: "#/components/schemas/LearningElementRating"
+      responses:
+        "200":
+          description: "Successful Operation"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/LearningElementRating"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeneralError"
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeneralError"
+  /user/{user_id}/course/{course_id}/topic/{topic_id}/recommendation:
+    get:
+      tags:
+        - "Recommendation"
+      summary: "Get learning element recommendation"
+      description: "Get the recommended learning elements for a user in a topic."
+      operationId: "getLearningElementRecommendation"
+      parameters:
+        - name: "user_id"
+          in: "path"
+          description: "The ID of the user"
+          required: true
+          schema:
+            type: "string"
+          example: "1"
+        - name: "course_id"
+          in: "path"
+          description: "The ID of the course"
+          required: true
+          schema:
+            type: "string"
+          example: "1"
+        - name: "topic_id"
+          in: "path"
+          description: "The ID of the topic"
+          required: true
+          schema:
+            type: "string"
+          example: "1"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "array"
+              items:
+                $ref: "#/components/schemas/LearningElement"
+      responses:
+        "200":
+          description: "Successful Operation"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/LearningElement"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeneralError"
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeneralError"
 components:
   schemas:
     WrongParameterValueError:
@@ -2819,7 +3130,7 @@ components:
         message:
           type: "string"
         status_code:
-          type: "integer"
+          type: "integer"DashboardTeacherFeedback
     AException:
       type: "object"
       properties:
@@ -3750,10 +4061,6 @@ components:
           format: "double"
           example: 123.45
           description: "The time spend within the LE in minutes"
-        is_recommended:
-          type: "boolean"
-          example: true
-          description: "Is the LE recommended"
     LearningElementsStudent:
       type: "object"
       properties:
@@ -4255,11 +4562,6 @@ components:
           type: "number"
           format: "double"
           example: 123.45
-          description: "The time spend within the topic in minutes"
-        is_recommended:
-          type: "boolean"
-          example: true
-          description: "Is the topic recommended"
     TopicsStudent:
       type: "object"
       properties:
@@ -4343,7 +4645,7 @@ components:
           items:
             type: "object"
             properties:
-              name:
+              name:News
                 type: "string"
                 example: "Maria Musterfrau"
                 description: "The name of the User"
@@ -4357,7 +4659,7 @@ components:
                 description: "The university of the User"
     News:
           type: "object"
-          required:
+          required:News
             - "language_id"
             - "university"
             - "news_content"
@@ -4381,3 +4683,92 @@ components:
               type: "string"
               example: "New course has been added to topic"
               description: "The content of the news"
+    DefaultLearningPathElement:
+          type: "object"
+          properties:
+            id:
+              type: "number"
+              format: "int64"
+              example: 1
+              description: "HASKI intern id for Users. Autogenerated by DB."
+            classification:
+              type: "string"
+              example: "KÜ"
+              description: "The classification of the default learning path element."
+            position:
+              type: "number"
+              format: "int64"
+              example: 1
+              description: "The position of the default learning path element within the default learning path."
+            disabled:
+              type: "boolean"
+              example: false
+              description: "Indicates whether the default learning path element is disabled."
+            university:
+              type: "string"
+              example: "TH-AB"
+              description: "The university the default learning path element belongs to."
+    LearningElementRating:
+          type: "object"
+          properties:
+            id:
+              type: "number"
+              format: "int64"
+              example: 1
+              description: "HASKI intern id for Users. Autogenerated by DB."
+            learning_element_id:
+              type: "number"
+              format: "int64"
+              example: 1
+              description: "The ID of the learning element that is rated."
+            topic_id:
+              type: "number"
+              format: "int64"
+              example: 1
+              description: "The ID of the topic that the learning element rating belongs to."
+            timestamp:
+              type: "datetime"
+              example: "2023-01-01T00:00:00Z"
+              description: "The timestamp when the learning element was rated."
+            rating_value:
+              type: "number"
+              format: "float"
+              example: 1500.0
+              description: "The rating value assigned to the learning element."
+            rating_deviation:
+              type: "number"
+              format: "float"
+              example: 350.0
+              description: "The rating deviation assigned to the learning element."
+    StudentRating:
+          type: "object"
+          properties:
+            id:
+              type: "number"
+              format: "int64"
+              example: 1
+              description: "HASKI intern id for Users. Autogenerated by DB."
+            student_id:
+              type: "number"
+              format: "int64"
+              example: 1
+              description: "The ID of the student that is rated."
+            topic_id:
+              type: "number"
+              format: "int64"
+              example: 1
+              description: "The ID of the topic that the student rating belongs to."
+            timestamp:
+              type: "datetime"
+              example: "2023-01-01T00:00:00Z"
+              description: "The timestamp when the student was rated."
+            rating_value:
+              type: "number"
+              format: "float"
+              example: 1500.0
+              description: "The rating value assigned to the student."
+            rating_deviation:
+              type: "number"
+              format: "float"
+              example: 350.0
+              description: "The rating deviation assigned to the student."

@@ -786,14 +786,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 result.append(i)
         return result
 
-    # todo remove
-    def get_learning_element_recommendation(self, learning_path_id):
-        result = []
-        for i in self.learning_path_learning_element:
-            if i.learning_path_id == learning_path_id and i.recommended:
-                result.append(i)
-        return result
-
     def get_learning_path(self, student_id, course_id, topic_id):
         result = []
         for i in self.learning_path:
@@ -3443,24 +3435,6 @@ def test_get_les_for_course_and_topic_id():
         uow=uow, user_id=1, lms_user_id=1, student_id=1, course_id=1, topic_id=1
     )
     assert type(result) is dict
-    assert result != {}
-
-
-# todo remove
-def test_get_learning_element_recommendation():
-    uow = FakeUnitOfWork()
-    create_course_creator_for_tests(uow)
-    create_learning_path_learning_element_algorithm_for_tests(uow)
-    create_student_for_tests(uow)
-    create_course_for_tests(uow)
-    create_topic_for_tests(uow)
-    create_learning_element_for_tests_1(uow)
-    add_student_to_course_for_tests(uow)
-    create_learning_path_for_tests(uow)
-    result = services.get_learning_element_recommendation(
-        uow=uow, user_id=1, lms_user_id=1, student_id=1, course_id=1, topic_id=1
-    )
-    assert type(result) == dict
     assert result != {}
 
 

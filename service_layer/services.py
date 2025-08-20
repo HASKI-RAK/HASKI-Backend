@@ -445,7 +445,6 @@ def create_learning_path(
             path_element = TM.LearningPathLearningElement(
                 learning_element_id=le["id"],
                 learning_path_id=result["id"],
-                recommended=True,
                 position=1,
                 learning_element=None,
             )
@@ -488,7 +487,6 @@ def create_learning_path(
                         path_element = TM.LearningPathLearningElement(
                             learning_element_id=temp["id"],
                             learning_path_id=result["id"],
-                            recommended=True if i == 0 else False,
                             position=i + 1,
                             learning_element=None,
                         )
@@ -1614,36 +1612,6 @@ def get_learning_elements_for_topic_id(
             return results
         except Exception:
             return []
-
-
-# TODO Overwrite this function with the contents of the endpoint
-def get_learning_element_recommendation(
-    uow: unit_of_work.AbstractUnitOfWork,
-    user_id,
-    lms_user_id,
-    student_id,
-    course_id,
-    topic_id,
-) -> dict:
-    with uow:
-        get_user_by_id(uow, user_id, lms_user_id)
-        get_course_by_id(uow, user_id, lms_user_id, course_id)
-        get_topic_by_id(uow, user_id, lms_user_id, course_id, student_id, topic_id)
-        path = get_learning_path(
-            uow, user_id, lms_user_id, student_id, course_id, topic_id
-        )
-        result = uow.learning_path_learning_element.get_learning_element_recommendation(
-            path["id"]
-        )
-        return get_learning_element_by_id(
-            uow,
-            user_id,
-            lms_user_id,
-            student_id,
-            course_id,
-            topic_id,
-            result[0].learning_element_id,
-        )
 
 
 def get_learning_path(
