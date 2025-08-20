@@ -3829,36 +3829,51 @@ def test_get_recommended_exercises_for_student_in_topic():
     assert isinstance(results, list)
     assert results != []
 
+
 def test_update_ratings():
     uow = FakeUnitOfWork()
     timestamp = datetime.datetime.now()
-    result = services.update_ratings(uow=uow, student_id=1, learning_element_id=1, topic_id=1, attempt_result=1, timestamp=timestamp)
+    result = services.update_ratings(
+        uow=uow,
+        student_id=1,
+        learning_element_id=1,
+        topic_id=1,
+        attempt_result=1,
+        timestamp=timestamp,
+    )
     assert isinstance(result, dict)
     assert result == {
-        'learning_element_rating': {
-            'deviation': 290.2305060910912,
-            'timestamp': timestamp,
-            'value': 1337.7879973942352,
+        "learning_element_rating": {
+            "deviation": 290.2305060910912,
+            "timestamp": timestamp,
+            "value": 1337.7879973942352,
         },
-        'student_rating': {
-            'deviation': 290.2305060910912,
-            'timestamp': timestamp,
-            'value': 1613.5484018240354,
+        "student_rating": {
+            "deviation": 290.2305060910912,
+            "timestamp": timestamp,
+            "value": 1613.5484018240354,
         },
     }
 
     timestamp = datetime.datetime.now()
-    result = services.update_ratings(uow=uow, student_id=1, learning_element_id=1, topic_id=1, attempt_result=0, timestamp=timestamp)
+    result = services.update_ratings(
+        uow=uow,
+        student_id=1,
+        learning_element_id=1,
+        topic_id=1,
+        attempt_result=0,
+        timestamp=timestamp,
+    )
     assert isinstance(result, dict)
     assert result == {
-        'learning_element_rating': {
-            'deviation': 256.1525562808358,
-            'timestamp': timestamp,
-            'value': 1502.3785248881416,
+        "learning_element_rating": {
+            "deviation": 256.1525562808358,
+            "timestamp": timestamp,
+            "value": 1502.3785248881416,
         },
-        'student_rating': {
-            'deviation': 286.82361390113584,
-            'timestamp': timestamp,
-            'value': 1268.275110699113,
+        "student_rating": {
+            "deviation": 286.82361390113584,
+            "timestamp": timestamp,
+            "value": 1268.275110699113,
         },
     }
