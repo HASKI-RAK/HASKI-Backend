@@ -9,7 +9,6 @@ load_dotenv()
 
 DEFAULT_DB_HOST = "localhost"
 DEFAULT_DB_PORT = 5432
-# NOSONAR
 DEFAULT_DB_PASSWORD = "postgres"  # Does not matter for local development
 DEFAULT_DB_USER = "postgres"
 DEFAULT_DB_NAME = "haski"
