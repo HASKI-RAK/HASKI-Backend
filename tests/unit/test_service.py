@@ -3832,7 +3832,8 @@ def test_get_recommended_exercises_for_student_in_topic():
 
 def test_update_ratings():
     uow = FakeUnitOfWork()
-    timestamp = datetime.datetime.now()
+    assert services.get_learning_element_ratings(uow) == []
+    timestamp = datetime.datetime(2025, 5, 24, 10, 0, 0)
     result = services.update_ratings(
         uow=uow,
         student_id=1,
@@ -3855,7 +3856,7 @@ def test_update_ratings():
         },
     }
 
-    timestamp = datetime.datetime.now()
+    timestamp = datetime.datetime(2025, 5, 24, 10, 0, 1)
     result = services.update_ratings(
         uow=uow,
         student_id=1,
@@ -3867,13 +3868,13 @@ def test_update_ratings():
     assert isinstance(result, dict)
     assert result == {
         "learning_element_rating": {
-            "deviation": 256.1525562808358,
+            "deviation": 257.2042041883119,
             "timestamp": timestamp,
-            "value": 1502.3785248881416,
+            "value": 1551.4204351796234,
         },
         "student_rating": {
-            "deviation": 286.82361390113584,
+            "deviation": 257.20420418831196,
             "timestamp": timestamp,
-            "value": 1268.275110699113,
+            "value": 1399.9159640386472,
         },
     }

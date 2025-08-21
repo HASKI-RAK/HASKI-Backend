@@ -2798,10 +2798,14 @@ def update_ratings(
 
         if student_ratings == []:
             # If no student rating is available,
-            # create an initial student rating on concept.
-            student_rating = create_student_rating(
-                uow=uow, student_id=student_id, topic_id=topic_id, timestamp=timestamp
-            )
+            # create an initial student rating on the topic.
+            student_rating = LM.StudentRating(
+                student_id=student_id,
+                topic_id=topic_id,
+                rating_value=None,
+                rating_deviation=None,
+                timestamp=timestamp,
+            ).serialize()
         else:
             # Sort student ratings by timestamp.
             student_ratings.sort(key=lambda x: x["timestamp"])
@@ -2822,12 +2826,13 @@ def update_ratings(
         if learning_element_ratings == []:
             # If no learning element rating is available,
             # create an initial learning element rating on concept.
-            learning_element_rating = create_learning_element_rating(
-                uow=uow,
+            learning_element_rating = DM.LearningElementRating(
                 learning_element_id=learning_element_id,
                 topic_id=topic_id,
+                rating_value=None,
+                rating_deviation=None,
                 timestamp=timestamp,
-            )
+            ).serialize()
         else:
             # Sort learning element ratings by timestamp.
             learning_element_ratings.sort(key=lambda x: x["timestamp"])
