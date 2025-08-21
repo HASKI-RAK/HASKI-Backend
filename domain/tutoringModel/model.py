@@ -30,7 +30,7 @@ class LearningPath:
             "calculated_on": self.calculated_on,
         }
 
-    def get_learning_path(self, student_id, learning_style, _algorithm, list_of_les):
+    def get_learning_path(self, student_id, learning_style, _algorithm, list_of_les, input_view_time=None):
         algorithm = _algorithm.lower()
         if algorithm == "graf":
             path = graf.GrafAlgorithm(student_id=student_id)
@@ -54,7 +54,8 @@ class LearningPath:
         elif algorithm == "ga":
             genetic_alg = ga.GeneticAlgorithm(learning_elements=list_of_les)
             self.path = genetic_alg.get_learning_path(
-                input_learning_style=learning_style, input_learning_element=list_of_les
+                input_learning_style=learning_style, input_learning_element=list_of_les,
+                input_view_time=input_view_time
             )
         elif algorithm == "tyche":
             tyche_alg = tyche.TycheAlgorithm()

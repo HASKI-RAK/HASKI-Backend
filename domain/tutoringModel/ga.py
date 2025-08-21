@@ -39,20 +39,31 @@ class GeneticAlgorithm:
             le = utils.get_learning_element(learning_elements)
             self.le_size = len(le)
 
-    def create_random_population(self, learning_style) -> None:
+    def create_random_population(self, learning_style, input_view_time=None) -> None:
         """Function for the calculation of the score.
         position a also Initialise some populations
         with Clustering if this is possible.
         param dict_coordinates"""
 
-        coordinates = utils.get_coordinates(learning_style, self.learning_elements)
+        if input_view_time is not None:
+            self.dimensionen = 6
+
+        coordinates = utils.get_coordinates(
+            learning_style, self.learning_elements, self.dimensionen
+        )
 
         if not any(np.char.equal(self.learning_elements, "KÜ")):
-            self.dict_coordinate = {"first": (15, 15, 15, 15)}
+            # self.dict_coordinate = {"first": (15, 15, 15, 15)}
+            self.dict_coordinate = {"first": (15,) * self.dimensionen}
             self.dict_coordinate.update(coordinates)
             self.first_is_present = True
         else:
             self.dict_coordinate = coordinates
+
+        if input_view_time is not None:
+            self.dimensionen = 6
+            norm_view_times = self.added_view_times(input_view_time)
+            self.update_coodinate(norm_view_times)
 
         self.le_coordinate = np.array(list(self.dict_coordinate.values()))
         self.learning_elements = np.array(list(self.dict_coordinate.keys()))
@@ -160,10 +171,10 @@ class GeneticAlgorithm:
         valid = False
         while i < self.n_generation or valid:
             new_pop = self.valid_population()
-            lx, ly, lz, lk = self.get_lines_paths(new_pop)
+            lines = self.get_lines_paths(new_pop)
             # lx, ly, lz, lk = self.get_lines_paths(new_pop)
             # fitness = self.get_fitness(lx, ly, lz, lk)
-            fitness = self.get_fitness(lx, ly, lz, lk)
+            fitness = self.get_fitness(*lines)
 
             # sort population
             best_index = np.argsort(fitness)
@@ -292,7 +303,47 @@ class GeneticAlgorithm:
                 # Wrong  Dimension input_learning_style
                 raise err.WrongLearningStyleDimensionError()
 
-    def get_learning_path(self, input_learning_style=None, input_learning_element=None):
+    def added_view_times(self, input_view_time):
+        views = [v[0] for v in input_view_time.values()]
+        times = [v[1] for v in input_view_time.values()]
+        # views, times = zip(*input_view_time.values())
+
+        old_min_view, old_max_view = min(views), max(views)
+        old_min_time, old_max_time = min(times), max(times)
+
+        norm_view_time = {
+            k: (
+                int(
+                    utils.normalize_array2(v[0], old_min_view, old_max_view)
+                ),  # normaliza view
+                int(
+                    utils.normalize_array2(v[1], old_min_time, old_max_time)
+                ),  # normaliza time
+            )
+            for k, v in input_view_time.items()
+        }
+        print("norm_view_time", norm_view_time)
+
+        return norm_view_time
+
+    def update_coodinate(self, input_view_time):
+        updated_coords = {}
+        for k, coord in self.dict_coordinate.items():
+            if k in input_view_time and k not in ("KÜ", "EK", "LZ"):
+                view, time = input_view_time[k]
+                # reemplazar penúltima y última posición
+                new_coord = coord[:-2] + (view, time)
+                updated_coords[k] = new_coord
+            else:
+                updated_coords[k] = coord  # si no tiene view/time lo dejamos igual
+        print("\n\ncoordinate_update:", updated_coords)
+
+    def get_learning_path(
+        self,
+        input_learning_style=None,
+        input_learning_element=None,
+        input_view_time=None,
+    ):
         """calculates and verifies the learning path the genetic algorithm"""
 
         result_ga = []
@@ -310,6 +361,10 @@ class GeneticAlgorithm:
         if len(self.learning_elements) == 1:
             return self.learning_elements[0]
 
-        self.create_random_population(input_learning_style)
+        if input_view_time is not None:
+            # self.dimensionen = 6
+            norm_view_times = self.added_view_times(input_view_time)
+
+        self.create_random_population(input_learning_style, input_view_time)
         result_ga = self.calculate_learning_path_ga()
         return result_ga

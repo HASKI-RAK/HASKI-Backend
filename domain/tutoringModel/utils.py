@@ -88,6 +88,13 @@ def get_coordinates(learning_style, list_of_les, dimentions=4):
                 coordinate.append(
                     learning_style["understanding_value"] * influence[elememnt][7]
                 )
+            # ---
+            if len(coordinate) < dimentions:
+                coordinate.extend([0] * (dimentions - len(coordinate)))
+            # opcional
+            elif len(coordinate) > dimentions:
+                coordinate = coordinate[:dimentions]
+            # ---
             coordinates[elememnt] = tuple(coordinate)
     return coordinates
 
@@ -205,7 +212,5 @@ def get_learning_path_as_str(result_ga):
     return str_learning_path
 
 
-def normalize_array(data, new_min=-12, new_max=13):
-    old_min = np.min(data)
-    old_max = np.max(data)
+def normalize_array2(data, old_min, old_max, new_min=-12, new_max=13):
     return new_min + (data - old_min) * (new_max - new_min) / (old_max - old_min)
