@@ -129,7 +129,7 @@ https://www.postgresqltutorial.com/postgresql-getting-started/connect-to-postgre
 
 After the installation, you can run it on the CMD or the pgAdmin 4 application.
 You first have to create a database by using `python db_setup.py`.
-Then run `python db_fill.py` to fill the database with mock data if applicable.
+Then you can run `python db_fill_debug_data.py` to fill the database with mock data.
 Run `python db_clean_up.py` to clean up the database if necessary. Use arg `--dropdatabase` to drop the database.
 
 ## Running in Docker
