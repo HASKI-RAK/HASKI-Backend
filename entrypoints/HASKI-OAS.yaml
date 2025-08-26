@@ -2472,24 +2472,17 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GeneralError" #Y
-  /lms/student/{student_id}/{lms_user_id}/learning_element/{learning_element_id}:
+  /lms/student/{student_id}/learning_element/{learning_element_id}:
     post:
       tags:
         - "Moodle"
-      summary: "Update User Learning Element Moodle"
+      summary: "Update learning_element containing the favorite status"
       description: "Update the Learning Element user data for a specific User from Moodle"
-      operationId: "putUserLearningElementMoodle"
+      operationId: "postLearningElement"
       parameters:
         - name: "student_id"
           in: "path"
           description: "The ID of the Student"
-          required: true
-          schema:
-            type: "string"
-          example: 1
-        - name: "lms_user_id"
-          in: "path"
-          description: "The Moodle ID of the User"
           required: true
           schema:
             type: "string"
@@ -2501,19 +2494,26 @@ paths:
           schema:
             type: "string"
           example: 1
+        - name: "is_favorite"
+          in: "body"
+          description: "The favorite status of the Learning Element"
+          required: true
+          schema:
+            type: "string"
+          example: 1  
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/LearningElementVisit"
+              $ref: "#/components/schemas/LearningElement"
       responses:
         "201":
           description: "Successful Operation"
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/LearningElementVisit"
+                $ref: "#/components/schemas/LearningElement"
         "400":
           description: "Bad Request"
           content:

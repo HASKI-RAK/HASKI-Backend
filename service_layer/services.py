@@ -67,7 +67,7 @@ def add_student_to_learning_element(
         student_learning_element = DM.StudentLearningElement(
             student_id, learning_element_id
         )
-        uow.student_learning_element.add_student_to_learning_element(
+        uow.student_learning_element.add_student_learning_element(
             student_learning_element
         )
         uow.commit()
@@ -93,25 +93,6 @@ def add_student_to_topics(uow: unit_of_work.AbstractUnitOfWork, student_id, cour
                     add_student_to_learning_element(
                         uow, l_element["learning_element_id"], student_id
                     )
-
-
-def add_student_learning_element_visit(
-    uow: unit_of_work.AbstractUnitOfWork, student_id, learning_element_id, visit_start
-) -> dict:
-    with uow:
-        update_previous_learning_element_visit(uow, student_id, visit_start)
-        update_student_learning_element(
-            uow, student_id, learning_element_id, visit_start
-        )
-        student_learning_element_visit = DM.StudentLearningElementVisit(
-            student_id, learning_element_id, visit_start
-        )
-        uow.student_learning_element_visit.add_student_learning_element_visit(
-            student_learning_element_visit
-        )
-        uow.commit()
-        result = student_learning_element_visit.serialize()
-        return result
 
 
 def add_student_topic_visit(
@@ -1224,9 +1205,19 @@ def delete_student_course(
         uow.commit()
 
 
+def delete_student_learning_element_by_element(
+    uow: unit_of_work.AbstractUnitOfWork, student_id, learning_element_id
+):
+    with uow:
+        uow.student_learning_element.delete_student_learning_element_by_element(
+            student_id, learning_element_id
+        )
+        uow.commit()
+        return {}
+
+
 def delete_student_learning_element(uow: unit_of_work.AbstractUnitOfWork, student_id):
     with uow:
-        delete_student_learning_element_visit(uow, student_id)
         uow.student_learning_element.delete_student_learning_element(student_id)
         uow.commit()
 
@@ -1235,30 +1226,7 @@ def delete_student_learning_element_by_learning_element_id(
     uow: unit_of_work.AbstractUnitOfWork, learning_element_id
 ):
     with uow:
-        delete_student_learning_element_visit_by_learning_element_id(
-            uow, learning_element_id
-        )
         uow.student_learning_element.delete_student_learning_element_by_learning_element_id(  # noqa: E501
-            learning_element_id
-        )
-        uow.commit()
-
-
-def delete_student_learning_element_visit(
-    uow: unit_of_work.AbstractUnitOfWork, student_id
-):
-    with uow:
-        uow.student_learning_element_visit.delete_student_learning_element_visit(
-            student_id
-        )
-        uow.commit()
-
-
-def delete_student_learning_element_visit_by_learning_element_id(
-    uow: unit_of_work.AbstractUnitOfWork, learning_element_id
-):
-    with uow:
-        uow.student_learning_element_visit.delete_student_learning_element_visit_by_learning_element_id(  # noqa: E501
             learning_element_id
         )
         uow.commit()
@@ -2697,16 +2665,6 @@ def update_learning_strategy_by_student_id(
         return result
 
 
-def update_previous_learning_element_visit(
-    uow: unit_of_work.AbstractUnitOfWork, student_id, visit_time
-) -> dict:
-    with uow:
-        uow.student_learning_element_visit.update_previous_learning_element_visit(
-            student_id, visit_time
-        )
-        uow.commit()
-
-
 def update_previous_topic_visit(
     uow: unit_of_work.AbstractUnitOfWork, student_id, visit_time
 ) -> dict:
@@ -2726,13 +2684,24 @@ def update_settings_for_user(
 
 
 def update_student_learning_element(
-    uow: unit_of_work.AbstractUnitOfWork, student_id, learning_element_id, visit_time
-):
+    uow: unit_of_work.AbstractUnitOfWork, student_id, learning_element_id, is_favorite
+) -> dict:
     with uow:
+        student_learning_element = DM.StudentLearningElement(
+            student_id, learning_element_id, is_favorite
+        )
+        learning_element = uow.student_learning_element.get_student_learning_element(
+            student_id, learning_element_id
+        )
+        if not learning_element:
+            uow.student_learning_element.add_student_learning_element(
+                student_learning_element
+            )
         uow.student_learning_element.update_student_learning_element(
-            student_id, learning_element_id, visit_time
+            student_id, learning_element_id, is_favorite
         )
         uow.commit()
+        return student_learning_element.serialize()
 
 
 def update_topic(
