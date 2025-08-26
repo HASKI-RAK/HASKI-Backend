@@ -929,10 +929,10 @@ def post_student_topic_visit(data: Dict[str, Any], student_id, lms_user_id, topi
 
 @app.route(
     "/lms/student/<student_id>/learningElement/<learning_element_id>",
-    methods=["POST"],
+    methods=["PUT"],
 )
 @cross_origin(supports_credentials=True)
-def post_student_learning_element(student_id, learning_element_id):
+def put_student_learning_element(student_id, learning_element_id):
     data = request.get_json()
     if "is_favorite" not in data:
         raise err.MissingParameterError()
@@ -943,7 +943,7 @@ def post_student_learning_element(student_id, learning_element_id):
         data["is_favorite"],
     )
 
-    status_code = 201
+    status_code = 200
     return jsonify(result), status_code
 
 
