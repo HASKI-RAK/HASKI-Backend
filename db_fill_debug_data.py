@@ -513,191 +513,191 @@ def setup_db(
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (1, 1, true, 1);
+          VALUES (1, 1, 1);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (2, 1, true, 2);
+          VALUES (2, 1, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (1, 2, true, 1);
+          VALUES (1, 2, 1);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (2, 2, true, 2);
+          VALUES (2, 2, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (3, 3, true, 1);
+          VALUES (3, 3, 1);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (4, 3, false, 2);
+          VALUES (4, 3, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (5, 3, false, 3);
+          VALUES (5, 3, 3);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (3, 4, true, 1);
+          VALUES (3, 4, 1);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (4, 4, false, 2);
+          VALUES (4, 4, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (5, 4, false, 3);
+          VALUES (5, 4, 3);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (6, 5, true, 1);
+          VALUES (6, 5, 1);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (8, 5, false, 2);
+          VALUES (8, 5, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (7, 5, false, 3);
+          VALUES (7, 5, 3);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (6, 6, true, 1);
+          VALUES (6, 6, 1);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (8, 6, false, 2);
+          VALUES (8, 6, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (7, 6, false, 3);
+          VALUES (7, 6, 3);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (10, 7, true, 1);
+          VALUES (10, 7, 1);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (9, 7, false, 2);
+          VALUES (9, 7, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (10, 8, true, 1);
+          VALUES (10, 8, 1);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (9, 8, false, 2);
+          VALUES (9, 8, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (11, 9, true, 1);
+          VALUES (11, 9, 1);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (12, 9, false, 2);
+          VALUES (12, 9, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (11, 10, true, 1);
+          VALUES (11, 10, 1);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (12, 10, false, 2);
+          VALUES (12, 10, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (1, 11, true, 1);
+          VALUES (1, 11, 1);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (2, 11, true, 2);
+          VALUES (2, 11, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (3, 12, true, 1);
+          VALUES (3, 12, 1);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (4, 12, false, 2);
+          VALUES (4, 12, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (5, 12, false, 3);
+          VALUES (5, 12, 3);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (8, 13, true, 1);
+          VALUES (8, 13, 1);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (7, 13, false, 2);
+          VALUES (7, 13, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (6, 13, false, 3);
+          VALUES (6, 13, 3);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (10, 14, true, 1);
+          VALUES (10, 14, 1);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (9, 14, false, 2);
+          VALUES (9, 14, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (11, 15, true, 1);
+          VALUES (11, 15, 1);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (12, 15, false, 2);
+          VALUES (12, 15, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (1, 16, true, 1);
+          VALUES (1, 16, 1);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (2, 16, true, 2);
+          VALUES (2, 16, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (3, 17, true, 1);
+          VALUES (3, 17, 1);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (4, 17, false, 2);
+          VALUES (4, 17, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (5, 17, false, 3);
+          VALUES (5, 17, 3);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (8, 18, true, 1);
+          VALUES (8, 18, 1);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (6, 18, false, 2);
+          VALUES (6, 18, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (7, 18, false, 3);
+          VALUES (7, 18, 3);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (10, 19, true, 1);
+          VALUES (10, 19, 1);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (9, 19, false, 2);
+          VALUES (9, 19, 2);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (11, 20, true, 1);
+          VALUES (11, 20, 1);
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \

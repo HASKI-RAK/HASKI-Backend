@@ -1064,69 +1064,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GeneralError" #ToDo
-  /user/{user_id}/{lms_user_id}/student/{student_id}/course/{course_id}/topic/{topic_id}/recommendation: # TODO: überarbeiten
-    get:
-      tags:
-        - "HASKI-intern"
-        - "Student"
-      summary: "Get Student Courses Topic Recommendation"
-      description: "Get a recommendation for a Topic for a specific Course for a specific Student"
-      operationId: "getStudentCoursesTopicREcommendation"
-      parameters:
-        - name: "user_id"
-          in: "path"
-          description: "The ID of the User"
-          required: true
-          schema:
-            type: "integer"
-          example: 1
-        - name: "lms_user_id"
-          in: "path"
-          description: "The Moodle ID of the User"
-          required: true
-          schema:
-            type: "integer"
-          example: 1
-        - name: "student_id"
-          in: "path"
-          description: "The ID of the Student"
-          required: true
-          schema:
-            type: "integer"
-          example: 1
-        - name: "course_id"
-          in: path
-          description: "The ID of the course"
-          required: true
-          schema:
-            type: "integer"
-          example: 1
-        - name: "topic_id"
-          in: path
-          description: "The ID of the topic"
-          required: true
-          schema:
-            type: "integer"
-          example: 1
-      responses:
-        "200":
-          description: "Successful Operation"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/TopicStudent"
-        "400":
-          description: "Bad Request"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GeneralError"
-        "404":
-          description: "Not Found"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GeneralError" #?
   /user/{user_id}/{lms_user_id}/learningPath:
     post:
       tags:
@@ -3130,7 +3067,7 @@ components:
         message:
           type: "string"
         status_code:
-          type: "integer"DashboardTeacherFeedback
+          type: "integer"
     AException:
       type: "object"
       properties:

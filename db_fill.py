@@ -784,126 +784,126 @@ cursor.execute(sql)
 sql = """
     INSERT INTO learning_path_topic (topic_id, learning_path_id,\
     position)
-    VALUES (1, 1, true, 1)
+    VALUES (1, 1, 1)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_topic (topic_id, learning_path_id,\
     position)
-    VALUES (2, 1, false, 2)
+    VALUES (2, 1, 2)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_topic (topic_id, learning_path_id,\
     position)
-    VALUES (3, 1, false, 3)
+    VALUES (3, 1, 3)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_topic (topic_id, learning_path_id,\
     position)
-    VALUES (4, 2, true, 1)
+    VALUES (4, 2, 1)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_topic (topic_id, learning_path_id,\
     position)
-    VALUES (5, 2, false, 2)
+    VALUES (5, 2, 2)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_topic (topic_id, learning_path_id,\
     position)
-    VALUES (6, 2, false, 3)
+    VALUES (6, 2, 3)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_topic (topic_id, learning_path_id,\
     position)
-    VALUES (1, 3, true, 1)
+    VALUES (1, 3, 1)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_topic (topic_id, learning_path_id,\
     position)
-    VALUES (2, 3, false, 2)
+    VALUES (2, 3, 2)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_topic (topic_id, learning_path_id,\
     position)
-    VALUES (3, 3, false, 3)
+    VALUES (3, 3, 3)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_topic (topic_id, learning_path_id,\
     position)
-    VALUES (4, 4, true, 1)
+    VALUES (4, 4, 1)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_topic (topic_id, learning_path_id,\
     position)
-    VALUES (5, 4, false, 2)
+    VALUES (5, 4, 2)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_topic (topic_id, learning_path_id,\
     position)
-    VALUES (6, 4, false, 3)
+    VALUES (6, 4, 3)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_topic (topic_id, learning_path_id,\
     position)
-    VALUES (1, 5, true, 1)
+    VALUES (1, 5, 1)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_topic (topic_id, learning_path_id,\
     position)
-    VALUES (2, 5, false, 2)
+    VALUES (2, 5, 2)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_topic (topic_id, learning_path_id,\
     position)
-    VALUES (3, 5, false, 3)
+    VALUES (3, 5, 3)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_topic (topic_id, learning_path_id,\
     position)
-    VALUES (4, 6, true, 1)
+    VALUES (4, 6, 1)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_topic (topic_id, learning_path_id,\
     position)
-    VALUES (5, 6, false, 2)
+    VALUES (5, 6, 2)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_topic (topic_id, learning_path_id,\
     position)
-    VALUES (6, 6, false, 3)
+    VALUES (6, 6, 3)
 """
 cursor.execute(sql)
 
@@ -911,234 +911,234 @@ cursor.execute(sql)
 sql = """
     INSERT INTO learning_path_learning_element (learning_element_id,\
     learning_path_id, position)
-    VALUES (1, 7, true, 1)
+    VALUES (1, 7, 1)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_learning_element (learning_element_id,\
     learning_path_id, position)
-    VALUES (2, 7, false, 2)
+    VALUES (2, 7, 2)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_learning_element (learning_element_id,\
     learning_path_id, position)
-    VALUES (3, 8, true, 1)
+    VALUES (3, 8, 1)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_learning_element (learning_element_id,\
     learning_path_id, position)
-    VALUES (4, 8, false, 2)
+    VALUES (4, 8, 2)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_learning_element (learning_element_id,\
     learning_path_id, position)
-    VALUES (5, 9, true, 1)
+    VALUES (5, 9, 1)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_learning_element (learning_element_id,\
     learning_path_id, position)
-    VALUES (6, 9, false, 2)
+    VALUES (6, 9, 2)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_learning_element (learning_element_id,\
     learning_path_id, position)
-    VALUES (7, 10, true, 1)
+    VALUES (7, 10, 1)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_learning_element (learning_element_id,\
     learning_path_id, position)
-    VALUES (8, 11, true, 1)
+    VALUES (8, 11, 1)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_learning_element (learning_element_id,\
     learning_path_id, position)
-    VALUES (9, 11, false, 2)
+    VALUES (9, 11, 2)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_learning_element (learning_element_id,\
     learning_path_id, position)
-    VALUES (10, 11, false, 3)
+    VALUES (10, 11, 3)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_learning_element (learning_element_id,\
     learning_path_id, position)
-    VALUES (11, 12, false, 4)
-"""
-cursor.execute(sql)
-
-###
-sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id,\
-    learning_path_id, position)
-    VALUES (1, 13, true, 1)
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id,\
-    learning_path_id, position)
-    VALUES (2, 13, false, 2)
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id,\
-    learning_path_id, position)
-    VALUES (3, 14, true, 1)
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id,\
-    learning_path_id, position)
-    VALUES (4, 14, false, 2)
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id,\
-    learning_path_id, position)
-    VALUES (5, 15, true, 1)
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id,\
-    learning_path_id, position)
-    VALUES (6, 15, false, 2)
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id,\
-    learning_path_id, position)
-    VALUES (7, 16, true, 1)
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id,\
-    learning_path_id, position)
-    VALUES (8, 17, true, 1)
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id,\
-    learning_path_id, position)
-    VALUES (9, 17, false, 2)
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id,\
-    learning_path_id, position)
-    VALUES (10, 17, false, 3)
-"""
-cursor.execute(sql)
-
-sql = """
-    INSERT INTO learning_path_learning_element (learning_element_id,\
-    learning_path_id, position)
-    VALUES (11, 17, false, 4)
+    VALUES (11, 12, 4)
 """
 cursor.execute(sql)
 
 ###
-
 sql = """
     INSERT INTO learning_path_learning_element (learning_element_id,\
     learning_path_id, position)
-    VALUES (1, 19, true, 1)
+    VALUES (1, 13, 1)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_learning_element (learning_element_id,\
     learning_path_id, position)
-    VALUES (2, 19, false, 2)
+    VALUES (2, 13, 2)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_learning_element (learning_element_id,\
     learning_path_id, position)
-    VALUES (3, 20, true, 1)
+    VALUES (3, 14, 1)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_learning_element (learning_element_id,\
     learning_path_id, position)
-    VALUES (4, 20, false, 2)
+    VALUES (4, 14, 2)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_learning_element (learning_element_id,\
     learning_path_id, position)
-    VALUES (5, 21, true, 1)
+    VALUES (5, 15, 1)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_learning_element (learning_element_id,\
     learning_path_id, position)
-    VALUES (6, 21, false, 2)
+    VALUES (6, 15, 2)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_learning_element (learning_element_id,\
     learning_path_id, position)
-    VALUES (7, 22, true, 1)
+    VALUES (7, 16, 1)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_learning_element (learning_element_id,\
     learning_path_id, position)
-    VALUES (8, 23, true, 1)
+    VALUES (8, 17, 1)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_learning_element (learning_element_id,\
     learning_path_id, position)
-    VALUES (9, 23, false, 2)
+    VALUES (9, 17, 2)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_learning_element (learning_element_id,\
     learning_path_id, position)
-    VALUES (10, 23, false, 3)
+    VALUES (10, 17, 3)
 """
 cursor.execute(sql)
 
 sql = """
     INSERT INTO learning_path_learning_element (learning_element_id,\
     learning_path_id, position)
-    VALUES (11, 23, false, 4)
+    VALUES (11, 17, 4)
+"""
+cursor.execute(sql)
+
+###
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id,\
+    learning_path_id, position)
+    VALUES (1, 19, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id,\
+    learning_path_id, position)
+    VALUES (2, 19, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id,\
+    learning_path_id, position)
+    VALUES (3, 20, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id,\
+    learning_path_id, position)
+    VALUES (4, 20, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id,\
+    learning_path_id, position)
+    VALUES (5, 21, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id,\
+    learning_path_id, position)
+    VALUES (6, 21, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id,\
+    learning_path_id, position)
+    VALUES (7, 22, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id,\
+    learning_path_id, position)
+    VALUES (8, 23, 1)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id,\
+    learning_path_id, position)
+    VALUES (9, 23, 2)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id,\
+    learning_path_id, position)
+    VALUES (10, 23, 3)
+"""
+cursor.execute(sql)
+
+sql = """
+    INSERT INTO learning_path_learning_element (learning_element_id,\
+    learning_path_id, position)
+    VALUES (11, 23, 4)
 """
 cursor.execute(sql)
 
