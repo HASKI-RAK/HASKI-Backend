@@ -701,7 +701,7 @@ def setup_db(
           INSERT INTO learning_path_learning_element (learning_element_id, \
                                                       learning_path_id, \
                                                       position) \
-          VALUES (12, 20, false, 2);
+          VALUES (12, 20, 2);
     """
     cursor.execute(sql)
 
