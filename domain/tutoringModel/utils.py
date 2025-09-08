@@ -214,3 +214,35 @@ def get_learning_path_as_str(result_ga):
 
 def normalize_array2(data, old_min, old_max, new_min=-12, new_max=13):
     return new_min + (data - old_min) * (new_max - new_min) / (old_max - old_min)
+
+
+def added_view_times(input_view_time):
+    views = [v[0] for v in input_view_time.values()]
+    times = [v[1] for v in input_view_time.values()]
+    # views, times = zip(*input_view_time.values())
+
+    old_min_view, old_max_view = min(views), max(views)
+    old_min_time, old_max_time = min(times), max(times)
+
+    norm_view_time = {
+        k: (
+            int(normalize_array2(v[0], old_min_view, old_max_view)),  # normaliza view
+            int(normalize_array2(v[1], old_min_time, old_max_time)),  # normaliza time
+        )
+        for k, v in input_view_time.items()
+    }    
+    return norm_view_time
+
+
+def update_coodinate(dict_coordinate, input_view_time):
+    updated_coords = {}
+    for k, coord in dict_coordinate.items():
+        if k in input_view_time and k not in ("KÜ", "EK", "LZ"):
+            view, time = input_view_time[k]
+            # reemplazar penúltima y última posición
+            new_coord = coord[:-2] + (view, time)
+            updated_coords[k] = new_coord
+        else:
+            updated_coords[k] = coord  # si no tiene view/time lo dejamos igual
+    #print("\n\ncoordinate_update:", updated_coords)
+    return updated_coords

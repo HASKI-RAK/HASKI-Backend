@@ -1,6 +1,7 @@
 import time
 
 from domain.tutoringModel import aco, ga, graf, nestor, tyche
+from domain.tutoringModel import utils
 from domain.tutoringModel.utils import get_coordinates
 from errors import errors as err
 from utils import constants as cons
@@ -38,10 +39,20 @@ class LearningPath:
                 input_learning_style=learning_style, list_of_les=list_of_les
             )
             self.path = ", ".join(temp)
-        elif algorithm == "aco":
+        elif algorithm == "aco":            
             list_of_les_classifications = self.prepare_le_for_aco(list_of_les)
-            coordinates = get_coordinates(learning_style, list_of_les_classifications)
-            start_point = {"Start": (15, 15, 15, 15)}  # modificar para multidimensional
+            if input_view_time is None:
+                dimension = 4
+                coordinates = utils.get_coordinates(learning_style, 
+                                                    list_of_les_classifications)                
+            else:
+                dimension = 6
+                coordinates = utils.get_coordinates(learning_style, 
+                                                    list_of_les_classifications, 
+                                                    dimension)                              
+                norm_view_times = utils.added_view_times(input_view_time)                
+                coordinates = utils.update_coodinate(coordinates, norm_view_times)
+            start_point = {"Start": (15,) * dimension}
             start_point.update(coordinates)
             path = aco.AntColonySolver()
             result = path.solve(list(start_point.items()))
