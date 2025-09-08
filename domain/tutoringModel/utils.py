@@ -230,7 +230,7 @@ def added_view_times(input_view_time):
             int(normalize_array2(v[1], old_min_time, old_max_time)),  # normaliza time
         )
         for k, v in input_view_time.items()
-    }    
+    }
     return norm_view_time
 
 
@@ -244,5 +244,5 @@ def update_coodinate(dict_coordinate, input_view_time):
             updated_coords[k] = new_coord
         else:
             updated_coords[k] = coord  # si no tiene view/time lo dejamos igual
-    #print("\n\ncoordinate_update:", updated_coords)
+    # print("\n\ncoordinate_update:", updated_coords)
     return updated_coords

@@ -31,7 +31,9 @@ class LearningPath:
             "calculated_on": self.calculated_on,
         }
 
-    def get_learning_path(self, student_id, learning_style, _algorithm, list_of_les, input_view_time=None):
+    def get_learning_path(
+        self, student_id, learning_style, _algorithm, list_of_les, input_view_time=None
+    ):
         algorithm = _algorithm.lower()
         if algorithm == "graf":
             path = graf.GrafAlgorithm(student_id=student_id)
@@ -39,18 +41,19 @@ class LearningPath:
                 input_learning_style=learning_style, list_of_les=list_of_les
             )
             self.path = ", ".join(temp)
-        elif algorithm == "aco":            
+        elif algorithm == "aco":
             list_of_les_classifications = self.prepare_le_for_aco(list_of_les)
             if input_view_time is None:
                 dimension = 4
-                coordinates = utils.get_coordinates(learning_style, 
-                                                    list_of_les_classifications)                
+                coordinates = utils.get_coordinates(
+                    learning_style, list_of_les_classifications
+                )
             else:
                 dimension = 6
-                coordinates = utils.get_coordinates(learning_style, 
-                                                    list_of_les_classifications, 
-                                                    dimension)                              
-                norm_view_times = utils.added_view_times(input_view_time)                
+                coordinates = utils.get_coordinates(
+                    learning_style, list_of_les_classifications, dimension
+                )
+                norm_view_times = utils.added_view_times(input_view_time)
                 coordinates = utils.update_coodinate(coordinates, norm_view_times)
             start_point = {"Start": (15,) * dimension}
             start_point.update(coordinates)
@@ -65,8 +68,9 @@ class LearningPath:
         elif algorithm == "ga":
             genetic_alg = ga.GeneticAlgorithm(learning_elements=list_of_les)
             self.path = genetic_alg.get_learning_path(
-                input_learning_style=learning_style, input_learning_element=list_of_les,
-                input_view_time=input_view_time
+                input_learning_style=learning_style,
+                input_learning_element=list_of_les,
+                input_view_time=input_view_time,
             )
         elif algorithm == "tyche":
             tyche_alg = tyche.TycheAlgorithm()
