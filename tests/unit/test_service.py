@@ -3819,7 +3819,7 @@ def test_get_recommended_exercises_for_student_in_topic():
         uow=uow, user_id=1, lms_user_id=1, student_id=1, course_id=1, topic_id=1
     )
     assert isinstance(results, list)
-    assert results == []
+    assert results != []
 
     create_student_rating_for_tests(uow)
     create_learning_element_rating_for_tests_2(uow)

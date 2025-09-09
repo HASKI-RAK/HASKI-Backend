@@ -2918,9 +2918,18 @@ def get_recommended_exercises_for_student_in_topic(
         uow=uow, student_id=student_id, topic_id=topic_id
     )
 
-    # Check if there are any ratings.
-    if not student_ratings_on_topic:
-        return []
+    if student_ratings_on_topic == []:
+        # If no student rating is available,
+        # create an initial student rating on the topic.
+        student_ratings_on_topic = [
+            LM.StudentRating(
+                student_id=student_id,
+                topic_id=topic_id,
+                rating_value=None,
+                rating_deviation=None,
+                timestamp=datetime.now(),
+            ).serialize()
+        ]
 
     # Get the most recent student rating on the topic.
     most_recent_student_rating = max(
@@ -2965,7 +2974,14 @@ def get_recommended_exercises_for_student_in_topic(
                     learning_element_id=exercise["id"],
                 ),
                 key=lambda x: x["timestamp"],
-                default={"rating_value": float("inf")},
+                # If no learning element rating exist, create an initial rating.
+                default=DM.LearningElementRating(
+                    learning_element_id=exercise["id"],
+                    topic_id=topic_id,
+                    rating_value=None,
+                    rating_deviation=None,
+                    timestamp=datetime.now(),
+                ).serialize(),
             )["rating_value"]
             - most_recent_student_rating["rating_value"]
         ),
