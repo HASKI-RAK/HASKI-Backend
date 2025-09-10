@@ -445,7 +445,6 @@ def create_learning_path(
             path_element = TM.LearningPathLearningElement(
                 learning_element_id=le["id"],
                 learning_path_id=result["id"],
-                recommended=True,
                 position=1,
                 learning_element=None,
             )
@@ -488,7 +487,6 @@ def create_learning_path(
                         path_element = TM.LearningPathLearningElement(
                             learning_element_id=temp["id"],
                             learning_path_id=result["id"],
-                            recommended=True if i == 0 else False,
                             position=i + 1,
                             learning_element=None,
                         )
@@ -1614,35 +1612,6 @@ def get_learning_elements_for_topic_id(
             return results
         except Exception:
             return []
-
-
-def get_learning_element_recommendation(
-    uow: unit_of_work.AbstractUnitOfWork,
-    user_id,
-    lms_user_id,
-    student_id,
-    course_id,
-    topic_id,
-) -> dict:
-    with uow:
-        get_user_by_id(uow, user_id, lms_user_id)
-        get_course_by_id(uow, user_id, lms_user_id, course_id)
-        get_topic_by_id(uow, user_id, lms_user_id, course_id, student_id, topic_id)
-        path = get_learning_path(
-            uow, user_id, lms_user_id, student_id, course_id, topic_id
-        )
-        result = uow.learning_path_learning_element.get_learning_element_recommendation(
-            path["id"]
-        )
-        return get_learning_element_by_id(
-            uow,
-            user_id,
-            lms_user_id,
-            student_id,
-            course_id,
-            topic_id,
-            result[0].learning_element_id,
-        )
 
 
 def get_learning_path(
@@ -2829,10 +2798,14 @@ def update_ratings(
 
         if student_ratings == []:
             # If no student rating is available,
-            # create an initial student rating on concept.
-            student_rating = create_student_rating(
-                uow=uow, student_id=student_id, topic_id=topic_id, timestamp=timestamp
-            )
+            # create an initial student rating on the topic.
+            student_rating = LM.StudentRating(
+                student_id=student_id,
+                topic_id=topic_id,
+                rating_value=None,
+                rating_deviation=None,
+                timestamp=timestamp,
+            ).serialize()
         else:
             # Sort student ratings by timestamp.
             student_ratings.sort(key=lambda x: x["timestamp"])
@@ -2853,12 +2826,13 @@ def update_ratings(
         if learning_element_ratings == []:
             # If no learning element rating is available,
             # create an initial learning element rating on concept.
-            learning_element_rating = create_learning_element_rating(
-                uow=uow,
+            learning_element_rating = DM.LearningElementRating(
                 learning_element_id=learning_element_id,
                 topic_id=topic_id,
+                rating_value=None,
+                rating_deviation=None,
                 timestamp=timestamp,
-            )
+            ).serialize()
         else:
             # Sort learning element ratings by timestamp.
             learning_element_ratings.sort(key=lambda x: x["timestamp"])
@@ -2929,6 +2903,91 @@ def update_ratings(
             "student_rating": updated_student_rating,
             "learning_element_rating": updated_learning_element_rating,
         }
+
+
+def get_recommended_exercises_for_student_in_topic(
+    uow: unit_of_work.AbstractUnitOfWork,
+    user_id: int,
+    lms_user_id: int,
+    student_id: int,
+    topic_id: int,
+    course_id: int,
+) -> list:
+    # Get all student ratings on topic.
+    student_ratings_on_topic = get_student_ratings_on_topic(
+        uow=uow, student_id=student_id, topic_id=topic_id
+    )
+
+    if student_ratings_on_topic == []:
+        # If no student rating is available,
+        # create an initial student rating on the topic.
+        student_ratings_on_topic = [
+            LM.StudentRating(
+                student_id=student_id,
+                topic_id=topic_id,
+                rating_value=None,
+                rating_deviation=None,
+                timestamp=datetime.now(),
+            ).serialize()
+        ]
+
+    # Get the most recent student rating on the topic.
+    most_recent_student_rating = max(
+        student_ratings_on_topic, key=lambda x: x["timestamp"]
+    )
+
+    # Get all topic learning elements of topic id.
+    topic_learning_elements = get_learning_elements_for_topic_id(uow, topic_id=topic_id)
+
+    # Get all learning elements in topic.
+    learning_elements_in_topic = [
+        get_learning_element_by_id(
+            uow=uow,
+            user_id=user_id,
+            lms_user_id=lms_user_id,
+            student_id=student_id,
+            course_id=course_id,
+            topic_id=topic_id,
+            learning_element_id=learning_element["learning_element_id"],
+        )
+        for learning_element in topic_learning_elements
+    ]
+
+    # Filter out all learning elements except exercises (ÜB).
+    exercises_in_topic = [
+        learning_element
+        for learning_element in learning_elements_in_topic
+        if learning_element["classification"] == "ÜB"
+    ]
+
+    # Compare the most recent student rating with the most recent rating
+    # on each exercise and sort the exercises based on the absolute difference
+    # between the ratings with the least distance first.
+    recommended_exercises = sorted(
+        exercises_in_topic,
+        key=lambda exercise: abs(
+            # Get the most recent rating of each exercise in the topic.
+            max(
+                get_learning_element_ratings_on_topic(
+                    uow,
+                    topic_id=topic_id,
+                    learning_element_id=exercise["id"],
+                ),
+                key=lambda x: x["timestamp"],
+                # If no learning element rating exist, create an initial rating.
+                default=DM.LearningElementRating(
+                    learning_element_id=exercise["id"],
+                    topic_id=topic_id,
+                    rating_value=None,
+                    rating_deviation=None,
+                    timestamp=datetime.now(),
+                ).serialize(),
+            )["rating_value"]
+            - most_recent_student_rating["rating_value"]
+        ),
+    )
+
+    return recommended_exercises
 
 
 # ##### TEST ENDPOINT #####
