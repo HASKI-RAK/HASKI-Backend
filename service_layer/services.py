@@ -808,6 +808,7 @@ def create_user(
             case const.role_student_string:
                 role = create_student(uow, user)
                 user.role_id = role["id"]
+                create_student_experience_points(uow, role["id"], 0)
             case const.role_teacher_string:
                 role = create_teacher(uow, user)
                 user.role_id = role["id"]
@@ -2744,6 +2745,34 @@ def update_settings_for_user(
         uow.settings.update_settings(user_id, settings)
         uow.commit()
         return settings.serialize()
+
+
+def update_student_experience_points(
+    uow: unit_of_work.AbstractUnitOfWork,
+    student_id: int,
+    course_id: int,
+    learning_element_id: int,
+    user_lms_id: int,
+    activity_type: str,
+) -> dict:
+    base_xp = {"exercise": 30,  "self_assessment": 40, "other": 10}
+
+    if activity_type in ["exercise", "self_assessment"]: # die richtigen nachschauen
+      attempts = get_moodle_h5p_activity_attempts(
+          course_id,
+          learning_element_id,
+          user_lms_id
+      )
+      if attempts.userattempts != {}:
+          latest_attempt = max(attempts.userattempts[0].attempts, key=lambda x: x.timecreated)
+          experience_points = base_xp[activity_type] - (latest_attempt.attemptstate.penalty * base_xp[activity_type])
+    
+    with uow:
+        uow.student_experience_points.update_student_experience_points(
+            student_id, experience_points
+        )
+        uow.commit()
+        return {"student_id": student_id, "experience_points": experience_points}
 
 
 def update_student_learning_element(

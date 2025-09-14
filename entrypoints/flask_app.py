@@ -2457,6 +2457,28 @@ def get_learning_element_ratings():
             )
             status_code = 200
             return jsonify(result), status_code
+        
+
+@app.route("/student/<student_id>/xp", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_student_xp(student_id: str):
+    result = services.get_student_xp(
+        uow=unit_of_work.SqlAlchemyUnitOfWork(),
+        student_id=int(student_id),
+    )
+    status_code = 200
+    return jsonify(result), status_code
+
+
+@app.route("/student/<student_id>/calculate_xp", methods=["POST"])
+@cross_origin(supports_credentials=True)
+def calculate_student_xp(student_id: str):
+    result = services.calculate_student_xp(
+        uow=unit_of_work.SqlAlchemyUnitOfWork(),
+        student_id=int(student_id),
+    )
+    status_code = 200
+    return jsonify(result), status_code
 
 
 if __name__ == "__main__":
