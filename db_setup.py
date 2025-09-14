@@ -1165,7 +1165,7 @@ def setup_db(
             description text COLLATE pg_catalog."default" NOT NULL,
             icon_id integer NOT NULL,
             course_id integer NOT NULL,
-            topic_id integer NOT NULL,
+            topic_id integer NOT NULL
         )
 
         TABLESPACE pg_default;
@@ -1181,7 +1181,7 @@ def setup_db(
             id integer NOT NULL GENERATED ALWAYS AS IDENTITY
             ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
             student_id integer NOT NULL,
-            badge_id integer NOT NULL,
+            badge_id integer NOT NULL
             )
             
             TABLESPACE pg_default;
