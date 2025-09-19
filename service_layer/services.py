@@ -1,5 +1,6 @@
 import os
 from datetime import datetime
+from math import log
 
 import requests
 from flask.wrappers import Request
@@ -2753,21 +2754,48 @@ def update_student_experience_points(
     course_id: int,
     learning_element_id: int,
     user_lms_id: int,
-    activity_type: str,
+    classification: str,
+    start_time: int
 ) -> dict:
-    base_xp = {"exercise": 30,  "self_assessment": 40, "other": 10}
-
-    if activity_type in ["exercise", "self_assessment"]: # die richtigen nachschauen
-      attempts = get_moodle_h5p_activity_attempts(
-          course_id,
-          learning_element_id,
-          user_lms_id
-      )
-      if attempts.userattempts != {}:
-          latest_attempt = max(attempts.userattempts[0].attempts, key=lambda x: x.timecreated)
-          experience_points = base_xp[activity_type] - (latest_attempt.attemptstate.penalty * base_xp[activity_type])
-    
+    base_xp = {"ÜB": 50,  "SE": 100, "other": 10}
     with uow:
+        if classification in ["ÜB", "SE"]:
+          response = get_moodle_h5p_activity_attempts(
+              uow,
+              course_id,
+              learning_element_id,
+              user_lms_id
+          )
+          if response != {} and response["usersattempts"][0]["attempts"]:
+              attempts = response["usersattempts"][0]["attempts"]
+              sorted_attempts = sorted(attempts, key=lambda x: x["timecreated"], reverse=True)
+              current_attempts = list(filter(lambda x: x["timecreated"] >= start_time, sorted_attempts))
+              previous_attempts = list(filter(lambda x: x["timecreated"] < start_time, sorted_attempts))
+
+              best_score_percentage = current_attempts[0]["rawscore"] / current_attempts[0]["maxscore"]
+
+              time_between_attempts = current_attempts[0]["timecreated"] - max(previous_attempts, key=lambda x: x["timecreated"])["timecreated"] if previous_attempts else 0
+              wait_bonus = (time_between_attempts / 259.200) or 1
+
+              ratings = get_learning_element_ratings(uow)
+              if ratings != []:
+                  highest_rating = max(ratings, key=lambda x: x["rating_value"])
+                  lowest_rating = min(ratings, key=lambda x: x["rating_value"])
+                  for rating in ratings:
+                      rating["rating_value"] = (rating["rating_value"] - lowest_rating["rating_value"]) / (highest_rating["rating_value"] - lowest_rating["rating_value"])
+                  lowest_rating["rating_value"] = 0
+                  highest_rating["rating_value"] = highest_rating["rating_value"]-lowest_rating["rating_value"]
+                  average_rating = sum(rating["rating_value"] for rating in ratings) / len(ratings)
+                  #normalize average rating to be between 0 and 1
+                  average_rating = average_rating / highest_rating["rating_value"]
+                  # points for rating will be between 2 and 8
+                  rating_points = round(average_rating * 6 + 2)
+
+              if len(sorted_attempts) >= 2:
+                  time_between_attempts = sorted_attempts[0]["timecreated"] - sorted_attempts[1]["timecreated"]
+
+              experience_points = base_xp[classification] * (average_rating - 0.5) * best_score_percentage + 4 * log(current_attempts.length) + current_attempts[0]["success"] * 200 * wait_bonus
+
         uow.student_experience_points.update_student_experience_points(
             student_id, experience_points
         )
