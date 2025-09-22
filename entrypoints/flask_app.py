@@ -948,6 +948,23 @@ def put_student_learning_element(student_id, learning_element_id):
 
 
 @app.route(
+    "/lms/student/<student_id>/favorites",
+    methods=["GET"],
+)
+@cross_origin(supports_credentials=True)
+def get_favorites_by_student_id(student_id):
+    method = request.method
+    match method:
+        case "GET":
+            learning_elements = services.get_favorites_by_student_id(
+                unit_of_work.SqlAlchemyUnitOfWork(),
+                student_id,
+            )
+            status_code = 200
+            return jsonify(learning_elements), status_code
+
+
+@app.route(
     "/student/<student_id>/topic/<topic_id>/algorithm",
     methods=["POST"],
 )

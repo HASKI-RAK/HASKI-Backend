@@ -1764,6 +1764,18 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             return None
         else:
             return result
+        
+    def get_favorites_by_student_id(self, student_id)->DM.StudentLearningElement:
+        try:
+            result = (
+                self.session.query(DM.StudentLearningElement.learning_element_id)
+                .filter_by(student_id=student_id)
+                .filter_by(favorite=True)
+                .all()
+            )
+            return result
+        except Exception:
+            raise err.CreationError()
 
     def get_student_lpath_le_algorithm(
         self, student_id, topic_id
