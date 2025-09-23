@@ -1933,10 +1933,10 @@ def get_favorites_by_student_id(
     uow: unit_of_work.AbstractUnitOfWork, student_id
 ) -> dict:
     with uow:
-        favorites = uow.favorite.get_favorites_by_student_id(student_id)
+        favorites = uow.student_learning_element.get_favorites_by_student_id(student_id)
         result_favorites = []
-        for favorite in favorites:
-            result_favorites.append(favorite.serialize())
+        for learning_element_id in favorites:
+            result_favorites.append(learning_element_id)
         result = {}
         result["favorites"] = result_favorites
         return result
