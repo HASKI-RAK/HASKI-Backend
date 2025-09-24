@@ -779,13 +779,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 result.append(i)
         return result
 
-    def get_learning_element_recommendation(self, learning_path_id):
-        result = []
-        for i in self.learning_path_learning_element:
-            if i.learning_path_id == learning_path_id and i.recommended:
-                result.append(i)
-        return result
-
     def get_learning_path(self, student_id, course_id, topic_id):
         result = []
         for i in self.learning_path:
@@ -1547,6 +1540,28 @@ def create_learning_element_for_tests_2(uow):
         )
 
 
+def create_learning_element_for_tests_3(uow):
+    list_of_les = [
+        cons.abbreviation_ex,
+        cons.abbreviation_ec,
+        cons.abbreviation_ec,
+        cons.abbreviation_ec,
+        cons.abbreviation_cc,
+    ]
+    for i in range(len(list_of_les)):
+        services.create_learning_element(
+            uow=uow,
+            topic_id=1,
+            lms_id=i + 1,
+            activity_type="h5pactivity",
+            classification=list_of_les[i],
+            name="Test LE",
+            created_at="2017-01-01",
+            created_by=user_name_example,
+            university=university_example,
+        )
+
+
 def create_course_topic_for_tests(uow):
     services.create_course_topic(uow=uow, course_id=1, topic_id=1)
 
@@ -1658,7 +1673,7 @@ def create_student_rating_for_tests(uow):
     )
 
 
-def create_learning_element_rating_for_tests(uow):
+def create_learning_element_rating_for_tests_1(uow):
     services.create_learning_element_rating(
         uow=uow,
         learning_element_id=1,
@@ -1667,6 +1682,44 @@ def create_learning_element_rating_for_tests(uow):
         rating_deviation=250,
         timestamp=datetime.datetime.now(),
     )
+
+
+def create_learning_element_rating_for_tests_2(uow):
+    list_of_ratings = [
+        1200,
+        1300,
+        1400,
+        1500,
+        1600,
+    ]
+    for i in range(len(list_of_ratings)):
+        services.create_learning_element_rating(
+            uow=uow,
+            learning_element_id=i + 1,
+            topic_id=1,
+            rating_value=list_of_ratings[i],
+            rating_deviation=350,
+            timestamp=datetime.datetime.now(),
+        )
+
+
+def create_learning_element_rating_for_tests_2(uow):
+    list_of_ratings = [
+        1200,
+        1300,
+        1400,
+        1500,
+        1600,
+    ]
+    for i in range(len(list_of_ratings)):
+        services.create_learning_element_rating(
+            uow=uow,
+            learning_element_id=i + 1,
+            topic_id=1,
+            rating_value=list_of_ratings[i],
+            rating_deviation=350,
+            timestamp=datetime.datetime.now(),
+        )
 
 
 def create_student_learning_element_for_tests(uow):
@@ -3392,23 +3445,6 @@ def test_get_les_for_course_and_topic_id():
     assert result != {}
 
 
-def test_get_learning_element_recommendation():
-    uow = FakeUnitOfWork()
-    create_course_creator_for_tests(uow)
-    create_learning_path_learning_element_algorithm_for_tests(uow)
-    create_student_for_tests(uow)
-    create_course_for_tests(uow)
-    create_topic_for_tests(uow)
-    create_learning_element_for_tests_1(uow)
-    add_student_to_course_for_tests(uow)
-    create_learning_path_for_tests(uow)
-    result = services.get_learning_element_recommendation(
-        uow=uow, user_id=1, lms_user_id=1, student_id=1, course_id=1, topic_id=1
-    )
-    assert type(result) == dict
-    assert result != {}
-
-
 def test_get_learning_path():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
@@ -3649,7 +3685,7 @@ def test_get_student_ratings():
 
 def test_create_learning_element_rating():
     uow = FakeUnitOfWork()
-    create_learning_element_rating_for_tests(uow=uow)
+    create_learning_element_rating_for_tests_1(uow=uow)
     initial_entries = len(uow.learning_element_rating.learning_element_rating)
     result = services.create_learning_element_rating(
         uow=uow,
@@ -3667,7 +3703,7 @@ def test_create_learning_element_rating():
 
 def test_get_learning_element_ratings_on_topic():
     uow = FakeUnitOfWork()
-    create_learning_element_rating_for_tests(uow=uow)
+    create_learning_element_rating_for_tests_1(uow=uow)
     result = services.get_learning_element_ratings_on_topic(
         uow=uow, learning_element_id=1, topic_id=1
     )
@@ -3677,7 +3713,7 @@ def test_get_learning_element_ratings_on_topic():
 
 def test_get_learning_element_ratings():
     uow = FakeUnitOfWork()
-    create_learning_element_rating_for_tests(uow)
+    create_learning_element_rating_for_tests_1(uow)
     result = services.get_learning_element_ratings(uow=uow)
     assert type(result) is list
     assert result != []
@@ -3775,3 +3811,77 @@ def test_get_moodle_most_recent_attempt_by_user(mock_get):
         uow=uow, course_id=1, learning_element_id=1, lms_user_id="1"
     )
     assert result == {"timecreated": 2}
+
+
+def test_get_recommended_exercises_for_student_in_topic():
+    uow = FakeUnitOfWork()
+    create_course_creator_for_tests(uow)
+    create_student_for_tests(uow)
+    create_course_for_tests(uow)
+    create_topic_for_tests(uow)
+    create_learning_element_for_tests_3(uow)
+    create_learning_path_learning_element_algorithm_for_tests(uow)
+    add_student_to_course_for_tests(uow)
+    results = services.get_recommended_exercises_for_student_in_topic(
+        uow=uow, user_id=1, lms_user_id=1, student_id=1, course_id=1, topic_id=1
+    )
+    assert isinstance(results, list)
+    assert results != []
+
+    create_student_rating_for_tests(uow)
+    create_learning_element_rating_for_tests_2(uow)
+    results = services.get_recommended_exercises_for_student_in_topic(
+        uow=uow, user_id=1, lms_user_id=1, student_id=1, course_id=1, topic_id=1
+    )
+    assert isinstance(results, list)
+    assert results != []
+
+
+def test_update_ratings():
+    uow = FakeUnitOfWork()
+    assert services.get_learning_element_ratings(uow) == []
+    timestamp = datetime.datetime(2025, 5, 24, 10, 0, 0)
+    result = services.update_ratings(
+        uow=uow,
+        student_id=1,
+        learning_element_id=1,
+        topic_id=1,
+        attempt_result=1,
+        timestamp=timestamp,
+    )
+    assert isinstance(result, dict)
+    assert result == {
+        "learning_element_rating": {
+            "deviation": 290.2305060910912,
+            "timestamp": timestamp,
+            "value": 1337.7879973942352,
+        },
+        "student_rating": {
+            "deviation": 290.2305060910912,
+            "timestamp": timestamp,
+            "value": 1613.5484018240354,
+        },
+    }
+
+    timestamp = datetime.datetime(2025, 5, 24, 10, 0, 1)
+    result = services.update_ratings(
+        uow=uow,
+        student_id=1,
+        learning_element_id=1,
+        topic_id=1,
+        attempt_result=0,
+        timestamp=timestamp,
+    )
+    assert isinstance(result, dict)
+    assert result == {
+        "learning_element_rating": {
+            "deviation": 257.2042041883119,
+            "timestamp": timestamp,
+            "value": 1551.4204351796234,
+        },
+        "student_rating": {
+            "deviation": 257.20420418831196,
+            "timestamp": timestamp,
+            "value": 1399.9159640386472,
+        },
+    }
