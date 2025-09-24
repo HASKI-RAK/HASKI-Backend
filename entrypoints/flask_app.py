@@ -250,36 +250,35 @@ def course_administration(data: Dict[str, Any], course_id, lms_course_id):
             condition2 = "name" in data
             condition3 = "university" in data
             condition4 = "last_updated" in data
-            if condition1 and condition2 and condition3 and condition4:
-                condition5 = re.search(cons.date_format_search, data["last_updated"])
-                if condition5:
-                    condition6 = "start_date" in data
-                    if condition6:
-                        condition7 = re.search(
-                            cons.date_format_search, data["start_date"]
-                        )
-                        if condition7:
-                            start_date = datetime.strptime(
-                                data["start_date"], cons.date_format
-                            ).date()
-                        else:
-                            raise err.WrongParameterValueError()
-                    else:
-                        start_date = None
-                    course = services.update_course(
-                        unit_of_work.SqlAlchemyUnitOfWork(),
-                        course_id,
-                        lms_course_id,
-                        data["name"],
-                        data["university"],
-                        start_date,
-                    )
-                    status_code = 201
-                    return jsonify(course), status_code
-                else:
-                    raise err.WrongParameterValueError()
-            else:
+            if not (condition1 and condition2 and condition3 and condition4):
                 raise err.MissingParameterError()
+
+            condition5 = re.search(cons.date_format_search, data["last_updated"])
+            if not condition5:
+                raise err.WrongParameterValueError()
+
+            start_date = None
+            condition6 = "start_date" in data
+            if condition6:
+                condition7 = re.search(cons.date_format_search, data["start_date"])
+                if not condition7:
+                    raise err.WrongParameterValueError()
+
+                start_date = datetime.strptime(
+                    data["start_date"], cons.date_format
+                ).date()
+
+            course = services.update_course(
+                unit_of_work.SqlAlchemyUnitOfWork(),
+                course_id,
+                lms_course_id,
+                data["name"],
+                data["university"],
+                start_date,
+            )
+
+            status_code = 201
+            return jsonify(course), status_code
         case "DELETE":
             topics = services.get_topics_for_course_id(
                 unit_of_work.SqlAlchemyUnitOfWork(), course_id
@@ -292,22 +291,24 @@ def course_administration(data: Dict[str, Any], course_id, lms_course_id):
                 services.delete_student_topic_by_topic_id(
                     unit_of_work.SqlAlchemyUnitOfWork(), topic["id"]
                 )
-                learning_elements = services.get_learning_elements_for_topic_id(
-                    unit_of_work.SqlAlchemyUnitOfWork(), topic["id"]
-                )
                 services.delete_learning_path_learning_element_algorithm(
                     unit_of_work.SqlAlchemyUnitOfWork(), topic["id"]
                 )
                 services.delete_student_lpath_le_algorithm(
                     unit_of_work.SqlAlchemyUnitOfWork(), topic["id"]
                 )
+                learning_elements = services.get_learning_elements_for_topic_id(
+                    unit_of_work.SqlAlchemyUnitOfWork(), topic["id"]
+                )
                 for learning_element in learning_elements:
+                    # todo delete learning element rating for learning element in topic
                     services.delete_student_learning_element_by_learning_element_id(
                         unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"]
                     )
                     services.delete_learning_element(
                         unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"]
                     )
+                # todo delete student rating on topic
                 services.delete_topic(unit_of_work.SqlAlchemyUnitOfWork(), topic["id"])
             services.delete_course(unit_of_work.SqlAlchemyUnitOfWork(), course_id)
             result = {"message": cons.deletion_message}
@@ -616,7 +617,7 @@ def topic_administration(data: Dict[str, Any], topic_id, lms_topic_id):
             condition6 = "created_at" in data
             condition7 = "university" in data
             condition8 = "last_updated" in data
-            if (
+            if not (
                 condition1
                 and condition2
                 and condition3
@@ -626,35 +627,35 @@ def topic_administration(data: Dict[str, Any], topic_id, lms_topic_id):
                 and condition7
                 and condition8
             ):
-                condition9 = re.search(cons.date_format_search, data["last_updated"])
-                condition10 = re.search(cons.date_format_search, data["created_at"])
-                if condition9 and condition10:
-                    created_at = datetime.strptime(
-                        data["created_at"], cons.date_format
-                    ).date()
-                    last_updated = datetime.strptime(
-                        data["last_updated"], cons.date_format
-                    ).date()
-
-                    topic = services.update_topic(
-                        unit_of_work.SqlAlchemyUnitOfWork(),
-                        topic_id,
-                        lms_topic_id,
-                        data["is_topic"],
-                        data["parent_id"],
-                        data["contains_le"],
-                        data["name"],
-                        data["university"],
-                        data["created_by"],
-                        created_at,
-                        last_updated,
-                    )
-                    status_code = 201
-                    return jsonify(topic), status_code
-                else:
-                    raise err.NoValidParameterValueError()
-            else:
                 raise err.MissingParameterError()
+
+            condition9 = re.search(cons.date_format_search, data["last_updated"])
+            condition10 = re.search(cons.date_format_search, data["created_at"])
+            if not (condition9 and condition10):
+                raise err.NoValidParameterValueError()
+
+            created_at = datetime.strptime(data["created_at"], cons.date_format).date()
+
+            last_updated = datetime.strptime(
+                data["last_updated"], cons.date_format
+            ).date()
+
+            topic = services.update_topic(
+                unit_of_work.SqlAlchemyUnitOfWork(),
+                topic_id,
+                lms_topic_id,
+                data["is_topic"],
+                data["parent_id"],
+                data["contains_le"],
+                data["name"],
+                data["university"],
+                data["created_by"],
+                created_at,
+                last_updated,
+            )
+
+            status_code = 201
+            return jsonify(topic), status_code
         case "DELETE":
             services.delete_learning_paths_by_topic_id(
                 unit_of_work.SqlAlchemyUnitOfWork(), topic_id
@@ -663,16 +664,17 @@ def topic_administration(data: Dict[str, Any], topic_id, lms_topic_id):
                 unit_of_work.SqlAlchemyUnitOfWork(), topic_id
             )
             # student and learning_element rating need to be deleted, both have topic_id
-            learning_elements = services.get_learning_elements_for_topic_id(
-                unit_of_work.SqlAlchemyUnitOfWork(), topic_id
-            )
             services.delete_learning_path_learning_element_algorithm(
                 unit_of_work.SqlAlchemyUnitOfWork(), topic_id
             )
             services.delete_student_lpath_le_algorithm(
                 unit_of_work.SqlAlchemyUnitOfWork(), topic_id
             )
+            learning_elements = services.get_learning_elements_for_topic_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), topic_id
+            )
             for learning_element in learning_elements:
+                # todo delete learning element rating for learning element in topic
                 services.delete_student_learning_element_by_learning_element_id(
                     unit_of_work.SqlAlchemyUnitOfWork(),
                     learning_element["learning_element_id"],
@@ -681,6 +683,7 @@ def topic_administration(data: Dict[str, Any], topic_id, lms_topic_id):
                     unit_of_work.SqlAlchemyUnitOfWork(),
                     learning_element["learning_element_id"],
                 )
+            # todo delete student rating on topic
             services.delete_topic(unit_of_work.SqlAlchemyUnitOfWork(), topic_id)
             result = {"message": cons.deletion_message}
             status_code = 200
@@ -792,7 +795,7 @@ def learning_element_administration(
             condition6 = "created_at" in data
             condition7 = "university" in data
             condition8 = "last_updated" in data
-            if (
+            if not (
                 condition1
                 and condition2
                 and condition3
@@ -802,55 +805,52 @@ def learning_element_administration(
                 and condition7
                 and condition8
             ):
-                condition10 = type(data["activity_type"]) == str
-                condition11 = type(data["classification"]) == str
-                condition12 = type(data["name"]) == str
-                condition13 = type(data["created_by"]) == str
-                condition14 = type(data["created_at"]) == str
-                condition15 = type(data["university"]) == str
-                condition16 = type(data["last_updated"]) == str
-                if (
-                    condition10
-                    and condition11
-                    and condition12
-                    and condition13
-                    and condition14
-                    and condition15
-                    and condition16
-                ):
-                    condition17 = re.search(cons.date_format_search, data["created_at"])
-                    condition18 = re.search(
-                        cons.date_format_search, data["last_updated"]
-                    )
-                    if condition17 and condition18:
-                        created_at = datetime.strptime(
-                            data["created_at"], cons.date_format
-                        ).date()
-                        last_updated = datetime.strptime(
-                            data["last_updated"], cons.date_format
-                        ).date()
-                        learning_element = services.update_learning_element(
-                            unit_of_work.SqlAlchemyUnitOfWork(),
-                            learning_element_id,
-                            lms_learning_element_id,
-                            data["activity_type"],
-                            data["classification"],
-                            data["name"],
-                            data["created_by"],
-                            created_at,
-                            last_updated,
-                            data["university"],
-                        )
-                        status_code = 201
-                        return jsonify(learning_element), status_code
-                    else:
-                        raise err.WrongParameterValueError(
-                            message=cons.date_format_message
-                        )
-                else:
-                    raise err.WrongParameterValueError()
-            else:
                 raise err.MissingParameterError()
+
+            condition10 = type(data["activity_type"]) == str
+            condition11 = type(data["classification"]) == str
+            condition12 = type(data["name"]) == str
+            condition13 = type(data["created_by"]) == str
+            condition14 = type(data["created_at"]) == str
+            condition15 = type(data["university"]) == str
+            condition16 = type(data["last_updated"]) == str
+            if not (
+                condition10
+                and condition11
+                and condition12
+                and condition13
+                and condition14
+                and condition15
+                and condition16
+            ):
+                raise err.WrongParameterValueError()
+
+            condition17 = re.search(cons.date_format_search, data["created_at"])
+            condition18 = re.search(cons.date_format_search, data["last_updated"])
+            if not (condition17 and condition18):
+                raise err.WrongParameterValueError(message=cons.date_format_message)
+
+            created_at = datetime.strptime(data["created_at"], cons.date_format).date()
+
+            last_updated = datetime.strptime(
+                data["last_updated"], cons.date_format
+            ).date()
+
+            learning_element = services.update_learning_element(
+                unit_of_work.SqlAlchemyUnitOfWork(),
+                learning_element_id,
+                lms_learning_element_id,
+                data["activity_type"],
+                data["classification"],
+                data["name"],
+                data["created_by"],
+                created_at,
+                last_updated,
+                data["university"],
+            )
+
+            status_code = 201
+            return jsonify(learning_element), status_code
         case "DELETE":
             services.delete_learning_path_learning_element_by_le_id(
                 unit_of_work.SqlAlchemyUnitOfWork(), learning_element_id
@@ -858,6 +858,8 @@ def learning_element_administration(
             services.delete_student_learning_element_by_learning_element_id(
                 unit_of_work.SqlAlchemyUnitOfWork(), learning_element_id
             )
+            # todo delete learning element rating for learning element in topic
+            # where do i get the topic id from?
             services.delete_learning_element(
                 unit_of_work.SqlAlchemyUnitOfWork(), learning_element_id
             )
