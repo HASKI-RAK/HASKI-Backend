@@ -1415,17 +1415,17 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
 
     def delete_learning_element_ratings_by_learning_element(
         self, learning_element_id: int
-    ):  # todo test?
+    ):
         self.session.query(DM.LearningElementRating).filter_by(
             learning_element_id=learning_element_id
         ).delete()
 
-    def delete_learning_element_ratings_by_topic(self, topic_id: int):  # todo test?
+    def delete_learning_element_ratings_by_topic(self, topic_id: int):
         self.session.query(DM.LearningElementRating).filter_by(
             topic_id=topic_id
         ).delete()
 
-    def delete_student_ratings_by_topic(self, topic_id: int):  # todo test?
+    def delete_student_ratings_by_topic(self, topic_id: int):
         self.session.query(LM.StudentRating).filter_by(topic_id=topic_id).delete()
 
     def get_admin_by_id(

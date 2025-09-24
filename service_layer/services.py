@@ -1319,7 +1319,7 @@ def delete_topic_learning_element_by_learning_element(
         return {}
 
 
-def delete_learning_element_ratings_by_learning_element(  # todo test
+def delete_learning_element_ratings_by_learning_element(
     uow: unit_of_work.AbstractUnitOfWork, learning_element_id: int
 ) -> None:
     with uow:
@@ -1329,7 +1329,7 @@ def delete_learning_element_ratings_by_learning_element(  # todo test
         uow.commit()
 
 
-def delete_learning_element_ratings_by_topic(  # todo test
+def delete_learning_element_ratings_by_topic(
     uow: unit_of_work.AbstractUnitOfWork, topic_id: int
 ) -> None:
     with uow:
@@ -1339,7 +1339,7 @@ def delete_learning_element_ratings_by_topic(  # todo test
 
 def delete_student_ratings_by_topic(
     uow: unit_of_work.AbstractUnitOfWork, topic_id: int
-) -> None:  # todo test
+) -> None:
     with uow:
         uow.student_rating.delete_student_ratings_by_topic(topic_id)
         uow.commit()
