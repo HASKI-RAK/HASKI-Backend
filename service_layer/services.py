@@ -1319,6 +1319,32 @@ def delete_topic_learning_element_by_learning_element(
         return {}
 
 
+def delete_learning_element_ratings_by_learning_element(  # todo test
+    uow: unit_of_work.AbstractUnitOfWork, learning_element_id: int
+) -> None:
+    with uow:
+        uow.learning_element_rating.delete_learning_element_ratings_by_learning_element(
+            learning_element_id
+        )
+        uow.commit()
+
+
+def delete_learning_element_ratings_by_topic(  # todo test
+    uow: unit_of_work.AbstractUnitOfWork, topic_id: int
+) -> None:
+    with uow:
+        uow.learning_element_rating.delete_learning_element_ratings_by_topic(topic_id)
+        uow.commit()
+
+
+def delete_student_ratings_by_topic(
+    uow: unit_of_work.AbstractUnitOfWork, topic_id: int
+) -> None:  # todo test
+    with uow:
+        uow.student_rating.delete_student_ratings_by_topic(topic_id)
+        uow.commit()
+
+
 def get_course_by_id(
     uow: unit_of_work.AbstractUnitOfWork, user_id, lms_user_id, course_id
 ) -> dict:
@@ -2128,10 +2154,12 @@ def get_news(
             )
         backend_response = uow.news.get_news(language_id, None, created_at)
 
-        result = dict()
-        result["news"] = [
-            news.serialize() for news in backend_response + backend_response_university
-        ]
+        result = {
+            "news": [
+                news.serialize()
+                for news in backend_response + backend_response_university
+            ]
+        }
         return result
 
 
@@ -2140,10 +2168,8 @@ def get_logbuffer(
     user_id,
 ) -> dict:
     with uow:
-        logbuffer_response = []
         logbuffer_response = uow.logbuffer.get_logbuffer(user_id)
-        result = dict()
-        result["log"] = [logbuffer.serialize() for logbuffer in logbuffer_response]
+        result = {"log": [logbuffer.serialize() for logbuffer in logbuffer_response]}
         return result
 
 

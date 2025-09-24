@@ -287,7 +287,6 @@ def course_administration(data: Dict[str, Any], course_id, lms_course_id):
                 unit_of_work.SqlAlchemyUnitOfWork(), course_id
             )
             for topic in topics:
-                # student and learning_element rating need to be deleted (topic_id)
                 services.delete_student_topic_by_topic_id(
                     unit_of_work.SqlAlchemyUnitOfWork(), topic["id"]
                 )
@@ -297,19 +296,27 @@ def course_administration(data: Dict[str, Any], course_id, lms_course_id):
                 services.delete_student_lpath_le_algorithm(
                     unit_of_work.SqlAlchemyUnitOfWork(), topic["id"]
                 )
+                services.delete_student_ratings_by_topic(
+                    unit_of_work.SqlAlchemyUnitOfWork(), topic["id"]
+                )
+                services.delete_learning_element_ratings_by_topic(
+                    unit_of_work.SqlAlchemyUnitOfWork(), topic["id"]
+                )
+
                 learning_elements = services.get_learning_elements_for_topic_id(
                     unit_of_work.SqlAlchemyUnitOfWork(), topic["id"]
                 )
+
                 for learning_element in learning_elements:
-                    # todo delete learning element rating for learning element in topic
                     services.delete_student_learning_element_by_learning_element_id(
                         unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"]
                     )
                     services.delete_learning_element(
                         unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"]
                     )
-                # todo delete student rating on topic
+
                 services.delete_topic(unit_of_work.SqlAlchemyUnitOfWork(), topic["id"])
+
             services.delete_course(unit_of_work.SqlAlchemyUnitOfWork(), course_id)
             result = {"message": cons.deletion_message}
             status_code = 200
@@ -661,18 +668,24 @@ def topic_administration(data: Dict[str, Any], topic_id, lms_topic_id):
             services.delete_student_topic_by_topic_id(
                 unit_of_work.SqlAlchemyUnitOfWork(), topic_id
             )
-            # student and learning_element rating need to be deleted, both have topic_id
             services.delete_learning_path_learning_element_algorithm(
                 unit_of_work.SqlAlchemyUnitOfWork(), topic_id
             )
             services.delete_student_lpath_le_algorithm(
                 unit_of_work.SqlAlchemyUnitOfWork(), topic_id
             )
+            services.delete_student_ratings_by_topic(
+                unit_of_work.SqlAlchemyUnitOfWork(), topic_id
+            )
+            services.delete_learning_element_ratings_by_topic(
+                unit_of_work.SqlAlchemyUnitOfWork(), topic_id
+            )
+
             learning_elements = services.get_learning_elements_for_topic_id(
                 unit_of_work.SqlAlchemyUnitOfWork(), topic_id
             )
+
             for learning_element in learning_elements:
-                # todo delete learning element rating for learning element in topic
                 services.delete_student_learning_element_by_learning_element_id(
                     unit_of_work.SqlAlchemyUnitOfWork(),
                     learning_element["learning_element_id"],
@@ -681,7 +694,7 @@ def topic_administration(data: Dict[str, Any], topic_id, lms_topic_id):
                     unit_of_work.SqlAlchemyUnitOfWork(),
                     learning_element["learning_element_id"],
                 )
-            # todo delete student rating on topic
+
             services.delete_topic(unit_of_work.SqlAlchemyUnitOfWork(), topic_id)
             result = {"message": cons.deletion_message}
             status_code = 200
@@ -854,8 +867,9 @@ def learning_element_administration(
             services.delete_student_learning_element_by_learning_element_id(
                 unit_of_work.SqlAlchemyUnitOfWork(), learning_element_id
             )
-            # todo delete learning element rating for learning element in topic
-            # where do i get the topic id from?
+            services.delete_learning_element_ratings_by_learning_element(
+                unit_of_work.SqlAlchemyUnitOfWork(), learning_element_id
+            )
             services.delete_learning_element(
                 unit_of_work.SqlAlchemyUnitOfWork(), learning_element_id
             )
