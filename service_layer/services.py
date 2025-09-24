@@ -1905,7 +1905,7 @@ def get_favorites_by_student_id(
         favorites = uow.student_learning_element.get_favorites_by_student_id(student_id)
         result_favorites = []
         for learning_element_id in favorites:
-            result_favorites.append(learning_element_id)
+            result_favorites.append(learning_element_id.serialize())
         result = {}
         result["favorites"] = result_favorites
         return result
