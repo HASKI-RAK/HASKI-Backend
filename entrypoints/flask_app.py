@@ -213,16 +213,16 @@ def post_course(data: Dict[str, Any]):
             if not (condition6 and condition7 and condition8 and condition9):
                 raise err.WrongParameterValueError(message=cons.date_format_message)
 
-            condition10 = "start_date" in data
             current_date = datetime.now().strftime(cons.date_format)
-            if not condition10:
-                start_date = datetime.strptime(current_date, cons.date_format)
+            start_date = datetime.strptime(current_date, cons.date_format)
 
-            condition11 = type(data["start_date"]) is str
-            if condition11:
-                condition12 = re.search(cons.date_format_search, data["start_date"])
-                if condition12:
-                    start_date = datetime.strptime(data["start_date"], cons.date_format)
+            condition10 = (
+                "start_date" in data
+                and isinstance(data["start_date"], str)
+                and re.search(cons.date_format_search, data["start_date"]) is not None
+            )
+            if condition10:
+                start_date = datetime.strptime(data["start_date"], cons.date_format)
 
             created_at = datetime.strptime(current_date, cons.date_format)
             course = services.create_course(
