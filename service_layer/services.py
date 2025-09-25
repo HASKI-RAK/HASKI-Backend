@@ -2673,11 +2673,12 @@ def update_student_learning_element(
         learning_element = uow.student_learning_element.get_student_learning_element(
             student_id, learning_element_id
         )
-        if not learning_element:
+        if learning_element is None:
             uow.student_learning_element.add_student_learning_element(
                 student_learning_element
             )
-        uow.student_learning_element.update_student_learning_element(
+        else:
+            uow.student_learning_element.update_student_learning_element(
             student_id, learning_element_id, is_favorite
         )
         uow.commit()
