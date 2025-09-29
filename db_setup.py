@@ -1106,7 +1106,7 @@ def setup_db(
             topic_id integer NOT NULL,
             rating_value integer NOT NULL,
             rating_deviation integer NOT NULL,
-            timestamp timestamp without time zone NOT NULL
+            timestamp timestamp without time zone NOT NULL,
             CONSTRAINT student_rating_pkey PRIMARY KEY (id),
             FOREIGN KEY (student_id) REFERENCES public.student (id),
             FOREIGN KEY (topic_id) REFERENCES public.topic (id)
@@ -1129,7 +1129,7 @@ def setup_db(
             topic_id integer NOT NULL,
             rating_value integer NOT NULL,
             rating_deviation integer NOT NULL,
-            timestamp timestamp without time zone NOT NULL
+            timestamp timestamp without time zone NOT NULL,
             CONSTRAINT learning_element_rating_pkey PRIMARY KEY (id),
             FOREIGN KEY (learning_element_id) REFERENCES public.learning_element (id),
             FOREIGN KEY (topic_id) REFERENCES public.topic (id)
