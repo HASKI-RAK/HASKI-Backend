@@ -1360,44 +1360,6 @@ class TestApi:
         for key in keys_expected:
             assert key in response.keys()
 
-    # Student visits Learning Element
-    @pytest.mark.parametrize(
-        "input, moodle_user_id, keys_expected,\
-                            status_code_expected",
-        [
-            # Working Example
-            (
-                {"visit_start": "2023-08-01T13:37:42Z"},
-                4,
-                ["student_id", "learning_element_id", "visit_start", "visit_end"],
-                201,
-            ),
-            # Wrong data format
-            ({"visit_start_time": "01.01.2023"}, 4, ["error", "message"], 400),
-            # Missing Parameter
-            ({"previous_learning_element_id": 1}, 4, ["error", "message"], 400),
-        ],
-    )
-    def test_post_learning_element_visit(
-        self, client_class, input, moodle_user_id, keys_expected, status_code_expected
-    ):
-        global student_id, learning_element_id
-        url = (
-            path_lms_student
-            + "/"
-            + str(student_id)
-            + "/"
-            + str(moodle_user_id)
-            + path_learning_element
-            + "/"
-            + str(learning_element_id)
-        )
-        r = client_class.post(url, json=input)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        for key in keys_expected:
-            assert key in response.keys()
-
     # Learning Path is calculated
     @pytest.mark.parametrize(
         "input, moodle_user_id, keys_expected,\
@@ -3780,6 +3742,56 @@ class TestApi:
             user_id_use = user_id_student
         url = (
             path_user + "/" + str(user_id_use) + "/" + str(lms_user_id) + path_settings
+        )
+        r = client_class.put(url, json=request_body)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+
+    # Update student_learning_element with is_favorite status
+    @pytest.mark.parametrize(
+        "student_id, learning_element_id, request_body, keys_expected,\
+                            status_code_expected",
+        [
+            # Working Example
+            (
+                1,
+                1,
+                {"is_favorite": True},
+                [
+                    "student_id",
+                    "learning_element_id",
+                    "is_favorite",
+                ],
+                200,
+            ),
+            # Missing body
+            (
+                1,
+                1,
+                {},
+                ["error", "message"],
+                400,
+            ),
+        ],
+    )
+    def test_put_student_learning_element(
+        self,
+        client_class,
+        student_id,
+        learning_element_id,
+        request_body,
+        keys_expected,
+        status_code_expected,
+    ):
+        url = (
+            path_lms_student
+            + "/"
+            + str(student_id)
+            + path_learning_element
+            + "/"
+            + str(learning_element_id)
         )
         r = client_class.put(url, json=request_body)
         assert r.status_code == status_code_expected
