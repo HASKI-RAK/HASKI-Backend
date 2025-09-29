@@ -67,10 +67,15 @@ def add_student_to_learning_element(
         student_learning_element = DM.StudentLearningElement(
             student_id, learning_element_id
         )
-        uow.student_learning_element.add_student_learning_element(
-            student_learning_element
+        existing = uow.student_learning_element.get_student_learning_element(
+            student_id, learning_element_id
         )
-        uow.commit()
+
+        if existing is None:
+            uow.student_learning_element.add_student_learning_element(
+                student_learning_element
+            )
+            uow.commit()
 
 
 def add_student_to_topics(uow: unit_of_work.AbstractUnitOfWork, student_id, course_id):
@@ -1905,9 +1910,8 @@ def get_favorites_by_student_id(
         favorites = uow.student_learning_element.get_favorites_by_student_id(student_id)
         result_favorites = []
         for learning_element_id in favorites:
-            result_favorites.append(learning_element_id.serialize())
-        result = {}
-        result["favorites"] = result_favorites
+            result_favorites.append(learning_element_id)
+        result = {"favorites": result_favorites}
         return result
 
 def get_users_by_admin(

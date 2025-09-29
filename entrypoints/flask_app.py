@@ -734,32 +734,33 @@ def create_learning_element(data: Dict[str, Any], topic_id):
                 ):
                     condition16 = re.search(cons.date_format_search, data["created_at"])
                     if condition16:
-                        created_at = datetime.strptime(
-                            data["created_at"], cons.date_format
-                        ).date()
-                        learning_element = services.create_learning_element(
-                            unit_of_work.SqlAlchemyUnitOfWork(),
-                            topic_id,
-                            data["lms_id"],
-                            data["activity_type"],
-                            data["classification"],
-                            data["name"],
-                            data["created_by"],
-                            created_at,
-                            data["university"],
-                        )
-                        students = services.get_all_students(
-                            unit_of_work.SqlAlchemyUnitOfWork()
-                        )
-                        for student in students:
-                            student_id = student["id"]
-                            services.add_student_to_learning_element(
-                                unit_of_work.SqlAlchemyUnitOfWork(),
-                                learning_element["id"],
-                                student_id,
+                        with unit_of_work.SqlAlchemyUnitOfWork() as uow:
+                            created_at = datetime.strptime(
+                                data["created_at"], cons.date_format
+                            ).date()
+                            learning_element = services.create_learning_element(
+                                uow,
+                                topic_id,
+                                data["lms_id"],
+                                data["activity_type"],
+                                data["classification"],
+                                data["name"],
+                                data["created_by"],
+                                created_at,
+                                data["university"],
                             )
-                        status_code = 201
-                        return jsonify(learning_element), status_code
+                            students = services.get_all_students(
+                                uow,
+                            )
+                            for student in students:
+                                student_id = student["id"]
+                                services.add_student_to_learning_element(
+                                    uow,
+                                    learning_element["id"],
+                                    student_id,
+                                )
+                            status_code = 201
+                            return jsonify(learning_element), status_code
                     else:
                         raise err.WrongParameterValueError(
                             message=cons.date_format_message
@@ -953,15 +954,12 @@ def put_student_learning_element(student_id, learning_element_id):
 )
 @cross_origin(supports_credentials=True)
 def get_favorites_by_student_id(student_id):
-    method = request.method
-    match method:
-        case "GET":
-            learning_elements = services.get_favorites_by_student_id(
-                unit_of_work.SqlAlchemyUnitOfWork(),
-                student_id,
-            )
-            status_code = 200
-            return jsonify(learning_elements), status_code
+        learning_elements = services.get_favorites_by_student_id(
+            unit_of_work.SqlAlchemyUnitOfWork(),
+            student_id,
+        )
+        status_code = 200
+        return jsonify(learning_elements), status_code
 
 
 @app.route(

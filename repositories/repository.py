@@ -1749,7 +1749,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             self.session.query(DM.StudentLearningElement)
             .filter_by(student_id=student_id)
             .filter_by(learning_element_id=learning_element_id)
-            .first()
+            .all()
         )
         if result == []:
             return None
