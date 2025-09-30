@@ -2457,12 +2457,26 @@ def get_learning_element_ratings():
             )
             status_code = 200
             return jsonify(result), status_code
-        
+
+# entry point to create experience points manually for a student
+# mostly for testing purposes
+@app.route("/student/<student_id>/create_initial_xp", methods=["POST"])
+@cross_origin(supports_credentials=True)
+def create_initial_student_xp(student_id: str):
+    match request.method:
+        case "POST":
+            result = services.create_student_experience_points(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                student_id=int(student_id),
+                experience_points=0
+            )
+            status_code = 201
+            return jsonify(result), status_code
 
 @app.route("/student/<student_id>/xp", methods=["GET"])
 @cross_origin(supports_credentials=True)
 def get_student_xp(student_id: str):
-    result = services.get_student_xp(
+    result = services.get_student_experience_points(
         uow=unit_of_work.SqlAlchemyUnitOfWork(),
         student_id=int(student_id),
     )
@@ -2472,10 +2486,33 @@ def get_student_xp(student_id: str):
 
 @app.route("/student/<student_id>/calculate_xp", methods=["POST"])
 @cross_origin(supports_credentials=True)
-def calculate_student_xp(student_id: str):
-    result = services.calculate_student_xp(
+@json_only()
+def calculate_student_xp(
+    data: Dict[str, Any], student_id: str):
+    data_present = data is not None
+    if not data_present:
+        raise err.MissingParameterError()
+    
+    course_id_present = "course_id" in data
+    learning_element_id_present = "learning_element_id" in data
+    user_lms_id_present = "user_lms_id" in data
+    classification_present = "classification" in data
+    start_time_present = "start_time" in data
+
+    if not (course_id_present and learning_element_id_present 
+            and user_lms_id_present
+            and classification_present and start_time_present
+            ):
+        raise err.MissingParameterError()
+    
+    result = services.update_student_experience_points(
         uow=unit_of_work.SqlAlchemyUnitOfWork(),
         student_id=int(student_id),
+        course_id=int(data["course_id"]),
+        learning_element_id=int(data["learning_element_id"]),
+        user_lms_id=str(data["user_lms_id"]),
+        classification=str(data["classification"]),
+        start_time=int(data["start_time"])
     )
     status_code = 200
     return jsonify(result), status_code

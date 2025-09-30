@@ -1057,10 +1057,11 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         
     def create_student_experience_points(
             self, student_experience_points: LM.StudentExperiencePoints
-        ) -> LM.StudentExperiencePoints:
+        ) -> None:
         try:
             self.session.add(student_experience_points)
-        except Exception:
+        except Exception as e:
+            print(e)
             raise err.CreationError()
 
     def add_student_lpath_le_algorithm(
@@ -1812,7 +1813,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             raise err.DatabaseQueryError()
         
     def get_student_experience_points(
-            self, student_id: int) -> LM.StudentExperiencePoints:
+            self, student_id: int) -> list[LM.StudentExperiencePoints]:
         try:
             return (
                 self.session.query(LM.StudentExperiencePoints)
@@ -2209,19 +2210,18 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         
     def update_student_experience_points(
         self, student_id: int, earned_experience_points: int
-        ) -> LM.StudentExperiencePoints:
+        ) -> int:
         entry = self.get_student_experience_points(student_id)
-        if entry !=[]:
-            updated_xp = entry.experience_points + earned_experience_points
-            return (
-                self.session.query(LM.StudentExperiencePoints)
-                .filter_by(student_id=student_id)
-                .update(
-                    {
-                        LM.StudentExperiencePoints.experience_points: updated_xp,
-                    }
-                )
+        if len(entry) > 0:
+            updated_xp = entry[0].experience_points + earned_experience_points
+            self.session.query(LM.StudentExperiencePoints).filter_by(
+                student_id=student_id
+            ).update(
+                {
+                    LM.StudentExperiencePoints.experience_points: updated_xp,
+                }
             )
+            return int(updated_xp)
         else:
             raise err.NoValidIdError
         

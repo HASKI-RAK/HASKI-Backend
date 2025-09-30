@@ -842,7 +842,7 @@ def create_news(
 def create_student_experience_points(
     uow: unit_of_work.AbstractUnitOfWork,
     student_id: int,
-    experience_points,
+    experience_points: int,
 ):
     with uow:
         student_experience_points = LM.StudentExperiencePoints(
@@ -1838,6 +1838,20 @@ def delete_default_learning_path_by_uni(
         return {}
 
 
+def get_student_experience_points(
+    uow: unit_of_work.AbstractUnitOfWork, student_id: int
+) -> dict:
+    with uow:
+        experience_points = uow.student_experience_points.get_student_experience_points(
+            student_id
+        )
+        if experience_points == []:
+            result = {}
+        else:
+            result = experience_points[0].serialize()
+        return result
+
+
 def get_sub_topic_by_topic_id(
     uow: unit_of_work.AbstractUnitOfWork,
     user_id,
@@ -2753,12 +2767,34 @@ def update_student_experience_points(
     student_id: int,
     course_id: int,
     learning_element_id: int,
-    user_lms_id: int,
+    user_lms_id: str,
     classification: str,
     start_time: int
 ) -> dict:
-    base_xp = {"ÜB": 50,  "SE": 100, "other": 10}
+    base_xp = {"ÜB": 50,  "SE": 100, "other": 50}
+    wait_bonus = 1
     with uow:
+        ratings = get_learning_element_ratings(uow)
+
+        if ratings != []:
+            rating_values = [rating["rating_value"] for rating in ratings]
+            highest_rating = max(rating_values)
+            lowest_rating = min(rating_values)
+            for rating in rating_values:
+                rating = (
+                    rating - lowest_rating
+                  ) / (highest_rating - lowest_rating)
+
+            highest_rating = highest_rating - lowest_rating
+            average_rating = sum(
+                rating for rating in rating_values) / len(rating_values)
+            #normalize average rating to be between 0 and 1
+            average_rating = average_rating / highest_rating
+            # points for rating will be between 2 and 8
+            rating_points = (average_rating * 6) - 3
+        else:
+            rating_points = 0
+
         if classification in ["ÜB", "SE"]:
           response = get_moodle_h5p_activity_attempts(
               uow,
@@ -2768,39 +2804,76 @@ def update_student_experience_points(
           )
           if response != {} and response["usersattempts"][0]["attempts"]:
               attempts = response["usersattempts"][0]["attempts"]
-              sorted_attempts = sorted(attempts, key=lambda x: x["timecreated"], reverse=True)
-              current_attempts = list(filter(lambda x: x["timecreated"] >= start_time, sorted_attempts))
-              previous_attempts = list(filter(lambda x: x["timecreated"] < start_time, sorted_attempts))
+              sorted_attempts = sorted(
+                  attempts,
+                  key=lambda x: x["timecreated"],
+                  reverse=True
+                )
+              current_attempts = list(
+                  filter(lambda x: x["timecreated"] >= start_time, sorted_attempts))
+              previous_attempts = list(
+                  filter(lambda x: x["timecreated"] < start_time, sorted_attempts)
+              )
 
-              best_score_percentage = current_attempts[0]["rawscore"] / current_attempts[0]["maxscore"]
+              best_score_percentage = (
+                  current_attempts[0]["rawscore"] / current_attempts[0]["maxscore"]
+              )
 
-              time_between_attempts = current_attempts[0]["timecreated"] - max(previous_attempts, key=lambda x: x["timecreated"])["timecreated"] if previous_attempts else 0
-              wait_bonus = (time_between_attempts / 259.200) or 1
+              successful_attempts = list(
+                  filter(lambda x: x["success"] == 1, previous_attempts)
+              )
+              time_between_attempts = 0
+              if previous_attempts != [] and successful_attempts != []:
+                  time_between_attempts = (
+                      current_attempts[0]["timecreated"] - 
+                      max(
+                          successful_attempts,
+                          key=lambda x: x["timecreated"]
+                        )["timecreated"]
+                  )
+              wait_bonus = (time_between_attempts / 259200) or 1
 
-              ratings = get_learning_element_ratings(uow)
-              if ratings != []:
-                  highest_rating = max(ratings, key=lambda x: x["rating_value"])
-                  lowest_rating = min(ratings, key=lambda x: x["rating_value"])
-                  for rating in ratings:
-                      rating["rating_value"] = (rating["rating_value"] - lowest_rating["rating_value"]) / (highest_rating["rating_value"] - lowest_rating["rating_value"])
-                  lowest_rating["rating_value"] = 0
-                  highest_rating["rating_value"] = highest_rating["rating_value"]-lowest_rating["rating_value"]
-                  average_rating = sum(rating["rating_value"] for rating in ratings) / len(ratings)
-                  #normalize average rating to be between 0 and 1
-                  average_rating = average_rating / highest_rating["rating_value"]
-                  # points for rating will be between 2 and 8
-                  rating_points = round(average_rating * 6 + 2)
+              # base experience points modified with difficulty
+              experience_points = (base_xp[classification] + rating_points)
+              # multiplied with the percentage of the best score in current attempts
+              experience_points *= best_score_percentage
+              # give points for other attempts in this session
+              experience_points += 40 * log(len(current_attempts))
+              #  give points for success scaled with the time
+              #  elapsed since last successful attempt
+              experience_points += current_attempts[0]["success"] * 200 * wait_bonus
 
-              if len(sorted_attempts) >= 2:
-                  time_between_attempts = sorted_attempts[0]["timecreated"] - sorted_attempts[1]["timecreated"]
-
-              experience_points = base_xp[classification] * (average_rating - 0.5) * best_score_percentage + 4 * log(current_attempts.length) + current_attempts[0]["success"] * 200 * wait_bonus
-
-        uow.student_experience_points.update_student_experience_points(
-            student_id, experience_points
-        )
-        uow.commit()
-        return {"student_id": student_id, "experience_points": experience_points}
+              total_xp = uow.student_experience_points.update_student_experience_points(
+                  student_id, experience_points
+              )
+              uow.commit()
+              return {
+                  "total_xp": total_xp,
+                  "gained_xp": experience_points,
+                  "base_xp": base_xp[classification],
+                  "rating_points": rating_points,
+                  "score_modifier": best_score_percentage,
+                  "attempt_xp": 40 * log(len(current_attempts)),
+                  "success_modifier": current_attempts[0]["success"],
+                  "wait_bonus": wait_bonus,
+                  "successful_attempts": len(successful_attempts)
+              }
+          else:
+              total_xp = uow.student_experience_points.update_student_experience_points(
+                  student_id, base_xp["other"]
+              )
+              uow.commit()
+              return {
+                  "total_xp": total_xp,
+                  "gained_xp": base_xp["other"],
+                  "base_xp": base_xp["other"],
+                  "rating_points": 0,
+                  "score_modifier": 0,
+                  "attempt_xp": 0,
+                  "success_modifier": 0,
+                  "wait_bonus": 0,
+                  "successful_attempts": 0
+              }
 
 
 def update_student_learning_element(

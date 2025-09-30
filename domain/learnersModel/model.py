@@ -577,7 +577,6 @@ class StudentExperiencePoints:
 
     def serialize(self):
         return {
-            "id": self.id,
             "student_id": self.student_id,
             "experience_points": self.experience_points,
         }

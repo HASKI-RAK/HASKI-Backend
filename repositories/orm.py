@@ -642,8 +642,7 @@ def start_mappers():
         student_course,
     )
 
-    mapper_registry.map_imperatively
-    (
+    mapper_registry.map_imperatively(
         LM.StudentExperiencePoints,
         student_experience_points,
     )
