@@ -30,6 +30,24 @@ def add_course_creator_to_course(
         return result
 
 
+def add_learning_element_solution(
+    uow: unit_of_work.AbstractUnitOfWork,
+    learning_element_lms_id: int,
+    solution_lms_id: int,
+    activity_type: str
+) -> dict:
+    with uow:
+        learning_element_solution = DM.LearningElementSolution(
+            learning_element_lms_id, solution_lms_id, activity_type
+        )
+        uow.learning_element_solution.add_learning_element_solution(
+            learning_element_solution
+        )
+        uow.commit()
+        result = learning_element_solution.serialize()
+        return result
+
+
 def add_student_to_course(
     uow: unit_of_work.AbstractUnitOfWork, student_id, course_id
 ) -> dict:
@@ -992,6 +1010,19 @@ def delete_learning_element(uow: unit_of_work.AbstractUnitOfWork, learning_eleme
         uow.learning_element.delete_learning_element(learning_element_id)
         uow.commit()
         return {}
+
+
+#Delete the solution associated with the learning element
+def delete_learning_element_solution(
+    uow: unit_of_work.AbstractUnitOfWork, learning_element_id
+) -> None:
+    with uow:
+        learning_element = uow.learning_element.get_learning_element_by_id(learning_element_id)
+        if learning_element[0] is not None:
+            uow.learning_element_solution.delete_learning_element_solution(
+                learning_element[0].lms_id
+            )
+        uow.commit()
 
 
 def delete_learning_path(uow: unit_of_work.AbstractUnitOfWork, learning_path_id):
@@ -2394,6 +2425,53 @@ def get_learning_element_ratings(uow: unit_of_work.AbstractUnitOfWork) -> list:
         for element in learning_element_ratings:
             results.append(element.serialize())
         return results
+
+
+def get_learning_element_solution_by_learning_element_id(
+    uow: unit_of_work.AbstractUnitOfWork, learning_element_id: int
+) -> dict:
+    with uow:
+        learning_element = uow.learning_element.get_learning_element_by_id(learning_element_id)
+        result = {}
+        if not learning_element:
+            return result
+        lms_id = learning_element[0].lms_id
+        solution = uow.learning_element_solution.get_learning_element_solution(lms_id)
+        if not solution:
+            return result
+        return solution[0].serialize()
+
+
+def get_learning_element_solution_by_learning_element_lms_id(
+        uow: unit_of_work.AbstractUnitOfWork, learning_element_lms_id: int
+) -> dict:
+    with uow:
+        result={}
+        solution = uow.learning_element_solution.get_learning_element_solution(learning_element_lms_id)
+        if not solution:
+            return result
+        return solution[0].serialize()
+
+
+def get_topic_solutions(
+        uow: unit_of_work.AbstractUnitOfWork, topic_id: int
+) -> dict:
+    with uow:
+        topic_learning_elements = get_learning_elements_for_topic_id(uow, topic_id)
+        result = []
+        for learning_element in topic_learning_elements:
+            learning_element_lms_id = uow.learning_element.get_learning_element_by_id(
+                learning_element["learning_element_id"]
+            )
+            # Get the solution for each learning element
+            learning_element_solution = (
+                uow.learning_element_solution.get_learning_element_solution(
+                    learning_element_lms_id[0].lms_id
+                )
+            )
+            if learning_element_solution:
+                result.append(learning_element_solution[0].serialize())
+        return result
 
 
 def get_moodle_course_content(
