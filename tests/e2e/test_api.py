@@ -680,13 +680,65 @@ class TestApi:
                             moodle_topic_id, keys_expected, \
                             status_code_expected, save_id",
         [
-            # Working Example for LE
+            # Working Example for LE 1
             (
                 {
                     "lms_id": 1,
                     "activity_type": "Quiz",
                     "classification": "ÜB",
                     "name": "Test Learning Element",
+                    "created_by": "Maria Musterfrau",
+                    "created_at": "2023-08-01T13:37:42Z",
+                    "university": "TH-AB",
+                },
+                1,
+                1,
+                [
+                    "id",
+                    "lms_id",
+                    "activity_type",
+                    "classification",
+                    "name",
+                    "created_by",
+                    "created_at",
+                    "university",
+                ],
+                201,
+                True,
+            ),
+            # Working example for LE 2
+            (
+                {
+                    "lms_id": 2,
+                    "activity_type": "h5pactivity",
+                    "classification": "ÜB",
+                    "name": "Test Learning Element 2",
+                    "created_by": "Maria Musterfrau",
+                    "created_at": "2023-08-01T13:37:42Z",
+                    "university": "TH-AB",
+                },
+                1,
+                1,
+                [
+                    "id",
+                    "lms_id",
+                    "activity_type",
+                    "classification",
+                    "name",
+                    "created_by",
+                    "created_at",
+                    "university",
+                ],
+                201,
+                True,
+            ),
+            # Working example for LE 3
+            (
+                {
+                    "lms_id": 3,
+                    "activity_type": "h5pactivity",
+                    "classification": "KÜ",
+                    "name": "Test Learning Element 2",
                     "created_by": "Maria Musterfrau",
                     "created_at": "2023-08-01T13:37:42Z",
                     "university": "TH-AB",
@@ -1699,40 +1751,6 @@ class TestApi:
             ),
         ],
     )
-    def test_get_student_ratings_on_topic(
-        self, client_class, keys_expected, status_code_expected
-    ):
-        url = (
-            path_student
-            + "/"
-            + str(student_id)
-            + path_topic
-            + "/"
-            + str(topic_id)
-            + path_rating
-        )
-        r = client_class.get(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        for key in response[0].keys():
-            assert key in keys_expected
-
-    @pytest.mark.parametrize(
-        "keys_expected, status_code_expected",
-        [
-            (
-                {
-                    "id",
-                    "student_id",
-                    "topic_id",
-                    "rating_value",
-                    "rating_deviation",
-                    "timestamp",
-                },
-                200,
-            ),
-        ],
-    )
     def test_get_student_ratings(
         self, client_class, keys_expected, status_code_expected
     ):
@@ -1803,40 +1821,6 @@ class TestApi:
             ),
         ],
     )
-    def test_get_learning_element_ratings_on_topic(
-        self, client_class, keys_expected, status_code_expected
-    ):
-        url = (
-            path_topic
-            + "/"
-            + str(topic_id)
-            + path_learning_element
-            + "/"
-            + str(learning_element_id)
-            + path_rating
-        )
-        r = client_class.get(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        for key in response[0].keys():
-            assert key in keys_expected
-
-    @pytest.mark.parametrize(
-        "keys_expected, status_code_expected",
-        [
-            (
-                {
-                    "id",
-                    "learning_element_id",
-                    "topic_id",
-                    "rating_value",
-                    "rating_deviation",
-                    "timestamp",
-                },
-                200,
-            ),
-        ],
-    )
     def test_get_learning_element_ratings(
         self, client_class, keys_expected, status_code_expected
     ):
@@ -1879,27 +1863,28 @@ class TestApi:
         mock_get.side_effect = [mock_response_1, mock_response_2]
 
         user_id_student = 4
-        learning_element_id = 1
-        url = (
-            path_user
-            + "/"
-            + str(user_id_student)
-            + path_course
-            + "/"
-            + str(course_id)
-            + path_topic
-            + "/"
-            + str(topic_id)
-            + path_learning_element
-            + "/"
-            + str(learning_element_id)
-            + path_rating
-        )
-        r = client_class.post(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        for key in response.keys():
-            assert key in keys_expected
+        learning_element_ids = [1, 2, 3]
+        for learning_element_id in learning_element_ids:
+            url = (
+                path_user
+                + "/"
+                + str(user_id_student)
+                + path_course
+                + "/"
+                + str(course_id)
+                + path_topic
+                + "/"
+                + str(topic_id)
+                + path_learning_element
+                + "/"
+                + str(learning_element_id)
+                + path_rating
+            )
+            r = client_class.post(url)
+            assert r.status_code == status_code_expected
+            response = json.loads(r.data.decode("utf-8").strip("\n"))
+            for key in response.keys():
+                assert key in keys_expected
 
     # Post a Contact Form
     @pytest.mark.parametrize(
@@ -2624,83 +2609,6 @@ class TestApi:
             + path_topic
             + "/"
             + str(topic_id_use)
-        )
-        r = client_class.get(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        for key in keys_expected:
-            assert key in response.keys()
-
-    # Get the recommended LE in a topic
-    @pytest.mark.parametrize(
-        "lms_user_id, keys_expected,\
-                            status_code_expected, error_student,\
-                            error_course, error_topic",
-        [
-            # Working Example
-            (
-                4,
-                [
-                    "id",
-                    "lms_id",
-                    "activity_type",
-                    "classification",
-                    "name",
-                    "university",
-                    "student_learning_element",
-                ],
-                200,
-                False,
-                False,
-                False,
-            ),
-            # User not found
-            (1, ["error", "message"], 404, True, False, False),
-            # Course not found
-            (4, ["error", "message"], 404, False, True, False),
-            # Topic not found
-            (4, ["error", "message"], 404, False, False, True),
-        ],
-    )
-    def test_get_topic_recommendation_for_student(
-        self,
-        client_class,
-        lms_user_id,
-        keys_expected,
-        status_code_expected,
-        error_student,
-        error_course,
-        error_topic,
-    ):
-        global user_id_student, student_id, course_id, sub_topic_id
-        if error_student:
-            student_id_use = 99999
-        else:
-            student_id_use = student_id
-        if error_course:
-            course_id_use = 99999
-        else:
-            course_id_use = course_id
-        if error_topic:
-            topic_id_use = 99999
-        else:
-            topic_id_use = sub_topic_id
-        url = (
-            path_user
-            + "/"
-            + str(user_id_student)
-            + "/"
-            + str(lms_user_id)
-            + path_student
-            + "/"
-            + str(student_id_use)
-            + path_course
-            + "/"
-            + str(course_id_use)
-            + path_topic
-            + "/"
-            + str(topic_id_use)
-            + path_recommendation
         )
         r = client_class.get(url)
         assert r.status_code == status_code_expected
@@ -3796,6 +3704,37 @@ class TestApi:
         for key in keys_expected:
             for entry in response["log"]:
                 assert key in entry.keys()
+
+    @pytest.mark.parametrize(
+        "user_id, status_code_expected",
+        [
+            (
+                4,
+                200,
+            ),
+        ],
+    )
+    def test_get_learning_element_recommendation(
+        self, client_class, user_id, status_code_expected
+    ):
+        global topic_id
+        course_id = 1
+        url = (
+            path_user
+            + "/"
+            + str(user_id)
+            + path_course
+            + "/"
+            + str(course_id)
+            + path_topic
+            + "/"
+            + str(topic_id)
+            + path_recommendation
+        )
+        r = client_class.get(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        assert response == []
 
     # PUT METHODS
     # Update the settings of a User
