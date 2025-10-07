@@ -3776,7 +3776,7 @@ def test_get_learning_element_ratings():
 def test_add_learning_element_solution():
     uow = FakeUnitOfWork()
     result = services.add_learning_element_solution(
-        uow=uow, learning_element_lms_id=1, solution_lms_id="Test Solution"
+        uow=uow, learning_element_lms_id=1, solution_lms_id=1, activity_type="Test Solution"
     )
     assert type(result) is dict
     assert result != {}
