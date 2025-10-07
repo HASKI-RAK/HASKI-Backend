@@ -4804,12 +4804,7 @@ class TestApi:
         status_code_expected,
         error,
     ):
-        url = (
-            path_learning_element
-            + "/"
-            + str(learning_element_lms_id)
-            + "/solution"
-        )
+        url = path_learning_element + "/" + str(learning_element_lms_id) + "/solution"
         r = client_class.post(url, json=input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -4826,10 +4821,11 @@ class TestApi:
                             status_code_expected",
         [
             # Working Example
-            (1, ["id",
-                 "learning_element_lms_id",
-                 "solution_lms_id",
-                 "activity_type"], 200),
+            (
+                1,
+                ["id", "learning_element_lms_id", "solution_lms_id", "activity_type"],
+                200,
+            ),
         ],
     )
     def test_get_learning_element_solution(

@@ -2455,18 +2455,13 @@ def get_topic_solutions(topic_id: int):
             return jsonify(result), status_code
 
 
-@app.route(
-    "/learningElement/<learning_element_lms_id>/solution",
-    methods=["POST"]
-)
+@app.route("/learningElement/<learning_element_lms_id>/solution", methods=["POST"])
 @cross_origin(supports_credentials=True)
 @json_only()
-def post_learning_element_solution(
-    data: Dict[str, Any], learning_element_lms_id: int
-):
+def post_learning_element_solution(data: Dict[str, Any], learning_element_lms_id: int):
     entry = services.get_learning_element_solution_by_learning_element_lms_id(
         uow=unit_of_work.SqlAlchemyUnitOfWork(),
-        learning_element_lms_id=learning_element_lms_id
+        learning_element_lms_id=learning_element_lms_id,
     )
     condition1 = entry == {}
     match request.method:
@@ -2493,23 +2488,16 @@ def post_learning_element_solution(
                 raise err.AlreadyExisting()
 
 
-@app.route(
-    "/learningElement/<learning_element_id>/solution",
-    methods=["DELETE"]
-)
+@app.route("/learningElement/<learning_element_id>/solution", methods=["DELETE"])
 @cross_origin(supports_credentials=True)
-def delete_learning_element_solution(
-       learning_element_id: int
-):
+def delete_learning_element_solution(learning_element_id: int):
     entry = services.get_learning_element_solution_by_learning_element_id(
-        uow=unit_of_work.SqlAlchemyUnitOfWork(),
-        learning_element_id=learning_element_id
+        uow=unit_of_work.SqlAlchemyUnitOfWork(), learning_element_id=learning_element_id
     )
     condition1 = entry == {}
     match request.method:
         case "DELETE":
             if not condition1:
-
                 services.delete_learning_element_solution(
                     uow=unit_of_work.SqlAlchemyUnitOfWork(),
                     learning_element_id=learning_element_id,

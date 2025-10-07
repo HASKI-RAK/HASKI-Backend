@@ -34,7 +34,7 @@ def add_learning_element_solution(
     uow: unit_of_work.AbstractUnitOfWork,
     learning_element_lms_id: int,
     solution_lms_id: int,
-    activity_type: str
+    activity_type: str,
 ) -> dict:
     with uow:
         learning_element_solution = DM.LearningElementSolution(
@@ -1026,12 +1026,14 @@ def delete_learning_element(uow: unit_of_work.AbstractUnitOfWork, learning_eleme
         return {}
 
 
-#Delete the solution associated with the learning element
+# Delete the solution associated with the learning element
 def delete_learning_element_solution(
     uow: unit_of_work.AbstractUnitOfWork, learning_element_id
 ) -> None:
     with uow:
-        learning_element = uow.learning_element.get_learning_element_by_id(learning_element_id)
+        learning_element = uow.learning_element.get_learning_element_by_id(
+            learning_element_id
+        )
         if learning_element[0] is not None:
             uow.learning_element_solution.delete_learning_element_solution(
                 learning_element[0].lms_id
@@ -2474,7 +2476,9 @@ def get_learning_element_solution_by_learning_element_id(
     uow: unit_of_work.AbstractUnitOfWork, learning_element_id: int
 ) -> dict:
     with uow:
-        learning_element = uow.learning_element.get_learning_element_by_id(learning_element_id)
+        learning_element = uow.learning_element.get_learning_element_by_id(
+            learning_element_id
+        )
         result = {}
         if not learning_element:
             return result
@@ -2486,19 +2490,19 @@ def get_learning_element_solution_by_learning_element_id(
 
 
 def get_learning_element_solution_by_learning_element_lms_id(
-        uow: unit_of_work.AbstractUnitOfWork, learning_element_lms_id: int
+    uow: unit_of_work.AbstractUnitOfWork, learning_element_lms_id: int
 ) -> dict:
     with uow:
-        result={}
-        solution = uow.learning_element_solution.get_learning_element_solution(learning_element_lms_id)
+        result = {}
+        solution = uow.learning_element_solution.get_learning_element_solution(
+            learning_element_lms_id
+        )
         if not solution:
             return result
         return solution[0].serialize()
 
 
-def get_topic_solutions(
-        uow: unit_of_work.AbstractUnitOfWork, topic_id: int
-) -> dict:
+def get_topic_solutions(uow: unit_of_work.AbstractUnitOfWork, topic_id: int) -> dict:
     with uow:
         topic_learning_elements = get_learning_elements_for_topic_id(uow, topic_id)
         result = []
