@@ -2452,7 +2452,6 @@ def get_topic_solutions(topic_id: int):
                 topic_id=topic_id,
             )
             status_code = 200
-            print(result)
             return jsonify(result), status_code
 
 
