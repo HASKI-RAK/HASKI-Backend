@@ -958,6 +958,13 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
             ):
                 result.append(i)
         return result
+    
+    def get_favorites_by_student_id(self, student_id):
+        result = []
+        for i in self.student_learning_element:
+            if i.student_id == student_id:
+                result.append(i)
+        return result
 
     def get_student_lpath_le_algorithm(self, student_id, topic_id):
         result = []
@@ -2804,6 +2811,16 @@ def test_get_activity_status_for_student_for_learning_element_for_course():
         learning_element_id=2,
     )
     assert result == [{"cmid": 2, "state": 0, "timecompleted": 0}]
+
+
+def test_get_favorites_by_student_id():
+    uow = FakeUnitOfWork()
+    create_student_learning_element_for_tests(uow)
+    result = services.get_favorites_by_student_id(
+        uow=uow, student_id=1
+    )
+    assert type(result) is dict
+    assert result != {}
 
 
 def test_update_student_learning_element():
