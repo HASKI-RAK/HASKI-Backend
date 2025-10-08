@@ -84,7 +84,6 @@ def setup_db(
     cursor.execute("DROP TABLE IF EXISTS student_topic")
     cursor.execute("DROP TABLE IF EXISTS student_topic_visit")
     cursor.execute("DROP TABLE IF EXISTS student_learning_element")
-    cursor.execute("DROP TABLE IF EXISTS student_learning_element_visit")
     cursor.execute("DROP TABLE IF EXISTS learning_path")
     cursor.execute("DROP TABLE IF EXISTS learning_path_topic")
     cursor.execute("DROP TABLE IF EXISTS learning_path_learning_element")
@@ -686,8 +685,7 @@ def setup_db(
             ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
             student_id integer NOT NULL,
             learning_element_id integer NOT NULL,
-            done boolean NOT NULL,
-            done_at timestamp without time zone,
+            is_favorite boolean NOT NULL,
             CONSTRAINT student_learning_element_pkey PRIMARY KEY (id),
             CONSTRAINT learning_element_id FOREIGN KEY (learning_element_id)
                 REFERENCES public.learning_element (id) MATCH SIMPLE
@@ -702,33 +700,6 @@ def setup_db(
         TABLESPACE pg_default;
 
         ALTER TABLE IF EXISTS public.student_learning_element
-            OWNER to postgres;
-    """
-    cursor.execute(sql)
-
-    sql = """
-        CREATE TABLE IF NOT EXISTS public.student_learning_element_visit
-        (
-            id integer NOT NULL GENERATED ALWAYS AS IDENTITY
-            ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
-            student_id integer NOT NULL,
-            learning_element_id integer NOT NULL,
-            visit_start timestamp without time zone NOT NULL,
-            visit_end timestamp without time zone,
-            CONSTRAINT student_learning_element_visit_pkey PRIMARY KEY (id),
-            CONSTRAINT learning_element_id FOREIGN KEY (learning_element_id)
-                REFERENCES public.learning_element (id) MATCH SIMPLE
-                ON UPDATE NO ACTION
-                ON DELETE NO ACTION,
-            CONSTRAINT student_id FOREIGN KEY (student_id)
-                REFERENCES public.student (id) MATCH SIMPLE
-                ON UPDATE NO ACTION
-                ON DELETE NO ACTION
-        )
-
-        TABLESPACE pg_default;
-
-        ALTER TABLE IF EXISTS public.student_learning_element_visit
             OWNER to postgres;
     """
     cursor.execute(sql)
@@ -1177,6 +1148,26 @@ def setup_db(
           INSERT INTO learning_path_algorithm (short_name, full_name)
           VALUES ('nestor', 'Nestor') \
           """
+    cursor.execute(sql)
+
+    sql = """
+    CREATE TABLE IF NOT EXISTS public.learning_element_solution
+    (
+        id integer NOT NULL GENERATED ALWAYS AS IDENTITY
+        ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+        learning_element_lms_id integer NOT NULL,
+        solution_lms_id integer NOT NULL,
+        activity_type text COLLATE pg_catalog."default" NOT NULL,
+        CONSTRAINT learning_element_solution_pkey PRIMARY KEY (id),
+        CONSTRAINT unique_learning_element UNIQUE (learning_element_lms_id)
+    )
+
+    TABLESPACE pg_default;
+
+    ALTER TABLE IF EXISTS public.learning_element_solution
+        OWNER to postgres;
+    """
+
     cursor.execute(sql)
 
     conn.commit()
