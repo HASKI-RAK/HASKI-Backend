@@ -437,7 +437,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     @abc.abstractmethod
     def get_courses_for_teacher(self, teacher_id):
         raise NotImplementedError
-    
+
     @abc.abstractmethod
     def get_favorites_by_student_id(self, student_id):
         raise NotImplementedError
@@ -1834,8 +1834,8 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             return None
         else:
             return result
-        
-    def get_favorites_by_student_id(self, student_id)->DM.StudentLearningElement:
+
+    def get_favorites_by_student_id(self, student_id) -> DM.StudentLearningElement:
         try:
             result = (
                 self.session.query(DM.StudentLearningElement)
@@ -1843,7 +1843,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
                 .filter_by(is_favorite=True)
                 .all()
             )
-            
+
             return [id.learning_element_id for id in result]
         except Exception:
             raise err.CreationError()

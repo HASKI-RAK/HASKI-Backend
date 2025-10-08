@@ -971,12 +971,12 @@ def put_student_learning_element(student_id, learning_element_id):
 )
 @cross_origin(supports_credentials=True)
 def get_favorites_by_student_id(student_id):
-        learning_elements = services.get_favorites_by_student_id(
-            unit_of_work.SqlAlchemyUnitOfWork(),
-            student_id,
-        )
-        status_code = 200
-        return jsonify(learning_elements), status_code
+    learning_elements = services.get_favorites_by_student_id(
+        unit_of_work.SqlAlchemyUnitOfWork(),
+        student_id,
+    )
+    status_code = 200
+    return jsonify(learning_elements), status_code
 
 
 @app.route(

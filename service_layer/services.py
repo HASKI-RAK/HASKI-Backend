@@ -1962,6 +1962,7 @@ def get_topic_learning_element_by_learning_element(
             result = topic_learning_element[0].serialize()
         return result
 
+
 def get_favorites_by_student_id(
     uow: unit_of_work.AbstractUnitOfWork, student_id
 ) -> dict:
@@ -1972,6 +1973,7 @@ def get_favorites_by_student_id(
             result_favorites.append(learning_element_id)
         result = {"favorites": result_favorites}
         return result
+
 
 def get_users_by_admin(
     uow: unit_of_work.AbstractUnitOfWork, user_id, lms_user_id
@@ -2791,8 +2793,8 @@ def update_student_learning_element(
             )
         else:
             uow.student_learning_element.update_student_learning_element(
-            student_id, learning_element_id, is_favorite
-        )
+                student_id, learning_element_id, is_favorite
+            )
         uow.commit()
         return student_learning_element.serialize()
 

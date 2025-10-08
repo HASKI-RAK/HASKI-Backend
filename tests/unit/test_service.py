@@ -985,7 +985,7 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
             ):
                 result.append(i)
         return result
-    
+
     def get_favorites_by_student_id(self, student_id):
         result = []
         for i in self.student_learning_element:
@@ -2840,9 +2840,7 @@ def test_get_activity_status_for_student_for_learning_element_for_course():
 def test_get_favorites_by_student_id():
     uow = FakeUnitOfWork()
     create_student_learning_element_for_tests(uow)
-    result = services.get_favorites_by_student_id(
-        uow=uow, student_id=1
-    )
+    result = services.get_favorites_by_student_id(uow=uow, student_id=1)
     assert type(result) is dict
     assert result != {}
 
