@@ -651,6 +651,32 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         for remove in to_remove:
             self.news.remove(remove)
 
+    def delete_learning_element_ratings_by_learning_element(
+        self, learning_element_id: int
+    ):
+        to_remove = []
+        for i in self.learning_element_rating:
+            if i.learning_element_id == learning_element_id:
+                to_remove.append(i)
+        for remove in to_remove:
+            self.learning_element_rating.remove(remove)
+
+    def delete_learning_element_ratings_by_topic(self, topic_id: int):
+        to_remove = []
+        for i in self.learning_element_rating:
+            if i.topic_id == topic_id:
+                to_remove.append(i)
+        for remove in to_remove:
+            self.learning_element_rating.remove(remove)
+
+    def delete_student_ratings_by_topic(self, topic_id: int):
+        to_remove = []
+        for i in self.student_rating:
+            if i.topic_id == topic_id:
+                to_remove.append(i)
+        for remove in to_remove:
+            self.student_rating.remove(remove)
+
     def get_admin_by_id(self, user_id):
         result = []
         for i in self.admin:
@@ -1783,7 +1809,7 @@ def test_create_admin():
     entries_beginning = len(uow.admin.admin)
     user = UA.User(user_name_example, university_example, 1, "admin")
     result = services.create_admin(uow=uow, user=user)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.admin.admin)
     assert entries_beginning + 1 == entries_after
@@ -1794,7 +1820,7 @@ def test_create_course_creator():
     entries_beginning = len(uow.course_creator.course_creator)
     user = UA.User(user_name_example, university_example, 1, "course creator")
     result = services.create_course_creator(uow=uow, user=user)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.course_creator.course_creator)
     assert entries_beginning + 1 == entries_after
@@ -1804,7 +1830,7 @@ def test_create_settings():
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.settings.settings)
     result = services.create_settings(uow=uow, user_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.settings.settings)
     assert entries_beginning + 1 == entries_after
@@ -1819,7 +1845,7 @@ def test_create_student():
     style_entries_beginning = len(uow.learning_style.learning_style)
     user = UA.User(user_name_example, university_example, 1, "student")
     result = services.create_student(uow=uow, user=user)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     student_entries_after = len(uow.student.student)
     characteristic_entries_after = len(
@@ -1834,7 +1860,7 @@ def test_create_student():
 def test_get_empty_user_by_lms_id():
     uow = FakeUnitOfWork()
     result = services.get_user_by_lms_id(uow, lms_user_id_creator)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result == {}
 
 
@@ -1848,7 +1874,7 @@ def test_get_user_by_lms_id():
         role="student",
     )
     result = services.get_user_by_lms_id(uow, 10)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
@@ -1874,7 +1900,7 @@ def test_create_teacher():
     entries_beginning = len(uow.teacher.teacher)
     user = UA.User(user_name_example, university_example, 1, "teacher")
     result = services.create_teacher(uow=uow, user=user)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.teacher.teacher)
     assert entries_beginning + 1 == entries_after
@@ -1900,7 +1926,7 @@ def test_create_user(name, university, lms_user_id, role):
     result = services.create_user(
         uow=uow, name=name, university=university, lms_user_id=lms_user_id, role=role
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     user_entries_after = len(uow.user.user)
     settings_entries_after = len(uow.settings.settings)
@@ -1912,7 +1938,7 @@ def test_create_learning_characteristics():
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.learning_characteristics.learning_characteristics)
     result = services.create_learning_characteristics(uow=uow, student_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.learning_characteristics.learning_characteristics)
     assert entries_beginning + 1 == entries_after
@@ -1922,7 +1948,7 @@ def test_create_learning_style():
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.learning_style.learning_style)
     result = services.create_learning_style(uow=uow, characteristic_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.learning_style.learning_style)
     assert entries_beginning + 1 == entries_after
@@ -1932,7 +1958,7 @@ def test_create_learning_strategy():
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.learning_strategy.learning_strategy)
     result = services.create_learning_strategy(uow=uow, characteristic_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.learning_strategy.learning_strategy)
     assert entries_beginning + 1 == entries_after
@@ -1942,7 +1968,7 @@ def test_create_knowledge():
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.knowledge.knowledge)
     result = services.create_knowledge(uow=uow, characteristic_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.knowledge.knowledge)
     assert entries_beginning + 1 == entries_after
@@ -1952,7 +1978,7 @@ def test_create_learning_analytics():
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.learning_analytics.learning_analytics)
     result = services.create_learning_analytics(uow=uow, characteristic_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.learning_analytics.learning_analytics)
     assert entries_beginning + 1 == entries_after
@@ -1969,7 +1995,7 @@ def test_create_news():
         news_content="idk",
         expiration_date=datetime.datetime(3027, 2, 15, 18, 54, 58, 291224),
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.news.news)
     assert entries_beginning + 1 == entries_after
@@ -1980,7 +2006,7 @@ def test_delete_admin():
     create_admin_for_tests(uow)
     entries_beginning = len(uow.admin.admin)
     result = services.delete_admin(uow, 1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result == {}
     entries_after = len(uow.admin.admin)
     assert entries_beginning - 1 == entries_after
@@ -1991,7 +2017,7 @@ def test_delete_course_creator():
     create_course_creator_for_tests(uow)
     entries_beginning = len(uow.course_creator.course_creator)
     result = services.delete_course_creator(uow, 1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result == {}
     entries_after = len(uow.course_creator.course_creator)
     assert entries_beginning - 1 == entries_after
@@ -2002,7 +2028,7 @@ def test_delete_student():
     create_student_for_tests(uow)
     entries_beginning = len(uow.student.student)
     result = services.delete_student(uow, 1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result == {}
     entries_after = len(uow.student.student)
     assert entries_beginning - 1 == entries_after
@@ -2013,7 +2039,7 @@ def test_delete_teacher():
     create_teacher_for_tests(uow)
     entries_beginning = len(uow.teacher.teacher)
     result = services.delete_teacher(uow, 1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result == {}
     entries_after = len(uow.teacher.teacher)
     assert entries_beginning - 1 == entries_after
@@ -2049,7 +2075,7 @@ def test_delete_user(role, lms_id):
         uow.learning_characteristics.learning_characteristics
     )
     result = services.delete_user(uow=uow, user_id=1, lms_user_id=lms_id)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result == {}
     entries_after = len(uow.user.user)
     settings_entries_end = len(uow.settings.settings)
@@ -2066,7 +2092,7 @@ def test_update_settings():
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
     result = services.update_settings_for_user(uow=uow, user_id=1, theme="dark")
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     assert result["theme"] == "dark"
 
@@ -2076,7 +2102,7 @@ def test_reset_settings():
     create_student_for_tests(uow)
     services.update_settings_for_user(uow=uow, user_id=1, theme="dark")
     result = services.reset_settings(uow=uow, user_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     assert result["theme"] == "Standard"
 
@@ -2085,7 +2111,7 @@ def test_get_settings_for_user():
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
     result = services.get_settings_for_user(uow, 1)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
@@ -2101,7 +2127,7 @@ def test_update_user():
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
     result = services.update_user(uow, 1, 1, "Maria Musterfraun", university_example)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
@@ -2111,7 +2137,7 @@ def test_create_contact_form():
     result = services.create_contact_form(
         uow, 1, 1, "Lernelement", "Funktionalität", "Test", datetime.datetime.now()
     )
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
@@ -2124,7 +2150,7 @@ def test_create_logbuffer():
         "Test content",
         datetime.datetime.now(),
     )
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
@@ -2132,7 +2158,7 @@ def test_get_logbuffer():
     uow = FakeUnitOfWork()
     create_logbuffer_for_tests(uow)
     result = services.get_logbuffer(uow, 1)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     keys_expected = [
         "content",
@@ -2148,7 +2174,7 @@ def test_get_news():
     uow = FakeUnitOfWork()
     create_news_for_tests(uow)
     result = services.get_news(uow, "en", "TH-AB", datetime.datetime.now())
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     keys_expected = [
         "created_at",
@@ -2167,7 +2193,7 @@ def test_get_learning_characteristics():
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
     result = services.get_learning_characteristics(uow, 1)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     keys_expected = [
         "knowledge",
@@ -2188,7 +2214,7 @@ def test_reset_learning_characteristics():
         uow=uow, user_id=1, lms_user_id=1, student_id=1
     )
     entries_after = len(uow.learning_characteristics.learning_characteristics)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_beginning == entries_after
     assert result["learning_style"]["perception_value"] == 0
@@ -2205,7 +2231,7 @@ def test_create_ils_input_answers():
         uow=uow, questionnaire_ils_id=1, answers=ils_input_answers
     )
     entries_after = len(uow.ils_input_answers.ils_input_answers)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_beginning + 1 == entries_after
 
@@ -2221,7 +2247,7 @@ def test_create_ils_perception_answers():
         uow=uow, questionnaire_ils_id=1, answers=ils_perception_answers
     )
     entries_after = len(uow.ils_perception_answers.ils_perception_answers)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_beginning + 1 == entries_after
 
@@ -2237,7 +2263,7 @@ def test_create_ils_processing_answers():
         uow=uow, questionnaire_ils_id=1, answers=ils_processing_answers
     )
     entries_after = len(uow.ils_processing_answers.ils_processing_answers)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_beginning + 1 == entries_after
 
@@ -2253,7 +2279,7 @@ def test_create_ils_understanding_answers():
         uow=uow, questionnaire_ils_id=1, answers=ils_understanding_answers
     )
     entries_after = len(uow.ils_understanding_answers.ils_understanding_answers)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_beginning + 1 == entries_after
 
@@ -2277,14 +2303,14 @@ def test_create_list_k_questionnaire():
         uow=uow, student_id=1, list_k_answers=questionnaire_list_k_answers
     )
     entries_after = len(uow.questionnaire_list_k.questionnaire_list_k)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_beginning + 1 == entries_after
     services.create_questionnaire_list_k(
         uow=uow, student_id=1, list_k_answers=questionnaire_list_k_answers
     )
     entries_after2 = len(uow.questionnaire_list_k.questionnaire_list_k)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_after == entries_after2
 
@@ -2322,7 +2348,7 @@ def test_create_questionnaire_ils(full_version):
         ils_answers=questionnaire_ils_answers,
     )
     entries_after = len(uow.questionnaire_ils.questionnaire_ils)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_beginning + 1 == entries_after
     services.create_questionnaire_ils(
@@ -2331,7 +2357,7 @@ def test_create_questionnaire_ils(full_version):
         ils_answers=questionnaire_ils_answers,
     )
     entries_after2 = len(uow.questionnaire_ils.questionnaire_ils)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_after == entries_after2
 
@@ -2348,7 +2374,7 @@ def test_delete_ils_input_answers():
     entries_beginning = len(uow.ils_input_answers.ils_input_answers)
     result = services.delete_ils_input_answers(uow=uow, questionnaire_ils_id=1)
     entries_after = len(uow.ils_input_answers.ils_input_answers)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result == {}
     assert entries_beginning - 1 == entries_after
 
@@ -2365,7 +2391,7 @@ def test_delete_ils_perception_answers():
     entries_beginning = len(uow.ils_perception_answers.ils_perception_answers)
     result = services.delete_ils_perception_answers(uow=uow, questionnaire_ils_id=1)
     entries_after = len(uow.ils_perception_answers.ils_perception_answers)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result == {}
     assert entries_beginning - 1 == entries_after
 
@@ -2382,7 +2408,7 @@ def test_delete_ils_processing_answers():
     entries_beginning = len(uow.ils_processing_answers.ils_processing_answers)
     result = services.delete_ils_processing_answers(uow=uow, questionnaire_ils_id=1)
     entries_after = len(uow.ils_processing_answers.ils_processing_answers)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result == {}
     assert entries_beginning - 1 == entries_after
 
@@ -2402,7 +2428,7 @@ def test_delete_ils_understanding_answers():
         questionnaire_ils_id=1,
     )
     entries_after = len(uow.ils_understanding_answers.ils_understanding_answers)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result == {}
     assert entries_beginning - 1 == entries_after
 
@@ -2426,7 +2452,7 @@ def test_delete_questionnaire_list_k():
     entries_beginning = len(uow.questionnaire_list_k.questionnaire_list_k)
     result = services.delete_questionnaire_list_k(uow=uow, questionnaire_list_k_id=1)
     entries_after = len(uow.questionnaire_list_k.questionnaire_list_k)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result == {}
     assert entries_beginning - 1 == entries_after
 
@@ -2465,7 +2491,7 @@ def test_delete_questionnaire_ils(full_version):
     entries_beginning = len(uow.questionnaire_ils.questionnaire_ils)
     result = services.delete_questionnaire_ils(uow=uow, questionnaire_ils_id=1)
     entries_after = len(uow.questionnaire_ils.questionnaire_ils)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result == {}
     assert entries_beginning - 1 == entries_after
 
@@ -2486,7 +2512,7 @@ def test_create_course_without_start_date():
         created_at="2023-01-01",
         start_date=None,
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.course.course)
     entries_after_course_creator_course = len(
@@ -2515,7 +2541,7 @@ def test_create_course_with_start_date():
         created_at="2023-01-01",
         start_date="2024-01-01",
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.course.course)
     entries_after_course_creator_course = len(
@@ -2850,7 +2876,7 @@ def test_get_course_by_id():
     create_course_creator_for_tests(uow)
     create_course_for_tests(uow)
     result = services.get_course_by_id(uow=uow, user_id=1, lms_user_id=3, course_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
@@ -2867,7 +2893,7 @@ def test_update_course_without_start_date():
         university=university_example,
         start_date=None,
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     entries_after = len(uow.course.course)
     assert entries_beginning == entries_after
 
@@ -2885,7 +2911,7 @@ def test_update_course_with_start_date():
         university=university_example,
         start_date="2024-01-01",
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     entries_after = len(uow.course.course)
     assert entries_beginning == entries_after
 
@@ -2896,7 +2922,7 @@ def test_delete_course():
     create_course_for_tests(uow)
     entries_beginning = len(uow.course.course)
     result = services.delete_course(uow=uow, course_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result == {}
     entries_after = len(uow.course.course)
     assert entries_beginning - 1 == entries_after
@@ -2906,7 +2932,7 @@ def test_create_course_topic():
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.course_topic.course_topic)
     result = services.create_course_topic(uow=uow, course_id=1, topic_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.course_topic.course_topic)
     assert entries_beginning + 1 == entries_after
@@ -2916,7 +2942,7 @@ def test_get_course_topic_by_course():
     uow = FakeUnitOfWork()
     create_course_topic_for_tests(uow)
     result = services.get_course_topic_by_course(uow=uow, course_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
@@ -2924,7 +2950,7 @@ def test_get_course_topic_by_topic():
     uow = FakeUnitOfWork()
     create_course_topic_for_tests(uow)
     result = services.get_course_topic_by_topic(uow=uow, topic_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
@@ -2933,7 +2959,7 @@ def test_delete_course_topic_by_course():
     create_course_topic_for_tests(uow)
     entries_beginning = len(uow.course_topic.course_topic)
     result = services.delete_course_topic_by_course(uow=uow, course_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result == {}
     entries_after = len(uow.course_topic.course_topic)
     assert entries_beginning - 1 == entries_after
@@ -2944,7 +2970,7 @@ def test_delete_course_topic_by_topic():
     create_course_topic_for_tests(uow)
     entries_beginning = len(uow.course_topic.course_topic)
     result = services.delete_course_topic_by_topic(uow=uow, topic_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result == {}
     entries_after = len(uow.course_topic.course_topic)
     assert entries_beginning - 1 == entries_after
@@ -3003,7 +3029,7 @@ def test_create_topic(
         created_at=created_at,
         created_by=created_by,
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.topic.topic)
     assert entries_beginning + 1 == entries_after
@@ -3019,12 +3045,12 @@ def test_get_topic_by_id():
     result = services.get_topic_by_id(
         uow=uow, user_id=1, lms_user_id=1, course_id=1, student_id=1, topic_id=1
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     result2 = services.get_topic_by_id(
         uow=uow, user_id=1, lms_user_id=1, course_id=1, student_id=1, topic_id=2
     )
-    assert type(result2) is dict
+    assert isinstance(result2, dict)
     assert result2 != {}
 
 
@@ -3047,7 +3073,7 @@ def test_update_topic():
         created_by=1,
         last_updated=last_updated,
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.topic.topic)
     assert entries_beginning == entries_after
@@ -3066,7 +3092,7 @@ def test_update_topic():
         created_by=1,
         last_updated=last_updated2,
     )
-    assert type(result2) is dict
+    assert isinstance(result2, dict)
     assert result2 != {}
     entries_after = len(uow.topic.topic)
     assert entries_beginning == entries_after
@@ -3082,12 +3108,12 @@ def test_delete_topic():
     entries_beginning = len(uow.topic.topic)
     result = services.delete_topic(uow=uow, topic_id=2)
     entries_after = len(uow.topic.topic)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result == {}
     assert entries_beginning - 1 == entries_after
     result2 = services.delete_topic(uow=uow, topic_id=1)
     entries_after2 = len(uow.topic.topic)
-    assert type(result2) == dict
+    assert isinstance(result2, dict)
     assert result2 == {}
     assert entries_beginning - 2 == entries_after2
 
@@ -3098,7 +3124,7 @@ def test_create_topic_learning_element():
     result = services.create_topic_learning_element(
         uow=uow, topic_id=1, learning_element_id=1
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.topic_learning_element.topic_learning_element)
     assert entries_beginning + 1 == entries_after
@@ -3108,7 +3134,7 @@ def test_get_topic_learning_element_by_topic():
     uow = FakeUnitOfWork()
     create_topic_learning_element_for_tests(uow)
     result = services.get_topic_learning_element_by_topic(uow=uow, topic_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
@@ -3118,7 +3144,7 @@ def test_get_topic_learning_element_by_le():
     result = services.get_topic_learning_element_by_learning_element(
         uow=uow, learning_element_id=1
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
@@ -3127,7 +3153,7 @@ def test_delete_topic_learning_element_by_topic():
     create_topic_learning_element_for_tests(uow)
     entries_beginning = len(uow.topic_learning_element.topic_learning_element)
     result = services.delete_topic_learning_element_by_topic(uow=uow, topic_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result == {}
     entries_after = len(uow.topic_learning_element.topic_learning_element)
     assert entries_beginning - 1 == entries_after
@@ -3140,7 +3166,7 @@ def test_delete_topic_learning_element_by_le():
     result = services.delete_topic_learning_element_by_learning_element(
         uow=uow, learning_element_id=1
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result == {}
     entries_after = len(uow.topic_learning_element.topic_learning_element)
     assert entries_beginning - 1 == entries_after
@@ -3160,7 +3186,7 @@ def test_create_learning_element():
         created_by=user_name_example,
         university=university_example,
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.learning_element.learning_element)
     assert entries_beginning + 1 == entries_after
@@ -3179,7 +3205,7 @@ def test_get_learning_element_by_id():
         topic_id=1,
         learning_element_id=1,
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
@@ -3200,7 +3226,7 @@ def test_update_learning_element():
         university=university_example,
         last_updated=last_updated,
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.learning_element.learning_element)
     assert entries_beginning == entries_after
@@ -3212,7 +3238,7 @@ def test_delete_learning_element():
     create_learning_element_for_tests_1(uow)
     entries_beginning = len(uow.learning_element.learning_element)
     result = services.delete_learning_element(uow=uow, learning_element_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result == {}
     entries_after = len(uow.learning_element.learning_element)
     assert entries_beginning - 1 == entries_after
@@ -3233,7 +3259,7 @@ def test_add_student_to_course():
     entries_after_course = len(uow.student_course.student_course)
     entries_after_topic = len(uow.student_topic.student_topic)
     entries_after_le = len(uow.student_learning_element.student_learning_element)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_beginning_course + 1 == entries_after_course
     assert entries_after_topic > entries_beginning_topic
@@ -3250,7 +3276,7 @@ def test_add_teacher_to_course():
     entries_beginning_course = len(uow.teacher_course.teacher_course)
     result = services.add_teacher_to_course(uow=uow, teacher_id=1, course_id=1)
     entries_after_course = len(uow.teacher_course.teacher_course)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_beginning_course + 1 == entries_after_course
     with pytest.raises(err.AlreadyExisting):
@@ -3265,7 +3291,7 @@ def test_create_course_creator_course():
         uow=uow, created_by=1, course_id=1, created_at="2023-01-01"
     )
     entries_after = len(uow.course_creator_course.course_creator_course)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_beginning + 1 == entries_after
 
@@ -3283,14 +3309,14 @@ def test_student_topic_visit():
         previous_topic_id=None,
     )
     entries_after = len(uow.student_topic_visit.student_topic_visit)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_beginning + 1 == entries_after
     result = services.add_student_topic_visit(
         uow=uow, student_id=1, topic_id=1, visit_start="2023-01-02", previous_topic_id=1
     )
     entries_after2 = len(uow.student_topic_visit.student_topic_visit)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_beginning + 2 == entries_after2
 
@@ -3331,7 +3357,7 @@ def test_create_learning_path(number_of_les, algorithm):
             create_learning_path_for_tests(uow, algorithm)
     else:
         result = create_learning_path_for_tests(uow, algorithm)
-        assert type(result) == dict
+        assert isinstance(result, dict)
         assert result != {}
         entries_after_path = len(uow.learning_path.learning_path)
         entries_after_path_le = len(
@@ -3340,7 +3366,7 @@ def test_create_learning_path(number_of_les, algorithm):
         assert entries_beginning_path + 1 == entries_after_path
         assert entries_beginning_path_le + number_of_les == entries_after_path_le
         result = create_learning_path_for_tests(uow, algorithm)
-        assert type(result) == dict
+        assert isinstance(result, dict)
         assert result != {}
         entries_after_path_2 = len(uow.learning_path.learning_path)
         entries_after_path_le_2 = len(
@@ -3380,7 +3406,7 @@ def test_get_courses_by_uni():
     create_course_with_start_date_for_tests(uow)
     add_student_to_course_for_tests(uow)
     result = services.get_courses_by_uni(uow=uow, university=university_example)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert len(result["courses"]) == 2
     assert result != {}
 
@@ -3394,7 +3420,7 @@ def test_get_courses_by_student_id():
     result = services.get_courses_by_student_id(
         uow=uow, user_id=1, lms_user_id=1, student_id=1
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
@@ -3402,7 +3428,7 @@ def test_get_knowledge_by_student_id():
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
     result = services.get_knowledge_by_student_id(uow=uow, student_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
@@ -3410,7 +3436,7 @@ def test_get_learning_analytics_by_student_id():
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
     result = services.get_learning_analytics_by_student_id(uow=uow, student_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
@@ -3418,7 +3444,7 @@ def test_get_learning_style_by_student_id():
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
     result = services.get_learning_style_by_student_id(uow=uow, student_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
@@ -3465,7 +3491,7 @@ def test_get_learning_strategy_by_student_id():
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
     result = services.get_learning_strategy_by_student_id(uow=uow, student_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
@@ -3481,7 +3507,7 @@ def test_get_les_for_course_id():
     result = services.get_learning_elements_for_course_id(
         uow=uow, user_id=1, lms_user_id=1, student_id=1, course_id=1
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
@@ -3497,7 +3523,7 @@ def test_get_les_for_course_and_topic_id():
     result = services.get_learning_elements_for_course_and_topic_id(
         uow=uow, user_id=1, lms_user_id=1, student_id=1, course_id=1, topic_id=1
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
@@ -3514,7 +3540,7 @@ def test_get_learning_path():
     result = services.get_learning_path(
         uow=uow, user_id=1, lms_user_id=1, student_id=1, course_id=1, topic_id=1
     )
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
@@ -3614,7 +3640,7 @@ def test_get_sub_topics():
     result = services.get_sub_topic_by_topic_id(
         uow=uow, user_id=1, lms_user_id=1, student_id=1, course_id=1, topic_id=1
     )
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
@@ -3631,7 +3657,7 @@ def test_get_topics_by_student_and_course_id():
     result = services.get_topics_by_student_and_course_id(
         uow=uow, user_id=1, lms_user_id=1, student_id=1, course_id=1
     )
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
@@ -3640,7 +3666,7 @@ def test_get_user_by_admin():
     create_student_for_tests(uow)
     create_admin_for_tests(uow)
     result = services.get_users_by_admin(uow=uow, user_id=1, lms_user_id=1)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
@@ -3650,7 +3676,7 @@ def test_reset_knowledge_by_student_id():
     result = services.reset_knowledge_by_student_id(
         uow=uow, user_id=1, lms_user_id=1, student_id=1
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
@@ -3660,7 +3686,7 @@ def test_reset_learning_analytics_by_student_id():
     result = services.reset_learning_analytics_by_student_id(
         uow=uow, user_id=1, lms_user_id=1, student_id=1
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
@@ -3670,7 +3696,7 @@ def test_reset_learning_style_by_student_id():
     result = services.reset_learning_style_by_student_id(
         uow=uow, user_id=1, lms_user_id=1, student_id=1
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
@@ -3680,7 +3706,7 @@ def test_reset_learning_strategy_by_student_id():
     result = services.reset_learning_strategy_by_student_id(
         uow=uow, user_id=1, lms_user_id=1, student_id=1
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
@@ -3701,7 +3727,7 @@ def test_update_learning_style_by_student_id():
         understanding_dimension="glo",
         understanding_value=11,
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
@@ -3727,7 +3753,7 @@ def test_get_student_ratings_on_topic():
     uow = FakeUnitOfWork()
     create_student_rating_for_tests(uow=uow)
     result = services.get_student_ratings_on_topic(uow=uow, student_id=1, topic_id=1)
-    assert type(result) is list
+    assert isinstance(result, list)
     assert result != []
 
 
@@ -3735,7 +3761,7 @@ def test_get_student_ratings():
     uow = FakeUnitOfWork()
     create_student_rating_for_tests(uow=uow)
     result = services.get_student_ratings(uow=uow)
-    assert type(result) is list
+    assert isinstance(result, list)
     assert result != []
 
 
@@ -3763,7 +3789,7 @@ def test_get_learning_element_ratings_on_topic():
     result = services.get_learning_element_ratings_on_topic(
         uow=uow, learning_element_id=1, topic_id=1
     )
-    assert type(result) is list
+    assert isinstance(result, list)
     assert result != []
 
 
@@ -3771,14 +3797,17 @@ def test_get_learning_element_ratings():
     uow = FakeUnitOfWork()
     create_learning_element_rating_for_tests_1(uow)
     result = services.get_learning_element_ratings(uow=uow)
-    assert type(result) is list
+    assert isinstance(result, list)
     assert result != []
 
 
 def test_add_learning_element_solution():
     uow = FakeUnitOfWork()
     result = services.add_learning_element_solution(
-        uow=uow, learning_element_lms_id=1, solution_lms_id="Test Solution"
+        uow=uow,
+        learning_element_lms_id=1,
+        solution_lms_id=1,
+        activity_type="Test Solution",
     )
     assert type(result) is dict
     assert result != {}
@@ -3787,7 +3816,9 @@ def test_add_learning_element_solution():
 def test_get_learning_element_solution():
     uow = FakeUnitOfWork()
     add_learning_element_solution_for_tests(uow=uow)
-    result = services.get_learning_element_solution_by_learning_element_id(uow=uow, learning_element_lms_id=1)
+    result = services.get_learning_element_solution_by_learning_element_id(
+        uow=uow, learning_element_lms_id=1
+    )
     assert type(result) is dict
     assert result != {}
 
@@ -3799,6 +3830,38 @@ def test_delete_learning_element_solution():
     services.delete_learning_element_solution(uow=uow, learning_element_id=1)
     entries_after = len(uow.learning_element_solution.learning_element_solution)
     assert entries_after == entries_before - 1
+
+
+def test_delete_learning_element_ratings_by_learning_element():
+    uow = FakeUnitOfWork()
+    create_learning_element_rating_for_tests_1(uow=uow)
+    entries_beginning = len(uow.learning_element_rating.learning_element_rating)
+    result = services.delete_learning_element_ratings_by_learning_element(
+        uow, learning_element_id=1
+    )
+    assert result is None
+    entries_after = len(uow.learning_element_rating.learning_element_rating)
+    assert entries_beginning - 1 == entries_after
+
+
+def test_delete_learning_element_ratings_by_topic():
+    uow = FakeUnitOfWork()
+    create_learning_element_rating_for_tests_1(uow=uow)
+    entries_beginning = len(uow.learning_element_rating.learning_element_rating)
+    result = services.delete_learning_element_ratings_by_topic(uow, topic_id=1)
+    assert result is None
+    entries_after = len(uow.learning_element_rating.learning_element_rating)
+    assert entries_beginning - 1 == entries_after
+
+
+def test_delete_student_ratings_by_topic():
+    uow = FakeUnitOfWork()
+    create_student_rating_for_tests(uow=uow)
+    entries_beginning = len(uow.student_rating.student_rating)
+    result = services.delete_student_ratings_by_topic(uow, topic_id=1)
+    assert result is None
+    entries_after = len(uow.student_rating.student_rating)
+    assert entries_beginning - 1 == entries_after
 
 
 @mock.patch(

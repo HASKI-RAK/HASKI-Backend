@@ -4830,30 +4830,41 @@ class TestApi:
         [
             # Working Example
             (
-             {"activity_type": "resource", "solution_lms_id": 1},
-             1,
-             ["id", "learning_element_lms_id", "solution_lms_id", "activity_type"],
-             201,
-             False),
-            # Solution already exists
-            ({}, 1, [], 400, True),
+                {"activity_type": "resource", "solution_lms_id": 1},
+                1,
+                ["id", "learning_element_lms_id", "solution_lms_id", "activity_type"],
+                201,
+                False,
+            ),
+            # Fehlender Parameter (erwartet 400)
+            (
+                {},  # leeres JSON löst MissingParameterError aus
+                1,
+                ["error", "message"],
+                400,
+                True,
+            ),
         ],
     )
     def test_add_learning_element_solution(
-        self, client_class, input, learning_element_lms_id, keys_expected, status_code_expected, error
+        self,
+        client_class,
+        input,
+        learning_element_lms_id,
+        keys_expected,
+        status_code_expected,
+        error,
     ):
-        url = (
-            path_learning_element
-            + "/"
-            + str(learning_element_lms_id)
-            + "/solution"
-        )
+        url = path_learning_element + "/" + str(learning_element_lms_id) + "/solution"
         r = client_class.post(url, json=input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
         if not error:
             for key in response.keys():
                 assert key in keys_expected
+        else:
+            for key in keys_expected:
+                assert key in response.keys()
 
     # Get Learning Element Solution
     @pytest.mark.parametrize(
@@ -4861,10 +4872,11 @@ class TestApi:
                             status_code_expected",
         [
             # Working Example
-            (1, ["id",
-                 "learning_element_lms_id",
-                 "solution_lms_id",
-                 "activity_type"], 200),
+            (
+                1,
+                ["id", "learning_element_lms_id", "solution_lms_id", "activity_type"],
+                200,
+            ),
         ],
     )
     def test_get_learning_element_solution(
