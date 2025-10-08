@@ -12,6 +12,7 @@ import utils.constants as const
 from domain.domainModel.model import LearningElementRating
 from domain.learnersModel.model import StudentRating
 from domain.userAdministartion import model as UA
+from domain.domainModel.model import StudentLearningElement
 from service_layer import services, unit_of_work
 from tests.e2e.test_api import lms_user_id_creator
 from utils import constants as cons
@@ -1795,11 +1796,8 @@ def create_learning_element_rating_for_tests_2(uow):
 
 
 def create_student_learning_element_for_tests(uow):
-    services.update_student_learning_element(
-        uow=uow,
-        student_id=1,
-        learning_element_id=1,
-        is_favorite=True,
+    uow.student_learning_element.add_student_learning_element(
+        StudentLearningElement(student_id=1, learning_element_id=1, is_favorite=True)
     )
 
 
