@@ -9,10 +9,9 @@ import errors.errors as err
 import repositories.repository as repository
 import service_layer.crypto.JWTKeyManagement as JWTKeyManagement
 import utils.constants as const
-from domain.domainModel.model import LearningElementRating
+from domain.domainModel.model import LearningElementRating, StudentLearningElement
 from domain.learnersModel.model import StudentRating
 from domain.userAdministartion import model as UA
-from domain.domainModel.model import StudentLearningElement
 from service_layer import services, unit_of_work
 from tests.e2e.test_api import lms_user_id_creator
 from utils import constants as cons
