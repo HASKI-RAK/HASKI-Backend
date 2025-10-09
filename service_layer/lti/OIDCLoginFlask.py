@@ -305,10 +305,13 @@ class OIDCLoginFlask(OIDCLogin):
                     user["role"] == const.role_student_string
                     or user["role"] == const.role_course_creator_string
                 ):
-                    courses = services.get_courses_by_uni(
+                    # get all courses of the user that he is enrolled in
+                    courses = services.get_enrolled_university_courses(
                         unit_of_work.SqlAlchemyUnitOfWork(),
-                        university=user["university"],
+                        user["lms_user_id"],
+                        user["university"]
                     )
+
                     student = services.get_student_by_user_id(
                         unit_of_work.SqlAlchemyUnitOfWork(), user["id"]
                     )
@@ -327,14 +330,17 @@ class OIDCLoginFlask(OIDCLogin):
                     unit_of_work.SqlAlchemyUnitOfWork(), user["university"]
                 )):
                     # fmt: on
-                    courses = services.get_courses_by_uni(
-                        unit_of_work.SqlAlchemyUnitOfWork(),
-                        university=user["university"],
-                    )
                     student = services.get_student_by_user_id(
                         unit_of_work.SqlAlchemyUnitOfWork(), user["id"]
                     )
-                    for course in courses["courses"]:
+
+                    student_courses = services.get_courses_by_student_id(
+                        unit_of_work.SqlAlchemyUnitOfWork(),
+                        user["id"],
+                        user["lms_user_id"],
+                        student["id"]
+                    )
+                    for course in student_courses["courses"]:
                         # Get every available topic in all course.
                         topics = list(
                             services.get_topics_by_student_and_course_id(

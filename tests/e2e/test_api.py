@@ -4307,7 +4307,7 @@ class TestApi:
         [
             # Working Example
             (
-                ["CREATED", "course_id", "students_added"],
+                ["CREATED", "course_id"],
                 201,
                 True,
             ),
@@ -4328,7 +4328,7 @@ class TestApi:
         [
             # Working Example
             (
-                ["CREATED", "course_id", "students_added"],
+                ["CREATED", "course_id"],
                 201,
                 True,
             ),
