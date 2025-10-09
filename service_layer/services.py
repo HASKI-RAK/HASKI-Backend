@@ -2767,6 +2767,7 @@ def update_student_experience_points(
     student_id: int,
     course_id: int,
     learning_element_id: int,
+    topic_id: int,
     user_lms_id: str,
     classification: str,
     start_time: int
@@ -2774,26 +2775,38 @@ def update_student_experience_points(
     base_xp = {"ÜB": 50,  "SE": 100, "other": 50}
     wait_bonus = 1
     with uow:
-        ratings = get_learning_element_ratings(uow)
+        this_element_ratings = get_learning_element_ratings_on_topic(
+            uow,
+            learning_element_id,
+            topic_id
+        )
 
-        if ratings != []:
-            rating_values = [rating["rating_value"] for rating in ratings]
-            highest_rating = max(rating_values)
-            lowest_rating = min(rating_values)
-            for rating in rating_values:
-                rating = (
-                    rating - lowest_rating
-                  ) / (highest_rating - lowest_rating)
+        all_ratings = get_learning_element_ratings(uow)
 
-            highest_rating = highest_rating - lowest_rating
-            average_rating = sum(
-                rating for rating in rating_values) / len(rating_values)
-            #normalize average rating to be between 0 and 1
-            average_rating = average_rating / highest_rating
-            # points for rating will be between 2 and 8
-            rating_points = (average_rating * 6) - 3
+        if all_ratings != [] and this_element_ratings != []:
+            sorted_ratings = {}
+            for rating in this_element_ratings:
+                if rating["learning_element_id"] not in sorted_ratings.keys():
+                    sorted_ratings[rating["learning_element_id"]] = []
+                sorted_ratings[rating["learning_element_id"]].append(
+                    rating["rating_value"]
+                )
+            average_rating = 0
+            highest_rating = 0
+            lowest_rating = 1500
+            for ratings in sorted_ratings.values():
+                max_rating = max(ratings)
+                average_rating += max_rating
+                highest_rating = max(highest_rating, max_rating)
+                lowest_rating = min(lowest_rating, *ratings)
+            average_rating = average_rating / len(sorted_ratings.keys())
+            # normalize average rating to be between 0 and 1
+            average_rating = (average_rating - lowest_rating
+                              ) / (highest_rating - lowest_rating)
+            # points for rating will be between 20 and 80
+            rating_points = (average_rating * 60) + 20
         else:
-            rating_points = 0
+            rating_points = 50
 
         if classification in ["ÜB", "SE"]:
           response = get_moodle_h5p_activity_attempts(
@@ -2831,7 +2844,7 @@ def update_student_experience_points(
                           key=lambda x: x["timecreated"]
                         )["timecreated"]
                   )
-              wait_bonus = (time_between_attempts / 259200) or 1
+              wait_bonus = min((time_between_attempts / 259200), 2.5) or 1
 
               # base experience points modified with difficulty
               experience_points = (base_xp[classification] + rating_points)
@@ -2858,22 +2871,22 @@ def update_student_experience_points(
                   "wait_bonus": wait_bonus,
                   "successful_attempts": len(successful_attempts)
               }
-          else:
-              total_xp = uow.student_experience_points.update_student_experience_points(
-                  student_id, base_xp["other"]
-              )
-              uow.commit()
-              return {
-                  "total_xp": total_xp,
-                  "gained_xp": base_xp["other"],
-                  "base_xp": base_xp["other"],
-                  "rating_points": 0,
-                  "score_modifier": 0,
-                  "attempt_xp": 0,
-                  "success_modifier": 0,
-                  "wait_bonus": 0,
-                  "successful_attempts": 0
-              }
+        else:
+            total_xp = uow.student_experience_points.update_student_experience_points(
+                student_id, base_xp["other"]
+            )
+            uow.commit()
+            return {
+                "total_xp": total_xp,
+                "gained_xp": base_xp["other"],
+                "base_xp": base_xp["other"],
+                "rating_points": 0,
+                "score_modifier": 0,
+                "attempt_xp": 0,
+                "success_modifier": 0,
+                "wait_bonus": 0,
+                "successful_attempts": 0
+            }
 
 
 def update_student_learning_element(

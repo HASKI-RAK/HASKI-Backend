@@ -1339,7 +1339,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         else:
             student_courses.delete()
 
-    def delete_student_experience_points(self, student_i: int) -> None:
+    def delete_student_experience_points(self, student_id: int) -> None:
         self.session.query(LM.StudentExperiencePoints).filter_by(
             student_id=student_id
         ).delete()

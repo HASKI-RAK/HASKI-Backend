@@ -2496,11 +2496,12 @@ def calculate_student_xp(
     course_id_present = "course_id" in data
     learning_element_id_present = "learning_element_id" in data
     user_lms_id_present = "user_lms_id" in data
+    topic_id_present = "topic_id" in data
     classification_present = "classification" in data
     start_time_present = "start_time" in data
 
-    if not (course_id_present and learning_element_id_present 
-            and user_lms_id_present
+    if not (course_id_present and learning_element_id_present
+            and user_lms_id_present and topic_id_present
             and classification_present and start_time_present
             ):
         raise err.MissingParameterError()
@@ -2510,6 +2511,7 @@ def calculate_student_xp(
         student_id=int(student_id),
         course_id=int(data["course_id"]),
         learning_element_id=int(data["learning_element_id"]),
+        topic_id=int(data["topic_id"]),
         user_lms_id=str(data["user_lms_id"]),
         classification=str(data["classification"]),
         start_time=int(data["start_time"])
