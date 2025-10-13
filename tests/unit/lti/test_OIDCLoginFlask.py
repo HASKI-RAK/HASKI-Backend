@@ -9,6 +9,7 @@ from errors import errors as err
 from service_layer.crypto import JWTKeyManagement
 from service_layer.lti.OIDCLoginFlask import OIDCLoginFlask
 from utils.auth.permissions import Permissions
+from contextlib import ExitStack
 
 # ignore E501
 config_file = {
@@ -339,24 +340,25 @@ class TestOIDCLoginFlask(unittest.TestCase):
                                     "id": 1,
                                     "name": "Test User",
                                     "role": "student",
+                                    "lms_user_id": "user123",
                                     "university": "HS-KE",
                                 },
                             ):
                                 with patch(
-                                    "service_layer.services." "get_courses_by_uni",
+                                    "service_layer.services.get_enrolled_university_courses",
                                     return_value={
                                         "courses": [
                                             {
                                                 "id": 1,
                                                 "name": "course-1",
                                                 "university": "HS-KE",
+                                                "lms_id": 1,
                                             }
                                         ],
                                     },
                                 ):
                                     with patch(
-                                        "service_layer.services."
-                                        "get_student_by_user_id",
+                                        "service_layer.services.get_student_by_user_id",
                                         return_value={
                                             "id": 1,
                                             "name": "Test User",
@@ -365,30 +367,22 @@ class TestOIDCLoginFlask(unittest.TestCase):
                                         },
                                     ):
                                         with patch(
-                                            "service_layer.services."
-                                            "add_student_to_course",
+                                            "service_layer.services.add_student_to_course",
                                             return_value={
                                                 "state": "ok",
                                             },
                                         ):
                                             with patch("flask.redirect"):
                                                 with patch(
-                                                    "service_layer."
-                                                    "lti.config."
-                                                    "ToolConfigJson.get_platform",
+                                                    "service_layer.lti.config.ToolConfigJson.get_platform",
                                                     return_valule="moodle",
                                                 ):
                                                     with patch(
-                                                        "service_layer."
-                                                        "lti.config."
-                                                        "ToolConfigJson."
-                                                        "decode_platform",
+                                                        "service_layer.lti.config.ToolConfigJson.decode_platform",
                                                         return_valule="moodle_decoded",
                                                     ):
                                                         with patch(
-                                                            "service_layer."
-                                                            "services."
-                                                            "get_student_by_user_id",
+                                                            "service_layer.services.get_user_by_id",
                                                             return_value={
                                                                 "id": 1,
                                                                 "name": "Test User",
@@ -397,26 +391,25 @@ class TestOIDCLoginFlask(unittest.TestCase):
                                                         ):
                                                             self.oidc_login.id_token = (
                                                                 MagicMock()
-                                                            )  # noqa: E501
-                                                            self.oidc_login.id_token.nonce = (  # noqa: E501
+                                                            )
+                                                            self.oidc_login.id_token.nonce = (
                                                                 "valid_nonce"
                                                             )
-                                                            self.oidc_login.id_token.sub = (  # noqa: E501
+                                                            self.oidc_login.id_token.sub = (
                                                                 "user123"
                                                             )
-                                                            self.oidc_login.id_token.name = "Test User"  # noqa: E501
-                                                            self.oidc_login.id_token.__getitem__.side_effect = (  # noqa: E501
+                                                            self.oidc_login.id_token.name = "Test User"
+                                                            self.oidc_login.id_token.__getitem__.side_effect = (
                                                                 jwt_payload.__getitem__
                                                             )
 
                                                             response = (
-                                                                self.oidc_login.lti_launch_from_id_token()  # noqa: E501
+                                                                self.oidc_login.lti_launch_from_id_token()
                                                             )
-
                                                             assert (
                                                                 response.status
                                                                 == "302 FOUND"
-                                                            )  # noqa: E501
+                                                            )
 
     def test_lti_launch_from_id_token_user_exists_in_db(self):
         # Create a mock request with the necessary attributes
@@ -648,20 +641,20 @@ class TestOIDCLoginFlask(unittest.TestCase):
                                 },
                             ):
                                 with patch(
-                                    "service_layer.services." "get_courses_by_uni",
+                                    "service_layer.services.get_enrolled_university_courses",
                                     return_value={
                                         "courses": [
                                             {
                                                 "id": 1,
                                                 "name": "course-1",
                                                 "university": "HS-KE",
+                                                "lms_id": 1,
                                             }
                                         ],
                                     },
                                 ):
                                     with patch(
-                                        "service_layer.services."
-                                        "get_student_by_user_id",
+                                        "service_layer.services.get_student_by_user_id",
                                         return_value={
                                             "id": 1,
                                             "name": "Test User",
@@ -670,8 +663,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                                         },
                                     ):
                                         with patch(
-                                            "service_layer.services."
-                                            "add_student_to_course",
+                                            "service_layer.services.add_student_to_course",
                                             return_value={
                                                 "state": "ok",
                                             },
