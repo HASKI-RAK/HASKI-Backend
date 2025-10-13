@@ -705,7 +705,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                 "calculated_on": datetime.datetime(2025, 6, 17, 16, 4, 4, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
             })),
             (
-              "service_layer.services.get_user_by_id",dict (return_value={
+              "service_layer.services.get_user_by_id", dict (return_value={
               "id": 1,
               "name": "Test User",
               "role": "student",

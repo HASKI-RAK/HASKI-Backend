@@ -1887,7 +1887,7 @@ def get_topics_by_student_and_course_id(
             student_topic = uow.student_topic.get_student_topic(
                 student_id, topic["topic_id"]
             )
-            if( student_topic == []):
+            if student_topic == []:
                 continue
             student_topic[0].visits = visits
             topic_details = get_topic_by_id(
