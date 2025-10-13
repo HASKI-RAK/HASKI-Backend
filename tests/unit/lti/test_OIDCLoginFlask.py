@@ -345,7 +345,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                                 },
                             ):
                                 with patch(
-                                    "service_layer.services.get_enrolled_university_courses",
+                                    "service_layer.services.get_enrolled_university_courses",  # noqa: E501
                                     return_value={
                                         "courses": [
                                             {
@@ -358,7 +358,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                                     },
                                 ):
                                     with patch(
-                                        "service_layer.services.get_student_by_user_id",
+                                        "service_layer.services.get_student_by_user_id",  # noqa: E501
                                         return_value={
                                             "id": 1,
                                             "name": "Test User",
@@ -367,22 +367,22 @@ class TestOIDCLoginFlask(unittest.TestCase):
                                         },
                                     ):
                                         with patch(
-                                            "service_layer.services.add_student_to_course",
+                                            "service_layer.services.add_student_to_course",  # noqa: E501
                                             return_value={
                                                 "state": "ok",
                                             },
                                         ):
                                             with patch("flask.redirect"):
                                                 with patch(
-                                                    "service_layer.lti.config.ToolConfigJson.get_platform",
+                                                    "service_layer.lti.config.ToolConfigJson.get_platform",  # noqa: E501
                                                     return_valule="moodle",
                                                 ):
                                                     with patch(
-                                                        "service_layer.lti.config.ToolConfigJson.decode_platform",
+                                                        "service_layer.lti.config.ToolConfigJson.decode_platform",  # noqa: E501
                                                         return_valule="moodle_decoded",
                                                     ):
                                                         with patch(
-                                                            "service_layer.services.get_user_by_id",
+                                                            "service_layer.services.get_user_by_id",  # noqa: E501
                                                             return_value={
                                                                 "id": 1,
                                                                 "name": "Test User",
@@ -392,19 +392,21 @@ class TestOIDCLoginFlask(unittest.TestCase):
                                                             self.oidc_login.id_token = (
                                                                 MagicMock()
                                                             )
-                                                            self.oidc_login.id_token.nonce = (
+                                                            self.oidc_login.id_token.nonce = (  # noqa: E501
                                                                 "valid_nonce"
                                                             )
-                                                            self.oidc_login.id_token.sub = (
+                                                            self.oidc_login.id_token.sub = (  # noqa: E501
                                                                 "user123"
                                                             )
-                                                            self.oidc_login.id_token.name = "Test User"
-                                                            self.oidc_login.id_token.__getitem__.side_effect = (
+                                                            self.oidc_login.id_token.name = (  # noqa: E501
+                                                                "Test User"
+                                                            )
+                                                            self.oidc_login.id_token.__getitem__.side_effect = (  # noqa: E501
                                                                 jwt_payload.__getitem__
                                                             )
 
                                                             response = (
-                                                                self.oidc_login.lti_launch_from_id_token()
+                                                                self.oidc_login.lti_launch_from_id_token()  # noqa: E501
                                                             )
                                                             assert (
                                                                 response.status
@@ -610,117 +612,197 @@ class TestOIDCLoginFlask(unittest.TestCase):
             "https://purl.imsglobal.org/spec/lti/claim/roles": ["student"],
         }
 
-        from contextlib import ExitStack
-
         # Create a mock platform object with frontend_login_url
         platform_mock = MagicMock()
         platform_mock.frontend_login_url = "https://frontend.haski.app/login"
         # Add any other attributes your code may need from platform
 
         patch_targets = [
-            ("service_layer.crypto.JWTKeyManagement.verify_jwt", dict(return_value=jwt_payload)),
-            ("service_layer.crypto.JWTKeyManagement.generate_nonce_jwt", dict(return_value="mocked_nonce_jwt")),
+            (
+                "service_layer.crypto.JWTKeyManagement.verify_jwt",
+                dict(return_value=jwt_payload),
+            ),
+            (
+                "service_layer.crypto.JWTKeyManagement.generate_nonce_jwt",
+                dict(return_value="mocked_nonce_jwt"),
+            ),
             ("service_layer.service.SessionServiceFlask.set", {}),
             ("service_layer.service.SessionServiceFlask.get", {}),
             ("service_layer.services.get_user_by_lms_id", dict(return_value={})),
-            ("service_layer.services.create_user", dict(return_value={
-                "id": 1,
-                "name": "Test User",
-                "role": "course creator",
-                "lms_user_id": "2",
-                "university": "HS-KE",
-            })),
-            ("service_layer.services.get_enrolled_university_courses", dict(return_value={
-                "courses": [
-                    {
+            (
+                "service_layer.services.create_user",
+                dict(
+                    return_value={
                         "id": 1,
-                        "name": "course-1",
+                        "name": "Test User",
+                        "role": "course creator",
+                        "lms_user_id": "2",
                         "university": "HS-KE",
-                        "lms_id": 1,
                     }
-                ],
-            })),
-            ("service_layer.services.get_student_by_user_id", dict(return_value={
-                "id": 1,
-                "name": "Test User",
-                "role": "course creator",
-                "university": "HS-KE",
-            })),
-            ("service_layer.services.add_student_to_course", dict(return_value={"state": "ok"})),
+                ),
+            ),
+            (
+                "service_layer.services.get_enrolled_university_courses",
+                dict(
+                    return_value={
+                        "courses": [
+                            {
+                                "id": 1,
+                                "name": "course-1",
+                                "university": "HS-KE",
+                                "lms_id": 1,
+                            }
+                        ],
+                    }
+                ),
+            ),
+            (
+                "service_layer.services.get_student_by_user_id",
+                dict(
+                    return_value={
+                        "id": 1,
+                        "name": "Test User",
+                        "role": "course creator",
+                        "university": "HS-KE",
+                    }
+                ),
+            ),
+            (
+                "service_layer.services.add_student_to_course",
+                dict(return_value={"state": "ok"}),
+            ),
             ("flask.redirect", {}),
             # Patch get_platform and decode_platform to return platform_mock
-            ("service_layer.lti.config.ToolConfigJson.get_platform", dict(return_value=platform_mock)),
-            ("service_layer.lti.config.ToolConfigJson.decode_platform", dict(return_value=platform_mock)),
-            ("service_layer.services.get_student_by_user_id", dict(return_value={
-                "id": 1,
-                "name": "Test User",
-                "role": "course creator",
-            })),
-            ("service_layer.services.get_default_learning_path_by_university", dict(return_value=[
-                {"id": 1, "classification": "LZ", "position": 1, "disabled": False, "university": "HS-KE"},
-                # ...other elements...
-            ])),
-            ("service_layer.services.get_topics_by_student_and_course_id", dict(return_value={
-                "topics": [
-                    {
-                        "id": 1,
-                        "lms_id": 1,
-                        "is_topic": True,
-                        "parent_id": None,
-                        "contains_le": True,
-                        "name": "General",
-                        "university": "New Site",
-                        "created_by": "muster student",
-                        "created_at": datetime.datetime(2025, 6, 17, 0, 0),
-                        "last_updated": None,
-                        "student_topic": {
-                            "id": 4,
-                            "student_id": 4,
-                            "topic_id": 1,
-                            "done": False,
-                            "done_at": None,
-                            "visits": [],
-                        },
-                    }
-                ]
-            })),
-            ("service_layer.services.get_student_lpath_le_algorithm", dict(return_value={
-                "id": 7,
-                "student_id": 5,
-                "topic_id": 1,
-                "algorithm_id": 4,
-            })),
-            ("service_layer.services.get_learning_path_algorithm_by_id", dict(return_value={
-                "id": 4,
-                "short_name": "graf",
-                "full_name": "Graf et al.",
-            })),
-            ("service_layer.services.create_learning_path", dict(return_value={
-                "id": 5,
-                "student_id": 5,
-                "course_id": 1,
-                "topic_id": 1,
-                "based_on": "graf",
-                "path": "FO",
-                "calculated_on": datetime.datetime(2025, 6, 17, 16, 4, 4, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
-            })),
             (
-              "service_layer.services.get_user_by_id", dict (return_value={
-              "id": 1,
-              "name": "Test User",
-              "role": "student",
-            })),
-            ("service_layer.services.get_courses_by_student_id", dict(return_value={
-                "courses": [
-                    {
+                "service_layer.lti.config.ToolConfigJson.get_platform",
+                dict(return_value=platform_mock),
+            ),
+            (
+                "service_layer.lti.config.ToolConfigJson.decode_platform",
+                dict(return_value=platform_mock),
+            ),
+            (
+                "service_layer.services.get_student_by_user_id",
+                dict(
+                    return_value={
                         "id": 1,
-                        "name": "course-1",
-                        "university": "HS-KE",
-                        "lms_id": 1,
-                    },
-
-                ],
-            }))
+                        "name": "Test User",
+                        "role": "course creator",
+                    }
+                ),
+            ),
+            (
+                "service_layer.services.get_default_learning_path_by_university",
+                dict(
+                    return_value=[
+                        {
+                            "id": 1,
+                            "classification": "LZ",
+                            "position": 1,
+                            "disabled": False,
+                            "university": "HS-KE",
+                        },
+                        # ...other elements...
+                    ]
+                ),
+            ),
+            (
+                "service_layer.services.get_topics_by_student_and_course_id",
+                dict(
+                    return_value={
+                        "topics": [
+                            {
+                                "id": 1,
+                                "lms_id": 1,
+                                "is_topic": True,
+                                "parent_id": None,
+                                "contains_le": True,
+                                "name": "General",
+                                "university": "New Site",
+                                "created_by": "muster student",
+                                "created_at": datetime.datetime(2025, 6, 17, 0, 0),
+                                "last_updated": None,
+                                "student_topic": {
+                                    "id": 4,
+                                    "student_id": 4,
+                                    "topic_id": 1,
+                                    "done": False,
+                                    "done_at": None,
+                                    "visits": [],
+                                },
+                            }
+                        ]
+                    }
+                ),
+            ),
+            (
+                "service_layer.services.get_student_lpath_le_algorithm",
+                dict(
+                    return_value={
+                        "id": 7,
+                        "student_id": 5,
+                        "topic_id": 1,
+                        "algorithm_id": 4,
+                    }
+                ),
+            ),
+            (
+                "service_layer.services.get_learning_path_algorithm_by_id",
+                dict(
+                    return_value={
+                        "id": 4,
+                        "short_name": "graf",
+                        "full_name": "Graf et al.",
+                    }
+                ),
+            ),
+            (
+                "service_layer.services.create_learning_path",
+                dict(
+                    return_value={
+                        "id": 5,
+                        "student_id": 5,
+                        "course_id": 1,
+                        "topic_id": 1,
+                        "based_on": "graf",
+                        "path": "FO",
+                        "calculated_on": datetime.datetime(
+                            2025,
+                            6,
+                            17,
+                            16,
+                            4,
+                            4,
+                            tzinfo=datetime.timezone(datetime.timedelta(seconds=7200)),
+                        ),
+                    }
+                ),
+            ),
+            (
+                "service_layer.services.get_user_by_id",
+                dict(
+                    return_value={
+                        "id": 1,
+                        "name": "Test User",
+                        "role": "student",
+                    }
+                ),
+            ),
+            (
+                "service_layer.services.get_courses_by_student_id",
+                dict(
+                    return_value={
+                        "courses": [
+                            {
+                                "id": 1,
+                                "name": "course-1",
+                                "university": "HS-KE",
+                                "lms_id": 1,
+                            },
+                        ],
+                    }
+                ),
+            ),
         ]
 
         with ExitStack() as stack:

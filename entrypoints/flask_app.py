@@ -160,7 +160,7 @@ def get_user_by_id(user_id, lms_user_id):
             return jsonify(user), status_code
 
 
-# Add all students that are enrolled in the corresponding moodle course to the haski course
+# Add all students that are enrolled in moodle courses to the haski courses
 @app.route("/course/<course_id>/allStudents", methods=["POST"])
 @cross_origin(supports_credentials=True)
 def add_all_students_to_course(course_id):
@@ -169,15 +169,21 @@ def add_all_students_to_course(course_id):
         case "POST":
             students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
             for student in students:
-                user = services.get_user_by_id(unit_of_work.SqlAlchemyUnitOfWork(), student["user_id"], None)
-                courses = services.get_enrolled_university_courses(unit_of_work.SqlAlchemyUnitOfWork(), user["lms_user_id"], user["university"])
+                user = services.get_user_by_id(
+                    unit_of_work.SqlAlchemyUnitOfWork(), student["user_id"], None
+                )
+                courses = services.get_enrolled_university_courses(
+                    unit_of_work.SqlAlchemyUnitOfWork(),
+                    user["lms_user_id"],
+                    user["university"],
+                )
                 if isinstance(courses, dict):
                     course_iter = courses.get("courses", courses.values())
                 else:
                     course_iter = []
                 if any(
-                        isinstance(c, dict) and int(c.get("id", -1)) == int(course_id)
-                        for c in course_iter
+                    isinstance(c, dict) and int(c.get("id", -1)) == int(course_id)
+                    for c in course_iter
                 ):
                     services.add_student_to_course(
                         unit_of_work.SqlAlchemyUnitOfWork(),
@@ -185,12 +191,7 @@ def add_all_students_to_course(course_id):
                         course_id,
                     )
             return make_response(
-                jsonify(
-                    {
-                        "CREATED": True,
-                        "course_id": course_id
-                    }
-                ),
+                jsonify({"CREATED": True, "course_id": course_id}),
                 http.HTTPStatus.CREATED,
             )
 
@@ -623,12 +624,7 @@ def add_all_students_to_all_topics(course_id):
                         course_id,
                     )
             return make_response(
-                jsonify(
-                    {
-                        "CREATED": True,
-                        "course_id": course_id
-                    }
-                ),
+                jsonify({"CREATED": True, "course_id": course_id}),
                 http.HTTPStatus.CREATED,
             )
 

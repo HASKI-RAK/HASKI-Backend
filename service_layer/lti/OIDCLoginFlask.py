@@ -309,7 +309,7 @@ class OIDCLoginFlask(OIDCLogin):
                     courses = services.get_enrolled_university_courses(
                         unit_of_work.SqlAlchemyUnitOfWork(),
                         user["lms_user_id"],
-                        user["university"]
+                        user["university"],
                     )
 
                     student = services.get_student_by_user_id(
