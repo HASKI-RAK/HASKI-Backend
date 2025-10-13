@@ -1,6 +1,7 @@
 import datetime
 import os
 import unittest
+from contextlib import ExitStack
 from unittest import mock
 from unittest.mock import MagicMock, patch
 
@@ -9,7 +10,6 @@ from errors import errors as err
 from service_layer.crypto import JWTKeyManagement
 from service_layer.lti.OIDCLoginFlask import OIDCLoginFlask
 from utils.auth.permissions import Permissions
-from contextlib import ExitStack
 
 # ignore E501
 config_file = {
