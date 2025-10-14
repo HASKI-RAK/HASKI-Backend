@@ -77,22 +77,31 @@ def add_student_to_topics(uow: unit_of_work.AbstractUnitOfWork, student_id, cour
     with uow:
         topics = get_topics_for_course_id(uow, course_id)
         for topic in topics:
-            student_topic = DM.StudentTopic(student_id, topic["topic_id"])
+            topic_id = topic["topic_id"]
+            # Skip if already assigned
+            if uow.student_topic.get_student_topic(student_id, topic_id):
+                continue
+
+            student_topic = DM.StudentTopic(student_id, topic_id)
             uow.student_topic.add_student_to_topic(student_topic)
             uow.commit()
-            topic_algorithm = get_lpath_le_algorithm_by_topic(uow, topic["topic_id"])
-            if topic_algorithm != {}:
+
+            topic_algorithm = get_lpath_le_algorithm_by_topic(uow, topic_id)
+            if topic_algorithm:
                 add_student_lpath_le_algorithm(
                     uow,
                     student_id,
                     topic_algorithm["topic_id"],
                     topic_algorithm["algorithm_id"],
                 )
-                l_elements = get_learning_elements_for_topic_id(uow, topic["topic_id"])
+                l_elements = get_learning_elements_for_topic_id(uow, topic_id)
                 for l_element in l_elements:
                     add_student_to_learning_element(
-                        uow, l_element["learning_element_id"], student_id
+                        uow,
+                        l_element["learning_element_id"],
+                        student_id
                     )
+            uow.commit()
 
 
 def add_student_learning_element_visit(
@@ -2400,6 +2409,12 @@ def get_courses_for_user_from_moodle(
             filtered_courses = [
                 {
                     "id": course["id"],
+                    "shortname": course["shortname"],
+                    "fullname": course["fullname"],
+                    "startdate": course["startdate"],
+                    "enddate": course["enddate"],
+                    "timecreated": course["startdate"],
+                    "timemodified": course["timemodified"],
                 }
                 # skip id 1 which is the site home
                 for course in response

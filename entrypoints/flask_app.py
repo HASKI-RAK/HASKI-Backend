@@ -464,18 +464,25 @@ def get_activity_status_for_student_for_learning_element(
 
 
 @app.route(
-    "/lms/remote/courses",
+    "/lms/user/<user_id>/remote/courses",
     methods=["GET"],
 )
 @cross_origin(supports_credentials=True)
-def get_all_remote_courses():
+def get_all_remote_courses(user_id):
     method = request.method
     match method:
         case "GET":
-            remote_courses = services.get_courses_from_moodle(
-                unit_of_work.SqlAlchemyUnitOfWork()
+            user = services.get_user_by_id(
+                unit_of_work.SqlAlchemyUnitOfWork(),
+                user_id,
+                None
             )
-            return jsonify(remote_courses), 200
+            enrolled_moodle_courses = services.get_courses_for_user_from_moodle(
+                unit_of_work.SqlAlchemyUnitOfWork(),
+                user["lms_user_id"]
+            )
+
+            return jsonify(enrolled_moodle_courses), 200
 
 
 @app.route(
@@ -595,37 +602,57 @@ def add_all_students_to_all_topics(course_id):
     method = request.method
     match method:
         case "POST":
-            students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
+            uow = unit_of_work.SqlAlchemyUnitOfWork()
+            students = services.get_all_students(uow)
+            created_for = []
+
             for student in students:
                 user = services.get_user_by_id(
-                    unit_of_work.SqlAlchemyUnitOfWork(), student["user_id"], None
+                    uow, student["user_id"], None
                 )
 
-                # Get topics available to this student for this course;
-                # if empty, the student is not in the course, skip.
-                topics = services.get_topics_by_student_and_course_id(
-                    unit_of_work.SqlAlchemyUnitOfWork(),
+                # look if student is enrolled in the course
+                courses = services.get_courses_by_student_id(
+                    uow,
                     user["id"],
                     user["lms_user_id"],
-                    student["id"],
-                    course_id,
+                    student["id"]
+                )
+                if isinstance(courses, dict):
+                    course_iter = courses.get("courses", courses.values())
+                else:
+                    course_iter = []
+
+                enrolled = any(
+                    isinstance(c, dict) and int(c.get("id", -1)) == int(course_id)
+                    for c in course_iter
                 )
 
-                # Normalize topics to a list and check non-empty
-                if isinstance(topics, dict):
-                    topic_iter = topics.get("topics", [])
-                else:
-                    topic_iter = []
-
-                if topic_iter:
+                if enrolled:
                     services.add_student_to_topics(
-                        unit_of_work.SqlAlchemyUnitOfWork(),
+                        uow,
                         student["id"],
-                        course_id,
+                        course_id
                     )
+                    created_for.append(student["id"])
+
+            if created_for:
+                return make_response(
+                    jsonify({
+                        "CREATED": True,
+                        "course_id": course_id,
+                        "student_count": len(created_for)
+                    }),
+                    http.HTTPStatus.CREATED,
+                )
+
             return make_response(
-                jsonify({"CREATED": True, "course_id": course_id}),
-                http.HTTPStatus.CREATED,
+                jsonify({
+                    "CREATED": False,
+                    "course_id": course_id,
+                    "student_count": 0
+                }),
+                http.HTTPStatus.NOT_FOUND,
             )
 
 
