@@ -11,6 +11,7 @@ from repositories import repository
 
 class AbstractUnitOfWork(abc.ABC):
     admin: repository.AbstractRepository
+    badge: repository.AbstractRepository
     course: repository.AbstractRepository
     course_creator: repository.AbstractRepository
     course_creator_course: repository.AbstractRepository
@@ -40,6 +41,7 @@ class AbstractUnitOfWork(abc.ABC):
     news: repository.AbstractRepository
     logbuffer: repository.AbstractRepository
     student: repository.AbstractRepository
+    student_badge: repository.AbstractRepository
     student_course: repository.AbstractRepository
     student_experience_points: repository.AbstractRepository
     student_learning_element: repository.AbstractRepository

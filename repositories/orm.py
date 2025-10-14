@@ -366,6 +366,14 @@ student = Table(
     Column("user_id", Integer, nullable=False),
 )
 
+student_badge = Table(
+    "student_badge",
+    mapper_registry.metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("student_id", Integer, nullable=False),
+    Column("badge_id", Integer, nullable=False),
+)
+
 student_course = Table(
     "student_course",
     mapper_registry.metadata,
@@ -635,6 +643,11 @@ def start_mappers():
     mapper_registry.map_imperatively(
         UA.Student,
         student,
+    )
+
+    mapper_registry.map_imperatively(
+        LM.StudentBadge,
+        student_badge,
     )
 
     mapper_registry.map_imperatively(

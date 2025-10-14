@@ -1,6 +1,7 @@
 import os
 from datetime import datetime
 from math import log
+from collections import Counter
 
 import requests
 from flask.wrappers import Request
@@ -30,6 +31,90 @@ def add_course_creator_to_course(
         result = course_creator_course.serialize()
         return result
 
+
+def add_badges_to_topic(
+    uow: unit_of_work.AbstractUnitOfWork,
+    course_id: int,
+    topic_id: int,
+) -> None:
+    with uow:
+        topic_elements = uow.topic_learning_element.get_topic_learning_element_by_topic(
+            topic_id
+        )
+        classifications = {
+            const.abbreviation_ct: 0,
+            const.abbreviation_co: 0,
+            const.abbreviation_rq: 0,
+            const.abbreviation_se: 0,
+            const.abbreviation_fo: 0,
+            const.abbreviation_rm: 0,
+            const.abbreviation_an: 0,
+            const.abbreviation_ec: 0,
+            const.abbreviation_ex: 0,
+            const.abbreviation_ra: 0,
+            const.abbreviation_cc: 0,
+            const.abbreviation_as: 0,
+        }
+
+        classifications_in_topic = []
+
+        for element in topic_elements:
+            le_el = uow.learning_element.get_learning_element_by_id(element["learning_element_id"]).serialize()
+            classifications_in_topic.append(le_el["classification"])
+
+        classification_counter = Counter(classifications_in_topic)
+
+        new_badges = []
+        if len(classification_counter[const.abbreviation_ex]) > 0:
+            # possibly add multiple classifications to one number
+            #create do an excersie badge e.g. practice makes perfect
+            new_badges.append(
+                DM.Badge(
+                    name="Practice Makes Perfect",
+                    description="Complete 1 exercise",
+                    icon_id="practice1",
+                    course_id=course_id,
+                    topic_id=topic_id,
+                )
+            )
+
+
+        if len(classification_counter[const.abbreviation_ec]) > 1:
+            # maximum exercise badge e.g. topic master
+            new_badges.append(
+                DM.Badge(
+                    name="Topic Master",
+                    description="All exercises",
+                    icon_id="master",
+                    course_id=course_id,
+                    topic_id=topic_id,
+                )
+            )
+
+        if len(classification_counter) > 5:
+            # intermediate badge e.g. keep going
+            new_badges.append(
+                DM.Badge(
+                    name="Topic Adept",
+                    description="Finish over half of all excercises",
+                    icon_id="starter",
+                    course_id=course_id,
+                    topic_id=topic_id,
+                )
+            )
+
+        for badge in new_badges:
+            uow.badge.add_badge_to_topic(badge)
+        uow.commit()
+
+
+def add_badges_for_student(
+    uow: unit_of_work.AbstractUnitOfWork, student_id, badge_id
+) -> None:
+    with uow:
+        student_badge = LM.StudentBadge(student_id, badge_id)
+        uow.student_badge.add_student_badge(student_badge)
+        uow.commit()
 
 def add_student_to_course(
     uow: unit_of_work.AbstractUnitOfWork, student_id, course_id
@@ -2180,6 +2265,36 @@ def create_contact_form(
             uow.commit()
             result = contact_form.serialize()
         return result
+    
+
+def get_student_badges(
+    uow: unit_of_work.AbstractUnitOfWork, student_id: int) -> list[dict]:
+    with uow:
+        badges = uow.student_badge.get_student_badges(student_id)
+        results = []
+        for badge in badges:
+            results.append(badge.serialize())
+        return results
+
+
+def get_badges_by_course(
+    uow: unit_of_work.AbstractUnitOfWork, course_id: int) -> list[dict]:
+    with uow:
+        badges = uow.badge.get_badges_by_course(course_id)
+        results = []
+        for badge in badges:
+            results.append(badge.serialize())
+        return results
+
+
+def get_badges_by_topic(
+    uow: unit_of_work.AbstractUnitOfWork, topic_id: int) -> list[dict]:
+    with uow:
+        badges = uow.badge.get_badges_by_topic(topic_id)
+        results = []
+        for badge in badges:
+            results.append(badge.serialize())
+        return results
 
 
 def get_news(

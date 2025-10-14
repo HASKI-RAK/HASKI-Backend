@@ -16,6 +16,17 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         self, course_creator_course
     ) -> DM.CourseCreatorCourse:
         raise NotImplementedError
+    
+    @abc.abstractmethod
+    def add_badge_to_topic(self, badge: DM.Badge) -> DM.Badge:
+        raise NotImplementedError
+    
+    @abc.abstractmethod
+    def add_student_badge(
+        self,
+        student_badge: LM.StudentBadge
+        ) -> LM.StudentBadge:
+        raise NotImplementedError
 
     @abc.abstractmethod
     def add_student_to_course(self, student_course) -> DM.StudentCourse:
@@ -401,6 +412,18 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
 
     @abc.abstractmethod
     def get_admins_by_uni(self, university):
+        raise NotImplementedError
+    
+    @abc.abstractmethod
+    def get_badges_by_course(self, course_id: int) -> list[DM.Badge]:
+        raise NotImplementedError
+    
+    @abc.abstractmethod
+    def get_badges_by_topic(self, topic_id: int) -> list[DM.Badge]:
+        raise NotImplementedError
+    
+    @abc.abstractmethod
+    def get_student_badges(self, student_id: int) -> list[LM.StudentBadge]:
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -1453,6 +1476,23 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             return self.session.query(UA.Admin).filter_by(university=university).all()
         except Exception:
             raise err.DatabaseQueryError()
+        
+    def get_badges_by_course(self, course_id) -> list[DM.Badge]:
+        return (
+            self.session.query(DM.Badge).filter_by(course_id=course_id).all()
+        )
+
+    def get_badges_by_topic(self, topic_id) -> list[DM.Badge]:
+        return (
+            self.session.query(DM.Badge).filter_by(topic_id=topic_id).all()
+        )
+
+    def get_student_badges(self, student_id) -> list[LM.StudentBadge]:
+        return (
+            self.session.query(LM.StudentBadge).filter_by(
+            student_id=student_id
+            ).all()
+        )
 
     def get_courses_by_uni(self, university):
         try:

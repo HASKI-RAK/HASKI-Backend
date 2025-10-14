@@ -406,7 +406,13 @@ class LearningElementRating:
 
 
 class Badge:
-    def __init__(self, name, description, icon_id, course_id, topic_id) -> None:
+    def __init__(self,
+                 name,
+                 description,
+                 icon_id,
+                 course_id,
+                 topic_id
+                 ) -> None:
         self.id = None
         self.name = name
         self.description = description
