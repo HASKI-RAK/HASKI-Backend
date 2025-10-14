@@ -97,9 +97,7 @@ def add_student_to_topics(uow: unit_of_work.AbstractUnitOfWork, student_id, cour
                 l_elements = get_learning_elements_for_topic_id(uow, topic_id)
                 for l_element in l_elements:
                     add_student_to_learning_element(
-                        uow,
-                        l_element["learning_element_id"],
-                        student_id
+                        uow, l_element["learning_element_id"], student_id
                     )
             uow.commit()
 

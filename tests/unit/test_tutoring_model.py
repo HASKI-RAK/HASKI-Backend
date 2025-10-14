@@ -18,6 +18,7 @@ from utils import constants as cons
 
 rng = np.random.default_rng(11)
 
+
 def test_prepare_les_for_aco():
     list_of_les = []
     list_of_keys = ["BE", "FO", "KÜ", "SE", "LZ", "EK", "ÜB"]

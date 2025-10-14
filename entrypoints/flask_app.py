@@ -473,13 +473,10 @@ def get_all_remote_courses(user_id):
     match method:
         case "GET":
             user = services.get_user_by_id(
-                unit_of_work.SqlAlchemyUnitOfWork(),
-                user_id,
-                None
+                unit_of_work.SqlAlchemyUnitOfWork(), user_id, None
             )
             enrolled_moodle_courses = services.get_courses_for_user_from_moodle(
-                unit_of_work.SqlAlchemyUnitOfWork(),
-                user["lms_user_id"]
+                unit_of_work.SqlAlchemyUnitOfWork(), user["lms_user_id"]
             )
 
             return jsonify(enrolled_moodle_courses), 200
@@ -607,16 +604,11 @@ def add_all_students_to_all_topics(course_id):
             created_for = []
 
             for student in students:
-                user = services.get_user_by_id(
-                    uow, student["user_id"], None
-                )
+                user = services.get_user_by_id(uow, student["user_id"], None)
 
                 # look if student is enrolled in the course
                 courses = services.get_courses_by_student_id(
-                    uow,
-                    user["id"],
-                    user["lms_user_id"],
-                    student["id"]
+                    uow, user["id"], user["lms_user_id"], student["id"]
                 )
                 if isinstance(courses, dict):
                     course_iter = courses.get("courses", courses.values())
@@ -629,29 +621,23 @@ def add_all_students_to_all_topics(course_id):
                 )
 
                 if enrolled:
-                    services.add_student_to_topics(
-                        uow,
-                        student["id"],
-                        course_id
-                    )
+                    services.add_student_to_topics(uow, student["id"], course_id)
                     created_for.append(student["id"])
 
             if created_for:
                 return make_response(
-                    jsonify({
-                        "CREATED": True,
-                        "course_id": course_id,
-                        "student_count": len(created_for)
-                    }),
+                    jsonify(
+                        {
+                            "CREATED": True,
+                            "course_id": course_id,
+                            "student_count": len(created_for),
+                        }
+                    ),
                     http.HTTPStatus.CREATED,
                 )
 
             return make_response(
-                jsonify({
-                    "CREATED": False,
-                    "course_id": course_id,
-                    "student_count": 0
-                }),
+                jsonify({"CREATED": False, "course_id": course_id, "student_count": 0}),
                 http.HTTPStatus.NOT_FOUND,
             )
 

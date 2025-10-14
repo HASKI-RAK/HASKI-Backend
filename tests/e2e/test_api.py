@@ -4413,7 +4413,7 @@ class TestApi:
     ):
         global course_id
         course_id_use = course_id
-        url = path_course + "/" + str("2") + "/topics" + "/allStudents"
+        url = path_course + "/" + str(course_id_use) + "/topics" + "/allStudents"
         r = client_class.post(url)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
