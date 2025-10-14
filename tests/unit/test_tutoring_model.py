@@ -18,7 +18,6 @@ from utils import constants as cons
 
 rng = np.random.default_rng(11)
 
-'''
 def test_prepare_les_for_aco():
     list_of_les = []
     list_of_keys = ["BE", "FO", "KÜ", "SE", "LZ", "EK", "ÜB"]
@@ -1112,4 +1111,3 @@ def test_prepare_les_for_ga_for_all(list_of_keys):
                 assert result[0] == "EK" or result[1] == "EK"
             if "LZ" in list_of_keys:
                 assert result[-1] == "LZ"
-'''
