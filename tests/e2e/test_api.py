@@ -944,7 +944,7 @@ class TestApi:
             [
                 # Working Example
                 (
-                    ["CREATED", "course_id"],
+                    ["CREATED"],
                     409,
                     True,
                 ),
