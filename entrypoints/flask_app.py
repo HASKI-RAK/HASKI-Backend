@@ -167,6 +167,7 @@ def add_all_students_to_course(course_id):
     method = request.method
     match method:
         case "POST":
+            created_for = []
             students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
             for student in students:
                 user = services.get_user_by_id(
@@ -177,22 +178,28 @@ def add_all_students_to_course(course_id):
                     user["lms_user_id"],
                     user["university"],
                 )
-                if isinstance(courses, dict):
-                    course_iter = courses.get("courses", courses.values())
-                else:
-                    course_iter = []
-                if any(
-                    isinstance(c, dict) and int(c.get("id", -1)) == int(course_id)
-                    for c in course_iter
-                ):
+                if services.is_student_enrolled_in_course(courses, course_id):
                     services.add_student_to_course(
                         unit_of_work.SqlAlchemyUnitOfWork(),
                         student["id"],
                         course_id,
                     )
+                    created_for.append(student["id"])
+            if created_for:
+                return make_response(
+                    jsonify(
+                        {
+                            "CREATED": True,
+                            "course_id": course_id,
+                            "student_count": len(created_for),
+                        }
+                    ),
+                    http.HTTPStatus.CREATED,
+                )
+
             return make_response(
-                jsonify({"CREATED": True, "course_id": course_id}),
-                http.HTTPStatus.CREATED,
+                jsonify({"CREATED": False, "course_id": course_id, "student_count": 0}),
+                http.HTTPStatus.NOT_FOUND,
             )
 
 
@@ -610,17 +617,8 @@ def add_all_students_to_all_topics(course_id):
                 courses = services.get_courses_by_student_id(
                     uow, user["id"], user["lms_user_id"], student["id"]
                 )
-                if isinstance(courses, dict):
-                    course_iter = courses.get("courses", courses.values())
-                else:
-                    course_iter = []
 
-                enrolled = any(
-                    isinstance(c, dict) and int(c.get("id", -1)) == int(course_id)
-                    for c in course_iter
-                )
-
-                if enrolled:
+                if services.is_student_enrolled_in_course(courses, course_id):
                     services.add_student_to_topics(uow, student["id"], course_id)
                     created_for.append(student["id"])
 
@@ -925,8 +923,16 @@ def post_student_course(course_id, student_id):
             student_course = services.add_student_to_course(
                 unit_of_work.SqlAlchemyUnitOfWork(), student_id, course_id
             )
-            status_code = 201
-            return jsonify(student_course), status_code
+            if student_course != {}:
+                return make_response(
+                   jsonify(student_course),
+                    http.HTTPStatus.CREATED
+                )
+            else:
+                return make_response(
+                    jsonify({"CREATED": False}),
+                    http.HTTPStatus.CONFLICT
+                )
 
 
 @app.route("/lms/course/<course_id>/teacher/<teacher_id>", methods=["POST"])

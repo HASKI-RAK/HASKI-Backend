@@ -38,7 +38,7 @@ def add_student_to_course(
         get_course_by_id(uow, None, None, course_id)
         student_course = uow.student_course.get_student_course(student_id, course_id)
         if student_course != []:
-            raise err.AlreadyExisting()
+            return {}
         characteristics = get_learning_characteristics(uow, student_id)
         learning_style = get_learning_style(uow, characteristics["id"])
         student_course = DM.StudentCourse(
@@ -3142,3 +3142,23 @@ def get_logout(request: Request):
     """Return logout url or None"""
     oidc_login = OIDCLoginFlask(request)
     return oidc_login.get_logout() or None
+
+
+def is_student_enrolled_in_course(courses: dict, course_id: str) -> bool:
+    """
+    Check if a student is enrolled in a specific course.
+
+    Returns:
+        bool: True if student is enrolled in the course, False otherwise
+    """
+    if isinstance(courses, dict):
+        course_iter = courses.get("courses", courses.values())
+    else:
+        course_iter = []
+
+    enrolled = any(
+        isinstance(c, dict) and c.get("id") is not None and str(c.get("id")) == str(course_id)
+        for c in course_iter
+    )
+    return enrolled
+

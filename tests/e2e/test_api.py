@@ -905,8 +905,6 @@ class TestApi:
             (True, False, ["error", "message"], 404),
             # Course not found
             (False, True, ["error", "message"], 404),
-            # Student already in Course
-            (False, False, ["error", "message"], 400),
         ],
     )
     def test_add_student_to_course(
@@ -939,6 +937,38 @@ class TestApi:
         response = json.loads(r.data.decode("utf-8").strip("\n"))
         for key in keys_expected:
             assert key in response.keys()
+
+        # Add Student to Course - Duplicate
+        @pytest.mark.parametrize(
+            "keys_expected, status_code_expected, save_id",
+            [
+                # Working Example
+                (
+                        ["CREATED", "course_id"],
+                        409,
+                        True,
+                ),
+            ],
+        )
+        def test_add_student_to_course_duplicate(
+                self, client_class, keys_expected, status_code_expected, save_id
+        ):
+            """Test adding a student that's already enrolled in the course"""
+            global course_id, student_id
+            url = (
+                    path_lms_course
+                    + "/"
+                    + str(course_id)
+                    + path_student
+                    + "/"
+                    + str(student_id)
+            )
+            # Try adding again - should return 304
+            r = client_class.post(url)
+            assert r.status_code == status_code_expected
+            response = json.loads(r.data.decode("utf-8").strip("\n"))
+            for key in keys_expected:
+                assert key in response.keys()
 
     @pytest.mark.parametrize(
         "input, keys_expected, status_code_expected",
@@ -4038,7 +4068,7 @@ class TestApi:
                     "university": "TH-AB",
                     "start_date": "2023-08-01T13:37:42Z",
                 },
-                1,
+                2,
                 [
                     "id",
                     "name",
@@ -4390,7 +4420,7 @@ class TestApi:
     def test_api_add_all_students_to_course(
         self, client_class, keys_expected, status_code_expected, save_id
     ):
-        url = path_course + "/" + str("1") + "/allStudents"
+        url = path_course + "/" + str("2") + "/allStudents"
         r = client_class.post(url)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
