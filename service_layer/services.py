@@ -3157,8 +3157,9 @@ def is_student_enrolled_in_course(courses: dict, course_id: str) -> bool:
         course_iter = []
 
     enrolled = any(
-        isinstance(c, dict) and c.get("id") is not None and str(c.get("id")) == str(course_id)
+        isinstance(c, dict)
+        and c.get("id") is not None
+        and str(c.get("id")) == str(course_id)
         for c in course_iter
     )
     return enrolled
-

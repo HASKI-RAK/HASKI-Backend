@@ -924,14 +924,10 @@ def post_student_course(course_id, student_id):
                 unit_of_work.SqlAlchemyUnitOfWork(), student_id, course_id
             )
             if student_course != {}:
-                return make_response(
-                   jsonify(student_course),
-                    http.HTTPStatus.CREATED
-                )
+                return make_response(jsonify(student_course), http.HTTPStatus.CREATED)
             else:
                 return make_response(
-                    jsonify({"CREATED": False}),
-                    http.HTTPStatus.CONFLICT
+                    jsonify({"CREATED": False}), http.HTTPStatus.CONFLICT
                 )
 
 

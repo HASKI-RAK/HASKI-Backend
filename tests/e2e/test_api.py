@@ -944,24 +944,24 @@ class TestApi:
             [
                 # Working Example
                 (
-                        ["CREATED", "course_id"],
-                        409,
-                        True,
+                    ["CREATED", "course_id"],
+                    409,
+                    True,
                 ),
             ],
         )
         def test_add_student_to_course_duplicate(
-                self, client_class, keys_expected, status_code_expected, save_id
+            self, client_class, keys_expected, status_code_expected, save_id
         ):
             """Test adding a student that's already enrolled in the course"""
             global course_id, student_id
             url = (
-                    path_lms_course
-                    + "/"
-                    + str(course_id)
-                    + path_student
-                    + "/"
-                    + str(student_id)
+                path_lms_course
+                + "/"
+                + str(course_id)
+                + path_student
+                + "/"
+                + str(student_id)
             )
             # Try adding again - should return 304
             r = client_class.post(url)
