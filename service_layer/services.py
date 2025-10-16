@@ -2215,18 +2215,16 @@ def get_moodle_rest_url_for_completion_status(
     with uow:
         course = uow.course.get_course_by_id(course_id)
         moodle_url = os.environ.get("REST_LMS_URL", "")
-        moodle_rest = "/webservice/rest/server.php"
         rest_function = "?wsfunction=core_completion_get_activities_completion_status"
         rest_token = "&wstoken=" + os.environ.get("REST_TOKEN", "")
-        rest_format = "&moodlewsrestformat=json"
         moodle_course_id = "&courseid=" + str(course[0].lms_id)
         moodle_user_id = "&userid=" + str(lms_user_id)
         moodle_rest_request = (
             moodle_url
-            + moodle_rest
+            + const.moodle_rest
             + rest_function
             + rest_token
-            + rest_format
+            + const.rest_format
             + moodle_course_id
             + moodle_user_id
         )
@@ -2261,12 +2259,14 @@ def get_activity_status_for_student_for_course(
 def get_moodle_rest_url_for_courses(uow: unit_of_work.AbstractUnitOfWork) -> dict:
     with uow:
         moodle_url = os.environ.get("REST_LMS_URL", "")
-        moodle_rest = "/webservice/rest/server.php"
         rest_function = "?wsfunction=core_course_get_courses"
         rest_token = "&wstoken=" + os.environ.get("REST_TOKEN", "")
-        rest_format = "&moodlewsrestformat=json"
         moodle_rest_request = (
-            moodle_url + moodle_rest + rest_function + rest_token + rest_format
+            moodle_url
+            + const.moodle_rest
+            + rest_function
+            + rest_token
+            + const.rest_format
         )
         response = requests.get(moodle_rest_request)
         if response.status_code == 200:
@@ -2303,18 +2303,16 @@ def get_moodle_rest_url_for_course_topics_and_elements(
     with uow:
         course = uow.course.get_course_by_id(course_id)
         moodle_url = os.environ.get("REST_LMS_URL", "")
-        moodle_rest = "/webservice/rest/server.php"
         rest_function = "?wsfunction=core_course_get_contents"
         rest_courseid = "&courseid=" + str(course[0].lms_id)
         rest_token = "&wstoken=" + os.environ.get("REST_TOKEN", "")
-        rest_format = "&moodlewsrestformat=json"
         moodle_rest_request = (
             moodle_url
-            + moodle_rest
+            + const.moodle_rest
             + rest_function
             + rest_courseid
             + rest_token
-            + rest_format
+            + const.rest_format
         )
         response = requests.get(moodle_rest_request)
         if response.status_code == 200:
@@ -2378,18 +2376,16 @@ def get_moodle_rest_url_for_user_courses(
 ) -> dict:
     with uow:
         moodle_url = os.environ.get("REST_LMS_URL", "")
-        moodle_rest = "/webservice/rest/server.php"
         rest_function = "?wsfunction=core_enrol_get_users_courses"
         rest_userid = "&userid=" + str(lms_user_id)
         rest_token = "&wstoken=" + os.environ.get("REST_TOKEN", "")
-        rest_format = "&moodlewsrestformat=json"
         moodle_rest_request = (
             moodle_url
-            + moodle_rest
+            + const.moodle_rest
             + rest_function
             + rest_userid
             + rest_token
-            + rest_format
+            + const.rest_format
         )
         response = requests.get(moodle_rest_request)
         if response.status_code == 200:
@@ -2532,17 +2528,15 @@ def get_moodle_course_content(
     with uow:
         course = uow.course.get_course_by_id(course_id=course_id)
         moodle_url = os.environ.get("REST_LMS_URL", "")
-        moodle_rest = "/webservice/rest/server.php"
         rest_function = "?wsfunction=core_course_get_contents"
         rest_token = "&wstoken=" + os.environ.get("REST_TOKEN", "")
-        rest_format = "&moodlewsrestformat=json"
         moodle_course_id = "&courseid=" + str(course[0].lms_id)
         moodle_rest_request = (
             moodle_url
-            + moodle_rest
+            + const.moodle_rest
             + rest_function
             + rest_token
-            + rest_format
+            + const.rest_format
             + moodle_course_id
         )
 
@@ -2590,20 +2584,18 @@ def get_moodle_h5p_activity_attempts(
             uow=uow, course_id=course_id, learning_element_id=learning_element_id
         )
         moodle_url = os.environ.get("REST_LMS_URL", "")
-        moodle_rest = "/webservice/rest/server.php"
         rest_function = "?wsfunction=mod_h5pactivity_get_attempts"
         rest_token = "&wstoken=" + os.environ.get("REST_TOKEN", "")
-        rest_format = "&moodlewsrestformat=json"
         moodle_h5p_activity_id = "&h5pactivityid=" + str(
             h5p_activity_id["h5p_activity_id"]
         )
         moodle_user_id = "&userids%5B%5D=" + lms_user_id
         moodle_rest_request = (
             moodle_url
-            + moodle_rest
+            + const.moodle_rest
             + rest_function
             + rest_token
-            + rest_format
+            + const.rest_format
             + moodle_h5p_activity_id
             + moodle_user_id
         )
