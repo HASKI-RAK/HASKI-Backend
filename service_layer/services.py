@@ -41,78 +41,91 @@ def add_badges_to_topic(
         topic_elements = uow.topic_learning_element.get_topic_learning_element_by_topic(
             topic_id
         )
-        classifications = {
-            const.abbreviation_ct: 0,
-            const.abbreviation_co: 0,
-            const.abbreviation_rq: 0,
-            const.abbreviation_se: 0,
-            const.abbreviation_fo: 0,
-            const.abbreviation_rm: 0,
-            const.abbreviation_an: 0,
-            const.abbreviation_ec: 0,
-            const.abbreviation_ex: 0,
-            const.abbreviation_ra: 0,
-            const.abbreviation_cc: 0,
-            const.abbreviation_as: 0,
-        }
-
         classifications_in_topic = []
 
         for element in topic_elements:
-            le_el = uow.learning_element.get_learning_element_by_id(element["learning_element_id"]).serialize()
+            le_el = uow.learning_element.get_learning_element_by_id(
+                element["learning_element_id"]
+            ).serialize()
             classifications_in_topic.append(le_el["classification"])
 
         classification_counter = Counter(classifications_in_topic)
 
-        new_badges = []
-        if len(classification_counter[const.abbreviation_ex]) > 0:
+        # badge when topic has at least three exercise
+        # student has to reach a perfect score in an exercise
+        if classification_counter[const.abbreviation_ec] > 2:
             # possibly add multiple classifications to one number
-            #create do an excersie badge e.g. practice makes perfect
-            new_badges.append(
-                DM.Badge(
-                    name="Practice Makes Perfect",
-                    description="Complete 1 exercise",
-                    icon_id="practice1",
-                    course_id=course_id,
-                    topic_id=topic_id,
-                )
+            # create do an excersie badge e.g. practice makes perfect
+            new_badge = DM.Badge(
+                variant_key=const.badge_perfect_one_exercise,
+                course_id=course_id,
+                topic_id=topic_id,
+                active=True
             )
+            uow.badge.add_badge_to_topic(new_badge)
 
-
-        if len(classification_counter[const.abbreviation_ec]) > 1:
+        # badge for 100% score of all exercises in topic
+        # always present when there is an exercise in the topic
+        if classification_counter[const.abbreviation_ec] > 0:
             # maximum exercise badge e.g. topic master
-            new_badges.append(
-                DM.Badge(
-                    name="Topic Master",
-                    description="All exercises",
-                    icon_id="master",
-                    course_id=course_id,
-                    topic_id=topic_id,
-                )
+            new_badge = DM.Badge(
+                variant_key=const.badge_complete_exercises,
+                course_id=course_id,
+                topic_id=topic_id,
+                active=True
             )
+            uow.badge.add_badge_to_topic(new_badge)
 
-        if len(classification_counter) > 5:
+        # badge for topics that have larger amounts of exercises
+        # to give students a smaller goal to reach than 100% completion
+        # student has to successfully complete at least half of the exercises
+        if classification_counter[const.abbreviation_ec] > 5:
             # intermediate badge e.g. keep going
-            new_badges.append(
-                DM.Badge(
-                    name="Topic Adept",
-                    description="Finish over half of all excercises",
-                    icon_id="starter",
-                    course_id=course_id,
-                    topic_id=topic_id,
-                )
+            new_badge = DM.Badge(
+                variant_key=const.badge_half_exercises,
+                course_id=course_id,
+                topic_id=topic_id,
+                active=True
             )
+            uow.badge.add_badge_to_topic(new_badge)
 
-        for badge in new_badges:
-            uow.badge.add_badge_to_topic(badge)
+        # badge to encourage students to revisit A topic after two weeks
+        new_badge = DM.Badge(
+            variant_key=const.badge_revisit_topic,
+            course_id=course_id,
+            topic_id=topic_id,
+            active=True
+        )
+        uow.badge.add_badge_to_topic(new_badge)
+
+        # maybe something with reflektives Quiz
+
+        # badge to encourage self-evaluation elements since they are 
+        # testing the students knowledge
+        # always present when there is a self-evaluation in the topic
+        if classification_counter[const.abbreviation_se] > 0:
+            # reach a perfect score in self-evaluation badge
+            new_badge = DM.Badge(
+                variant_key=const.badge_self_evaluation,
+                course_id=course_id,
+                topic_id=topic_id,
+                active=True
+            )
+            uow.badge.add_badge_to_topic(new_badge)
+
         uow.commit()
 
 
 def add_badges_for_student(
-    uow: unit_of_work.AbstractUnitOfWork, student_id, badge_id
+    uow: unit_of_work.AbstractUnitOfWork, topic_id: int, student_id: str, lms_user_id: str, course_id: int, timestamp: int
 ) -> None:
     with uow:
-        student_badge = LM.StudentBadge(student_id, badge_id)
+        attempts = get_moodle_h5p_activity_attempts(
+            uow, course_id=course_id, student_id=student_id, lms_user_id=lms_user_id
+        )
+        topic_badges = get_badges_by_topic(uow, topic_id)
+        badges_for_check = []
+        student_badge = LM.StudentBadge(student_id, topic_badges[0]["id"])
         uow.student_badge.add_student_badge(student_badge)
         uow.commit()
 

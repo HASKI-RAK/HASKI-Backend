@@ -1161,11 +1161,10 @@ def setup_db(
         (
             id integer NOT NULL GENERATED ALWAYS AS IDENTITY
             ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
-            name text COLLATE pg_catalog."default" NOT NULL,
-            description text COLLATE pg_catalog."default" NOT NULL,
-            icon_id integer NOT NULL,
-            course_id integer NOT NULL,
-            topic_id integer NOT NULL
+            variant_key text NOT NULL,
+            course_id integer,
+            topic_id integer,
+            active boolean NOT NULL DEFAULT true
         )
 
         TABLESPACE pg_default;

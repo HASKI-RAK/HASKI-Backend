@@ -93,3 +93,9 @@ ils_questionnaire_prefill = {
     "vv_8_f31": "b",
     "vv_9_f35": "b",
 }
+
+badge_perfect_one_exercise = "perfect_one_exercise"
+badge_complete_exercises = "complete_exercises"
+badge_half_exercises = "half_exercises"
+badge_revisit_topic = "revisit_topic"
+badge_self_evaluation = "perfect_self_evaluation"

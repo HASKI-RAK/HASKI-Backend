@@ -19,11 +19,10 @@ badge = Table(
     "badge",
     mapper_registry.metadata,
     Column("id", Integer, primary_key=True, autoincrement=True),
-    Column("name", String, nullable=False),
-    Column("description", String, nullable=False),
-    Column("image_id", String, nullable=False),
-    Column("course_id", Integer, nullable=False),
-    Column("topic_id", Integer, nullable=False),
+    Column("variant_key", String, nullable=False),
+    Column("course_id", Integer, nullable=True),
+    Column("topic_id", Integer, nullable=True),
+    Column("active", Boolean, nullable=False, default=True),
 )
 
 course = Table(

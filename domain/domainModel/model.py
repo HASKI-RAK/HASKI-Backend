@@ -407,25 +407,22 @@ class LearningElementRating:
 
 class Badge:
     def __init__(self,
-                 name,
-                 description,
-                 icon_id,
+                 variant_key,
                  course_id,
-                 topic_id
+                 topic_id,
+                 active=True
                  ) -> None:
         self.id = None
-        self.name = name
-        self.description = description
-        self.icon_id = icon_id
+        self.variant_key = variant_key
         self.course_id = course_id
         self.topic_id = topic_id
+        self.active = active
 
     def serialize(self):
         return {
             "id": self.id,
-            "name": self.name,
-            "description": self.description,
-            "icon_id": self.icon_id,
+            "variant_key": self.variant_key,
             "course_id": self.course_id,
             "topic_id": self.topic_id,
+            "active": self.active,
         }
