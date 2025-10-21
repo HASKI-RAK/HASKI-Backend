@@ -423,6 +423,15 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
     
     @abc.abstractmethod
+    def get_badge_by_student_id(self, student_id: int) -> list[DM.Badge]:
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def get_badge_by_student_id_and_topic_id(
+        self, student_id: int, topic_id: int) -> list[DM.Badge]:
+        raise NotImplementedError
+
+    @abc.abstractmethod
     def get_student_badges(self, student_id: int) -> list[LM.StudentBadge]:
         raise NotImplementedError
 
@@ -504,6 +513,11 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
 
     @abc.abstractmethod
     def get_learning_elements_by_uni(self, university):
+        raise NotImplementedError
+    
+    @abc.abstractmethod
+    def get_learning_elements_by_topic_id(
+        self, topic_id: int) -> list[DM.LearningElement]:
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -1487,6 +1501,24 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             self.session.query(DM.Badge).filter_by(topic_id=topic_id).all()
         )
 
+    def get_badge_by_student_id(self, student_id: int) -> list[DM.Badge]:
+        return (
+            self.session.query(DM.Badge)
+            .join(LM.StudentBadge, DM.Badge.id == LM.StudentBadge.badge_id)
+            .filter(LM.StudentBadge.student_id == student_id)
+            .all()
+        )
+
+    def get_badge_by_student_id_and_topic_id(
+            self, student_id: int, topic_id: int) -> list[DM.Badge]:
+        return (
+            self.session.query(DM.Badge)
+            .join(LM.StudentBadge, DM.Badge.id == LM.StudentBadge.badge_id)
+            .filter(LM.StudentBadge.student_id == student_id)
+            .filter(DM.Badge.topic_id == topic_id)
+            .all()
+        )
+
     def get_student_badges(self, student_id) -> list[LM.StudentBadge]:
         return (
             self.session.query(LM.StudentBadge).filter_by(
@@ -1604,6 +1636,18 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             )
         except Exception:
             raise err.DatabaseQueryError()
+
+    def get_learning_elements_by_topic_id(
+            self,
+            topic_id: int
+        ) -> list[DM.LearningElement]:
+        return (
+            self.session.query(DM.LearningElement)
+            .join(DM.TopicLearningElement,
+                 DM.LearningElement.id == DM.TopicLearningElement.learning_element_id)
+            .filter(DM.TopicLearningElement.topic_id == topic_id)
+            .all()
+        )
 
     def get_learning_element_recommendation(self, learning_path_id):
         result = (
