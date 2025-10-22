@@ -436,6 +436,12 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
+    def get_student_badges_by_student_id_and_course_id(
+        self, student_id: int, course_id: int
+        ) -> list[LM.StudentBadge]:
+        raise NotImplementedError
+
+    @abc.abstractmethod
     def get_courses_by_uni(self, university):
         raise NotImplementedError
 
@@ -613,7 +619,13 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
     
     @abc.abstractmethod
-    def get_student_experience_points(self, student_id: int) -> LM.StudentExperiencePoints:
+    def get_student_experience_points(
+        self, student_id: int
+    ) -> LM.StudentExperiencePoints:
+        raise NotImplementedError
+    
+    @abc.abstractmethod
+    def get_unique_student_ids_from_student_course(self, course_id) -> list[int]:
         raise NotImplementedError
     
     @abc.abstractmethod
@@ -1525,6 +1537,15 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             student_id=student_id
             ).all()
         )
+    
+    def get_student_badges_by_student_id_and_course_id(
+            self, student_id: int, course_id: int) -> list[LM.StudentBadge]:
+        return (
+            self.session.query(LM.StudentBadge)
+            .join(DM.Badge, LM.StudentBadge.badge_id == DM.Badge.id)
+            .filter_by(student_id=student_id, course_id=course_id)
+            .all()
+        )
 
     def get_courses_by_uni(self, university):
         try:
@@ -1882,6 +1903,19 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             raise err.NoValidIdError()
         else:
             return result
+
+    def get_unique_student_ids_from_student_course(self, course_id) -> list[int]:
+        try:
+            result = (
+                self.session.query(DM.StudentCourse.student_id)
+                .filter_by(course_id=course_id)
+                .distinct()
+                .all()
+            )
+            # Extract the IDs from tuples
+            return [student_id[0] for student_id in result]
+        except Exception:
+            raise err.DatabaseQueryError()
 
     def get_student_by_student_id(self, student_id) -> UA.Student:
         result = self.session.query(UA.Student).filter_by(id=student_id).all()

@@ -2399,6 +2399,60 @@ def get_student_badges(
         return results
 
 
+def get_course_leaderboard(
+    uow: unit_of_work.AbstractUnitOfWork, course_id: int, student_id: int
+) -> dict:
+    with uow:
+        student_ids = uow.student_course.get_unique_student_ids_from_student_course(
+            course_id
+        )
+
+        student_badges = []
+        for id in student_ids:
+            badges = uow.student_badge.get_student_badges_by_student_id_and_course_id(
+                id, course_id
+            )
+            student_badges.append((id, len(badges)))
+        
+        # Sort by badge count 
+        student_badges.sort(key=lambda x: x[1], reverse=False)
+        
+        # Find current student's position
+        current_student_index = None
+        for i, (id, _) in enumerate(student_badges):
+            if id == student_id:
+                current_student_index = i
+                break
+        
+        if current_student_index is None:
+            return {}  # Student not found in course
+        
+        first_neighbour_index = None
+        second_neighbour_index = None
+
+        if (len(student_badges) >= 3):
+            if current_student_index == 0:
+                first_neighbour_index =  1
+                second_neighbour_index =  2
+            elif current_student_index == len(student_badges) - 1:
+                first_neighbour_index = current_student_index - 1
+                second_neighbour_index = current_student_index - 2
+            else:
+                first_neighbour_index = current_student_index - 1
+                second_neighbour_index = current_student_index + 1
+
+            return {
+                    student_badges[current_student_index][0]:
+                    student_badges[current_student_index][1],
+                    student_badges[first_neighbour_index][0]:
+                    student_badges[first_neighbour_index][1],
+                    student_badges[second_neighbour_index][0]:
+                    student_badges[second_neighbour_index][1],
+                }
+        else:
+            return {}
+
+
 def get_badges_by_course(
     uow: unit_of_work.AbstractUnitOfWork, course_id: int) -> list[dict]:
     with uow:
