@@ -649,7 +649,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def get_user_by_id(self, user_id, lms_user_id) -> list[UA.User]:
+    def get_user_by_id(self, user_id, lms_user_id=None) -> list[UA.User]:
         raise NotImplementedError
 
     @abc.abstractmethod

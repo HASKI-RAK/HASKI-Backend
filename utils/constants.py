@@ -93,3 +93,6 @@ ils_questionnaire_prefill = {
     "vv_8_f31": "b",
     "vv_9_f35": "b",
 }
+
+moodle_rest = "/webservice/rest/server.php"
+rest_format = "&moodlewsrestformat=json"
