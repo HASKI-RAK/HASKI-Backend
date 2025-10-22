@@ -122,9 +122,9 @@ def add_badges_for_student(
     student_id: str,
     lms_user_id: str,
     course_id: int,
-    timestamp: int,
+    time_stamp: int,
     classification: str
-) -> None:
+) -> list[dict]:
     with uow:
         available_badges = uow.badge.get_badges_by_topic(topic_id)
         topic_elements = uow.learning_element.get_learning_elements_by_topic_id(
@@ -137,6 +137,8 @@ def add_badges_for_student(
 
         topic_badge_keys = [badge.variant_key for badge in available_badges]
         student_badge_keys = [badge.variant_key for badge in student_badges]
+
+        created_badges = []
 
         if(const.badge_revisit_topic not in student_badge_keys):
             done_status = get_activity_status_for_student_for_course(
@@ -153,16 +155,16 @@ def add_badges_for_student(
                 lambda x: x["completed_at"],
                 topic_done_status)["completed_at"] if topic_done_status else None
 
-            time_between_visits = timestamp - (oldest_done or timestamp)
+            time_between_visits = time_stamp - (oldest_done or time_stamp)
 
             if time_between_visits >= 1209600:
                 # badge for revisiting the topic after two weeks
                 revisit_badge = [
                     badge for badge in available_badges
                     if badge.variant_key == const.badge_revisit_topic][0]
-                uow.student_badge.add_student_badge(
-                    LM.StudentBadge(student_id, revisit_badge.id)
-                )
+                new_badge = LM.StudentBadge(student_id, revisit_badge.id)
+                uow.student_badge.add_student_badge(new_badge)
+                created_badges.append(new_badge.serialize())
 
         if(classification == const.abbreviation_ec and
             const.badge_complete_exercises not in student_badge_keys):
@@ -201,9 +203,11 @@ def add_badges_for_student(
                     badge for badge in available_badges
                     if badge.variant_key == const.badge_complete_exercises
                 ][0]
+                new_badge = LM.StudentBadge(student_id, completion_badge.id)
                 uow.student_badge.add_student_badge(
-                    LM.StudentBadge(student_id, completion_badge.id)
+                    new_badge
                 )
+                created_badges.append(new_badge.serialize())
 
             half_badge_condition = (
                 const.badge_half_exercises in topic_badge_keys and
@@ -217,9 +221,9 @@ def add_badges_for_student(
                     badge for badge in available_badges
                     if badge.variant_key == const.badge_half_exercises
                 ][0]
-                uow.student_badge.add_student_badge(
-                    LM.StudentBadge(student_id, half_badge.id)
-                )
+                new_badge = LM.StudentBadge(student_id, half_badge.id)
+                uow.student_badge.add_student_badge(new_badge)
+                created_badges.append(new_badge.serialize())
 
             perfected_one_badge_condition = (
                 const.badge_perfect_one_exercise in topic_badge_keys and
@@ -232,11 +236,33 @@ def add_badges_for_student(
                     badge for badge in available_badges
                     if badge.variant_key == const.badge_perfect_one_exercise
                 ][0]
-                uow.student_badge.add_student_badge(
-                    LM.StudentBadge(student_id, perfected_one_badge.id)
-                )
-
+                new_badge = LM.StudentBadge(student_id, perfected_one_badge.id)
+                uow.student_badge.add_student_badge(new_badge)
+                created_badges.append(new_badge.serialize())
         uow.commit()
+        return created_badges
+
+
+def add_global_badge_for_student(
+    uow: unit_of_work.AbstractUnitOfWork,
+    student_id: int,
+    badge_variant_key: str
+) -> dict:
+    with uow:
+        badges = uow.badge.get_badges_by_variant_key(badge_variant_key)
+        if not badges:
+            return {}
+        
+        student_badge = uow.student_badge.get_student_badge(
+            student_id, badges[0].id
+        )
+        if student_badge:
+            raise err.AlreadyExisting(f"Student already has badge with variant key {badge_variant_key}")
+        
+        new_student_badge = LM.StudentBadge(student_id, badges.id)
+        uow.student_badge.add_student_badge(new_student_badge)
+        uow.commit()
+        return new_student_badge.serialize()
 
 def add_student_to_course(
     uow: unit_of_work.AbstractUnitOfWork, student_id, course_id
@@ -2392,10 +2418,10 @@ def create_contact_form(
 def get_student_badges(
     uow: unit_of_work.AbstractUnitOfWork, student_id: int) -> list[dict]:
     with uow:
-        badges = uow.student_badge.get_student_badges(student_id)
+        student_badges = uow.student_badge.get_student_badges(student_id)
         results = []
-        for badge in badges:
-            results.append(badge.serialize())
+        for student_badge in student_badges:
+            results.append(student_badge.serialize())
         return results
 
 

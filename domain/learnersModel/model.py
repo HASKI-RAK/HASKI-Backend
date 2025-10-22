@@ -582,14 +582,14 @@ class StudentExperiencePoints:
         }
     
 class StudentBadge:
-    def __init__(self, student_id: int, badges: int) -> None:
+    def __init__(self, student_id: int, badge_id: int) -> None:
         self.id = None
         self.student_id = student_id
-        self.badges = badges if badges is not None else []
+        self.badge_id = badge_id
 
-    def serialize(self):
+    def serialize(self) -> dict:
         return {
             "id": self.id,
             "student_id": self.student_id,
-            "badges": self.badges,
+            "badge_id": self.badge_id,
         }

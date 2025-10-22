@@ -430,6 +430,10 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     def get_badge_by_student_id_and_topic_id(
         self, student_id: int, topic_id: int) -> list[DM.Badge]:
         raise NotImplementedError
+    
+    @abc.abstractmethod
+    def get_badges_by_variant_key(self, variant_key: str) -> list[DM.Badge]:
+        raise NotImplementedError
 
     @abc.abstractmethod
     def get_student_badges(self, student_id: int) -> list[LM.StudentBadge]:
@@ -1530,6 +1534,12 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             .filter(DM.Badge.topic_id == topic_id)
             .all()
         )
+    
+    def get_badges_by_variant_key(self, variant_key: str) -> list[DM.Badge]:
+        result = (
+            self.session.query(DM.Badge).filter_by(variant_key=variant_key).all()
+        )
+        return result
 
     def get_student_badges(self, student_id) -> list[LM.StudentBadge]:
         return (

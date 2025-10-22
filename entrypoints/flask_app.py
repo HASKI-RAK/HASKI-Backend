@@ -559,6 +559,11 @@ def post_topic(data: Dict[str, Any], course_id):
                             data["created_by"],
                             created_at,
                         )
+                        services.add_badges_to_topic(
+                            unit_of_work.SqlAlchemyUnitOfWork(),
+                            course_id,
+                            topic["id"]
+                        )
                         status_code = 201
                         return jsonify(topic), status_code
                     else:
@@ -2519,6 +2524,85 @@ def calculate_student_xp(
     status_code = 200
     return jsonify(result), status_code
 
+
+@app.route("/topic/<topic_id>/badge", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_topic_badges(topic_id: str):
+    result = services.get_badges_by_topic(
+        uow=unit_of_work.SqlAlchemyUnitOfWork(),
+        topic_id=int(topic_id)
+    )
+    status_code = 200
+    return jsonify(result), status_code
+
+
+@app.route("/student/<student_id>/studentBadge", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_student_badges(student_id: str):
+    result = services.get_student_badges(
+        uow=unit_of_work.SqlAlchemyUnitOfWork(),
+        student_id=int(student_id)
+    )
+    status_code = 200
+    return jsonify(result), status_code
+
+
+@app.route("/student/<student_id>/badgeCheck", methods=["POST"])
+@cross_origin(supports_credentials=True)
+@json_only()
+def check_and_assign_badges(
+    data: Dict[str, Any], student_id: str):
+    data_present = data is not None
+    if not data_present:
+        raise err.MissingParameterError()
+    
+    course_id_present = "course_id" in data
+    topic_id_present = "topic_id" in data
+    lms_user_id_present = "lms_user_id" in data
+    time_stamp_present = "timestamp" in data
+    classification_present = "classification" in data
+
+
+    if not (course_id_present and topic_id_present and
+            lms_user_id_present and time_stamp_present and
+            classification_present):
+        raise err.MissingParameterError()
+    
+    data_types_correct = (
+        type(data["course_id"]) is int and
+        type(data["topic_id"]) is int and
+        type(data["lms_user_id"]) is str and
+        type(data["timestamp"]) is int and
+        type(data["classification"]) is str
+    )
+
+    if not data_types_correct:
+        raise err.WrongParameterValueError()
+
+    result = services.add_badges_for_student(
+        uow=unit_of_work.SqlAlchemyUnitOfWork(),
+        topic_id=int(data["topic_id"]),
+        student_id=int(student_id),
+        lms_user_id=str(data["lms_user_id"]),
+        course_id=int(data["course_id"]),
+        time_stamp=int(data["timestamp"]),
+        classification=str(data["classification"])
+    )
+
+    status_code = 200
+    return jsonify(result), status_code
+
+
+@app.route("/course/<course_id>/student/<student_id>/leaderboard", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_student_leaderboard(course_id: str, student_id: str):
+    result = services.get_student_leaderboard(
+        uow=unit_of_work.SqlAlchemyUnitOfWork(),
+        course_id=int(course_id),
+        student_id=int(student_id)
+    )
+    status_code = 200
+    return jsonify(result), status_code
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
