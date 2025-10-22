@@ -270,42 +270,18 @@ class StudentTopicVisit:
 
 
 class StudentLearningElement:
-    def __init__(
-        self, student_id, learning_element_id, done=False, done_at=None
-    ) -> None:
+    def __init__(self, student_id, learning_element_id, is_favorite=False) -> None:
         self.id = None
         self.student_id = student_id
         self.learning_element_id = learning_element_id
-        self.done = done
-        self.done_at = done_at
+        self.is_favorite = is_favorite
 
     def serialize(self):
         return {
             "id": self.id,
             "student_id": self.student_id,
             "learning_element_id": self.learning_element_id,
-            "done": self.done,
-            "done_at": self.done_at,
-        }
-
-
-class StudentLearningElementVisit:
-    def __init__(
-        self, student_id, learning_element_id, visit_start, visit_end=None
-    ) -> None:
-        self.id = None
-        self.student_id = student_id
-        self.learning_element_id = learning_element_id
-        self.visit_start = visit_start
-        self.visit_end = visit_end
-
-    def serialize(self):
-        return {
-            "id": self.id,
-            "student_id": self.student_id,
-            "learning_element_id": self.learning_element_id,
-            "visit_start": self.visit_start,
-            "visit_end": self.visit_end,
+            "is_favorite": self.is_favorite,
         }
 
 
@@ -402,4 +378,22 @@ class LearningElementRating:
             "value": updated_rating.value,
             "deviation": updated_rating.deviation,
             "timestamp": updated_rating.timestamp,
+        }
+
+
+class LearningElementSolution:
+    def __init__(
+        self, learning_element_lms_id: int, solution_lms_id: int, activity_type: str
+    ) -> None:
+        self.id = None
+        self.learning_element_lms_id = learning_element_lms_id
+        self.solution_lms_id = solution_lms_id
+        self.activity_type = activity_type
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "learning_element_lms_id": self.learning_element_lms_id,
+            "solution_lms_id": self.solution_lms_id,
+            "activity_type": self.activity_type,
         }

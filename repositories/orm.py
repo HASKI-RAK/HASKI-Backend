@@ -167,6 +167,15 @@ learning_element = Table(
     Column("last_updated", Date, nullable=True),
 )
 
+learning_element_solution = Table(
+    "learning_element_solution",
+    mapper_registry.metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("learning_element_lms_id", Integer, nullable=False),
+    Column("solution_lms_id", Integer, nullable=False),
+    Column("activity_type", String, nullable=False),
+)
+
 learning_path = Table(
     "learning_path",
     mapper_registry.metadata,
@@ -375,18 +384,7 @@ student_learning_element = Table(
     Column("id", Integer, primary_key=True, autoincrement=True),
     Column("student_id", Integer, nullable=False),
     Column("learning_element_id", Integer, nullable=False),
-    Column("done", Boolean, nullable=False),
-    Column("done_at", Date, nullable=True),
-)
-
-student_learning_element_visit = Table(
-    "student_learning_element_visit",
-    mapper_registry.metadata,
-    Column("id", Integer, primary_key=True, autoincrement=True),
-    Column("student_id", Integer, nullable=False),
-    Column("learning_element_id", Integer, nullable=False),
-    Column("visit_start", Date, nullable=False),
-    Column("visit_end", Date, nullable=True),
+    Column("is_favorite", Boolean, nullable=False),
 )
 
 student_learning_path_learning_element_algorithm = Table(
@@ -546,6 +544,10 @@ def start_mappers():
         learning_element,
     )
     mapper_registry.map_imperatively(
+        DM.LearningElementSolution,
+        learning_element_solution,
+    )
+    mapper_registry.map_imperatively(
         TM.LearningPath,
         learning_path,
     )
@@ -620,11 +622,6 @@ def start_mappers():
     mapper_registry.map_imperatively(
         DM.StudentLearningElement,
         student_learning_element,
-    )
-
-    mapper_registry.map_imperatively(
-        DM.StudentLearningElementVisit,
-        student_learning_element_visit,
     )
 
     mapper_registry.map_imperatively(

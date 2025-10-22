@@ -26,6 +26,7 @@ class AbstractUnitOfWork(abc.ABC):
     learning_characteristics: repository.AbstractRepository
     learning_element: repository.AbstractRepository
     learning_element_rating: repository.AbstractRepository
+    learning_element_solution: repository.AbstractRepository
     learning_path: repository.AbstractRepository
     learning_path_algorithm: repository.AbstractRepository
     learning_path_learning_element: repository.AbstractRepository
@@ -42,7 +43,6 @@ class AbstractUnitOfWork(abc.ABC):
     student: repository.AbstractRepository
     student_course: repository.AbstractRepository
     student_learning_element: repository.AbstractRepository
-    student_learning_element_visit: repository.AbstractRepository
     student_lpath_le_algorithm: repository.AbstractRepository
     student_rating: repository.AbstractRepository
     student_topic: repository.AbstractRepository
@@ -97,6 +97,7 @@ class SqlAlchemyUnitOfWork(AbstractUnitOfWork):  # pragma: no cover
         self.learning_characteristics = repository.SqlAlchemyRepository(self.session)
         self.learning_element = repository.SqlAlchemyRepository(self.session)
         self.learning_element_rating = repository.SqlAlchemyRepository(self.session)
+        self.learning_element_solution = repository.SqlAlchemyRepository(self.session)
         self.learning_path = repository.SqlAlchemyRepository(self.session)
         self.learning_path_algorithm = repository.SqlAlchemyRepository(self.session)
         self.lpath_le_algorithm = repository.SqlAlchemyRepository(self.session)
@@ -116,9 +117,6 @@ class SqlAlchemyUnitOfWork(AbstractUnitOfWork):  # pragma: no cover
         self.student = repository.SqlAlchemyRepository(self.session)
         self.student_course = repository.SqlAlchemyRepository(self.session)
         self.student_learning_element = repository.SqlAlchemyRepository(self.session)
-        self.student_learning_element_visit = repository.SqlAlchemyRepository(
-            self.session
-        )
         self.student_lpath_le_algorithm = repository.SqlAlchemyRepository(self.session)
         self.student_rating = repository.SqlAlchemyRepository(self.session)
         self.student_topic = repository.SqlAlchemyRepository(self.session)
