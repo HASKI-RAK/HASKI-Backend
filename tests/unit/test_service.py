@@ -3773,6 +3773,7 @@ def test_get_learning_element_ratings():
 
 def test_add_learning_element_solution():
     uow = FakeUnitOfWork()
+    create_learning_element_for_tests_1(uow)
     result = services.add_learning_element_solution(
         uow=uow,
         learning_element_lms_id=1,
@@ -3785,9 +3786,10 @@ def test_add_learning_element_solution():
 
 def test_get_learning_element_solution():
     uow = FakeUnitOfWork()
+    create_learning_element_for_tests_1(uow)
     add_learning_element_solution_for_tests(uow=uow)
     result = services.get_learning_element_solution_by_learning_element_id(
-        uow=uow, learning_element_lms_id=1
+        uow=uow, learning_element_id=1
     )
     assert type(result) is dict
     assert result != {}
@@ -3795,6 +3797,7 @@ def test_get_learning_element_solution():
 
 def test_delete_learning_element_solution():
     uow = FakeUnitOfWork()
+    create_learning_element_for_tests_1(uow)
     add_learning_element_solution_for_tests(uow=uow)
     entries_before = len(uow.learning_element_solution.learning_element_solution)
     services.delete_learning_element_solution(uow=uow, learning_element_id=1)

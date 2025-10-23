@@ -1558,10 +1558,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             .filter_by(id=learning_element_id)
             .all()
         )
-        if result == []:
-            raise err.NoValidIdError()
-        else:
-            return result
+        return result
 
     def get_learning_element_by_lms_id(
         self, learning_element_lms_id

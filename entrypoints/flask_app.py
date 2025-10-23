@@ -2509,7 +2509,7 @@ def post_learning_element_solution(data: Dict[str, Any], learning_element_lms_id
                 condition3 = type(data["activity_type"]) is str
                 condition4 = "solution_lms_id" not in data
                 condition5 = type(data["solution_lms_id"]) is int
-                if condition2 and condition4:
+                if condition2 or condition4:
                     raise err.MissingParameterError()
                 elif condition3 and condition5:
                     result = services.add_learning_element_solution(
