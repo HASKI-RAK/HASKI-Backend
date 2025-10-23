@@ -4805,6 +4805,32 @@ class TestApi:
         for key in response.keys():
             assert key in keys_expected
 
+    # Get all solutions inside a topic
+    @pytest.mark.parametrize(
+        "topic_id, keys_expected,\
+                            status_code_expected",
+        [
+            # Working Example
+            (
+                    1,
+                    ["id", "topic_id", "solution_lms_id", "activity_type"],
+                    200,
+            ),
+        ],
+    )
+    def test_get_topic_solutions(
+            self, client_class, topic_id, keys_expected, status_code_expected
+    ):
+        url = path_topic + "/" + str(topic_id) + path_learning_path + "/solution"
+        r = client_class.get(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        # Response is a list of solution objects
+        assert isinstance(response, list)
+        for item in response:
+            for key in keys_expected:
+                assert key in item.keys()
+
     # Delete Learning Element Solution
     @pytest.mark.parametrize(
         "le_element_id, status_code_expected",
@@ -4818,7 +4844,6 @@ class TestApi:
     def test_delete_learning_element_solution(
             self, client_class, le_element_id, status_code_expected
     ):
-        solution_lms_id = 4
         url = (
                 path_learning_element
                 + "/"
