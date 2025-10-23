@@ -272,7 +272,7 @@ def add_student_to_course(
         get_course_by_id(uow, None, None, course_id)
         student_course = uow.student_course.get_student_course(student_id, course_id)
         if student_course != []:
-            raise err.AlreadyExisting()
+            return {}
         characteristics = get_learning_characteristics(uow, student_id)
         learning_style = get_learning_style(uow, characteristics["id"])
         student_course = DM.StudentCourse(
@@ -311,22 +311,29 @@ def add_student_to_topics(uow: unit_of_work.AbstractUnitOfWork, student_id, cour
     with uow:
         topics = get_topics_for_course_id(uow, course_id)
         for topic in topics:
-            student_topic = DM.StudentTopic(student_id, topic["topic_id"])
+            topic_id = topic["topic_id"]
+            # Skip if already assigned
+            if uow.student_topic.get_student_topic(student_id, topic_id):
+                continue
+
+            student_topic = DM.StudentTopic(student_id, topic_id)
             uow.student_topic.add_student_to_topic(student_topic)
             uow.commit()
-            topic_algorithm = get_lpath_le_algorithm_by_topic(uow, topic["topic_id"])
-            if topic_algorithm != {}:
+
+            topic_algorithm = get_lpath_le_algorithm_by_topic(uow, topic_id)
+            if topic_algorithm:
                 add_student_lpath_le_algorithm(
                     uow,
                     student_id,
                     topic_algorithm["topic_id"],
                     topic_algorithm["algorithm_id"],
                 )
-                l_elements = get_learning_elements_for_topic_id(uow, topic["topic_id"])
+                l_elements = get_learning_elements_for_topic_id(uow, topic_id)
                 for l_element in l_elements:
                     add_student_to_learning_element(
                         uow, l_element["learning_element_id"], student_id
                     )
+            uow.commit()
 
 
 def add_student_learning_element_visit(
@@ -691,7 +698,6 @@ def create_learning_path(
             path_element = TM.LearningPathLearningElement(
                 learning_element_id=le["id"],
                 learning_path_id=result["id"],
-                recommended=True,
                 position=1,
                 learning_element=None,
             )
@@ -734,7 +740,6 @@ def create_learning_path(
                         path_element = TM.LearningPathLearningElement(
                             learning_element_id=temp["id"],
                             learning_path_id=result["id"],
-                            recommended=True if i == 0 else False,
                             position=i + 1,
                             learning_element=None,
                         )
@@ -1589,6 +1594,32 @@ def delete_topic_learning_element_by_learning_element(
         return {}
 
 
+def delete_learning_element_ratings_by_learning_element(
+    uow: unit_of_work.AbstractUnitOfWork, learning_element_id: int
+) -> None:
+    with uow:
+        uow.learning_element_rating.delete_learning_element_ratings_by_learning_element(
+            learning_element_id
+        )
+        uow.commit()
+
+
+def delete_learning_element_ratings_by_topic(
+    uow: unit_of_work.AbstractUnitOfWork, topic_id: int
+) -> None:
+    with uow:
+        uow.learning_element_rating.delete_learning_element_ratings_by_topic(topic_id)
+        uow.commit()
+
+
+def delete_student_ratings_by_topic(
+    uow: unit_of_work.AbstractUnitOfWork, topic_id: int
+) -> None:
+    with uow:
+        uow.student_rating.delete_student_ratings_by_topic(topic_id)
+        uow.commit()
+
+
 def get_course_by_id(
     uow: unit_of_work.AbstractUnitOfWork, user_id, lms_user_id, course_id
 ) -> dict:
@@ -1884,35 +1915,6 @@ def get_learning_elements_for_topic_id(
             return []
 
 
-def get_learning_element_recommendation(
-    uow: unit_of_work.AbstractUnitOfWork,
-    user_id,
-    lms_user_id,
-    student_id,
-    course_id,
-    topic_id,
-) -> dict:
-    with uow:
-        get_user_by_id(uow, user_id, lms_user_id)
-        get_course_by_id(uow, user_id, lms_user_id, course_id)
-        get_topic_by_id(uow, user_id, lms_user_id, course_id, student_id, topic_id)
-        path = get_learning_path(
-            uow, user_id, lms_user_id, student_id, course_id, topic_id
-        )
-        result = uow.learning_path_learning_element.get_learning_element_recommendation(
-            path["id"]
-        )
-        return get_learning_element_by_id(
-            uow,
-            user_id,
-            lms_user_id,
-            student_id,
-            course_id,
-            topic_id,
-            result[0].learning_element_id,
-        )
-
-
 def get_learning_path(
     uow: unit_of_work.AbstractUnitOfWork,
     user_id,
@@ -2174,6 +2176,8 @@ def get_topics_by_student_and_course_id(
             student_topic = uow.student_topic.get_student_topic(
                 student_id, topic["topic_id"]
             )
+            if student_topic == []:
+                continue
             student_topic[0].visits = visits
             topic_details = get_topic_by_id(
                 uow, user_id, lms_user_id, course_id, student_id, topic["topic_id"]
@@ -2525,10 +2529,12 @@ def get_news(
             )
         backend_response = uow.news.get_news(language_id, None, created_at)
 
-        result = dict()
-        result["news"] = [
-            news.serialize() for news in backend_response + backend_response_university
-        ]
+        result = {
+            "news": [
+                news.serialize()
+                for news in backend_response + backend_response_university
+            ]
+        }
         return result
 
 
@@ -2537,14 +2543,14 @@ def get_logbuffer(
     user_id,
 ) -> dict:
     with uow:
-        logbuffer_response = []
         logbuffer_response = uow.logbuffer.get_logbuffer(user_id)
-        result = dict()
-        result["log"] = [logbuffer.serialize() for logbuffer in logbuffer_response]
+        result = {"log": [logbuffer.serialize() for logbuffer in logbuffer_response]}
         return result
 
 
-def get_user_by_id(uow: unit_of_work.AbstractUnitOfWork, user_id, lms_user_id) -> dict:
+def get_user_by_id(
+    uow: unit_of_work.AbstractUnitOfWork, user_id, lms_user_id=None
+) -> dict:
     with uow:
         user = uow.user.get_user_by_id(user_id, lms_user_id)
         settings = uow.settings.get_settings(user_id)
@@ -2575,18 +2581,16 @@ def get_moodle_rest_url_for_completion_status(
     with uow:
         course = uow.course.get_course_by_id(course_id)
         moodle_url = os.environ.get("REST_LMS_URL", "")
-        moodle_rest = "/webservice/rest/server.php"
         rest_function = "?wsfunction=core_completion_get_activities_completion_status"
         rest_token = "&wstoken=" + os.environ.get("REST_TOKEN", "")
-        rest_format = "&moodlewsrestformat=json"
         moodle_course_id = "&courseid=" + str(course[0].lms_id)
         moodle_user_id = "&userid=" + str(lms_user_id)
         moodle_rest_request = (
             moodle_url
-            + moodle_rest
+            + const.moodle_rest
             + rest_function
             + rest_token
-            + rest_format
+            + const.rest_format
             + moodle_course_id
             + moodle_user_id
         )
@@ -2621,12 +2625,14 @@ def get_activity_status_for_student_for_course(
 def get_moodle_rest_url_for_courses(uow: unit_of_work.AbstractUnitOfWork) -> dict:
     with uow:
         moodle_url = os.environ.get("REST_LMS_URL", "")
-        moodle_rest = "/webservice/rest/server.php"
         rest_function = "?wsfunction=core_course_get_courses"
         rest_token = "&wstoken=" + os.environ.get("REST_TOKEN", "")
-        rest_format = "&moodlewsrestformat=json"
         moodle_rest_request = (
-            moodle_url + moodle_rest + rest_function + rest_token + rest_format
+            moodle_url
+            + const.moodle_rest
+            + rest_function
+            + rest_token
+            + const.rest_format
         )
         response = requests.get(moodle_rest_request)
         if response.status_code == 200:
@@ -2663,18 +2669,16 @@ def get_moodle_rest_url_for_course_topics_and_elements(
     with uow:
         course = uow.course.get_course_by_id(course_id)
         moodle_url = os.environ.get("REST_LMS_URL", "")
-        moodle_rest = "/webservice/rest/server.php"
         rest_function = "?wsfunction=core_course_get_contents"
         rest_courseid = "&courseid=" + str(course[0].lms_id)
         rest_token = "&wstoken=" + os.environ.get("REST_TOKEN", "")
-        rest_format = "&moodlewsrestformat=json"
         moodle_rest_request = (
             moodle_url
-            + moodle_rest
+            + const.moodle_rest
             + rest_function
             + rest_courseid
             + rest_token
-            + rest_format
+            + const.rest_format
         )
         response = requests.get(moodle_rest_request)
         if response.status_code == 200:
@@ -2731,6 +2735,80 @@ def get_activity_status_for_learning_element(
             return filtered_cmid
         else:
             return []
+
+
+def get_moodle_rest_url_for_user_courses(
+    uow: unit_of_work.AbstractUnitOfWork, lms_user_id
+) -> dict:
+    with uow:
+        moodle_url = os.environ.get("REST_LMS_URL", "")
+        rest_function = "?wsfunction=core_enrol_get_users_courses"
+        rest_userid = "&userid=" + str(lms_user_id)
+        rest_token = "&wstoken=" + os.environ.get("REST_TOKEN", "")
+        moodle_rest_request = (
+            moodle_url
+            + const.moodle_rest
+            + rest_function
+            + rest_userid
+            + rest_token
+            + const.rest_format
+        )
+        response = requests.get(moodle_rest_request)
+        if response.status_code == 200:
+            return response.json()
+        else:
+            return {}
+
+
+def get_courses_for_user_from_moodle(
+    uow: unit_of_work.AbstractUnitOfWork, lms_user_id
+) -> list:
+    with uow:
+        response = get_moodle_rest_url_for_user_courses(uow, lms_user_id)
+        if response != {}:
+            filtered_courses = [
+                {
+                    "id": course["id"],
+                    "shortname": course["shortname"],
+                    "fullname": course["fullname"],
+                    "startdate": course["startdate"],
+                    "enddate": course["enddate"],
+                    "timecreated": course["startdate"],
+                    "timemodified": course["timemodified"],
+                }
+                # skip id 1 which is the site home
+                for course in response
+                if course.get("id") != 1
+            ]
+            return filtered_courses
+        else:
+            return []
+
+
+def get_enrolled_university_courses(
+    uow: unit_of_work.AbstractUnitOfWork, lms_user_id: str, university: str
+) -> dict:
+    with uow:
+        # get all courses of the user that he is enrolled in
+        moodle_courses_user_is_enrolled_in = get_courses_for_user_from_moodle(
+            uow, lms_user_id
+        )
+        enrolled_lms_ids = [
+            course["id"] for course in moodle_courses_user_is_enrolled_in
+        ]
+
+        # get all courses of the university
+        all_courses = get_courses_by_uni(uow, university=university)
+
+        # check if the user is enrolled in any course of the university
+        courses = {
+            "courses": [
+                course
+                for course in all_courses["courses"]
+                if course["lms_id"] in enrolled_lms_ids
+            ]
+        }
+        return courses
 
 
 def get_all_students(uow: unit_of_work.AbstractUnitOfWork) -> list:
@@ -2816,17 +2894,15 @@ def get_moodle_course_content(
     with uow:
         course = uow.course.get_course_by_id(course_id=course_id)
         moodle_url = os.environ.get("REST_LMS_URL", "")
-        moodle_rest = "/webservice/rest/server.php"
         rest_function = "?wsfunction=core_course_get_contents"
         rest_token = "&wstoken=" + os.environ.get("REST_TOKEN", "")
-        rest_format = "&moodlewsrestformat=json"
         moodle_course_id = "&courseid=" + str(course[0].lms_id)
         moodle_rest_request = (
             moodle_url
-            + moodle_rest
+            + const.moodle_rest
             + rest_function
             + rest_token
-            + rest_format
+            + const.rest_format
             + moodle_course_id
         )
 
@@ -2874,20 +2950,18 @@ def get_moodle_h5p_activity_attempts(
             uow=uow, course_id=course_id, learning_element_id=learning_element_id
         )
         moodle_url = os.environ.get("REST_LMS_URL", "")
-        moodle_rest = "/webservice/rest/server.php"
         rest_function = "?wsfunction=mod_h5pactivity_get_attempts"
         rest_token = "&wstoken=" + os.environ.get("REST_TOKEN", "")
-        rest_format = "&moodlewsrestformat=json"
         moodle_h5p_activity_id = "&h5pactivityid=" + str(
             h5p_activity_id["h5p_activity_id"]
         )
         moodle_user_id = "&userids%5B%5D=" + lms_user_id
         moodle_rest_request = (
             moodle_url
-            + moodle_rest
+            + const.moodle_rest
             + rest_function
             + rest_token
-            + rest_format
+            + const.rest_format
             + moodle_h5p_activity_id
             + moodle_user_id
         )
@@ -3379,10 +3453,14 @@ def update_ratings(
 
         if student_ratings == []:
             # If no student rating is available,
-            # create an initial student rating on concept.
-            student_rating = create_student_rating(
-                uow=uow, student_id=student_id, topic_id=topic_id, timestamp=timestamp
-            )
+            # create an initial student rating on the topic.
+            student_rating = LM.StudentRating(
+                student_id=student_id,
+                topic_id=topic_id,
+                rating_value=None,
+                rating_deviation=None,
+                timestamp=timestamp,
+            ).serialize()
         else:
             # Sort student ratings by timestamp.
             student_ratings.sort(key=lambda x: x["timestamp"])
@@ -3403,12 +3481,13 @@ def update_ratings(
         if learning_element_ratings == []:
             # If no learning element rating is available,
             # create an initial learning element rating on concept.
-            learning_element_rating = create_learning_element_rating(
-                uow=uow,
+            learning_element_rating = DM.LearningElementRating(
                 learning_element_id=learning_element_id,
                 topic_id=topic_id,
+                rating_value=None,
+                rating_deviation=None,
                 timestamp=timestamp,
-            )
+            ).serialize()
         else:
             # Sort learning element ratings by timestamp.
             learning_element_ratings.sort(key=lambda x: x["timestamp"])
@@ -3481,6 +3560,91 @@ def update_ratings(
         }
 
 
+def get_recommended_exercises_for_student_in_topic(
+    uow: unit_of_work.AbstractUnitOfWork,
+    user_id: int,
+    lms_user_id: int,
+    student_id: int,
+    topic_id: int,
+    course_id: int,
+) -> list:
+    # Get all student ratings on topic.
+    student_ratings_on_topic = get_student_ratings_on_topic(
+        uow=uow, student_id=student_id, topic_id=topic_id
+    )
+
+    if student_ratings_on_topic == []:
+        # If no student rating is available,
+        # create an initial student rating on the topic.
+        student_ratings_on_topic = [
+            LM.StudentRating(
+                student_id=student_id,
+                topic_id=topic_id,
+                rating_value=None,
+                rating_deviation=None,
+                timestamp=datetime.now(),
+            ).serialize()
+        ]
+
+    # Get the most recent student rating on the topic.
+    most_recent_student_rating = max(
+        student_ratings_on_topic, key=lambda x: x["timestamp"]
+    )
+
+    # Get all topic learning elements of topic id.
+    topic_learning_elements = get_learning_elements_for_topic_id(uow, topic_id=topic_id)
+
+    # Get all learning elements in topic.
+    learning_elements_in_topic = [
+        get_learning_element_by_id(
+            uow=uow,
+            user_id=user_id,
+            lms_user_id=lms_user_id,
+            student_id=student_id,
+            course_id=course_id,
+            topic_id=topic_id,
+            learning_element_id=learning_element["learning_element_id"],
+        )
+        for learning_element in topic_learning_elements
+    ]
+
+    # Filter out all learning elements except exercises (ÜB).
+    exercises_in_topic = [
+        learning_element
+        for learning_element in learning_elements_in_topic
+        if learning_element["classification"] == "ÜB"
+    ]
+
+    # Compare the most recent student rating with the most recent rating
+    # on each exercise and sort the exercises based on the absolute difference
+    # between the ratings with the least distance first.
+    recommended_exercises = sorted(
+        exercises_in_topic,
+        key=lambda exercise: abs(
+            # Get the most recent rating of each exercise in the topic.
+            max(
+                get_learning_element_ratings_on_topic(
+                    uow,
+                    topic_id=topic_id,
+                    learning_element_id=exercise["id"],
+                ),
+                key=lambda x: x["timestamp"],
+                # If no learning element rating exist, create an initial rating.
+                default=DM.LearningElementRating(
+                    learning_element_id=exercise["id"],
+                    topic_id=topic_id,
+                    rating_value=None,
+                    rating_deviation=None,
+                    timestamp=datetime.now(),
+                ).serialize(),
+            )["rating_value"]
+            - most_recent_student_rating["rating_value"]
+        ),
+    )
+
+    return recommended_exercises
+
+
 # ##### TEST ENDPOINT #####
 
 
@@ -3520,3 +3684,24 @@ def get_logout(request: Request):
     """Return logout url or None"""
     oidc_login = OIDCLoginFlask(request)
     return oidc_login.get_logout() or None
+
+
+def is_student_enrolled_in_course(courses: dict, course_id: str) -> bool:
+    """
+    Check if a student is enrolled in a specific course.
+
+    Returns:
+        bool: True if student is enrolled in the course, False otherwise
+    """
+    if isinstance(courses, dict):
+        course_iter = courses.get("courses", courses.values())
+    else:
+        course_iter = []
+
+    enrolled = any(
+        isinstance(c, dict)
+        and c.get("id") is not None
+        and str(c.get("id")) == str(course_id)
+        for c in course_iter
+    )
+    return enrolled

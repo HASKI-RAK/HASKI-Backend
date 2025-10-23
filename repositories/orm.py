@@ -202,7 +202,6 @@ learning_path_learning_element = Table(
     Column("id", Integer, primary_key=True, autoincrement=True),
     Column("learning_element_id", Integer, nullable=False),
     Column("learning_path_id", Integer, nullable=False),
-    Column("recommended", Boolean, nullable=False),
     Column("position", Integer, nullable=False),
 )
 
@@ -212,7 +211,6 @@ learning_path_topic = Table(
     Column("id", Integer, primary_key=True, autoincrement=True),
     Column("topic_id", Integer, nullable=False),
     Column("learning_path_id", Integer, nullable=False),
-    Column("recommended", Boolean, nullable=False),
     Column("position", Integer, nullable=False),
 )
 

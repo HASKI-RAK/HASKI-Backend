@@ -772,7 +772,6 @@ def setup_db(
             ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
             topic_id integer NOT NULL,
             learning_path_id integer NOT NULL,
-            recommended boolean NOT NULL,
             "position" integer NOT NULL,
             CONSTRAINT learning_path_topic_pkey PRIMARY KEY (id),
             CONSTRAINT learning_path_id FOREIGN KEY (learning_path_id)
@@ -799,7 +798,6 @@ def setup_db(
             ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
             learning_element_id integer NOT NULL,
             learning_path_id integer NOT NULL,
-            recommended boolean NOT NULL,
             "position" integer NOT NULL,
             CONSTRAINT learning_path_learning_element_pkey PRIMARY KEY (id),
             CONSTRAINT learning_element_id FOREIGN KEY (learning_element_id)
@@ -1108,7 +1106,10 @@ def setup_db(
             topic_id integer NOT NULL,
             rating_value integer NOT NULL,
             rating_deviation integer NOT NULL,
-            timestamp timestamp without time zone NOT NULL
+            timestamp timestamp without time zone NOT NULL,
+            CONSTRAINT student_rating_pkey PRIMARY KEY (id),
+            FOREIGN KEY (student_id) REFERENCES public.student (id),
+            FOREIGN KEY (topic_id) REFERENCES public.topic (id)
         )
 
         TABLESPACE pg_default;
@@ -1128,7 +1129,10 @@ def setup_db(
             topic_id integer NOT NULL,
             rating_value integer NOT NULL,
             rating_deviation integer NOT NULL,
-            timestamp timestamp without time zone NOT NULL
+            timestamp timestamp without time zone NOT NULL,
+            CONSTRAINT learning_element_rating_pkey PRIMARY KEY (id),
+            FOREIGN KEY (learning_element_id) REFERENCES public.learning_element (id),
+            FOREIGN KEY (topic_id) REFERENCES public.topic (id)
         )
 
         TABLESPACE pg_default;
@@ -1136,7 +1140,43 @@ def setup_db(
         ALTER TABLE IF EXISTS public.learning_element_rating
             OWNER to postgres;
     """
+    cursor.execute(sql)
 
+    # Create learning path algorithms
+    sql = """
+          INSERT INTO learning_path_algorithm (short_name, full_name)
+          VALUES ('default', 'Default Learning Path Algorithm') \
+          """
+    cursor.execute(sql)
+
+    sql = """
+          INSERT INTO learning_path_algorithm (short_name, full_name)
+          VALUES ('aco', 'Ant Colony Optimization') \
+          """
+    cursor.execute(sql)
+
+    sql = """
+          INSERT INTO learning_path_algorithm (short_name, full_name)
+          VALUES ('ga', 'Genetic Algorithm') \
+          """
+    cursor.execute(sql)
+
+    sql = """
+          INSERT INTO learning_path_algorithm (short_name, full_name)
+          VALUES ('graf', 'Graf et al.') \
+          """
+    cursor.execute(sql)
+
+    sql = """
+          INSERT INTO learning_path_algorithm (short_name, full_name)
+          VALUES ('tyche', 'Tyche') \
+          """
+    cursor.execute(sql)
+
+    sql = """
+          INSERT INTO learning_path_algorithm (short_name, full_name)
+          VALUES ('nestor', 'Nestor') \
+          """
     cursor.execute(sql)
 
     sql = """

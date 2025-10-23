@@ -95,8 +95,19 @@ jobs:
           echo "${{ secrets.PEM_PUBLIC }}" > ${{ github.workspace }}/keys/public.pem
           chmod 600 ${{ github.workspace }}/keys/public.pem
 
+      - name: Create reports directory
+        run: mkdir -p reports
+
       - name: Run tox
         run: tox
+
+      - name: Upload pytest JSON report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest-json-report
+          path: reports/pytest-report.json
+          retention-days: 30
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v4.2.1
