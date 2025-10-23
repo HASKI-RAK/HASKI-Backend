@@ -252,14 +252,14 @@ def add_global_badge_for_student(
         badges = uow.badge.get_badges_by_variant_key(badge_variant_key)
         if not badges:
             return {}
-        
-        student_badge = uow.student_badge.get_student_badge(
+
+        student_badges = uow.student_badge.get_student_badges(
             student_id, badges[0].id
         )
-        if student_badge:
-            raise err.AlreadyExisting(f"Student already has badge with variant key {badge_variant_key}")
-        
-        new_student_badge = LM.StudentBadge(student_id, badges.id)
+        if student_badges:
+            raise err.AlreadyExisting()
+
+        new_student_badge = LM.StudentBadge(student_id, badges[0].id)
         uow.student_badge.add_student_badge(new_student_badge)
         uow.commit()
         return new_student_badge.serialize()
@@ -405,6 +405,18 @@ def create_admin(uow: unit_of_work.AbstractUnitOfWork, user) -> dict:
         result = admin.serialize()
         return result
 
+
+def create_global_badge(
+    uow: unit_of_work.AbstractUnitOfWork, variant_key: str
+) -> dict:
+    with uow:
+        badge = DM.Badge(
+            variant_key=variant_key, course_id=None, topic_id=None, active=True
+        )
+        uow.badge.create_global_badge(badge)
+        uow.commit()
+        result = badge.serialize()
+        return result
 
 def create_course(
     uow: unit_of_work.AbstractUnitOfWork,
@@ -2915,6 +2927,63 @@ def get_moodle_most_recent_attempt_by_user(
             return most_recent_attempt
 
         return {}
+
+
+def update_badges_for_topic(
+    uow: unit_of_work.AbstractUnitOfWork,
+    topic_id,
+    course_id
+) -> list[dict]:
+    with uow:
+        existing_badges = uow.badge.get_badges_by_topic(topic_id)
+        result = []
+
+        badges_by_variant_key = {}
+        for badge in existing_badges:
+            badges_by_variant_key[badge.variant_key] = badge
+        
+        topic_elements = uow.topic_learning_element.get_topic_learning_element_by_topic(
+            topic_id
+        )
+        classifications_in_topic = []
+
+        for element in topic_elements:
+            le_el = uow.learning_element.get_learning_element_by_id(
+                element["learning_element_id"]
+            ).serialize()
+            classifications_in_topic.append(le_el["classification"])
+
+        classification_counter = Counter(classifications_in_topic)
+
+        conditons = {
+            const.badge_perfect_one_exercise:
+            classification_counter[const.abbreviation_ec] > 2,
+            const.badge_complete_exercises:
+            classification_counter[const.abbreviation_ec] > 0,
+            const.badge_half_exercises:
+            classification_counter[const.abbreviation_ec] > 5,
+            const.badge_self_evaluation:
+            classification_counter[const.abbreviation_se] > 0,
+        }
+
+        
+
+        for badge_key, condition in conditons.items():
+            if condition and badge_key not in badges_by_variant_key.keys():
+                badge = DM.Badge(
+                    variant_key=badge_key,
+                    course_id=course_id,
+                    topic_id=topic_id,
+                    active=True
+                )
+                uow.badge.add_badge_to_topic(badge)
+                result.append(badge.serialize())
+            elif not condition and badge_key in badges_by_variant_key.keys():
+                uow.badge.update_badge(
+                    badges_by_variant_key[badge_key].id, active=False
+                )
+        uow.commit()
+        return result
 
 
 def update_course(

@@ -731,6 +731,10 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     @abc.abstractmethod
     def get_logbuffer(self, user_id) -> UA.LogBuffer:
         raise NotImplementedError
+    
+    @abc.abstractmethod
+    def update_badge(self, badge_id, active: bool) -> None:
+        raise NotImplementedError
 
     @abc.abstractmethod
     def update_course(self, course_id, course) -> DM.Course:
@@ -2154,6 +2158,17 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             return self.session.query(DM.LearningElementRating).all()
         except Exception:
             raise err.DatabaseQueryError()
+
+
+    def update_badge(self, badge_id, active: bool) -> None:
+        badge_exists = self.session.query(DM.Badge).filter_by(id=badge_id).all()
+        if badge_exists != []:
+            self.session.query(DM.Badge).filter_by(id=badge_id).update(
+                {DM.Badge.active: active}
+            )
+        else:
+            raise err.NoValidIdError
+
 
     def update_course(self, course_id, course) -> DM.Course:
         course_exist = self.get_course_by_id(course_id)
