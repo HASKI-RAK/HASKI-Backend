@@ -4768,12 +4768,28 @@ class TestApi:
                 400,
                 True,
             ),
+            # Wrong parameter value (expects 400)
+            (
+                {"activity_type": "resource", "solution_lms_id": "1"},  # MissingParameterError
+                1,
+                ["error", "message"],
+                400,
+                True,
+            ),
             # Working Example
             (
                 {"activity_type": "resource", "solution_lms_id": 1},
                 1,
                 ["id", "learning_element_lms_id", "solution_lms_id", "activity_type"],
                 201,
+                False,
+            ),
+            # Already existing
+            (
+                {"activity_type": "resource", "solution_lms_id": 1},
+                1,
+                ["error", "message"],
+                400,
                 False,
             ),
         ],
