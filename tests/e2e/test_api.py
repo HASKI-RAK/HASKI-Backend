@@ -4749,7 +4749,7 @@ class TestApi:
                 {"activity_type": "resource"},  # MissingParameterError
                 1,
                 ["error", "message"],
-                500,
+                400,
                 True,
             ),
             # Missing parameter (expects 400)
@@ -4757,7 +4757,7 @@ class TestApi:
                 {"solution_lms_id": 1},  # MissingParameterError
                 1,
                 ["error", "message"],
-                500,
+                400,
                 True,
             ),
             # Missing parameter (expects 400)
@@ -4765,7 +4765,7 @@ class TestApi:
                 {},  # MissingParameterError
                 1,
                 ["error", "message"],
-                500,
+                400,
                 True,
             ),
             # Working Example
