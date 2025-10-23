@@ -4746,30 +4746,46 @@ class TestApi:
         [
             # Working Example
             (
-                    {"activity_type": "resource", "solution_lms_id": 1},
-                    1,
-                    ["id", "learning_element_lms_id", "solution_lms_id", "activity_type"],
-                    201,
-                    False,
+                {"activity_type": "resource", "solution_lms_id": 1},
+                1,
+                ["id", "learning_element_lms_id", "solution_lms_id", "activity_type"],
+                201,
+                False,
             ),
             # Missing parameter (expects 400)
             (
-                    {},  # empty JSON triggers MissingParameterError
-                    1,
-                    ["error", "message"],
-                    400,
-                    True,
+                {"activity_type": "resource"},  # MissingParameterError
+                1,
+                ["error", "message"],
+                400,
+                True,
+            ),
+            # Missing parameter (expects 400)
+            (
+                {"solution_lms_id": 1},  # MissingParameterError
+                1,
+                ["error", "message"],
+                400,
+                True,
+            ),
+            # Missing parameter (expects 400)
+            (
+                {},  # MissingParameterError
+                1,
+                ["error", "message"],
+                400,
+                True,
             ),
         ],
     )
     def test_add_learning_element_solution(
-            self,
-            client_class,
-            input,
-            learning_element_lms_id,
-            keys_expected,
-            status_code_expected,
-            error,
+        self,
+        client_class,
+        input,
+        learning_element_lms_id,
+        keys_expected,
+        status_code_expected,
+        error,
     ):
         url = path_learning_element + "/" + str(learning_element_lms_id) + "/solution"
         r = client_class.post(url, json=input)
@@ -4789,14 +4805,14 @@ class TestApi:
         [
             # Working Example
             (
-                    1,
-                    ["id", "learning_element_lms_id", "solution_lms_id", "activity_type"],
-                    200,
+                1,
+                ["id", "learning_element_lms_id", "solution_lms_id", "activity_type"],
+                200,
             ),
         ],
     )
     def test_get_learning_element_solution(
-            self, client_class, learning_element_lms_id, keys_expected, status_code_expected
+        self, client_class, learning_element_lms_id, keys_expected, status_code_expected
     ):
         url = path_learning_element + "/" + str(learning_element_lms_id) + "/solution"
         r = client_class.get(url)
@@ -4812,14 +4828,14 @@ class TestApi:
         [
             # Working Example
             (
-                    1,
-                    ["id", "topic_id", "solution_lms_id", "activity_type"],
-                    200,
+                1,
+                ["id", "topic_id", "solution_lms_id", "activity_type"],
+                200,
             ),
         ],
     )
     def test_get_topic_solutions(
-            self, client_class, topic_id, keys_expected, status_code_expected
+        self, client_class, topic_id, keys_expected, status_code_expected
     ):
         url = path_topic + "/" + str(topic_id) + path_learning_path + "/solution"
         r = client_class.get(url)
@@ -4842,14 +4858,9 @@ class TestApi:
         ],
     )
     def test_delete_learning_element_solution(
-            self, client_class, le_element_id, status_code_expected
+        self, client_class, le_element_id, status_code_expected
     ):
-        url = (
-                path_learning_element
-                + "/"
-                + str(le_element_id)
-                + "/solution"
-        )
+        url = path_learning_element + "/" + str(le_element_id) + "/solution"
         r = client_class.delete(url)
         assert r.status_code == status_code_expected
 
