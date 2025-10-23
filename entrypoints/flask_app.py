@@ -595,6 +595,12 @@ def post_topic(data: Dict[str, Any], course_id):
                 created_at,
             )
 
+            services.add_badges_to_topic(
+                unit_of_work.SqlAlchemyUnitOfWork(),
+                int(course_id),
+                topic["id"]
+            )
+
             status_code = 201
             return jsonify(topic), status_code
 
