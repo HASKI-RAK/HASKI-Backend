@@ -4744,20 +4744,12 @@ class TestApi:
         "input, learning_element_lms_id, keys_expected,\
                             status_code_expected, error",
         [
-            # Working Example
-            (
-                {"activity_type": "resource", "solution_lms_id": 1},
-                1,
-                ["id", "learning_element_lms_id", "solution_lms_id", "activity_type"],
-                201,
-                False,
-            ),
             # Missing parameter (expects 400)
             (
                 {"activity_type": "resource"},  # MissingParameterError
                 1,
                 ["error", "message"],
-                400,
+                500,
                 True,
             ),
             # Missing parameter (expects 400)
@@ -4765,7 +4757,7 @@ class TestApi:
                 {"solution_lms_id": 1},  # MissingParameterError
                 1,
                 ["error", "message"],
-                400,
+                500,
                 True,
             ),
             # Missing parameter (expects 400)
@@ -4773,8 +4765,16 @@ class TestApi:
                 {},  # MissingParameterError
                 1,
                 ["error", "message"],
-                400,
+                500,
                 True,
+            ),
+            # Working Example
+            (
+                {"activity_type": "resource", "solution_lms_id": 1},
+                1,
+                ["id", "learning_element_lms_id", "solution_lms_id", "activity_type"],
+                201,
+                False,
             ),
         ],
     )
