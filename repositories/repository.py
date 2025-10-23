@@ -779,7 +779,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         except IntegrityError:
             raise err.ForeignKeyViolation()
         except Exception:
-            raise err.CreationError
+            raise err.CreationError()
 
     def add_student_to_course(self, student_course) -> DM.StudentCourse:
         course_exist = self.get_courses_by_student_id(student_course.student_id)
