@@ -4770,7 +4770,7 @@ class TestApi:
             ),
             # Wrong parameter value (expects 400)
             (
-                {"activity_type": "resource", "solution_lms_id": "1"},  # MissingParameterError
+                {"activity_type": "resource", "solution_lms_id": "1"}, # ValueError
                 1,
                 ["error", "message"],
                 400,
