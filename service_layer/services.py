@@ -62,7 +62,7 @@ def add_badges_to_topic(
                 topic_id=topic_id,
                 active=True
             )
-            uow.badge.add_badge_to_topic(new_badge)
+            uow.badge.create_badge(new_badge)
 
         # badge for 100% score of all exercises in topic
         # always present when there is an exercise in the topic
@@ -74,7 +74,7 @@ def add_badges_to_topic(
                 topic_id=topic_id,
                 active=True
             )
-            uow.badge.add_badge_to_topic(new_badge)
+            uow.badge.create_badge(new_badge)
 
         # badge for topics that have larger amounts of exercises
         # to give students a smaller goal to reach than 100% completion
@@ -87,7 +87,7 @@ def add_badges_to_topic(
                 topic_id=topic_id,
                 active=True
             )
-            uow.badge.add_badge_to_topic(new_badge)
+            uow.badge.create_badge(new_badge)
 
         # badge to encourage students to revisit A topic after two weeks
         new_badge = DM.Badge(
@@ -96,7 +96,7 @@ def add_badges_to_topic(
             topic_id=topic_id,
             active=True
         )
-        uow.badge.add_badge_to_topic(new_badge)
+        uow.badge.create_badge(new_badge)
 
         # maybe something with reflektives Quiz
 
@@ -111,7 +111,7 @@ def add_badges_to_topic(
                 topic_id=topic_id,
                 active=True
             )
-            uow.badge.add_badge_to_topic(new_badge)
+            uow.badge.create_badge(new_badge)
 
         uow.commit()
 
@@ -3050,7 +3050,7 @@ def update_badges_for_topic(
                     topic_id=topic_id,
                     active=True
                 )
-                uow.badge.add_badge_to_topic(badge)
+                uow.badge.create_badge(badge)
                 result.append(badge.serialize())
             elif not condition and badge_key in badges_by_variant_key.keys():
                 uow.badge.update_badge(

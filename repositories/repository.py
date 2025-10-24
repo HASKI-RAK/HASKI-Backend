@@ -16,16 +16,12 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         self, course_creator_course
     ) -> DM.CourseCreatorCourse:
         raise NotImplementedError
-    
-    @abc.abstractmethod
-    def add_badge_to_topic(self, badge: DM.Badge) -> DM.Badge:
-        raise NotImplementedError
-    
+
     @abc.abstractmethod
     def add_student_badge(
         self,
         student_badge: LM.StudentBadge
-        ) -> LM.StudentBadge:
+        ):
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -54,6 +50,10 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
 
     @abc.abstractmethod
     def create_admin(self, admin: UA.Admin) -> UA.Admin:
+        raise NotImplementedError
+    
+    @abc.abstractmethod
+    def create_badge(self, badge: DM.Badge) -> DM.Badge:
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -837,6 +837,14 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         except Exception:
             raise err.CreationError()
 
+    def add_student_badge(self, student_badge):
+        try:
+            self.session.add(student_badge)
+        except IntegrityError:
+            raise err.ForeignKeyViolation()
+        except Exception:
+            raise err.CreationError()
+
     def add_student_to_course(self, student_course) -> DM.StudentCourse:
         course_exist = self.get_courses_by_student_id(student_course.student_id)
         for c in course_exist:
@@ -896,6 +904,14 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
     def create_admin(self, admin: UA.Admin) -> UA.Admin:
         try:
             self.session.add(admin)
+        except IntegrityError:
+            raise err.ForeignKeyViolation()
+        except Exception:
+            raise err.CreationError()
+        
+    def create_badge(self, badge: DM.Badge) -> DM.Badge:
+        try:
+            self.session.add(badge)
         except IntegrityError:
             raise err.ForeignKeyViolation()
         except Exception:
