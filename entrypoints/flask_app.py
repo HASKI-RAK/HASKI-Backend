@@ -9,7 +9,6 @@ from flask import Flask, jsonify, make_response, request
 from flask.wrappers import Response
 from flask_cors import CORS, cross_origin
 
-import service_layer.crypto.JWTKeyManagement as JWTKeyManagement
 import service_layer.lti.config.ToolConfigJson as ToolConfigJson
 import utils.logger as logger
 from errors import errors as err
@@ -25,12 +24,14 @@ from utils.constants import (
 from utils.decorators import debug_only, json_only
 
 from entrypoints.endpoints.lms import bp_lms
+from entrypoints.endpoints.user import bp_user
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
 orm.start_mappers()
 
 app.register_blueprint(bp_lms)
+app.register_blueprint(bp_user)
 
 logger.configure_dict()
 
@@ -71,18 +72,6 @@ def handle_custom_exception(ex: err.AException):
     response = json.dumps({"error": ex.__class__.__name__, "message": ex.message})
     logger.error(response)
     return response, ex.status_code
-
-@app.route("/user/<user_id>/<lms_user_id>", methods=["GET"])
-@cross_origin(supports_credentials=True)
-def get_user_by_id(user_id, lms_user_id):
-    method = request.method
-    match method:
-        case "GET":
-            user = services.get_user_by_id(
-                unit_of_work.SqlAlchemyUnitOfWork(), user_id, lms_user_id
-            )
-            status_code = 200
-            return jsonify(user), status_code
 
 # Add all students that are enrolled in moodle courses to the haski courses
 @app.route("/course/<course_id>/allStudents", methods=["POST"])
@@ -170,30 +159,6 @@ def lti_launch_view():
         )
     }, 200
 
-
-# Get user info from cookie
-@app.route("/lms/user_from_cookie", methods=["GET"])
-@cross_origin(supports_credentials=True)
-def get_user_info():
-    method = request.method
-    state_jwt = request.cookies.get("haski_state")
-    if state_jwt is None:
-        raise err.StateNotMatchingError()
-
-    if not JWTKeyManagement.verify_jwt_payload(
-        JWTKeyManagement.verify_jwt(state_jwt), verify_nonce=False
-    ):
-        raise err.UnauthorizedError()
-    state = JWTKeyManagement.verify_jwt(state_jwt)
-    match method:
-        case "GET":
-            user = services.get_student_by_user_id(
-                unit_of_work.SqlAlchemyUnitOfWork(), state["user_id"]
-            )
-            status_code = 200
-            return jsonify(user), status_code
-
-
 # Test Endpoint to post a user login by id and get a user by id
 @app.route("/login_credentials", methods=["POST"])
 @cross_origin(supports_credentials=True)
@@ -255,25 +220,6 @@ def get_activity_status_for_student_for_learning_element(
                 learning_element_id,
             )
             return jsonify(activity_status), 200
-
-
-@app.route(
-    "/lms/user/<user_id>/remote/courses",
-    methods=["GET"],
-)
-@cross_origin(supports_credentials=True)
-def get_all_remote_courses(user_id):
-    method = request.method
-    match method:
-        case "GET":
-            user = services.get_user_by_id(
-                unit_of_work.SqlAlchemyUnitOfWork(), user_id, None
-            )
-            enrolled_moodle_courses = services.get_courses_for_user_from_moodle(
-                unit_of_work.SqlAlchemyUnitOfWork(), user["lms_user_id"]
-            )
-
-            return jsonify(enrolled_moodle_courses), 200
 
 
 @app.route(
@@ -837,58 +783,7 @@ def post_student_learning_path_learning_element_algorithm(
                 raise err.MissingParameterError()
 
 
-@app.route(
-    "/user/<user_id>/<lms_user_id>/student/<student_id>/course/"
-    + "<course_id>/learningElement",
-    methods=["GET"],
-)
-@cross_origin(supports_credentials=True)
-def get_learning_elements_for_course(user_id, lms_user_id, student_id, course_id):
-    method = request.method
-    match method:
-        case "GET":
-            learning_elements = services.get_learning_elements_for_course_id(
-                unit_of_work.SqlAlchemyUnitOfWork(),
-                user_id,
-                lms_user_id,
-                student_id,
-                course_id,
-            )
-            status_code = 200
-            return jsonify(learning_elements), status_code
-
-
 # Student Endpoints
-@app.route(
-    "/user/<user_id>/<lms_user_id>/student/<student_id>/" + "learningCharacteristics",
-    methods=["DELETE"],
-)
-@cross_origin(supports_credentials=True)
-def delete_learning_characteristics(user_id, lms_user_id, student_id):
-    method = request.method
-    match method:
-        case "DELETE":
-            characteristic = services.reset_learning_characteristics(
-                unit_of_work.SqlAlchemyUnitOfWork(), user_id, lms_user_id, student_id
-            )
-            status_code = 200
-            return jsonify(characteristic), status_code
-
-
-@app.route(
-    "/user/<user_id>/<lms_user_id>/student/<student_id>" + "/learningCharacteristics",
-    methods=["GET"],
-)
-@cross_origin(supports_credentials=True)
-def get_learning_characteristics(user_id, lms_user_id, student_id):
-    method = request.method
-    match method:
-        case "GET":
-            characteristic = services.get_learning_characteristics(
-                unit_of_work.SqlAlchemyUnitOfWork(), student_id, user_id, lms_user_id
-            )
-            status_code = 200
-            return jsonify(characteristic), status_code
 
 
 @app.route("/lms/student/<student_id>/questionnaire/ils", methods=["POST"])
@@ -1026,200 +921,7 @@ def questionnaire_list_k(data: Dict[str, Any], student_id):
             return jsonify(result), status_code
 
 
-@app.route(
-    "/user/<user_id>/<lms_user_id>/student/<student_id>/" + "learningStyle",
-    methods=["PUT", "DELETE"],
-)
-@cross_origin(supports_credentials=True)
-@json_only(ignore=["DELETE"])
-def learning_style_administration(
-    data: Dict[str, Any], user_id, lms_user_id, student_id
-):
-    method = request.method
-    match method:
-        case "PUT":
-            condition1 = data is not None
-            condition2 = "perception_dimension" in data
-            condition3 = "perception_value" in data
-            condition4 = "input_dimension" in data
-            condition5 = "input_value" in data
-            condition6 = "processing_dimension" in data
-            condition7 = "processing_value" in data
-            condition8 = "understanding_dimension" in data
-            condition9 = "understanding_value" in data
-            if (
-                condition1
-                and condition2
-                and condition3
-                and condition4
-                and condition5
-                and condition6
-                and condition7
-                and condition8
-                and condition9
-            ):
-                condition10 = type(data["perception_dimension"]) is str
-                condition11 = type(data["perception_value"]) is int
-                condition12 = type(data["input_dimension"]) is str
-                condition13 = type(data["input_value"]) is int
-                condition14 = type(data["processing_dimension"]) is str
-                condition15 = type(data["processing_value"]) is int
-                condition16 = type(data["understanding_dimension"]) is str
-                condition17 = type(data["understanding_value"]) is int
-                if (
-                    condition10
-                    and condition11
-                    and condition12
-                    and condition13
-                    and condition14
-                    and condition15
-                    and condition16
-                    and condition17
-                ):
-                    condition18 = 0 < data["perception_value"] < 12
-                    condition19 = 0 < data["input_value"] < 12
-                    condition20 = 0 < data["processing_value"] < 12
-                    condition21 = 0 < data["understanding_value"] < 12
-                    if condition18 and condition19 and condition20 and condition21:
-                        result = services.update_learning_style_by_student_id(
-                            unit_of_work.SqlAlchemyUnitOfWork(),
-                            user_id,
-                            lms_user_id,
-                            student_id,
-                            data["perception_dimension"],
-                            data["perception_value"],
-                            data["input_dimension"],
-                            data["input_value"],
-                            data["processing_dimension"],
-                            data["processing_value"],
-                            data["understanding_dimension"],
-                            data["understanding_value"],
-                        )
-                        status_code = 201
-                        return jsonify(result), status_code
-                    else:
-                        raise err.WrongLearningStyleDimensionError()
-                else:
-                    raise err.WrongParameterValueError()
-            else:
-                raise err.MissingParameterError()
-        case "DELETE":
-            result = services.reset_learning_style_by_student_id(
-                unit_of_work.SqlAlchemyUnitOfWork(), user_id, lms_user_id, student_id
-            )
-            status_code = 200
-            return jsonify(result), status_code
 
-
-@app.route(
-    "/user/<user_id>/<lms_user_id>/student/<student_id>/" + "learningStyle",
-    methods=["GET"],
-)
-@cross_origin(supports_credentials=True)
-def get_learning_style(user_id, lms_user_id, student_id):
-    method = request.method
-    match method:
-        case "GET":
-            result = services.get_learning_style_by_student_id(
-                unit_of_work.SqlAlchemyUnitOfWork(), student_id
-            )
-            status_code = 200
-            return jsonify(result), status_code
-
-
-@app.route(
-    "/user/<user_id>/<lms_user_id>/student/<student_id>/" + "learningStrategy",
-    methods=["DELETE"],
-)
-@cross_origin(supports_credentials=True)
-def delete_learning_strategy(user_id, lms_user_id, student_id):
-    method = request.method
-    match method:
-        case "DELETE":
-            result = services.reset_learning_strategy_by_student_id(
-                unit_of_work.SqlAlchemyUnitOfWork(), user_id, lms_user_id, student_id
-            )
-            status_code = 200
-            return jsonify(result), status_code
-
-
-@app.route(
-    "/user/<user_id>/<lms_user_id>/student/<student_id>/" + "learningStrategy",
-    methods=["GET"],
-)
-@cross_origin(supports_credentials=True)
-def get_learning_strategy(user_id, lms_user_id, student_id):
-    method = request.method
-    match method:
-        case "GET":
-            result = services.get_learning_strategy_by_student_id(
-                unit_of_work.SqlAlchemyUnitOfWork(), student_id
-            )
-            status_code = 200
-            return jsonify(result), status_code
-
-
-@app.route(
-    "/user/<user_id>/<lms_user_id>/student/<student_id>/" + "learningAnalytics",
-    methods=["DELETE"],
-)
-@cross_origin(supports_credentials=True)
-def delete_learning_analytics(user_id, lms_user_id, student_id):
-    method = request.method
-    match method:
-        case "DELETE":
-            result = services.reset_learning_analytics_by_student_id(
-                unit_of_work.SqlAlchemyUnitOfWork(), user_id, lms_user_id, student_id
-            )
-            status_code = 200
-            return jsonify(result), status_code
-
-
-@app.route(
-    "/user/<user_id>/<lms_user_id>/student/<student_id>/" + "learningAnalytics",
-    methods=["GET"],
-)
-@cross_origin(supports_credentials=True)
-def get_learning_analytics(user_id, lms_user_id, student_id):
-    method = request.method
-    match method:
-        case "GET":
-            result = services.get_learning_analytics_by_student_id(
-                unit_of_work.SqlAlchemyUnitOfWork(), student_id
-            )
-            status_code = 200
-            return jsonify(result), status_code
-
-
-@app.route(
-    "/user/<user_id>/<lms_user_id>/student/<student_id>/" + "knowledge",
-    methods=["DELETE"],
-)
-@cross_origin(supports_credentials=True)
-def delete_knowledge(user_id, lms_user_id, student_id):
-    method = request.method
-    match method:
-        case "DELETE":
-            result = services.reset_knowledge_by_student_id(
-                unit_of_work.SqlAlchemyUnitOfWork(), user_id, lms_user_id, student_id
-            )
-            status_code = 200
-            return jsonify(result), status_code
-
-
-@app.route(
-    "/user/<user_id>/<lms_user_id>/student/<student_id>/" + "knowledge", methods=["GET"]
-)
-@cross_origin(supports_credentials=True)
-def get_knowledge(user_id, lms_user_id, student_id):
-    method = request.method
-    match method:
-        case "GET":
-            result = services.get_knowledge_by_student_id(
-                unit_of_work.SqlAlchemyUnitOfWork(), student_id
-            )
-            status_code = 200
-            return jsonify(result), status_code
 
 
 @app.route("/user/<user_id>/<lms_user_id>/student/<student_id>/course", methods=["GET"])

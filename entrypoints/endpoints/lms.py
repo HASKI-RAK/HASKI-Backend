@@ -4,6 +4,7 @@ from flask import request, jsonify
 from utils.decorators import json_only
 from typing import Dict, Any
 from service_layer import services, unit_of_work
+import service_layer.crypto.JWTKeyManagement as JWTKeyManagement
 from errors import errors as err
 from utils import constants as cons
 import re
@@ -93,6 +94,46 @@ def user_administration(data, user_id, lms_user_id):
             result = {"message": cons.deletion_message}
             status_code = 200
             return jsonify(result), status_code
+        
+# Get user info from cookie
+@bp_lms.route("/lms/user_from_cookie", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_user_info():
+    method = request.method
+    state_jwt = request.cookies.get("haski_state")
+    if state_jwt is None:
+        raise err.StateNotMatchingError()
+
+    if not JWTKeyManagement.verify_jwt_payload(
+        JWTKeyManagement.verify_jwt(state_jwt), verify_nonce=False
+    ):
+        raise err.UnauthorizedError()
+    state = JWTKeyManagement.verify_jwt(state_jwt)
+    match method:
+        case "GET":
+            user = services.get_student_by_user_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), state["user_id"]
+            )
+            status_code = 200
+            return jsonify(user), status_code
+
+@bp_lms.route(
+    "/lms/user/<user_id>/remote/courses",
+    methods=["GET"],
+)
+@cross_origin(supports_credentials=True)
+def get_all_remote_courses(user_id):
+    method = request.method
+    match method:
+        case "GET":
+            user = services.get_user_by_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), user_id, None
+            )
+            enrolled_moodle_courses = services.get_courses_for_user_from_moodle(
+                unit_of_work.SqlAlchemyUnitOfWork(), user["lms_user_id"]
+            )
+
+            return jsonify(enrolled_moodle_courses), 200
 
 # Add a course
 # noinspection PyPackageRequirements
