@@ -17,8 +17,8 @@ from utils.constants import (
 )
 bp_lms = Blueprint('lms', __name__)
 
-
-# User Administration via LMS
+# ##### lms/user #####
+# User Administration via LMS/not used
 @bp_lms.route("/lms/user", methods=["POST"])
 @cross_origin(supports_credentials=True)
 @json_only()
@@ -60,7 +60,7 @@ def create_user(data: Dict[str, Any]):
             else:
                 raise err.MissingParameterError()
 
-
+#not used
 @bp_lms.route("/lms/user/<user_id>/<lms_user_id>", methods=["PUT", "DELETE"])
 @cross_origin(supports_credentials=True)
 @json_only(ignore=["DELETE"])
@@ -117,6 +117,7 @@ def get_user_info():
             status_code = 200
             return jsonify(user), status_code
 
+# Get all remote courses for a user
 @bp_lms.route(
     "/lms/user/<user_id>/remote/courses",
     methods=["GET"],
@@ -134,7 +135,10 @@ def get_all_remote_courses(user_id):
             )
 
             return jsonify(enrolled_moodle_courses), 200
+# ##### lms/student #####
 
+
+# ##### lms/course #####
 # Add a course
 # noinspection PyPackageRequirements
 @bp_lms.route("/lms/course", methods=["POST"])
@@ -186,7 +190,7 @@ def post_course(data: Dict[str, Any]):
             status_code = 201
             return jsonify(course), status_code
 
-
+# Update or delete a course /update not used
 @bp_lms.route("/lms/course/<course_id>/<lms_course_id>", methods=["PUT", "DELETE"])
 @cross_origin(supports_credentials=True)
 @json_only(ignore=["DELETE"])
@@ -272,3 +276,401 @@ def course_administration(data: Dict[str, Any], course_id, lms_course_id):
             status_code = 200
             return jsonify(result), status_code
 
+# Endpoint to get activity status for a student for a course
+@bp_lms.route(
+    "/lms/course/<course_id>/student/<lms_user_id>/activitystatus", methods=["GET"]
+)
+@cross_origin(supports_credentials=True)
+def get_activity_status_for_student(course_id, lms_user_id):
+    method = request.method
+    match method:
+        case "GET":
+            activity_status = services.get_activity_status_for_student_for_course(
+                unit_of_work.SqlAlchemyUnitOfWork(), course_id, lms_user_id
+            )
+            return jsonify(activity_status), 200
+
+# Endpoint to get activity status for a student, course and specific learning element
+@bp_lms.route(
+    "/lms/course/<course_id>/student/<student_id>/"
+    + "learningElementId/<learning_element_id>/activitystatus",
+    methods=["GET"],
+)
+@cross_origin(supports_credentials=True)
+def get_activity_status_for_student_for_learning_element(
+    course_id, student_id, learning_element_id
+):
+    method = request.method
+    match method:
+        case "GET":
+            activity_status = services.get_activity_status_for_learning_element(
+                unit_of_work.SqlAlchemyUnitOfWork(),
+                course_id,
+                student_id,
+                learning_element_id,
+            )
+            return jsonify(activity_status), 200
+
+
+# Add a topic to a course
+@bp_lms.route("/lms/course/<course_id>/topic", methods=["POST"])
+@cross_origin(supports_credentials=True)
+@json_only()
+def post_topic(data: Dict[str, Any], course_id):
+    method = request.method
+    match method:
+        case "POST":
+            condition1 = data is not None
+            condition2 = "name" in data
+            condition3 = "lms_id" in data
+            condition4 = "is_topic" in data
+            condition5 = "contains_le" in data
+            condition6 = "created_by" in data
+            condition7 = "created_at" in data
+            condition8 = "university" in data
+            if not (
+                condition1
+                and condition2
+                and condition3
+                and condition4
+                and condition5
+                and condition6
+                and condition7
+                and condition8
+            ):
+                raise err.MissingParameterError()
+
+            condition9 = type(data["name"]) is str
+            condition10 = type(data["lms_id"]) is int
+            condition11 = type(data["is_topic"]) is bool
+            condition12 = type(data["contains_le"]) is bool
+            condition13 = type(data["created_by"]) is str
+            condition14 = type(data["created_at"]) is str
+            condition15 = type(data["university"]) is str
+            if not (
+                condition9
+                and condition10
+                and condition11
+                and condition12
+                and condition13
+                and condition14
+                and condition15
+            ):
+                raise err.WrongParameterValueError()
+
+            condition16 = re.search(cons.date_format_search, data["created_at"])
+            if not condition16:
+                raise err.WrongParameterValueError(message=cons.date_format_message)
+
+            created_at = datetime.strptime(data["created_at"], cons.date_format).date()
+
+            topic = services.create_topic(
+                unit_of_work.SqlAlchemyUnitOfWork(),
+                course_id,
+                data["lms_id"],
+                data["is_topic"],
+                data["parent_id"] if "parent_id" in data else None,
+                data["contains_le"],
+                data["name"],
+                data["university"],
+                data["created_by"],
+                created_at,
+            )
+
+            status_code = 201
+            return jsonify(topic), status_code
+
+
+
+# ##### lms/topic #####
+# Update or delete a topic /update not used
+@bp_lms.route(
+    "/lms/topic/<topic_id>/<lms_topic_id>",
+    methods=["PUT", "DELETE"],
+)
+@cross_origin(supports_credentials=True)
+@json_only(ignore=["DELETE"])
+def topic_administration(data: Dict[str, Any], topic_id, lms_topic_id):
+    method = request.method
+    match method:
+        case "PUT":
+            condition1 = data is not None
+            condition2 = "name" in data
+            condition3 = "is_topic" in data
+            condition4 = "contains_le" in data
+            condition5 = "created_by" in data
+            condition6 = "created_at" in data
+            condition7 = "university" in data
+            condition8 = "last_updated" in data
+            if not (
+                condition1
+                and condition2
+                and condition3
+                and condition4
+                and condition5
+                and condition6
+                and condition7
+                and condition8
+            ):
+                raise err.MissingParameterError()
+
+            condition9 = re.search(cons.date_format_search, data["last_updated"])
+            condition10 = re.search(cons.date_format_search, data["created_at"])
+            if not (condition9 and condition10):
+                raise err.NoValidParameterValueError()
+
+            created_at = datetime.strptime(data["created_at"], cons.date_format).date()
+
+            last_updated = datetime.strptime(
+                data["last_updated"], cons.date_format
+            ).date()
+
+            topic = services.update_topic(
+                unit_of_work.SqlAlchemyUnitOfWork(),
+                topic_id,
+                lms_topic_id,
+                data["is_topic"],
+                data["parent_id"],
+                data["contains_le"],
+                data["name"],
+                data["university"],
+                data["created_by"],
+                created_at,
+                last_updated,
+            )
+
+            status_code = 201
+            return jsonify(topic), status_code
+        case "DELETE":
+            services.delete_learning_paths_by_topic_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), topic_id
+            )
+            services.delete_student_topic_by_topic_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), topic_id
+            )
+            services.delete_learning_path_learning_element_algorithm(
+                unit_of_work.SqlAlchemyUnitOfWork(), topic_id
+            )
+            services.delete_student_lpath_le_algorithm(
+                unit_of_work.SqlAlchemyUnitOfWork(), topic_id
+            )
+            services.delete_student_ratings_by_topic(
+                unit_of_work.SqlAlchemyUnitOfWork(), topic_id
+            )
+            services.delete_learning_element_ratings_by_topic(
+                unit_of_work.SqlAlchemyUnitOfWork(), topic_id
+            )
+
+            learning_elements = services.get_learning_elements_for_topic_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), topic_id
+            )
+
+            for learning_element in learning_elements:
+                services.delete_student_learning_element_by_learning_element_id(
+                    unit_of_work.SqlAlchemyUnitOfWork(),
+                    learning_element["learning_element_id"],
+                )
+                services.delete_learning_element(
+                    unit_of_work.SqlAlchemyUnitOfWork(),
+                    learning_element["learning_element_id"],
+                )
+
+            services.delete_topic(unit_of_work.SqlAlchemyUnitOfWork(), topic_id)
+            result = {"message": cons.deletion_message}
+            status_code = 200
+            return jsonify(result), status_code
+
+# Create LE - shorter request-url
+@bp_lms.route(
+    "/lms/topic/<topic_id>/learningElement",
+    methods=["POST"],
+)
+@cross_origin(supports_credentials=True)
+@json_only()
+def create_learning_element(data: Dict[str, Any], topic_id):
+    method = request.method
+    match method:
+        case "POST":
+            condition1 = data is not None
+            condition2 = "lms_id" in data
+            condition3 = "activity_type" in data
+            condition4 = "classification" in data
+            condition5 = "name" in data
+            condition6 = "created_by" in data
+            condition7 = "created_at" in data
+            condition8 = "university" in data
+            if not (
+                condition1
+                and condition2
+                and condition3
+                and condition4
+                and condition5
+                and condition6
+                and condition7
+                and condition8
+            ):
+                raise err.MissingParameterError()
+
+            condition9 = isinstance(data["lms_id"], int)
+            condition10 = isinstance(data["activity_type"], str)
+            condition11 = isinstance(data["classification"], str)
+            condition12 = isinstance(data["name"], str)
+            condition13 = isinstance(data["created_by"], str)
+            condition14 = isinstance(data["created_at"], str)
+            condition15 = isinstance(data["university"], str)
+            if not (
+                condition9
+                and condition10
+                and condition11
+                and condition12
+                and condition13
+                and condition14
+                and condition15
+            ):
+                raise err.WrongParameterValueError()
+
+            condition16 = re.search(cons.date_format_search, data["created_at"])
+            if not condition16:
+                raise err.WrongParameterValueError(message=cons.date_format_message)
+
+            created_at = datetime.strptime(data["created_at"], cons.date_format).date()
+
+            learning_element = services.create_learning_element(
+                unit_of_work.SqlAlchemyUnitOfWork(),
+                topic_id,
+                data["lms_id"],
+                data["activity_type"],
+                data["classification"],
+                data["name"],
+                data["created_by"],
+                created_at,
+                data["university"],
+            )
+
+            students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
+
+            for student in students:
+                student_id = student["id"]
+                services.add_student_to_learning_element(
+                    unit_of_work.SqlAlchemyUnitOfWork(),
+                    learning_element["id"],
+                    student_id,
+                )
+
+            status_code = 201
+            return jsonify(learning_element), status_code
+
+
+# ##### lms/learningElement #####
+# Update or delete a learning element
+@bp_lms.route(
+    "/lms/learningElement/<learning_element_id>/<lms_learning_element_id>",
+    methods=["PUT", "DELETE"],
+)
+@cross_origin(supports_credentials=True)
+@json_only(ignore=["DELETE"])
+def learning_element_administration(
+    data: Dict[str, Any],
+    learning_element_id,
+    lms_learning_element_id,
+):
+    method = request.method
+    match method:
+        case "PUT":
+            condition1 = data is not None
+            condition2 = "activity_type" in data
+            condition3 = "classification" in data
+            condition4 = "name" in data
+            condition5 = "created_by" in data
+            condition6 = "created_at" in data
+            condition7 = "university" in data
+            condition8 = "last_updated" in data
+            if not (
+                condition1
+                and condition2
+                and condition3
+                and condition4
+                and condition5
+                and condition6
+                and condition7
+                and condition8
+            ):
+                raise err.MissingParameterError()
+
+            condition10 = isinstance(data["activity_type"], str)
+            condition11 = isinstance(data["classification"], str)
+            condition12 = isinstance(data["name"], str)
+            condition13 = isinstance(data["created_by"], str)
+            condition14 = isinstance(data["created_at"], str)
+            condition15 = isinstance(data["university"], str)
+            condition16 = isinstance(data["last_updated"], str)
+            if not (
+                condition10
+                and condition11
+                and condition12
+                and condition13
+                and condition14
+                and condition15
+                and condition16
+            ):
+                raise err.WrongParameterValueError()
+
+            condition17 = re.search(cons.date_format_search, data["created_at"])
+            condition18 = re.search(cons.date_format_search, data["last_updated"])
+            if not (condition17 and condition18):
+                raise err.WrongParameterValueError(message=cons.date_format_message)
+
+            created_at = datetime.strptime(data["created_at"], cons.date_format).date()
+
+            last_updated = datetime.strptime(
+                data["last_updated"], cons.date_format
+            ).date()
+
+            learning_element = services.update_learning_element(
+                unit_of_work.SqlAlchemyUnitOfWork(),
+                learning_element_id,
+                lms_learning_element_id,
+                data["activity_type"],
+                data["classification"],
+                data["name"],
+                data["created_by"],
+                created_at,
+                last_updated,
+                data["university"],
+            )
+
+            status_code = 201
+            return jsonify(learning_element), status_code
+        case "DELETE":
+            services.delete_learning_path_learning_element_by_le_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), learning_element_id
+            )
+            services.delete_student_learning_element_by_learning_element_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), learning_element_id
+            )
+            services.delete_learning_element_ratings_by_learning_element(
+                unit_of_work.SqlAlchemyUnitOfWork(), learning_element_id
+            )
+            services.delete_learning_element(
+                unit_of_work.SqlAlchemyUnitOfWork(), learning_element_id
+            )
+            result = {"message": cons.deletion_message}
+            status_code = 200
+            return jsonify(result), status_code
+
+
+# ##### lms/remote #####
+# Get topics and learning elements from remote course
+@bp_lms.route(
+    "/lms/remote/course/<course_id>/content",
+    methods=["GET"],
+)
+@cross_origin(supports_credentials=True)
+def get_remote_topics_and_learning_elements_from_course(course_id):
+    method = request.method
+    match method:
+        case "GET":
+            remote_courses = services.get_topics_and_elements_from_moodle_course(
+                unit_of_work.SqlAlchemyUnitOfWork(), course_id
+            )
+            return jsonify(remote_courses), 200
