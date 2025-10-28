@@ -28,7 +28,7 @@ def get_learning_elements_for_course(user_id, lms_user_id, student_id, course_id
             status_code = 200
             return jsonify(learning_elements), status_code
 
-#get user by id
+# get user by id
 @bp_user.route("/user/<user_id>/<lms_user_id>", methods=["GET"])
 @cross_origin(supports_credentials=True)
 def get_user_by_id(user_id, lms_user_id):
@@ -40,6 +40,96 @@ def get_user_by_id(user_id, lms_user_id):
             )
             status_code = 200
             return jsonify(user), status_code
+
+
+# Post to calculate learning path for a user
+@bp_user.route(
+    "/user/<user_id>/<lms_user_id>/learningPath",
+    methods=["POST"],
+)
+@cross_origin(supports_credentials=True)
+@json_only()
+def post_calculate_learning_path(_: Dict[str, Any], user_id: str, lms_user_id: str):
+    match request.method:
+        case "POST":
+            # Get unit of work.
+            uow = unit_of_work.SqlAlchemyUnitOfWork()
+
+            # Get student and their courses.
+            student = services.get_student_by_user_id(uow, user_id)
+            courses = services.get_courses_by_student_id(
+                uow, user_id, lms_user_id, student["id"]
+            )
+
+            # If there are no courses, initiate an empty array
+            results = []
+
+            for course in courses["courses"]:
+                # Get every available topic in all course.
+                topics = list(
+                    services.get_topics_by_student_and_course_id(
+                        uow, user_id, lms_user_id, student["id"], course["id"]
+                    )["topics"]
+                )
+                for topic in topics:
+                    if topic["contains_le"]:
+                        # Get algorithm for the topic.
+                        algorithm = services.get_student_lpath_le_algorithm(
+                            uow, student["id"], topic["id"]
+                        ) or services.get_lpath_le_algorithm_by_topic(uow, topic["id"])
+                        lpath_algorithm = services.get_learning_path_algorithm_by_id(
+                            uow, algorithm["algorithm_id"]
+                        )
+
+                        # Create learning path.
+                        results.append(
+                            services.create_learning_path(
+                                unit_of_work.SqlAlchemyUnitOfWork(),
+                                user_id,
+                                lms_user_id,
+                                student["id"],
+                                course["id"],
+                                topic["id"],
+                                lpath_algorithm["short_name"].lower(),
+                            )
+                        )
+            # Return results with status code.
+            status_code = 201
+            return jsonify(results), status_code
+
+# get courses by student id
+@bp_user.route("/user/<user_id>/<lms_user_id>/student/<student_id>/course", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_courses_by_student_id(user_id, lms_user_id, student_id):
+    method = request.method
+    match method:
+        case "GET":
+            result = services.get_courses_by_student_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), user_id, lms_user_id, student_id
+            )
+            status_code = 200
+            return jsonify(result), status_code
+        
+# get topics by student id and course id
+@bp_user.route(
+    "/user/<user_id>/<lms_user_id>/student/<student_id>/course/<course_id>/topic",
+    methods=["GET"],
+)
+@cross_origin(supports_credentials=True)
+def get_topics_by_student_and_course_id(user_id, lms_user_id, student_id, course_id):
+    method = request.method
+    match method:
+        case "GET":
+            result = services.get_topics_by_student_and_course_id(
+                unit_of_work.SqlAlchemyUnitOfWork(),
+                user_id,
+                lms_user_id,
+                student_id,
+                course_id,
+            )
+            status_code = 200
+            return jsonify(result), status_code
+
 
 #get learning characteristics of a student
 @bp_user.route(

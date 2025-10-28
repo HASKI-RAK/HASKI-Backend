@@ -171,7 +171,7 @@ def post_learning_path_algorithm(data: Dict[str, Any]):
             else:
                 raise err.MissingParameterError()
 
-
+#unused
 @app.route("/lms/course/<course_id>/student/<student_id>", methods=["POST"])
 @cross_origin(supports_credentials=True)
 def post_student_course(course_id, student_id):
@@ -188,7 +188,7 @@ def post_student_course(course_id, student_id):
                     jsonify({"CREATED": False}), http.HTTPStatus.CONFLICT
                 )
 
-
+#unused
 @app.route("/lms/course/<course_id>/teacher/<teacher_id>", methods=["POST"])
 @cross_origin(supports_credentials=True)
 def post_teacher_course(course_id, teacher_id):
@@ -201,7 +201,7 @@ def post_teacher_course(course_id, teacher_id):
             status_code = 201
             return jsonify(teacher_course), status_code
 
-
+#unused
 @app.route("/lms/student/<student_id>/<lms_user_id>/topic/<topic_id>", methods=["POST"])
 @cross_origin(supports_credentials=True)
 @json_only()
@@ -236,7 +236,7 @@ def post_student_topic_visit(data: Dict[str, Any], student_id, lms_user_id, topi
             else:
                 raise err.MissingParameterError()
 
-
+#unused
 @app.route(
     "/lms/student/<student_id>/<lms_user_id>/learningElement/"
     + "<learning_element_id>",
@@ -272,7 +272,7 @@ def post_student_learning_element_id_visit(
             else:
                 raise err.MissingParameterError()
 
-
+#unused
 @app.route(
     "/student/<student_id>/topic/<topic_id>/algorithm",
     methods=["POST"],
@@ -307,161 +307,7 @@ def post_student_learning_path_learning_element_algorithm(
             else:
                 raise err.MissingParameterError()
 
-
-# Student Endpoints
-
-
-@app.route("/lms/student/<student_id>/questionnaire/ils", methods=["POST"])
-@cross_origin(supports_credentials=True)
-@json_only()
-def questionnaire_ils(data: Dict[str, Any], student_id):
-    method = request.method
-    match method:
-        case "POST":
-            condition = "ils" in data
-            if not condition:
-                raise err.MissingParameterError()
-
-            ils = {}
-            for key in data["ils"]:
-                ils[key["question_id"]] = key["answer"]
-
-            required_answers_ils = [
-                "vv_2_f7",
-                "vv_5_f19",
-                "vv_7_f27",
-                "vv_10_f39",
-                "vv_11_f43",
-                "si_1_f2",
-                "si_4_f14",
-                "si_7_f26",
-                "si_10_f38",
-                "si_11_f42",
-                "ar_3_f9",
-                "ar_4_f13",
-                "ar_6_f21",
-                "ar_7_f25",
-                "ar_8_f29",
-                "sg_1_f4",
-                "sg_2_f8",
-                "sg_4_f16",
-                "sg_10_f40",
-                "sg_11_f44",
-            ]
-
-            for key in required_answers_ils:
-                if key not in ils.keys():
-                    raise err.MissingParameterError()
-
-            for answer in ils.values():
-                if not isinstance(answer, str):
-                    raise err.WrongParameterValueError()
-                if answer != "a" and answer != "b":
-                    raise err.NoValidParameterValueError()
-
-            result = services.create_questionnaire_ils(
-                uow=unit_of_work.SqlAlchemyUnitOfWork(),
-                student_id=student_id,
-                ils_answers=ils,
-            )
-
-            status_code = 201
-            return jsonify(result), status_code
-
-
-@app.route("/lms/student/<student_id>/questionnaire/listk", methods=["POST"])
-@cross_origin(supports_credentials=True)
-@json_only()
-def questionnaire_list_k(data: Dict[str, Any], student_id):
-    method = request.method
-    match method:
-        case "POST":
-            condition = "list_k" in data
-            if not condition:
-                raise err.MissingParameterError()
-
-            list_k = {}
-            for key in data["list_k"]:
-                list_k[key["question_id"]] = key["answer"]
-
-            required_answers_list_k = [
-                "org1_f1",
-                "org2_f2",
-                "org3_f3",
-                "elab1_f4",
-                "elab2_f5",
-                "elab3_f6",
-                "crit_rev1_f7",
-                "crit_rev2_f8",
-                "crit_rev3_f9",
-                "rep1_f10",
-                "rep2_f11",
-                "rep3_f12",
-                "goal_plan1_f13",
-                "goal_plan2_f14",
-                "goal_plan3_f15",
-                "con1_f16",
-                "con2_f17",
-                "con3_f18",
-                "reg1_f19",
-                "reg2_f20",
-                "reg3_f21",
-                "att1_f22",
-                "att2_f23",
-                "att3_f24",
-                "eff1_f25",
-                "eff2_f26",
-                "eff3_f27",
-                "time1_f28",
-                "time2_f29",
-                "time3_f30",
-                "lrn_w_cls1_f31",
-                "lrn_w_cls2_f32",
-                "lrn_w_cls3_f33",
-                "lit_res1_f34",
-                "lit_res2_f35",
-                "lit_res3_f36",
-                "lrn_env1_f37",
-                "lrn_env2_f38",
-                "lrn_env3_f39",
-            ]
-
-            for key in required_answers_list_k:
-                if key not in list_k.keys():
-                    raise err.MissingParameterError()
-
-            for answer in list_k.values():
-                if not isinstance(answer, int):
-                    raise err.WrongParameterValueError()
-                if answer > 5 or answer < 0:
-                    raise err.NoValidParameterValueError()
-
-            result = services.create_questionnaire_list_k(
-                uow=unit_of_work.SqlAlchemyUnitOfWork(),
-                student_id=student_id,
-                list_k_answers=list_k,
-            )
-
-            status_code = 201
-            return jsonify(result), status_code
-
-
-
-
-
-@app.route("/user/<user_id>/<lms_user_id>/student/<student_id>/course", methods=["GET"])
-@cross_origin(supports_credentials=True)
-def get_courses_by_student_id(user_id, lms_user_id, student_id):
-    method = request.method
-    match method:
-        case "GET":
-            result = services.get_courses_by_student_id(
-                unit_of_work.SqlAlchemyUnitOfWork(), user_id, lms_user_id, student_id
-            )
-            status_code = 200
-            return jsonify(result), status_code
-
-
+# unused
 @app.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>/course" + "/<course_id>",
     methods=["GET"],
@@ -477,27 +323,7 @@ def get_course_by_course_id(user_id, lms_user_id, student_id, course_id):
             status_code = 200
             return jsonify(result), status_code
 
-
-@app.route(
-    "/user/<user_id>/<lms_user_id>/student/<student_id>/course/<course_id>/topic",
-    methods=["GET"],
-)
-@cross_origin(supports_credentials=True)
-def get_topics_by_student_and_course_id(user_id, lms_user_id, student_id, course_id):
-    method = request.method
-    match method:
-        case "GET":
-            result = services.get_topics_by_student_and_course_id(
-                unit_of_work.SqlAlchemyUnitOfWork(),
-                user_id,
-                lms_user_id,
-                student_id,
-                course_id,
-            )
-            status_code = 200
-            return jsonify(result), status_code
-
-
+#unused
 @app.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>/course"
     + "/<course_id>/topic/<topic_id>",
@@ -521,7 +347,7 @@ def get_topics_by_student_course_and_topic_id(
             status_code = 200
             return jsonify(result), status_code
 
-
+#unused
 @app.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>/course"
     + "/<course_id>/topic/<topic_id>/subtopic",
@@ -543,7 +369,7 @@ def get_sub_topics_by_topic_id(user_id, lms_user_id, student_id, course_id, topi
             status_code = 200
             return jsonify(result), status_code
 
-
+#unused
 @app.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>/course"
     + "/<course_id>/topic/<topic_id>/learningElement",
@@ -567,7 +393,7 @@ def get_learning_element_by_student_course_and_topic_id(
             status_code = 200
             return jsonify(result), status_code
 
-
+#unused
 @app.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>/course"
     + "/<course_id>/topic/<topic_id>/learningElement/"
@@ -595,6 +421,7 @@ def get_learning_element_by_le_id(
 
 
 # Learning Path Endpoints
+#unused
 @app.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>/course/"
     + "<course_id>/topic/<topic_id>/learningPath",
@@ -630,62 +457,6 @@ def learning_path_administration(
                     raise err.WrongParameterValueError()
             else:
                 raise err.MissingParameterError()
-
-
-@app.route(
-    "/user/<user_id>/<lms_user_id>/learningPath",
-    methods=["POST"],
-)
-@cross_origin(supports_credentials=True)
-@json_only()
-def post_calculate_learning_path(_: Dict[str, Any], user_id: str, lms_user_id: str):
-    match request.method:
-        case "POST":
-            # Get unit of work.
-            uow = unit_of_work.SqlAlchemyUnitOfWork()
-
-            # Get student and their courses.
-            student = services.get_student_by_user_id(uow, user_id)
-            courses = services.get_courses_by_student_id(
-                uow, user_id, lms_user_id, student["id"]
-            )
-
-            # If there are no courses, initiate an empty array
-            results = []
-
-            for course in courses["courses"]:
-                # Get every available topic in all course.
-                topics = list(
-                    services.get_topics_by_student_and_course_id(
-                        uow, user_id, lms_user_id, student["id"], course["id"]
-                    )["topics"]
-                )
-                for topic in topics:
-                    if topic["contains_le"]:
-                        # Get algorithm for the topic.
-                        algorithm = services.get_student_lpath_le_algorithm(
-                            uow, student["id"], topic["id"]
-                        ) or services.get_lpath_le_algorithm_by_topic(uow, topic["id"])
-                        lpath_algorithm = services.get_learning_path_algorithm_by_id(
-                            uow, algorithm["algorithm_id"]
-                        )
-
-                        # Create learning path.
-                        results.append(
-                            services.create_learning_path(
-                                unit_of_work.SqlAlchemyUnitOfWork(),
-                                user_id,
-                                lms_user_id,
-                                student["id"],
-                                course["id"],
-                                topic["id"],
-                                lpath_algorithm["short_name"].lower(),
-                            )
-                        )
-            # Return results with status code.
-            status_code = 201
-            return jsonify(results), status_code
-
 
 # specific roles can trigger calculation of learningpaths for all students for a topic
 # calculation on basis of student-algorithm (if empty teacher algorithm)

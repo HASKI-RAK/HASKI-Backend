@@ -137,6 +137,141 @@ def get_all_remote_courses(user_id):
             return jsonify(enrolled_moodle_courses), 200
 # ##### lms/student #####
 
+# Add ILS Questionnaire answers for a student
+@bp_lms.route("/lms/student/<student_id>/questionnaire/ils", methods=["POST"])
+@cross_origin(supports_credentials=True)
+@json_only()
+def questionnaire_ils(data: Dict[str, Any], student_id):
+    method = request.method
+    match method:
+        case "POST":
+            condition = "ils" in data
+            if not condition:
+                raise err.MissingParameterError()
+
+            ils = {}
+            for key in data["ils"]:
+                ils[key["question_id"]] = key["answer"]
+
+            required_answers_ils = [
+                "vv_2_f7",
+                "vv_5_f19",
+                "vv_7_f27",
+                "vv_10_f39",
+                "vv_11_f43",
+                "si_1_f2",
+                "si_4_f14",
+                "si_7_f26",
+                "si_10_f38",
+                "si_11_f42",
+                "ar_3_f9",
+                "ar_4_f13",
+                "ar_6_f21",
+                "ar_7_f25",
+                "ar_8_f29",
+                "sg_1_f4",
+                "sg_2_f8",
+                "sg_4_f16",
+                "sg_10_f40",
+                "sg_11_f44",
+            ]
+
+            for key in required_answers_ils:
+                if key not in ils.keys():
+                    raise err.MissingParameterError()
+
+            for answer in ils.values():
+                if not isinstance(answer, str):
+                    raise err.WrongParameterValueError()
+                if answer != "a" and answer != "b":
+                    raise err.NoValidParameterValueError()
+
+            result = services.create_questionnaire_ils(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                student_id=student_id,
+                ils_answers=ils,
+            )
+
+            status_code = 201
+            return jsonify(result), status_code
+
+# Add Questionnaire List K answers for a student
+@bp_lms.route("/lms/student/<student_id>/questionnaire/listk", methods=["POST"])
+@cross_origin(supports_credentials=True)
+@json_only()
+def questionnaire_list_k(data: Dict[str, Any], student_id):
+    method = request.method
+    match method:
+        case "POST":
+            condition = "list_k" in data
+            if not condition:
+                raise err.MissingParameterError()
+
+            list_k = {}
+            for key in data["list_k"]:
+                list_k[key["question_id"]] = key["answer"]
+
+            required_answers_list_k = [
+                "org1_f1",
+                "org2_f2",
+                "org3_f3",
+                "elab1_f4",
+                "elab2_f5",
+                "elab3_f6",
+                "crit_rev1_f7",
+                "crit_rev2_f8",
+                "crit_rev3_f9",
+                "rep1_f10",
+                "rep2_f11",
+                "rep3_f12",
+                "goal_plan1_f13",
+                "goal_plan2_f14",
+                "goal_plan3_f15",
+                "con1_f16",
+                "con2_f17",
+                "con3_f18",
+                "reg1_f19",
+                "reg2_f20",
+                "reg3_f21",
+                "att1_f22",
+                "att2_f23",
+                "att3_f24",
+                "eff1_f25",
+                "eff2_f26",
+                "eff3_f27",
+                "time1_f28",
+                "time2_f29",
+                "time3_f30",
+                "lrn_w_cls1_f31",
+                "lrn_w_cls2_f32",
+                "lrn_w_cls3_f33",
+                "lit_res1_f34",
+                "lit_res2_f35",
+                "lit_res3_f36",
+                "lrn_env1_f37",
+                "lrn_env2_f38",
+                "lrn_env3_f39",
+            ]
+
+            for key in required_answers_list_k:
+                if key not in list_k.keys():
+                    raise err.MissingParameterError()
+
+            for answer in list_k.values():
+                if not isinstance(answer, int):
+                    raise err.WrongParameterValueError()
+                if answer > 5 or answer < 0:
+                    raise err.NoValidParameterValueError()
+
+            result = services.create_questionnaire_list_k(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                student_id=student_id,
+                list_k_answers=list_k,
+            )
+
+            status_code = 201
+            return jsonify(result), status_code
+
 
 # ##### lms/course #####
 # Add a course
@@ -275,6 +410,7 @@ def course_administration(data: Dict[str, Any], course_id, lms_course_id):
             result = {"message": cons.deletion_message}
             status_code = 200
             return jsonify(result), status_code
+
 
 # Endpoint to get activity status for a student for a course
 @bp_lms.route(
