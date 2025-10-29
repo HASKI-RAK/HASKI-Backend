@@ -36,18 +36,20 @@ def add_badges_to_topic(
     uow: unit_of_work.AbstractUnitOfWork,
     course_id: int,
     topic_id: int,
-) -> None:
+) -> list[dict]:
     with uow:
         topic_elements = uow.topic_learning_element.get_topic_learning_element_by_topic(
             topic_id
         )
         classifications_in_topic = []
+        result = []
 
         for element in topic_elements:
             le_el = uow.learning_element.get_learning_element_by_id(
-                element["learning_element_id"]
-            ).serialize()
-            classifications_in_topic.append(le_el["classification"])
+                element.learning_element_id
+            )[0]
+            # possibly has to be refactored if direct member access is not allowed
+            classifications_in_topic.append(le_el.classification)
 
         classification_counter = Counter(classifications_in_topic)
 
@@ -62,6 +64,7 @@ def add_badges_to_topic(
                 topic_id=topic_id,
                 active=True
             )
+            result.append(new_badge)
             uow.badge.create_badge(new_badge)
 
         # badge for 100% score of all exercises in topic
@@ -74,6 +77,7 @@ def add_badges_to_topic(
                 topic_id=topic_id,
                 active=True
             )
+            result.append(new_badge)
             uow.badge.create_badge(new_badge)
 
         # badge for topics that have larger amounts of exercises
@@ -87,6 +91,7 @@ def add_badges_to_topic(
                 topic_id=topic_id,
                 active=True
             )
+            result.append(new_badge)
             uow.badge.create_badge(new_badge)
 
         # badge to encourage students to revisit A topic after two weeks
@@ -96,6 +101,7 @@ def add_badges_to_topic(
             topic_id=topic_id,
             active=True
         )
+        result.append(new_badge)
         uow.badge.create_badge(new_badge)
 
         # maybe something with reflektives Quiz
@@ -111,9 +117,12 @@ def add_badges_to_topic(
                 topic_id=topic_id,
                 active=True
             )
+            result.append(new_badge)
             uow.badge.create_badge(new_badge)
 
         uow.commit()
+        result = [badge.serialize() for badge in result]
+        return result
 
 
 def add_badges_for_student(
@@ -144,16 +153,17 @@ def add_badges_for_student(
             done_status = get_activity_status_for_student_for_course(
                 uow, course_id, lms_user_id
             )
-            topic_element_lms_ids = [element["lms_id"] for element in topic_elements]
+            topic_element_lms_ids = [element.lms_id for element in topic_elements]
         
             topic_done_status = list(filter(
-                lambda status: status["lms_id"] in topic_element_lms_ids,
+                lambda status: status["cmid"] in topic_element_lms_ids,
                 done_status
             ))
 
             oldest_done = min(
-                lambda x: x["completed_at"],
-                topic_done_status)["completed_at"] if topic_done_status else None
+                topic_done_status,
+                key=lambda x: x["timecompleted"]
+            )["timecompleted"] if topic_done_status else None
 
             time_between_visits = time_stamp - (oldest_done or time_stamp)
 
@@ -1056,6 +1066,7 @@ def create_user(
                     uow, student["id"], get_default_questionnaire()
                 )
                 user.role_id = role_course_creator["id"]
+                create_student_experience_points(uow, student["id"], 0)
             case const.role_student_string:
                 role = create_student(uow, user)
                 user.role_id = role["id"]
@@ -1063,6 +1074,7 @@ def create_user(
             case const.role_teacher_string:
                 role = create_teacher(uow, user)
                 user.role_id = role["id"]
+                create_student_experience_points(uow, role["id"], 0)
         result = user.serialize()
     return result
 
@@ -2449,6 +2461,7 @@ def get_course_leaderboard(
             course_id
         )
 
+        # student_badges is a list of tuples (student_id, badge_count)
         student_badges = []
         for id in student_ids:
             badges = uow.student_badge.get_student_badges_by_student_id_and_course_id(
@@ -2472,6 +2485,8 @@ def get_course_leaderboard(
         first_neighbour_index = None
         second_neighbour_index = None
 
+        # if there are at least 3 students, return the three current student
+        # and their neighbours
         if (len(student_badges) >= 3):
             if current_student_index == 0:
                 first_neighbour_index =  1
@@ -2484,6 +2499,7 @@ def get_course_leaderboard(
                 second_neighbour_index = current_student_index + 1
 
             return {
+                # index 0 is student id, index 1 is badge count
                     student_badges[current_student_index][0]:
                     student_badges[current_student_index][1],
                     student_badges[first_neighbour_index][0]:
@@ -2492,7 +2508,7 @@ def get_course_leaderboard(
                     student_badges[second_neighbour_index][1],
                 }
         else:
-            return {}
+            return dict(student_badges)
 
 
 def get_badges_by_course(

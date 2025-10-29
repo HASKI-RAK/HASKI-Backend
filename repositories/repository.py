@@ -1598,7 +1598,8 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         return (
             self.session.query(LM.StudentBadge)
             .join(DM.Badge, LM.StudentBadge.badge_id == DM.Badge.id)
-            .filter_by(student_id=student_id, course_id=course_id)
+            .filter(LM.StudentBadge.student_id == student_id)
+            .filter(DM.Badge.course_id == course_id)
             .all()
         )
 

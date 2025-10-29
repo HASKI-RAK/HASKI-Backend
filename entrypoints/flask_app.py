@@ -595,12 +595,6 @@ def post_topic(data: Dict[str, Any], course_id):
                 created_at,
             )
 
-            services.add_badges_to_topic(
-                unit_of_work.SqlAlchemyUnitOfWork(),
-                int(course_id),
-                topic["id"]
-            )
-
             status_code = 201
             return jsonify(topic), status_code
 
@@ -2630,13 +2624,28 @@ def check_and_assign_badges(
 @app.route("/course/<course_id>/student/<student_id>/leaderboard", methods=["GET"])
 @cross_origin(supports_credentials=True)
 def get_student_leaderboard(course_id: str, student_id: str):
-    result = services.get_student_leaderboard(
+    result = services.get_course_leaderboard(
         uow=unit_of_work.SqlAlchemyUnitOfWork(),
         course_id=int(course_id),
         student_id=int(student_id)
     )
     status_code = 200
     return jsonify(result), status_code
+
+
+@app.route("/course/<course_id>/topic/<topic_id>/badges", methods=["POST"])
+@cross_origin(supports_credentials=True)
+def add_badges_to_topic(
+    course_id: str, topic_id: str
+):
+    result = services.add_badges_to_topic(
+        uow=unit_of_work.SqlAlchemyUnitOfWork(),
+        course_id=int(course_id),
+        topic_id=int(topic_id)
+    )
+    status_code = 201
+    return jsonify(result), status_code
+
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
