@@ -2564,12 +2564,35 @@ def get_topic_badges(topic_id: str):
     return jsonify(result), status_code
 
 
+@app.route("/course/<course_id>/badge", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_course_badges(course_id: str):
+    result = services.get_badges_by_course(
+        uow=unit_of_work.SqlAlchemyUnitOfWork(),
+        course_id=int(course_id)
+    )
+    status_code = 200
+    return jsonify(result), status_code
+
+
 @app.route("/student/<student_id>/studentBadge", methods=["GET"])
 @cross_origin(supports_credentials=True)
 def get_student_badges(student_id: str):
     result = services.get_student_badges(
         uow=unit_of_work.SqlAlchemyUnitOfWork(),
         student_id=int(student_id)
+    )
+    status_code = 200
+    return jsonify(result), status_code
+
+
+@app.route("/student/<student_id>/topic/<topic_id>/StudentBadge", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_student_badges_by_topic(student_id: str, topic_id: str):
+    result = services.get_student_badges_by_topic(
+        uow=unit_of_work.SqlAlchemyUnitOfWork(),
+        student_id=int(student_id),
+        topic_id=int(topic_id)
     )
     status_code = 200
     return jsonify(result), status_code

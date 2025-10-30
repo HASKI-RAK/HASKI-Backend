@@ -2453,6 +2453,18 @@ def get_student_badges(
         return results
 
 
+def get_student_badges_by_student_id_and_course_id(
+    uow: unit_of_work.AbstractUnitOfWork, student_id: int, course_id: int
+) -> list[dict]:
+    with uow:
+        student_badges = uow.student_badge.get_student_badges_by_student_id_and_course_id(  # noqa: E501
+            student_id, course_id
+        )
+        results = []
+        for student_badge in student_badges:
+            results.append(student_badge.serialize())
+        return results
+
 def get_course_leaderboard(
     uow: unit_of_work.AbstractUnitOfWork, course_id: int, student_id: int
 ) -> dict:
