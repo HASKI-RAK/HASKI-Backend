@@ -1,10 +1,17 @@
-from flask import Blueprint
+from flask import Blueprint, make_response
 from flask_cors import cross_origin
 from flask import request, jsonify
 from service_layer import services, unit_of_work
 from utils.decorators import json_only
 from errors import errors as err
-from typing import Dict, Any
+from typing import Dict, Any, List, Union
+from datetime import datetime
+import http
+from utils.constants import (
+    role_admin_string,
+    role_course_creator_string,
+    role_teacher_string,
+)
 bp_user = Blueprint('user', __name__)
 
 #get learning elements for a course by user_id
@@ -40,6 +47,61 @@ def get_user_by_id(user_id, lms_user_id):
             )
             status_code = 200
             return jsonify(user), status_code
+
+
+# Update or Delete settings for user / delete is unused
+@bp_user.route("/user/<user_id>/<lms_user_id>/settings", methods=["PUT", "DELETE"])
+@cross_origin(supports_credentials=True)
+@json_only(ignore=["DELETE"])
+def settings_by_user_id_administration(data: Dict[str, Any], user_id, lms_user_id):
+    method = request.method
+    match method:
+        case "PUT":
+            condition1 = "theme" in data
+            condition2 = "pswd" in data
+            if condition1:
+                settings = services.update_settings_for_user(
+                    unit_of_work.SqlAlchemyUnitOfWork(),
+                    user_id,
+                    data["theme"],
+                    data["pswd"] if condition2 else None,
+                )
+                status_code = 201
+                return jsonify(settings), status_code
+            else:
+                raise err.MissingParameterError()
+        case "DELETE":
+            settings = services.reset_settings(
+                unit_of_work.SqlAlchemyUnitOfWork(), user_id
+            )
+            result = settings
+            status_code = 200
+            return jsonify(result), status_code
+
+# Post to a contact form
+@bp_user.route("/user/<user_id>/<lms_user_id>/contactform", methods=["POST"])
+@cross_origin(supports_credentials=True)
+@json_only()
+def contact_form(data: Dict[str, Any], user_id, lms_user_id):
+    for el in ["report_type", "report_topic", "report_description"]:
+        if el not in data:
+            raise err.MissingParameterError()
+
+    result = services.create_contact_form(
+        unit_of_work.SqlAlchemyUnitOfWork(),
+        user_id,
+        lms_user_id,
+        data["report_type"],
+        data["report_topic"],
+        data["report_description"],
+        datetime.today(),
+    )
+
+    if result is None:
+        raise err.ContactFormError()
+
+    status_code = 201
+    return jsonify(result), status_code
 
 
 # Post to calculate learning path for a user
@@ -130,6 +192,304 @@ def get_topics_by_student_and_course_id(user_id, lms_user_id, student_id, course
             status_code = 200
             return jsonify(result), status_code
 
+# Get learning path for a student
+@bp_user.route(
+    "/user/<user_id>/<lms_user_id>/student/<student_id>/course/"
+    + "<course_id>/topic/<topic_id>/learningPath",
+    methods=["GET"],
+)
+@cross_origin(supports_credentials=True)
+def get_learning_path(user_id, lms_user_id, student_id, course_id, topic_id):
+    method = request.method
+    match method:
+        case "GET":
+            result = services.get_learning_path(
+                unit_of_work.SqlAlchemyUnitOfWork(),
+                user_id,
+                lms_user_id,
+                student_id,
+                course_id,
+                topic_id,
+            )
+            status_code = 200
+            return jsonify(result), status_code
+
+# Create/Overwrite default learning path for all students in a university
+@bp_user.route(
+    "/user/<user_id>/<lms_user_id>/defaultLearningPath",
+    methods=["POST"],
+)
+@cross_origin(supports_credentials=True)
+@json_only()
+def create_default_learning_path(
+    data: List[Dict[str, Union[str, int, bool]]], user_id, lms_user_id
+):
+    method = request.method
+    match method:
+        case "POST":
+            condition1 = bool(data) and all(
+                (
+                    "classification" in item
+                    and "position" in item
+                    and "disabled" in item
+                    and "university" in item
+                )
+                for item in data
+            )
+            if not condition1:
+                return make_response(http.HTTPStatus.BAD_REQUEST)
+
+            user = services.get_user_by_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), user_id, lms_user_id
+            )
+            permitted_roles = [
+                role_admin_string,
+                role_course_creator_string,
+                role_teacher_string,
+            ]
+            condition2 = user["role"] in permitted_roles
+
+            if condition2:
+                condition3 = services.get_default_learning_path_by_university(
+                    unit_of_work.SqlAlchemyUnitOfWork(), user["university"]
+                )
+                if condition3:
+                    services.delete_default_learning_path_by_uni(
+                        unit_of_work.SqlAlchemyUnitOfWork(), user["university"]
+                    )
+                results = []
+                for item in data:
+                    results.append(
+                        services.create_default_learning_path_element(
+                            unit_of_work.SqlAlchemyUnitOfWork(),
+                            item["classification"],
+                            item["position"],
+                            item["disabled"],
+                            user["university"],
+                        )
+                    )
+                # Recalculate "Default" learningpaths for all students
+                courses = services.get_courses_by_uni(
+                    unit_of_work.SqlAlchemyUnitOfWork(), user["university"]
+                )
+                students = services.get_all_students(
+                    unit_of_work.SqlAlchemyUnitOfWork()
+                )
+                for student in students:
+                    student_user_id = services.get_user_by_id(
+                        unit_of_work.SqlAlchemyUnitOfWork(),
+                        student["user_id"],
+                        None,
+                    )
+                    for course in courses["courses"]:
+                        topics = services.get_topics_for_course_id(
+                            unit_of_work.SqlAlchemyUnitOfWork(), course["id"]
+                        )
+                        for topic in topics:
+                            current_topic = services.get_topic_by_id(
+                                unit_of_work.SqlAlchemyUnitOfWork(),
+                                None,
+                                None,
+                                course["id"],
+                                None,
+                                topic["id"],
+                            )
+                            results_learning_pahts = []
+                            if current_topic["contains_le"]:
+                                results_learning_pahts.append(
+                                    services.create_learning_path(
+                                        unit_of_work.SqlAlchemyUnitOfWork(),
+                                        student_user_id["id"],
+                                        student_user_id["lms_user_id"],
+                                        student["id"],
+                                        course["id"],
+                                        topic["id"],
+                                        "default",
+                                    )
+                                )
+                return make_response(jsonify(results), http.HTTPStatus.CREATED)
+
+
+# get default learning path for all students in a university
+@bp_user.route(
+    "/user/<user_id>/<lms_user_id>/defaultLearningPath",
+    methods=["GET"],
+)
+@cross_origin(supports_credentials=True)
+def get_default_learning_path(user_id, lms_user_id):
+    method = request.method
+    match method:
+        case "GET":
+            user = services.get_user_by_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), user_id, lms_user_id
+            )
+            result = services.get_default_learning_path_by_university(
+                unit_of_work.SqlAlchemyUnitOfWork(), user["university"]
+            )
+            return make_response(jsonify(result), http.HTTPStatus.OK)
+
+# Post to change the learning path algorithm for a student for a topic
+@bp_user.route(
+    "/user/<user_id>/<lms_user_id>/course/<course_id>"
+    + "/topic/<topic_id>/studentAlgorithm",
+    methods=["POST"],
+)
+@cross_origin(supports_credentials=True)
+def post_student_lp_le_algorithm(
+    data: Dict[str, Any], user_id: str, lms_user_id: int, course_id: int, topic_id: int
+):
+    method = request.method
+    match method:
+        case "POST":
+            condition1 = "algorithm_short_name" in data
+            if condition1:
+                condition2 = type(data["algorithm_short_name"]) is str
+                algorithm = services.get_learning_path_algorithm_by_short_name(
+                    unit_of_work.SqlAlchemyUnitOfWork(), data["algorithm_short_name"]
+                )
+                condition3 = algorithm != {}
+                if condition2 and condition3:
+                    student_id = services.get_student_by_user_id(
+                        unit_of_work.SqlAlchemyUnitOfWork(), user_id
+                    )["id"]
+                    student_lpath_le_algorithm = (
+                        services.get_student_lpath_le_algorithm(
+                            unit_of_work.SqlAlchemyUnitOfWork(), student_id, topic_id
+                        )
+                    )
+                    if student_lpath_le_algorithm == {}:
+                        result = services.add_student_lpath_le_algorithm(
+                            unit_of_work.SqlAlchemyUnitOfWork(),
+                            student_id,
+                            topic_id,
+                            algorithm["id"],
+                        )
+                        status_code = 201
+                        return jsonify(result), status_code
+                    else:
+                        result = services.update_student_lpath_le_algorithm(
+                            unit_of_work.SqlAlchemyUnitOfWork(),
+                            student_id,
+                            topic_id,
+                            algorithm["id"],
+                        )
+                        services.create_learning_path(
+                            unit_of_work.SqlAlchemyUnitOfWork(),
+                            user_id,
+                            lms_user_id,
+                            student_id,
+                            course_id,
+                            topic_id,
+                            data["algorithm_short_name"].lower(),
+                        )
+                        status_code = 201
+
+                        return jsonify(result), status_code
+                else:
+                    raise err.WrongParameterValueError()
+            else:
+                raise err.MissingParameterError()
+
+
+# get the algorithm selected by the student for a topic
+@bp_user.route("/user/<user_id>/topic/<topic_id>/studentAlgorithm", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_student_lp_le_algorithm(user_id: str, topic_id: str):
+    method = request.method
+    match method:
+        case "GET":
+            student_id = services.get_student_by_user_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), user_id
+            )["id"]
+            algorithm = services.get_student_lpath_le_algorithm(
+                unit_of_work.SqlAlchemyUnitOfWork(), student_id, topic_id
+            )
+            algorithm["short_name"] = services.get_learning_path_algorithm_by_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), algorithm["algorithm_id"]
+            )["short_name"]
+            status_code = 200
+            return jsonify(algorithm), status_code
+
+
+# Post to calculate rating for a learning element for a user
+@bp_user.route(
+    "/user/<user_id>/course/"
+    + "<course_id>/topic/<topic_id>/learningElement/<learning_element_lms_id>/rating",
+    methods=["POST"],
+)
+@cross_origin(supports_credentials=True)
+def post_calculate_rating(
+    user_id: str, course_id: str, topic_id: str, learning_element_lms_id: str
+):
+    match request.method:
+        case "POST":
+            # uow
+            uow = unit_of_work.SqlAlchemyUnitOfWork()
+
+            # Get user by user id.
+            user = services.get_user_by_id(uow=uow, user_id=user_id, lms_user_id=None)
+
+            # Get student by user id.
+            student = services.get_student_by_user_id(uow=uow, user_id=user_id)
+
+            # Get learning element by learning element id.
+            learning_element_by_lms = services.get_learning_element_by_lms_id(
+                uow=uow,
+                student_id=student["id"],
+                learning_element_lms_id=learning_element_lms_id,
+            )
+
+            learning_element = services.get_learning_element_by_id(
+                uow=uow,
+                user_id=user_id,
+                lms_user_id=user["lms_user_id"],
+                student_id=student["id"],
+                course_id=course_id,
+                topic_id=topic_id,
+                learning_element_id=learning_element_by_lms["id"],
+            )
+
+            # Init result and status code.
+            result = {}
+            status_code = 201
+
+            # Get the activity type.
+            activity_type = learning_element["activity_type"]
+            available_activity_types = ["h5pactivity"]
+
+            # Early return if the activity type is not supported.
+            if activity_type not in available_activity_types:
+                return jsonify(result), status_code
+
+            # Get classification of learning element id.
+            classification = learning_element["classification"]
+            available_classifications = ["ÜB", "SE"]
+
+            # Early return if the classification is not available.
+            if classification not in available_classifications:
+                return jsonify(result), status_code
+
+            # Get the attempt from moodle.
+            response = services.get_moodle_most_recent_attempt_by_user(
+                uow=uow,
+                course_id=int(course_id),
+                learning_element_id=int(learning_element_lms_id),
+                lms_user_id=str(user["lms_user_id"]),
+            )
+
+            # Update the ratings.
+            if response != {}:
+                result = services.update_ratings(
+                    uow=uow,
+                    student_id=student["id"],
+                    learning_element_id=int(learning_element["id"]),
+                    topic_id=int(topic_id),
+                    attempt_result=response.get("success", 0),
+                    timestamp=datetime.fromtimestamp(response["timecreated"]),
+                )
+
+            # Return result with status code.
+            return jsonify(result), status_code
 
 #get learning characteristics of a student
 @bp_user.route(
