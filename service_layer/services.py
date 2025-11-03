@@ -249,6 +249,41 @@ def add_badges_for_student(
                 new_badge = LM.StudentBadge(student_id, perfected_one_badge.id)
                 uow.student_badge.add_student_badge(new_badge)
                 created_badges.append(new_badge.serialize())
+
+        if(classification == const.abbreviation_se and
+           const.badge_self_evaluation in topic_badge_keys and
+            const.badge_self_evaluation not in student_badge_keys):
+            self_evaluation_elements = list(filter(
+                lambda element: element.classification == const.abbreviation_se,
+                topic_elements
+            ))
+            perfect_self_evaluations = False
+            for element in self_evaluation_elements:
+                response = get_moodle_h5p_activity_attempts(
+                    uow,
+                    course_id=course_id,
+                    learning_element_id=element.lms_id,
+                    lms_user_id=lms_user_id
+                )
+                if response != {} and response["usersattempts"][0]["attempts"]:
+                    element_attempts = response["usersattempts"][0]["attempts"]
+                    best_attempt = max(
+                        element_attempts, key=lambda attempt: attempt["rawscore"]
+                    )
+                    if best_attempt["rawscore"] == best_attempt["maxscore"]:
+                        perfect_self_evaluations = True
+                        break
+
+
+            if (perfect_self_evaluations):
+                # badge for perfecting a self-evaluation in topic
+                self_evaluation_badge = [
+                    badge for badge in available_badges
+                    if badge.variant_key == const.badge_self_evaluation
+                ][0]
+                new_badge = LM.StudentBadge(student_id, self_evaluation_badge.id)
+                uow.student_badge.add_student_badge(new_badge)
+                created_badges.append(new_badge.serialize())
         uow.commit()
         return created_badges
 
@@ -3351,6 +3386,23 @@ def update_student_experience_points(
               previous_attempts = list(
                   filter(lambda x: x["timecreated"] < start_time, sorted_attempts)
               )
+
+              if (current_attempts == []):
+                  total_xp = uow.student_experience_points.update_student_experience_points(  # noqa: E501
+                      student_id, base_xp[classification]
+                  )
+                  uow.commit()
+                  return {
+                      "total_xp": total_xp,
+                      "gained_xp": base_xp[classification],
+                      "base_xp": base_xp[classification],
+                      "rating_points": 0,
+                      "score_modifier": 0,
+                      "attempt_xp": 0,
+                      "success_modifier": 0,
+                      "wait_bonus": 0,
+                      "successful_attempts": 0
+                  }
 
               best_score_percentage = (
                   current_attempts[0]["rawscore"] / current_attempts[0]["maxscore"]
