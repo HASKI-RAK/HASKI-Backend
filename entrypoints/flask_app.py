@@ -2656,6 +2656,17 @@ def get_student_leaderboard(course_id: str, student_id: str):
     return jsonify(result), status_code
 
 
+@app.route("/student/<student_id>/leaderboard", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_student_experience_point_leaderboard(student_id: str):
+    result = services.get_experience_points_leaderboard(
+        uow=unit_of_work.SqlAlchemyUnitOfWork(),
+        student_id=int(student_id)
+    )
+    status_code = 200
+    return jsonify(result), status_code
+
+
 @app.route("/course/<course_id>/topic/<topic_id>/badges", methods=["POST"])
 @cross_origin(supports_credentials=True)
 def add_badges_to_topic(

@@ -2101,7 +2101,7 @@ def get_student_experience_points(
     uow: unit_of_work.AbstractUnitOfWork, student_id: int
 ) -> dict:
     with uow:
-        experience_points = uow.student_experience_points.get_student_experience_points(
+        experience_points = uow.student_experience_points.get_student_experience_points_by_student_id(
             student_id
         )
         if experience_points == []:
@@ -2521,6 +2521,42 @@ def get_course_leaderboard(
                 }
         else:
             return dict(student_badges)
+        
+
+def get_experience_points_leaderboard(
+        uow: unit_of_work.AbstractUnitOfWork, student_id: int) -> list[dict]:
+    with uow:
+        exp_points = uow.student_experience_points.get_student_experience_points()
+        # Sort by experience points
+        exp_points.sort(key=lambda x: x.experience_points, reverse=True)
+
+        # Find current student's position
+        current_student_index = None
+        for i, exp_point in enumerate(exp_points):
+            if exp_point.student_id == student_id:
+                current_student_index = i
+                break
+
+        if current_student_index is None:
+            return []
+        
+        if len(exp_points) <= 3:
+            return [exp_point.serialize() for exp_point in exp_points]
+        result = []
+        if current_student_index == 0:
+            result.append(exp_points[0].serialize())
+            result.append(exp_points[1].serialize())
+            result.append(exp_points[2].serialize())
+        elif current_student_index == len(exp_points) - 1:
+            result.append(exp_points[-3].serialize())
+            result.append(exp_points[-2].serialize())
+            result.append(exp_points[-1].serialize())
+        else:
+            result.append(exp_points[current_student_index - 1].serialize())
+            result.append(exp_points[current_student_index].serialize())
+            result.append(exp_points[current_student_index + 1].serialize())
+
+        return result
 
 
 def get_badges_by_course(

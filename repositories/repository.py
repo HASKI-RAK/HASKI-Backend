@@ -633,9 +633,13 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
     
     @abc.abstractmethod
-    def get_student_experience_points(
+    def get_student_experience_points_by_student_id(
         self, student_id: int
     ) -> LM.StudentExperiencePoints:
+        raise NotImplementedError
+    
+    @abc.abstractmethod
+    def get_student_experience_points(self) -> list[LM.StudentExperiencePoints]:
         raise NotImplementedError
     
     @abc.abstractmethod
@@ -1977,7 +1981,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         except Exception:
             raise err.DatabaseQueryError()
         
-    def get_student_experience_points(
+    def get_student_experience_points_by_student_id(
             self, student_id: int) -> list[LM.StudentExperiencePoints]:
         try:
             return (
@@ -1987,6 +1991,10 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             )
         except Exception:
             raise err.DatabaseQueryError()
+        
+    
+    def get_student_experience_points(self) -> list[LM.StudentExperiencePoints]:
+        return self.session.query(LM.StudentExperiencePoints).all()
 
     def get_student_learning_element(
         self, student_id, learning_element_id
@@ -2387,7 +2395,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
     def update_student_experience_points(
         self, student_id: int, earned_experience_points: int
         ) -> int:
-        entry = self.get_student_experience_points(student_id)
+        entry = self.get_student_experience_points_by_student_id(student_id)
         if len(entry) > 0:
             updated_xp = entry[0].experience_points + earned_experience_points
             self.session.query(LM.StudentExperiencePoints).filter_by(
