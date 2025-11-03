@@ -3401,7 +3401,8 @@ def update_student_experience_points(
                       "attempt_xp": 0,
                       "success_modifier": 0,
                       "wait_bonus": 0,
-                      "successful_attempts": 0
+                      "successful_attempts": 0,
+                      "new_attempt": False
                   }
 
               best_score_percentage = (
@@ -3445,7 +3446,8 @@ def update_student_experience_points(
                   "attempt_xp": 40 * log(len(current_attempts)),
                   "success_modifier": current_attempts[0]["success"],
                   "wait_bonus": wait_bonus,
-                  "successful_attempts": len(successful_attempts)
+                  "successful_attempts": len(successful_attempts),
+                  "new_attempt": True
               }
         else:
             total_xp = uow.student_experience_points.update_student_experience_points(
@@ -3461,7 +3463,8 @@ def update_student_experience_points(
                 "attempt_xp": 0,
                 "success_modifier": 0,
                 "wait_bonus": 0,
-                "successful_attempts": 0
+                "successful_attempts": 0,
+                "new_attempt": False
             }
 
 

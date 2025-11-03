@@ -1147,8 +1147,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         ) -> None:
         try:
             self.session.add(student_experience_points)
-        except Exception as e:
-            print(e)
+        except Exception:
             raise err.CreationError()
 
     def add_student_lpath_le_algorithm(
