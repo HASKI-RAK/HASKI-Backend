@@ -11,6 +11,7 @@ from repositories import repository
 
 class AbstractUnitOfWork(abc.ABC):
     admin: repository.AbstractRepository
+    badge: repository.AbstractRepository
     course: repository.AbstractRepository
     course_creator: repository.AbstractRepository
     course_creator_course: repository.AbstractRepository
@@ -41,7 +42,9 @@ class AbstractUnitOfWork(abc.ABC):
     news: repository.AbstractRepository
     logbuffer: repository.AbstractRepository
     student: repository.AbstractRepository
+    student_badge: repository.AbstractRepository
     student_course: repository.AbstractRepository
+    student_experience_points: repository.AbstractRepository
     student_learning_element: repository.AbstractRepository
     student_learning_element_visit: repository.AbstractRepository
     student_lpath_le_algorithm: repository.AbstractRepository
@@ -84,6 +87,7 @@ class SqlAlchemyUnitOfWork(AbstractUnitOfWork):  # pragma: no cover
     def __enter__(self):
         self.session = self.session_factory()
         self.admin = repository.SqlAlchemyRepository(self.session)
+        self.badge = repository.SqlAlchemyRepository(self.session)
         self.course = repository.SqlAlchemyRepository(self.session)
         self.course_creator = repository.SqlAlchemyRepository(self.session)
         self.course_creator_course = repository.SqlAlchemyRepository(self.session)
@@ -116,7 +120,9 @@ class SqlAlchemyUnitOfWork(AbstractUnitOfWork):  # pragma: no cover
         self.logbuffer = repository.SqlAlchemyRepository(self.session)
         self.default_learning_path = repository.SqlAlchemyRepository(self.session)
         self.student = repository.SqlAlchemyRepository(self.session)
+        self.student_badge = repository.SqlAlchemyRepository(self.session)
         self.student_course = repository.SqlAlchemyRepository(self.session)
+        self.student_experience_points = repository.SqlAlchemyRepository(self.session)
         self.student_learning_element = repository.SqlAlchemyRepository(self.session)
         self.student_learning_element_visit = repository.SqlAlchemyRepository(
             self.session

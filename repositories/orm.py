@@ -15,6 +15,16 @@ admin = Table(
     Column("user_id", Integer, nullable=False),
 )
 
+badge = Table(
+    "badge",
+    mapper_registry.metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("variant_key", String, nullable=False),
+    Column("course_id", Integer, nullable=True),
+    Column("topic_id", Integer, nullable=True),
+    Column("active", Boolean, nullable=False, default=True),
+)
+
 course = Table(
     "course",
     mapper_registry.metadata,
@@ -362,6 +372,14 @@ student = Table(
     Column("user_id", Integer, nullable=False),
 )
 
+student_badge = Table(
+    "student_badge",
+    mapper_registry.metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("student_id", Integer, nullable=False),
+    Column("badge_id", Integer, nullable=False),
+)
+
 student_course = Table(
     "student_course",
     mapper_registry.metadata,
@@ -376,6 +394,14 @@ student_course = Table(
     Column("processing_value", Integer, nullable=False),
     Column("understanding_dimension", String, nullable=False),
     Column("understanding_value", Integer, nullable=False),
+)
+
+student_experience_points = Table(
+    "student_experience_points",
+    mapper_registry.metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("student_id", Integer, nullable=False),
+    Column("experience_points", Integer, nullable=False),
 )
 
 student_learning_element = Table(
@@ -503,6 +529,10 @@ def start_mappers():
         admin,
     )
     mapper_registry.map_imperatively(
+        DM.Badge,
+        badge,
+    )
+    mapper_registry.map_imperatively(
         DM.Course,
         course,
     )
@@ -626,8 +656,18 @@ def start_mappers():
     )
 
     mapper_registry.map_imperatively(
+        LM.StudentBadge,
+        student_badge,
+    )
+
+    mapper_registry.map_imperatively(
         DM.StudentCourse,
         student_course,
+    )
+
+    mapper_registry.map_imperatively(
+        LM.StudentExperiencePoints,
+        student_experience_points,
     )
 
     mapper_registry.map_imperatively(

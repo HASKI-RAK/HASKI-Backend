@@ -1,5 +1,7 @@
 import os
 from datetime import datetime
+from math import log
+from collections import Counter
 
 import requests
 from flask.wrappers import Request
@@ -47,6 +49,283 @@ def add_learning_element_solution(
         result = learning_element_solution.serialize()
         return result
 
+
+def add_badges_to_topic(
+    uow: unit_of_work.AbstractUnitOfWork,
+    course_id: int,
+    topic_id: int,
+) -> list[dict]:
+    with uow:
+        topic_elements = uow.topic_learning_element.get_topic_learning_element_by_topic(
+            topic_id
+        )
+        classifications_in_topic = []
+        result = []
+
+        for element in topic_elements:
+            le_el = uow.learning_element.get_learning_element_by_id(
+                element.learning_element_id
+            )[0]
+            # possibly has to be refactored if direct member access is not allowed
+            classifications_in_topic.append(le_el.classification)
+
+        classification_counter = Counter(classifications_in_topic)
+
+        # badge when topic has at least three exercise
+        # student has to reach a perfect score in an exercise
+        if classification_counter[const.abbreviation_ec] > 2:
+            # possibly add multiple classifications to one number
+            # create do an excersie badge e.g. practice makes perfect
+            new_badge = DM.Badge(
+                variant_key=const.badge_perfect_one_exercise,
+                course_id=course_id,
+                topic_id=topic_id,
+                active=True
+            )
+            result.append(new_badge)
+            uow.badge.create_badge(new_badge)
+
+        # badge for 100% score of all exercises in topic
+        # always present when there is an exercise in the topic
+        if classification_counter[const.abbreviation_ec] > 0:
+            # maximum exercise badge e.g. topic master
+            new_badge = DM.Badge(
+                variant_key=const.badge_complete_exercises,
+                course_id=course_id,
+                topic_id=topic_id,
+                active=True
+            )
+            result.append(new_badge)
+            uow.badge.create_badge(new_badge)
+
+        # badge for topics that have larger amounts of exercises
+        # to give students a smaller goal to reach than 100% completion
+        # student has to successfully complete at least half of the exercises
+        if classification_counter[const.abbreviation_ec] > 5:
+            # intermediate badge e.g. keep going
+            new_badge = DM.Badge(
+                variant_key=const.badge_half_exercises,
+                course_id=course_id,
+                topic_id=topic_id,
+                active=True
+            )
+            result.append(new_badge)
+            uow.badge.create_badge(new_badge)
+
+        # badge to encourage students to revisit A topic after two weeks
+        new_badge = DM.Badge(
+            variant_key=const.badge_revisit_topic,
+            course_id=course_id,
+            topic_id=topic_id,
+            active=True
+        )
+        result.append(new_badge)
+        uow.badge.create_badge(new_badge)
+
+        # maybe something with reflektives Quiz
+
+        # badge to encourage self-evaluation elements since they are
+        # testing the students knowledge
+        # always present when there is a self-evaluation in the topic
+        if classification_counter[const.abbreviation_se] > 0:
+            # reach a perfect score in self-evaluation badge
+            new_badge = DM.Badge(
+                variant_key=const.badge_self_evaluation,
+                course_id=course_id,
+                topic_id=topic_id,
+                active=True
+            )
+            result.append(new_badge)
+            uow.badge.create_badge(new_badge)
+
+        uow.commit()
+        result = [badge.serialize() for badge in result]
+        return result
+
+
+def add_badges_for_student(
+    uow: unit_of_work.AbstractUnitOfWork,
+    topic_id: int,
+    student_id: str,
+    lms_user_id: str,
+    course_id: int,
+    time_stamp: int,
+    classification: str
+) -> list[dict]:
+    with uow:
+        available_badges = uow.badge.get_badges_by_topic(topic_id)
+        topic_elements = uow.learning_element.get_learning_elements_by_topic_id(
+            topic_id
+        )
+
+        student_badges = uow.student_badge.get_badge_by_student_id_and_topic_id(
+            student_id, topic_id
+        )
+
+        topic_badge_keys = [badge.variant_key for badge in available_badges]
+        student_badge_keys = [badge.variant_key for badge in student_badges]
+
+        created_badges = []
+
+        if(const.badge_revisit_topic not in student_badge_keys):
+            done_status = get_activity_status_for_student_for_course(
+                uow, course_id, lms_user_id
+            )
+            topic_element_lms_ids = [element.lms_id for element in topic_elements]
+
+            topic_done_status = list(filter(
+                lambda status: status["cmid"] in topic_element_lms_ids,
+                done_status
+            ))
+
+            oldest_done = min(
+                topic_done_status,
+                key=lambda x: x["timecompleted"]
+            )["timecompleted"] if topic_done_status else None
+
+            time_between_visits = time_stamp - (oldest_done or time_stamp)
+
+            if time_between_visits >= 1209600:
+                # badge for revisiting the topic after two weeks
+                revisit_badge = [
+                    badge for badge in available_badges
+                    if badge.variant_key == const.badge_revisit_topic][0]
+                new_badge = LM.StudentBadge(student_id, revisit_badge.id)
+                uow.student_badge.add_student_badge(new_badge)
+                created_badges.append(new_badge.serialize())
+
+        if(classification == const.abbreviation_ec and
+            const.badge_complete_exercises not in student_badge_keys):
+            exercise_elements = list(filter(
+                lambda element: element.classification == const.abbreviation_ec,
+                topic_elements
+            ))
+            perfect_exercises = 0
+            successful_exercises = 0
+            for element in exercise_elements:
+                response = get_moodle_h5p_activity_attempts(
+                    uow,
+                    course_id=course_id,
+                    learning_element_id=element.lms_id,
+                    lms_user_id=lms_user_id
+                )
+                if response != {} and response["usersattempts"][0]["attempts"]:
+                    element_attempts = response["usersattempts"][0]["attempts"]
+                    best_attempt = max(
+                        element_attempts, key=lambda attempt: attempt["rawscore"]
+                    )
+                    perfect_exercises += int(
+                        best_attempt["rawscore"] == best_attempt["maxscore"]
+                    )
+                    # moodle stores success as integer 0 or 1
+                    successful_exercises += best_attempt["success"]
+
+            completion_badge_condition = (
+                const.badge_complete_exercises in topic_badge_keys and
+                const.badge_complete_exercises not in student_badge_keys and
+                perfect_exercises == len(exercise_elements)
+            )
+            if completion_badge_condition:
+                # badge for completing all exercises in topic
+                completion_badge = [
+                    badge for badge in available_badges
+                    if badge.variant_key == const.badge_complete_exercises
+                ][0]
+                new_badge = LM.StudentBadge(student_id, completion_badge.id)
+                uow.student_badge.add_student_badge(
+                    new_badge
+                )
+                created_badges.append(new_badge.serialize())
+
+            half_badge_condition = (
+                const.badge_half_exercises in topic_badge_keys and
+                const.badge_half_exercises not in student_badge_keys and
+                successful_exercises >= (len(exercise_elements) / 2)
+            )
+
+            if half_badge_condition:
+                # badge for completing half of the exercises in topic
+                half_badge = [
+                    badge for badge in available_badges
+                    if badge.variant_key == const.badge_half_exercises
+                ][0]
+                new_badge = LM.StudentBadge(student_id, half_badge.id)
+                uow.student_badge.add_student_badge(new_badge)
+                created_badges.append(new_badge.serialize())
+
+            perfected_one_badge_condition = (
+                const.badge_perfect_one_exercise in topic_badge_keys and
+                const.badge_perfect_one_exercise not in student_badge_keys and
+                perfect_exercises >= 1
+            )
+            if perfected_one_badge_condition:
+                # badge for perfecting one exercise in topic
+                perfected_one_badge = [
+                    badge for badge in available_badges
+                    if badge.variant_key == const.badge_perfect_one_exercise
+                ][0]
+                new_badge = LM.StudentBadge(student_id, perfected_one_badge.id)
+                uow.student_badge.add_student_badge(new_badge)
+                created_badges.append(new_badge.serialize())
+
+        if(classification == const.abbreviation_se and
+           const.badge_self_evaluation in topic_badge_keys and
+            const.badge_self_evaluation not in student_badge_keys):
+            self_evaluation_elements = list(filter(
+                lambda element: element.classification == const.abbreviation_se,
+                topic_elements
+            ))
+            perfect_self_evaluations = False
+            for element in self_evaluation_elements:
+                response = get_moodle_h5p_activity_attempts(
+                    uow,
+                    course_id=course_id,
+                    learning_element_id=element.lms_id,
+                    lms_user_id=lms_user_id
+                )
+                if response != {} and response["usersattempts"][0]["attempts"]:
+                    element_attempts = response["usersattempts"][0]["attempts"]
+                    best_attempt = max(
+                        element_attempts, key=lambda attempt: attempt["rawscore"]
+                    )
+                    if best_attempt["rawscore"] == best_attempt["maxscore"]:
+                        perfect_self_evaluations = True
+                        break
+
+
+            if (perfect_self_evaluations):
+                # badge for perfecting a self-evaluation in topic
+                self_evaluation_badge = [
+                    badge for badge in available_badges
+                    if badge.variant_key == const.badge_self_evaluation
+                ][0]
+                new_badge = LM.StudentBadge(student_id, self_evaluation_badge.id)
+                uow.student_badge.add_student_badge(new_badge)
+                created_badges.append(new_badge.serialize())
+        uow.commit()
+        return created_badges
+
+
+def add_global_badge_for_student(
+    uow: unit_of_work.AbstractUnitOfWork,
+    student_id: int,
+    badge_variant_key: str
+) -> dict:
+    with uow:
+        badges = uow.badge.get_badges_by_variant_key(badge_variant_key)
+        if not badges:
+            return {}
+
+        student_badges = uow.student_badge.get_student_badges(
+            student_id, badges[0].id
+        )
+        if student_badges:
+            raise err.AlreadyExisting()
+
+        new_student_badge = LM.StudentBadge(student_id, badges[0].id)
+        uow.student_badge.add_student_badge(new_student_badge)
+        uow.commit()
+        return new_student_badge.serialize()
 
 def add_student_to_course(
     uow: unit_of_work.AbstractUnitOfWork, student_id, course_id
@@ -196,6 +475,18 @@ def create_admin(uow: unit_of_work.AbstractUnitOfWork, user) -> dict:
         result = admin.serialize()
         return result
 
+
+def create_global_badge(
+    uow: unit_of_work.AbstractUnitOfWork, variant_key: str
+) -> dict:
+    with uow:
+        badge = DM.Badge(
+            variant_key=variant_key, course_id=None, topic_id=None, active=True
+        )
+        uow.badge.create_global_badge(badge)
+        uow.commit()
+        result = badge.serialize()
+        return result
 
 def create_course(
     uow: unit_of_work.AbstractUnitOfWork,
@@ -828,12 +1119,15 @@ def create_user(
                     uow, student["id"], get_default_questionnaire()
                 )
                 user.role_id = role_course_creator["id"]
+                create_student_experience_points(uow, student["id"], 0)
             case const.role_student_string:
                 role = create_student(uow, user)
                 user.role_id = role["id"]
+                create_student_experience_points(uow, role["id"], 0)
             case const.role_teacher_string:
                 role = create_teacher(uow, user)
                 user.role_id = role["id"]
+                create_student_experience_points(uow, role["id"], 0)
         result = user.serialize()
     return result
 
@@ -860,6 +1154,20 @@ def create_news(
         result = news.serialize()
         return result
 
+def create_student_experience_points(
+    uow: unit_of_work.AbstractUnitOfWork,
+    student_id: int,
+    experience_points: int,
+):
+    with uow:
+        student_experience_points = LM.StudentExperiencePoints(
+            student_id=student_id,
+            experience_points=experience_points
+        )
+        uow.student_experience_points.create_student_experience_points(
+            student_experience_points)
+        uow.commit()
+        return student_experience_points.serialize()
 
 def create_student_rating(
     uow: unit_of_work.AbstractUnitOfWork,
@@ -1259,6 +1567,13 @@ def delete_student_course(
 ):
     with uow:
         uow.student_course.delete_student_course(student_id, course_id)
+        uow.commit()
+
+def delete_student_experience_points(
+    uow: unit_of_work.AbstractUnitOfWork, student_id
+) -> None:
+    with uow:
+        uow.student_experience_points.delete_student_experience_points(student_id)
         uow.commit()
 
 
@@ -1850,6 +2165,20 @@ def delete_default_learning_path_by_uni(
         return {}
 
 
+def get_student_experience_points(
+    uow: unit_of_work.AbstractUnitOfWork, student_id: int
+) -> dict:
+    with uow:
+        experience_points = uow.student_experience_points.get_student_experience_points_by_student_id(
+            student_id
+        )
+        if experience_points == []:
+            result = {}
+        else:
+            result = experience_points[0].serialize()
+        return result
+
+
 def get_sub_topic_by_topic_id(
     uow: unit_of_work.AbstractUnitOfWork,
     user_id,
@@ -2180,6 +2509,142 @@ def create_contact_form(
             uow.commit()
             result = contact_form.serialize()
         return result
+
+
+def get_student_badges(
+    uow: unit_of_work.AbstractUnitOfWork, student_id: int) -> list[dict]:
+    with uow:
+        student_badges = uow.student_badge.get_student_badges(student_id)
+        results = []
+        for student_badge in student_badges:
+            results.append(student_badge.serialize())
+        return results
+
+
+def get_student_badges_by_student_id_and_course_id(
+    uow: unit_of_work.AbstractUnitOfWork, student_id: int, course_id: int
+) -> list[dict]:
+    with uow:
+        student_badges = uow.student_badge.get_student_badges_by_student_id_and_course_id(  # noqa: E501
+            student_id, course_id
+        )
+        results = []
+        for student_badge in student_badges:
+            results.append(student_badge.serialize())
+        return results
+
+def get_course_leaderboard(
+    uow: unit_of_work.AbstractUnitOfWork, course_id: int, student_id: int
+) -> dict:
+    with uow:
+        student_ids = uow.student_course.get_unique_student_ids_from_student_course(
+            course_id
+        )
+
+        # student_badges is a list of tuples (student_id, badge_count)
+        student_badges = []
+        for id in student_ids:
+            badges = uow.student_badge.get_student_badges_by_student_id_and_course_id(
+                id, course_id
+            )
+            student_badges.append((id, len(badges)))
+
+        # Sort by badge count
+        student_badges.sort(key=lambda x: x[1], reverse=False)
+
+        # Find current student's position
+        current_student_index = None
+        for i, (id, _) in enumerate(student_badges):
+            if id == student_id:
+                current_student_index = i
+                break
+
+        if current_student_index is None:
+            return {}  # Student not found in course
+
+        first_neighbour_index = None
+        second_neighbour_index = None
+
+        # if there are at least 3 students, return the three current student
+        # and their neighbours
+        if (len(student_badges) >= 3):
+            if current_student_index == 0:
+                first_neighbour_index =  1
+                second_neighbour_index =  2
+            elif current_student_index == len(student_badges) - 1:
+                first_neighbour_index = current_student_index - 1
+                second_neighbour_index = current_student_index - 2
+            else:
+                first_neighbour_index = current_student_index - 1
+                second_neighbour_index = current_student_index + 1
+
+            return {
+                # index 0 is student id, index 1 is badge count
+                    student_badges[current_student_index][0]:
+                    student_badges[current_student_index][1],
+                    student_badges[first_neighbour_index][0]:
+                    student_badges[first_neighbour_index][1],
+                    student_badges[second_neighbour_index][0]:
+                    student_badges[second_neighbour_index][1],
+                }
+        else:
+            return dict(student_badges)
+
+
+def get_experience_points_leaderboard(
+        uow: unit_of_work.AbstractUnitOfWork, student_id: int) -> list[dict]:
+    with uow:
+        exp_points = uow.student_experience_points.get_student_experience_points()
+        # Sort by experience points
+        exp_points.sort(key=lambda x: x.experience_points, reverse=True)
+
+        # Find current student's position
+        current_student_index = None
+        for i, exp_point in enumerate(exp_points):
+            if exp_point.student_id == student_id:
+                current_student_index = i
+                break
+
+        if current_student_index is None:
+            return []
+
+        if len(exp_points) <= 3:
+            return [exp_point.serialize() for exp_point in exp_points]
+        result = []
+        if current_student_index == 0:
+            result.append(exp_points[0].serialize())
+            result.append(exp_points[1].serialize())
+            result.append(exp_points[2].serialize())
+        elif current_student_index == len(exp_points) - 1:
+            result.append(exp_points[-3].serialize())
+            result.append(exp_points[-2].serialize())
+            result.append(exp_points[-1].serialize())
+        else:
+            result.append(exp_points[current_student_index - 1].serialize())
+            result.append(exp_points[current_student_index].serialize())
+            result.append(exp_points[current_student_index + 1].serialize())
+
+        return result
+
+
+def get_badges_by_course(
+    uow: unit_of_work.AbstractUnitOfWork, course_id: int) -> list[dict]:
+    with uow:
+        badges = uow.badge.get_badges_by_course(course_id)
+        results = []
+        for badge in badges:
+            results.append(badge.serialize())
+        return results
+
+
+def get_badges_by_topic(
+    uow: unit_of_work.AbstractUnitOfWork, topic_id: int) -> list[dict]:
+    with uow:
+        badges = uow.badge.get_badges_by_topic(topic_id)
+        results = []
+        for badge in badges:
+            results.append(badge.serialize())
+        return results
 
 
 def get_news(
@@ -2719,6 +3184,63 @@ def get_moodle_most_recent_attempt_by_user(
         return {}
 
 
+def update_badges_for_topic(
+    uow: unit_of_work.AbstractUnitOfWork,
+    topic_id,
+    course_id
+) -> list[dict]:
+    with uow:
+        existing_badges = uow.badge.get_badges_by_topic(topic_id)
+        result = []
+
+        badges_by_variant_key = {}
+        for badge in existing_badges:
+            badges_by_variant_key[badge.variant_key] = badge
+
+        topic_elements = uow.topic_learning_element.get_topic_learning_element_by_topic(
+            topic_id
+        )
+        classifications_in_topic = []
+
+        for element in topic_elements:
+            le_el = uow.learning_element.get_learning_element_by_id(
+                element["learning_element_id"]
+            ).serialize()
+            classifications_in_topic.append(le_el["classification"])
+
+        classification_counter = Counter(classifications_in_topic)
+
+        conditons = {
+            const.badge_perfect_one_exercise:
+            classification_counter[const.abbreviation_ec] > 2,
+            const.badge_complete_exercises:
+            classification_counter[const.abbreviation_ec] > 0,
+            const.badge_half_exercises:
+            classification_counter[const.abbreviation_ec] > 5,
+            const.badge_self_evaluation:
+            classification_counter[const.abbreviation_se] > 0,
+        }
+
+
+
+        for badge_key, condition in conditons.items():
+            if condition and badge_key not in badges_by_variant_key.keys():
+                badge = DM.Badge(
+                    variant_key=badge_key,
+                    course_id=course_id,
+                    topic_id=topic_id,
+                    active=True
+                )
+                uow.badge.create_badge(badge)
+                result.append(badge.serialize())
+            elif not condition and badge_key in badges_by_variant_key.keys():
+                uow.badge.update_badge(
+                    badges_by_variant_key[badge_key].id, active=False
+                )
+        uow.commit()
+        return result
+
+
 def update_course(
     uow: unit_of_work.AbstractUnitOfWork,
     course_id,
@@ -2879,6 +3401,150 @@ def update_settings_for_user(
         uow.settings.update_settings(user_id, settings)
         uow.commit()
         return settings.serialize()
+
+
+def update_student_experience_points(
+    uow: unit_of_work.AbstractUnitOfWork,
+    student_id: int,
+    course_id: int,
+    learning_element_id: int,
+    topic_id: int,
+    user_lms_id: str,
+    classification: str,
+    start_time: int
+) -> dict:
+    base_xp = {"ÜB": 50,  "SE": 100, "other": 50}
+    wait_bonus = 1
+    with uow:
+        this_element_ratings = get_learning_element_ratings_on_topic(
+            uow,
+            learning_element_id,
+            topic_id
+        )
+
+        all_ratings = get_learning_element_ratings(uow)
+
+        if all_ratings != [] and this_element_ratings != []:
+            sorted_ratings = {}
+            for rating in this_element_ratings:
+                if rating["learning_element_id"] not in sorted_ratings.keys():
+                    sorted_ratings[rating["learning_element_id"]] = []
+                sorted_ratings[rating["learning_element_id"]].append(
+                    rating["rating_value"]
+                )
+            average_rating = 0
+            highest_rating = 0
+            lowest_rating = 1500
+            for ratings in sorted_ratings.values():
+                max_rating = max(ratings)
+                average_rating += max_rating
+                highest_rating = max(highest_rating, max_rating)
+                lowest_rating = min(lowest_rating, *ratings)
+            average_rating = average_rating / len(sorted_ratings.keys())
+            # normalize average rating to be between 0 and 1
+            average_rating = (average_rating - lowest_rating
+                              ) / (highest_rating - lowest_rating)
+            # points for rating will be between 20 and 80
+            rating_points = (average_rating * 60) + 20
+        else:
+            rating_points = 50
+
+        if classification in ["ÜB", "SE"]:
+          response = get_moodle_h5p_activity_attempts(
+              uow,
+              course_id,
+              learning_element_id,
+              user_lms_id
+          )
+          if response != {} and response["usersattempts"][0]["attempts"]:
+              attempts = response["usersattempts"][0]["attempts"]
+              sorted_attempts = sorted(
+                  attempts,
+                  key=lambda x: x["timecreated"],
+                  reverse=True
+                )
+              current_attempts = list(
+                  filter(lambda x: x["timecreated"] >= start_time, sorted_attempts))
+              previous_attempts = list(
+                  filter(lambda x: x["timecreated"] < start_time, sorted_attempts)
+              )
+
+              if (current_attempts == []):
+                  total_xp = uow.student_experience_points.update_student_experience_points(  # noqa: E501
+                      student_id, base_xp[classification]
+                  )
+                  uow.commit()
+                  return {
+                      "total_xp": total_xp,
+                      "gained_xp": base_xp[classification],
+                      "base_xp": base_xp[classification],
+                      "rating_points": 0,
+                      "score_modifier": 0,
+                      "attempt_xp": 0,
+                      "success_modifier": 0,
+                      "wait_bonus": 0,
+                      "successful_attempts": 0
+                  }
+
+              best_score_percentage = (
+                  current_attempts[0]["rawscore"] / current_attempts[0]["maxscore"]
+              )
+
+              successful_attempts = list(
+                  filter(lambda x: x["success"] == 1, previous_attempts)
+              )
+              time_between_attempts = 0
+              if previous_attempts != [] and successful_attempts != []:
+                  time_between_attempts = (
+                      current_attempts[0]["timecreated"] -
+                      max(
+                          successful_attempts,
+                          key=lambda x: x["timecreated"]
+                        )["timecreated"]
+                  )
+              wait_bonus = min((time_between_attempts / 259200), 2.5) or 1
+
+              # base experience points modified with difficulty
+              experience_points = (base_xp[classification] + rating_points)
+              # multiplied with the percentage of the best score in current attempts
+              experience_points *= best_score_percentage
+              # give points for other attempts in this session
+              experience_points += 40 * log(len(current_attempts))
+              #  give points for success scaled with the time
+              #  elapsed since last successful attempt
+              experience_points += current_attempts[0]["success"] * 200 * wait_bonus
+
+              total_xp = uow.student_experience_points.update_student_experience_points(
+                  student_id, experience_points
+              )
+              uow.commit()
+              return {
+                  "total_xp": total_xp,
+                  "gained_xp": experience_points,
+                  "base_xp": base_xp[classification],
+                  "rating_points": rating_points,
+                  "score_modifier": best_score_percentage,
+                  "attempt_xp": 40 * log(len(current_attempts)),
+                  "success_modifier": current_attempts[0]["success"],
+                  "wait_bonus": wait_bonus,
+                  "successful_attempts": len(successful_attempts)
+              }
+        else:
+            total_xp = uow.student_experience_points.update_student_experience_points(
+                student_id, base_xp["other"]
+            )
+            uow.commit()
+            return {
+                "total_xp": total_xp,
+                "gained_xp": base_xp["other"],
+                "base_xp": base_xp["other"],
+                "rating_points": 0,
+                "score_modifier": 0,
+                "attempt_xp": 0,
+                "success_modifier": 0,
+                "wait_bonus": 0,
+                "successful_attempts": 0
+            }
 
 
 def update_student_learning_element(

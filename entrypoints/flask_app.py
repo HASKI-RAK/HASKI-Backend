@@ -2575,6 +2575,195 @@ def get_learning_element_recommendation(user_id: str, course_id: str, topic_id: 
     status_code = 200
     return jsonify(results), status_code
 
+# entry point to create experience points manually for a student
+# mostly for testing purposes
+@app.route("/student/<student_id>/create_initial_xp", methods=["POST"])
+@cross_origin(supports_credentials=True)
+def create_initial_student_xp(student_id: str):
+    match request.method:
+        case "POST":
+            result = services.create_student_experience_points(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                student_id=int(student_id),
+                experience_points=0
+            )
+            status_code = 201
+            return jsonify(result), status_code
+
+@app.route("/student/<student_id>/xp", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_student_xp(student_id: str):
+    result = services.get_student_experience_points(
+        uow=unit_of_work.SqlAlchemyUnitOfWork(),
+        student_id=int(student_id),
+    )
+    status_code = 200
+    return jsonify(result), status_code
+
+
+@app.route("/student/<student_id>/calculate_xp", methods=["POST"])
+@cross_origin(supports_credentials=True)
+@json_only()
+def calculate_student_xp(
+    data: Dict[str, Any], student_id: str):
+    data_present = data is not None
+    if not data_present:
+        raise err.MissingParameterError()
+    
+    course_id_present = "course_id" in data
+    learning_element_id_present = "learning_element_id" in data
+    user_lms_id_present = "user_lms_id" in data
+    topic_id_present = "topic_id" in data
+    classification_present = "classification" in data
+    start_time_present = "start_time" in data
+
+    if not (course_id_present and learning_element_id_present
+            and user_lms_id_present and topic_id_present
+            and classification_present and start_time_present
+            ):
+        raise err.MissingParameterError()
+    
+    result = services.update_student_experience_points(
+        uow=unit_of_work.SqlAlchemyUnitOfWork(),
+        student_id=int(student_id),
+        course_id=int(data["course_id"]),
+        learning_element_id=int(data["learning_element_id"]),
+        topic_id=int(data["topic_id"]),
+        user_lms_id=str(data["user_lms_id"]),
+        classification=str(data["classification"]),
+        start_time=int(data["start_time"])
+    )
+    status_code = 200
+    return jsonify(result), status_code
+
+
+@app.route("/topic/<topic_id>/badge", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_topic_badges(topic_id: str):
+    result = services.get_badges_by_topic(
+        uow=unit_of_work.SqlAlchemyUnitOfWork(),
+        topic_id=int(topic_id)
+    )
+    status_code = 200
+    return jsonify(result), status_code
+
+
+@app.route("/course/<course_id>/badge", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_course_badges(course_id: str):
+    result = services.get_badges_by_course(
+        uow=unit_of_work.SqlAlchemyUnitOfWork(),
+        course_id=int(course_id)
+    )
+    status_code = 200
+    return jsonify(result), status_code
+
+
+@app.route("/student/<student_id>/studentBadge", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_student_badges(student_id: str):
+    result = services.get_student_badges(
+        uow=unit_of_work.SqlAlchemyUnitOfWork(),
+        student_id=int(student_id)
+    )
+    status_code = 200
+    return jsonify(result), status_code
+
+
+@app.route("/student/<student_id>/topic/<topic_id>/StudentBadge", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_student_badges_by_topic(student_id: str, topic_id: str):
+    result = services.get_student_badges_by_topic(
+        uow=unit_of_work.SqlAlchemyUnitOfWork(),
+        student_id=int(student_id),
+        topic_id=int(topic_id)
+    )
+    status_code = 200
+    return jsonify(result), status_code
+
+
+@app.route("/student/<student_id>/badgeCheck", methods=["POST"])
+@cross_origin(supports_credentials=True)
+@json_only()
+def check_and_assign_badges(
+    data: Dict[str, Any], student_id: str):
+    data_present = data is not None
+    if not data_present:
+        raise err.MissingParameterError()
+    
+    course_id_present = "course_id" in data
+    topic_id_present = "topic_id" in data
+    lms_user_id_present = "lms_user_id" in data
+    time_stamp_present = "timestamp" in data
+    classification_present = "classification" in data
+
+
+    if not (course_id_present and topic_id_present and
+            lms_user_id_present and time_stamp_present and
+            classification_present):
+        raise err.MissingParameterError()
+    
+    data_types_correct = (
+        type(data["course_id"]) is int and
+        type(data["topic_id"]) is int and
+        type(data["lms_user_id"]) is str and
+        type(data["timestamp"]) is int and
+        type(data["classification"]) is str
+    )
+
+    if not data_types_correct:
+        raise err.WrongParameterValueError()
+
+    result = services.add_badges_for_student(
+        uow=unit_of_work.SqlAlchemyUnitOfWork(),
+        topic_id=int(data["topic_id"]),
+        student_id=int(student_id),
+        lms_user_id=str(data["lms_user_id"]),
+        course_id=int(data["course_id"]),
+        time_stamp=int(data["timestamp"]),
+        classification=str(data["classification"])
+    )
+
+    status_code = 200
+    return jsonify(result), status_code
+
+
+@app.route("/course/<course_id>/student/<student_id>/leaderboard", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_student_leaderboard(course_id: str, student_id: str):
+    result = services.get_course_leaderboard(
+        uow=unit_of_work.SqlAlchemyUnitOfWork(),
+        course_id=int(course_id),
+        student_id=int(student_id)
+    )
+    status_code = 200
+    return jsonify(result), status_code
+
+
+@app.route("/student/<student_id>/leaderboard", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_student_experience_point_leaderboard(student_id: str):
+    result = services.get_experience_points_leaderboard(
+        uow=unit_of_work.SqlAlchemyUnitOfWork(),
+        student_id=int(student_id)
+    )
+    status_code = 200
+    return jsonify(result), status_code
+
+
+@app.route("/course/<course_id>/topic/<topic_id>/badges", methods=["POST"])
+@cross_origin(supports_credentials=True)
+def add_badges_to_topic(
+    course_id: str, topic_id: str
+):
+    result = services.add_badges_to_topic(
+        uow=unit_of_work.SqlAlchemyUnitOfWork(),
+        course_id=int(course_id),
+        topic_id=int(topic_id)
+    )
+    status_code = 201
+    return jsonify(result), status_code
+
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)

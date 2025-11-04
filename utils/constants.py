@@ -94,5 +94,10 @@ ils_questionnaire_prefill = {
     "vv_9_f35": "b",
 }
 
+badge_perfect_one_exercise = "perfect_one_exercise"
+badge_complete_exercises = "complete_exercises"
+badge_half_exercises = "half_exercises"
+badge_revisit_topic = "revisit_topic"
+badge_self_evaluation = "perfect_self_evaluation"
 moodle_rest = "/webservice/rest/server.php"
 rest_format = "&moodlewsrestformat=json"

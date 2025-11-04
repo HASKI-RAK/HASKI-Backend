@@ -421,3 +421,26 @@ class LearningElementSolution:
             "solution_lms_id": self.solution_lms_id,
             "activity_type": self.activity_type,
         }
+
+
+class Badge:
+    def __init__(self,
+                 variant_key,
+                 course_id,
+                 topic_id,
+                 active=True
+                 ) -> None:
+        self.id = None
+        self.variant_key = variant_key
+        self.course_id = course_id
+        self.topic_id = topic_id
+        self.active = active
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "variant_key": self.variant_key,
+            "course_id": self.course_id,
+            "topic_id": self.topic_id,
+            "active": self.active,
+        }
