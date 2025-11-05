@@ -196,12 +196,15 @@ def add_badges_for_student(
                     best_attempt = max(
                         element_attempts, key=lambda attempt: attempt["rawscore"]
                     )
-                    perfect_exercises += int(
-                        best_attempt["rawscore"] == best_attempt["maxscore"]
+                    max_score = int(
+                        best_attempt.get("rawscore", 0) == best_attempt.get("maxscore", 0)
                     )
+                    perfect_exercises += max_score
                     # moodle stores success as integer 0 or 1
-                    successful_exercises += best_attempt.get("success", 0)
-            
+                    success = best_attempt.get("success", 0)
+                    if(success == 1 or max_score == 1):
+                      successful_exercises += 1
+
             completion_badge_condition = (
                 const.badge_complete_exercises in topic_badge_keys and
                 const.badge_complete_exercises not in student_badge_keys and
