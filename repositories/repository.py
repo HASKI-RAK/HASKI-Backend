@@ -811,7 +811,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     @abc.abstractmethod
     def update_student_experience_points(
         self, student_id: int, experience_points: int
-    ) -> LM.StudentExperiencePoints:
+    ) -> int:
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -1169,8 +1169,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         ) -> None:
         try:
             self.session.add(student_experience_points)
-        except Exception as e:
-            print(e)
+        except Exception:
             raise err.CreationError()
 
     def add_student_lpath_le_algorithm(

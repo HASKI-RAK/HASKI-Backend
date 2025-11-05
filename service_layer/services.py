@@ -3456,7 +3456,7 @@ def update_student_experience_points(
               learning_element_id,
               user_lms_id
           )
-          if response != {} and response["usersattempts"][0]["attempts"]:
+          if response != {} or response["usersattempts"][0]["attempts"]:
               attempts = response["usersattempts"][0]["attempts"]
               sorted_attempts = sorted(
                   attempts,
@@ -3483,7 +3483,8 @@ def update_student_experience_points(
                       "attempt_xp": 0,
                       "success_modifier": 0,
                       "wait_bonus": 0,
-                      "successful_attempts": 0
+                      "successful_attempts": 0,
+                      "new_attempt": False
                   }
 
               best_score_percentage = (
@@ -3527,7 +3528,8 @@ def update_student_experience_points(
                   "attempt_xp": 40 * log(len(current_attempts)),
                   "success_modifier": current_attempts[0]["success"],
                   "wait_bonus": wait_bonus,
-                  "successful_attempts": len(successful_attempts)
+                  "successful_attempts": len(successful_attempts),
+                  "new_attempt": True
               }
         else:
             total_xp = uow.student_experience_points.update_student_experience_points(
@@ -3543,7 +3545,8 @@ def update_student_experience_points(
                 "attempt_xp": 0,
                 "success_modifier": 0,
                 "wait_bonus": 0,
-                "successful_attempts": 0
+                "successful_attempts": 0,
+                "new_attempt": False
             }
 
 
