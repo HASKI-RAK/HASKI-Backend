@@ -3374,7 +3374,7 @@ def update_student_experience_points(
               learning_element_id,
               user_lms_id
           )
-          if response != {} and response["usersattempts"][0]["attempts"]:
+          if response != {} or response["usersattempts"][0]["attempts"]:
               attempts = response["usersattempts"][0]["attempts"]
               sorted_attempts = sorted(
                   attempts,

@@ -797,7 +797,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     @abc.abstractmethod
     def update_student_experience_points(
         self, student_id: int, experience_points: int
-    ) -> LM.StudentExperiencePoints:
+    ) -> int:
         raise NotImplementedError
 
     @abc.abstractmethod
