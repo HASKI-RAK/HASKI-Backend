@@ -3377,7 +3377,7 @@ def update_student_experience_points(
               learning_element_id,
               user_lms_id
           )
-          if response != {} or response["usersattempts"][0]["attempts"]:
+          if response != {} and response["usersattempts"][0]["attempts"]:
               attempts = response["usersattempts"][0]["attempts"]
               sorted_attempts = sorted(
                   attempts,
@@ -3409,7 +3409,7 @@ def update_student_experience_points(
                   }
 
               best_score_percentage = (
-                  current_attempts[0]["rawscore"] / current_attempts[0]["maxscore"]
+                  current_attempts[0]["rawscore"] / current_attempts[0].get("maxscore", 1)
               )
 
               successful_attempts = list(
