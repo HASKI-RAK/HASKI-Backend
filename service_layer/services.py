@@ -214,11 +214,14 @@ def add_badges_for_student(
                     best_attempt = max(
                         element_attempts, key=lambda attempt: attempt["rawscore"]
                     )
-                    perfect_exercises += int(
-                        best_attempt["rawscore"] == best_attempt["maxscore"]
+                    max_score = int(
+                        best_attempt.get("rawscore", 0) == best_attempt.get("maxscore", 0)
                     )
+                    perfect_exercises += max_score
                     # moodle stores success as integer 0 or 1
-                    successful_exercises += best_attempt["success"]
+                    success = best_attempt.get("success", 0)
+                    if(success == 1 or max_score == 1):
+                      successful_exercises += 1
 
             completion_badge_condition = (
                 const.badge_complete_exercises in topic_badge_keys and
@@ -3456,7 +3459,7 @@ def update_student_experience_points(
               learning_element_id,
               user_lms_id
           )
-          if response != {} or response["usersattempts"][0]["attempts"]:
+          if response != {} and response["usersattempts"][0]["attempts"]:
               attempts = response["usersattempts"][0]["attempts"]
               sorted_attempts = sorted(
                   attempts,
@@ -3488,7 +3491,7 @@ def update_student_experience_points(
                   }
 
               best_score_percentage = (
-                  current_attempts[0]["rawscore"] / current_attempts[0]["maxscore"]
+                  current_attempts[0]["rawscore"] / current_attempts[0].get("maxscore", 1)
               )
 
               successful_attempts = list(

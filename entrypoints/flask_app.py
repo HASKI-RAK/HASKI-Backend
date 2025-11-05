@@ -2575,6 +2575,7 @@ def get_learning_element_recommendation(user_id: str, course_id: str, topic_id: 
     status_code = 200
     return jsonify(results), status_code
 
+
 # entry point to create experience points manually for a student
 # mostly for testing purposes
 @app.route("/student/<student_id>/create_initial_xp", methods=["POST"])
@@ -2589,6 +2590,7 @@ def create_initial_student_xp(student_id: str):
             )
             status_code = 201
             return jsonify(result), status_code
+
 
 @app.route("/student/<student_id>/xp", methods=["GET"])
 @cross_origin(supports_credentials=True)
