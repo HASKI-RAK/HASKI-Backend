@@ -792,6 +792,7 @@ def logging_frontend(data: Dict[str, Any]):
 
 
 # Admin Endpoints
+#unused
 @app.route("/user/<user_id>/<lms_user_id>/admin/<admin_id>/user", methods=["GET"])
 @cross_origin(supports_credentials=True)
 def get_users_by_admin(user_id, lms_user_id, admin_id):
@@ -804,7 +805,7 @@ def get_users_by_admin(user_id, lms_user_id, admin_id):
             status_code = 200
             return jsonify(users), status_code
 
-
+#unused
 @app.route("/user/<user_id>/<lms_user_id>/admin/<admin_id>/logs", methods=["GET"])
 @cross_origin(supports_credentials=True)
 def get_admin_logs(user_id, lms_user_id, admin_id):
@@ -820,6 +821,7 @@ def get_admin_logs(user_id, lms_user_id, admin_id):
 
 
 # Teacher Endpoints
+#unused
 @app.route("/user/<user_id>/<lms_user_id>/teacher/<teacher_id>/course", methods=["GET"])
 @cross_origin(supports_credentials=True)
 def get_teacher_courses(user_id, lms_user_id, teacher_id):
@@ -832,7 +834,8 @@ def get_teacher_courses(user_id, lms_user_id, teacher_id):
             status_code = 200
             return jsonify(courses), status_code
 
-
+#unused
+#added 14months
 @app.route("/student/<student_id>/topic/<topic_id>/rating", methods=["POST"])
 @cross_origin(supports_credentials=True)
 def post_create_student_rating(student_id: str, topic_id: str):
@@ -847,7 +850,7 @@ def post_create_student_rating(student_id: str, topic_id: str):
             status_code = 201
             return jsonify(result), status_code
 
-
+# Get all the studentratings
 @app.route("/user/<user_id>/student/<student_id>/rating", methods=["GET"])
 @cross_origin(supports_credentials=True)
 def get_student_ratings(user_id: str, student_id: str):
@@ -865,7 +868,8 @@ def get_student_ratings(user_id: str, student_id: str):
             else:
                 raise err.WrongParameterValueError()
 
-
+#unused
+#added 14months
 @app.route(
     "/topic/<topic_id>/learningElement/<learning_element_id>/rating", methods=["POST"]
 )
@@ -882,7 +886,7 @@ def post_create_learning_element_rating(topic_id: str, learning_element_id: str)
             status_code = 201
             return jsonify(result), status_code
 
-
+# Get all the learning element ratings
 @app.route("/learningElement/rating", methods=["GET"])
 @cross_origin(supports_credentials=True)
 def get_learning_element_ratings():
@@ -894,7 +898,7 @@ def get_learning_element_ratings():
             status_code = 200
             return jsonify(result), status_code
 
-
+# Post to calculate and retieve learning element recommendations
 @app.route(
     "/user/<user_id>/course/<course_id>/topic/<topic_id>/recommendation",
     methods=["GET"],
