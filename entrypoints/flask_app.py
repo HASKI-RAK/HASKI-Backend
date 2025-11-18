@@ -1788,6 +1788,13 @@ def post_calculate_rating(
                 learning_element_lms_id=learning_element_lms_id,
             )
 
+            # Init result and status code.
+            result = {}
+            status_code = 201
+
+            if not learning_element_by_lms:
+                return jsonify(result), status_code
+
             learning_element = services.get_learning_element_by_id(
                 uow=uow,
                 user_id=user_id,
@@ -1797,10 +1804,6 @@ def post_calculate_rating(
                 topic_id=topic_id,
                 learning_element_id=learning_element_by_lms["id"],
             )
-
-            # Init result and status code.
-            result = {}
-            status_code = 201
 
             # Get the activity type.
             activity_type = learning_element["activity_type"]

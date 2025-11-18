@@ -1544,7 +1544,7 @@ def get_learning_element_by_lms_id(
         learning_element = uow.learning_element.get_learning_element_by_lms_id(
             learning_element_lms_id
         )
-        if learning_element[0] is None:
+        if not learning_element:
             result = {}
         else:
             student_learning_element = (
