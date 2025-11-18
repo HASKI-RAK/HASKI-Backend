@@ -2585,7 +2585,7 @@ def get_learning_element_solution_by_learning_element_lms_id(
         return solution[0].serialize()
 
 
-def get_topic_solutions(uow: unit_of_work.AbstractUnitOfWork, topic_id: int) -> dict:
+def get_topic_solutions(uow: unit_of_work.AbstractUnitOfWork, topic_id: int) -> list[dict]:
     with uow:
         topic_learning_elements = get_learning_elements_for_topic_id(uow, topic_id)
         result = []
