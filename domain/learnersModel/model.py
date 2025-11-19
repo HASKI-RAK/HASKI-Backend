@@ -9,14 +9,12 @@ class LearningCharacteristic:
     def __init__(
         self,
         student_id,
-        knowledge=None,
         learning_analytics=None,
         learning_strategy=None,
         learning_style=None,
     ) -> None:
         self.id = None
         self.student_id = student_id
-        self.knowledge = knowledge
         self.learning_analytics = learning_analytics
         self.learning_strategy = learning_strategy
         self.learning_style = learning_style
@@ -25,7 +23,6 @@ class LearningCharacteristic:
         return {
             "id": self.id,
             "student_id": self.student_id,
-            "knowledge": self.knowledge,
             "learning_analytics": self.learning_analytics,
             "learning_strategy": self.learning_strategy,
             "learning_style": self.learning_style,
@@ -135,15 +132,6 @@ class LearningStrategy:
             "lit_res": self.lit_res,
             "lrn_env": self.lrn_env,
         }
-
-
-class Knowledge:
-    def __init__(self, characteristic_id) -> None:
-        self.id = None
-        self.characteristic_id = characteristic_id
-
-    def serialize(self):
-        return {"id": self.id, "characteristic_id": self.characteristic_id}
 
 
 class LearningAnalytics:

@@ -338,15 +338,6 @@ def create_ils_understanding_answers(
         return result
 
 
-def create_knowledge(uow: unit_of_work.AbstractUnitOfWork, characteristic_id) -> dict:
-    with uow:
-        knowledge = LM.Knowledge(characteristic_id)
-        uow.knowledge.create_knowledge(knowledge)
-        uow.commit()
-        result = knowledge.serialize()
-        return result
-
-
 def create_learning_analytics(
     uow: unit_of_work.AbstractUnitOfWork, characteristic_id
 ) -> dict:
@@ -365,7 +356,6 @@ def create_learning_characteristics(
         characteristic = LM.LearningCharacteristic(student_id)
         uow.learning_characteristics.create_learning_characteristics(characteristic)
         uow.commit()
-        create_knowledge(uow, characteristic.id)
         create_learning_analytics(uow, characteristic.id)
         create_learning_strategy(uow, characteristic.id)
         create_learning_style(uow, characteristic.id)

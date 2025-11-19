@@ -1115,16 +1115,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         course.id = len(self.course)
         self.course.add(course)
 
-    def update_knowledge(self, characteristic_id, knowledge):
-        to_remove = next(
-            (p for p in self.knowledge if p.characteristic_id == characteristic_id),
-            None,
-        )
-        if to_remove is not None:
-            self.knowledge.remove(to_remove)
-        knowledge.id = len(self.knowledge)
-        self.knowledge.add(knowledge)
-
     def update_learning_analytics(self, characteristic_id, learning_analytics):
         to_remove = next(
             (

@@ -97,10 +97,6 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def create_knowledge(self, knowledge) -> LM.Knowledge:
-        raise NotImplementedError
-
-    @abc.abstractmethod
     def create_learning_analytics(self, learning_analytics) -> LM.LearningAnalytics:
         raise NotImplementedError
 
@@ -894,14 +890,6 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
     ) -> LM.IlsUnderstandingAnswers:
         try:
             self.session.add(ils_understanding_answers)
-        except IntegrityError:
-            raise err.ForeignKeyViolation()
-        except Exception:
-            raise err.CreationError()
-
-    def create_knowledge(self, knowledge) -> LM.Knowledge:
-        try:
-            self.session.add(knowledge)
         except IntegrityError:
             raise err.ForeignKeyViolation()
         except Exception:

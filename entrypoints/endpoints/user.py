@@ -758,34 +758,3 @@ def delete_learning_analytics(user_id, lms_user_id, student_id):
             )
             status_code = 200
             return jsonify(result), status_code
-
-#get knowledge of a student
-@bp_user.route(
-    "/user/<user_id>/<lms_user_id>/student/<student_id>/" + "knowledge", methods=["GET"]
-)
-@cross_origin(supports_credentials=True)
-def get_knowledge(user_id, lms_user_id, student_id):
-    method = request.method
-    match method:
-        case "GET":
-            result = services.get_knowledge_by_student_id(
-                unit_of_work.SqlAlchemyUnitOfWork(), student_id
-            )
-            status_code = 200
-            return jsonify(result), 
-
-#delete knowledge of a student
-@bp_user.route(
-    "/user/<user_id>/<lms_user_id>/student/<student_id>/" + "knowledge",
-    methods=["DELETE"],
-)
-@cross_origin(supports_credentials=True)
-def delete_knowledge(user_id, lms_user_id, student_id):
-    method = request.method
-    match method:
-        case "DELETE":
-            result = services.reset_knowledge_by_student_id(
-                unit_of_work.SqlAlchemyUnitOfWork(), user_id, lms_user_id, student_id
-            )
-            status_code = 200
-            return jsonify(result), status_code
