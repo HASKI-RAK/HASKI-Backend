@@ -156,7 +156,8 @@ def add_badges_for_student(
             topic_element_lms_ids = [element.lms_id for element in topic_elements]
         
             topic_done_status = list(filter(
-                lambda status: status["cmid"] in topic_element_lms_ids,
+                lambda status: 
+                    status["cmid"] in topic_element_lms_ids and status["state"] == 1,
                 done_status
             ))
 
