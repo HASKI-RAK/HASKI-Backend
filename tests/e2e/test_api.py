@@ -661,6 +661,7 @@ class TestApi:
         status_code_expected,
         save_id,
     ):
+        """[HASKI-REQ-0036] Validates topic and subtopic creation from Moodle payloads."""
         global course_id, topic_id, sub_topic_id
         url = path_lms_course + "/" + str(course_id) + path_topic
         if topic_id != 0:
