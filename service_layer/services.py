@@ -2595,14 +2595,15 @@ def get_topic_solutions(
             learning_element_lms_id = uow.learning_element.get_learning_element_by_id(
                 learning_element["learning_element_id"]
             )
-            # Get the solution for each learning element
-            learning_element_solution = (
-                uow.learning_element_solution.get_learning_element_solution(
-                    learning_element_lms_id[0].lms_id
+            if learning_element_lms_id:
+                # Get the solution for each learning element
+                learning_element_solution = (
+                    uow.learning_element_solution.get_learning_element_solution(
+                        learning_element_lms_id[0].lms_id
+                    )
                 )
-            )
-            if learning_element_solution:
-                result.append(learning_element_solution[0].serialize())
+                if learning_element_solution:
+                    result.append(learning_element_solution[0].serialize())
         return result
 
 

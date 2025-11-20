@@ -4845,7 +4845,7 @@ class TestApi:
             # Working Example
             (
                 1,
-                ["id", "topic_id", "solution_lms_id", "activity_type"],
+                ["id", "learning_element_lms_id", "solution_lms_id", "activity_type"],
                 200,
             ),
         ],
