@@ -1180,6 +1180,26 @@ def setup_db(
     cursor.execute(sql)
 
     sql = """
+    CREATE TABLE IF NOT EXISTS public.learning_element_solution
+    (
+        id integer NOT NULL GENERATED ALWAYS AS IDENTITY
+        ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+        learning_element_lms_id integer NOT NULL,
+        solution_lms_id integer NOT NULL,
+        activity_type text COLLATE pg_catalog."default" NOT NULL,
+        CONSTRAINT learning_element_solution_pkey PRIMARY KEY (id),
+        CONSTRAINT unique_learning_element UNIQUE (learning_element_lms_id)
+    )
+
+    TABLESPACE pg_default;
+
+    ALTER TABLE IF EXISTS public.learning_element_solution
+        OWNER to postgres;
+    """
+
+    cursor.execute(sql)
+
+    sql = """
         CREATE TABLE IF NOT EXISTS public.student_experience_points
         (
             id integer NOT NULL GENERATED ALWAYS AS IDENTITY

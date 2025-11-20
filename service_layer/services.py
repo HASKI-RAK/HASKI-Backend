@@ -32,6 +32,24 @@ def add_course_creator_to_course(
         return result
 
 
+def add_learning_element_solution(
+    uow: unit_of_work.AbstractUnitOfWork,
+    learning_element_lms_id: int,
+    solution_lms_id: int,
+    activity_type: str,
+) -> dict:
+    with uow:
+        learning_element_solution = DM.LearningElementSolution(
+            learning_element_lms_id, solution_lms_id, activity_type
+        )
+        uow.learning_element_solution.add_learning_element_solution(
+            learning_element_solution
+        )
+        uow.commit()
+        result = learning_element_solution.serialize()
+        return result
+
+
 def add_badges_to_topic(
     uow: unit_of_work.AbstractUnitOfWork,
     course_id: int,
@@ -106,7 +124,7 @@ def add_badges_to_topic(
 
         # maybe something with reflektives Quiz
 
-        # badge to encourage self-evaluation elements since they are 
+        # badge to encourage self-evaluation elements since they are
         # testing the students knowledge
         # always present when there is a self-evaluation in the topic
         if classification_counter[const.abbreviation_se] > 0:
@@ -139,7 +157,7 @@ def add_badges_for_student(
         topic_elements = uow.learning_element.get_learning_elements_by_topic_id(
             topic_id
         )
-        
+
         student_badges = uow.student_badge.get_badge_by_student_id_and_topic_id(
             student_id, topic_id
         )
@@ -154,7 +172,7 @@ def add_badges_for_student(
                 uow, course_id, lms_user_id
             )
             topic_element_lms_ids = [element.lms_id for element in topic_elements]
-        
+
             topic_done_status = list(filter(
                 lambda status: 
                     status["cmid"] in topic_element_lms_ids and status["state"] == 1,
@@ -1327,6 +1345,21 @@ def delete_learning_element(uow: unit_of_work.AbstractUnitOfWork, learning_eleme
         return {}
 
 
+# Delete the solution associated with the learning element
+def delete_learning_element_solution(
+    uow: unit_of_work.AbstractUnitOfWork, learning_element_id
+) -> None:
+    with uow:
+        learning_element = uow.learning_element.get_learning_element_by_id(
+            learning_element_id
+        )
+        if learning_element[0] is not None:
+            uow.learning_element_solution.delete_learning_element_solution(
+                learning_element[0].lms_id
+            )
+        uow.commit()
+
+
 def delete_learning_path(uow: unit_of_work.AbstractUnitOfWork, learning_path_id):
     with uow:
         uow.learning_path.delete_learning_path(learning_path_id)
@@ -2480,7 +2513,7 @@ def create_contact_form(
             uow.commit()
             result = contact_form.serialize()
         return result
-    
+
 
 def get_student_badges(
     uow: unit_of_work.AbstractUnitOfWork, student_id: int) -> list[dict]:
@@ -2519,20 +2552,20 @@ def get_course_leaderboard(
                 id, course_id
             )
             student_badges.append((id, len(badges)))
-        
-        # Sort by badge count 
+
+        # Sort by badge count
         student_badges.sort(key=lambda x: x[1], reverse=False)
-        
+
         # Find current student's position
         current_student_index = None
         for i, (id, _) in enumerate(student_badges):
             if id == student_id:
                 current_student_index = i
                 break
-        
+
         if current_student_index is None:
             return {}  # Student not found in course
-        
+
         first_neighbour_index = None
         second_neighbour_index = None
 
@@ -2560,7 +2593,7 @@ def get_course_leaderboard(
                 }
         else:
             return dict(student_badges)
-        
+
 
 def get_experience_points_leaderboard(
         uow: unit_of_work.AbstractUnitOfWork, student_id: int) -> list[dict]:
@@ -2578,7 +2611,7 @@ def get_experience_points_leaderboard(
 
         if current_student_index is None:
             return []
-        
+
         if len(exp_points) <= 3:
             return [exp_point.serialize() for exp_point in exp_points]
         result = []
@@ -2991,6 +3024,55 @@ def get_learning_element_ratings(uow: unit_of_work.AbstractUnitOfWork) -> list:
         return results
 
 
+def get_learning_element_solution_by_learning_element_id(
+    uow: unit_of_work.AbstractUnitOfWork, learning_element_id: int
+) -> dict:
+    with uow:
+        learning_element = uow.learning_element.get_learning_element_by_id(
+            learning_element_id
+        )
+        result = {}
+        if not learning_element:
+            return result
+        lms_id = learning_element[0].lms_id
+        solution = uow.learning_element_solution.get_learning_element_solution(lms_id)
+        if not solution:
+            return result
+        return solution[0].serialize()
+
+
+def get_learning_element_solution_by_learning_element_lms_id(
+    uow: unit_of_work.AbstractUnitOfWork, learning_element_lms_id: int
+) -> dict:
+    with uow:
+        result = {}
+        solution = uow.learning_element_solution.get_learning_element_solution(
+            learning_element_lms_id
+        )
+        if not solution:
+            return result
+        return solution[0].serialize()
+
+
+def get_topic_solutions(uow: unit_of_work.AbstractUnitOfWork, topic_id: int) -> dict:
+    with uow:
+        topic_learning_elements = get_learning_elements_for_topic_id(uow, topic_id)
+        result = []
+        for learning_element in topic_learning_elements:
+            learning_element_lms_id = uow.learning_element.get_learning_element_by_id(
+                learning_element["learning_element_id"]
+            )
+            # Get the solution for each learning element
+            learning_element_solution = (
+                uow.learning_element_solution.get_learning_element_solution(
+                    learning_element_lms_id[0].lms_id
+                )
+            )
+            if learning_element_solution:
+                result.append(learning_element_solution[0].serialize())
+        return result
+
+
 def get_moodle_course_content(
     uow: unit_of_work.AbstractUnitOfWork, course_id: int
 ) -> dict:
@@ -3118,7 +3200,7 @@ def update_badges_for_topic(
         badges_by_variant_key = {}
         for badge in existing_badges:
             badges_by_variant_key[badge.variant_key] = badge
-        
+
         topic_elements = uow.topic_learning_element.get_topic_learning_element_by_topic(
             topic_id
         )
@@ -3143,7 +3225,7 @@ def update_badges_for_topic(
             classification_counter[const.abbreviation_se] > 0,
         }
 
-        
+
 
         for badge_key, condition in conditons.items():
             if condition and badge_key not in badges_by_variant_key.keys():
@@ -3419,7 +3501,7 @@ def update_student_experience_points(
               time_between_attempts = 0
               if previous_attempts != [] and successful_attempts != []:
                   time_between_attempts = (
-                      current_attempts[0]["timecreated"] - 
+                      current_attempts[0]["timecreated"] -
                       max(
                           successful_attempts,
                           key=lambda x: x["timecreated"]

@@ -18,6 +18,10 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
+    def add_learning_element_solution(self, le_solution: DM.LearningElementSolution):
+        raise NotImplementedError
+
+    @abc.abstractmethod
     def add_student_badge(
         self,
         student_badge: LM.StudentBadge
@@ -51,7 +55,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     @abc.abstractmethod
     def create_admin(self, admin: UA.Admin) -> UA.Admin:
         raise NotImplementedError
-    
+
     @abc.abstractmethod
     def create_badge(self, badge: DM.Badge) -> DM.Badge:
         raise NotImplementedError
@@ -176,7 +180,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     @abc.abstractmethod
     def create_student(self, student: UA.Student) -> UA.Student:
         raise NotImplementedError
-    
+
     @abc.abstractmethod
     def create_student_experience_points(
         self,
@@ -229,6 +233,10 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
 
     @abc.abstractmethod
     def delete_logbuffer(self, user_id):
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def delete_learning_element_solution(self, learning_element_lms_id):
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -334,7 +342,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     @abc.abstractmethod
     def delete_student_course(self, student_id, course_id=None):
         raise NotImplementedError
-    
+
     @abc.abstractmethod
     def delete_student_experience_points(self, student_id: int) -> None:
         raise NotImplementedError
@@ -427,15 +435,15 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     @abc.abstractmethod
     def get_admins_by_uni(self, university):
         raise NotImplementedError
-    
+
     @abc.abstractmethod
     def get_badges_by_course(self, course_id: int) -> list[DM.Badge]:
         raise NotImplementedError
-    
+
     @abc.abstractmethod
     def get_badges_by_topic(self, topic_id: int) -> list[DM.Badge]:
         raise NotImplementedError
-    
+
     @abc.abstractmethod
     def get_badge_by_student_id(self, student_id: int) -> list[DM.Badge]:
         raise NotImplementedError
@@ -444,7 +452,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     def get_badge_by_student_id_and_topic_id(
         self, student_id: int, topic_id: int) -> list[DM.Badge]:
         raise NotImplementedError
-    
+
     @abc.abstractmethod
     def get_badges_by_variant_key(self, variant_key: str) -> list[DM.Badge]:
         raise NotImplementedError
@@ -538,7 +546,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     @abc.abstractmethod
     def get_learning_elements_by_uni(self, university):
         raise NotImplementedError
-    
+
     @abc.abstractmethod
     def get_learning_elements_by_topic_id(
         self, topic_id: int) -> list[DM.LearningElement]:
@@ -582,6 +590,12 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
 
     @abc.abstractmethod
     def get_learning_style(self, characteristic_id) -> LM.LearningStyle:
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def get_learning_element_solution(
+        self, learning_element_lms_id
+    ) -> DM.LearningElementSolution:
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -631,21 +645,21 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     @abc.abstractmethod
     def get_student_course(self, student_id, course_id):
         raise NotImplementedError
-    
+
     @abc.abstractmethod
     def get_student_experience_points_by_student_id(
         self, student_id: int
     ) -> LM.StudentExperiencePoints:
         raise NotImplementedError
-    
+
     @abc.abstractmethod
     def get_student_experience_points(self) -> list[LM.StudentExperiencePoints]:
         raise NotImplementedError
-    
+
     @abc.abstractmethod
     def get_unique_student_ids_from_student_course(self, course_id) -> list[int]:
         raise NotImplementedError
-    
+
     @abc.abstractmethod
     def get_student_learning_element(
         self, student_id, learning_element_id
@@ -745,7 +759,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     @abc.abstractmethod
     def get_logbuffer(self, user_id) -> UA.LogBuffer:
         raise NotImplementedError
-    
+
     @abc.abstractmethod
     def update_badge(self, badge_id, active: bool) -> None:
         raise NotImplementedError
@@ -793,7 +807,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     @abc.abstractmethod
     def update_settings(self, user_id, settings) -> UA.Settings:
         raise NotImplementedError
-    
+
     @abc.abstractmethod
     def update_student_experience_points(
         self, student_id: int, experience_points: int
@@ -848,6 +862,14 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             raise err.ForeignKeyViolation()
         except Exception:
             raise err.CreationError()
+
+    def add_learning_element_solution(self, le_solution: DM.LearningElementSolution):
+        try:
+            self.session.add(le_solution)
+        except IntegrityError:
+            raise err.ForeignKeyViolation()
+        except Exception:
+            raise err.CreationError
 
     def add_student_to_course(self, student_course) -> DM.StudentCourse:
         course_exist = self.get_courses_by_student_id(student_course.student_id)
@@ -912,7 +934,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             raise err.ForeignKeyViolation()
         except Exception:
             raise err.CreationError()
-        
+
     def create_badge(self, badge: DM.Badge) -> DM.Badge:
         try:
             self.session.add(badge)
@@ -1141,7 +1163,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             raise err.ForeignKeyViolation()
         except Exception:
             raise err.CreationError()
-        
+
     def create_student_experience_points(
             self, student_experience_points: LM.StudentExperiencePoints
         ) -> None:
@@ -1261,6 +1283,15 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             self.session.query(DM.CourseTopic).filter_by(id=course_topic[0].id).delete()
         else:
             raise err.NoValidIdError()
+
+    def delete_learning_element_solution(self, learning_element_lms_id):
+        learning_element_solution = self.get_learning_element_solution(
+            learning_element_lms_id
+        )
+        if learning_element_solution != []:
+            self.session.query(DM.LearningElementSolution).filter_by(
+                learning_element_lms_id=learning_element_lms_id
+            ).delete()
 
     def delete_ils_input_answers(self, questionnaire_ils_id):
         ils_input_answers = self.get_ils_input_answers_by_id(questionnaire_ils_id)
@@ -1554,7 +1585,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             return self.session.query(UA.Admin).filter_by(university=university).all()
         except Exception:
             raise err.DatabaseQueryError()
-        
+
     def get_badges_by_course(self, course_id) -> list[DM.Badge]:
         return (
             self.session.query(DM.Badge).filter_by(course_id=course_id).all()
@@ -1582,7 +1613,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             .filter(DM.Badge.topic_id == topic_id)
             .all()
         )
-    
+
     def get_badges_by_variant_key(self, variant_key: str) -> list[DM.Badge]:
         result = (
             self.session.query(DM.Badge).filter_by(variant_key=variant_key).all()
@@ -1595,7 +1626,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             student_id=student_id
             ).all()
         )
-    
+
     def get_student_badges_by_student_id_and_course_id(
             self, student_id: int, course_id: int) -> list[LM.StudentBadge]:
         return (
@@ -1716,6 +1747,25 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             )
         except Exception:
             raise err.DatabaseQueryError()
+
+    def get_learning_element_recommendation(self, learning_path_id):
+        result = (
+            self.session.query(TM.LearningPathLearningElement)
+            .filter_by(learning_path_id=learning_path_id)
+            .filter_by(recommended=True)
+            .all()
+        )
+        return result
+
+    def get_learning_element_solution(
+        self, learning_element_lms_id
+    ) -> DM.LearningElementSolution:
+        result = (
+            self.session.query(DM.LearningElementSolution)
+            .filter_by(learning_element_lms_id=learning_element_lms_id)
+            .all()
+        )
+        return result
 
     def get_learning_elements_by_topic_id(
             self,
@@ -1979,7 +2029,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             return self.session.query(UA.Student).filter_by(university=university).all()
         except Exception:
             raise err.DatabaseQueryError()
-        
+
     def get_student_experience_points_by_student_id(
             self, student_id: int) -> list[LM.StudentExperiencePoints]:
         try:
@@ -1990,8 +2040,8 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             )
         except Exception:
             raise err.DatabaseQueryError()
-        
-    
+
+
     def get_student_experience_points(self) -> list[LM.StudentExperiencePoints]:
         return self.session.query(LM.StudentExperiencePoints).all()
 
@@ -2390,7 +2440,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             )
         except Exception:
             raise err.NoValidIdError
-        
+
     def update_student_experience_points(
         self, student_id: int, earned_experience_points: int
         ) -> int:
@@ -2407,7 +2457,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             return int(updated_xp)
         else:
             raise err.NoValidIdError
-        
+
 
 
 
