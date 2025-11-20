@@ -377,6 +377,7 @@ class TestApi:
     def test_api_create_user_from_moodle(
         self, client_class, input, keys_expected, status_code_expected, save_id
     ):
+        """[HASKI-REQ-0034] Validates automatic user provisioning from Moodle payloads."""
         url = path_lms_user
         r = client_class.post(url, json=input)
         assert r.status_code == status_code_expected
