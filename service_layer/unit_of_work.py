@@ -21,7 +21,6 @@ class AbstractUnitOfWork(abc.ABC):
     ils_perception_answers: repository.AbstractRepository
     ils_processing_answers: repository.AbstractRepository
     ils_understanding_answers: repository.AbstractRepository
-    knowledge: repository.AbstractRepository
     learning_analytics: repository.AbstractRepository
     learning_characteristics: repository.AbstractRepository
     learning_element: repository.AbstractRepository
@@ -92,7 +91,6 @@ class SqlAlchemyUnitOfWork(AbstractUnitOfWork):  # pragma: no cover
         self.ils_perception_answers = repository.SqlAlchemyRepository(self.session)
         self.ils_processing_answers = repository.SqlAlchemyRepository(self.session)
         self.ils_understanding_answers = repository.SqlAlchemyRepository(self.session)
-        self.knowledge = repository.SqlAlchemyRepository(self.session)
         self.learning_analytics = repository.SqlAlchemyRepository(self.session)
         self.learning_characteristics = repository.SqlAlchemyRepository(self.session)
         self.learning_element = repository.SqlAlchemyRepository(self.session)

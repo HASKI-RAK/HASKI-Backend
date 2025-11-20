@@ -37,7 +37,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         ils_perception_answers=[],
         ils_processing_answers=[],
         ils_understanding_answers=[],
-        knowledge=[],
         learning_analytics=[],
         learning_characteristics=[],
         learning_element=[],
@@ -75,7 +74,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         self.course_creator_course = set(course_creator_course)
         self.course_topic = set(course_topic)
         self.default_learning_path = set(default_learning_path)
-        self.knowledge = set(knowledge)
         self.ils_input_answers = set(ils_input_answers)
         self.ils_perception_answers = set(ils_perception_answers)
         self.ils_processing_answers = set(ils_processing_answers)
@@ -175,10 +173,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
     def create_ils_understanding_answers(self, ils_understanding_answers):
         ils_understanding_answers.id = len(self.ils_understanding_answers) + 1
         self.ils_understanding_answers.add(ils_understanding_answers)
-
-    def create_knowledge(self, knowledge):
-        knowledge.id = len(self.knowledge) + 1
-        self.knowledge.add(knowledge)
 
     def create_learning_analytics(self, learning_analytics):
         learning_analytics.id = len(self.learning_analytics) + 1
@@ -371,14 +365,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 to_remove.append(i)
         for remove in to_remove:
             self.ils_understanding_answers.remove(remove)
-
-    def delete_knowledge(self, characteristic_id):
-        to_remove = []
-        for i in self.knowledge:
-            if i.characteristic_id == characteristic_id:
-                to_remove.append(i)
-        for remove in to_remove:
-            self.knowledge.remove(remove)
 
     def delete_logbuffer(self, user_id):
         to_remove = []
@@ -767,13 +753,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         result = []
         for i in self.ils_understanding_answers:
             if i.questionnaire_id == questionnaire_id:
-                result.append(i)
-        return result
-
-    def get_knowledge(self, characteristic_id):
-        result = []
-        for i in self.knowledge:
-            if i.characteristic_id == characteristic_id:
                 result.append(i)
         return result
 
@@ -1286,7 +1265,6 @@ class FakeUnitOfWork(unit_of_work.AbstractUnitOfWork):  # pragma: no cover
         self.ils_perception_answers = FakeRepository()
         self.ils_processing_answers = FakeRepository()
         self.ils_understanding_answers = FakeRepository()
-        self.knowledge = FakeRepository()
         self.learning_analytics = FakeRepository()
         self.learning_characteristics = FakeRepository()
         self.learning_element = FakeRepository()
@@ -1905,16 +1883,6 @@ def test_create_learning_strategy():
     assert entries_beginning + 1 == entries_after
 
 
-def test_create_knowledge():
-    uow = FakeUnitOfWork()
-    entries_beginning = len(uow.knowledge.knowledge)
-    result = services.create_knowledge(uow=uow, characteristic_id=1)
-    assert isinstance(result, dict)
-    assert result != {}
-    entries_after = len(uow.knowledge.knowledge)
-    assert entries_beginning + 1 == entries_after
-
-
 def test_create_learning_analytics():
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.learning_analytics.learning_analytics)
@@ -2137,7 +2105,6 @@ def test_get_learning_characteristics():
     assert isinstance(result, dict)
     assert result != {}
     keys_expected = [
-        "knowledge",
         "learning_analytics",
         "learning_strategy",
         "learning_style",
@@ -3349,14 +3316,6 @@ def test_get_courses_by_student_id():
     assert result != {}
 
 
-def test_get_knowledge_by_student_id():
-    uow = FakeUnitOfWork()
-    create_student_for_tests(uow)
-    result = services.get_knowledge_by_student_id(uow=uow, student_id=1)
-    assert isinstance(result, dict)
-    assert result != {}
-
-
 def test_get_learning_analytics_by_student_id():
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
@@ -3591,16 +3550,6 @@ def test_get_user_by_admin():
     create_student_for_tests(uow)
     create_admin_for_tests(uow)
     result = services.get_users_by_admin(uow=uow, user_id=1, lms_user_id=1)
-    assert isinstance(result, dict)
-    assert result != {}
-
-
-def test_reset_knowledge_by_student_id():
-    uow = FakeUnitOfWork()
-    create_student_for_tests(uow)
-    result = services.reset_knowledge_by_student_id(
-        uow=uow, user_id=1, lms_user_id=1, student_id=1
-    )
     assert isinstance(result, dict)
     assert result != {}
 

@@ -250,10 +250,6 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def delete_knowledge(self, characteristic_id):
-        raise NotImplementedError
-
-    @abc.abstractmethod
     def delete_questionnaire_list_k(self, questionnaire_list_k_id):
         raise NotImplementedError
 
@@ -454,10 +450,6 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     def get_ils_understanding_answers_by_id(
         self, questionnaire_ils_id
     ) -> LM.IlsUnderstandingAnswers:
-        raise NotImplementedError
-
-    @abc.abstractmethod
-    def get_knowledge(self, characteristic_id) -> LM.Knowledge:
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -672,10 +664,6 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
 
     @abc.abstractmethod
     def update_course(self, course_id, course) -> DM.Course:
-        raise NotImplementedError
-
-    @abc.abstractmethod
-    def update_knowledge(self, characteristic_id, knowledge) -> LM.Knowledge:
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -1186,15 +1174,6 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         else:
             raise err.NoValidIdError()
 
-    def delete_knowledge(self, characteristic_id):
-        knowledge = self.get_knowledge(characteristic_id)
-        if knowledge != []:
-            self.session.query(LM.Knowledge).filter_by(
-                characteristic_id=characteristic_id
-            ).delete()
-        else:
-            raise err.NoValidIdError()
-
     def delete_learning_analytics(self, characteristic_id):
         analytics = self.get_learning_analytics(characteristic_id)
         if analytics != []:
@@ -1474,17 +1453,6 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
 
     def get_course_topic_by_topic(self, topic_id) -> DM.CourseTopic:
         result = self.session.query(DM.CourseTopic).filter_by(topic_id=topic_id).all()
-        if result == []:
-            raise err.NoValidIdError()
-        else:
-            return result
-
-    def get_knowledge(self, characteristic_id) -> LM.Knowledge:
-        result = (
-            self.session.query(LM.Knowledge)
-            .filter_by(characteristic_id=characteristic_id)
-            .all()
-        )
         if result == []:
             raise err.NoValidIdError()
         else:
@@ -2000,16 +1968,6 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
                         DM.Course.start_date: course.start_date,
                     }
                 )
-            )
-        else:
-            raise err.NoValidIdError
-
-    def update_knowledge(self, characteristic_id, knowledge) -> LM.Knowledge:
-        knowledge_exist = self.get_knowledge(characteristic_id)
-        if knowledge_exist != []:
-            knowledge.id = knowledge_exist[0].id
-            return self.session.query(LM.Knowledge).filter_by(
-                characteristic_id=characteristic_id
             )
         else:
             raise err.NoValidIdError

@@ -32,7 +32,6 @@ path_contactform = "/contactform"
 path_content = "/content"
 path_news = "/news"
 path_logbuffer = "/logbuffer"
-path_knowledge = "/knowledge"
 path_logs = "/logs"
 path_frontend_logs = "/logs/frontend"
 path_learning_analytics = "/learningAnalytics"
@@ -2129,7 +2128,6 @@ class TestApi:
                     "learning_style",
                     "learning_strategy",
                     "learning_analytics",
-                    "knowledge",
                 ],
                 False,
             ),
@@ -2277,42 +2275,6 @@ class TestApi:
             + "/"
             + str(student_id_use)
             + path_learning_strategy
-        )
-        r = client_class.get(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        for key in keys_expected:
-            assert key in response.keys()
-
-    # Get Knowledge
-    @pytest.mark.parametrize(
-        "lms_user_id, status_code_expected, \
-                            keys_expected, error",
-        [
-            # Working Example
-            (4, 200, [], False),
-            # Student not found
-            (1, 404, ["error", "message"], True),
-        ],
-    )
-    def test_get_students_knowledge(
-        self, client_class, lms_user_id, status_code_expected, keys_expected, error
-    ):
-        global user_id_student, student_id
-        if error:
-            student_id_use = 99999
-        else:
-            student_id_use = student_id
-        url = (
-            path_user
-            + "/"
-            + str(user_id_student)
-            + "/"
-            + str(lms_user_id)
-            + path_student
-            + "/"
-            + str(student_id_use)
-            + path_knowledge
         )
         r = client_class.get(url)
         assert r.status_code == status_code_expected
@@ -4489,7 +4451,6 @@ class TestApi:
                 4,
                 [
                     "id",
-                    "knowledge",
                     "learning_analytics",
                     "learning_strategy",
                     "learning_style",
@@ -4671,42 +4632,6 @@ class TestApi:
             + "/"
             + str(student_id_use)
             + path_learning_strategy
-        )
-        r = client_class.delete(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        for key in response.keys():
-            assert key in keys_expected
-
-    # Reset Knowledge
-    @pytest.mark.parametrize(
-        "lms_user_id, keys_expected,\
-                            status_code_expected, error",
-        [
-            # Working Example
-            (4, ["id", "characteristic_id"], 200, False),
-            # User not found
-            (1, ["error", "message"], 404, True),
-        ],
-    )
-    def test_reset_knowledge(
-        self, client_class, lms_user_id, keys_expected, status_code_expected, error
-    ):
-        global user_id_student, student_id
-        if error:
-            user_id_use = 99999
-        else:
-            user_id_use = user_id_student
-        url = (
-            path_user
-            + "/"
-            + str(user_id_use)
-            + "/"
-            + str(lms_user_id)
-            + path_student
-            + "/"
-            + str(student_id)
-            + path_knowledge
         )
         r = client_class.delete(url)
         assert r.status_code == status_code_expected

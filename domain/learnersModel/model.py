@@ -133,6 +133,14 @@ class LearningStrategy:
             "lrn_env": self.lrn_env,
         }
 
+class Knowledge:
+    def __init__(self, characteristic_id) -> None:
+        self.id = None
+        self.characteristic_id = characteristic_id
+
+    def serialize(self):
+        return {"id": self.id, "characteristic_id": self.characteristic_id}
+
 
 class LearningAnalytics:
     def __init__(self, characteristic_id) -> None:

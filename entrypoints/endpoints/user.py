@@ -562,6 +562,7 @@ def post_calculate_rating(
             # Return result with status code.
             return jsonify(result), status_code
 
+#unused
 #get learning characteristics of a student
 @bp_user.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>" + "/learningCharacteristics",
@@ -578,6 +579,7 @@ def get_learning_characteristics(user_id, lms_user_id, student_id):
             status_code = 200
             return jsonify(characteristic), status_code
 
+#unused
 #delete learning characteristics of a student
 @bp_user.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>/" + "learningCharacteristics",
@@ -594,6 +596,7 @@ def delete_learning_characteristics(user_id, lms_user_id, student_id):
             status_code = 200
             return jsonify(characteristic), status_code
 
+#unused
 #update or delete learning style of a student
 @bp_user.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>/" + "learningStyle",
@@ -679,6 +682,7 @@ def learning_style_administration(
             status_code = 200
             return jsonify(result), status_code
 
+
 #get learning style of a student
 @bp_user.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>/" + "learningStyle",
@@ -711,6 +715,7 @@ def get_learning_strategy(user_id, lms_user_id, student_id):
             status_code = 200
             return jsonify(result), status_code
 
+#unused
 #delete learning strategy of a student
 @bp_user.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>/" + "learningStrategy",
@@ -726,7 +731,8 @@ def delete_learning_strategy(user_id, lms_user_id, student_id):
             )
             status_code = 200
             return jsonify(result), status_code
-        
+
+#unused     
 #get learning analytics of a student
 @bp_user.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>/" + "learningAnalytics",
@@ -743,6 +749,7 @@ def get_learning_analytics(user_id, lms_user_id, student_id):
             status_code = 200
             return jsonify(result), status_code
 
+#unused
 #delete learning analytics of a student
 @bp_user.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>/" + "learningAnalytics",
