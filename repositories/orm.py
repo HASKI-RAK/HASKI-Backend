@@ -132,13 +132,6 @@ ils_understanding_answers = Table(
     Column("sg_11_f44", Integer, nullable=False),
 )
 
-learning_analytics = Table(
-    "learning_analytics",
-    mapper_registry.metadata,
-    Column("id", Integer, primary_key=True, autoincrement=True),
-    Column("characteristic_id", Integer, nullable=False),
-)
-
 learning_charcteristics = Table(
     "learning_characteristics",
     mapper_registry.metadata,
@@ -521,10 +514,6 @@ def start_mappers():
     mapper_registry.map_imperatively(
         LM.IlsUnderstandingAnswers,
         ils_understanding_answers,
-    )
-    mapper_registry.map_imperatively(
-        LM.LearningAnalytics,
-        learning_analytics,
     )
     mapper_registry.map_imperatively(
         LM.LearningCharacteristic,

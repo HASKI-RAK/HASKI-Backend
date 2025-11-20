@@ -329,15 +329,6 @@ def setup_db(
     """
     cursor.execute(sql)
 
-    # Create learning analytics id´s
-    sql = """
-          INSERT INTO learning_analytics (characteristic_id) VALUES (1);
-          INSERT INTO learning_analytics (characteristic_id) VALUES (2);
-          INSERT INTO learning_analytics (characteristic_id) VALUES (3);
-          INSERT INTO learning_analytics (characteristic_id) VALUES (4);
-    """
-    cursor.execute(sql)
-
     # Create Learning Elements
     sql = """
           INSERT INTO learning_element (lms_id, activity_type, classification, name, \

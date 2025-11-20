@@ -4488,42 +4488,6 @@ class TestApi:
         for key in keys_expected:
             assert key in response.keys()
 
-    # Reset Learning Analytics
-    @pytest.mark.parametrize(
-        "lms_user_id, keys_expected,\
-                            status_code_expected, error",
-        [
-            # Working Example
-            (4, ["id", "characteristic_id"], 200, False),
-            # User not found
-            (1, ["error", "message"], 404, True),
-        ],
-    )
-    def test_reset_learning_analytics(
-        self, client_class, lms_user_id, keys_expected, status_code_expected, error
-    ):
-        global user_id_student, student_id
-        if error:
-            user_id_use = 99999
-        else:
-            user_id_use = user_id_student
-        url = (
-            path_user
-            + "/"
-            + str(user_id_use)
-            + "/"
-            + str(lms_user_id)
-            + path_student
-            + "/"
-            + str(student_id)
-            + path_learning_analytics
-        )
-        r = client_class.delete(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        for key in response.keys():
-            assert key in keys_expected
-
     # Reset Learning Style
     @pytest.mark.parametrize(
         "lms_user_id, keys_expected,\

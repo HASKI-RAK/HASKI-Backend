@@ -97,10 +97,6 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def create_learning_analytics(self, learning_analytics) -> LM.LearningAnalytics:
-        raise NotImplementedError
-
-    @abc.abstractmethod
     def create_learning_characteristics(
         self, learning_characteristic
     ) -> LM.LearningCharacteristic:
@@ -255,10 +251,6 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
 
     @abc.abstractmethod
     def delete_questionnaire_ils(self, questionnaire_ils_id):
-        raise NotImplementedError
-
-    @abc.abstractmethod
-    def delete_learning_analytics(self, characteristic_id):
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -667,12 +659,6 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def update_learning_analytics(
-        self, characteristic_id, learning_analytics
-    ) -> LM.LearningAnalytics:
-        raise NotImplementedError
-
-    @abc.abstractmethod
     def update_learning_element(
         self, learning_element_id, learning_element
     ) -> DM.LearningElement:
@@ -878,14 +864,6 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
     ) -> LM.IlsUnderstandingAnswers:
         try:
             self.session.add(ils_understanding_answers)
-        except IntegrityError:
-            raise err.ForeignKeyViolation()
-        except Exception:
-            raise err.CreationError()
-
-    def create_learning_analytics(self, learning_analytics) -> LM.LearningAnalytics:
-        try:
-            self.session.add(learning_analytics)
         except IntegrityError:
             raise err.ForeignKeyViolation()
         except Exception:
@@ -1170,15 +1148,6 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         if ils_understanding_answers != []:
             self.session.query(LM.IlsUnderstandingAnswers).filter_by(
                 questionnaire_ils_id=questionnaire_ils_id
-            ).delete()
-        else:
-            raise err.NoValidIdError()
-
-    def delete_learning_analytics(self, characteristic_id):
-        analytics = self.get_learning_analytics(characteristic_id)
-        if analytics != []:
-            self.session.query(LM.LearningAnalytics).filter_by(
-                characteristic_id=characteristic_id
             ).delete()
         else:
             raise err.NoValidIdError()
@@ -1968,18 +1937,6 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
                         DM.Course.start_date: course.start_date,
                     }
                 )
-            )
-        else:
-            raise err.NoValidIdError
-
-    def update_learning_analytics(
-        self, characteristic_id, learning_analytics
-    ) -> LM.Knowledge:
-        analytics_exist = self.get_learning_analytics(characteristic_id)
-        if analytics_exist != []:
-            learning_analytics.id = analytics_exist[0].id
-            return self.session.query(LM.LearningAnalytics).filter_by(
-                characteristic_id=characteristic_id
             )
         else:
             raise err.NoValidIdError

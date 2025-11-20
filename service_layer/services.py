@@ -338,17 +338,6 @@ def create_ils_understanding_answers(
         return result
 
 
-def create_learning_analytics(
-    uow: unit_of_work.AbstractUnitOfWork, characteristic_id
-) -> dict:
-    with uow:
-        learning_analytics = LM.LearningAnalytics(characteristic_id)
-        uow.learning_analytics.create_learning_analytics(learning_analytics)
-        uow.commit()
-        result = learning_analytics.serialize()
-        return result
-
-
 def create_learning_characteristics(
     uow: unit_of_work.AbstractUnitOfWork, student_id
 ) -> dict:
@@ -356,7 +345,6 @@ def create_learning_characteristics(
         characteristic = LM.LearningCharacteristic(student_id)
         uow.learning_characteristics.create_learning_characteristics(characteristic)
         uow.commit()
-        create_learning_analytics(uow, characteristic.id)
         create_learning_strategy(uow, characteristic.id)
         create_learning_style(uow, characteristic.id)
         result = characteristic.serialize()
@@ -1170,18 +1158,10 @@ def delete_user(uow: unit_of_work.AbstractUnitOfWork, user_id, lms_user_id):
         return {}
 
 
-def delete_learning_analytics(uow: unit_of_work.AbstractUnitOfWork, characteristic_id):
-    with uow:
-        uow.learning_analytics.delete_learning_analytics(characteristic_id)
-        uow.commit()
-        return {}
-
-
 def delete_learning_characteristics(uow: unit_of_work.AbstractUnitOfWork, student_id):
     with uow:
         characteristic = get_learning_characteristics(uow, student_id)
         if characteristic != {}:
-            delete_learning_analytics(uow, characteristic["id"])
             delete_learning_strategy(uow, characteristic["id"])
             delete_learning_style(uow, characteristic["id"])
             uow.learning_characteristics.delete_learning_characteristics(student_id)
@@ -1944,29 +1924,6 @@ def get_users_by_admin(
         return result
 
 
-def reset_learning_analytics(
-    uow: unit_of_work.AbstractUnitOfWork, user_id, lms_user_id, characteristic_id
-) -> dict:
-    with uow:
-        get_user_by_id(uow, user_id, lms_user_id)
-        analytics = LM.LearningAnalytics(characteristic_id)
-        uow.learning_analytics.update_learning_analytics(characteristic_id, analytics)
-        uow.commit()
-        return analytics.serialize()
-
-
-def reset_learning_analytics_by_student_id(
-    uow: unit_of_work.AbstractUnitOfWork, user_id, lms_user_id, student_id
-) -> dict:
-    with uow:
-        get_user_by_id(uow, user_id, lms_user_id)
-        characteristic = get_learning_characteristics(uow, student_id)
-        result = reset_learning_analytics(
-            uow, user_id, lms_user_id, characteristic["id"]
-        )
-        return result
-
-
 def reset_learning_characteristics(
     uow: unit_of_work.AbstractUnitOfWork, user_id, lms_user_id, student_id
 ) -> dict:
@@ -1974,9 +1931,6 @@ def reset_learning_characteristics(
         get_user_by_id(uow, user_id, lms_user_id)
         characteristics = uow.learning_characteristics.get_learning_characteristics(
             student_id
-        )
-        characteristics[0].learning_analytics = reset_learning_analytics(
-            uow, user_id, lms_user_id, characteristics[0].id
         )
         characteristics[0].learning_strategy = reset_learning_strategy(
             uow, user_id, lms_user_id, characteristics[0].id

@@ -174,10 +174,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         ils_understanding_answers.id = len(self.ils_understanding_answers) + 1
         self.ils_understanding_answers.add(ils_understanding_answers)
 
-    def create_learning_analytics(self, learning_analytics):
-        learning_analytics.id = len(self.learning_analytics) + 1
-        self.learning_analytics.add(learning_analytics)
-
     def create_learning_characteristics(self, learning_characteristics):
         learning_characteristics.id = len(self.learning_characteristics) + 1
         self.learning_characteristics.add(learning_characteristics)
@@ -373,14 +369,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 to_remove.append(i)
         for remove in to_remove:
             self.logbuffer.remove(remove)
-
-    def delete_learning_analytics(self, characteristic_id):
-        to_remove = []
-        for i in self.learning_analytics:
-            if i.characteristic_id == characteristic_id:
-                to_remove.append(i)
-        for remove in to_remove:
-            self.learning_analytics.remove(remove)
 
     def delete_learning_characteristics(self, student_id):
         to_remove = []
@@ -1093,20 +1081,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
             self.course.remove(to_remove)
         course.id = len(self.course)
         self.course.add(course)
-
-    def update_learning_analytics(self, characteristic_id, learning_analytics):
-        to_remove = next(
-            (
-                p
-                for p in self.learning_analytics
-                if p.characteristic_id == characteristic_id
-            ),
-            None,
-        )
-        if to_remove is not None:
-            self.learning_analytics.remove(to_remove)
-        learning_analytics.id = len(self.learning_analytics)
-        self.learning_analytics.add(learning_analytics)
 
     def update_learning_element(self, learning_element_id, learning_element):
         to_remove = next(
@@ -1880,16 +1854,6 @@ def test_create_learning_strategy():
     assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.learning_strategy.learning_strategy)
-    assert entries_beginning + 1 == entries_after
-
-
-def test_create_learning_analytics():
-    uow = FakeUnitOfWork()
-    entries_beginning = len(uow.learning_analytics.learning_analytics)
-    result = services.create_learning_analytics(uow=uow, characteristic_id=1)
-    assert isinstance(result, dict)
-    assert result != {}
-    entries_after = len(uow.learning_analytics.learning_analytics)
     assert entries_beginning + 1 == entries_after
 
 
@@ -3550,16 +3514,6 @@ def test_get_user_by_admin():
     create_student_for_tests(uow)
     create_admin_for_tests(uow)
     result = services.get_users_by_admin(uow=uow, user_id=1, lms_user_id=1)
-    assert isinstance(result, dict)
-    assert result != {}
-
-
-def test_reset_learning_analytics_by_student_id():
-    uow = FakeUnitOfWork()
-    create_student_for_tests(uow)
-    result = services.reset_learning_analytics_by_student_id(
-        uow=uow, user_id=1, lms_user_id=1, student_id=1
-    )
     assert isinstance(result, dict)
     assert result != {}
 

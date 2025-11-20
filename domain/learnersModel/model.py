@@ -9,13 +9,11 @@ class LearningCharacteristic:
     def __init__(
         self,
         student_id,
-        learning_analytics=None,
         learning_strategy=None,
         learning_style=None,
     ) -> None:
         self.id = None
         self.student_id = student_id
-        self.learning_analytics = learning_analytics
         self.learning_strategy = learning_strategy
         self.learning_style = learning_style
 
@@ -23,7 +21,6 @@ class LearningCharacteristic:
         return {
             "id": self.id,
             "student_id": self.student_id,
-            "learning_analytics": self.learning_analytics,
             "learning_strategy": self.learning_strategy,
             "learning_style": self.learning_style,
         }
