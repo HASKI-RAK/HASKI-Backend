@@ -16,22 +16,23 @@ public_key = None
 private_key = None
 
 
+def _keys_base_dir():
+    """Resolve the directory that stores JWT key material."""
+    env_location = os.environ.get("JWT_KEYS_LOCATION")
+    if not env_location:
+        return os.path.join(get_project_root(), "keys")
+    if os.path.isabs(env_location):
+        return env_location
+    # Environment may contain a repo-relative folder, keep behaviour consistent locally/CI
+    return os.path.join(get_project_root(), env_location)
+
+
 def private_key_location():
-    return os.path.abspath(
-        os.environ.get(
-            os.path.join("JWT_KEYS_LOCATION" + "private.pem"),
-            os.path.join(get_project_root(), "keys/private.pem"),
-        )
-    )
+    return os.path.abspath(os.path.join(_keys_base_dir(), "private.pem"))
 
 
 def public_key_location():
-    return os.path.abspath(
-        os.environ.get(
-            os.path.join("JWT_KEYS_LOCATION", "public.pem"),
-            os.path.join(get_project_root(), "keys/public.pem"),
-        )
-    )
+    return os.path.abspath(os.path.join(_keys_base_dir(), "public.pem"))
 
 
 def load_public_key():
