@@ -829,6 +829,7 @@ class TestApi:
         status_code_expected,
         save_id,
     ):
+        """[HASKI-REQ-0037] Validates learning element creation from Moodle payloads."""
         global course_id
         global sub_topic_id
         url = path_lms_topic + "/" + str(sub_topic_id) + path_learning_element
@@ -1242,7 +1243,8 @@ class TestApi:
             list_k.append(temp)
         json_input["list_k"] = list_k
 
-        url = path_lms_student + "/" + str(student_id) + path_questionnaire_list_k
+        url = path_lms_student + "/" + \
+            str(student_id) + path_questionnaire_list_k
         r = client_class.post(url, json=json_input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -1415,7 +1417,8 @@ class TestApi:
             # Wrong data format
             ({"visit_start_time": "01.01.2023"}, 4, ["error", "message"], 400),
             # Missing Parameter
-            ({"previous_learning_element_id": 1}, 4, ["error", "message"], 400),
+            ({"previous_learning_element_id": 1},
+             4, ["error", "message"], 400),
         ],
     )
     def test_post_learning_element_visit(
@@ -1894,7 +1897,8 @@ class TestApi:
             status_code=200,
             json=lambda: {
                 "usersattempts": [
-                    {"attempts": [{"timecreated": 1}, {"timecreated": 9999999999}]}
+                    {"attempts": [{"timecreated": 1},
+                                  {"timecreated": 9999999999}]}
                 ]
             },
         )
@@ -2041,7 +2045,8 @@ class TestApi:
                     "id": "v3-1665068191217-4248786867866",
                     "navigationType": "navigate",
                 },
-                ["name", "value", "rating", "delta", "entries", "id", "navigationType"],
+                ["name", "value", "rating", "delta",
+                    "entries", "id", "navigationType"],
                 201,
             )
         ],
@@ -2336,7 +2341,8 @@ class TestApi:
                             keys_expected_1, keys_expected_2, error",
         [
             # Working Example
-            (4, 200, ["courses"], ["id", "lms_id", "name", "university"], False),
+            (4, 200, ["courses"], [
+             "id", "lms_id", "name", "university"], False),
             # Student not found
             (1, 404, ["error", "message"], [], True),
         ],
@@ -3571,7 +3577,8 @@ class TestApi:
         else:
             user_id_use = user_id_student
         url = (
-            path_user + "/" + str(user_id_use) + "/" + str(lms_user_id) + path_settings
+            path_user + "/" + str(user_id_use) + "/" +
+            str(lms_user_id) + path_settings
         )
         r = client_class.get(url)
         assert r.status_code == status_code_expected
@@ -3783,7 +3790,8 @@ class TestApi:
                             error",
         [
             # Working Example
-            (4, {"theme": "dark", "pswd": "password"}, ["theme", "pswd"], 201, False),
+            (4, {"theme": "dark", "pswd": "password"},
+             ["theme", "pswd"], 201, False),
             # User not found
             (
                 1,
@@ -3819,7 +3827,8 @@ class TestApi:
         else:
             user_id_use = user_id_student
         url = (
-            path_user + "/" + str(user_id_use) + "/" + str(lms_user_id) + path_settings
+            path_user + "/" + str(user_id_use) + "/" +
+            str(lms_user_id) + path_settings
         )
         r = client_class.put(url, json=request_body)
         assert r.status_code == status_code_expected
@@ -4000,7 +4009,8 @@ class TestApi:
         self, client_class, input, moodle_user_id, keys_expected, status_code_expected
     ):
         global user_id_student
-        url = path_lms_user + "/" + str(user_id_student) + "/" + str(moodle_user_id)
+        url = path_lms_user + "/" + \
+            str(user_id_student) + "/" + str(moodle_user_id)
         r = client_class.put(url, json=input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -4057,7 +4067,8 @@ class TestApi:
         self, client_class, input, moodle_course_id, keys_expected, status_code_expected
     ):
         global course_id
-        url = path_lms_course + "/" + str(course_id) + "/" + str(moodle_course_id)
+        url = path_lms_course + "/" + \
+            str(course_id) + "/" + str(moodle_course_id)
         r = client_class.put(url, json=input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -4123,7 +4134,8 @@ class TestApi:
         self, client_class, input, moodle_course_id, keys_expected, status_code_expected
     ):
         global course_id
-        url = path_lms_course + "/" + str(course_id) + "/" + str(moodle_course_id)
+        url = path_lms_course + "/" + \
+            str(course_id) + "/" + str(moodle_course_id)
         r = client_class.put(url, json=input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -4244,7 +4256,8 @@ class TestApi:
             input["parent_id"] = topic_id
         else:
             topic_id_use = topic_id
-        url = path_lms_topic + "/" + str(topic_id_use) + "/" + str(moodle_topic_id)
+        url = path_lms_topic + "/" + \
+            str(topic_id_use) + "/" + str(moodle_topic_id)
         r = client_class.put(url, json=input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -4453,7 +4466,8 @@ class TestApi:
     ):
         global course_id
         course_id_use = course_id
-        url = path_course + "/" + str(course_id_use) + "/topics" + "/allStudents"
+        url = path_course + "/" + \
+            str(course_id_use) + "/topics" + "/allStudents"
         r = client_class.post(url)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -4481,7 +4495,8 @@ class TestApi:
         else:
             user_id_use = user_id_student
         url = (
-            path_user + "/" + str(user_id_use) + "/" + str(lms_user_id) + path_settings
+            path_user + "/" + str(user_id_use) + "/" +
+            str(lms_user_id) + path_settings
         )
         r = client_class.delete(url)
         assert r.status_code == status_code_expected
@@ -4769,7 +4784,8 @@ class TestApi:
             user_id_use = user_id_student
         else:
             user_id_use = user_id_teacher
-        url = path_lms_user + "/" + str(user_id_use) + "/" + str(moodle_user_id)
+        url = path_lms_user + "/" + \
+            str(user_id_use) + "/" + str(moodle_user_id)
         r = client_class.delete(url)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -4852,7 +4868,8 @@ class TestApi:
             topic_id_use = 99999
         else:
             topic_id_use = sub_topic_id
-        url = path_lms_topic + "/" + str(topic_id_use) + "/" + str(moodle_topic_id)
+        url = path_lms_topic + "/" + \
+            str(topic_id_use) + "/" + str(moodle_topic_id)
         r = client_class.delete(url)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -4878,7 +4895,8 @@ class TestApi:
             course_id_use = 99999
         else:
             course_id_use = course_id
-        url = path_lms_course + "/" + str(course_id_use) + "/" + str(moodle_course_id)
+        url = path_lms_course + "/" + \
+            str(course_id_use) + "/" + str(moodle_course_id)
         r = client_class.delete(url)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
