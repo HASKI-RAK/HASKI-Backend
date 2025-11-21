@@ -23,7 +23,8 @@ def _keys_base_dir():
         return os.path.join(get_project_root(), "keys")
     if os.path.isabs(env_location):
         return env_location
-    # Environment may contain a repo-relative folder, keep behaviour consistent locally/CI
+    # Environment may contain a repo-relative folder,
+    # keep behaviour consistent locally/CI
     return os.path.join(get_project_root(), env_location)
 
 
