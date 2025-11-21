@@ -377,7 +377,9 @@ class TestApi:
     def test_api_create_user_from_moodle(
         self, client_class, input, keys_expected, status_code_expected, save_id
     ):
-        """[HASKI-REQ-0034] Validates automatic user provisioning from Moodle payloads."""
+        """[HASKI-REQ-0034] Validates automatic user provisioning from
+        Moodle payloads.
+        """
         url = path_lms_user
         r = client_class.post(url, json=input)
         assert r.status_code == status_code_expected
@@ -456,7 +458,9 @@ class TestApi:
     def test_api_create_course_from_moodle_without_start_date(
         self, client_class, input, keys_expected, status_code_expected, save_id
     ):
-        """[HASKI-REQ-0035] Validates course creation from Moodle data handling missing start dates."""
+        """[HASKI-REQ-0035] Validates course creation from Moodle data
+        handling missing start dates.
+        """
         global user_id_course_creator
         input["created_by"] = user_id_course_creator
         url = path_lms_course
@@ -661,7 +665,9 @@ class TestApi:
         status_code_expected,
         save_id,
     ):
-        """[HASKI-REQ-0036] Validates topic and subtopic creation from Moodle payloads."""
+        """[HASKI-REQ-0036] Validates topic and subtopic creation from
+        Moodle payloads.
+        """
         global course_id, topic_id, sub_topic_id
         url = path_lms_course + "/" + str(course_id) + path_topic
         if topic_id != 0:
