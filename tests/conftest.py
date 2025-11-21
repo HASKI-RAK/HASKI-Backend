@@ -29,3 +29,13 @@ def client(session_factory):  # pragma: no cover
     with app.app_context():
         with app.test_client() as client:
             yield client
+
+
+def pytest_json_runtest_metadata(item, call):
+    """Attach test docstrings to the JSON report entries."""
+    if call.when != "call":
+        return {}
+    docstring = getattr(getattr(item, "function", None), "__doc__", None)
+    if not docstring:
+        return {}
+    return {"docstring": docstring.strip()}
