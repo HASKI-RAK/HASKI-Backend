@@ -445,10 +445,6 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def get_learning_analytics(self, characteristic_id) -> LM.LearningAnalytics:
-        raise NotImplementedError
-
-    @abc.abstractmethod
     def get_learning_characteristics(self, student_id) -> LM.LearningCharacteristic:
         raise NotImplementedError
 
@@ -1427,17 +1423,6 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         else:
             return result
 
-    def get_learning_analytics(self, characteristic_id) -> LM.LearningAnalytics:
-        result = (
-            self.session.query(LM.LearningAnalytics)
-            .filter_by(characteristic_id=characteristic_id)
-            .all()
-        )
-        if result == []:
-            raise err.NoValidIdError()
-        else:
-            return result
-
     def get_learning_characteristics(self, student_id) -> LM.LearningCharacteristic:
         result = (
             self.session.query(LM.LearningCharacteristic)
@@ -2004,9 +1989,14 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             raise err.NoValidIdError
 
     def update_learning_style(self, characteristic_id, learning_style) -> LM.Knowledge:
-        style_exist = self.get_learning_analytics(characteristic_id)
-        if style_exist != []:
-            learning_style.id = style_exist[0].id
+        existing = (
+        self.session.query(LM.LearningStyle)
+        .filter_by(characteristic_id=characteristic_id)
+        .first()
+         )
+
+        if existing:
+            learning_style.id = existing.id
             # ignore E501 line too long flake8 error since there is
             # no way to make this shorter without making it unreadable
             updated_learning_style = {

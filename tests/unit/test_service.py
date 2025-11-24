@@ -37,7 +37,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         ils_perception_answers=[],
         ils_processing_answers=[],
         ils_understanding_answers=[],
-        learning_analytics=[],
         learning_characteristics=[],
         learning_element=[],
         learning_element_rating=[],
@@ -78,7 +77,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         self.ils_perception_answers = set(ils_perception_answers)
         self.ils_processing_answers = set(ils_processing_answers)
         self.ils_understanding_answers = set(ils_understanding_answers)
-        self.learning_analytics = set(learning_analytics)
         self.learning_characteristics = set(learning_characteristics)
         self.learning_element = set(learning_element)
         self.learning_element_rating = set(learning_element_rating)
@@ -744,13 +742,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 result.append(i)
         return result
 
-    def get_learning_analytics(self, characteristic_id):
-        result = []
-        for i in self.learning_analytics:
-            if i.characteristic_id == characteristic_id:
-                result.append(i)
-        return result
-
     def get_learning_characteristics(self, student_id):
         result = []
         for i in self.learning_characteristics:
@@ -1239,7 +1230,6 @@ class FakeUnitOfWork(unit_of_work.AbstractUnitOfWork):  # pragma: no cover
         self.ils_perception_answers = FakeRepository()
         self.ils_processing_answers = FakeRepository()
         self.ils_understanding_answers = FakeRepository()
-        self.learning_analytics = FakeRepository()
         self.learning_characteristics = FakeRepository()
         self.learning_element = FakeRepository()
         self.learning_element_rating = FakeRepository()
@@ -2069,7 +2059,6 @@ def test_get_learning_characteristics():
     assert isinstance(result, dict)
     assert result != {}
     keys_expected = [
-        "learning_analytics",
         "learning_strategy",
         "learning_style",
     ]
@@ -3278,15 +3267,6 @@ def test_get_courses_by_student_id():
     )
     assert isinstance(result, dict)
     assert result != {}
-
-
-def test_get_learning_analytics_by_student_id():
-    uow = FakeUnitOfWork()
-    create_student_for_tests(uow)
-    result = services.get_learning_analytics_by_student_id(uow=uow, student_id=1)
-    assert isinstance(result, dict)
-    assert result != {}
-
 
 def test_get_learning_style_by_student_id():
     uow = FakeUnitOfWork()

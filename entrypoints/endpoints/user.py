@@ -731,20 +731,3 @@ def delete_learning_strategy(user_id, lms_user_id, student_id):
             )
             status_code = 200
             return jsonify(result), status_code
-
-#unused     
-#get learning analytics of a student
-@bp_user.route(
-    "/user/<user_id>/<lms_user_id>/student/<student_id>/" + "learningAnalytics",
-    methods=["GET"],
-)
-@cross_origin(supports_credentials=True)
-def get_learning_analytics(user_id, lms_user_id, student_id):
-    method = request.method
-    match method:
-        case "GET":
-            result = services.get_learning_analytics_by_student_id(
-                unit_of_work.SqlAlchemyUnitOfWork(), student_id
-            )
-            status_code = 200
-            return jsonify(result), status_code

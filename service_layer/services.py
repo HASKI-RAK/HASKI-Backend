@@ -1396,28 +1396,6 @@ def get_course_topic_by_topic(uow: unit_of_work.AbstractUnitOfWork, topic_id) ->
         return result
 
 
-def get_learning_analytics(
-    uow: unit_of_work.AbstractUnitOfWork, characteristic_id
-) -> dict:
-    with uow:
-        analytics = uow.learning_analytics.get_learning_analytics(characteristic_id)
-        if analytics == []:
-            result = {}
-        else:
-            result = analytics[0].serialize()
-        return result
-
-
-def get_learning_analytics_by_student_id(
-    uow: unit_of_work.AbstractUnitOfWork, student_id
-) -> dict:
-    with uow:
-        uow.student.get_student_by_student_id(student_id)
-        characteristic = get_learning_characteristics(uow, student_id)
-        result = characteristic["learning_analytics"]
-        return result
-
-
 def get_learning_characteristics(
     uow: unit_of_work.AbstractUnitOfWork, student_id, user_id=None, lms_user_id=None
 ) -> dict:
@@ -1432,9 +1410,6 @@ def get_learning_characteristics(
             result = {}
         else:
             characteristics = characteristics[0]
-            characteristics.learning_analytics = get_learning_analytics(
-                uow, characteristics.id
-            )
             characteristics.learning_strategy = get_learning_strategy(
                 uow, characteristics.id
             )

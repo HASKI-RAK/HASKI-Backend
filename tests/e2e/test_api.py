@@ -34,7 +34,6 @@ path_news = "/news"
 path_logbuffer = "/logbuffer"
 path_logs = "/logs"
 path_frontend_logs = "/logs/frontend"
-path_learning_analytics = "/learningAnalytics"
 path_learning_characteristics = "/learningCharacteristics"
 path_learning_element = "/learningElement"
 path_learning_path = "/learningPath"
@@ -2127,7 +2126,6 @@ class TestApi:
                 [
                     "learning_style",
                     "learning_strategy",
-                    "learning_analytics",
                 ],
                 False,
             ),
@@ -2153,42 +2151,6 @@ class TestApi:
             + "/"
             + str(student_id_use)
             + path_learning_characteristics
-        )
-        r = client_class.get(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        for key in keys_expected:
-            assert key in response.keys()
-
-    # Get Learning Analytics
-    @pytest.mark.parametrize(
-        "lms_user_id, status_code_expected, \
-                            keys_expected, error",
-        [
-            # Working Example
-            (4, 200, [], False),
-            # Student not found
-            (1, 404, ["error", "message"], True),
-        ],
-    )
-    def test_get_students_learning_analytics(
-        self, client_class, lms_user_id, status_code_expected, keys_expected, error
-    ):
-        global user_id_student, student_id
-        if error:
-            student_id_use = 99999
-        else:
-            student_id_use = student_id
-        url = (
-            path_user
-            + "/"
-            + str(user_id_student)
-            + "/"
-            + str(lms_user_id)
-            + path_student
-            + "/"
-            + str(student_id_use)
-            + path_learning_analytics
         )
         r = client_class.get(url)
         assert r.status_code == status_code_expected
@@ -4451,7 +4413,6 @@ class TestApi:
                 4,
                 [
                     "id",
-                    "learning_analytics",
                     "learning_strategy",
                     "learning_style",
                     "student_id",
