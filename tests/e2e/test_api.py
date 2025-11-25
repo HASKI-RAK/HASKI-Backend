@@ -1025,8 +1025,8 @@ class TestApi:
     def test_post_student_learning_path_learning_element_algorithm(
         self, client_class, input, topic_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0041] Validates student algorithm selection per topic (GH-83)."""
         global student_id
-        """[HASKI-REQ-0041] Validates student-specific algorithm selection per topic."""
         url = (
             path_student
             + "/"
@@ -1392,6 +1392,7 @@ class TestApi:
     def test_post_topic_visit(
         self, client_class, input, moodle_user_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0042] Logs per-topic visit events for analytics (GH-136)."""
         global student_id, topic_id
         url = (
             path_lms_student
