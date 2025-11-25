@@ -939,13 +939,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 result.append(i)
         return result
 
-    def get_sub_topics_for_topic_id(self, topic_id):
-        result = []
-        for i in self.topic:
-            if i.parent_id == topic_id:
-                result.append(i)
-        return result
-
     def get_student_topic_visit(self, student_id, topic_id):
         result = []
         for i in self.student_topic_visit:
@@ -3450,23 +3443,6 @@ def test_update_student_lpath_le_algorithm():
         student_id=1,
         topic_id=1,
         algorithm_id=1,
-    )
-    assert isinstance(result, dict)
-    assert result != {}
-
-
-def test_get_sub_topics():
-    uow = FakeUnitOfWork()
-    create_course_creator_for_tests(uow)
-    create_student_for_tests(uow)
-    create_learning_path_learning_element_algorithm_for_tests(uow)
-    create_course_for_tests(uow)
-    create_learning_element_for_tests_1(uow)
-    add_student_to_course_for_tests(uow)
-    add_student_topic_visit_for_tests(uow)
-    add_student_sub_topic_visit_for_tests(uow)
-    result = services.get_sub_topic_by_topic_id(
-        uow=uow, user_id=1, lms_user_id=1, student_id=1, course_id=1, topic_id=1
     )
     assert isinstance(result, dict)
     assert result != {}

@@ -50,7 +50,6 @@ path_recommendation = "/recommendation"
 path_remote = "/lms/remote"
 path_settings = "/settings"
 path_student = "/student"
-path_subtopic = "/subtopic"
 path_teacher = "/teacher"
 path_topic = "/topic"
 path_user = "/user"
@@ -2697,92 +2696,6 @@ class TestApi:
         response = json.loads(r.data.decode("utf-8").strip("\n"))
         for key in keys_expected:
             assert key in response.keys()
-
-    # Get all sub-topics for a topic
-    @pytest.mark.parametrize(
-        "lms_user_id, status_code_expected,\
-                            keys_expected_1, keys_expected_2,\
-                            error_student, error_course, error_topic",
-        [
-            # Working Example
-            (
-                4,
-                200,
-                ["topics"],
-                [
-                    "id",
-                    "lms_id",
-                    "name",
-                    "is_topic",
-                    "contains_le",
-                    "university",
-                    "parent_id",
-                    "student_topic",
-                ],
-                False,
-                False,
-                False,
-            ),
-            # Student not found
-            (1, 404, ["error", "message"], [], True, False, False),
-            # Course not found
-            (1, 404, ["error", "message"], [], False, True, False),
-            # Topic not found
-            (1, 404, ["error", "message"], [], False, False, True),
-        ],
-    )
-    def test_get_sub_topics_for_topic(
-        self,
-        client_class,
-        lms_user_id,
-        status_code_expected,
-        keys_expected_1,
-        keys_expected_2,
-        error_student,
-        error_course,
-        error_topic,
-    ):
-        global user_id_student, student_id, course_id, topic_id
-        if error_student:
-            student_id_use = 99999
-        else:
-            student_id_use = student_id
-        if error_course:
-            course_id_use = 99999
-        else:
-            course_id_use = course_id
-        if error_topic:
-            topic_id_use = 99999
-        else:
-            topic_id_use = topic_id
-        url = (
-            path_user
-            + "/"
-            + str(user_id_student)
-            + "/"
-            + str(lms_user_id)
-            + path_student
-            + "/"
-            + str(student_id_use)
-            + path_course
-            + "/"
-            + str(course_id_use)
-            + path_topic
-            + "/"
-            + str(topic_id_use)
-            + path_subtopic
-        )
-        r = client_class.get(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        if "topics" in keys_expected_1:
-            for key in keys_expected_1:
-                assert key in response.keys()
-            for key in keys_expected_2:
-                assert key in response["topics"][0].keys()
-        else:
-            for key in keys_expected_1:
-                assert key in response.keys()
 
     # Get all LEs for a topic
     @pytest.mark.parametrize(

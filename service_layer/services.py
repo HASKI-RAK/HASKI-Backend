@@ -1733,33 +1733,6 @@ def delete_default_learning_path_by_uni(
         return {}
 
 
-def get_sub_topic_by_topic_id(
-    uow: unit_of_work.AbstractUnitOfWork,
-    user_id,
-    lms_user_id,
-    student_id,
-    course_id,
-    topic_id,
-) -> dict:
-    with uow:
-        get_user_by_id(uow, user_id, lms_user_id)
-        get_course_by_id(uow, user_id, lms_user_id, course_id)
-        subtopics = uow.topic.get_sub_topics_for_topic_id(topic_id)
-        for st in subtopics:
-            student_topic = uow.student_topic.get_student_topic(student_id, topic_id)
-            if student_topic != []:
-                student_topic[0].visits = None
-                st.student_topic = student_topic[0].serialize()
-            else:
-                st.student_topic = None
-        result_subtopics = []
-        for subtopic in subtopics:
-            result_subtopics.append(subtopic.serialize())
-        result = {}
-        result["topics"] = result_subtopics
-        return result
-
-
 def get_topic_by_id(
     uow: unit_of_work.AbstractUnitOfWork,
     user_id,

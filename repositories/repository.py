@@ -571,10 +571,6 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def get_sub_topics_for_topic_id(self, topic_id):
-        raise NotImplementedError
-
-    @abc.abstractmethod
     def get_teacher_by_id(self, user_id) -> UA.Teacher:
         raise NotImplementedError
 
@@ -1759,12 +1755,6 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
                 .filter_by(topic_id=topic_id)
                 .all()
             )
-        except Exception:
-            raise err.DatabaseQueryError()
-
-    def get_sub_topics_for_topic_id(self, topic_id):
-        try:
-            return self.session.query(DM.Topic).filter_by(parent_id=topic_id).all()
         except Exception:
             raise err.DatabaseQueryError()
 
