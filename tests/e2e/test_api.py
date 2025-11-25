@@ -2145,6 +2145,7 @@ class TestApi:
     def test_post_logbuffer(
         self, client_class, input, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0047] Persists learner logbuffer entries (GH-104)."""
         user_id_student = 4
         url = path_user + "/" + str(user_id_student) + path_logbuffer
         r = client_class.post(url, json=input)
@@ -2178,6 +2179,7 @@ class TestApi:
     def test_get_students_learning_characteristics(
         self, client_class, lms_user_id, status_code_expected, keys_expected, error
     ):
+        """[HASKI-REQ-0048] Serves consolidated learning profile data (GH-30)."""
         global user_id_student, student_id
         if error:
             student_id_use = 99999
@@ -2214,6 +2216,7 @@ class TestApi:
     def test_get_students_learning_analytics(
         self, client_class, lms_user_id, status_code_expected, keys_expected, error
     ):
+        """[HASKI-REQ-0049] Exposes per-student learning analytics snapshots (GH-30)."""
         global user_id_student, student_id
         if error:
             student_id_use = 99999
@@ -2264,6 +2267,7 @@ class TestApi:
     def test_get_students_learning_style(
         self, client_class, lms_user_id, status_code_expected, keys_expected, error
     ):
+        """[HASKI-REQ-0050] Returns FSLSM dimensions per student (GH-30)."""
         global user_id_student, student_id
         if error:
             student_id_use = 99999
