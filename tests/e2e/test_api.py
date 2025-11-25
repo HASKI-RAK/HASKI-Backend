@@ -927,6 +927,7 @@ class TestApi:
         keys_expected,
         status_code_expected,
     ):
+        """[HASKI-REQ-0039] Validates student-course enrollment and safeguards."""
         global course_id, student_id
         if error_student:
             student_id_use = 99999
