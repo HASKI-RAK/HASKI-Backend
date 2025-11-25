@@ -6,7 +6,7 @@ from service_layer.crypto.cryptorandom import CryptoRandom
 
 
 def test_getRandom():
-    """Test the getRandom method."""
+    """[HASKI-REQ-0028] Ensures LTI state/nonce seeds use unpredictable RNGs (GH-19)."""
     # Act
     result = CryptoRandom.get_random()
     result2 = CryptoRandom.get_random()
