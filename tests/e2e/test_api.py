@@ -865,6 +865,7 @@ class TestApi:
         keys_expected,
         status_code_expected,
     ):
+        """[HASKI-REQ-0038] Validates teacher-course enrollment and error handling."""
         global course_id, teacher_id
         if error_teacher:
             teacher_id_use = 99999
