@@ -1544,6 +1544,7 @@ class TestApi:
     def test_post_learning_path_ga(
         self, client_class, input, moodle_user_id, keys_exp, status_code_exp
     ):
+        """[HASKI-REQ-0007] Ensures GA-based learning paths are produced (GH-23)."""
         global user_id_student, student_id, course_id2, sub_topic_id2
         client_post = client_class.post(
             (
@@ -1609,6 +1610,7 @@ class TestApi:
     def test_post_learning_path_default(
         self, client_class, input, moodle_user_id, keys_exp, status_code_exp
     ):
+        """[HASKI-REQ-0026] Persists tutor-defined default learning paths (GH-84)."""
         global user_id_student, student_id, course_id2, sub_topic_id2
         client_post = client_class.post(
             (
@@ -1644,6 +1646,7 @@ class TestApi:
     def test_get_learning_path_default(
         self, client_class, moodle_user_id, keys_exp, status_code_exp
     ):
+        """[HASKI-REQ-0026] Serves tutor-defined default learning paths (GH-84)."""
         global user_id_student, student_id, course_id2, sub_topic_id2
         client_get = client_class.get(
             path_user
@@ -1686,6 +1689,7 @@ class TestApi:
     def test_post_calculate_learning_path(
         self, client_class, input, moodle_user_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0007] Allows postCalculate requests without explicit algorithm (GH-93)."""
         user_id_student = 4
         url = (
             path_user
@@ -1728,6 +1732,7 @@ class TestApi:
     def test_post_calculate_learning_path_for_all_students(
         self, client_class, input, moodle_user_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0026] Allows tutors to recalc every student's path for a topic (GH-84)."""
         global user_id_course_creator, course_id, sub_topic_id, user_id_student
         url = (
             "/v2"
@@ -1772,6 +1777,7 @@ class TestApi:
     def test_create_student_rating(
         self, client_class, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0043] Persists rating snapshots per student/topic (GH-106)."""
         url = (
             path_student
             + "/"
@@ -1806,6 +1812,7 @@ class TestApi:
     def test_get_student_ratings(
         self, client_class, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0043] Exposes stored student-topic ratings (GH-106)."""
         user_id_student = 4
         student_id = 2
         url = (
@@ -1842,6 +1849,7 @@ class TestApi:
     def test_create_learning_element_rating(
         self, client_class, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0043] Calculates metadata ratings for learning elements (GH-106)."""
         url = (
             path_topic
             + "/"
@@ -1876,6 +1884,7 @@ class TestApi:
     def test_get_learning_element_ratings(
         self, client_class, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0043] Lists all learning-element ratings for analytics (GH-106)."""
         url = path_learning_element + path_rating
         r = client_class.get(url)
         assert r.status_code == status_code_expected
@@ -1899,6 +1908,7 @@ class TestApi:
     def test_post_calculate_rating(
         self, mock_get, client_class, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0043] Recomputes ratings per Moodle attempt history (GH-106)."""
         mock_response_1 = mock.Mock(
             status_code=200, json=lambda: [{"modules": [{"id": 1, "instance": 1}]}]
         )
