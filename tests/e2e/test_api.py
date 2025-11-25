@@ -966,7 +966,7 @@ class TestApi:
         def test_add_student_to_course_duplicate(
             self, client_class, keys_expected, status_code_expected, save_id
         ):
-            """Test adding a student that's already enrolled in the course"""
+            """[HASKI-REQ-0039] Rejects duplicate student-course enrollments."""
             global course_id, student_id
             url = (
                 path_lms_course
@@ -1154,6 +1154,7 @@ class TestApi:
     def test_p_student_learning_path_learning_element_algorithm(
         self, client_class, input, topic_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0041] Validates LMS-aware student algorithm selection."""
         global user_id_student
 
         url = (
