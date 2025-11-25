@@ -1432,6 +1432,7 @@ class TestApi:
     def test_post_learning_element_visit(
         self, client_class, input, moodle_user_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0042] Logs per-learning-element visit events (GH-136)."""
         global student_id, learning_element_id
         url = (
             path_lms_student
@@ -1491,6 +1492,7 @@ class TestApi:
     def test_post_learning_path(
         self, client_class, input, moodle_user_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0007] Calculates adaptive learning paths via tutoring model (GH-2)."""
         global user_id_student, student_id, course_id, sub_topic_id
         url = (
             path_user
