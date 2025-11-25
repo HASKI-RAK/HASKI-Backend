@@ -1329,6 +1329,7 @@ class TestApi:
         error_key_wrong,
         error_answer_ils,
     ):
+        """[HASKI-REQ-0007] Guards and persists ILS questionnaire payloads (GH-182)."""
         json_input = {}
         ils = []
         if ils_long:
