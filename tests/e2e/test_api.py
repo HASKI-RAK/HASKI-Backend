@@ -2075,6 +2075,7 @@ class TestApi:
     def test_api_post_frontend_logs(
         self, client_class, input, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0045] Accepts Chrome Web Vitals payloads for ops telemetry (GH-15)."""
         url = path_frontend_logs
         r = client_class.post(url, json=input)
         assert r.status_code == status_code_expected
@@ -2109,6 +2110,7 @@ class TestApi:
         ],
     )
     def test_post_news(self, client_class, input, keys_expected, status_code_expected):
+        """[HASKI-REQ-0046] Persists university-filtered news for Newsbanner (GH-92)."""
         url = path_news
         r = client_class.post(url, json=input)
         assert r.status_code == status_code_expected
