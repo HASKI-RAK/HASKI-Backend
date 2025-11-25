@@ -1231,6 +1231,7 @@ class TestApi:
         error_answer_list_k,
         error_list_k_id,
     ):
+        """[HASKI-REQ-0007] Persists LIST-K questionnaire submissions and guards invalid payloads."""
         json_input = {}
         list_k = []
         for id in list_k_ids:
