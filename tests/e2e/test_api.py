@@ -1978,6 +1978,7 @@ class TestApi:
     def test_post_contact_form(
         self, client_class, input, lms_user_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0044] Ensures students can submit categorized support tickets."""
         user_id_student = 4
         url = (
             path_user
