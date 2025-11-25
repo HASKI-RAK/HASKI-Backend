@@ -145,6 +145,7 @@ def login_credentials(data: Dict[str, Any]):
 
 
 # unused
+# Post to add a learning path algorithm
 @app.route("/algorithm", methods=["POST"])
 @cross_origin(supports_credentials=True)
 @json_only()
@@ -573,6 +574,7 @@ def get_teacher_lp_le_algorithm(topic_id: str):
             return jsonify(algorithm), status_code
 
 # unused
+# Get settings by user id
 @app.route("/user/<user_id>/<lms_user_id>/settings", methods=["GET"])
 @cross_origin(supports_credentials=True)
 def get_settings_by_user_id(user_id, lms_user_id):
@@ -586,6 +588,7 @@ def get_settings_by_user_id(user_id, lms_user_id):
             return jsonify(settings), status_code
 
 # unused
+# Delete contact form by user id
 @app.route("/user/<user_id>/<lms_user_id>/contactform", methods=["DELETE"])
 @cross_origin(supports_credentials=True)
 def delete_contact_form(user_id, lms_user_id):
@@ -593,6 +596,7 @@ def delete_contact_form(user_id, lms_user_id):
     return "ok", 201
 
 # unused
+# Post to add news
 @app.route("/news", methods=["POST"])
 @cross_origin(supports_credentials=True)
 @json_only()
@@ -635,6 +639,7 @@ def news(language_id, university):
     return jsonify(result), status_code
 
 # unused
+# Delete all news
 @app.route("/news", methods=["DELETE"])
 @cross_origin(supports_credentials=True)
 def delete_news():
@@ -666,6 +671,7 @@ def create_logbuffer(content, user_id):
     return make_response(jsonify(result), http.HTTPStatus.CREATED)
 
 # unused
+# Get Logbuffer for a user
 @app.route("/user/<user_id>/logbuffer", methods=["GET"])
 @cross_origin(supports_credentials=True)
 def get_logbuffer_by_user_id(user_id):
@@ -673,6 +679,7 @@ def get_logbuffer_by_user_id(user_id):
     return make_response(jsonify(result), http.HTTPStatus.OK)
 
 # unused
+# Delete Logbuffer for a user
 @app.route("/user/<user_id>/logbuffer", methods=["DELETE"])
 @cross_origin(supports_credentials=True)
 def delete_logbuffer_by_user_id(user_id):
@@ -766,7 +773,7 @@ def get_teacher_courses(user_id, lms_user_id, teacher_id):
             return jsonify(courses), status_code
 
 #unused
-#added 14months
+#Post to add a student rating
 @app.route("/student/<student_id>/topic/<topic_id>/rating", methods=["POST"])
 @cross_origin(supports_credentials=True)
 def post_create_student_rating(student_id: str, topic_id: str):
@@ -800,7 +807,7 @@ def get_student_ratings(user_id: str, student_id: str):
                 raise err.WrongParameterValueError()
 
 #unused
-#added 14months
+#Post to add a learning element rating
 @app.route(
     "/topic/<topic_id>/learningElement/<learning_element_id>/rating", methods=["POST"]
 )
@@ -828,36 +835,6 @@ def get_learning_element_ratings():
             )
             status_code = 200
             return jsonify(result), status_code
-
-# Post to calculate and retieve learning element recommendations
-@app.route(
-    "/user/<user_id>/course/<course_id>/topic/<topic_id>/recommendation",
-    methods=["GET"],
-)
-@cross_origin(supports_credentials=True)
-def get_learning_element_recommendation(user_id: str, course_id: str, topic_id: str):
-    # uow
-    uow = unit_of_work.SqlAlchemyUnitOfWork()
-
-    # Get user by user id.
-    user = services.get_user_by_id(uow=uow, user_id=user_id, lms_user_id=None)
-
-    # Get student by user id.
-    student = services.get_student_by_user_id(uow=uow, user_id=user_id)
-
-    # Get all recommended exercises for student in topic.
-    results = services.get_recommended_exercises_for_student_in_topic(
-        uow=uow,
-        user_id=user_id,
-        lms_user_id=user["lms_user_id"],
-        student_id=student["id"],
-        topic_id=topic_id,
-        course_id=course_id,
-    )
-
-    status_code = 200
-    return jsonify(results), status_code
-
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
