@@ -1102,6 +1102,7 @@ class TestApi:
         keys_expected,
         status_code_expected,
     ):
+        """[HASKI-REQ-0026] Validates tutor overrides for topic algorithms."""
         url = (
             path_user
             + "/"
