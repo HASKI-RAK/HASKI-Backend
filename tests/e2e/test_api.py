@@ -1026,7 +1026,7 @@ class TestApi:
         self, client_class, input, topic_id, keys_expected, status_code_expected
     ):
         global student_id
-
+        """[HASKI-REQ-0041] Validates student-specific algorithm selection per topic."""
         url = (
             path_student
             + "/"
