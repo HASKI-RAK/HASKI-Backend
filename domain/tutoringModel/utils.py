@@ -26,15 +26,15 @@ influence = {
 
 
 # Calculate the coordinates for the LEs
-def get_coordinates(learning_style, list_of_les, dimentions=4):
+def get_coordinates(learning_style, list_of_les, dimensions=4):
     coordinates = {}
     for elememnt in list_of_les:
         if elememnt == cons.abbreviation_ct:
-            coordinates[cons.abbreviation_ct] = (13,) * dimentions
+            coordinates[cons.abbreviation_ct] = (13,) * dimensions
         elif elememnt == cons.abbreviation_co:
-            coordinates[cons.abbreviation_co] = (12,) * dimentions
+            coordinates[cons.abbreviation_co] = (12,) * dimensions
         elif elememnt == cons.abbreviation_as:
-            coordinates[cons.abbreviation_as] = (-12,) * dimentions
+            coordinates[cons.abbreviation_as] = (-12,) * dimensions
         elif elememnt == cons.abbreviation_cc:
             if (
                 learning_style["processing_dimension"] == "ref"
@@ -44,16 +44,16 @@ def get_coordinates(learning_style, list_of_les, dimentions=4):
                     learning_style["processing_value"]
                     > learning_style["understanding_value"]
                 ):
-                    coordinates[cons.abbreviation_cc] = (11,) * dimentions
+                    coordinates[cons.abbreviation_cc] = (11,) * dimensions
                 else:
-                    coordinates[cons.abbreviation_cc] = (0,) * dimentions
+                    coordinates[cons.abbreviation_cc] = (0,) * dimensions
             elif (
                 learning_style["processing_dimension"] == "ref"
                 or learning_style["understanding_dimension"] == "glo"
             ):
-                coordinates[cons.abbreviation_cc] = (11,) * dimentions
+                coordinates[cons.abbreviation_cc] = (11,) * dimensions
             else:
-                coordinates[cons.abbreviation_cc] = (0,) * dimentions
+                coordinates[cons.abbreviation_cc] = (0,) * dimensions
         else:
             coordinate = list()
             if learning_style["processing_dimension"] == "act":
@@ -89,11 +89,11 @@ def get_coordinates(learning_style, list_of_les, dimentions=4):
                     learning_style["understanding_value"] * influence[elememnt][7]
                 )
             # ---
-            if len(coordinate) < dimentions:
-                coordinate.extend([0] * (dimentions - len(coordinate)))
+            if len(coordinate) < dimensions:
+                coordinate.extend([0] * (dimensions - len(coordinate)))
             # opcional
-            elif len(coordinate) > dimentions:
-                coordinate = coordinate[:dimentions]
+            elif len(coordinate) > dimensions:
+                coordinate = coordinate[:dimensions]
             # ---
             coordinates[elememnt] = tuple(coordinate)
     return coordinates
@@ -213,10 +213,36 @@ def get_learning_path_as_str(result_ga):
 
 
 def normalize_array2(data, old_min, old_max, new_min=-12, new_max=13):
+    """
+    Scale a value from an old range to a new range.
+
+    Parameters:
+        data: float or array-like
+            Value(s) to normalize.
+        old_min, old_max: float
+            Original range.
+        new_min, new_max: float, optional
+            Target range (default -12 to 13).
+
+    Returns:
+        float or array-like: Normalized value(s).
+    """
+    if old_max == old_min:
+        return (new_min + new_max) / 2
     return new_min + (data - old_min) * (new_max - new_min) / (old_max - old_min)
 
 
 def added_view_times(input_view_time):
+    """
+    Normalize view/time values for each learning element.
+
+    Parameters:
+        input_view_time: dict
+            Mapping {label: (view, time)} with raw values.
+
+    Returns:
+        dict: {label: (norm_view, norm_time)} normalized to the target range.
+    """
     views = [v[0] for v in input_view_time.values()]
     times = [v[1] for v in input_view_time.values()]
     # views, times = zip(*input_view_time.values())
@@ -234,7 +260,19 @@ def added_view_times(input_view_time):
     return norm_view_time
 
 
-def update_coodinate(dict_coordinate, input_view_time):
+def update_coordinate(dict_coordinate, input_view_time):
+    """
+    Insert normalized view/time values into the last two positions of coordinates.
+
+    Parameters:
+        dict_coordinate: dict
+            {label: coord_tuple} original coordinates.
+        input_view_time: dict
+            {label: (view, time)} normalized view/time values.
+
+    Returns:
+        dict: Updated coordinates with new view/time where applicable.
+    """
     updated_coords = {}
     for k, coord in dict_coordinate.items():
         if k in input_view_time and k not in ("KÜ", "EK", "LZ"):

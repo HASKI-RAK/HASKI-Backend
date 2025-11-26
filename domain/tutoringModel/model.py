@@ -54,7 +54,7 @@ class LearningPath:
                     learning_style, list_of_les_classifications, dimension
                 )
                 norm_view_times = utils.added_view_times(input_view_time)
-                coordinates = utils.update_coodinate(coordinates, norm_view_times)
+                coordinates = utils.update_coordinate(coordinates, norm_view_times)
             start_point = {"Start": (15,) * dimension}
             start_point.update(coordinates)
             path = aco.AntColonySolver()
