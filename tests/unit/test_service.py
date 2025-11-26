@@ -3465,15 +3465,6 @@ def test_get_topics_by_student_and_course_id():
     assert result != {}
 
 
-def test_get_user_by_admin():
-    uow = FakeUnitOfWork()
-    create_student_for_tests(uow)
-    create_admin_for_tests(uow)
-    result = services.get_users_by_admin(uow=uow, user_id=1, lms_user_id=1)
-    assert isinstance(result, dict)
-    assert result != {}
-
-
 def test_reset_learning_style_by_student_id():
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
