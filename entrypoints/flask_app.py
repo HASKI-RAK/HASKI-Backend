@@ -173,41 +173,6 @@ def post_learning_path_algorithm(data: Dict[str, Any]):
             else:
                 raise err.MissingParameterError()
 
-
-# unused
-# Post to add a single student to course
-@app.route("/lms/course/<course_id>/student/<student_id>", methods=["POST"])
-@cross_origin(supports_credentials=True)
-def post_student_course(course_id, student_id):
-    method = request.method
-    match method:
-        case "POST":
-            student_course = services.add_student_to_course(
-                unit_of_work.SqlAlchemyUnitOfWork(), student_id, course_id
-            )
-            if student_course != {}:
-                return make_response(jsonify(student_course), http.HTTPStatus.CREATED)
-            else:
-                return make_response(
-                    jsonify({"CREATED": False}), http.HTTPStatus.CONFLICT
-                )
-
-
-# unused
-# Post to add a single teacher to course
-@app.route("/lms/course/<course_id>/teacher/<teacher_id>", methods=["POST"])
-@cross_origin(supports_credentials=True)
-def post_teacher_course(course_id, teacher_id):
-    method = request.method
-    match method:
-        case "POST":
-            teacher_course = services.add_teacher_to_course(
-                unit_of_work.SqlAlchemyUnitOfWork(), teacher_id, course_id
-            )
-            status_code = 201
-            return jsonify(teacher_course), status_code
-
-
 # unused
 # Post to add a topic visit for a student
 @app.route("/lms/student/<student_id>/<lms_user_id>/topic/<topic_id>", methods=["POST"])
