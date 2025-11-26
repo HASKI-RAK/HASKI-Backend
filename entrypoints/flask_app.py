@@ -707,35 +707,6 @@ def logging_frontend(data: Dict[str, Any]):
             return jsonify(data), status_code
 
 
-# Admin Endpoints
-#unused
-@app.route("/user/<user_id>/<lms_user_id>/admin/<admin_id>/user", methods=["GET"])
-@cross_origin(supports_credentials=True)
-def get_users_by_admin(user_id, lms_user_id, admin_id):
-    method = request.method
-    match method:
-        case "GET":
-            users = services.get_users_by_admin(
-                unit_of_work.SqlAlchemyUnitOfWork(), user_id, lms_user_id
-            )
-            status_code = 200
-            return jsonify(users), status_code
-
-#unused
-@app.route("/user/<user_id>/<lms_user_id>/admin/<admin_id>/logs", methods=["GET"])
-@cross_origin(supports_credentials=True)
-def get_admin_logs(user_id, lms_user_id, admin_id):
-    method = request.method
-    match method:
-        case "GET":
-            services.get_user_by_id(
-                unit_of_work.SqlAlchemyUnitOfWork(), user_id, lms_user_id
-            )
-            return_message = mocked_frontend_log
-            status_code = 200
-            return jsonify(return_message), status_code
-
-
 # Teacher Endpoints
 #unused
 @app.route("/user/<user_id>/<lms_user_id>/teacher/<teacher_id>/course", methods=["GET"])

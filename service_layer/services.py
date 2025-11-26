@@ -1855,23 +1855,6 @@ def get_topic_learning_element_by_learning_element(
         return result
 
 
-def get_users_by_admin(
-    uow: unit_of_work.AbstractUnitOfWork, user_id, lms_user_id
-) -> dict:
-    with uow:
-        admin_user = uow.user.get_user_by_id(user_id, lms_user_id)
-        admin_user[0].settings = None
-        users = uow.user.get_users_by_uni(admin_user[0].university)
-        result = {}
-        user_list = []
-        for user in users:
-            user.settings = None
-            user.role_id = None
-            user_list.append(user.serialize())
-        result["users"] = user_list
-        return result
-
-
 def reset_learning_characteristics(
     uow: unit_of_work.AbstractUnitOfWork, user_id, lms_user_id, student_id
 ) -> dict:

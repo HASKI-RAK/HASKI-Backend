@@ -24,7 +24,6 @@ learning_element_id = 0
 questionnaire_ils_id = 0
 questionnaire_list_k_id = 0
 
-path_admin = "/admin"
 path_activity_status = "/activitystatus"
 path_course = "/course"
 path_courses = "/courses"
@@ -2865,94 +2864,6 @@ class TestApi:
             + path_learning_element
             + "/"
             + str(learning_element_id_use)
-        )
-        r = client_class.get(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        for key in keys_expected:
-            assert key in response.keys()
-
-    # Get all Users by Admin
-    @pytest.mark.parametrize(
-        "lms_user_id, keys_expected_1,\
-                            keys_expected_2, status_code_expected,\
-                            error_user",
-        [
-            # Working Example
-            (1, ["users"], ["name", "role", "university"], 200, False),
-            # User not found
-            (1, ["error", "message"], [], 404, True),
-        ],
-    )
-    def test_get_users_by_admin_id(
-        self,
-        client_class,
-        lms_user_id,
-        keys_expected_1,
-        keys_expected_2,
-        status_code_expected,
-        error_user,
-    ):
-        global user_id_admin, admin_id
-        if error_user:
-            user_id_use = 99999
-        else:
-            user_id_use = user_id_admin
-        url = (
-            path_user
-            + "/"
-            + str(user_id_use)
-            + "/"
-            + str(lms_user_id)
-            + path_admin
-            + "/"
-            + str(admin_id)
-            + path_user
-        )
-        r = client_class.get(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        if "users" in keys_expected_1:
-            for key in keys_expected_2:
-                assert key in response["users"][0].keys()
-        else:
-            for key in keys_expected_1:
-                assert key in response.keys()
-
-    # Get all logs by Admin
-    @pytest.mark.parametrize(
-        "lms_user_id, keys_expected,\
-                            status_code_expected, error_admin",
-        [
-            # Working Example
-            (1, ["logs"], 200, False),
-            # User not found
-            (1, ["error", "message"], 404, True),
-        ],
-    )
-    def test_get_logs_by_admin_id(
-        self,
-        client_class,
-        lms_user_id,
-        keys_expected,
-        status_code_expected,
-        error_admin,
-    ):
-        global user_id_admin, admin_id
-        if error_admin:
-            user_id_use = 99999
-        else:
-            user_id_use = user_id_admin
-        url = (
-            path_user
-            + "/"
-            + str(user_id_use)
-            + "/"
-            + str(lms_user_id)
-            + path_admin
-            + "/"
-            + str(admin_id)
-            + path_logs
         )
         r = client_class.get(url)
         assert r.status_code == status_code_expected
