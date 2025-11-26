@@ -3261,6 +3261,7 @@ def test_get_courses_by_student_id():
     assert isinstance(result, dict)
     assert result != {}
 
+
 def test_get_learning_style_by_student_id():
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)

@@ -12,9 +12,11 @@ from utils.constants import (
     role_course_creator_string,
     role_teacher_string,
 )
-bp_user = Blueprint('user', __name__)
 
-#get learning elements for a course by user_id
+bp_user = Blueprint("user", __name__)
+
+
+# get learning elements for a course by user_id
 @bp_user.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>/course/"
     + "<course_id>/learningElement",
@@ -34,6 +36,7 @@ def get_learning_elements_for_course(user_id, lms_user_id, student_id, course_id
             )
             status_code = 200
             return jsonify(learning_elements), status_code
+
 
 # get user by id
 @bp_user.route("/user/<user_id>/<lms_user_id>", methods=["GET"])
@@ -78,6 +81,7 @@ def settings_by_user_id_administration(data: Dict[str, Any], user_id, lms_user_i
             status_code = 200
             return jsonify(result), status_code
 
+
 # Post to a contact form
 @bp_user.route("/user/<user_id>/<lms_user_id>/contactform", methods=["POST"])
 @cross_origin(supports_credentials=True)
@@ -109,9 +113,7 @@ def contact_form(data: Dict[str, Any], user_id, lms_user_id):
     "/user/<user_id>/<lms_user_id>/topic/<topic_id>/teacherAlgorithm", methods=["POST"]
 )
 @cross_origin(supports_credentials=True)
-def post_teacher_lp_le_algorithm(
-   user_id: str, lms_user_id: str, topic_id: str
-):
+def post_teacher_lp_le_algorithm(user_id: str, lms_user_id: str, topic_id: str):
     data = request.get_json()
     method = request.method
     match method:
@@ -174,6 +176,7 @@ def post_teacher_lp_le_algorithm(
             status_code = 201
             return jsonify(result), status_code
 
+
 # Post to calculate learning path for a user
 @bp_user.route(
     "/user/<user_id>/<lms_user_id>/learningPath",
@@ -229,8 +232,11 @@ def post_calculate_learning_path(_: Dict[str, Any], user_id: str, lms_user_id: s
             status_code = 201
             return jsonify(results), status_code
 
+
 # get courses by student id
-@bp_user.route("/user/<user_id>/<lms_user_id>/student/<student_id>/course", methods=["GET"])
+@bp_user.route(
+    "/user/<user_id>/<lms_user_id>/student/<student_id>/course", methods=["GET"]
+)
 @cross_origin(supports_credentials=True)
 def get_courses_by_student_id(user_id, lms_user_id, student_id):
     method = request.method
@@ -241,7 +247,8 @@ def get_courses_by_student_id(user_id, lms_user_id, student_id):
             )
             status_code = 200
             return jsonify(result), status_code
-        
+
+
 # get topics by student id and course id
 @bp_user.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>/course/<course_id>/topic",
@@ -261,6 +268,7 @@ def get_topics_by_student_and_course_id(user_id, lms_user_id, student_id, course
             )
             status_code = 200
             return jsonify(result), status_code
+
 
 # Get learning path for a student
 @bp_user.route(
@@ -283,6 +291,7 @@ def get_learning_path(user_id, lms_user_id, student_id, course_id, topic_id):
             )
             status_code = 200
             return jsonify(result), status_code
+
 
 # Create/Overwrite default learning path for all students in a university
 @bp_user.route(
@@ -397,6 +406,7 @@ def get_default_learning_path(user_id, lms_user_id):
                 unit_of_work.SqlAlchemyUnitOfWork(), user["university"]
             )
             return make_response(jsonify(result), http.HTTPStatus.OK)
+
 
 # Post to change the learning path algorithm for a student for a topic
 @bp_user.route(
@@ -562,6 +572,7 @@ def post_calculate_rating(
             # Return result with status code.
             return jsonify(result), status_code
 
+
 # Post to calculate and retieve learning element recommendations
 @bp_user.route(
     "/user/<user_id>/course/<course_id>/topic/<topic_id>/recommendation",
@@ -591,8 +602,9 @@ def get_learning_element_recommendation(user_id: str, course_id: str, topic_id: 
     status_code = 200
     return jsonify(results), status_code
 
-#unused
-#get learning characteristics of a student
+
+# unused
+# get learning characteristics of a student
 @bp_user.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>" + "/learningCharacteristics",
     methods=["GET"],
@@ -608,8 +620,9 @@ def get_learning_characteristics(user_id, lms_user_id, student_id):
             status_code = 200
             return jsonify(characteristic), status_code
 
-#unused
-#delete learning characteristics of a student
+
+# unused
+# delete learning characteristics of a student
 @bp_user.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>/" + "learningCharacteristics",
     methods=["DELETE"],
@@ -625,8 +638,9 @@ def delete_learning_characteristics(user_id, lms_user_id, student_id):
             status_code = 200
             return jsonify(characteristic), status_code
 
-#unused
-#update or delete learning style of a student
+
+# unused
+# update or delete learning style of a student
 @bp_user.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>/" + "learningStyle",
     methods=["PUT", "DELETE"],
@@ -712,7 +726,7 @@ def learning_style_administration(
             return jsonify(result), status_code
 
 
-#get learning style of a student
+# get learning style of a student
 @bp_user.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>/" + "learningStyle",
     methods=["GET"],
@@ -728,7 +742,8 @@ def get_learning_style(user_id, lms_user_id, student_id):
             status_code = 200
             return jsonify(result), status_code
 
-#get learning strategy of a student
+
+# get learning strategy of a student
 @bp_user.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>/" + "learningStrategy",
     methods=["GET"],
@@ -744,8 +759,9 @@ def get_learning_strategy(user_id, lms_user_id, student_id):
             status_code = 200
             return jsonify(result), status_code
 
-#unused
-#delete learning strategy of a student
+
+# unused
+# delete learning strategy of a student
 @bp_user.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>/" + "learningStrategy",
     methods=["DELETE"],

@@ -15,7 +15,9 @@ from utils.constants import (
     role_student_string,
     role_teacher_string,
 )
-bp_lms = Blueprint('lms', __name__)
+
+bp_lms = Blueprint("lms", __name__)
+
 
 # ##### lms/user #####
 # User Administration via LMS/not used
@@ -60,7 +62,8 @@ def create_user(data: Dict[str, Any]):
             else:
                 raise err.MissingParameterError()
 
-#not used
+
+# not used
 @bp_lms.route("/lms/user/<user_id>/<lms_user_id>", methods=["PUT", "DELETE"])
 @cross_origin(supports_credentials=True)
 @json_only(ignore=["DELETE"])
@@ -94,7 +97,8 @@ def user_administration(data, user_id, lms_user_id):
             result = {"message": cons.deletion_message}
             status_code = 200
             return jsonify(result), status_code
-        
+
+
 # Get user info from cookie
 @bp_lms.route("/lms/user_from_cookie", methods=["GET"])
 @cross_origin(supports_credentials=True)
@@ -117,6 +121,7 @@ def get_user_info():
             status_code = 200
             return jsonify(user), status_code
 
+
 # Get all remote courses for a user
 @bp_lms.route(
     "/lms/user/<user_id>/remote/courses",
@@ -135,7 +140,10 @@ def get_all_remote_courses(user_id):
             )
 
             return jsonify(enrolled_moodle_courses), 200
+
+
 # ##### lms/student #####
+
 
 # Add ILS Questionnaire answers for a student
 @bp_lms.route("/lms/student/<student_id>/questionnaire/ils", methods=["POST"])
@@ -194,6 +202,7 @@ def questionnaire_ils(data: Dict[str, Any], student_id):
 
             status_code = 201
             return jsonify(result), status_code
+
 
 # Add Questionnaire List K answers for a student
 @bp_lms.route("/lms/student/<student_id>/questionnaire/listk", methods=["POST"])
@@ -325,6 +334,7 @@ def post_course(data: Dict[str, Any]):
             status_code = 201
             return jsonify(course), status_code
 
+
 # Update or delete a course /update not used
 @bp_lms.route("/lms/course/<course_id>/<lms_course_id>", methods=["PUT", "DELETE"])
 @cross_origin(supports_credentials=True)
@@ -426,6 +436,7 @@ def get_activity_status_for_student(course_id, lms_user_id):
             )
             return jsonify(activity_status), 200
 
+
 # Endpoint to get activity status for a student, course and specific learning element
 @bp_lms.route(
     "/lms/course/<course_id>/student/<student_id>/"
@@ -515,7 +526,6 @@ def post_topic(data: Dict[str, Any], course_id):
 
             status_code = 201
             return jsonify(topic), status_code
-
 
 
 # ##### lms/topic #####
@@ -615,6 +625,7 @@ def topic_administration(data: Dict[str, Any], topic_id, lms_topic_id):
             result = {"message": cons.deletion_message}
             status_code = 200
             return jsonify(result), status_code
+
 
 # Create LE - shorter request-url
 @bp_lms.route(

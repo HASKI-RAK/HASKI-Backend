@@ -118,6 +118,7 @@ def lti_launch_view():
         )
     }, 200
 
+
 # Test Endpoint to post a user login by id and get a user by id
 @app.route("/login_credentials", methods=["POST"])
 @cross_origin(supports_credentials=True)
@@ -172,7 +173,8 @@ def post_learning_path_algorithm(data: Dict[str, Any]):
             else:
                 raise err.MissingParameterError()
 
-#unused
+
+# unused
 # Post to add a single student to course
 @app.route("/lms/course/<course_id>/student/<student_id>", methods=["POST"])
 @cross_origin(supports_credentials=True)
@@ -190,7 +192,8 @@ def post_student_course(course_id, student_id):
                     jsonify({"CREATED": False}), http.HTTPStatus.CONFLICT
                 )
 
-#unused
+
+# unused
 # Post to add a single teacher to course
 @app.route("/lms/course/<course_id>/teacher/<teacher_id>", methods=["POST"])
 @cross_origin(supports_credentials=True)
@@ -204,7 +207,8 @@ def post_teacher_course(course_id, teacher_id):
             status_code = 201
             return jsonify(teacher_course), status_code
 
-#unused
+
+# unused
 # Post to add a topic visit for a student
 @app.route("/lms/student/<student_id>/<lms_user_id>/topic/<topic_id>", methods=["POST"])
 @cross_origin(supports_credentials=True)
@@ -240,7 +244,8 @@ def post_student_topic_visit(data: Dict[str, Any], student_id, lms_user_id, topi
             else:
                 raise err.MissingParameterError()
 
-#unused
+
+# unused
 # Post to add a learning element visit for a student
 @app.route(
     "/lms/student/<student_id>/<lms_user_id>/learningElement/"
@@ -277,7 +282,8 @@ def post_student_learning_element_id_visit(
             else:
                 raise err.MissingParameterError()
 
-#unused
+
+# unused
 @app.route(
     "/student/<student_id>/topic/<topic_id>/algorithm",
     methods=["POST"],
@@ -312,6 +318,7 @@ def post_student_learning_path_learning_element_algorithm(
             else:
                 raise err.MissingParameterError()
 
+
 # unused
 @app.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>/course" + "/<course_id>",
@@ -328,7 +335,8 @@ def get_course_by_course_id(user_id, lms_user_id, student_id, course_id):
             status_code = 200
             return jsonify(result), status_code
 
-#unused
+
+# unused
 @app.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>/course"
     + "/<course_id>/topic/<topic_id>",
@@ -352,7 +360,8 @@ def get_topics_by_student_course_and_topic_id(
             status_code = 200
             return jsonify(result), status_code
 
-#unused
+
+# unused
 @app.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>/course"
     + "/<course_id>/topic/<topic_id>/learningElement",
@@ -376,7 +385,8 @@ def get_learning_element_by_student_course_and_topic_id(
             status_code = 200
             return jsonify(result), status_code
 
-#unused
+
+# unused
 @app.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>/course"
     + "/<course_id>/topic/<topic_id>/learningElement/"
@@ -404,7 +414,7 @@ def get_learning_element_by_le_id(
 
 
 # Learning Path Endpoints
-#unused
+# unused
 @app.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>/course/"
     + "<course_id>/topic/<topic_id>/learningPath",
@@ -440,6 +450,7 @@ def learning_path_administration(
                     raise err.WrongParameterValueError()
             else:
                 raise err.MissingParameterError()
+
 
 # specific roles can trigger calculation of learningpaths for all students for a topic
 # calculation on basis of student-algorithm (if empty teacher algorithm)
@@ -526,7 +537,7 @@ def post_calculate_learning_path_for_all_students(
 
 
 # User Endpoints
-#unused
+# unused
 @app.route("/user/<user_id>/<lms_user_id>", methods=["GET"])
 @cross_origin(supports_credentials=True)
 def user_by_user_id(user_id, lms_user_id):
@@ -538,6 +549,7 @@ def user_by_user_id(user_id, lms_user_id):
             )
             status_code = 200
             return jsonify(user), status_code
+
 
 # Get algorithm set by teacher for a topic
 @app.route("/topic/<topic_id>/teacherAlgorithm", methods=["GET"])
@@ -555,6 +567,7 @@ def get_teacher_lp_le_algorithm(topic_id: str):
             status_code = 200
             return jsonify(algorithm), status_code
 
+
 # unused
 # Get settings by user id
 @app.route("/user/<user_id>/<lms_user_id>/settings", methods=["GET"])
@@ -569,6 +582,7 @@ def get_settings_by_user_id(user_id, lms_user_id):
             status_code = 200
             return jsonify(settings), status_code
 
+
 # unused
 # Delete contact form by user id
 @app.route("/user/<user_id>/<lms_user_id>/contactform", methods=["DELETE"])
@@ -576,6 +590,7 @@ def get_settings_by_user_id(user_id, lms_user_id):
 def delete_contact_form(user_id, lms_user_id):
     services.delete_contact_form(unit_of_work.SqlAlchemyUnitOfWork(), user_id)
     return "ok", 201
+
 
 # unused
 # Post to add news
@@ -602,6 +617,7 @@ def news_creation(data: Dict[str, Any]):
     status_code = 201
     return jsonify(result), status_code
 
+
 # Get news by language and university
 @app.route("/news/language/<language_id>/university/<university>", methods=["GET"])
 @app.route(
@@ -619,6 +635,7 @@ def news(language_id, university):
     )
     status_code = 200
     return jsonify(result), status_code
+
 
 # unused
 # Delete all news
@@ -652,6 +669,7 @@ def create_logbuffer(content, user_id):
 
     return make_response(jsonify(result), http.HTTPStatus.CREATED)
 
+
 # unused
 # Get Logbuffer for a user
 @app.route("/user/<user_id>/logbuffer", methods=["GET"])
@@ -659,6 +677,7 @@ def create_logbuffer(content, user_id):
 def get_logbuffer_by_user_id(user_id):
     result = services.get_logbuffer(unit_of_work.SqlAlchemyUnitOfWork(), user_id)
     return make_response(jsonify(result), http.HTTPStatus.OK)
+
 
 # unused
 # Delete Logbuffer for a user
@@ -712,7 +731,7 @@ def logging_frontend(data: Dict[str, Any]):
 
 
 # Teacher Endpoints
-#unused
+# unused
 @app.route("/user/<user_id>/<lms_user_id>/teacher/<teacher_id>/course", methods=["GET"])
 @cross_origin(supports_credentials=True)
 def get_teacher_courses(user_id, lms_user_id, teacher_id):
@@ -725,8 +744,9 @@ def get_teacher_courses(user_id, lms_user_id, teacher_id):
             status_code = 200
             return jsonify(courses), status_code
 
-#unused
-#Post to add a student rating
+
+# unused
+# Post to add a student rating
 @app.route("/student/<student_id>/topic/<topic_id>/rating", methods=["POST"])
 @cross_origin(supports_credentials=True)
 def post_create_student_rating(student_id: str, topic_id: str):
@@ -740,6 +760,7 @@ def post_create_student_rating(student_id: str, topic_id: str):
             )
             status_code = 201
             return jsonify(result), status_code
+
 
 # Get all the studentratings
 @app.route("/user/<user_id>/student/<student_id>/rating", methods=["GET"])
@@ -759,8 +780,9 @@ def get_student_ratings(user_id: str, student_id: str):
             else:
                 raise err.WrongParameterValueError()
 
-#unused
-#Post to add a learning element rating
+
+# unused
+# Post to add a learning element rating
 @app.route(
     "/topic/<topic_id>/learningElement/<learning_element_id>/rating", methods=["POST"]
 )
@@ -777,6 +799,7 @@ def post_create_learning_element_rating(topic_id: str, learning_element_id: str)
             status_code = 201
             return jsonify(result), status_code
 
+
 # Get all the learning element ratings
 @app.route("/learningElement/rating", methods=["GET"])
 @cross_origin(supports_credentials=True)
@@ -788,6 +811,7 @@ def get_learning_element_ratings():
             )
             status_code = 200
             return jsonify(result), status_code
+
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)

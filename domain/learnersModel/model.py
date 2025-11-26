@@ -130,6 +130,7 @@ class LearningStrategy:
             "lrn_env": self.lrn_env,
         }
 
+
 class Knowledge:
     def __init__(self, characteristic_id) -> None:
         self.id = None

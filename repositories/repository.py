@@ -1980,10 +1980,10 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
 
     def update_learning_style(self, characteristic_id, learning_style) -> LM.Knowledge:
         existing = (
-        self.session.query(LM.LearningStyle)
-        .filter_by(characteristic_id=characteristic_id)
-        .first()
-         )
+            self.session.query(LM.LearningStyle)
+            .filter_by(characteristic_id=characteristic_id)
+            .first()
+        )
 
         if existing:
             learning_style.id = existing.id

@@ -5,7 +5,8 @@ from service_layer import services, unit_of_work
 
 import http
 
-bp_course = Blueprint('course', __name__)
+bp_course = Blueprint("course", __name__)
+
 
 # Add all students that are enrolled in moodle courses to the haski courses
 @bp_course.route("/course/<course_id>/allStudents", methods=["POST"])
@@ -48,6 +49,7 @@ def add_all_students_to_course(course_id):
                 jsonify({"CREATED": False, "course_id": course_id, "student_count": 0}),
                 http.HTTPStatus.NOT_FOUND,
             )
+
 
 # Add Topic to course and add all students to it
 @bp_course.route("/course/<course_id>/topics/allStudents", methods=["POST"])
