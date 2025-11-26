@@ -132,10 +132,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         student_topic_visit.id = len(self.student_topic_visit) + 1
         self.student_topic_visit.add(student_topic_visit)
 
-    def add_teacher_to_course(self, teacher_course):
-        teacher_course.id = len(self.teacher_course) + 1
-        self.teacher_course.add(teacher_course)
-
     def create_admin(self, admin):
         admin.id = len(self.admin) + 1
         self.admin.add(admin)
@@ -556,22 +552,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         for remove in to_remove:
             self.student_topic_visit.remove(remove)
 
-    def delete_teacher(self, user_id):
-        to_remove = []
-        for i in self.teacher:
-            if i.user_id == user_id:
-                to_remove.append(i)
-        for remove in to_remove:
-            self.teacher.remove(remove)
-
-    def delete_teacher_course(self, teacher_id):
-        to_remove = []
-        for i in self.teacher_course:
-            if i.teacher_id == teacher_id:
-                to_remove.append(i)
-        for remove in to_remove:
-            self.teacher_course.remove(remove)
-
     def delete_topic(self, topic_id):
         to_remove = []
         for i in self.topic:
@@ -683,13 +663,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         result = []
         for i in self.course_creator:
             if i.user_id == user_id:
-                result.append(i)
-        return result
-
-    def get_courses_for_teacher(self, teacher_id):
-        result = []
-        for i in self.teacher_course:
-            if i.teacher_id == teacher_id:
                 result.append(i)
         return result
 
@@ -943,27 +916,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         result = []
         for i in self.student_topic_visit:
             if i.student_id == student_id and i.topic_id == topic_id:
-                result.append(i)
-        return result
-
-    def get_teacher_by_id(self, user_id):
-        result = []
-        for i in self.teacher:
-            if i.user_id == user_id:
-                result.append(i)
-        return result
-
-    def get_teacher_by_teacher_id(self, teacher_id):
-        result = []
-        for i in self.teacher:
-            if i.id == teacher_id:
-                result.append(i)
-        return result
-
-    def get_teacher_by_uni(self, university):
-        result = []
-        for i in self.teacher:
-            if i.university == university:
                 result.append(i)
         return result
 
@@ -1887,17 +1839,6 @@ def test_delete_student():
     assert isinstance(result, dict)
     assert result == {}
     entries_after = len(uow.student.student)
-    assert entries_beginning - 1 == entries_after
-
-
-def test_delete_teacher():
-    uow = FakeUnitOfWork()
-    create_teacher_for_tests(uow)
-    entries_beginning = len(uow.teacher.teacher)
-    result = services.delete_teacher(uow, 1)
-    assert isinstance(result, dict)
-    assert result == {}
-    entries_after = len(uow.teacher.teacher)
     assert entries_beginning - 1 == entries_after
 
 
@@ -3086,21 +3027,6 @@ def test_add_student_to_course():
     assert entries_beginning_course + 1 == entries_after_course
     assert entries_after_topic > entries_beginning_topic
     assert entries_after_le > entries_beginning_le
-
-
-def test_add_teacher_to_course():
-    uow = FakeUnitOfWork()
-    create_course_creator_for_tests(uow)
-    create_teacher_for_tests(uow)
-    create_course_for_tests(uow)
-    entries_beginning_course = len(uow.teacher_course.teacher_course)
-    result = services.add_teacher_to_course(uow=uow, teacher_id=1, course_id=1)
-    entries_after_course = len(uow.teacher_course.teacher_course)
-    assert isinstance(result, dict)
-    assert result != {}
-    assert entries_beginning_course + 1 == entries_after_course
-    with pytest.raises(err.AlreadyExisting):
-        services.add_teacher_to_course(uow=uow, teacher_id=1, course_id=1)
 
 
 def test_create_course_creator_course():

@@ -38,10 +38,6 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def add_teacher_to_course(self, teacher_course) -> DM.TeacherCourse:
-        raise NotImplementedError
-
-    @abc.abstractmethod
     def create_admin(self, admin: UA.Admin) -> UA.Admin:
         raise NotImplementedError
 
@@ -338,14 +334,6 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def delete_teacher(self, user_id):
-        raise NotImplementedError
-
-    @abc.abstractmethod
-    def delete_teacher_course(self, teacher_id):
-        raise NotImplementedError
-
-    @abc.abstractmethod
     def delete_topic(self, topic_id):
         raise NotImplementedError
 
@@ -416,10 +404,6 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
 
     @abc.abstractmethod
     def get_courses_by_student_id(self, student_id):
-        raise NotImplementedError
-
-    @abc.abstractmethod
-    def get_courses_for_teacher(self, teacher_id):
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -568,18 +552,6 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
 
     @abc.abstractmethod
     def get_student_topic_visit(self, student_id, topic_id) -> DM.StudentTopicVisit:
-        raise NotImplementedError
-
-    @abc.abstractmethod
-    def get_teacher_by_id(self, user_id) -> UA.Teacher:
-        raise NotImplementedError
-
-    @abc.abstractmethod
-    def get_teacher_by_teacher_id(self, teacher_id):
-        raise NotImplementedError
-
-    @abc.abstractmethod
-    def get_teacher_by_uni(self, university):
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -760,18 +732,6 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
     def add_student_topic_visit(self, student_topic_visit):
         try:
             self.session.add(student_topic_visit)
-        except IntegrityError:
-            raise err.ForeignKeyViolation()
-        except Exception:
-            raise err.CreationError()
-
-    def add_teacher_to_course(self, teacher_course) -> DM.TeacherCourse:
-        course_exist = self.get_courses_for_teacher(teacher_course.teacher_id)
-        for c in course_exist:
-            if c.course_id == teacher_course.course_id:
-                raise err.AlreadyExisting()
-        try:
-            self.session.add(teacher_course)
         except IntegrityError:
             raise err.ForeignKeyViolation()
         except Exception:
@@ -1285,16 +1245,6 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
     def delete_student_topic_visit_by_topic_id(self, topic_id):
         self.session.query(DM.StudentTopicVisit).filter_by(topic_id=topic_id).delete()
 
-    def delete_teacher(self, user_id):
-        teacher = self.get_teacher_by_id(user_id)
-        if teacher != []:
-            self.session.query(UA.Teacher).filter_by(user_id=user_id).delete()
-        else:
-            raise err.NoValidIdError()
-
-    def delete_teacher_course(self, teacher_id):
-        self.session.query(DM.TeacherCourse).filter_by(teacher_id=teacher_id).delete()
-
     def delete_topic(self, topic_id):
         topic = self.get_topic_by_id(topic_id)
         if topic != []:
@@ -1397,16 +1347,6 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             raise err.NoValidIdError()
         else:
             return result
-
-    def get_courses_for_teacher(self, teacher_id):
-        try:
-            return (
-                self.session.query(DM.TeacherCourse)
-                .filter_by(teacher_id=teacher_id)
-                .all()
-            )
-        except Exception:
-            raise err.DatabaseQueryError()
 
     def get_course_topic_by_course(self, course_id) -> DM.CourseTopic:
         result = self.session.query(DM.CourseTopic).filter_by(course_id=course_id).all()
@@ -1755,26 +1695,6 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
                 .filter_by(topic_id=topic_id)
                 .all()
             )
-        except Exception:
-            raise err.DatabaseQueryError()
-
-    def get_teacher_by_id(self, user_id) -> UA.Teacher:
-        result = self.session.query(UA.Teacher).filter_by(user_id=user_id).all()
-        if result == []:
-            raise err.NoValidIdError()
-        else:
-            return result
-
-    def get_teacher_by_teacher_id(self, teacher_id) -> UA.Teacher:
-        result = self.session.query(UA.Teacher).filter_by(id=teacher_id).all()
-        if result == []:
-            raise err.NoValidIdError()
-        else:
-            return result
-
-    def get_teacher_by_uni(self, university):
-        try:
-            return self.session.query(UA.Teacher).filter_by(university=university).all()
         except Exception:
             raise err.DatabaseQueryError()
 

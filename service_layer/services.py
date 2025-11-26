@@ -137,24 +137,6 @@ def add_student_topic_visit(
         result = student_topic_visit.serialize()
         return result
 
-
-def add_teacher_to_course(
-    uow: unit_of_work.AbstractUnitOfWork, teacher_id, course_id
-) -> dict:
-    with uow:
-        get_course_by_id(uow, None, None, course_id)
-        user = uow.teacher.get_teacher_by_teacher_id(teacher_id)
-        teacher_coures = get_courses_for_teacher(uow, user[0].user_id, teacher_id)
-        for course in teacher_coures["courses"]:
-            if int(course["id"]) == int(course_id):
-                raise err.AlreadyExisting()
-        teacher_course = DM.TeacherCourse(teacher_id, course_id)
-        uow.teacher_course.add_teacher_to_course(teacher_course)
-        uow.commit()
-        result = teacher_course.serialize()
-        return result
-
-
 def add_student_lpath_le_algorithm(
     uow: unit_of_work.AbstractUnitOfWork,
     student_id: int,
@@ -1124,22 +1106,6 @@ def delete_student(uow: unit_of_work.AbstractUnitOfWork, user_id):
         uow.commit()
         return {}
 
-
-def delete_teacher(uow: unit_of_work.AbstractUnitOfWork, user_id):
-    with uow:
-        teacher = uow.teacher.get_teacher_by_id(user_id)
-        delete_teacher_course(uow, teacher[0].id)
-        uow.teacher.delete_teacher(user_id)
-        uow.commit()
-        return {}
-
-
-def delete_teacher_course(uow: unit_of_work.AbstractUnitOfWork, teacher_id):
-    with uow:
-        uow.teacher_course.delete_teacher_course(teacher_id)
-        uow.commit()
-
-
 def delete_user(uow: unit_of_work.AbstractUnitOfWork, user_id, lms_user_id):
     with uow:
         user = get_user_by_id(uow, user_id, lms_user_id)
@@ -1150,8 +1116,6 @@ def delete_user(uow: unit_of_work.AbstractUnitOfWork, user_id, lms_user_id):
                 delete_course_creator(uow, user["id"])
             case const.role_student_string:
                 delete_student(uow, user["id"])
-            case const.role_teacher_string:
-                delete_teacher(uow, user["id"])
         delete_settings(uow, user_id)
         uow.user.delete_user(user_id, lms_user_id)
         uow.commit()
@@ -1355,24 +1319,6 @@ def get_courses_by_uni(uow: unit_of_work.AbstractUnitOfWork, university) -> dict
             result_courses.append(course.serialize_short())
         result = {}
         result["courses"] = result_courses
-        return result
-
-
-def get_courses_for_teacher(
-    uow: unit_of_work.AbstractUnitOfWork, user_id, teacher_id
-) -> dict:
-    with uow:
-        uow.teacher.get_teacher_by_id(user_id)
-        courses = uow.teacher_course.get_courses_for_teacher(teacher_id)
-        result = {}
-        course_list = []
-        for course in courses:
-            course_temp = uow.course.get_course_by_id(course.course_id)
-            course_temp[0].created_at = None
-            course_temp[0].created_by = None
-            course_temp[0].last_updated = None
-            course_list.append(course_temp[0].serialize())
-        result["courses"] = course_list
         return result
 
 

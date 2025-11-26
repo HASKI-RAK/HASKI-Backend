@@ -695,21 +695,6 @@ def logging_frontend(data: Dict[str, Any]):
             return jsonify(data), status_code
 
 
-# Teacher Endpoints
-# unused
-@app.route("/user/<user_id>/<lms_user_id>/teacher/<teacher_id>/course", methods=["GET"])
-@cross_origin(supports_credentials=True)
-def get_teacher_courses(user_id, lms_user_id, teacher_id):
-    method = request.method
-    match method:
-        case "GET":
-            courses = services.get_courses_for_teacher(
-                unit_of_work.SqlAlchemyUnitOfWork(), user_id, teacher_id
-            )
-            status_code = 200
-            return jsonify(courses), status_code
-
-
 # unused
 # Post to add a student rating
 @app.route("/student/<student_id>/topic/<topic_id>/rating", methods=["POST"])

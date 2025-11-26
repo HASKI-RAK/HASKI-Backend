@@ -49,7 +49,6 @@ path_recommendation = "/recommendation"
 path_remote = "/lms/remote"
 path_settings = "/settings"
 path_student = "/student"
-path_teacher = "/teacher"
 path_topic = "/topic"
 path_user = "/user"
 path_algorithm = "/algorithm"
@@ -3938,53 +3937,6 @@ class TestApi:
             for key in keys_expected_1:
                 assert key in response.keys()
 
-    # Get all courses by Teacher
-    @pytest.mark.parametrize(
-        "lms_user_id, keys_expected_1,\
-                            keys_expected_2, status_code_expected,\
-                            error_teacher",
-        [
-            # Working Example
-            (3, ["courses"], ["id", "name", "lms_id"], 200, False),
-            # User not found
-            (3, ["error", "message"], [], 404, True),
-        ],
-    )
-    def test_get_courses_by_teacher_id(
-        self,
-        client_class,
-        lms_user_id,
-        keys_expected_1,
-        keys_expected_2,
-        status_code_expected,
-        error_teacher,
-    ):
-        global user_id_teacher, teacher_id
-        if error_teacher:
-            user_id_use = 99999
-        else:
-            user_id_use = user_id_teacher
-        url = (
-            path_user
-            + "/"
-            + str(user_id_use)
-            + "/"
-            + str(lms_user_id)
-            + path_teacher
-            + "/"
-            + str(teacher_id)
-            + path_course
-        )
-        r = client_class.get(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        if "courses" in keys_expected_1:
-            for key in keys_expected_2:
-                assert key in response["courses"][0].keys()
-        else:
-            for key in keys_expected_1:
-                assert key in response.keys()
-    
     # Get all topics for a course
     @pytest.mark.parametrize(
         "lms_user_id, status_code_expected,\
