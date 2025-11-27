@@ -11,16 +11,17 @@ from domain.tutoringModel import model as TM
 from domain.tutoringModel import nestor, tyche, utils
 from domain.tutoringModel.graf import GrafAlgorithm as Graf
 
-# from domain.tutoringModel.NestorFolder.nestor_config import path_to_trainedmodel
-# from domain.tutoringModel.NestorFolder.nestor_training import (
-#    build_train_save_nestor as nestor_training,
-# )
+from domain.tutoringModel.NestorFolder.nestor_config \
+    import path_to_trainedmodel
+from domain.tutoringModel.NestorFolder.nestor_training import (
+    build_train_save_nestor as nestor_training,
+)
 from utils import constants as cons
 
 rng = np.random.default_rng(11)
 
 
-def test_prepare_les_for_aco():
+def test_prepare_les_for_aco1():
     list_of_les = []
     list_of_keys = ["BE", "FO", "KÜ", "SE", "LZ", "EK", "ÜB"]
     for i, key in enumerate(list_of_keys):
@@ -54,7 +55,9 @@ def test_distance():
     [("vis", "sns", "act", "glo"), ("vrb", "int", "ref", "seq")],
 )
 def test_get_coordinates(
-    input_dimension, perception_dimension, processing_dimension, understanding_dimension
+    input_dimension, perception_dimension,
+    processing_dimension,
+    understanding_dimension
 ):
     ls = LM.LearningStyle(
         input_dimension=input_dimension,
@@ -69,7 +72,9 @@ def test_get_coordinates(
     dimensions = 6
     list_of_les = ["BE", "FO", "KÜ", "SE", "LZ", "EK", "ÜB", "ZF"]
     result = utils.get_coordinates(
-        learning_style=ls.serialize(), list_of_les=list_of_les, dimensions=dimensions
+        learning_style=ls.serialize(),
+        list_of_les=list_of_les,
+        dimensions=dimensions
     )
 
     assert type(result) == dict
@@ -433,7 +438,8 @@ def test_prepare_les_for_nestor(learning_style):
     nestor_alg = nestor.Nestor()
     # unit test for learning path returned from nestor inference
     nestor_lp = nestor_alg.get_learning_path(
-        input_learning_style=learning_style, input_learning_elements=list_of_les
+        input_learning_style=learning_style,
+        input_learning_elements=list_of_les
     )
     # check with errors: result = nestor_lp.path
     assert isinstance(nestor_lp, str)
@@ -618,7 +624,8 @@ def test_learning_style_check(learning_style, error):
         assert result
 
 
-def get_learning_path_default(learning_style, list_of_elements, default_learning_path):
+def get_learning_path_default(learning_style, list_of_elements,
+                              default_learning_path):
     list_of_les = []
     for i, ele_name in enumerate(list_of_elements):
         le = DM.LearningElement(
@@ -678,7 +685,8 @@ def test_get_learning_path_default(learning_style, list_of_keys):
     list_of_le_size = rng.integers(2, 50, size=num_of_test)
 
     for i in range(num_of_test):
-        le_position = rng.integers(2, len(list_of_keys), size=list_of_le_size[i])
+        le_position = rng.integers(2, len(list_of_keys),
+                                   size=list_of_le_size[i])
         list_of_elements = list_of_keys[le_position]
         list_of_elements = rng.permutation(list_of_elements)
 
@@ -752,11 +760,13 @@ def test_calculate_variable_score_graf(
     learning_element, learning_style, expected_result
 ):
     algorithmus = Graf(student_id=1)
-    score = algorithmus.calculate_variable_score(learning_element, learning_style)
+    score = algorithmus.calculate_variable_score(learning_element,
+                                                 learning_style)
     assert score == expected_result
 
 
-def get_learning_path_aco(learning_style, list_of_elements, dict_view_time=None):
+def get_learning_path_aco(learning_style, list_of_elements,
+                          dict_view_time=None):
     list_of_les = []
     for i, ele_name in enumerate(list_of_elements):
         le = DM.LearningElement(
@@ -780,7 +790,8 @@ def get_learning_path_aco(learning_style, list_of_elements, dict_view_time=None)
     return lp.path
 
 
-def get_learning_path_ga(learning_style, list_of_elements, dict_view_time=None):
+def get_learning_path_ga(learning_style, list_of_elements,
+                         dict_view_time=None):
     list_of_les = []
     for i, ele_name in enumerate(list_of_elements):
         le = DM.LearningElement(
@@ -854,7 +865,8 @@ def test_prepare_les_for_ga_2(learning_style, list_of_keys):
     list_of_le_size = rng.integers(2, 50, size=num_of_test)
 
     for i in range(num_of_test):
-        le_position = rng.integers(2, len(list_of_keys), size=list_of_le_size[i])
+        le_position = rng.integers(2, len(list_of_keys),
+                                   size=list_of_le_size[i])
         list_of_elements = list_of_keys[le_position]
         list_of_elements = rng.permutation(list_of_elements)
 
@@ -890,7 +902,8 @@ def test_prepare_les_for_ga_2(learning_style, list_of_keys):
                 "understanding_dimension": "glo",
                 "understanding_value": 9,
             },
-            ["ZF", "LZ", "ÜB", "SE", "BE", "AN", "EK", "ZL", "AB", "KÜ", "FO", "RQ"],
+            ["ZF", "LZ", "ÜB", "SE", "BE", "AN",
+             "EK", "ZL", "AB", "KÜ", "FO", "RQ"],
         ),
         (
             {
@@ -1092,7 +1105,8 @@ def test_prepare_les_for_ga(learning_style, list_of_keys):
                 "understanding_dimension": "glo",
                 "understanding_value": 9,
             },
-            ["ZF", "LZ", "ÜB", "SE", "BE", "AN", "EK", "ZL", "AB", "KÜ", "FO", "RQ"],
+            ["ZF", "LZ", "ÜB", "SE", "BE", "AN",
+             "EK", "ZL", "AB", "KÜ", "FO", "RQ"],
             {
                 "ZF": (8, 800),
                 "LZ": (9, 1600),
@@ -1111,7 +1125,9 @@ def test_prepare_les_for_ga(learning_style, list_of_keys):
         ),
     ],
 )
-def test_prepare_les_for_aco(learning_style, list_of_keys, dict_view_time):
+def test_prepare_les_for_aco(learning_style,
+                             list_of_keys,
+                             dict_view_time):
     if learning_style is None:
         learning_style = {
             "id": 1,
@@ -1126,7 +1142,9 @@ def test_prepare_les_for_aco(learning_style, list_of_keys, dict_view_time):
             "understanding_value": 9,
         }
 
-    result = get_learning_path_aco(learning_style, list_of_keys, dict_view_time)
+    result = get_learning_path_aco(learning_style,
+                                   list_of_keys,
+                                   dict_view_time)
 
     assert isinstance(result, str)
     if len(result) > 2:
@@ -1172,7 +1190,8 @@ def test_prepare_les_for_aco(learning_style, list_of_keys, dict_view_time):
                 "understanding_dimension": "glo",
                 "understanding_value": 9,
             },
-            ["ZF", "LZ", "ÜB", "SE", "BE", "AN", "EK", "ZL", "AB", "KÜ", "FO", "RQ"],
+            ["ZF", "LZ", "ÜB", "SE", "BE",
+             "AN", "EK", "ZL", "AB", "KÜ", "FO", "RQ"],
             {
                 "ZF": (8, 800),
                 "LZ": (9, 1600),
@@ -1191,7 +1210,7 @@ def test_prepare_les_for_aco(learning_style, list_of_keys, dict_view_time):
         ),
     ],
 )
-def test_prepare_les_for_ga(learning_style, list_of_keys, dict_view_time):
+def test_prepare_les_for_ga1(learning_style, list_of_keys, dict_view_time):
     if learning_style is None:
         learning_style = {
             "id": 1,
