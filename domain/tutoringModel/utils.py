@@ -26,77 +26,62 @@ influence = {
 
 
 # Calculate the coordinates for the LEs
-def get_coordinates(learning_style, list_of_les, dimensions=4):
-    coordinates = {}
-    for elememnt in list_of_les:
-        if elememnt == cons.abbreviation_ct:
-            coordinates[cons.abbreviation_ct] = (13,) * dimensions
-        elif elememnt == cons.abbreviation_co:
-            coordinates[cons.abbreviation_co] = (12,) * dimensions
-        elif elememnt == cons.abbreviation_as:
-            coordinates[cons.abbreviation_as] = (-12,) * dimensions
-        elif elememnt == cons.abbreviation_cc:
-            if (
-                learning_style["processing_dimension"] == "ref"
-                and learning_style["understanding_dimension"] == "seq"
-            ):
-                if (
-                    learning_style["processing_value"]
-                    > learning_style["understanding_value"]
-                ):
-                    coordinates[cons.abbreviation_cc] = (11,) * dimensions
-                else:
-                    coordinates[cons.abbreviation_cc] = (0,) * dimensions
-            elif (
-                learning_style["processing_dimension"] == "ref"
-                or learning_style["understanding_dimension"] == "glo"
-            ):
-                coordinates[cons.abbreviation_cc] = (11,) * dimensions
-            else:
-                coordinates[cons.abbreviation_cc] = (0,) * dimensions
-        else:
-            coordinate = list()
-            if learning_style["processing_dimension"] == "act":
-                coordinate.append(
-                    learning_style["processing_value"] * influence[elememnt][0]
-                )
-            elif learning_style["processing_dimension"] == "ref":
-                coordinate.append(
-                    learning_style["processing_value"] * influence[elememnt][1]
-                )
-            if learning_style["perception_dimension"] == "sns":
-                coordinate.append(
-                    learning_style["perception_value"] * influence[elememnt][2]
-                )
-            elif learning_style["perception_dimension"] == "int":
-                coordinate.append(
-                    learning_style["perception_value"] * influence[elememnt][3]
-                )
-            if learning_style["input_dimension"] == "vis":
-                coordinate.append(
-                    learning_style["input_value"] * influence[elememnt][4]
-                )
-            elif learning_style["input_dimension"] == "vrb":
-                coordinate.append(
-                    learning_style["input_value"] * influence[elememnt][5]
-                )
-            if learning_style["understanding_dimension"] == "seq":
-                coordinate.append(
-                    learning_style["understanding_value"] * influence[elememnt][6]
-                )
-            elif learning_style["understanding_dimension"] == "glo":
-                coordinate.append(
-                    learning_style["understanding_value"] * influence[elememnt][7]
-                )
-            # ---
-            if len(coordinate) < dimensions:
-                coordinate.extend([0] * (dimensions - len(coordinate)))
-            # opcional
-            elif len(coordinate) > dimensions:
-                coordinate = coordinate[:dimensions]
-            # ---
-            coordinates[elememnt] = tuple(coordinate)
-    return coordinates
+def _fixed_coordinate_for_special_le(element, dimensions):
+    """CT, CO and AS have fixed coordinates."""
+    fixed_values = {
+        cons.abbreviation_ct: 13,
+        cons.abbreviation_co: 12,
+        cons.abbreviation_as: -12,
+    }
+    if element in fixed_values:
+        return (fixed_values[element],) * dimensions
+    return None
+
+
+def _coordinate_for_cc(learning_style, dimensions):
+    """Special rule for CC."""
+    proc_dim = learning_style["processing_dimension"]
+    und_dim = learning_style["understanding_dimension"]
+    proc_val = learning_style["processing_value"]
+    und_val = learning_style["understanding_value"]
+
+    if proc_dim == "ref" and und_dim == "seq":
+        value = 11 if proc_val > und_val else 0
+    elif proc_dim == "ref" or und_dim == "glo":
+        value = 11
+    else:
+        value = 0
+
+    return (value,) * dimensions
+
+
+def _coordinate_for_element(learning_style, element, dimensions):
+    """Normal coordinates computed from the learning style dimensions."""
+    coordinate = []
+
+    # Same order and logic as your original function:
+    dim_map = {
+        "processing_dimension": ("act", "ref", (0, 1), "processing_value"),
+        "perception_dimension": ("sns", "int", (2, 3), "perception_value"),
+        "input_dimension": ("vis", "vrb", (4, 5), "input_value"),
+        "understanding_dimension": ("seq", "glo", (6, 7), "understanding_value"),
+    }
+
+    for dim_key, (pos_label, neg_label, (idx_pos, idx_neg), value_key) in dim_map.items():
+        dim_value = learning_style[dim_key]
+        value = learning_style[value_key]
+
+        if dim_value == pos_label:
+            coordinate.append(value * influence[element][idx_pos])
+        elif dim_value == neg_label:
+            coordinate.append(value * influence[element][idx_neg])
+
+    if len(coordinate) < dimensions:
+        coordinate.extend([0] * (dimensions - len(coordinate)))
+    elif len(coordinate) > dimensions:
+        coordinate = coordinate[:dimensions]
+
+    return tuple(coordinate)
 
 
 # Euclidean Distance Function
