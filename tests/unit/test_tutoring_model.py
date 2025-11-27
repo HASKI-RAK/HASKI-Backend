@@ -9,13 +9,11 @@ from domain.domainModel import model as DM
 from domain.learnersModel import model as LM
 from domain.tutoringModel import model as TM
 from domain.tutoringModel import nestor, tyche, utils
-from domain.tutoringModel.NestorFolder.nestor_config import (
-    path_to_trainedmodel,
-)
+from domain.tutoringModel.graf import GrafAlgorithm as Graf
+from domain.tutoringModel.NestorFolder.nestor_config import path_to_trainedmodel
 from domain.tutoringModel.NestorFolder.nestor_training import (
     build_train_save_nestor as nestor_training,
 )
-from domain.tutoringModel.graf import GrafAlgorithm as Graf
 from utils import constants as cons
 
 rng = np.random.default_rng(11)
