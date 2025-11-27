@@ -1,7 +1,6 @@
 import time
 
 from domain.tutoringModel import aco, default, ga, graf, nestor, tyche, utils
-from domain.tutoringModel.utils import get_coordinates
 from errors import errors as err
 from utils import constants as cons
 
