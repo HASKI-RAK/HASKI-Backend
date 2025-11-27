@@ -56,10 +56,9 @@ def _coordinate_for_cc(learning_style, dimensions):
 
 
 def _coordinate_for_element(learning_style, element, dimensions):
-    """Normal coordinates computed from the learning style dimensions."""
+    """Normal coordinates for non-special LEs."""
     coordinate = []
 
-    # Same order and logic as your original function:
     dim_map = {
         "processing_dimension": ("act", "ref", (0, 1), "processing_value"),
         "perception_dimension": ("sns", "int", (2, 3), "perception_value"),
@@ -87,6 +86,27 @@ def _coordinate_for_element(learning_style, element, dimensions):
         coordinate = coordinate[:dimensions]
 
     return tuple(coordinate)
+
+
+# Calculate the coordinates for the LEs
+def get_coordinates(learning_style, list_of_les, dimensions=4):
+    coordinates = {}
+
+    for element in list_of_les:
+        fixed = _fixed_coordinate_for_special_le(element, dimensions)
+        if fixed is not None:
+            coordinates[element] = fixed
+            continue
+
+        if element == cons.abbreviation_cc:
+            coordinates[element] = _coordinate_for_cc(learning_style, dimensions)
+            continue
+
+        coordinates[element] = _coordinate_for_element(
+            learning_style, element, dimensions
+        )
+
+    return coordinates
 
 
 # Euclidean Distance Function
