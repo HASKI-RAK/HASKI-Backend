@@ -67,7 +67,12 @@ def _coordinate_for_element(learning_style, element, dimensions):
         "understanding_dimension": ("seq", "glo", (6, 7), "understanding_value"),
     }
 
-    for dim_key, (pos_label, neg_label, (idx_pos, idx_neg), value_key) in dim_map.items():
+    for dim_key, (
+        pos_label,
+        neg_label,
+        (idx_pos, idx_neg),
+        value_key,
+    ) in dim_map.items():
         dim_value = learning_style[dim_key]
         value = learning_style[value_key]
 
