@@ -11,6 +11,9 @@ from flask_cors import CORS, cross_origin
 
 import service_layer.lti.config.ToolConfigJson as ToolConfigJson
 import utils.logger as logger
+from entrypoints.endpoints.course import bp_course
+from entrypoints.endpoints.lms import bp_lms
+from entrypoints.endpoints.user import bp_user
 from errors import errors as err
 from repositories import orm
 from service_layer import services, unit_of_work
@@ -22,10 +25,6 @@ from utils.constants import (
     role_teacher_string,
 )
 from utils.decorators import debug_only, json_only
-
-from entrypoints.endpoints.lms import bp_lms
-from entrypoints.endpoints.user import bp_user
-from entrypoints.endpoints.course import bp_course
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True)

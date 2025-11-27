@@ -1,9 +1,9 @@
-from flask import Blueprint, make_response
-from flask_cors import cross_origin
-from flask import request, jsonify
-from service_layer import services, unit_of_work
-
 import http
+
+from flask import Blueprint, jsonify, make_response, request
+from flask_cors import cross_origin
+
+from service_layer import services, unit_of_work
 
 bp_course = Blueprint("course", __name__)
 

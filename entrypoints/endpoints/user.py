@@ -1,17 +1,18 @@
-from flask import Blueprint, make_response
-from flask_cors import cross_origin
-from flask import request, jsonify
-from service_layer import services, unit_of_work
-from utils.decorators import json_only
-from errors import errors as err
-from typing import Dict, Any, List, Union
-from datetime import datetime
 import http
+from datetime import datetime
+from typing import Any, Dict, List, Union
+
+from flask import Blueprint, jsonify, make_response, request
+from flask_cors import cross_origin
+
+from errors import errors as err
+from service_layer import services, unit_of_work
 from utils.constants import (
     role_admin_string,
     role_course_creator_string,
     role_teacher_string,
 )
+from utils.decorators import json_only
 
 bp_user = Blueprint("user", __name__)
 
