@@ -137,6 +137,7 @@ def add_student_topic_visit(
         result = student_topic_visit.serialize()
         return result
 
+
 def add_student_lpath_le_algorithm(
     uow: unit_of_work.AbstractUnitOfWork,
     student_id: int,
@@ -1105,6 +1106,7 @@ def delete_student(uow: unit_of_work.AbstractUnitOfWork, user_id):
         uow.student.delete_student(user_id)
         uow.commit()
         return {}
+
 
 def delete_user(uow: unit_of_work.AbstractUnitOfWork, user_id, lms_user_id):
     with uow:

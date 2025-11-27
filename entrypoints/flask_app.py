@@ -173,6 +173,7 @@ def post_learning_path_algorithm(data: Dict[str, Any]):
             else:
                 raise err.MissingParameterError()
 
+
 # unused
 # Post to add a topic visit for a student
 @app.route("/lms/student/<student_id>/<lms_user_id>/topic/<topic_id>", methods=["POST"])
