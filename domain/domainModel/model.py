@@ -173,20 +173,6 @@ class CourseCreatorCourse:
         }
 
 
-class TeacherCourse:
-    def __init__(self, teacher_id, course_id) -> None:
-        self.id = None
-        self.teacher_id = teacher_id
-        self.course_id = course_id
-
-    def serialize(self):
-        return {
-            "id": self.id,
-            "teacher_id": self.teacher_id,
-            "course_id": self.course_id,
-        }
-
-
 class StudentCourse:
     def __init__(
         self,

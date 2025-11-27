@@ -61,7 +61,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         student_topic=[],
         student_topic_visit=[],
         teacher=[],
-        teacher_course=[],
         topic=[],
         topic_learning_element=[],
         user=[],
@@ -103,7 +102,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         self.student_topic = set(student_topic)
         self.student_topic_visit = set(student_topic_visit)
         self.teacher = set(teacher)
-        self.teacher_course = set(teacher_course)
         self.topic = set(topic)
         self.topic_learning_element = set(topic_learning_element)
         self.user = set(user)
@@ -1199,7 +1197,6 @@ class FakeUnitOfWork(unit_of_work.AbstractUnitOfWork):  # pragma: no cover
         self.student_topic = FakeRepository()
         self.student_topic_visit = FakeRepository()
         self.teacher = FakeRepository()
-        self.teacher_course = FakeRepository()
         self.topic = FakeRepository()
         self.topic_learning_element = FakeRepository()
         self.user = FakeRepository()

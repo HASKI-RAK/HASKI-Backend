@@ -85,7 +85,6 @@ def clean_up_db(
     cursor.execute("DELETE FROM student_topic_visit")
     cursor.execute("DELETE FROM student_topic")
     cursor.execute("DELETE FROM student_course")
-    cursor.execute("DELETE FROM teacher_course")
     cursor.execute("DELETE FROM course_creator_course")
     cursor.execute("DELETE FROM learning_strategy")
     cursor.execute("DELETE FROM learning_style")
