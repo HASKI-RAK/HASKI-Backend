@@ -404,6 +404,21 @@ student_topic_visit = Table(
     Column("visit_end", Date, nullable=True),
 )
 
+teacher = Table(
+    "teacher",
+    mapper_registry.metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("user_id", Integer, nullable=False),
+)
+
+teacher_course = Table(
+    "teacher_course",
+    mapper_registry.metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("teacher_id", Integer, nullable=False),
+    Column("course_id", Integer, nullable=False),
+)
+
 topic = Table(
     "topic",
     mapper_registry.metadata,
@@ -603,6 +618,16 @@ def start_mappers():
     mapper_registry.map_imperatively(
         DM.StudentTopicVisit,
         student_topic_visit,
+    )
+
+    mapper_registry.map_imperatively(
+        UA.Teacher,
+        teacher,
+    )
+
+    mapper_registry.map_imperatively(
+        DM.TeacherCourse,
+        teacher_course,
     )
 
     mapper_registry.map_imperatively(

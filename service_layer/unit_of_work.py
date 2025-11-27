@@ -45,6 +45,8 @@ class AbstractUnitOfWork(abc.ABC):
     student_rating: repository.AbstractRepository
     student_topic: repository.AbstractRepository
     student_topic_visit: repository.AbstractRepository
+    teacher: repository.AbstractRepository
+    teacher_course: repository.AbstractRepository
     topic: repository.AbstractRepository
     topic_learning_element: repository.AbstractRepository
 
@@ -117,6 +119,8 @@ class SqlAlchemyUnitOfWork(AbstractUnitOfWork):  # pragma: no cover
         self.student_rating = repository.SqlAlchemyRepository(self.session)
         self.student_topic = repository.SqlAlchemyRepository(self.session)
         self.student_topic_visit = repository.SqlAlchemyRepository(self.session)
+        self.teacher = repository.SqlAlchemyRepository(self.session)
+        self.teacher_course = repository.SqlAlchemyRepository(self.session)
         self.topic = repository.SqlAlchemyRepository(self.session)
         self.topic_learning_element = repository.SqlAlchemyRepository(self.session)
         return super().__enter__()

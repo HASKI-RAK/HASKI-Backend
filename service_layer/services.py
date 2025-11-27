@@ -684,6 +684,15 @@ def create_student(uow: unit_of_work.AbstractUnitOfWork, user) -> dict:
         return result
 
 
+def create_teacher(uow: unit_of_work.AbstractUnitOfWork, user) -> dict:
+    with uow:
+        teacher = UA.Teacher(user)
+        uow.teacher.create_teacher(teacher)
+        uow.commit()
+        result = teacher.serialize()
+        return result
+
+
 def create_topic(
     uow: unit_of_work.AbstractUnitOfWork,
     course_id,
@@ -752,7 +761,7 @@ def create_user(
             case const.role_admin_string:
                 role = create_admin(uow, user)
                 user.role_id = role["id"]
-            case const.role_course_creator_string  | const.role_teacher_string:
+            case const.role_course_creator_string:
                 role_course_creator = create_course_creator(uow, user)
                 # course creator needs a studentId to be able to see the created
                 # learning_paths
@@ -765,9 +774,9 @@ def create_user(
             case const.role_student_string:
                 role = create_student(uow, user)
                 user.role_id = role["id"]
-            #case const.role_teacher_string:
-                #role = create_teacher(uow, user)
-                #user.role_id = role["id"]
+            case const.role_teacher_string:
+                role = create_teacher(uow, user)
+                user.role_id = role["id"]
         result = user.serialize()
     return result
 
