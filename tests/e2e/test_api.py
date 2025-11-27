@@ -1250,7 +1250,8 @@ class TestApi:
             list_k.append(temp)
         json_input["list_k"] = list_k
 
-        url = path_lms_student + "/" + str(student_id) + path_questionnaire_list_k
+        url = path_lms_student + "/" + \
+            str(student_id) + path_questionnaire_list_k
         r = client_class.post(url, json=json_input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -1425,7 +1426,8 @@ class TestApi:
             # Wrong data format
             ({"visit_start_time": "01.01.2023"}, 4, ["error", "message"], 400),
             # Missing Parameter
-            ({"previous_learning_element_id": 1}, 4, ["error", "message"], 400),
+            ({"previous_learning_element_id": 1},
+             4, ["error", "message"], 400),
         ],
     )
     def test_post_learning_element_visit(
@@ -1921,7 +1923,8 @@ class TestApi:
             status_code=200,
             json=lambda: {
                 "usersattempts": [
-                    {"attempts": [{"timecreated": 1}, {"timecreated": 9999999999}]}
+                    {"attempts": [{"timecreated": 1},
+                                  {"timecreated": 9999999999}]}
                 ]
             },
         )
@@ -2069,7 +2072,8 @@ class TestApi:
                     "id": "v3-1665068191217-4248786867866",
                     "navigationType": "navigate",
                 },
-                ["name", "value", "rating", "delta", "entries", "id", "navigationType"],
+                ["name", "value", "rating", "delta",
+                    "entries", "id", "navigationType"],
                 201,
             )
         ],
@@ -2373,7 +2377,8 @@ class TestApi:
                             keys_expected_1, keys_expected_2, error",
         [
             # Working Example
-            (4, 200, ["courses"], ["id", "lms_id", "name", "university"], False),
+            (4, 200, ["courses"], [
+             "id", "lms_id", "name", "university"], False),
             # Student not found
             (1, 404, ["error", "message"], [], True),
         ],
@@ -3633,7 +3638,8 @@ class TestApi:
         else:
             user_id_use = user_id_student
         url = (
-            path_user + "/" + str(user_id_use) + "/" + str(lms_user_id) + path_settings
+            path_user + "/" + str(user_id_use) + "/" +
+            str(lms_user_id) + path_settings
         )
         r = client_class.get(url)
         assert r.status_code == status_code_expected
@@ -3851,7 +3857,8 @@ class TestApi:
                             error",
         [
             # Working Example
-            (4, {"theme": "dark", "pswd": "password"}, ["theme", "pswd"], 201, False),
+            (4, {"theme": "dark", "pswd": "password"},
+             ["theme", "pswd"], 201, False),
             # User not found
             (
                 1,
@@ -3888,7 +3895,8 @@ class TestApi:
         else:
             user_id_use = user_id_student
         url = (
-            path_user + "/" + str(user_id_use) + "/" + str(lms_user_id) + path_settings
+            path_user + "/" + str(user_id_use) + "/" +
+            str(lms_user_id) + path_settings
         )
         r = client_class.put(url, json=request_body)
         assert r.status_code == status_code_expected
@@ -4071,7 +4079,8 @@ class TestApi:
     ):
         """[HASKI-REQ-0075] Synchronizes Moodle-ledger user metadata via PUT."""
         global user_id_student
-        url = path_lms_user + "/" + str(user_id_student) + "/" + str(moodle_user_id)
+        url = path_lms_user + "/" + \
+            str(user_id_student) + "/" + str(moodle_user_id)
         r = client_class.put(url, json=input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -4129,7 +4138,8 @@ class TestApi:
     ):
         """[HASKI-REQ-0035] Updates course metadata from Moodle payloads (GH-21)."""
         global course_id
-        url = path_lms_course + "/" + str(course_id) + "/" + str(moodle_course_id)
+        url = path_lms_course + "/" + \
+            str(course_id) + "/" + str(moodle_course_id)
         r = client_class.put(url, json=input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -4196,7 +4206,8 @@ class TestApi:
     ):
         """[HASKI-REQ-0035] Persists Moodle start dates on course updates (GH-21)."""
         global course_id
-        url = path_lms_course + "/" + str(course_id) + "/" + str(moodle_course_id)
+        url = path_lms_course + "/" + \
+            str(course_id) + "/" + str(moodle_course_id)
         r = client_class.put(url, json=input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -4318,7 +4329,8 @@ class TestApi:
             input["parent_id"] = topic_id
         else:
             topic_id_use = topic_id
-        url = path_lms_topic + "/" + str(topic_id_use) + "/" + str(moodle_topic_id)
+        url = path_lms_topic + "/" + \
+            str(topic_id_use) + "/" + str(moodle_topic_id)
         r = client_class.put(url, json=input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -4505,6 +4517,7 @@ class TestApi:
     def test_api_add_all_students_to_course(
         self, client_class, keys_expected, status_code_expected, save_id
     ):
+        """[HASKI-REQ-0078] Bulk-syncs Moodle enrolments into a HASKI course."""
         url = path_course + "/" + str("2") + "/allStudents"
         r = client_class.post(url)
         assert r.status_code == status_code_expected
@@ -4526,9 +4539,16 @@ class TestApi:
     def test_api_add_all_students_to_topics(
         self, client_class, keys_expected, status_code_expected, save_id
     ):
+        """[HASKI-REQ-0078] Ensures course-topic enrolments mirror Moodle state."""
         global course_id
         course_id_use = course_id
-        url = path_course + "/" + str(course_id_use) + "/topics" + "/allStudents"
+        url = (
+            path_course
+            + "/"
+            + str(course_id_use)
+            + "/topics"
+            + "/allStudents"
+        )
         r = client_class.post(url)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -4550,13 +4570,15 @@ class TestApi:
     def test_reset_user_settings(
         self, client_class, lms_user_id, keys_expected, status_code_expected, error
     ):
+        """[HASKI-REQ-0073] Resets persisted theme/password defaults via DELETE."""
         global user_id_student
         if error:
             user_id_use = 99999
         else:
             user_id_use = user_id_student
         url = (
-            path_user + "/" + str(user_id_use) + "/" + str(lms_user_id) + path_settings
+            path_user + "/" + str(user_id_use) + "/" +
+            str(lms_user_id) + path_settings
         )
         r = client_class.delete(url)
         assert r.status_code == status_code_expected
@@ -4590,6 +4612,7 @@ class TestApi:
     def test_reset_learning_characteristics(
         self, client_class, lms_user_id, keys_expected, status_code_expected, error
     ):
+        """[HASKI-REQ-0079] Resets the consolidated learning profile."""
         global user_id_student, student_id
         if error:
             user_id_use = 99999
@@ -4626,6 +4649,7 @@ class TestApi:
     def test_reset_learning_analytics(
         self, client_class, lms_user_id, keys_expected, status_code_expected, error
     ):
+        """[HASKI-REQ-0079] Clears the stored learning-analytics snapshot."""
         global user_id_student, student_id
         if error:
             user_id_use = 99999
@@ -4678,6 +4702,7 @@ class TestApi:
     def test_reset_learning_style(
         self, client_class, lms_user_id, keys_expected, status_code_expected, error
     ):
+        """[HASKI-REQ-0079] Rebuilds the student's learning-style vector."""
         global user_id_student, student_id
         if error:
             user_id_use = 99999
@@ -4739,6 +4764,7 @@ class TestApi:
     def test_reset_learning_strategy(
         self, client_class, lms_user_id, keys_expected, status_code_expected, error
     ):
+        """[HASKI-REQ-0079] Clears the learning-strategy vectors."""
         global user_id_student, student_id
         if error:
             user_id_use = 99999
@@ -4777,6 +4803,7 @@ class TestApi:
     def test_reset_knowledge(
         self, client_class, lms_user_id, keys_expected, status_code_expected, error
     ):
+        """[HASKI-REQ-0079] Restores the base knowledge snapshot."""
         global user_id_student, student_id
         if error:
             user_id_use = 99999
@@ -4811,6 +4838,7 @@ class TestApi:
     def test_delete_contact_form(
         self, client_class, lms_user_id, user_id, status_code_expected
     ):
+        """[HASKI-REQ-0080] Deletes a processed support ticket."""
         user_id_student = user_id
         url = (
             path_user
@@ -4839,12 +4867,14 @@ class TestApi:
     def test_delete_user(
         self, client_class, moodle_user_id, keys_expected, status_code_expected, student
     ):
+        """[HASKI-REQ-0081] Removes an LMS-linked HASKI user."""
         global user_id_student, user_id_teacher
         if student:
             user_id_use = user_id_student
         else:
             user_id_use = user_id_teacher
-        url = path_lms_user + "/" + str(user_id_use) + "/" + str(moodle_user_id)
+        url = path_lms_user + "/" + \
+            str(user_id_use) + "/" + str(moodle_user_id)
         r = client_class.delete(url)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -4880,6 +4910,7 @@ class TestApi:
         error_topic,
         error_le,
     ):
+        """[HASKI-REQ-0082] Removes a synced learning element via DELETE."""
         global course_id, sub_topic_id, learning_element_id
         if error_le:
             learning_element_id_use = 99999
@@ -4922,12 +4953,14 @@ class TestApi:
         error_course,
         error_topic,
     ):
+        """[HASKI-REQ-0082] Deletes topics/subtopics mirrored from Moodle."""
         global course_id, sub_topic_id
         if error_topic:
             topic_id_use = 99999
         else:
             topic_id_use = sub_topic_id
-        url = path_lms_topic + "/" + str(topic_id_use) + "/" + str(moodle_topic_id)
+        url = path_lms_topic + "/" + \
+            str(topic_id_use) + "/" + str(moodle_topic_id)
         r = client_class.delete(url)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -4948,12 +4981,14 @@ class TestApi:
     def test_api_delete_course_from_moodle(
         self, client_class, moodle_course_id, keys_expected, status_code_expected, error
     ):
+        """[HASKI-REQ-0082] Deletes a course and cascades to nested topics."""
         global course_id
         if error:
             course_id_use = 99999
         else:
             course_id_use = course_id
-        url = path_lms_course + "/" + str(course_id_use) + "/" + str(moodle_course_id)
+        url = path_lms_course + "/" + \
+            str(course_id_use) + "/" + str(moodle_course_id)
         r = client_class.delete(url)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
