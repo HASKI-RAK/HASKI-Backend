@@ -3713,7 +3713,8 @@ class TestApi:
     def test_get_activity_status_for_student_for_learning_element(
         self, client_class, course_id, student_id, learning_element_id
     ):
-        """[HASKI-REQ-0071] Filters completion status for single learning element (GH-30)."""
+        """[HASKI-REQ-0071] Filters completion status for\
+            single learning element (GH-30)."""
         global user_id_student
         url = (
             path_lms_course
@@ -3800,6 +3801,7 @@ class TestApi:
     def test_get_logbuffer(
         self, client_class, user_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0047] Returns user-specific logbuffer history (GH-104)."""
         url = path_user + "/" + str(user_id) + path_logbuffer
         r = client_class.get(url)
         assert r.status_code == status_code_expected
@@ -3821,6 +3823,7 @@ class TestApi:
     def test_get_learning_element_recommendation(
         self, client_class, user_id, status_code_expected
     ):
+        """[HASKI-REQ-0072] Returns ordered LE recommendations per GH-125."""
         global topic_id
         course_id = 1
         url = (
@@ -3878,6 +3881,7 @@ class TestApi:
         status_code_expected,
         error,
     ):
+        """[HASKI-REQ-0073] Updates theme/password settings via PUT (GH-81/GH-30)."""
         global user_id_student
         if error:
             user_id_use = 99999
@@ -3985,6 +3989,7 @@ class TestApi:
         status_code_expected,
         error,
     ):
+        """[HASKI-REQ-0074] Updates FSLSM values via PUT (GH-30/GH-81)."""
         global user_id_student, student_id
         if error:
             user_id_use = 99999
@@ -4064,6 +4069,7 @@ class TestApi:
     def test_update_user_from_moodle(
         self, client_class, input, moodle_user_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0075] Synchronizes Moodle-ledger user metadata via PUT."""
         global user_id_student
         url = path_lms_user + "/" + str(user_id_student) + "/" + str(moodle_user_id)
         r = client_class.put(url, json=input)
@@ -4121,6 +4127,7 @@ class TestApi:
     def test_update_course_from_moodle(
         self, client_class, input, moodle_course_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0035] Updates course metadata from Moodle payloads (GH-21)."""
         global course_id
         url = path_lms_course + "/" + str(course_id) + "/" + str(moodle_course_id)
         r = client_class.put(url, json=input)
@@ -4187,6 +4194,7 @@ class TestApi:
     def test_update_course_from_moodle_with_start_date(
         self, client_class, input, moodle_course_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0035] Persists Moodle start dates on course updates (GH-21)."""
         global course_id
         url = path_lms_course + "/" + str(course_id) + "/" + str(moodle_course_id)
         r = client_class.put(url, json=input)
@@ -4303,6 +4311,7 @@ class TestApi:
         status_code_expected,
         sub_topic,
     ):
+        """[HASKI-REQ-0076] Syncs topic/subtopic metadata with Moodle (GH-21)."""
         global course_id, topic_id, sub_topic_id
         if sub_topic:
             topic_id_use = sub_topic_id
@@ -4393,6 +4402,7 @@ class TestApi:
         keys_expected,
         status_code_expected,
     ):
+        """[HASKI-REQ-0077] Updates activity metadata from Moodle feeds (GH-21)."""
         global course_id, sub_topic_id, learning_element_id
         url = (
             path_lms_learning_element
