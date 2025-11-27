@@ -1,9 +1,6 @@
 import time
 
-
-from domain.tutoringModel import aco, default, ga, graf, nestor, tyche
-from domain.tutoringModel import utils
-
+from domain.tutoringModel import aco, default, ga, graf, nestor, tyche, utils
 from domain.tutoringModel.utils import get_coordinates
 from errors import errors as err
 from utils import constants as cons
@@ -34,15 +31,13 @@ class LearningPath:
         }
 
     def get_learning_path(
-
         self,
         student_id,
         learning_style,
         _algorithm,
         list_of_les,
         default_learning_path=None,
-        input_view_time=None
-
+        input_view_time=None,
     ):
         algorithm = _algorithm.lower()
         if algorithm == "graf":

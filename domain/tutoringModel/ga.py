@@ -44,18 +44,17 @@ class GeneticAlgorithm:
         position a also Initialise some populations
         with Clustering if this is possible.
         param dict_coordinates"""
-        
-        #has_view_time = input_view_time is not None
-        has_view_time = bool(input_view_time)
 
+        # has_view_time = input_view_time is not None
+        has_view_time = bool(input_view_time)
 
         if has_view_time:
             self.dimensionen = 6
 
         coordinates = utils.get_coordinates(
             learning_style, self.learning_elements, self.dimensionen
-        )      
- 
+        )
+
         if not any(np.char.equal(self.learning_elements, "KÜ")):
             self.dict_coordinate = {"first": (15,) * self.dimensionen}
             self.dict_coordinate.update(coordinates)
@@ -65,7 +64,9 @@ class GeneticAlgorithm:
 
         if has_view_time:
             norm_view_times = utils.added_view_times(input_view_time)
-            self.dict_coordinate = utils.update_coordinate(self.dict_coordinate, norm_view_times)
+            self.dict_coordinate = utils.update_coordinate(
+                self.dict_coordinate, norm_view_times
+            )
 
         self.le_coordinate = np.array(list(self.dict_coordinate.values()))
         self.learning_elements = np.array(list(self.dict_coordinate.keys()))
@@ -305,7 +306,6 @@ class GeneticAlgorithm:
                 # Wrong  Dimension input_learning_style
                 raise err.WrongLearningStyleDimensionError()
 
-   
     def get_learning_path(
         self,
         input_learning_style=None,
