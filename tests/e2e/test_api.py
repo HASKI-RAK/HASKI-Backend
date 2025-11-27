@@ -3666,6 +3666,7 @@ class TestApi:
         ],
     )
     def test_get_activity_status_for_student(self, client_class, course_id, student_id):
+        """[HASKI-REQ-0071] Exposes Moodle completion status lists per GH-30."""
         global user_id_student
         url = (
             path_lms_course
@@ -3712,6 +3713,7 @@ class TestApi:
     def test_get_activity_status_for_student_for_learning_element(
         self, client_class, course_id, student_id, learning_element_id
     ):
+        """[HASKI-REQ-0071] Filters completion status for single learning element (GH-30)."""
         global user_id_student
         url = (
             path_lms_course
@@ -3766,6 +3768,7 @@ class TestApi:
     def test_get_news(
         self, client_class, language_id, university, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0046] Delivers university/language-scoped news feed (GH-92)."""
         url = path_news + "/language/" + str(language_id) + "/university/"
         if university is not None:
             url = url + str(university)
