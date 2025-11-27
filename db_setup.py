@@ -66,7 +66,6 @@ def setup_db(
     cursor.execute("DROP TABLE IF EXISTS news")
     cursor.execute("DROP TABLE IF EXISTS admin")
     cursor.execute("DROP TABLE IF EXISTS course_creator")
-    cursor.execute("DROP TABLE IF EXISTS teacher")
     cursor.execute("DROP TABLE IF EXISTS student")
     cursor.execute("DROP TABLE IF EXISTS course")
     cursor.execute("DROP TABLE IF EXISTS topic")
@@ -77,7 +76,6 @@ def setup_db(
     cursor.execute("DROP TABLE IF EXISTS learning_style")
     cursor.execute("DROP TABLE IF EXISTS learning_strategy")
     cursor.execute("DROP TABLE IF EXISTS course_creator_course")
-    cursor.execute("DROP TABLE IF EXISTS teacher_course")
     cursor.execute("DROP TABLE IF EXISTS student_course")
     cursor.execute("DROP TABLE IF EXISTS student_topic")
     cursor.execute("DROP TABLE IF EXISTS student_topic_visit")
@@ -248,26 +246,6 @@ def setup_db(
         TABLESPACE pg_default;
 
         ALTER TABLE IF EXISTS public.course_creator
-            OWNER to postgres;
-    """
-    cursor.execute(sql)
-
-    sql = """
-        CREATE TABLE IF NOT EXISTS public.teacher
-        (
-            id integer NOT NULL GENERATED ALWAYS AS IDENTITY
-            ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
-            user_id integer NOT NULL,
-            CONSTRAINT teacher_pkey PRIMARY KEY (id),
-            CONSTRAINT user_id FOREIGN KEY (user_id)
-                REFERENCES public."haski_user" (id) MATCH SIMPLE
-                ON UPDATE NO ACTION
-                ON DELETE NO ACTION
-        )
-
-        TABLESPACE pg_default;
-
-        ALTER TABLE IF EXISTS public.teacher
             OWNER to postgres;
     """
     cursor.execute(sql)
@@ -521,31 +499,6 @@ def setup_db(
         TABLESPACE pg_default;
 
         ALTER TABLE IF EXISTS public.course_creator_course
-            OWNER to postgres;
-    """
-    cursor.execute(sql)
-
-    sql = """
-        CREATE TABLE IF NOT EXISTS public.teacher_course
-        (
-            id integer NOT NULL GENERATED ALWAYS AS IDENTITY
-            ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
-            teacher_id integer NOT NULL,
-            course_id integer NOT NULL,
-            CONSTRAINT teacher_course_pkey PRIMARY KEY (id),
-            CONSTRAINT course_id FOREIGN KEY (course_id)
-                REFERENCES public.course (id) MATCH SIMPLE
-                ON UPDATE NO ACTION
-                ON DELETE NO ACTION,
-            CONSTRAINT teacher_id FOREIGN KEY (teacher_id)
-                REFERENCES public.teacher (id) MATCH SIMPLE
-                ON UPDATE NO ACTION
-                ON DELETE NO ACTION
-        )
-
-        TABLESPACE pg_default;
-
-        ALTER TABLE IF EXISTS public.teacher_course
             OWNER to postgres;
     """
     cursor.execute(sql)

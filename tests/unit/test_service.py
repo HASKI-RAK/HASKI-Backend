@@ -238,10 +238,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
             student_learning_path_learning_element_algorithm
         )
 
-    def create_teacher(self, teacher):
-        teacher.id = len(self.teacher) + 1
-        self.teacher.add(teacher)
-
     def create_topic(self, topic):
         topic.id = len(self.topic) + 1
         self.topic.add(topic)
@@ -1721,17 +1717,6 @@ def test_student_learning_path_learning_element_algorithm():
         uow.student_lpath_le_algorithm.student_learning_path_learning_element_algorithm
     )
     assert initial_entries + 1 == entries
-
-
-def test_create_teacher():
-    uow = FakeUnitOfWork()
-    entries_beginning = len(uow.teacher.teacher)
-    user = UA.User(user_name_example, university_example, 1, "teacher")
-    result = services.create_teacher(uow=uow, user=user)
-    assert isinstance(result, dict)
-    assert result != {}
-    entries_after = len(uow.teacher.teacher)
-    assert entries_beginning + 1 == entries_after
 
 
 @pytest.mark.parametrize(

@@ -162,10 +162,6 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def create_teacher(self, teacher: UA.Teacher) -> UA.Teacher:
-        raise NotImplementedError
-
-    @abc.abstractmethod
     def create_topic(self, topic) -> DM.Topic:
         raise NotImplementedError
 
@@ -956,14 +952,6 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
     ) -> None:
         try:
             self.session.add(student_lpath_le_algorithm)
-        except IntegrityError:
-            raise err.ForeignKeyViolation()
-        except Exception:
-            raise err.CreationError()
-
-    def create_teacher(self, teacher: UA.Teacher) -> UA.Teacher:
-        try:
-            self.session.add(teacher)
         except IntegrityError:
             raise err.ForeignKeyViolation()
         except Exception:
