@@ -2304,6 +2304,7 @@ class TestApi:
     def test_get_students_learning_strategy(
         self, client_class, lms_user_id, status_code_expected, keys_expected, error
     ):
+        """[HASKI-REQ-0051] Delivers stored learning strategy vectors (GH-30)."""
         global user_id_student, student_id
         if error:
             student_id_use = 99999
@@ -2340,6 +2341,7 @@ class TestApi:
     def test_get_students_knowledge(
         self, client_class, lms_user_id, status_code_expected, keys_expected, error
     ):
+        """[HASKI-REQ-0052] Serves per-student knowledge profiles (GH-81)."""
         global user_id_student, student_id
         if error:
             student_id_use = 99999
@@ -2383,6 +2385,7 @@ class TestApi:
         keys_expected_2,
         error,
     ):
+        """[HASKI-REQ-0053] Returns only the courses a student participates in (GH-131)."""
         global user_id_student, student_id
         if error:
             student_id_use = 99999
@@ -2434,6 +2437,7 @@ class TestApi:
         error_student,
         error_course,
     ):
+        """[HASKI-REQ-0054] Enforces membership when fetching a single course (GH-131)."""
         global user_id_student, student_id, course_id
         if error_student:
             student_id_use = 99999
@@ -2502,6 +2506,7 @@ class TestApi:
         error_student,
         error_course,
     ):
+        """[HASKI-REQ-0055] Lists authorized course topics per student (GH-76)."""
         global user_id_student, student_id, course_id
         if error_student:
             student_id_use = 99999
@@ -2576,6 +2581,7 @@ class TestApi:
         error_student,
         error_course,
     ):
+        """[HASKI-REQ-0056] Lists all authorized learning elements for a course (GH-21)."""
         global user_id_student, student_id, course_id
         if error_student:
             student_id_use = 99999
@@ -2653,6 +2659,7 @@ class TestApi:
         error_course,
         error_topic,
     ):
+        """[HASKI-REQ-0057] Returns a single topic only when enrollment exists (GH-76)."""
         global user_id_student, student_id, course_id, topic_id
         if error_student:
             student_id_use = 99999
@@ -2729,6 +2736,7 @@ class TestApi:
         error_course,
         error_topic,
     ):
+        """[HASKI-REQ-0058] Returns persisted learning paths per topic (GH-2)."""
         global user_id_student, student_id, course_id, sub_topic_id
         if error_student:
             student_id_use = 99999
@@ -2780,6 +2788,7 @@ class TestApi:
     def test_get_learning_path_algorithm(
         self, client_class, user_id, topic_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0059] Exposes tutor-selected algorithms for a topic (GH-83)."""
         url = path_topic + "/" + str(topic_id) + path_teacher_algorithm
         r = client_class.get(url)
         assert r.status_code == status_code_expected
@@ -2801,6 +2810,7 @@ class TestApi:
     def test_get_learning_path_algorithm_student(
         self, client_class, topic_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0060] Returns student-selected algorithms per topic (GH-83)."""
         global user_id_student
         url = (
             path_user
@@ -2861,6 +2871,7 @@ class TestApi:
         error_course,
         error_topic,
     ):
+        """[HASKI-REQ-0061] Lists all subtopics for an enrolled student (GH-76)."""
         global user_id_student, student_id, course_id, topic_id
         if error_student:
             student_id_use = 99999
@@ -2947,6 +2958,7 @@ class TestApi:
         error_course,
         error_topic,
     ):
+        """[HASKI-REQ-0062] Lists topic learning elements for enrolled students (GH-21)."""
         global user_id_student, student_id, course_id, topic_id
         if error_student:
             student_id_use = 99999
@@ -3035,6 +3047,7 @@ class TestApi:
         error_topic,
         error_le,
     ):
+        """[HASKI-REQ-0063] Returns a single learning element when enrollment exists (GH-21)."""
         global user_id_student, student_id, course_id
         global topic_id, learning_element_id
         if error_student:
