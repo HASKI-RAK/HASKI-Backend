@@ -243,6 +243,9 @@ def added_view_times(input_view_time):
     Returns:
         dict: {label: (norm_view, norm_time)} normalized to the target range.
     """
+    if not input_view_time:
+        return {}
+    
     views = [v[0] for v in input_view_time.values()]
     times = [v[1] for v in input_view_time.values()]
     # views, times = zip(*input_view_time.values())

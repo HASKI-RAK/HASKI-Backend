@@ -62,6 +62,8 @@ def setup_db(
     cursor.execute("DROP TABLE IF EXISTS haski_user")
     cursor.execute("DROP TABLE IF EXISTS settings")
     cursor.execute("DROP TABLE IF EXISTS contact_form")
+    cursor.execute("DROP TABLE IF EXISTS logbuffer")
+    cursor.execute("DROP TABLE IF EXISTS news")
     cursor.execute("DROP TABLE IF EXISTS admin")
     cursor.execute("DROP TABLE IF EXISTS course_creator")
     cursor.execute("DROP TABLE IF EXISTS teacher")
@@ -83,7 +85,6 @@ def setup_db(
     cursor.execute("DROP TABLE IF EXISTS student_topic_visit")
     cursor.execute("DROP TABLE IF EXISTS student_learning_element")
     cursor.execute("DROP TABLE IF EXISTS student_learning_element_visit")
-    cursor.execute("DROP TABLE IF EXISTS learning_element_rating")
     cursor.execute("DROP TABLE IF EXISTS learning_path")
     cursor.execute("DROP TABLE IF EXISTS learning_path_topic")
     cursor.execute("DROP TABLE IF EXISTS learning_path_learning_element")
@@ -93,6 +94,14 @@ def setup_db(
     cursor.execute("DROP TABLE IF EXISTS ils_processing_answers")
     cursor.execute("DROP TABLE IF EXISTS ils_understanding_answers")
     cursor.execute("DROP TABLE IF EXISTS questionnaire_list_k")
+    cursor.execute("DROP TABLE IF EXISTS default_learning_path")
+    cursor.execute(
+        "DROP TABLE IF EXISTS student_learning_path_learning_element_algorithm"
+    )
+    cursor.execute("DROP TABLE IF EXISTS learning_path_algorithm")
+    cursor.execute("DROP TABLE IF EXISTS learning_path_learning_element_algorithm")
+    cursor.execute("DROP TABLE IF EXISTS student_rating")
+    cursor.execute("DROP TABLE IF EXISTS learning_element_rating")
 
     # Creating table as per requirement
     sql = """
@@ -158,6 +167,49 @@ def setup_db(
         TABLESPACE pg_default;
 
         ALTER TABLE IF EXISTS public.contact_form
+            OWNER to postgres;
+    """
+    cursor.execute(sql)
+
+    sql = """
+        CREATE TABLE IF NOT EXISTS public.logbuffer
+        (
+            id integer NOT NULL GENERATED ALWAYS AS IDENTITY
+            ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+            user_id integer NOT NULL,
+            content text COLLATE pg_catalog."default",
+            date timestamp without time zone NOT NULL,
+            CONSTRAINT logbuffer_pkey PRIMARY KEY (id),
+            CONSTRAINT user_id FOREIGN KEY (user_id)
+                REFERENCES public."haski_user" (id) MATCH SIMPLE
+                ON UPDATE NO ACTION
+                ON DELETE NO ACTION
+                NOT VALID
+        )
+
+        TABLESPACE pg_default;
+
+        ALTER TABLE IF EXISTS public.logbuffer
+            OWNER to postgres;
+    """
+    cursor.execute(sql)
+
+    sql = """
+        CREATE TABLE IF NOT EXISTS public.news
+        (
+            id integer NOT NULL GENERATED ALWAYS AS IDENTITY
+            ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+            language_id text COLLATE pg_catalog."default",
+            news_content text COLLATE pg_catalog."default",
+            university text COLLATE pg_catalog."default",
+            expiration_date timestamp without time zone NOT NULL,
+            created_at timestamp without time zone NOT NULL,
+            CONSTRAINT news_pkey PRIMARY KEY (id)
+        )
+
+        TABLESPACE pg_default;
+
+        ALTER TABLE IF EXISTS public.news
             OWNER to postgres;
     """
     cursor.execute(sql)
@@ -250,6 +302,7 @@ def setup_db(
             lms_id integer NOT NULL,
             name text COLLATE pg_catalog."default" NOT NULL,
             university text COLLATE pg_catalog."default" NOT NULL,
+            start_date timestamp without time zone,
             CONSTRAINT course_pkey PRIMARY KEY (id)
         )
 
@@ -681,30 +734,6 @@ def setup_db(
     cursor.execute(sql)
 
     sql = """
-        CREATE TABLE IF NOT EXISTS public.learning_element_rating
-        (
-            id integer NOT NULL GENERATED ALWAYS AS IDENTITY
-            ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
-            learning_element_id integer NOT NULL,
-            rating integer NOT NULL,
-            message text COLLATE pg_catalog."default",
-            date timestamp without time zone NOT NULL,
-            CONSTRAINT learning_element_rating_pkey PRIMARY KEY (id),
-            CONSTRAINT learning_element_id FOREIGN KEY (learning_element_id)
-                REFERENCES public.learning_element (id) MATCH SIMPLE
-                ON UPDATE NO ACTION
-                ON DELETE NO ACTION
-                NOT VALID
-        )
-
-        TABLESPACE pg_default;
-
-        ALTER TABLE IF EXISTS public.learning_element_rating
-            OWNER to postgres;
-    """
-    cursor.execute(sql)
-
-    sql = """
         CREATE TABLE IF NOT EXISTS public.learning_path
         (
             id integer NOT NULL GENERATED ALWAYS AS IDENTITY
@@ -743,7 +772,6 @@ def setup_db(
             ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
             topic_id integer NOT NULL,
             learning_path_id integer NOT NULL,
-            recommended boolean NOT NULL,
             "position" integer NOT NULL,
             CONSTRAINT learning_path_topic_pkey PRIMARY KEY (id),
             CONSTRAINT learning_path_id FOREIGN KEY (learning_path_id)
@@ -770,7 +798,6 @@ def setup_db(
             ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
             learning_element_id integer NOT NULL,
             learning_path_id integer NOT NULL,
-            recommended boolean NOT NULL,
             "position" integer NOT NULL,
             CONSTRAINT learning_path_learning_element_pkey PRIMARY KEY (id),
             CONSTRAINT learning_element_id FOREIGN KEY (learning_element_id)
@@ -992,6 +1019,164 @@ def setup_db(
         ALTER TABLE IF EXISTS public.questionnaire_list_k
             OWNER to postgres;
     """
+    cursor.execute(sql)
+
+    sql = """
+        CREATE TABLE IF NOT EXISTS public.default_learning_path
+        (
+            id integer NOT NULL GENERATED ALWAYS AS IDENTITY
+            ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+            classification text NOT NULL,
+            position integer NOT NULL,
+            disabled boolean NOT NULL,
+            university text NOT NULL,
+            CONSTRAINT default_learning_path_pkey PRIMARY KEY (id)
+        )
+
+        TABLESPACE pg_default;
+
+        ALTER TABLE IF EXISTS public.default_learning_path
+            OWNER to postgres;
+    """
+    cursor.execute(sql)
+
+    sql = """
+    CREATE TABLE IF NOT EXISTS public.student_learning_path_learning_element_algorithm
+    (
+        id integer NOT NULL GENERATED ALWAYS AS IDENTITY
+        ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+        student_id integer NOT NULL,
+        topic_id integer NOT NULL,
+        algorithm_id integer NOT NULL,
+        CONSTRAINT student_le_path_le_element_algorithm_pkey PRIMARY KEY (id)
+    )
+
+    TABLESPACE pg_default;
+
+    ALTER TABLE IF EXISTS public.student_learning_path_learning_element_algorithm
+        OWNER to postgres;
+    """
+    cursor.execute(sql)
+
+    sql = """
+    CREATE TABLE IF NOT EXISTS public.learning_path_algorithm
+    (
+        id integer NOT NULL GENERATED ALWAYS AS IDENTITY
+        ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+        short_name text NOT NULL,
+        full_name text,
+        CONSTRAINT learning_path_algorithm_pkey PRIMARY KEY (id)
+    )
+
+    TABLESPACE pg_default;
+
+    ALTER TABLE IF EXISTS public.learning_path_algorithm
+        OWNER to postgres;
+    """
+
+    cursor.execute(sql)
+
+    sql = """
+        CREATE TABLE IF NOT EXISTS public.learning_path_learning_element_algorithm
+        (
+            id integer NOT NULL GENERATED ALWAYS AS IDENTITY
+            ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+            topic_id integer NOT NULL,
+            algorithm_id integer NOT NULL,
+            CONSTRAINT learning_path_learning_element_algorithm_pkey PRIMARY KEY (id),
+            FOREIGN KEY (topic_id) REFERENCES public.topic (id),
+            FOREIGN KEY (algorithm_id) REFERENCES public.learning_path_algorithm (id),
+            UNIQUE (topic_id)
+        )
+
+        TABLESPACE pg_default;
+
+        ALTER TABLE IF EXISTS public.learning_path_learning_element_algorithm
+            OWNER to postgres;
+    """
+
+    cursor.execute(sql)
+
+    sql = """
+        CREATE TABLE IF NOT EXISTS public.student_rating
+        (
+            id integer NOT NULL GENERATED ALWAYS AS IDENTITY
+            ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+            student_id integer NOT NULL,
+            topic_id integer NOT NULL,
+            rating_value integer NOT NULL,
+            rating_deviation integer NOT NULL,
+            timestamp timestamp without time zone NOT NULL,
+            CONSTRAINT student_rating_pkey PRIMARY KEY (id),
+            FOREIGN KEY (student_id) REFERENCES public.student (id),
+            FOREIGN KEY (topic_id) REFERENCES public.topic (id)
+        )
+
+        TABLESPACE pg_default;
+
+        ALTER TABLE IF EXISTS public.student_rating
+            OWNER to postgres;
+    """
+
+    cursor.execute(sql)
+
+    sql = """
+        CREATE TABLE IF NOT EXISTS public.learning_element_rating
+        (
+            id integer NOT NULL GENERATED ALWAYS AS IDENTITY
+            ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+            learning_element_id integer NOT NULL,
+            topic_id integer NOT NULL,
+            rating_value integer NOT NULL,
+            rating_deviation integer NOT NULL,
+            timestamp timestamp without time zone NOT NULL,
+            CONSTRAINT learning_element_rating_pkey PRIMARY KEY (id),
+            FOREIGN KEY (learning_element_id) REFERENCES public.learning_element (id),
+            FOREIGN KEY (topic_id) REFERENCES public.topic (id)
+        )
+
+        TABLESPACE pg_default;
+
+        ALTER TABLE IF EXISTS public.learning_element_rating
+            OWNER to postgres;
+    """
+    cursor.execute(sql)
+
+    # Create learning path algorithms
+    sql = """
+          INSERT INTO learning_path_algorithm (short_name, full_name)
+          VALUES ('default', 'Default Learning Path Algorithm') \
+          """
+    cursor.execute(sql)
+
+    sql = """
+          INSERT INTO learning_path_algorithm (short_name, full_name)
+          VALUES ('aco', 'Ant Colony Optimization') \
+          """
+    cursor.execute(sql)
+
+    sql = """
+          INSERT INTO learning_path_algorithm (short_name, full_name)
+          VALUES ('ga', 'Genetic Algorithm') \
+          """
+    cursor.execute(sql)
+
+    sql = """
+          INSERT INTO learning_path_algorithm (short_name, full_name)
+          VALUES ('graf', 'Graf et al.') \
+          """
+    cursor.execute(sql)
+
+    sql = """
+          INSERT INTO learning_path_algorithm (short_name, full_name)
+          VALUES ('tyche', 'Tyche') \
+          """
+    cursor.execute(sql)
+
+    sql = """
+          INSERT INTO learning_path_algorithm (short_name, full_name)
+          VALUES ('nestor', 'Nestor') \
+          """
     cursor.execute(sql)
 
     conn.commit()

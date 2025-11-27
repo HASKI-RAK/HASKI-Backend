@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, Date, Float, Integer, String, Table
+from sqlalchemy import Boolean, Column, Date, DateTime, Float, Integer, String, Table
 from sqlalchemy.orm import registry
 
 from domain.domainModel import model as DM
@@ -22,6 +22,7 @@ course = Table(
     Column("lms_id", Integer, nullable=False),
     Column("name", String, nullable=False),
     Column("university", String, nullable=False),
+    Column("start_date", DateTime, nullable=False),
 )
 
 course_creator = Table(
@@ -37,8 +38,8 @@ course_creator_course = Table(
     Column("id", Integer, primary_key=True, autoincrement=True),
     Column("course_creator_id", Integer, nullable=False),
     Column("course_id", Integer, nullable=False),
-    Column("created_at", Date, nullable=False),
-    Column("last_updated", Date, nullable=True),
+    Column("created_at", DateTime, nullable=False),
+    Column("last_updated", DateTime, nullable=True),
 )
 
 course_topic = Table(
@@ -166,16 +167,6 @@ learning_element = Table(
     Column("last_updated", Date, nullable=True),
 )
 
-learning_element_rating = Table(
-    "learning_element_rating",
-    mapper_registry.metadata,
-    Column("id", Integer, primary_key=True, autoincrement=True),
-    Column("learning_element_id", Integer, nullable=False),
-    Column("rating", Integer, nullable=False),
-    Column("message", String, nullable=True),
-    Column("date", Date, nullable=False),
-)
-
 learning_path = Table(
     "learning_path",
     mapper_registry.metadata,
@@ -187,13 +178,20 @@ learning_path = Table(
     Column("calculated_on", String, nullable=True),
 )
 
+learning_path_algorithm = Table(
+    "learning_path_algorithm",
+    mapper_registry.metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("short_name", String, nullable=False),
+    Column("full_name", String),
+)
+
 learning_path_learning_element = Table(
     "learning_path_learning_element",
     mapper_registry.metadata,
     Column("id", Integer, primary_key=True, autoincrement=True),
     Column("learning_element_id", Integer, nullable=False),
     Column("learning_path_id", Integer, nullable=False),
-    Column("recommended", Boolean, nullable=False),
     Column("position", Integer, nullable=False),
 )
 
@@ -203,7 +201,6 @@ learning_path_topic = Table(
     Column("id", Integer, primary_key=True, autoincrement=True),
     Column("topic_id", Integer, nullable=False),
     Column("learning_path_id", Integer, nullable=False),
-    Column("recommended", Boolean, nullable=False),
     Column("position", Integer, nullable=False),
 )
 
@@ -319,6 +316,36 @@ contact_form = Table(
     Column("date", Date, nullable=False),
 )
 
+news = Table(
+    "news",
+    mapper_registry.metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("language_id", String, nullable=False),
+    Column("news_content", String, nullable=False),
+    Column("university", String, nullable=True),
+    Column("expiration_date", Date, nullable=True),
+    Column("created_at", Date, nullable=False),
+)
+
+logbuffer = Table(
+    "logbuffer",
+    mapper_registry.metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("user_id", Integer, nullable=False),
+    Column("content", String, nullable=False),
+    Column("date", Date, nullable=False),
+)
+
+default_learning_path = Table(
+    "default_learning_path",
+    mapper_registry.metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("classification", String, nullable=False),
+    Column("position", Integer, nullable=False),
+    Column("disabled", Boolean, nullable=False),
+    Column("university", String, nullable=False),
+)
+
 student = Table(
     "student",
     mapper_registry.metadata,
@@ -360,6 +387,15 @@ student_learning_element_visit = Table(
     Column("learning_element_id", Integer, nullable=False),
     Column("visit_start", Date, nullable=False),
     Column("visit_end", Date, nullable=True),
+)
+
+student_learning_path_learning_element_algorithm = Table(
+    "student_learning_path_learning_element_algorithm",
+    mapper_registry.metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("student_id", Integer, nullable=False),
+    Column("topic_id", Integer, nullable=False),
+    Column("algorithm_id", Integer, nullable=False),
 )
 
 student_topic = Table(
@@ -418,6 +454,37 @@ topic_learning_element = Table(
     Column("id", Integer, primary_key=True, autoincrement=True),
     Column("topic_id", Integer, nullable=False),
     Column("learning_element_id", Integer, nullable=False),
+)
+
+student_rating = Table(
+    "student_rating",
+    mapper_registry.metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("student_id", Integer, nullable=False),
+    Column("topic_id", Integer, nullable=False),
+    Column("rating_value", Float, nullable=False),
+    Column("rating_deviation", Float, nullable=False),
+    Column("timestamp", DateTime, nullable=False),
+)
+
+learning_element_rating = Table(
+    "learning_element_rating",
+    mapper_registry.metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("learning_element_id", Integer, nullable=False),
+    Column("topic_id", Integer, nullable=False),
+    Column("rating_value", Float, nullable=False),
+    Column("rating_deviation", Float, nullable=False),
+    Column("timestamp", DateTime, nullable=False),
+)
+
+
+learning_path_learning_element_algorithm = Table(
+    "learning_path_learning_element_algorithm",
+    mapper_registry.metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("topic_id", Integer, nullable=False),
+    Column("algorithm_id", Integer, nullable=False),
 )
 
 
@@ -479,17 +546,20 @@ def start_mappers():
         learning_element,
     )
     mapper_registry.map_imperatively(
-        DM.LearningElementRating,
-        learning_element_rating,
-    )
-    mapper_registry.map_imperatively(
         TM.LearningPath,
         learning_path,
     )
+    mapper_registry.map_imperatively(TM.LearningPathAlgorithm, learning_path_algorithm)
     mapper_registry.map_imperatively(
         TM.LearningPathLearningElement,
         learning_path_learning_element,
     )
+
+    mapper_registry.map_imperatively(
+        TM.LearningPathLearningElementAlgorithm,
+        learning_path_learning_element_algorithm,
+    )
+
     mapper_registry.map_imperatively(
         TM.LearningPathTopic,
         learning_path_topic,
@@ -524,6 +594,20 @@ def start_mappers():
     )
 
     mapper_registry.map_imperatively(
+        UA.News,
+        news,
+    )
+
+    mapper_registry.map_imperatively(
+        UA.LogBuffer,
+        logbuffer,
+    )
+
+    mapper_registry.map_imperatively(
+        TM.DefaultLearningPathElement, default_learning_path
+    )
+
+    mapper_registry.map_imperatively(
         UA.Student,
         student,
     )
@@ -541,6 +625,11 @@ def start_mappers():
     mapper_registry.map_imperatively(
         DM.StudentLearningElementVisit,
         student_learning_element_visit,
+    )
+
+    mapper_registry.map_imperatively(
+        DM.StudentLearningPathLearningElementAlgorithm,
+        student_learning_path_learning_element_algorithm,
     )
 
     mapper_registry.map_imperatively(
@@ -571,4 +660,14 @@ def start_mappers():
     mapper_registry.map_imperatively(
         DM.TopicLearningElement,
         topic_learning_element,
+    )
+
+    mapper_registry.map_imperatively(
+        LM.StudentRating,
+        student_rating,
+    )
+
+    mapper_registry.map_imperatively(
+        DM.LearningElementRating,
+        learning_element_rating,
     )

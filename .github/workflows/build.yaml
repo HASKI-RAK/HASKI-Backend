@@ -11,37 +11,38 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.10.4"]
+        python-version: ["3.10"]
+
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Setup timezone
-      uses: zcong1993/setup-timezone@master
-      with:
-        timezone: UTC
+      - name: Setup timezone
+        uses: zcong1993/setup-timezone@master
+        with:
+          timezone: UTC
 
-    - name: Set up Python ${{ matrix.python }}
-      uses: actions/setup-python@v3
-      with:
-        python-version: ${{ matrix.python }}
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
 
-    - name: Install Python dependencies
-      run: |
-        sudo apt install -y $(grep -o ^[^#][[:alnum:]-]* "packages.list")
-        python3 -m pip install --upgrade pip
-        pip3 install -r requirements.txt
+      - name: Install Python dependencies
+        run: |
+          sudo apt install -y $(grep -o ^[^#][[:alnum:]-]* "packages.list")
+          python3 -m pip install --upgrade pip
+          pip3 install -r requirements.txt
 
-    - name: Run isort
-      run: |
-        isort --check-only .
+      - name: Run isort
+        run: |
+          isort --check-only .
 
-    - name: Run black
-      run: |
-        black --check .
+      - name: Run black
+        run: |
+          black --check .
 
-    - name: Run flake8
-      run: |
-        flake8 .
+      - name: Run flake8
+        run: |
+          flake8 .
 
   Sonarcloud:
     name: SonarCloud
@@ -70,13 +71,13 @@ jobs:
           - 5432:5432
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - name: Setup Python
         uses: actions/setup-python@v3
         with:
-          python-version: ${{ matrix.python }}
+          python-version: ${{ matrix.python-version }}
 
       - name: Install tox, dotenv and psycopg2
         run: |
@@ -94,12 +95,22 @@ jobs:
           echo "${{ secrets.PEM_PUBLIC }}" > ${{ github.workspace }}/keys/public.pem
           chmod 600 ${{ github.workspace }}/keys/public.pem
 
+      - name: Create reports directory
+        run: mkdir -p reports
+
       - name: Run tox
         run: tox
-        
+
+      - name: Upload pytest JSON report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest-json-report
+          path: reports/pytest-report.json
+          retention-days: 30
+
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarqube-scan-action@v4.2.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
- 

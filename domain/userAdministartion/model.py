@@ -101,3 +101,41 @@ class ContactForm:
             "report_description": self.report_description,
             "date": self.date,
         }
+
+
+class News:
+    def __init__(
+        self, language_id, news_content, expiration_date, created_at, university
+    ) -> None:
+        self.id = None
+        self.language_id = language_id
+        self.news_content = news_content
+        self.expiration_date = expiration_date
+        self.created_at = created_at
+        self.university = university
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "language_id": self.language_id,
+            "news_content": self.news_content,
+            "expiration_date": self.expiration_date,
+            "created_at": self.created_at,
+            "university": self.university,
+        }
+
+
+class LogBuffer:
+    def __init__(self, user_id, content, date) -> None:
+        self.id = None
+        self.user_id = user_id
+        self.content = content
+        self.date = date
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "content": self.content,
+            "date": self.date,
+        }

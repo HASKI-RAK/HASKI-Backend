@@ -1,26 +1,35 @@
 from utils.auth.permissions import Permissions
+from utils.constants import (
+    role_admin_string,
+    role_course_creator_string,
+    role_student_string,
+)
 
 # This file contains the mapping of IMS roles to LTI / LMS roles
+# Moodle Manager & Teacher: Instructor
+# Moodle Admin: Administrator
+# Moodle Student: Learner
 lti_roles = {
-    "http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor": "Instructor",
-    "http://purl.imsglobal.org/vocab/lis/v2/membership#Learner": "Learner",
-    "http://purl.imsglobal.org/vocab/lis/v2/membership#Administrator": "Administrator",
+    "http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor": role_course_creator_string,  # noqa: E501
+    "http://purl.imsglobal.org/vocab/lis/v2/membership#Learner": role_student_string,  # noqa: E501
+    "http://purl.imsglobal.org/vocab/lis/v2/membership#Administrator": role_admin_string,  # noqa: E501
 }
 
 lti_permissions = {
-    "Instructor": [Permissions.READ, Permissions.WRITE],
-    "Learner": [Permissions.READ],
-    "Administrator": [Permissions.READ, Permissions.WRITE, Permissions.ADMIN],
+    role_course_creator_string: [Permissions.READ, Permissions.WRITE],
+    role_student_string: [Permissions.READ],
+    role_admin_string: [Permissions.READ, Permissions.WRITE, Permissions.ADMIN],
 }
 
 
 class RoleMapper:
     """Maps IMS roles to a single LTI role
     Example:
-    IMS roles: http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor,\
+    IMS roles:
+    http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor,\
         http://purl.imsglobal.org/vocab/lis/v2/membership#Learner
     LTI role: Instructor
-    return by get_role(): Instructor
+    return by get_role(): course creator
     """
 
     # map IMS roles to LTI roles

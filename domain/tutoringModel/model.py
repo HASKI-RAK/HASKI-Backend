@@ -1,7 +1,9 @@
 import time
 
-from domain.tutoringModel import aco, ga, graf, nestor, tyche
+
+from domain.tutoringModel import aco, default, ga, graf, nestor, tyche
 from domain.tutoringModel import utils
+
 from domain.tutoringModel.utils import get_coordinates
 from errors import errors as err
 from utils import constants as cons
@@ -32,7 +34,15 @@ class LearningPath:
         }
 
     def get_learning_path(
-        self, student_id, learning_style, _algorithm, list_of_les, input_view_time=None
+
+        self,
+        student_id,
+        learning_style,
+        _algorithm,
+        list_of_les,
+        default_learning_path=None,
+        input_view_time=None
+
     ):
         algorithm = _algorithm.lower()
         if algorithm == "graf":
@@ -84,6 +94,9 @@ class LearningPath:
             self.path = nestor_alg.get_learning_path(
                 input_learning_style=learning_style, input_learning_elements=list_of_les
             )
+        elif algorithm == "default" and default_learning_path is not None:
+            default_algorithm = default.DefaultAlgorithm(default_learning_path)
+            self.path = default_algorithm.get_learning_path(list_of_les)
         else:
             raise err.NoValidAlgorithmError()
 
@@ -107,11 +120,24 @@ class LearningPath:
         return list_of_les_classifications
 
 
+class LearningPathAlgorithm:
+    def __init__(self, short_name, full_name) -> None:
+        self.id = None
+        self.short_name = short_name
+        self.full_name = full_name
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "short_name": self.short_name,
+            "full_name": self.full_name,
+        }
+
+
 class LearningPathTopic:
-    def __init__(self, topic_id, learning_path_id, recommended, position) -> None:
+    def __init__(self, topic_id, learning_path_id, position) -> None:
         self.topic_id = topic_id
         self.learning_path_id = learning_path_id
-        self.recommended = recommended
         self.position = position
 
     def serialize(self):
@@ -119,7 +145,6 @@ class LearningPathTopic:
             "id": self.id,
             "topic_id": self.topic_id,
             "learning_path_id": self.learning_path_id,
-            "recommended": self.recommended,
             "position": self.position,
         }
 
@@ -129,13 +154,11 @@ class LearningPathLearningElement:
         self,
         learning_element_id,
         learning_path_id,
-        recommended,
         position,
         learning_element=None,
     ) -> None:
         self.learning_element_id = learning_element_id
         self.learning_path_id = learning_path_id
-        self.recommended = recommended
         self.position = position
         self.learning_element = learning_element
 
@@ -144,7 +167,42 @@ class LearningPathLearningElement:
             "id": self.id,
             "learning_element_id": self.learning_element_id,
             "learning_path_id": self.learning_path_id,
-            "recommended": self.recommended,
             "position": self.position,
             "learning_element": self.learning_element,
+        }
+
+
+class LearningPathLearningElementAlgorithm:
+    def __init__(
+        self,
+        topic_id: int,
+        algorithm_id: int,
+    ) -> None:
+        self.topic_id = topic_id
+        self.algorithm_id = algorithm_id
+
+    def serialize(self):
+        return {
+            "topic_id": self.topic_id,
+            "algorithm_id": self.algorithm_id,
+        }
+
+
+class DefaultLearningPathElement:
+    def __init__(
+        self, classification: str, position: int, disabled: bool, university: str
+    ) -> None:
+        self.id = None
+        self.classification = classification
+        self.position = position
+        self.disabled = disabled
+        self.university = university
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "classification": self.classification,
+            "position": self.position,
+            "disabled": self.disabled,
+            "university": self.university,
         }

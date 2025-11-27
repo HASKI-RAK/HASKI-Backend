@@ -10,6 +10,7 @@ from werkzeug.wrappers.response import Response
 import service_layer.crypto.JWTKeyManagement as JWTKeyManagement
 import service_layer.lti.config.ToolConfigJson as ToolConfigJson
 import service_layer.service.SessionServiceFlask as SessionServiceFlask
+import utils.constants as const
 import utils.logger as logger
 from errors import errors as err
 from service_layer import services, unit_of_work
@@ -268,8 +269,7 @@ class OIDCLoginFlask(OIDCLogin):
         except Exception as e:
             raise err.ErrorException(
                 e,
-                message="Error\
-                    in check_auth",
+                message="Error in check_auth",
                 status_code=400,
             )
         # redirect to tool (login url in frontend)
@@ -285,7 +285,10 @@ class OIDCLoginFlask(OIDCLogin):
                 unit_of_work.SqlAlchemyUnitOfWork(), self.id_token.sub
             )
             logger.debug("User: " + str(user))
+            # If student is in Moodle, but not in Haski DB
+            # noqa: F841
             if not user:
+                # Create User in haski_user
                 user = services.create_user(
                     unit_of_work.SqlAlchemyUnitOfWork(),
                     name=self.id_token.name,
@@ -297,8 +300,88 @@ class OIDCLoginFlask(OIDCLogin):
                         self.id_token["https://purl.imsglobal.org/spec/lti/claim/roles"]
                     ).get_role(),
                 )
-            if user["role"] == "student":
-                # Type student, has to work cause of Substitution Principle
+                # Add "student"/"course creator" to student_course, on basis of his uni
+                if (
+                    user["role"] == const.role_student_string
+                    or user["role"] == const.role_course_creator_string
+                ):
+                    # get all courses of the user that he is enrolled in
+                    courses = services.get_enrolled_university_courses(
+                        unit_of_work.SqlAlchemyUnitOfWork(),
+                        user["lms_user_id"],
+                        user["university"],
+                    )
+
+                    student = services.get_student_by_user_id(
+                        unit_of_work.SqlAlchemyUnitOfWork(), user["id"]
+                    )
+                    for course in courses["courses"]:
+                        services.add_student_to_course(
+                            unit_of_work.SqlAlchemyUnitOfWork(),
+                            course_id=course["id"],
+                            student_id=student["id"],
+                        )
+                # Calculate learning paths for course creators
+                # fmt: off
+                if (user[
+                    "role"
+                ] == const.role_course_creator_string and
+                        services.get_default_learning_path_by_university(
+                    unit_of_work.SqlAlchemyUnitOfWork(), user["university"]
+                )):
+                    # fmt: on
+                    student = services.get_student_by_user_id(
+                        unit_of_work.SqlAlchemyUnitOfWork(), user["id"]
+                    )
+
+                    student_courses = services.get_courses_by_student_id(
+                        unit_of_work.SqlAlchemyUnitOfWork(),
+                        user["id"],
+                        user["lms_user_id"],
+                        student["id"]
+                    )
+                    for course in student_courses["courses"]:
+                        # Get every available topic in all course.
+                        topics = list(
+                            services.get_topics_by_student_and_course_id(
+                                unit_of_work.SqlAlchemyUnitOfWork(),
+                                user["id"],
+                                user["lms_user_id"],
+                                student["id"],
+                                course["id"]
+                            )["topics"]
+                        )
+                        for topic in topics:
+                            if topic["contains_le"]:
+                                # Get algorithm for the topic.
+                                algorithm = services.get_student_lpath_le_algorithm(
+                                    unit_of_work.SqlAlchemyUnitOfWork(),
+                                    student["id"],
+                                    topic["id"],
+                                ) or services.get_lpath_le_algorithm_by_topic(
+                                    unit_of_work.SqlAlchemyUnitOfWork(), topic["id"]
+                                )
+                                lpath_algorithm = (
+                                    services.get_learning_path_algorithm_by_id(
+                                        unit_of_work.SqlAlchemyUnitOfWork(),
+                                        algorithm["algorithm_id"],
+                                    )
+                                )
+                                services.create_learning_path(
+                                    unit_of_work.SqlAlchemyUnitOfWork(),
+                                    user["id"],
+                                    user["lms_user_id"],
+                                    student["id"],
+                                    course["id"],
+                                    topic["id"],
+                                    lpath_algorithm["short_name"].lower(),
+                                )
+            # course creators also has a student_id, to be able to see the courses,
+            # topics and learning elements they created.
+            if (
+                user["role"] == const.role_student_string
+                or user["role"] == const.role_course_creator_string
+            ):
                 user = services.get_student_by_user_id(
                     unit_of_work.SqlAlchemyUnitOfWork(), user["id"]
                 )

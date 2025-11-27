@@ -3,6 +3,8 @@ from unittest import mock
 
 import pytest
 
+import utils.constants as const
+
 user_id_admin = 0
 admin_id = 0
 user_id_course_creator = 0
@@ -11,6 +13,10 @@ user_id_teacher = 0
 teacher_id = 0
 user_id_student = 0
 student_id = 0
+lms_user_id_admin = 1
+lms_user_id_creator = 2
+lms_user_id_teacher = 3
+lms_user_id_student = 4
 course_id = 0
 topic_id = 0
 sub_topic_id = 0
@@ -21,7 +27,11 @@ questionnaire_list_k_id = 0
 path_admin = "/admin"
 path_activity_status = "/activitystatus"
 path_course = "/course"
+path_courses = "/courses"
 path_contactform = "/contactform"
+path_content = "/content"
+path_news = "/news"
+path_logbuffer = "/logbuffer"
 path_knowledge = "/knowledge"
 path_logs = "/logs"
 path_frontend_logs = "/logs/frontend"
@@ -32,17 +42,24 @@ path_learning_path = "/learningPath"
 path_learning_strategy = "/learningStrategy"
 path_learning_style = "/learningStyle"
 path_lms_course = "/lms/course"
+path_lms_topic = "/lms/topic"
 path_lms_student = "/lms/student"
 path_lms_user = "/lms/user"
+path_lms_learning_element = "/lms/learningElement"
 path_questionnaire_ils = "/questionnaire/ils"
 path_questionnaire_list_k = "/questionnaire/listk"
 path_recommendation = "/recommendation"
+path_remote = "/lms/remote"
 path_settings = "/settings"
 path_student = "/student"
 path_subtopic = "/subtopic"
 path_teacher = "/teacher"
 path_topic = "/topic"
 path_user = "/user"
+path_algorithm = "/algorithm"
+path_student_algorithm = "/studentAlgorithm"
+path_teacher_algorithm = "/teacherAlgorithm"
+path_rating = "/rating"
 
 ils_complete = [
     "ar_1_f1",
@@ -237,7 +254,7 @@ class TestApi:
             (
                 {
                     "name": "Achim Admin",
-                    "lms_user_id": 1,
+                    "lms_user_id": lms_user_id_admin,
                     "role": "Admin",
                     "university": "TH-AB",
                     "password": "password",
@@ -258,7 +275,7 @@ class TestApi:
             (
                 {
                     "name": "Claus Creator",
-                    "lms_user_id": 2,
+                    "lms_user_id": lms_user_id_creator,
                     "role": "Course Creator",
                     "university": "TH-AB",
                     "password": "password",
@@ -279,7 +296,7 @@ class TestApi:
             (
                 {
                     "name": "Tim Teacher",
-                    "lms_user_id": 3,
+                    "lms_user_id": lms_user_id_teacher,
                     "role": "Teacher",
                     "university": "TH-AB",
                     "password": "password",
@@ -300,7 +317,7 @@ class TestApi:
             (
                 {
                     "name": "Sonja Studentin",
-                    "lms_user_id": 4,
+                    "lms_user_id": lms_user_id_student,
                     "role": "Student",
                     "university": "TH-AB",
                     "password": "password",
@@ -360,6 +377,9 @@ class TestApi:
     def test_api_create_user_from_moodle(
         self, client_class, input, keys_expected, status_code_expected, save_id
     ):
+        """[HASKI-REQ-0034] Validates automatic user provisioning from
+        Moodle payloads.
+        """
         url = path_lms_user
         r = client_class.post(url, json=input)
         assert r.status_code == status_code_expected
@@ -368,19 +388,19 @@ class TestApi:
             assert key in response.keys()
         if save_id:
             match input["role"].lower():
-                case "admin":
+                case const.role_admin_string:
                     global user_id_admin, admin_id
                     user_id_admin = response["id"]
                     admin_id = response["role_id"]
-                case "course creator":
+                case const.role_course_creator_string:
                     global user_id_course_creator, course_creator_id
                     user_id_course_creator = response["id"]
                     course_creator_id = response["role_id"]
-                case "teacher":
+                case const.role_teacher_string:
                     global user_id_teacher, teacher_id
                     user_id_teacher = response["id"]
                     teacher_id = response["role_id"]
-                case "student":
+                case const.role_student_string:
                     global user_id_student, student_id
                     user_id_student = response["id"]
                     student_id = response["role_id"]
@@ -435,9 +455,88 @@ class TestApi:
             ),
         ],
     )
+    def test_api_create_course_from_moodle_without_start_date(
+        self, client_class, input, keys_expected, status_code_expected, save_id
+    ):
+        """[HASKI-REQ-0035] Validates course creation from Moodle data
+        handling missing start dates.
+        """
+        global user_id_course_creator
+        input["created_by"] = user_id_course_creator
+        url = path_lms_course
+        r = client_class.post(url, json=input)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+        if save_id:
+            global course_id
+            course_id = response["id"]
+
+    @pytest.mark.parametrize(
+        "input, keys_expected, status_code_expected,\
+                            save_id",
+        [
+            # Working Example
+            (
+                {
+                    "name": "Test Course without start date",
+                    "lms_id": 2,
+                    "created_at": "2023-08-01T13:37:42Z",
+                    "university": "TH-AB",
+                    "start_date": "2023-08-01T13:37:42Z",
+                },
+                [
+                    "id",
+                    "name",
+                    "lms_id",
+                    "created_at",
+                    "created_by",
+                    "university",
+                    "start_date",
+                ],
+                201,
+                True,
+            ),
+            # Missing Parameter
+            (
+                {"name": "Test Course", "university": "TH-AB"},
+                ["error", "message"],
+                400,
+                False,
+            ),
+            # Parameter with wrong data type
+            (
+                {
+                    "name": "Test Course",
+                    "lms_id": "2",
+                    "created_at": "2023-08-01T13:37:42Z",
+                    "university": "TH-AB",
+                    "start_date": "2023-08-01T13:37:42Z",
+                },
+                ["error", "message"],
+                400,
+                False,
+            ),
+            # Course already exists
+            (
+                {
+                    "name": "Test Course",
+                    "lms_id": 2,
+                    "created_at": "2023-08-01T13:37:42Z",
+                    "university": "TH-AB",
+                    "start_date": "2023-08-01T13:37:42Z",
+                },
+                ["error", "message"],
+                400,
+                False,
+            ),
+        ],
+    )
     def test_api_create_course_from_moodle(
         self, client_class, input, keys_expected, status_code_expected, save_id
     ):
+        """[HASKI-REQ-0035] Validates standard course creation from Moodle data."""
         global user_id_course_creator
         input["created_by"] = user_id_course_creator
         url = path_lms_course
@@ -566,15 +665,11 @@ class TestApi:
         status_code_expected,
         save_id,
     ):
+        """[HASKI-REQ-0036] Validates topic and subtopic creation from
+        Moodle payloads.
+        """
         global course_id, topic_id, sub_topic_id
-        url = (
-            path_lms_course
-            + "/"
-            + str(course_id)
-            + "/"
-            + str(moodle_course_id)
-            + path_topic
-        )
+        url = path_lms_course + "/" + str(course_id) + path_topic
         if topic_id != 0:
             input["parent_id"] = topic_id
         r = client_class.post(url, json=input)
@@ -594,13 +689,65 @@ class TestApi:
                             moodle_topic_id, keys_expected, \
                             status_code_expected, save_id",
         [
-            # Working Example for LE
+            # Working Example for LE 1
             (
                 {
                     "lms_id": 1,
                     "activity_type": "Quiz",
-                    "classification": "RQ",
+                    "classification": "ÜB",
                     "name": "Test Learning Element",
+                    "created_by": "Maria Musterfrau",
+                    "created_at": "2023-08-01T13:37:42Z",
+                    "university": "TH-AB",
+                },
+                1,
+                1,
+                [
+                    "id",
+                    "lms_id",
+                    "activity_type",
+                    "classification",
+                    "name",
+                    "created_by",
+                    "created_at",
+                    "university",
+                ],
+                201,
+                True,
+            ),
+            # Working example for LE 2
+            (
+                {
+                    "lms_id": 2,
+                    "activity_type": "h5pactivity",
+                    "classification": "ÜB",
+                    "name": "Test Learning Element 2",
+                    "created_by": "Maria Musterfrau",
+                    "created_at": "2023-08-01T13:37:42Z",
+                    "university": "TH-AB",
+                },
+                1,
+                1,
+                [
+                    "id",
+                    "lms_id",
+                    "activity_type",
+                    "classification",
+                    "name",
+                    "created_by",
+                    "created_at",
+                    "university",
+                ],
+                201,
+                True,
+            ),
+            # Working example for LE 3
+            (
+                {
+                    "lms_id": 3,
+                    "activity_type": "h5pactivity",
+                    "classification": "KÜ",
+                    "name": "Test Learning Element 2",
                     "created_by": "Maria Musterfrau",
                     "created_at": "2023-08-01T13:37:42Z",
                     "university": "TH-AB",
@@ -658,7 +805,7 @@ class TestApi:
                 {
                     "lms_id": 1,
                     "activity_type": "Quiz",
-                    "classification": "RQ",
+                    "classification": "ÜB",
                     "name": "Test Learning Element",
                     "created_by": "Maria Musterfrau",
                     "created_at": "2023-08-01T13:37:42Z",
@@ -682,21 +829,10 @@ class TestApi:
         status_code_expected,
         save_id,
     ):
+        """[HASKI-REQ-0037] Validates learning element creation from Moodle payloads."""
         global course_id
         global sub_topic_id
-        url = (
-            path_lms_course
-            + "/"
-            + str(course_id)
-            + "/"
-            + str(moodle_course_id)
-            + path_topic
-            + "/"
-            + str(sub_topic_id)
-            + "/"
-            + str(moodle_topic_id)
-            + path_learning_element
-        )
+        url = path_lms_topic + "/" + str(sub_topic_id) + path_learning_element
         r = client_class.post(url, json=input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -780,8 +916,6 @@ class TestApi:
             (True, False, ["error", "message"], 404),
             # Course not found
             (False, True, ["error", "message"], 404),
-            # Student already in Course
-            (False, False, ["error", "message"], 400),
         ],
     )
     def test_add_student_to_course(
@@ -810,6 +944,229 @@ class TestApi:
             + str(student_id_use)
         )
         r = client_class.post(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+
+        # Add Student to Course - Duplicate
+        @pytest.mark.parametrize(
+            "keys_expected, status_code_expected, save_id",
+            [
+                # Working Example
+                (
+                    ["CREATED"],
+                    409,
+                    True,
+                ),
+            ],
+        )
+        def test_add_student_to_course_duplicate(
+            self, client_class, keys_expected, status_code_expected, save_id
+        ):
+            """Test adding a student that's already enrolled in the course"""
+            global course_id, student_id
+            url = (
+                path_lms_course
+                + "/"
+                + str(course_id)
+                + path_student
+                + "/"
+                + str(student_id)
+            )
+            # Try adding again - should return 304
+            r = client_class.post(url)
+            assert r.status_code == status_code_expected
+            response = json.loads(r.data.decode("utf-8").strip("\n"))
+            for key in keys_expected:
+                assert key in response.keys()
+
+    @pytest.mark.parametrize(
+        "input, keys_expected, status_code_expected",
+        [
+            (
+                {"short_name": "aco", "full_name": "Ant Colony Optimization"},
+                ["full_name", "id", "short_name"],
+                201,
+            ),
+        ],
+    )
+    def test_post_learning_path_algorithm(
+        self, client_class, input, keys_expected, status_code_expected
+    ):
+        url = path_algorithm
+        r = client_class.post(url, json=input)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+
+    # Test post to create student learning path learning element algorithm
+    @pytest.mark.parametrize(
+        "input, topic_id, keys_expected, status_code_expected",
+        [
+            (
+                {"algorithm": "aco"},
+                1,
+                ["algorithm_id", "id", "student_id", "topic_id"],
+                201,
+            ),
+            (
+                {"algorithm": "aco"},
+                2,
+                ["algorithm_id", "id", "student_id", "topic_id"],
+                201,
+            ),
+        ],
+    )
+    def test_post_student_learning_path_learning_element_algorithm(
+        self, client_class, input, topic_id, keys_expected, status_code_expected
+    ):
+        global student_id
+
+        url = (
+            path_student
+            + "/"
+            + str(student_id)
+            + path_topic
+            + "/"
+            + str(topic_id)
+            + path_algorithm
+        )
+
+        r = client_class.post(url, json=input)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+
+    # Test post to create teacher learning path learning element algorithm
+    @pytest.mark.parametrize(
+        "input, user_id, lms_id, topic_id, keys_expected, status_code_expected",
+        [
+            (
+                {"algorithm_short_name": "aco"},
+                3,
+                lms_user_id_teacher,
+                1,
+                ["algorithm_id", "topic_id"],
+                201,
+            ),
+            (
+                {"algorithm_short_name": "aco"},
+                3,
+                lms_user_id_teacher,
+                1,
+                ["algorithm_id", "topic_id"],
+                201,
+            ),
+            # Wrong key
+            (
+                {"wrong_key": "algorithm"},
+                3,
+                lms_user_id_teacher,
+                1,
+                ["error", "message"],
+                400,
+            ),
+            # Wrong data type
+            (
+                {"algorithm_short_name": 2},
+                3,
+                lms_user_id_teacher,
+                1,
+                ["error", "message"],
+                400,
+            ),
+            # Unauthorized User
+            (
+                {"algorithm_short_name": "aco"},
+                4,
+                lms_user_id_student,
+                1,
+                ["error", "message"],
+                401,
+            ),
+        ],
+    )
+    def test_post_teacher_learning_path_learning_element_algorithm(
+        self,
+        client_class,
+        input,
+        user_id,
+        lms_id,
+        topic_id,
+        keys_expected,
+        status_code_expected,
+    ):
+        url = (
+            path_user
+            + "/"
+            + str(user_id)
+            + "/"
+            + str(lms_id)
+            + path_topic
+            + "/"
+            + str(topic_id)
+            + path_teacher_algorithm
+        )
+
+        r = client_class.post(url, json=input)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+
+    # Test post to create student learning path learning element algorithm
+    @pytest.mark.parametrize(
+        "input, topic_id, keys_expected, status_code_expected",
+        [
+            (
+                {"algorithm_short_name": "aco"},
+                1,
+                ["algorithm_id", "id", "student_id", "topic_id"],
+                201,
+            ),
+            (
+                {"algorithm_short_name": "aco"},
+                1,
+                ["algorithm_id", "id", "student_id", "topic_id"],
+                201,
+            ),
+            (
+                {"wrong_key": "algorithm"},
+                1,
+                ["error", "message"],
+                400,
+            ),
+            (
+                {"algorithm_short_name": 2},
+                1,
+                ["error", "message"],
+                400,
+            ),
+        ],
+    )
+    def test_p_student_learning_path_learning_element_algorithm(
+        self, client_class, input, topic_id, keys_expected, status_code_expected
+    ):
+        global user_id_student
+
+        url = (
+            path_user
+            + "/"
+            + str(user_id_student)
+            + "/"
+            + str(4)
+            + path_course
+            + "/"
+            + str(course_id)
+            + path_topic
+            + "/"
+            + str(sub_topic_id)
+            + path_student_algorithm
+        )
+        r = client_class.post(url, json=input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
         for key in keys_expected:
@@ -1201,6 +1558,374 @@ class TestApi:
         for key in keys_exp:
             assert key in response.keys()
 
+    # Default Learning Path is calculated
+    @pytest.mark.parametrize(
+        "input, moodle_user_id, keys_exp,\
+                            status_code_exp",
+        [
+            # Working Example
+            (
+                [
+                    {
+                        "classification": "KÜ",
+                        "position": 1,
+                        "disabled": False,
+                        "university": "HS-KE",
+                    }
+                ],
+                1,
+                ["classification", "position", "disabled", "university"],
+                201,
+            ),
+            (
+                [
+                    {
+                        "classification": "EK",
+                        "position": 1,
+                        "disabled": False,
+                        "university": "HS-KE",
+                    }
+                ],
+                1,
+                ["classification", "position", "disabled", "university"],
+                201,
+            ),
+            # Missing Parameter
+            ({}, 1, ["error", "message"], 500),
+        ],
+    )
+    def test_post_learning_path_default(
+        self, client_class, input, moodle_user_id, keys_exp, status_code_exp
+    ):
+        global user_id_student, student_id, course_id2, sub_topic_id2
+        client_post = client_class.post(
+            (
+                path_user
+                + "/"
+                + str(user_id_admin)
+                + "/"
+                + str(moodle_user_id)
+                + "/defaultLearningPath"
+            ),
+            json=input,
+        )
+        assert client_post.status_code == status_code_exp
+        response = json.loads(client_post.data.decode("utf-8").strip("\n"))
+        if input == {}:
+            expected_keys = set(["error", "message"])
+            assert expected_keys <= set(response.keys())
+        else:
+            for item in response:
+                assert set(keys_exp) <= set(item.keys())
+
+    @pytest.mark.parametrize(
+        "moodle_user_id, keys_exp, status_code_exp",
+        [
+            # Working Example
+            (
+                1,
+                ["id", "classification", "position", "disabled", "university"],
+                200,
+            ),
+        ],
+    )
+    def test_get_learning_path_default(
+        self, client_class, moodle_user_id, keys_exp, status_code_exp
+    ):
+        global user_id_student, student_id, course_id2, sub_topic_id2
+        client_get = client_class.get(
+            path_user
+            + "/"
+            + str(user_id_admin)
+            + "/"
+            + str(moodle_user_id)
+            + "/defaultLearningPath"
+        )
+        assert client_get.status_code == status_code_exp
+        response = json.loads(client_get.data.decode("utf-8").strip("\n"))
+        if input == {}:
+            expected_keys = set(["error", "message"])
+            assert expected_keys <= set(response.keys())
+        else:
+            for item in response:
+                assert set(keys_exp) <= set(item.keys())
+
+    # Learning paths are calculated
+    @pytest.mark.parametrize(
+        "input, moodle_user_id, keys_expected,\
+                            status_code_expected",
+        [
+            (
+                {},
+                4,
+                [
+                    "id",
+                    "course_id",
+                    "topic_id",
+                    "student_id",
+                    "based_on",
+                    "path",
+                    "calculated_on",
+                ],
+                201,
+            ),
+        ],
+    )
+    def test_post_calculate_learning_path(
+        self, client_class, input, moodle_user_id, keys_expected, status_code_expected
+    ):
+        user_id_student = 4
+        url = (
+            path_user
+            + "/"
+            + str(user_id_student)
+            + "/"
+            + str(moodle_user_id)
+            + path_learning_path
+        )
+        r = client_class.post(url, json=input)
+        assert r.status_code == status_code_expected
+        responses = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            for response in responses:
+                assert key in response.keys()
+
+    # Learning paths are calculated for all students
+    @pytest.mark.parametrize(
+        "input, moodle_user_id, keys_expected, status_code_expected",
+        [
+            (
+                {
+                    "university": "TH-AB",  # Added required key
+                    "role": "teacher",  # Added required key
+                },
+                4,
+                [
+                    "id",
+                    "course_id",
+                    "topic_id",
+                    "student_id",
+                    "based_on",
+                    "path",
+                    "calculated_on",
+                ],
+                201,
+            ),
+        ],
+    )
+    def test_post_calculate_learning_path_for_all_students(
+        self, client_class, input, moodle_user_id, keys_expected, status_code_expected
+    ):
+        global user_id_course_creator, course_id, sub_topic_id, user_id_student
+        url = (
+            "/v2"
+            + path_user
+            + "/"
+            + str(user_id_student)
+            + path_course
+            + "/"
+            + str(course_id)
+            + path_topic
+            + "/"
+            + str(1)
+            + path_learning_path
+        )
+        r = client_class.post(url, json=input)
+        assert r.status_code == status_code_expected
+        responses = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            for response in responses:
+                assert key in response.keys()
+        # Save course_id if needed
+        # if save_id:
+        #     global course_id
+        #     course_id = responses[0]["id"]
+
+    @pytest.mark.parametrize(
+        "keys_expected, status_code_expected",
+        [
+            (
+                {
+                    "id",
+                    "student_id",
+                    "topic_id",
+                    "rating_value",
+                    "rating_deviation",
+                    "timestamp",
+                },
+                201,
+            ),
+        ],
+    )
+    def test_create_student_rating(
+        self, client_class, keys_expected, status_code_expected
+    ):
+        url = (
+            path_student
+            + "/"
+            + str(student_id)
+            + path_topic
+            + "/"
+            + str(topic_id)
+            + path_rating
+        )
+        r = client_class.post(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in response.keys():
+            assert key in keys_expected
+
+    @pytest.mark.parametrize(
+        "keys_expected, status_code_expected",
+        [
+            (
+                {
+                    "id",
+                    "student_id",
+                    "topic_id",
+                    "rating_value",
+                    "rating_deviation",
+                    "timestamp",
+                },
+                200,
+            ),
+        ],
+    )
+    def test_get_student_ratings(
+        self, client_class, keys_expected, status_code_expected
+    ):
+        user_id_student = 4
+        student_id = 2
+        url = (
+            path_user
+            + "/"
+            + str(user_id_student)
+            + path_student
+            + "/"
+            + str(student_id)
+            + path_rating
+        )
+        r = client_class.get(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in response[0].keys():
+            assert key in keys_expected
+
+    @pytest.mark.parametrize(
+        "keys_expected, status_code_expected",
+        [
+            (
+                {
+                    "id",
+                    "learning_element_id",
+                    "topic_id",
+                    "rating_value",
+                    "rating_deviation",
+                    "timestamp",
+                },
+                201,
+            ),
+        ],
+    )
+    def test_create_learning_element_rating(
+        self, client_class, keys_expected, status_code_expected
+    ):
+        url = (
+            path_topic
+            + "/"
+            + str(topic_id)
+            + path_learning_element
+            + "/"
+            + str(learning_element_id)
+            + path_rating
+        )
+        r = client_class.post(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in response.keys():
+            assert key in keys_expected
+
+    @pytest.mark.parametrize(
+        "keys_expected, status_code_expected",
+        [
+            (
+                {
+                    "id",
+                    "learning_element_id",
+                    "topic_id",
+                    "rating_value",
+                    "rating_deviation",
+                    "timestamp",
+                },
+                200,
+            ),
+        ],
+    )
+    def test_get_learning_element_ratings(
+        self, client_class, keys_expected, status_code_expected
+    ):
+        url = path_learning_element + path_rating
+        r = client_class.get(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in response[0].keys():
+            assert key in keys_expected
+
+    @mock.patch("requests.get")
+    @pytest.mark.parametrize(
+        "keys_expected, status_code_expected",
+        [
+            (
+                {
+                    "student_rating",
+                    "learning_element_rating",
+                },
+                201,
+            ),
+        ],
+    )
+    def test_post_calculate_rating(
+        self, mock_get, client_class, keys_expected, status_code_expected
+    ):
+        mock_response_1 = mock.Mock(
+            status_code=200, json=lambda: [{"modules": [{"id": 1, "instance": 1}]}]
+        )
+
+        mock_response_2 = mock.Mock(
+            status_code=200,
+            json=lambda: {
+                "usersattempts": [
+                    {"attempts": [{"timecreated": 1}, {"timecreated": 9999999999}]}
+                ]
+            },
+        )
+
+        mock_get.side_effect = [mock_response_1, mock_response_2]
+
+        user_id_student = 4
+        learning_element_ids = [1, 2, 3]
+        for learning_element_id in learning_element_ids:
+            url = (
+                path_user
+                + "/"
+                + str(user_id_student)
+                + path_course
+                + "/"
+                + str(course_id)
+                + path_topic
+                + "/"
+                + str(topic_id)
+                + path_learning_element
+                + "/"
+                + str(learning_element_id)
+                + path_rating
+            )
+            r = client_class.post(url)
+            assert r.status_code == status_code_expected
+            response = json.loads(r.data.decode("utf-8").strip("\n"))
+            for key in response.keys():
+                assert key in keys_expected
+
     # Post a Contact Form
     @pytest.mark.parametrize(
         "input, lms_user_id, keys_expected,\
@@ -1326,6 +2051,75 @@ class TestApi:
         self, client_class, input, keys_expected, status_code_expected
     ):
         url = path_frontend_logs
+        r = client_class.post(url, json=input)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+
+    # Post the News
+    @pytest.mark.parametrize(
+        "input, keys_expected,\
+                            status_code_expected",
+        [
+            # Working Example
+            (
+                {
+                    "university": "TH-AB",
+                    "language_id": "en",
+                    "created_at": "2023-08-01T13:37:42Z",
+                    "news_content": "This is news",
+                    "expiration_date": "2028-08-01T13:37:42Z",
+                },
+                [
+                    "id",
+                    "university",
+                    "created_at",
+                    "language_id",
+                    "expiration_date",
+                    "news_content",
+                ],
+                201,
+            ),
+        ],
+    )
+    def test_post_news(self, client_class, input, keys_expected, status_code_expected):
+        url = path_news
+        r = client_class.post(url, json=input)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+
+    # Post the logbuffer
+    @pytest.mark.parametrize(
+        "input, keys_expected,\
+                            status_code_expected",
+        [
+            # Working Example
+            (
+                {
+                    "user_id": "4",
+                    "content": "Test text",
+                    "date": "2028-08-01T13:37:42Z",
+                },
+                [
+                    "id",
+                    "user_id",
+                    "content",
+                    "date",
+                ],
+                201,
+            ),
+            # Missing Parameter
+            ({}, ["error", "message"], 400),
+        ],
+    )
+    def test_post_logbuffer(
+        self, client_class, input, keys_expected, status_code_expected
+    ):
+        user_id_student = 4
+        url = path_user + "/" + str(user_id_student) + path_logbuffer
         r = client_class.post(url, json=input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -1862,83 +2656,6 @@ class TestApi:
         for key in keys_expected:
             assert key in response.keys()
 
-    # Get the recommended LE in a topic
-    @pytest.mark.parametrize(
-        "lms_user_id, keys_expected,\
-                            status_code_expected, error_student,\
-                            error_course, error_topic",
-        [
-            # Working Example
-            (
-                4,
-                [
-                    "id",
-                    "lms_id",
-                    "activity_type",
-                    "classification",
-                    "name",
-                    "university",
-                    "student_learning_element",
-                ],
-                200,
-                False,
-                False,
-                False,
-            ),
-            # User not found
-            (1, ["error", "message"], 404, True, False, False),
-            # Course not found
-            (4, ["error", "message"], 404, False, True, False),
-            # Topic not found
-            (4, ["error", "message"], 404, False, False, True),
-        ],
-    )
-    def test_get_topic_recommendation_for_student(
-        self,
-        client_class,
-        lms_user_id,
-        keys_expected,
-        status_code_expected,
-        error_student,
-        error_course,
-        error_topic,
-    ):
-        global user_id_student, student_id, course_id, sub_topic_id
-        if error_student:
-            student_id_use = 99999
-        else:
-            student_id_use = student_id
-        if error_course:
-            course_id_use = 99999
-        else:
-            course_id_use = course_id
-        if error_topic:
-            topic_id_use = 99999
-        else:
-            topic_id_use = sub_topic_id
-        url = (
-            path_user
-            + "/"
-            + str(user_id_student)
-            + "/"
-            + str(lms_user_id)
-            + path_student
-            + "/"
-            + str(student_id_use)
-            + path_course
-            + "/"
-            + str(course_id_use)
-            + path_topic
-            + "/"
-            + str(topic_id_use)
-            + path_recommendation
-        )
-        r = client_class.get(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        for key in keys_expected:
-            assert key in response.keys()
-
     # Get the learning path for a topic
     @pytest.mark.parametrize(
         "lms_user_id, status_code_expected,\
@@ -2009,6 +2726,58 @@ class TestApi:
             + "/"
             + str(topic_id_use)
             + path_learning_path
+        )
+        r = client_class.get(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+
+    # Get a Learning Path Algorithm that a teacher chose for a topic
+    @pytest.mark.parametrize(
+        "user_id, topic_id, keys_expected, status_code_expected",
+        [
+            (
+                1,
+                1,
+                ["short_name", "algorithm_id", "topic_id"],
+                200,
+            ),
+        ],
+    )
+    def test_get_learning_path_algorithm(
+        self, client_class, user_id, topic_id, keys_expected, status_code_expected
+    ):
+        url = path_topic + "/" + str(topic_id) + path_teacher_algorithm
+        r = client_class.get(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+
+    # Get the learning path algorithm a student chose for a topic
+    @pytest.mark.parametrize(
+        "topic_id, keys_expected, status_code_expected",
+        [
+            (
+                1,
+                ["short_name", "algorithm_id", "topic_id"],
+                200,
+            ),
+        ],
+    )
+    def test_get_learning_path_algorithm_student(
+        self, client_class, topic_id, keys_expected, status_code_expected
+    ):
+        global user_id_student
+        url = (
+            path_user
+            + "/"
+            + str(4)
+            + path_topic
+            + "/"
+            + str(topic_id)
+            + path_student_algorithm
         )
         r = client_class.get(url)
         assert r.status_code == status_code_expected
@@ -2412,6 +3181,346 @@ class TestApi:
             for key in keys_expected_1:
                 assert key in response.keys()
 
+    # Get Remote Courses from LMS
+    @mock.patch(
+        "requests.get",
+        mock.Mock(
+            side_effect=lambda k: (
+                mock.Mock(
+                    status_code=200,
+                    json=lambda: [
+                        {
+                            "id": 2,
+                            "shortname": "SE - EM1 -SoSe23",
+                            "fullname": "ω SE - Entwurfsmuster 1 - SoSe23",
+                            "startdate": 1683759600,
+                            "enddate": 0,
+                            "timecreated": 1683723772,
+                            "timemodified": 1699354676,
+                        },
+                        {
+                            "id": 3,
+                            "shortname": "tkh5p",
+                            "fullname": "TestKurs-H5P",
+                            "startdate": 1683846000,
+                            "enddate": 1715382000,
+                            "timecreated": 1683806079,
+                            "timemodified": 1683806079,
+                        },
+                        {
+                            "id": 4,
+                            "shortname": "testcourse",
+                            "fullname": "testcourse",
+                            "startdate": 1688598000,
+                            "enddate": 1720134000,
+                            "timecreated": 1688566758,
+                            "timemodified": 1688566758,
+                        },
+                        {
+                            "id": 5,
+                            "shortname": "SE - EM2 - WiSe23/24",
+                            "fullname": "SE - Entwurfsmuster 2 - WiSe23/24",
+                            "startdate": 1700611200,
+                            "enddate": 1732233600,
+                            "timecreated": 1699289698,
+                            "timemodified": 1699354526,
+                        },
+                        {
+                            "id": 6,
+                            "shortname": "SE - EM1 - WiSe23/24",
+                            "fullname": "SE - Entwurfsmuster 1 - WiSe23/24",
+                            "startdate": 1699315200,
+                            "enddate": 0,
+                            "timecreated": 1683723772,
+                            "timemodified": 1699354114,
+                        },
+                    ],
+                )
+            )
+        ),
+    )
+    @pytest.mark.parametrize(
+        "keys_expected,\
+            status_code_expected, error",
+        [
+            (
+                {
+                    "id",
+                    "fullname",
+                    "shortname",
+                    "startdate",
+                    "enddate",
+                    "timecreated",
+                    "timemodified",
+                },
+                200,
+                False,
+            ),
+        ],
+    )
+    def test_get_remote_courses(
+        self, client_class, keys_expected, status_code_expected, error
+    ):
+        url = "/lms" + path_user + "/1" + "/remote" + path_courses
+        r = client_class.get(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+
+        # Check that each course in the response contains the expected keys
+        for course in response:
+            assert keys_expected.issubset(course.keys())
+
+    # Get Remote Content from LMS course
+    @mock.patch(
+        "requests.get",
+        mock.Mock(
+            side_effect=lambda k: (
+                mock.Mock(
+                    status_code=200,
+                    json=lambda: [
+                        {
+                            "id": 76,
+                            "name": "Erste Schritte",
+                            "visible": 1,
+                            "summary": "",
+                            "summaryformat": 1,
+                            "section": 0,
+                            "hiddenbynumsections": 0,
+                            "uservisible": True,
+                            "modules": [
+                                {
+                                    "id": 513,
+                                    "url": "ke.moodle.haski.app/feedback/view?id=513",
+                                    "name": "Begriffserklärung HASKI (empfohlen)",
+                                    "instance": 84,
+                                    "contextid": 838,
+                                    "visible": 1,
+                                    "uservisible": True,
+                                    "visibleoncoursepage": 1,
+                                    "modicon": "ke.moodle.haski.app/?filtericon=1",
+                                    "modname": "feedback",
+                                    "modplural": "Feedback",
+                                    "availability": None,
+                                    "indent": 0,
+                                    "onclick": "",
+                                    "afterlink": None,
+                                    "customdata": "",
+                                    "noviewlink": False,
+                                    "completion": 2,
+                                    "completiondata": {
+                                        "state": 0,
+                                        "timecompleted": 0,
+                                        "overrideby": None,
+                                        "valueused": False,
+                                        "hascompletion": True,
+                                        "isautomatic": True,
+                                        "istrackeduser": True,
+                                        "uservisible": True,
+                                        "details": [
+                                            {
+                                                "rulename": "completionsubmit",
+                                                "rulevalue": {
+                                                    "status": 0,
+                                                    "description": "Submit feedback",
+                                                },
+                                            }
+                                        ],
+                                    },
+                                    "downloadcontent": 1,
+                                    "dates": [],
+                                },
+                                {
+                                    "id": 601,
+                                    "url": "ke.moodle.haski.app/h5pactivity/view?id601",
+                                    "name": "Freiwilliges Emotionsbarometer",
+                                    "instance": 384,
+                                    "contextid": 926,
+                                    "visible": 1,
+                                    "uservisible": True,
+                                    "visibleoncoursepage": 1,
+                                    "modicon": "ke.moodle.haski.app/?filtericon=1",
+                                    "modname": "h5pactivity",
+                                    "modplural": "H5P",
+                                    "availability": None,
+                                    "indent": 0,
+                                    "onclick": "",
+                                    "afterlink": None,
+                                    "customdata": '""',
+                                    "noviewlink": False,
+                                    "completion": 2,
+                                    "completiondata": {
+                                        "state": 1,
+                                        "timecompleted": 1715080190,
+                                        "overrideby": None,
+                                        "valueused": False,
+                                        "hascompletion": True,
+                                        "isautomatic": True,
+                                        "istrackeduser": True,
+                                        "uservisible": True,
+                                        "details": [
+                                            {
+                                                "rulename": "completionview",
+                                                "rulevalue": {
+                                                    "status": 1,
+                                                    "description": "View",
+                                                },
+                                            }
+                                        ],
+                                    },
+                                    "downloadcontent": 1,
+                                    "dates": [],
+                                },
+                                {
+                                    "id": 515,
+                                    "url": "ke.moodle.haski.app/feedback/view?id=515",
+                                    "name": "Freiwilliges Feedback vor dem Thema",
+                                    "instance": 85,
+                                    "contextid": 840,
+                                    "visible": 1,
+                                    "uservisible": True,
+                                    "visibleoncoursepage": 1,
+                                    "modicon": "ke.moodle.haski.app?filtericon=1",
+                                    "modname": "feedback",
+                                    "modplural": "Feedback",
+                                    "availability": None,
+                                    "indent": 0,
+                                    "onclick": "",
+                                    "afterlink": None,
+                                    "customdata": "",
+                                    "noviewlink": False,
+                                    "completion": 2,
+                                    "completiondata": {
+                                        "state": 0,
+                                        "timecompleted": 0,
+                                        "overrideby": None,
+                                        "valueused": False,
+                                        "hascompletion": True,
+                                        "isautomatic": True,
+                                        "istrackeduser": True,
+                                        "uservisible": True,
+                                        "details": [
+                                            {
+                                                "rulename": "completionsubmit",
+                                                "rulevalue": {
+                                                    "status": 0,
+                                                    "description": "Submit",
+                                                },
+                                            }
+                                        ],
+                                    },
+                                    "downloadcontent": 1,
+                                    "dates": [],
+                                },
+                                {
+                                    "id": 514,
+                                    "url": "ke.moodle.haski.app/h5pactivity/id=514",
+                                    "name": "Freiwilliges Feedback zur intuitiven",
+                                    "instance": 321,
+                                    "contextid": 839,
+                                    "visible": 1,
+                                    "uservisible": True,
+                                    "visibleoncoursepage": 1,
+                                    "modicon": "ke.moodle.haski.app?filtericon=1",
+                                    "modname": "h5pactivity",
+                                    "modplural": "H5P",
+                                    "availability": None,
+                                    "indent": 0,
+                                    "onclick": "",
+                                    "afterlink": None,
+                                    "customdata": '""',
+                                    "noviewlink": False,
+                                    "completion": 2,
+                                    "completiondata": {
+                                        "state": 1,
+                                        "timecompleted": 1714373032,
+                                        "overrideby": None,
+                                        "valueused": False,
+                                        "hascompletion": True,
+                                        "isautomatic": True,
+                                        "istrackeduser": True,
+                                        "uservisible": True,
+                                        "details": [
+                                            {
+                                                "rulename": "completionview",
+                                                "rulevalue": {
+                                                    "status": 1,
+                                                    "description": "View",
+                                                },
+                                            }
+                                        ],
+                                    },
+                                    "downloadcontent": 1,
+                                    "dates": [],
+                                },
+                                {
+                                    "id": 517,
+                                    "url": "ke.moodle.haski.app/forum/view?id=517",
+                                    "name": "Announcements",
+                                    "instance": 9,
+                                    "contextid": 842,
+                                    "visible": 0,
+                                    "uservisible": True,
+                                    "visibleoncoursepage": 1,
+                                    "modicon": "ke.moodle.haski.app/",
+                                    "modname": "forum",
+                                    "modplural": "Forums",
+                                    "availability": None,
+                                    "indent": 0,
+                                    "onclick": "",
+                                    "afterlink": None,
+                                    "customdata": '""',
+                                    "noviewlink": False,
+                                    "completion": 0,
+                                    "downloadcontent": 1,
+                                    "dates": [],
+                                },
+                            ],
+                        },
+                    ],
+                )
+            )
+        ),
+    )
+    @pytest.mark.parametrize(
+        "expected_topic_keys, expected_learning_element_keys, expected_course_id,\
+            status_code_expected, error",
+        [
+            (
+                {"topic_lms_id", "topic_lms_name", "lms_learning_elements"},
+                {"lms_activity_type", "lms_id", "lms_learning_element_name"},
+                "1",
+                200,
+                False,
+            ),
+        ],
+    )
+    def test_get_remote_course_content(
+        self,
+        client_class,
+        expected_topic_keys,
+        expected_learning_element_keys,
+        expected_course_id,
+        status_code_expected,
+        error,
+    ):
+        url = path_remote + path_course + "/" + expected_course_id + path_content
+        r = client_class.get(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        print(response)
+
+        # Check that each topic in the response contains the expected keys
+        for topic in response:
+            assert expected_topic_keys.issubset(
+                topic.keys()
+            ), f"Missing keys in topic: {topic}"
+
+        # Check that each learning element in the topic contains the expected keys
+        for element in topic["lms_learning_elements"]:
+            assert expected_learning_element_keys.issubset(
+                element.keys()
+            ), f"Missing keys in learning element: {element}"
+
     # Get User by ID
     @pytest.mark.parametrize(
         "lms_user_id, keys_expected,\
@@ -2559,6 +3668,113 @@ class TestApi:
         assert r.status_code == 200
         response = json.loads(r.data.decode("utf-8").strip("\n"))
         assert response == [{"cmid": 2, "state": 0, "timecompleted": 0}]
+
+    # Get News with language and university
+    @pytest.mark.parametrize(
+        "language_id, university, keys_expected,\
+                            status_code_expected",
+        [
+            # Working Example
+            (
+                "en",
+                "TH-AB",
+                [
+                    "created_at",
+                    "expiration_date",
+                    "language_id",
+                    "news_content",
+                    "university",
+                ],
+                200,
+            ),
+            # No university
+            (
+                "en",
+                None,
+                [
+                    "created_at",
+                    "expiration_date",
+                    "language_id",
+                    "news_content",
+                    "university",
+                ],
+                200,
+            ),
+        ],
+    )
+    def test_get_news(
+        self, client_class, language_id, university, keys_expected, status_code_expected
+    ):
+        url = path_news + "/language/" + str(language_id) + "/university/"
+        if university is not None:
+            url = url + str(university)
+        r = client_class.get(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        assert "news" in response.keys()
+        for key in keys_expected:
+            for entry in response["news"]:
+                assert key in entry.keys()
+
+    # Get logbuffer entries for a user
+    @pytest.mark.parametrize(
+        "user_id, keys_expected,\
+                            status_code_expected",
+        [
+            # Working Example
+            (
+                4,
+                [
+                    "user_id",
+                    "content",
+                    "date",
+                ],
+                200,
+            ),
+        ],
+    )
+    def test_get_logbuffer(
+        self, client_class, user_id, keys_expected, status_code_expected
+    ):
+        url = path_user + "/" + str(user_id) + path_logbuffer
+        r = client_class.get(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        assert "log" in response.keys()
+        for key in keys_expected:
+            for entry in response["log"]:
+                assert key in entry.keys()
+
+    @pytest.mark.parametrize(
+        "user_id, status_code_expected",
+        [
+            (
+                4,
+                200,
+            ),
+        ],
+    )
+    def test_get_learning_element_recommendation(
+        self, client_class, user_id, status_code_expected
+    ):
+        global topic_id
+        course_id = 1
+        url = (
+            path_user
+            + "/"
+            + str(user_id)
+            + path_course
+            + "/"
+            + str(course_id)
+            + path_topic
+            + "/"
+            + str(topic_id)
+            + path_recommendation
+        )
+        r = client_class.get(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        assert response == []
 
     # PUT METHODS
     # Update the settings of a User
@@ -2804,6 +4020,7 @@ class TestApi:
                     "created_by": "Maria Musterfrau",
                     "created_at": "2023-08-01T13:37:42Z",
                     "last_updated": "2018-07-21T17:32:28Z",
+                    "start_date": "2018-07-21T17:32:28Z",
                     "university": "TH-AB",
                 },
                 1,
@@ -2838,6 +4055,72 @@ class TestApi:
         ],
     )
     def test_update_course_from_moodle(
+        self, client_class, input, moodle_course_id, keys_expected, status_code_expected
+    ):
+        global course_id
+        url = path_lms_course + "/" + str(course_id) + "/" + str(moodle_course_id)
+        r = client_class.put(url, json=input)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+
+    @pytest.mark.parametrize(
+        "input, moodle_course_id, keys_expected,\
+                            status_code_expected",
+        [
+            # Working Example
+            (
+                {
+                    "name": "Test Course Updated",
+                    "created_by": "Maria Musterfrau",
+                    "created_at": "2023-08-01T13:37:42Z",
+                    "last_updated": "2018-07-21T17:32:28Z",
+                    "university": "TH-AB",
+                    "start_date": "2023-08-01T13:37:42Z",
+                },
+                2,
+                [
+                    "id",
+                    "name",
+                    "lms_id",
+                    "created_at",
+                    "created_by",
+                    "university",
+                    "start_date",
+                ],
+                201,
+            ),
+            # Missing Parameter
+            (
+                {
+                    "created_by": "Maria Musterfrau",
+                    "created_at": "2023-08-01T13:37:42Z",
+                    "last_updated": "2018-07-21T17:32:28Z",
+                    "university": "TH-AB",
+                    "start_date": "2023-08-01T13:37:42Z",
+                },
+                1,
+                ["error", "message"],
+                400,
+            ),
+            # Parameter with wrong data type
+            (
+                {
+                    "name": "Test Course Updated",
+                    "created_by": "Maria Musterfrau",
+                    "created_at": "2023-08-01T13:37:42Z",
+                    "last_updated": "2018-07-21T17:32:28Z",
+                    "university": "TH-AB",
+                    "start_date": "what is this?",
+                },
+                1,
+                ["error", "message"],
+                400,
+            ),
+        ],
+    )
+    def test_update_course_from_moodle_with_start_date(
         self, client_class, input, moodle_course_id, keys_expected, status_code_expected
     ):
         global course_id
@@ -2962,18 +4245,7 @@ class TestApi:
             input["parent_id"] = topic_id
         else:
             topic_id_use = topic_id
-        url = (
-            path_lms_course
-            + "/"
-            + str(course_id)
-            + "/"
-            + str(moodle_course_id)
-            + path_topic
-            + "/"
-            + str(topic_id_use)
-            + "/"
-            + str(moodle_topic_id)
-        )
+        url = path_lms_topic + "/" + str(topic_id_use) + "/" + str(moodle_topic_id)
         r = client_class.put(url, json=input)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
@@ -3059,23 +4331,131 @@ class TestApi:
     ):
         global course_id, sub_topic_id, learning_element_id
         url = (
-            path_lms_course
-            + "/"
-            + str(course_id)
-            + "/"
-            + str(moodle_course_id)
-            + path_topic
-            + "/"
-            + str(sub_topic_id)
-            + "/"
-            + str(moodle_topic_id)
-            + path_learning_element
+            path_lms_learning_element
             + "/"
             + str(learning_element_id)
             + "/"
             + str(moodle_learning_element_id)
         )
         r = client_class.put(url, json=input)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+
+    @mock.patch(
+        "requests.get",
+        mock.Mock(
+            side_effect=lambda k: (
+                mock.Mock(
+                    status_code=200,
+                    json=lambda: [
+                        {
+                            "id": 1,
+                            "shortname": "wiederst",
+                            "fullname": "Course-1",
+                            "displayname": "Course-1",
+                            "enrolledusercount": 13,
+                            "idnumber": "",
+                            "visible": 1,
+                            "summary": "",
+                            "summaryformat": 1,
+                            "format": "topics",
+                            "courseimage": "/course.svg",
+                            "showgrades": True,
+                            "lang": "de",
+                            "enablecompletion": True,
+                            "completionhascriteria": False,
+                            "completionusertracked": True,
+                            "category": 1,
+                            "progress": 0,
+                            "completed": False,
+                            "startdate": 1755039600,
+                            "enddate": 1786575600,
+                            "marker": 0,
+                            "lastaccess": None,
+                            "isfavourite": False,
+                            "hidden": False,
+                            "overviewfiles": [],
+                            "showactivitydates": True,
+                            "showcompletionconditions": True,
+                            "timemodified": 1754989442,
+                        },
+                        {
+                            "id": 2,
+                            "shortname": "gleichgr",
+                            "fullname": "Course-2",
+                            "displayname": "Course-2",
+                            "enrolledusercount": 13,
+                            "idnumber": "",
+                            "visible": 1,
+                            "summary": "",
+                            "summaryformat": 1,
+                            "format": "topics",
+                            "courseimage": "/course.svg",
+                            "showgrades": True,
+                            "lang": "de",
+                            "enablecompletion": True,
+                            "completionhascriteria": False,
+                            "completionusertracked": True,
+                            "category": 1,
+                            "progress": 0,
+                            "completed": False,
+                            "startdate": 1755039600,
+                            "enddate": 1786575600,
+                            "marker": 0,
+                            "lastaccess": None,
+                            "isfavourite": False,
+                            "hidden": False,
+                            "overviewfiles": [],
+                            "showactivitydates": True,
+                            "showcompletionconditions": True,
+                            "timemodified": 1754988848,
+                        },
+                    ],
+                )
+            )
+        ),
+    )
+    @pytest.mark.parametrize(
+        "keys_expected, status_code_expected, save_id",
+        [
+            # Working Example
+            (
+                ["CREATED", "course_id"],
+                201,
+                True,
+            ),
+        ],
+    )
+    def test_api_add_all_students_to_course(
+        self, client_class, keys_expected, status_code_expected, save_id
+    ):
+        url = path_course + "/" + str("2") + "/allStudents"
+        r = client_class.post(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+
+    @pytest.mark.parametrize(
+        "keys_expected, status_code_expected, save_id",
+        [
+            # Working Example
+            (
+                ["CREATED", "course_id"],
+                201,
+                True,
+            ),
+        ],
+    )
+    def test_api_add_all_students_to_topics(
+        self, client_class, keys_expected, status_code_expected, save_id
+    ):
+        global course_id
+        course_id_use = course_id
+        url = path_course + "/" + str(course_id_use) + "/topics" + "/allStudents"
+        r = client_class.post(url)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))
         for key in keys_expected:
@@ -3427,30 +4807,12 @@ class TestApi:
         error_le,
     ):
         global course_id, sub_topic_id, learning_element_id
-        if error_course:
-            course_id_use = 99999
-        else:
-            course_id_use = course_id
-        if error_topic:
-            topic_id_use = 99999
-        else:
-            topic_id_use = sub_topic_id
         if error_le:
             learning_element_id_use = 99999
         else:
             learning_element_id_use = learning_element_id
         url = (
-            path_lms_course
-            + "/"
-            + str(course_id_use)
-            + "/"
-            + str(moodle_course_id)
-            + path_topic
-            + "/"
-            + str(topic_id_use)
-            + "/"
-            + str(moodle_topic_id)
-            + path_learning_element
+            path_lms_learning_element
             + "/"
             + str(learning_element_id_use)
             + "/"
@@ -3487,26 +4849,11 @@ class TestApi:
         error_topic,
     ):
         global course_id, sub_topic_id
-        if error_course:
-            course_id_use = 99999
-        else:
-            course_id_use = course_id
         if error_topic:
             topic_id_use = 99999
         else:
             topic_id_use = sub_topic_id
-        url = (
-            path_lms_course
-            + "/"
-            + str(course_id_use)
-            + "/"
-            + str(moodle_course_id)
-            + path_topic
-            + "/"
-            + str(topic_id_use)
-            + "/"
-            + str(moodle_topic_id)
-        )
+        url = path_lms_topic + "/" + str(topic_id_use) + "/" + str(moodle_topic_id)
         r = client_class.delete(url)
         assert r.status_code == status_code_expected
         response = json.loads(r.data.decode("utf-8").strip("\n"))

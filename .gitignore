@@ -8,9 +8,13 @@ venv/
 coverage.xml
 .env
 .coverage
+.coverage.*
 .vscode/
 keys/
 .flaskenv
 configs/lti_config.json
 test_keys/
 flask.log
+.coverage.*
+.tox
+reports/
