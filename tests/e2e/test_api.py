@@ -3112,6 +3112,7 @@ class TestApi:
         status_code_expected,
         error_user,
     ):
+        """[HASKI-REQ-0064] Provides admin-scoped user directory retrieval (GH-30)."""
         global user_id_admin, admin_id
         if error_user:
             user_id_use = 99999
@@ -3157,6 +3158,7 @@ class TestApi:
         status_code_expected,
         error_admin,
     ):
+        """[HASKI-REQ-0065] Serves admin log retrieval endpoint (GH-15)."""
         global user_id_admin, admin_id
         if error_admin:
             user_id_use = 99999
@@ -3200,6 +3202,7 @@ class TestApi:
         status_code_expected,
         error_teacher,
     ):
+        """[HASKI-REQ-0066] Returns only courses linked to the teacher (GH-21)."""
         global user_id_teacher, teacher_id
         if error_teacher:
             user_id_use = 99999
@@ -3306,6 +3309,7 @@ class TestApi:
     def test_get_remote_courses(
         self, client_class, keys_expected, status_code_expected, error
     ):
+        """[HASKI-REQ-0067] Proxies Moodle remote course list for the user (GH-30)."""
         url = "/lms" + path_user + "/1" + "/remote" + path_courses
         r = client_class.get(url)
         assert r.status_code == status_code_expected
