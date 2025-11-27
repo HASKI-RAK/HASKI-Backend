@@ -3599,6 +3599,7 @@ class TestApi:
     def test_get_user_by_id(
         self, client_class, lms_user_id, keys_expected, status_code_expected, error
     ):
+        """[HASKI-REQ-0069] Delivers canonical user records per GH-30 OAS."""
         global user_id_student
         if error:
             user_id_use = 99999
@@ -3625,6 +3626,7 @@ class TestApi:
     def test_get_user_settings_by_id(
         self, client_class, lms_user_id, keys_expected, status_code_expected, error
     ):
+        """[HASKI-REQ-0070] Serves user-specific settings via LMS lookup (GH-81)."""
         global user_id_student
         if error:
             user_id_use = 99999
