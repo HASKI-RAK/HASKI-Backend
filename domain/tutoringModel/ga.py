@@ -102,9 +102,9 @@ class GeneticAlgorithm:
         return tuple(lines)
 
     def get_fitness(self, *lines):
-        """Calcula la función de aptitud para múltiples variables"""
+        """Calculate the fitness function for multiple variables."""
 
-        # Stellen Sie sicher, dass alle Einträge die gleiche Form haben.
+        # Ensure all entries have the same shape.
         shape = lines[0].shape
         for line in lines:
             assert line.shape == shape, "The dimensions of the arrays do not match."
