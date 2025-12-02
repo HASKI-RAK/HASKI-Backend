@@ -1290,4 +1290,3 @@ def test_prepare_les_for_ga2(learning_style, list_of_keys, dict_view_time):
     assert isinstance(result, str)
     path = result.split(", ") if result else []
     assert isinstance(path, list)
-
