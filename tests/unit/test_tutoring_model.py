@@ -1050,7 +1050,6 @@ def test_prepare_les_for_ga(learning_style, list_of_keys):
     if len(result) > 2:
         assert ", " in result
     result = result.split(", ")
-    # print("Input", list_of_keys)
 
     assert isinstance(result, list)
 
@@ -1292,82 +1291,3 @@ def test_prepare_les_for_ga2(learning_style, list_of_keys, dict_view_time):
     path = result.split(", ") if result else []
     assert isinstance(path, list)
 
-
-# @pytest.mark.parametrize(
-#     "list_of_keys",
-#     [
-#         np.array(
-#             [
-#                 "ZF",
-#                 "LZ",
-#                 "ÜB",
-#                 "ÜB",
-#                 "ÜB",
-#                 "SE",
-#                 "BE",
-#                 "AN",
-#                 "EK",
-#                 "EK",
-#                 "EK",
-#                 "ZL",
-#                 "AB",
-#                 "KÜ",
-#                 "FO",
-#                 "RQ",
-#                 "LZ",
-#             ],
-#         ),
-#     ],
-# )
-# def test_prepare_les_for_ga_for_all(list_of_keys):
-#     numbers = [1, 2]
-#     all_combinations = np.array(
-#         [
-#             [i, j, k, v]
-#             for i in numbers
-#             for j in numbers
-#             for k in numbers
-#             for v in numbers
-#         ]
-#     )
-#     all_combinations = all_combinations.reshape(len(all_combinations), 4)
-
-#     input_types = ["vrb", "vis"]
-#     perception_types = ["sns", "int"]
-#     processing_types = ["act", "ref"]
-#     understanding_types = ["glo", "seq"]
-
-#     dimensions = np.array(
-#         [
-#             [i, j, k, v]
-#             for i in perception_types
-#             for j in input_types
-#             for k in processing_types
-#             for v in understanding_types
-#         ]
-#     )
-#     for dim in dimensions:
-#         for test in all_combinations:
-#             learning_style = {
-#                 "id": 1,
-#                 "characteristic_id": 77,
-#                 "perception_dimension": dim[0],
-#                 "perception_value": test[0],
-#                 "input_dimension": dim[1],
-#                 "input_value": test[1],
-#                 "processing_dimension": dim[2],
-#                 "processing_value": test[2],
-#                 "understanding_dimension": dim[3],
-#                 "understanding_value": test[3],
-#             }
-#             result = get_learning_path_ga(learning_style, list_of_keys)
-#             assert isinstance(result, str)
-#             assert ", " in result
-#             result = result.split(", ")
-#             assert isinstance(result, list)
-#             if "KÜ" in list_of_keys:
-#                 assert result[0] == "KÜ"
-#             if "EK" in list_of_keys:
-#                 assert result[0] == "EK" or result[1] == "EK"
-#             if "LZ" in list_of_keys:
-#                 assert result[-1] == "LZ"

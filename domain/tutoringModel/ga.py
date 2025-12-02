@@ -45,7 +45,6 @@ class GeneticAlgorithm:
         with Clustering if this is possible.
         param dict_coordinates"""
 
-        # has_view_time = input_view_time is not None
         has_view_time = bool(input_view_time)
 
         if has_view_time:
