@@ -9,6 +9,7 @@ class TestLogger(unittest.TestCase):
         self.logger.configure_dict()
 
     def test_logger_error(self):
+        """[HASKI-REQ-0091] Test error logging format"""
         res = self.logger.error("error")
         # res to match logger.logging_config["formatters"]["default"]["format"]
         formatted_res = self.logger.logging.Formatter(
@@ -32,6 +33,7 @@ class TestLogger(unittest.TestCase):
         self.assertEqual(res, formatted_res)
 
     def test_logger_info(self):
+        """[HASKI-REQ-0091] Test info logging format"""
         res = self.logger.info("info")
         # res to match logger.logging_config["formatters"]["default"]["format"]
         formatted_res = self.logger.logging.Formatter(
@@ -55,6 +57,7 @@ class TestLogger(unittest.TestCase):
         self.assertEqual(res, formatted_res)
 
     def test_logger_debug(self):
+        """[HASKI-REQ-0091] Test debug logging format"""
         res = self.logger.debug("debug")
         # res to match logger.logging_config["formatters"]["default"]["format"]
         formatted_res = self.logger.logging.Formatter(
@@ -78,6 +81,7 @@ class TestLogger(unittest.TestCase):
         self.assertEqual(res, formatted_res)
 
     def test_logger_warn(self):
+        """[HASKI-REQ-0091] Test warning logging format"""
         res = self.logger.warn("warn")
         # res to match logger.logging_config["formatters"]["default"]["format"]
         formatted_res = self.logger.logging.Formatter(

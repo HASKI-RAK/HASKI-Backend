@@ -20,6 +20,10 @@ rng = np.random.default_rng(11)
 
 
 def test_prepare_les_for_aco():
+    """
+    Test preparing learning elements for ACO algorithm.
+    [HASKI-REQ-0095]
+    """
     list_of_les = []
     list_of_keys = ["BE", "FO", "KÜ", "SE", "LZ", "EK", "ÜB"]
     for i, key in enumerate(list_of_keys):
@@ -42,6 +46,10 @@ def test_prepare_les_for_aco():
 
 
 def test_distance():
+    """
+    Test distance calculation.
+    [HASKI-REQ-0095]
+    """
     result = utils.distance((1, 1, 1, 1), (2, 2, 2, 2))
     assert type(result) == float
     assert result == 2
@@ -55,6 +63,10 @@ def test_distance():
 def test_get_coordinates(
     input_dimension, perception_dimension, processing_dimension, understanding_dimension
 ):
+    """
+    Test getting coordinates for learning style.
+    [HASKI-REQ-0095]
+    """
     ls = LM.LearningStyle(
         input_dimension=input_dimension,
         input_value=7,
@@ -110,8 +122,10 @@ def test_get_coordinates(
     ],
 )
 def test_prepare_les_for_tyche(learning_style):
-    """Test function for Tyche algorithm with successfull and
+    """
+    Test function for Tyche algorithm with successfull and
     error outcomes.
+    [HASKI-REQ-0095]
     """
 
     # Test Tyche with success:
@@ -372,7 +386,9 @@ def test_prepare_les_for_tyche(learning_style):
 def test_prepare_les_for_nestor(learning_style):
     """
     First the Nestor is checked for expected learning paths
-    and next the possible errors"""
+    and next the possible errors
+    [HASKI-REQ-0095]
+    """
     # Test nestor with success:
     list_of_les = []
     list_of_keys = [
@@ -488,6 +504,7 @@ def test_training_nestor():
     This script targets to test the
     utility functions used in Nestor training
     and training of the nestor
+    [HASKI-REQ-0095]
     """
     # with fake data
     bn = nestor_training()
@@ -515,6 +532,10 @@ def test_training_nestor():
     ],
 )
 def test_with_out_of_range_learning_style_for_ga(learning_style):
+    """
+    Test GA with out of range learning style.
+    [HASKI-REQ-0095]
+    """
     list_of_les = []
     list_of_keys = ["ZF", "KÜ", "SE", "LZ", "ZL", "ÜB", "AB", "EK"]
     for i, ele_name in enumerate(list_of_keys):
@@ -602,6 +623,10 @@ def test_with_out_of_range_learning_style_for_ga(learning_style):
     ],
 )
 def test_learning_style_check(learning_style, error):
+    """
+    Test learning style check.
+    [HASKI-REQ-0095]
+    """
     if error == "dimension":
         with pytest.raises(err.WrongLearningStyleDimensionError):
             utils.check_learning_style(learning_style)
@@ -669,11 +694,16 @@ def get_learning_path_default(learning_style, list_of_elements, default_learning
     ],
 )
 def test_get_learning_path_default(learning_style, list_of_keys):
+    """
+    Test getting default learning path.
+    [HASKI-REQ-0096]
+    """
     num_of_test = 10
     list_of_le_size = rng.integers(2, 50, size=num_of_test)
 
     for i in range(num_of_test):
-        le_position = rng.integers(2, len(list_of_keys), size=list_of_le_size[i])
+        le_position = rng.integers(
+            2, len(list_of_keys), size=list_of_le_size[i])
         list_of_elements = list_of_keys[le_position]
         list_of_elements = rng.permutation(list_of_elements)
 
@@ -746,8 +776,13 @@ def test_get_learning_path_default(learning_style, list_of_keys):
 def test_calculate_variable_score_graf(
     learning_element, learning_style, expected_result
 ):
+    """
+    Test calculating variable score for Graf algorithm.
+    [HASKI-REQ-0095]
+    """
     algorithmus = Graf(student_id=1)
-    score = algorithmus.calculate_variable_score(learning_element, learning_style)
+    score = algorithmus.calculate_variable_score(
+        learning_element, learning_style)
     assert score == expected_result
 
 
@@ -820,11 +855,16 @@ def get_learning_path_ga(learning_style, list_of_elements):
     ],
 )
 def test_prepare_les_for_ga_2(learning_style, list_of_keys):
+    """
+    Test preparing learning elements for GA algorithm (2).
+    [HASKI-REQ-0095]
+    """
     num_of_test = 10
     list_of_le_size = rng.integers(2, 50, size=num_of_test)
 
     for i in range(num_of_test):
-        le_position = rng.integers(2, len(list_of_keys), size=list_of_le_size[i])
+        le_position = rng.integers(
+            2, len(list_of_keys), size=list_of_le_size[i])
         list_of_elements = list_of_keys[le_position]
         list_of_elements = rng.permutation(list_of_elements)
 
@@ -861,7 +901,8 @@ def test_prepare_les_for_ga_2(learning_style, list_of_keys):
                 "understanding_dimension": "glo",
                 "understanding_value": 9,
             },
-            ["ZF", "LZ", "ÜB", "SE", "BE", "AN", "EK", "ZL", "AB", "KÜ", "FO", "RQ"],
+            ["ZF", "LZ", "ÜB", "SE", "BE", "AN",
+                "EK", "ZL", "AB", "KÜ", "FO", "RQ"],
         ),
         (
             {
@@ -1003,6 +1044,10 @@ def test_prepare_les_for_ga_2(learning_style, list_of_keys):
     ],
 )
 def test_prepare_les_for_ga(learning_style, list_of_keys):
+    """
+    Test preparing learning elements for GA algorithm.
+    [HASKI-REQ-0095]
+    """
     if learning_style is None:
         learning_style = {
             "id": 1,
@@ -1061,6 +1106,10 @@ def test_prepare_les_for_ga(learning_style, list_of_keys):
     ],
 )
 def test_prepare_les_for_ga_for_all(list_of_keys):
+    """
+    Test preparing learning elements for GA algorithm for all combinations.
+    [HASKI-REQ-0095]
+    """
     numbers = [1, 9]
     all_combinations = np.array(
         [

@@ -15,7 +15,7 @@ from service_layer.service.SessionServiceFlask import (  # noqa: E501
 class TestSessionClass(unittest.TestCase):
     def test_constructor(self):
         """
-        Test that the constructor initializes the object with the correct attributes.
+        [HASKI-REQ-0028] Test that the constructor initializes the object with the correct attributes.
         """
         session = Session()
         self.assertIsNone(session.expiration)
@@ -23,7 +23,7 @@ class TestSessionClass(unittest.TestCase):
 
     def test_setitem(self):
         """
-        Test that the __setitem__ method modifies the 'modified' attribute to True.
+        [HASKI-REQ-0028] Test that the __setitem__ method modifies the 'modified' attribute to True.
         """
         session = Session()
         self.assertFalse(session.modified)  # Initial state
@@ -32,7 +32,7 @@ class TestSessionClass(unittest.TestCase):
 
     def test_delitem(self):
         """
-        Test that the __delitem__ method
+        [HASKI-REQ-0028] Test that the __delitem__ method
         removes the item and sets the 'modified' attribute to True.
         """
         session = Session(key="value")
@@ -44,7 +44,7 @@ class TestSessionClass(unittest.TestCase):
 
     def test_getitem(self):
         """
-        Test that the __getitem__ method returns the correct item value.
+        [HASKI-REQ-0028] Test that the __getitem__ method returns the correct item value.
         """
         session = Session(key="value")
         self.assertEqual(
@@ -65,6 +65,7 @@ class TestSessionModule(unittest.TestCase):
     )
     @patch("service_layer.service.SessionServiceFlask.check_expiration")
     def test_set_state_jwt(self, mock_check_expiration, mock_generate_state_jwt):
+        """[HASKI-REQ-0028] Test setting state JWT in session"""
         jwt = set_state_jwt("nonce1", "auth_url", "tool_url")
         self.assertEqual(jwt, "mocked_jwt")
         self.assertTrue("nonce1" in sessions)
@@ -72,12 +73,14 @@ class TestSessionModule(unittest.TestCase):
         mock_generate_state_jwt.assert_called()
 
     def test_set(self):
+        """[HASKI-REQ-0028] Test setting session value"""
         set("nonce2", "key2", "value2")
         self.assertTrue("nonce2" in sessions)
         self.assertEqual(sessions["nonce2"]["key2"], "value2")
 
     @patch("service_layer.service.SessionServiceFlask.check_expiration")
     def test_get(self, mock_check_expiration):
+        """[HASKI-REQ-0028] Test getting session value"""
         set("nonce3", "key3", "value3")
         value = get("nonce3", "key3")
         self.assertEqual(value, "value3")
@@ -90,6 +93,7 @@ class TestSessionModule(unittest.TestCase):
         return_value="mocked_jwt",
     )
     def test_check_expiration(self, mock_generate_state_jwt):
+        """[HASKI-REQ-0028] Test session expiration check"""
         set_state_jwt("nonce4", "auth_url", "tool_url")
         self.assertTrue("nonce4" in sessions)
         self.assertFalse(sessions["nonce4"].is_expired())

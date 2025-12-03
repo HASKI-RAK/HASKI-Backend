@@ -15,7 +15,7 @@ def test_getRandom():
 
 
 def test_getrandbits():
-    """Test the getrandbits method."""
+    """[HASKI-REQ-0028] Test the getrandbits method."""
     # Arrange
     length = 32
     # Act
@@ -26,7 +26,7 @@ def test_getrandbits():
 
 
 def test_getrandbytes():
-    """Test the getrandombytes method."""
+    """[HASKI-REQ-0028] Test the getrandombytes method."""
     # Arrange
     length = 32
     # Act
@@ -45,7 +45,7 @@ def test_getrandbytes():
 
 
 def test_createuniqueid():
-    """Test the createuniqueid method."""
+    """[HASKI-REQ-0028] Test the createuniqueid method."""
     # Arrange
     length = 32
     # Act
@@ -64,7 +64,7 @@ def test_createuniqueid():
 
 
 def test_createuniqueidbase64():
-    """Test the createuniqueidbase64"""
+    """[HASKI-REQ-0028] Test the createuniqueidbase64"""
     # Arrange
     length = 32
     # Act
@@ -83,7 +83,7 @@ def test_createuniqueidbase64():
 
 
 def test_getrandomstring():
-    """Test the getrandomstring method."""
+    """[HASKI-REQ-0028] Test the getrandomstring method."""
     # Arrange
     length = 32
     # Act
@@ -102,7 +102,7 @@ def test_getrandomstring():
 
 
 def test_getrandomstringbase64():
-    """Test the getrandomstringbase64 method."""
+    """[HASKI-REQ-0028] Test the getrandomstringbase64 method."""
     # Arrange
     length = 32
     # Act

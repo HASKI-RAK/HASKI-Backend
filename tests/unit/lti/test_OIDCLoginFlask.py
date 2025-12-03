@@ -65,6 +65,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
         ToolConfigJson._iss_conf_dict = config_file
 
     def test_tool_config_decode_platform(self):
+        """[HASKI-REQ-0028] Test decoding platform configuration"""
         platform = ToolConfigJson.decode_platform(
             ToolConfigJson.get_platform("https://moodle.haski.app")
         )
@@ -74,7 +75,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
         )
 
     def test_no_platform(self):
-        """check_params but decode_platform returns None"""
+        """[HASKI-REQ-0028] check_params but decode_platform returns None"""
         with patch.object(self.oidc_login, "_request", _request=MagicMock) as mock_form:
             mock_form.form = form.copy()
             mock_form.host = host
@@ -90,6 +91,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                     self.oidc_login.check_params()
 
     def test_check_params_successful(self):
+        """[HASKI-REQ-0028] Test successful parameter check"""
         # expect not to raise an exception
         with patch.object(self.oidc_login, "_request", _request=MagicMock) as mock_form:
             mock_form.form = form.copy()
@@ -97,6 +99,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
             self.assertTrue(self.oidc_login.check_params())
 
     def test_check_params_missing_iss(self):
+        """[HASKI-REQ-0028] Test missing iss parameter"""
         # object clone without iss:
         with patch.object(self.oidc_login, "_request", _request=MagicMock) as mock_form:
             mock_form.form = form.copy()
@@ -107,6 +110,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                 self.oidc_login.check_params()
 
     def test_check_params_missing_platform(self):
+        """[HASKI-REQ-0028] Test missing platform configuration"""
         with patch.object(
             ToolConfigJson,
             "get_platform",
@@ -119,6 +123,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                     self.oidc_login.check_params()
 
     def test_check_params_wrong_target_link_uri(self):
+        """[HASKI-REQ-0028] Test wrong target link URI"""
         with patch.object(self.oidc_login, "_request", _request=MagicMock) as mock_form:
             mock_form.form = form.copy()
             mock_form.form["target_link_uri"] = "wrong_uri"
@@ -128,7 +133,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                 self.oidc_login.check_params()
 
     def test_prod_no_https(self):
-        """targetlink has no https and environ is production"""
+        """[HASKI-REQ-0028] targetlink has no https and environ is production"""
 
         with patch.object(self.oidc_login, "_request", _request=MagicMock) as mock_form:
             mock_form.form = form.copy()
@@ -144,6 +149,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                     self.oidc_login.check_params()
 
     def test_verify_state_successful(self):
+        """[HASKI-REQ-0028] Test successful state verification"""
         with patch.object(self.oidc_login, "_request", _request=MagicMock) as mock_form:
             mock_form.form = form.copy()
             mock_form.host = host
@@ -167,6 +173,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                     )
 
     def test_verify_state_invalid_jwt(self):
+        """[HASKI-REQ-0028] Test invalid state JWT"""
         with patch.object(self.oidc_login, "_request", _request=MagicMock) as mock_form:
             mock_form.form = form.copy()
             mock_form.host = host
@@ -182,9 +189,11 @@ class TestOIDCLoginFlask(unittest.TestCase):
                 ):
                     self.oidc_login.verify_state()
 
-                    mock_verify_jwt.assert_called_once_with("invalid_state_jwt")
+                    mock_verify_jwt.assert_called_once_with(
+                        "invalid_state_jwt")
 
     def test_verify_state_invalid_payload(self):
+        """[HASKI-REQ-0028] Test invalid state payload"""
         with patch.object(self.oidc_login, "_request", _request=MagicMock) as mock_form:
             mock_form.form = form.copy()
             mock_form.host = host
@@ -204,12 +213,14 @@ class TestOIDCLoginFlask(unittest.TestCase):
                     with self.assertRaises(err.InvalidJWTError):
                         self.oidc_login.verify_state()
 
-                        mock_verify_jwt.assert_called_once_with("invalid_state_jwt")
+                        mock_verify_jwt.assert_called_once_with(
+                            "invalid_state_jwt")
                         mock_verify_state_jwt_payload.assert_called_once_with(
                             {"nonce": "invalid_nonce"}
                         )
 
     def test_verify_id_token_error_in_form(self):
+        """[HASKI-REQ-0028] Test error in form during ID token verification"""
         with patch.object(self.oidc_login, "_request", _request=MagicMock) as mock_form:
             mock_form.form = form.copy()
             mock_form.host = host
@@ -219,6 +230,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                 self.oidc_login.verify_id_token()
 
     def test_verify_id_token_unverified_header_fail(self):
+        """[HASKI-REQ-0028] Test unverified header failure"""
         with patch.object(self.oidc_login, "_request", _request=MagicMock) as mock_form:
             mock_form.form = form.copy()
             mock_form.host = host
@@ -234,9 +246,11 @@ class TestOIDCLoginFlask(unittest.TestCase):
                 ):
                     self.oidc_login.verify_id_token()
 
-                    mock_verify_jwt.assert_called_once_with("valid_id_token_jwt")
+                    mock_verify_jwt.assert_called_once_with(
+                        "valid_id_token_jwt")
 
     def test_verify_id_token_successful(self):
+        """[HASKI-REQ-0028] Test successful ID token verification"""
         with patch.object(self.oidc_login, "_request", _request=MagicMock) as mock_form:
             mock_form.form = form.copy()
             mock_form.host = host
@@ -278,6 +292,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                             )
 
     def test_lti_launch_from_id_token_user_does_not_exist_in_db(self):
+        """[HASKI-REQ-0028] Test LTI launch when user does not exist in DB"""
         # Create a mock request with the necessary attributes
         request_mock = MagicMock()
         request_mock.form = MagicMock()
@@ -414,6 +429,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                                                             )
 
     def test_lti_launch_from_id_token_user_exists_in_db(self):
+        """[HASKI-REQ-0028] Test LTI launch when user exists in DB"""
         # Create a mock request with the necessary attributes
         request_mock = MagicMock()
         request_mock.form = MagicMock()
@@ -512,12 +528,14 @@ class TestOIDCLoginFlask(unittest.TestCase):
                                             assert response.status == "302 FOUND"
 
     def test_get_cookie_expiration_successful(self):
+        """[HASKI-REQ-0028] Test successful cookie expiration retrieval"""
         # Mock request data
         json_data = {"nonce": "valid_nonce_jwt"}
 
         # Mock nonce payload and user data
         nonce_payload = {"nonce": "valid_nonce"}
-        id_token = {"https://purl.imsglobal.org/spec/lti/claim/roles": ["student"]}
+        id_token = {
+            "https://purl.imsglobal.org/spec/lti/claim/roles": ["student"]}
         user_data = {
             "id": 1,
             "user_id": "user_123",
@@ -568,7 +586,8 @@ class TestOIDCLoginFlask(unittest.TestCase):
                                     "Roles."
                                     "RoleMapper."
                                     "get_permissions",
-                                    return_value=[Permissions.READ, Permissions.WRITE],
+                                    return_value=[
+                                        Permissions.READ, Permissions.WRITE],
                                 ):
                                     response = self.oidc_login.get_cookie_expiration()
                                     assert response.status == "200 OK"
@@ -576,6 +595,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
     def test_lti_launch_from_id_token_user_does_not_exist_in_db_role_course_creator(
         self,
     ):
+        """[HASKI-REQ-0028] Test LTI launch for course creator not in DB"""
         # Create a mock request with the necessary attributes
         request_mock = MagicMock()
         request_mock.form = MagicMock()
@@ -773,7 +793,8 @@ class TestOIDCLoginFlask(unittest.TestCase):
                             16,
                             4,
                             4,
-                            tzinfo=datetime.timezone(datetime.timedelta(seconds=7200)),
+                            tzinfo=datetime.timezone(
+                                datetime.timedelta(seconds=7200)),
                         ),
                     }
                 ),
@@ -824,6 +845,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
             assert response.status == "302 FOUND"
 
     def test_get_logout(self):
+        """[HASKI-REQ-0028] Test logout functionality"""
         with patch.object(
             self.oidc_login, "_request", _request=MagicMock
         ) as mock_request:
@@ -833,7 +855,8 @@ class TestOIDCLoginFlask(unittest.TestCase):
 
             self.assertEqual(response.status_code, 204)
             set_cookie_header = response.headers.get("Set-Cookie", "")
-            self.assertIn("haski_state=", set_cookie_header)  # Check for empty value
+            # Check for empty value
+            self.assertIn("haski_state=", set_cookie_header)
             self.assertIn("Max-Age=0", set_cookie_header)
             self.assertIn("Domain=example.com", set_cookie_header)
             self.assertIn("HttpOnly", set_cookie_header)

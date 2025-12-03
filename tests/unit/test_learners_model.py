@@ -8,7 +8,9 @@ from domain.learnersModel import model as LM
 
 class TestBasicQuestionnaireAlgorithms(unittest.TestCase):
     def test_basic_ils_algorithm(self):
-        ils_input = {"vv_1_f3": "a", "vv_2_f7": "a", "vv_3_f12": "b", "vv_4_f13": "a"}
+        """[HASKI-REQ-0007] Test calculation of ILS learning style dimensions"""
+        ils_input = {"vv_1_f3": "a", "vv_2_f7": "a",
+                     "vv_3_f12": "b", "vv_4_f13": "a"}
         ils_perception = {
             "si_1_f2": "a",
             "si_2_f6": "a",
@@ -34,6 +36,7 @@ class TestBasicQuestionnaireAlgorithms(unittest.TestCase):
         assert value == (("vis", 2), ("sns", 2), ("act", 2), ("seq", 2))
 
     def test_basic_listk_algorithm(self):
+        """[HASKI-REQ-0007] Test calculation of LIST-K learning strategies"""
         list_k_answers = {
             "org1_f1": 1,
             "org2_f2": 2,
@@ -86,6 +89,7 @@ class TestBasicQuestionnaireAlgorithms(unittest.TestCase):
 
 
 def test_calculate_student_rating():
+    """[HASKI-REQ-0043] Test calculation of student rating"""
     student_rating = LM.StudentRating(
         1, 1, datetime.fromisoformat("2023-01-01 16:00"), None, None
     )
@@ -102,7 +106,8 @@ def test_calculate_student_rating():
         learning_element_id=1,
         learning_element_rating_value=1500,
         learning_element_rating_deviation=350,
-        learning_element_rating_timestamp=datetime.fromisoformat("2023-01-01 16:00"),
+        learning_element_rating_timestamp=datetime.fromisoformat(
+            "2023-01-01 16:00"),
     )
 
     assert result == {
