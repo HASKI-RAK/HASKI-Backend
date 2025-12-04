@@ -1488,3 +1488,60 @@ def test_ga_path_differs_with_click_scores_and_respects_constraints():
     pos_with_clicks = path_with_clicks.index("ÜB")
     assert pos_with_clicks <= pos_no_clicks
     assert path_with_clicks.index("ÜB") < path_with_clicks.index("BE")
+
+
+def test_normalize_click_value_inverts_range_and_handles_missing_values():
+    highest_engagement = utils.normalize_click_value(50)
+    lowest_engagement = utils.normalize_click_value(0)
+    missing_value = utils.normalize_click_value(None)
+
+    assert highest_engagement == pytest.approx(-12)
+    assert lowest_engagement == pytest.approx(13)
+    assert missing_value == 0
+
+
+def test_ga_injects_placeholder_when_ct_is_missing():
+    learning_style = {
+        "id": 1,
+        "characteristic_id": 1,
+        "perception_dimension": "int",
+        "perception_value": 7,
+        "input_dimension": "vis",
+        "input_value": 3,
+        "processing_dimension": "ref",
+        "processing_value": 5,
+        "understanding_dimension": "glo",
+        "understanding_value": 9,
+    }
+    list_of_les = [
+        {"classification": "ÜB"},
+        {"classification": "SE"},
+        {"classification": "LZ"},
+    ]
+
+    ga_instance = ga_module.GeneticAlgorithm(learning_elements=list_of_les)
+    ga_instance.create_random_population(
+        learning_style=learning_style,
+        input_view_time=None,
+        click_scores=None,
+    )
+
+    assert ga_instance.first_is_present is True
+    assert ga_instance.learning_elements[0] == "first"
+
+
+def test_ga_enforce_special_positions_places_labels_correctly():
+    ga_instance = ga_module.GeneticAlgorithm()
+    ga_instance.learning_elements = np.array(
+        ["ÜB", "LZ", "EK", "SE", "KÜ"], dtype=object
+    )
+    ga_instance.le_size = len(ga_instance.learning_elements)
+    ga_instance.le_coordinate = np.arange(ga_instance.le_size * 2, dtype=float).reshape(
+        ga_instance.le_size, 2
+    )
+
+    ga_instance._enforce_special_positions()
+
+    assert ga_instance.learning_elements[0] == "KÜ"
+    assert ga_instance.learning_elements[1] == "EK"
+    assert ga_instance.learning_elements[-1] == "LZ"
