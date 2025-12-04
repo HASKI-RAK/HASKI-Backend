@@ -7,6 +7,7 @@ from pgmpy.models import BayesianNetwork
 import errors.errors as err
 from domain.domainModel import model as DM
 from domain.learnersModel import model as LM
+from domain.tutoringModel import ga as ga_module
 from domain.tutoringModel import model as TM
 from domain.tutoringModel import nestor, tyche, utils
 from domain.tutoringModel.graf import GrafAlgorithm as Graf
@@ -779,7 +780,9 @@ def get_learning_path_aco(learning_style, list_of_elements, dict_view_time=None)
     return lp.path
 
 
-def get_learning_path_ga(learning_style, list_of_elements, dict_view_time=None):
+def get_learning_path_ga(
+    learning_style, list_of_elements, dict_view_time=None, click_scores=None
+):
     list_of_les = []
     for i, ele_name in enumerate(list_of_elements):
         le = DM.LearningElement(
@@ -799,6 +802,7 @@ def get_learning_path_ga(learning_style, list_of_elements, dict_view_time=None):
         _algorithm="ga",
         list_of_les=list_of_les,
         input_view_time=dict_view_time,
+        click_data=click_scores,
     )
     return lp.path
 
@@ -1231,6 +1235,29 @@ def test_added_view_times_single_element():
     assert time == 0
 
 
+def test_apply_click_dimension_normalizes_and_extends():
+    coords = {"ÜB": (1, 2, 3, 4)}
+    clicks = {"ÜB": 50.0}
+
+    updated = utils.apply_click_dimension(
+        coords, clicks, dimensions=5, click_index=4, fallback_value=0
+    )
+
+    assert "ÜB" in updated
+    assert len(updated["ÜB"]) == 5
+    assert updated["ÜB"][4] == pytest.approx(13)
+
+
+def test_apply_click_dimension_uses_fallback_for_missing_scores():
+    coords = {"BE": (1, 2, 3, 4)}
+
+    updated = utils.apply_click_dimension(
+        coords, {}, dimensions=5, click_index=4, fallback_value=0
+    )
+
+    assert updated["BE"][4] == 0
+
+
 @pytest.mark.parametrize(
     "learning_style, list_of_keys, dict_view_time",
     [
@@ -1290,3 +1317,70 @@ def test_prepare_les_for_ga2(learning_style, list_of_keys, dict_view_time):
     assert isinstance(result, str)
     path = result.split(", ") if result else []
     assert isinstance(path, list)
+
+
+def test_ga_click_dimension_included_even_without_data():
+    learning_style = {
+        "id": 1,
+        "characteristic_id": 1,
+        "perception_dimension": "int",
+        "perception_value": 7,
+        "input_dimension": "vis",
+        "input_value": 9,
+        "processing_dimension": "ref",
+        "processing_value": 5,
+        "understanding_dimension": "glo",
+        "understanding_value": 9,
+    }
+    list_of_les = [
+        {
+            "classification": "KÜ",
+        },
+        {
+            "classification": "EK",
+        },
+        {
+            "classification": "ÜB",
+        },
+    ]
+
+    algorithm = ga_module.GeneticAlgorithm(learning_elements=list_of_les)
+    algorithm.create_random_population(
+        learning_style=learning_style,
+        input_view_time=None,
+        click_scores={},
+    )
+
+    assert algorithm.le_coordinate.shape[1] == 5
+    coords_by_label = dict(zip(algorithm.learning_elements, algorithm.le_coordinate))
+    assert coords_by_label["ÜB"][4] == 0
+
+
+def test_ga_click_dimension_uses_scores_and_respects_ct_co_positions():
+    learning_style = {
+        "id": 1,
+        "characteristic_id": 1,
+        "perception_dimension": "int",
+        "perception_value": 5,
+        "input_dimension": "vis",
+        "input_value": 9,
+        "processing_dimension": "ref",
+        "processing_value": 5,
+        "understanding_dimension": "glo",
+        "understanding_value": 9,
+    }
+    list_of_keys = ["KÜ", "EK", "ÜB", "SE"]
+    click_scores = {
+        "KÜ": 10.0,
+        "EK": 8.0,
+        "ÜB": 50.0,
+        "SE": 1.0,
+    }
+
+    result = get_learning_path_ga(
+        learning_style, list_of_keys, dict_view_time=None, click_scores=click_scores
+    )
+    path = result.split(", ") if result else []
+
+    assert path[0] == "KÜ"
+    assert path[1] == "EK"

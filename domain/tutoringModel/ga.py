@@ -40,16 +40,25 @@ class GeneticAlgorithm:
             self.learning_elements = sanitized_elements
             self.le_size = len(sanitized_elements)
 
-    def create_random_population(self, learning_style, input_view_time=None) -> None:
+    def create_random_population(
+        self, learning_style, input_view_time=None, click_scores=None
+    ) -> None:
         """Function for the calculation of the score.
         position a also Initialise some populations
         with Clustering if this is possible.
         param dict_coordinates"""
 
-        has_view_time = bool(input_view_time)
+        if click_scores is None:
+            click_scores = {}
 
+        has_view_time = bool(input_view_time)
+        has_clicks = click_scores is not None
+
+        extra_dimensions = 1 if has_clicks else 0
         if has_view_time:
-            self.dimensionen = 6
+            extra_dimensions += 2
+
+        self.dimensionen = 4 + extra_dimensions
 
         coordinates = utils.get_coordinates(
             learning_style, self.learning_elements, self.dimensionen
@@ -61,6 +70,17 @@ class GeneticAlgorithm:
             self.first_is_present = True
         else:
             self.dict_coordinate = coordinates
+
+        if has_clicks:
+            # Clicks dimension is placed after the four ILS dimensions
+            click_index = 4
+            self.dict_coordinate = utils.apply_click_dimension(
+                self.dict_coordinate,
+                click_scores,
+                self.dimensionen,
+                click_index=click_index,
+                fallback_value=0,
+            )
 
         if has_view_time:
             norm_view_times = utils.added_view_times(input_view_time)
@@ -77,8 +97,7 @@ class GeneticAlgorithm:
         self.le_coordinate = self.le_coordinate[sume_sort_idx]
         self.learning_elements = self.learning_elements[sume_sort_idx]
 
-        self.population = utils.permutation_generator(
-            self.le_size, self.pop_size)
+        self.population = utils.permutation_generator(self.le_size, self.pop_size)
         self.initial_individuals = np.arange(0, self.le_size)
 
     def valid_population(self):
@@ -87,7 +106,7 @@ class GeneticAlgorithm:
 
         col_zeros = np.zeros((self.pop_size, 1), dtype=int)
         new_pop = np.concatenate(
-            (col_zeros, self.population[:, 0: self.le_size]), axis=1
+            (col_zeros, self.population[:, 0 : self.le_size]), axis=1
         )
         return new_pop
 
@@ -112,8 +131,7 @@ class GeneticAlgorithm:
 
         # a score is evaluated for each individual, which is
         # calculated using the fitness function: dtype=np.float64)
-        total_sum = np.sum([np.square(np.diff(line, axis=1))
-                           for line in lines], axis=0)
+        total_sum = np.sum([np.square(np.diff(line, axis=1)) for line in lines], axis=0)
 
         fitness = np.sum(np.sqrt(total_sum), axis=1)
 
@@ -317,6 +335,7 @@ class GeneticAlgorithm:
         input_learning_style=None,
         input_learning_element: LearningElementSequence | None = None,
         input_view_time=None,
+        click_scores=None,
     ):
         """calculates and verifies the learning path the genetic algorithm"""
 
@@ -327,8 +346,7 @@ class GeneticAlgorithm:
         if input_learning_element is None:
             raise err.NoValidParameterValueError()
         else:
-            self.learning_elements = utils.get_learning_element(
-                input_learning_element)
+            self.learning_elements = utils.get_learning_element(input_learning_element)
 
         if len(self.learning_elements) == 0:
             raise err.NoValidParameterValueError()
@@ -336,6 +354,8 @@ class GeneticAlgorithm:
         if len(self.learning_elements) == 1:
             return self.learning_elements[0]
 
-        self.create_random_population(input_learning_style, input_view_time)
+        self.create_random_population(
+            input_learning_style, input_view_time, click_scores=click_scores or {}
+        )
         result_ga = self.calculate_learning_path_ga()
         return result_ga

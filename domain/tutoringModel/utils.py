@@ -122,8 +122,7 @@ def get_coordinates(learning_style, list_of_les, dimensions=4):
             continue
 
         if element == cons.abbreviation_cc:
-            coordinates[element] = _coordinate_for_cc(
-                learning_style, dimensions)
+            coordinates[element] = _coordinate_for_cc(learning_style, dimensions)
             continue
 
         coordinates[element] = _coordinate_for_element(
@@ -185,8 +184,7 @@ def check_learning_style(input_learning_style):
     condition9 = -11 <= input_learning_style[cons.name_perception_value] <= 11
     condition10 = -11 <= input_learning_style[cons.name_input_value] <= 11
     condition11 = -11 <= input_learning_style[cons.name_processing_value] <= 11
-    condition12 = - \
-        11 <= input_learning_style[cons.name_understanding_value] <= 11
+    condition12 = -11 <= input_learning_style[cons.name_understanding_value] <= 11
     if not (condition9 and condition10 and condition11 and condition12):
         raise err.WrongLearningStyleDimensionError()
     else:
@@ -325,4 +323,53 @@ def update_coordinate(dict_coordinate, input_view_time):
         else:
             updated_coords[k] = coord  # si no tiene view/time lo dejamos igual
     # print("\n\ncoordinate_update:", updated_coords)
+    return updated_coords
+
+
+def normalize_click_value(
+    score: float | int | None, new_min: int = -12, new_max: int = 13
+):
+    """
+    Normalize click scores coming from LAAC (range 0..50) into the GA coordinate range.
+    """
+    if score is None:
+        return 0
+    return normalize_array2(score, 0, 50, new_min=new_min, new_max=new_max)
+
+
+def apply_click_dimension(
+    dict_coordinate: dict[str, tuple],
+    click_scores: dict[str, float],
+    dimensions: int,
+    click_index: int = 4,
+    fallback_value: float = 0,
+) -> dict[str, tuple]:
+    """
+    Insert the Clicks dimension (normalized) at the given\
+        index for each learning element.
+
+    Parameters:
+        dict_coordinate: current coordinates per LE.
+        click_scores: mapping LE classification -> raw dimensionScore from LAAC.
+        dimensions: total number of dimensions for the GA run.
+        click_index: position where the click dimension should be inserted.
+        fallback_value: value to use when no score is available.
+    """
+    if click_index >= dimensions:
+        return dict_coordinate
+
+    updated_coords: dict[str, tuple] = {}
+    for label, coord in dict_coordinate.items():
+        coord_list = list(coord)
+        if len(coord_list) < dimensions:
+            coord_list.extend([0] * (dimensions - len(coord_list)))
+
+        raw_score = click_scores.get(label)
+        normalized_score = (
+            normalize_click_value(raw_score)
+            if raw_score is not None
+            else fallback_value
+        )
+        coord_list[click_index] = normalized_score
+        updated_coords[label] = tuple(coord_list[:dimensions])
     return updated_coords
