@@ -9,6 +9,7 @@ class LearningPath:
     def __init__(
         self, student_id, course_id, based_on, topic_id=None, path=None
     ) -> None:
+        self.id = None
         self.student_id = student_id
         self.course_id = course_id
         self.based_on = based_on
@@ -58,7 +59,8 @@ class LearningPath:
                     learning_style, list_of_les_classifications, dimension
                 )
                 norm_view_times = utils.added_view_times(input_view_time)
-                coordinates = utils.update_coordinate(coordinates, norm_view_times)
+                coordinates = utils.update_coordinate(
+                    coordinates, norm_view_times)
             start_point = {"Start": (15,) * dimension}
             start_point.update(coordinates)
             path = aco.AntColonySolver()
@@ -66,7 +68,7 @@ class LearningPath:
 
             le_path = ""
             for ele in result[1:]:
-                le_path = le_path + ele[0] + ", "
+                le_path = le_path + str(ele[0]) + ", "
             self.path = le_path[:-2]
 
         elif algorithm == "ga":
@@ -130,6 +132,7 @@ class LearningPathAlgorithm:
 
 class LearningPathTopic:
     def __init__(self, topic_id, learning_path_id, position) -> None:
+        self.id = None
         self.topic_id = topic_id
         self.learning_path_id = learning_path_id
         self.position = position
@@ -151,6 +154,7 @@ class LearningPathLearningElement:
         position,
         learning_element=None,
     ) -> None:
+        self.id = None
         self.learning_element_id = learning_element_id
         self.learning_path_id = learning_path_id
         self.position = position

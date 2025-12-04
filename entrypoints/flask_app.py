@@ -3,7 +3,7 @@ import json
 import os
 import re
 from datetime import datetime
-from typing import Any, Dict, List, Union
+from typing import Any, Dict
 
 from flask import Flask, jsonify, make_response, request
 from flask.wrappers import Response
@@ -21,7 +21,6 @@ from utils import constants as cons
 from utils.constants import (
     role_admin_string,
     role_course_creator_string,
-    role_student_string,
     role_teacher_string,
 )
 from utils.decorators import debug_only, json_only
@@ -70,7 +69,8 @@ def handle_general_exception(ex):
 
 @app.errorhandler(err.AException)
 def handle_custom_exception(ex: err.AException):
-    response = json.dumps({"error": ex.__class__.__name__, "message": ex.message})
+    response = json.dumps(
+        {"error": ex.__class__.__name__, "message": ex.message})
     logger.error(response)
     return response, ex.status_code
 
@@ -156,7 +156,8 @@ def post_learning_path_algorithm(data: Dict[str, Any]):
             condition2 = "short_name" in data and "full_name" in data
             if condition1 and condition2:
                 condition3 = (
-                    type(data["short_name"]) is str and type(data["full_name"]) is str
+                    type(data["short_name"]) is str and type(
+                        data["full_name"]) is str
                 )
                 available_algorithms = ["graf", "aco", "ga", "default"]
                 condition4 = data["short_name"].lower() in available_algorithms
@@ -185,7 +186,8 @@ def post_student_topic_visit(data: Dict[str, Any], student_id, lms_user_id, topi
             condition1 = data is not None
             condition2 = "visit_start" in data
             if condition1 and condition2:
-                condition3 = re.search(cons.date_format_search, data["visit_start"])
+                condition3 = re.search(
+                    cons.date_format_search, data["visit_start"])
                 condition4 = type(data["visit_start"]) is str
                 if condition3 and condition4:
                     visit_start = datetime.strptime(
@@ -229,7 +231,8 @@ def post_student_learning_element_id_visit(
             condition2 = "visit_start" in data
             if condition1 and condition2:
                 condition3 = type(data["visit_start"]) is str
-                condition4 = re.search(cons.date_format_search, data["visit_start"])
+                condition4 = re.search(
+                    cons.date_format_search, data["visit_start"])
                 if condition3 and condition4:
                     visit_start = datetime.strptime(
                         data["visit_start"], cons.date_format
@@ -454,7 +457,8 @@ def post_calculate_learning_path_for_all_students(
             uow = unit_of_work.SqlAlchemyUnitOfWork()
 
             # Get student and their courses.
-            students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
+            students = services.get_all_students(
+                unit_of_work.SqlAlchemyUnitOfWork())
 
             results = []
             for student in students:
@@ -640,7 +644,8 @@ def create_logbuffer(content, user_id):
 @app.route("/user/<user_id>/logbuffer", methods=["GET"])
 @cross_origin(supports_credentials=True)
 def get_logbuffer_by_user_id(user_id):
-    result = services.get_logbuffer(unit_of_work.SqlAlchemyUnitOfWork(), user_id)
+    result = services.get_logbuffer(
+        unit_of_work.SqlAlchemyUnitOfWork(), user_id)
     return make_response(jsonify(result), http.HTTPStatus.OK)
 
 
