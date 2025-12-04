@@ -49,11 +49,11 @@ class GeneticAlgorithm:
         with Clustering if this is possible.
         param dict_coordinates"""
 
+        has_clicks = click_scores is not None
         if click_scores is None:
             click_scores = {}
 
         has_view_time = bool(input_view_time)
-        has_clicks = click_scores is not None
 
         extra_dimensions = 1 if has_clicks else 0
         if has_view_time:
