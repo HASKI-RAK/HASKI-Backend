@@ -1,6 +1,7 @@
 import time
 
 from domain.tutoringModel import aco, default, ga, graf, nestor, tyche, utils
+from domain.tutoringModel.utils import LearningElementSequence
 from errors import errors as err
 from utils import constants as cons
 
@@ -35,7 +36,7 @@ class LearningPath:
         student_id,
         learning_style,
         _algorithm,
-        list_of_les,
+        list_of_les: LearningElementSequence,
         default_learning_path=None,
         input_view_time=None,
     ):
@@ -96,7 +97,7 @@ class LearningPath:
         else:
             raise err.NoValidAlgorithmError()
 
-    def prepare_le_for_aco(self, list_of_les):
+    def prepare_le_for_aco(self, list_of_les: LearningElementSequence):
         lz_in_list = False
         list_of_les_classifications = []
         for le in list_of_les:

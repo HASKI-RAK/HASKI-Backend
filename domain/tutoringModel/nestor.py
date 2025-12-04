@@ -6,6 +6,7 @@ from pgmpy.inference import VariableElimination
 from pgmpy.readwrite import XMLBIFReader
 
 from domain.tutoringModel.NestorFolder import nestor_utils
+from domain.tutoringModel.utils import LearningElementSequence
 from errors import errors as err
 from utils import constants as cons
 
@@ -93,7 +94,7 @@ class Nestor:
     def get_learning_path(
         self,
         input_learning_style: dict,
-        input_learning_elements: list,
+        input_learning_elements: LearningElementSequence,
         path_to_model=os.path.join(
             "domain", "tutoringModel", "NestorFolder", "backup_saved_model.xml"
         ),

@@ -1,5 +1,6 @@
 import math
 from datetime import datetime
+from typing import Any, Sequence, TypedDict
 
 import numpy as np
 
@@ -9,6 +10,28 @@ from utils import constants as cons
 rng = np.random.default_rng(5)
 
 ran_seed = int(datetime.timestamp(datetime.now()))
+
+
+class _LearningElementRequired(TypedDict):
+    """Required fields coming from `LearningElement.serialize`."""
+
+    classification: str
+
+
+class SerializedLearningElement(_LearningElementRequired, total=False):
+    id: int | None
+    lms_id: int | None
+    activity_type: str | None
+    name: str | None
+    university: str | None
+    created_by: str | None
+    created_at: datetime | str | None
+    last_updated: datetime | str | None
+    student_learning_element: dict[str, Any] | None
+
+
+LearningElementSequence = Sequence[SerializedLearningElement]
+
 
 # Interpretation of Graf et al. for Learning Elements
 # -1: negative Influence; 0: neutral; 1: positive Influence
@@ -99,7 +122,8 @@ def get_coordinates(learning_style, list_of_les, dimensions=4):
             continue
 
         if element == cons.abbreviation_cc:
-            coordinates[element] = _coordinate_for_cc(learning_style, dimensions)
+            coordinates[element] = _coordinate_for_cc(
+                learning_style, dimensions)
             continue
 
         coordinates[element] = _coordinate_for_element(
@@ -161,7 +185,8 @@ def check_learning_style(input_learning_style):
     condition9 = -11 <= input_learning_style[cons.name_perception_value] <= 11
     condition10 = -11 <= input_learning_style[cons.name_input_value] <= 11
     condition11 = -11 <= input_learning_style[cons.name_processing_value] <= 11
-    condition12 = -11 <= input_learning_style[cons.name_understanding_value] <= 11
+    condition12 = - \
+        11 <= input_learning_style[cons.name_understanding_value] <= 11
     if not (condition9 and condition10 and condition11 and condition12):
         raise err.WrongLearningStyleDimensionError()
     else:
@@ -189,7 +214,9 @@ def check_cons_learning_element(element):
         return False
 
 
-def get_learning_element(learning_elements):
+def get_learning_element(
+    learning_elements: Sequence[SerializedLearningElement],
+) -> list[str]:
     """converts the dictionary learning element
     into a list with only the short name LE"""
     classification_learning_element = []
@@ -265,8 +292,10 @@ def added_view_times(input_view_time):
 
     norm_view_time = {
         k: (
-            int(normalize_array2(v[0], old_min_view, old_max_view)),  # normaliza view
-            int(normalize_array2(v[1], old_min_time, old_max_time)),  # normaliza time
+            # normaliza view
+            int(normalize_array2(v[0], old_min_view, old_max_view)),
+            # normaliza time
+            int(normalize_array2(v[1], old_min_time, old_max_time)),
         )
         for k, v in input_view_time.items()
     }

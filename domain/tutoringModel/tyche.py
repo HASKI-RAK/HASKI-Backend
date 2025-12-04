@@ -1,6 +1,10 @@
 import numpy as np
 
 from domain.tutoringModel import utils
+from domain.tutoringModel.utils import (
+    LearningElementSequence,
+    SerializedLearningElement,
+)
 from domain.tutoringModel.Tyche import tyche_config as t_config
 from domain.tutoringModel.Tyche import tyche_utils as t_utils
 from errors import errors as err
@@ -14,14 +18,17 @@ class TycheAlgorithm:
 
     def __init__(
         self,
-        learning_elements=None,
+        learning_elements: LearningElementSequence | None = None,
     ):
-        self.learning_elements = learning_elements
+        self.learning_elements: list[SerializedLearningElement] = []
         self.learning_style = {}
         self.init_probabilities = []
         self.probabilities = []
         self.learningpath = []
         self.last_le = False
+
+        if learning_elements is not None:
+            self.learning_elements = list(learning_elements)
 
     def rgb_preprocessing(self):
         """converts the dictionary learning element
@@ -235,7 +242,10 @@ class TycheAlgorithm:
         self.probabilities = g_config
 
     def get_learning_path(
-        self, input_learning_style=None, input_learning_element=None, last_element=None
+        self,
+        input_learning_style=None,
+        input_learning_element: LearningElementSequence | None = None,
+        last_element=None,
     ):
         """Inital method to start generating the learning path"""
 
@@ -250,10 +260,10 @@ class TycheAlgorithm:
 
         # Get learning elements:
         self.last_le = last_element
-        if input_learning_element == []:
+        if not input_learning_element:
             raise err.NoValidParameterValueError()
         else:
-            self.learning_elements = input_learning_element
+            self.learning_elements = list(input_learning_element)
         self.learning_elements = self.rgb_preprocessing()
         les = self.learning_elements
 

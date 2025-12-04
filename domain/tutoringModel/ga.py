@@ -2,6 +2,7 @@ import numpy as np
 
 import errors.errors as err
 from domain.tutoringModel import utils
+from domain.tutoringModel.utils import LearningElementSequence
 
 
 class GeneticAlgorithm:
@@ -16,9 +17,9 @@ class GeneticAlgorithm:
 
     def __init__(
         self,
-        learning_elements=None,
+        learning_elements: LearningElementSequence | None = None,
     ):
-        self.learning_elements = learning_elements
+        self.learning_elements: list[str] | np.ndarray = []
         self.learning_style = {}
         self.best_population = []
         self.max_generation = 100
@@ -34,10 +35,9 @@ class GeneticAlgorithm:
         self.dimensionen = 4
 
         if learning_elements is not None:
-            #  convert learning element into
-            #  a list with the short name of learning element
-            le = utils.get_learning_element(learning_elements)
-            self.le_size = len(le)
+            sanitized_elements = utils.get_learning_element(learning_elements)
+            self.learning_elements = sanitized_elements
+            self.le_size = len(sanitized_elements)
 
     def create_random_population(self, learning_style, input_view_time=None) -> None:
         """Function for the calculation of the score.
@@ -308,7 +308,7 @@ class GeneticAlgorithm:
     def get_learning_path(
         self,
         input_learning_style=None,
-        input_learning_element=None,
+        input_learning_element: LearningElementSequence | None = None,
         input_view_time=None,
     ):
         """calculates and verifies the learning path the genetic algorithm"""

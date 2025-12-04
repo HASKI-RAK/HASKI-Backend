@@ -1,4 +1,8 @@
-from domain.tutoringModel.utils import check_learning_style, influence
+from domain.tutoringModel.utils import (
+    LearningElementSequence,
+    check_learning_style,
+    influence,
+)
 from utils import constants as cons
 
 
@@ -123,9 +127,15 @@ class GrafAlgorithm:
             del learning_path[highest_item]
         return sort_learning_path
 
-    def get_learning_path(self, input_learning_style={}, list_of_les={}):
+    def get_learning_path(
+        self,
+        input_learning_style=None,
+        list_of_les: LearningElementSequence | None = None,
+    ) -> list[str]:
         """Inital method to start generating the learning path"""
         check_learning_style(input_learning_style)
+        if not list_of_les:
+            return []
         learning_path = {}
         for le in list_of_les:
             value = self.calculate_graf_score(
