@@ -76,7 +76,9 @@ def fetch_element_clicks(
         payload = response.json()
         return payload.get("result", {}).get("value", []) or []
     except (
-        Exception
+        requests.RequestException,
+        ValueError,
+        KeyError,
     ) as exc:  # pragma: no cover - network/path errors are non-deterministic
         logger.warning("LAAC element-clicks request raised %s", exc)
         return []
