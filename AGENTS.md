@@ -6,6 +6,7 @@ Use context7 if unsure about syntax.
 ## Python
 
 - Use python venv in the workspace folder.
+- Always activate the venv before running code.
 - For tests use `tox`.
 - Always use black + isort + flake8 for formatting and linting (configs in `pyproject.toml`).
 
