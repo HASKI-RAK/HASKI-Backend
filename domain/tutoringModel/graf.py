@@ -67,7 +67,8 @@ class GrafAlgorithm:
         else:
             score = (
                 score
-                + influence[learning_element][1] * learning_style["processing_value"]
+                + influence[learning_element][1] *
+                learning_style["processing_value"]
             )
         if learning_style[cons.name_perception_dimension] == "sns":
             score = (
@@ -78,16 +79,19 @@ class GrafAlgorithm:
         else:
             score = (
                 score
-                + influence[learning_element][3] * learning_style["perception_value"]
+                + influence[learning_element][3] *
+                learning_style["perception_value"]
             )
         if learning_style[cons.name_input_dimension] == "vis":
             score = (
                 score
-                + influence[learning_element][4] * learning_style[cons.name_input_value]
+                + influence[learning_element][4] *
+                learning_style[cons.name_input_value]
             )
         else:
             score = (
-                score + influence[learning_element][5] * learning_style["input_value"]
+                score + influence[learning_element][5] *
+                learning_style["input_value"]
             )
         if learning_style[cons.name_understanding_dimension] == "seq":
             score = (
