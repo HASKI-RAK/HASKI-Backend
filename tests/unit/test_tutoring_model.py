@@ -678,8 +678,7 @@ def test_get_learning_path_default(learning_style, list_of_keys):
     list_of_le_size = rng.integers(2, 50, size=num_of_test)
 
     for i in range(num_of_test):
-        le_position = rng.integers(
-            2, len(list_of_keys), size=list_of_le_size[i])
+        le_position = rng.integers(2, len(list_of_keys), size=list_of_le_size[i])
         list_of_elements = list_of_keys[le_position]
         list_of_elements = rng.permutation(list_of_elements)
 
@@ -753,8 +752,7 @@ def test_calculate_variable_score_graf(
     learning_element, learning_style, expected_result
 ):
     algorithmus = Graf(student_id=1)
-    score = algorithmus.calculate_variable_score(
-        learning_element, learning_style)
+    score = algorithmus.calculate_variable_score(learning_element, learning_style)
     assert score == expected_result
 
 
@@ -859,8 +857,7 @@ def test_prepare_les_for_ga_2(learning_style, list_of_keys):
     list_of_le_size = rng.integers(2, 50, size=num_of_test)
 
     for i in range(num_of_test):
-        le_position = rng.integers(
-            2, len(list_of_keys), size=list_of_le_size[i])
+        le_position = rng.integers(2, len(list_of_keys), size=list_of_le_size[i])
         list_of_elements = list_of_keys[le_position]
         list_of_elements = rng.permutation(list_of_elements)
 
@@ -896,8 +893,7 @@ def test_prepare_les_for_ga_2(learning_style, list_of_keys):
                 "understanding_dimension": "glo",
                 "understanding_value": 9,
             },
-            ["ZF", "LZ", "ÜB", "SE", "BE", "AN",
-                "EK", "ZL", "AB", "KÜ", "FO", "RQ"],
+            ["ZF", "LZ", "ÜB", "SE", "BE", "AN", "EK", "ZL", "AB", "KÜ", "FO", "RQ"],
         ),
         (
             {
@@ -1098,8 +1094,7 @@ def test_prepare_les_for_ga(learning_style, list_of_keys):
                 "understanding_dimension": "glo",
                 "understanding_value": 9,
             },
-            ["ZF", "LZ", "ÜB", "SE", "BE", "AN",
-                "EK", "ZL", "AB", "KÜ", "FO", "RQ"],
+            ["ZF", "LZ", "ÜB", "SE", "BE", "AN", "EK", "ZL", "AB", "KÜ", "FO", "RQ"],
             {
                 "ZF": (8, 800),
                 "LZ": (9, 1600),
@@ -1133,8 +1128,7 @@ def test_prepare_les_for_aco(learning_style, list_of_keys, dict_view_time):
             "understanding_value": 9,
         }
 
-    result = get_learning_path_aco(
-        learning_style, list_of_keys, dict_view_time)
+    result = get_learning_path_aco(learning_style, list_of_keys, dict_view_time)
 
     assert isinstance(result, str)
     if len(result) > 2:
@@ -1180,8 +1174,7 @@ def test_prepare_les_for_aco(learning_style, list_of_keys, dict_view_time):
                 "understanding_dimension": "glo",
                 "understanding_value": 9,
             },
-            ["ZF", "LZ", "ÜB", "SE", "BE", "AN",
-                "EK", "ZL", "AB", "KÜ", "FO", "RQ"],
+            ["ZF", "LZ", "ÜB", "SE", "BE", "AN", "EK", "ZL", "AB", "KÜ", "FO", "RQ"],
             {
                 "ZF": (8, 800),
                 "LZ": (9, 1600),
@@ -1360,8 +1353,7 @@ def test_ga_click_dimension_included_even_without_data():
     )
 
     assert algorithm.le_coordinate.shape[1] == 5
-    coords_by_label = dict(
-        zip(algorithm.learning_elements, algorithm.le_coordinate))
+    coords_by_label = dict(zip(algorithm.learning_elements, algorithm.le_coordinate))
     assert coords_by_label["ÜB"][4] == 0
 
 

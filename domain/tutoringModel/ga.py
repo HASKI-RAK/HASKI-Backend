@@ -89,8 +89,7 @@ class GeneticAlgorithm:
                 self.dict_coordinate, norm_view_times
             )
 
-        self.le_coordinate = np.array(
-            list(self.dict_coordinate.values()), dtype=float)
+        self.le_coordinate = np.array(list(self.dict_coordinate.values()), dtype=float)
         if has_clicks:
             self.le_coordinate[:, 4] *= self.click_dimension_weight
         self.learning_elements = np.array(list(self.dict_coordinate.keys()))
@@ -107,8 +106,7 @@ class GeneticAlgorithm:
         self.learning_elements = self.learning_elements[sume_sort_idx]
         self._enforce_special_positions()
 
-        self.population = utils.permutation_generator(
-            self.le_size, self.pop_size)
+        self.population = utils.permutation_generator(self.le_size, self.pop_size)
         self.initial_individuals = np.arange(0, self.le_size)
 
     def valid_population(self):
@@ -117,7 +115,7 @@ class GeneticAlgorithm:
 
         col_zeros = np.zeros((self.pop_size, 1), dtype=int)
         new_pop = np.concatenate(
-            (col_zeros, self.population[:, 0: self.le_size]), axis=1
+            (col_zeros, self.population[:, 0 : self.le_size]), axis=1
         )
         return new_pop
 
@@ -142,8 +140,7 @@ class GeneticAlgorithm:
 
         # a score is evaluated for each individual, which is
         # calculated using the fitness function: dtype=np.float64)
-        total_sum = np.sum([np.square(np.diff(line, axis=1))
-                           for line in lines], axis=0)
+        total_sum = np.sum([np.square(np.diff(line, axis=1)) for line in lines], axis=0)
 
         fitness = np.sum(np.sqrt(total_sum), axis=1)
 
@@ -388,8 +385,7 @@ class GeneticAlgorithm:
         if input_learning_element is None:
             raise err.NoValidParameterValueError()
         else:
-            self.learning_elements = utils.get_learning_element(
-                input_learning_element)
+            self.learning_elements = utils.get_learning_element(input_learning_element)
 
         if len(self.learning_elements) == 0:
             raise err.NoValidParameterValueError()
