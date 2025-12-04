@@ -34,6 +34,7 @@ class GeneticAlgorithm:
         self.pop_size = 100
         self.first_is_present = False
         self.dimensionen = 4
+        self.click_dimension_weight = 3.0
 
         if learning_elements is not None:
             sanitized_elements = utils.get_learning_element(learning_elements)
@@ -88,16 +89,26 @@ class GeneticAlgorithm:
                 self.dict_coordinate, norm_view_times
             )
 
-        self.le_coordinate = np.array(list(self.dict_coordinate.values()))
+        self.le_coordinate = np.array(
+            list(self.dict_coordinate.values()), dtype=float)
+        if has_clicks:
+            self.le_coordinate[:, 4] *= self.click_dimension_weight
         self.learning_elements = np.array(list(self.dict_coordinate.keys()))
         self.le_size = len(self.learning_elements)
 
         sume = np.sum(self.le_coordinate, 1)
+        if has_clicks:
+            click_column = self.le_coordinate[:, 4]
+            # Boost individuals with higher click engagement (now lower values)
+            # so they remain competitive after the initial sorting.
+            sume -= 2 * click_column
         sume_sort_idx = np.flip(np.argsort(sume))
         self.le_coordinate = self.le_coordinate[sume_sort_idx]
         self.learning_elements = self.learning_elements[sume_sort_idx]
+        self._enforce_special_positions()
 
-        self.population = utils.permutation_generator(self.le_size, self.pop_size)
+        self.population = utils.permutation_generator(
+            self.le_size, self.pop_size)
         self.initial_individuals = np.arange(0, self.le_size)
 
     def valid_population(self):
@@ -106,7 +117,7 @@ class GeneticAlgorithm:
 
         col_zeros = np.zeros((self.pop_size, 1), dtype=int)
         new_pop = np.concatenate(
-            (col_zeros, self.population[:, 0 : self.le_size]), axis=1
+            (col_zeros, self.population[:, 0: self.le_size]), axis=1
         )
         return new_pop
 
@@ -131,7 +142,8 @@ class GeneticAlgorithm:
 
         # a score is evaluated for each individual, which is
         # calculated using the fitness function: dtype=np.float64)
-        total_sum = np.sum([np.square(np.diff(line, axis=1)) for line in lines], axis=0)
+        total_sum = np.sum([np.square(np.diff(line, axis=1))
+                           for line in lines], axis=0)
 
         fitness = np.sum(np.sqrt(total_sum), axis=1)
 
@@ -186,6 +198,36 @@ class GeneticAlgorithm:
             parent[:] = child
         population[8:13] = self.initial_individuals[1:]
         self.population[best_samples:] = population[:-best_samples].copy()
+
+    def _enforce_special_positions(self):
+        """Keep CT, CO, and AS in their required slots after sorting."""
+
+        def swap(idx_from, idx_to):
+            if idx_from == idx_to or idx_from < 0 or idx_to < 0:
+                return
+            self.learning_elements[[idx_from, idx_to]] = self.learning_elements[
+                [idx_to, idx_from]
+            ]
+            self.le_coordinate[[idx_from, idx_to]] = self.le_coordinate[
+                [idx_to, idx_from]
+            ]
+
+        def place(label, target_index):
+            matches = np.where(self.learning_elements == label)[0]
+            if matches.size == 0:
+                return
+            idx = int(matches[0])
+            if target_index < 0:
+                target_index = self.le_size + target_index
+            swap(idx, target_index)
+
+        if self.le_size == 0:
+            return
+
+        place(cons.abbreviation_ct, 0)
+        if self.le_size > 1:
+            place(cons.abbreviation_co, 1)
+        place(cons.abbreviation_as, -1)
 
     def calculate_learning_path_ga(self):
         """This function calculates the learning path with Genetic algorithm"""
@@ -346,7 +388,8 @@ class GeneticAlgorithm:
         if input_learning_element is None:
             raise err.NoValidParameterValueError()
         else:
-            self.learning_elements = utils.get_learning_element(input_learning_element)
+            self.learning_elements = utils.get_learning_element(
+                input_learning_element)
 
         if len(self.learning_elements) == 0:
             raise err.NoValidParameterValueError()

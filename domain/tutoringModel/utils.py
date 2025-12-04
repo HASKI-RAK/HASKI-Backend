@@ -334,7 +334,17 @@ def normalize_click_value(
     """
     if score is None:
         return 0
-    return normalize_array2(score, 0, 50, new_min=new_min, new_max=new_max)
+
+    # Invert the scale so that higher click activity maps to smaller coordinates.
+    # This keeps the GA fitness purely geometric while ensuring that elements with
+    # higher engagement appear "closer" to the start of the path.
+    return normalize_array2(
+        score,
+        0,
+        50,
+        new_min=new_max,
+        new_max=new_min,
+    )
 
 
 def apply_click_dimension(
