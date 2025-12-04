@@ -2,6 +2,8 @@ import numpy as np
 
 import errors.errors as err
 from domain.tutoringModel import utils
+from domain.tutoringModel.utils import LearningElementSequence
+from utils import constants as cons
 
 
 class GeneticAlgorithm:
@@ -16,9 +18,9 @@ class GeneticAlgorithm:
 
     def __init__(
         self,
-        learning_elements=None,
+        learning_elements: LearningElementSequence | None = None,
     ):
-        self.learning_elements = learning_elements
+        self.learning_elements: list[str] | np.ndarray = []
         self.learning_style = {}
         self.best_population = []
         self.max_generation = 100
@@ -34,10 +36,9 @@ class GeneticAlgorithm:
         self.dimensionen = 4
 
         if learning_elements is not None:
-            #  convert learning element into
-            #  a list with the short name of learning element
-            le = utils.get_learning_element(learning_elements)
-            self.le_size = len(le)
+            sanitized_elements = utils.get_learning_element(learning_elements)
+            self.learning_elements = sanitized_elements
+            self.le_size = len(sanitized_elements)
 
     def create_random_population(self, learning_style, input_view_time=None) -> None:
         """Function for the calculation of the score.
@@ -54,7 +55,7 @@ class GeneticAlgorithm:
             learning_style, self.learning_elements, self.dimensionen
         )
 
-        if not any(np.char.equal(self.learning_elements, "KÜ")):
+        if not any(np.char.equal(self.learning_elements, cons.abbreviation_ct)):
             self.dict_coordinate = {"first": (15,) * self.dimensionen}
             self.dict_coordinate.update(coordinates)
             self.first_is_present = True
@@ -76,7 +77,8 @@ class GeneticAlgorithm:
         self.le_coordinate = self.le_coordinate[sume_sort_idx]
         self.learning_elements = self.learning_elements[sume_sort_idx]
 
-        self.population = utils.permutation_generator(self.le_size, self.pop_size)
+        self.population = utils.permutation_generator(
+            self.le_size, self.pop_size)
         self.initial_individuals = np.arange(0, self.le_size)
 
     def valid_population(self):
@@ -85,7 +87,7 @@ class GeneticAlgorithm:
 
         col_zeros = np.zeros((self.pop_size, 1), dtype=int)
         new_pop = np.concatenate(
-            (col_zeros, self.population[:, 0 : self.le_size]), axis=1
+            (col_zeros, self.population[:, 0: self.le_size]), axis=1
         )
         return new_pop
 
@@ -110,7 +112,8 @@ class GeneticAlgorithm:
 
         # a score is evaluated for each individual, which is
         # calculated using the fitness function: dtype=np.float64)
-        total_sum = np.sum([np.square(np.diff(line, axis=1)) for line in lines], axis=0)
+        total_sum = np.sum([np.square(np.diff(line, axis=1))
+                           for line in lines], axis=0)
 
         fitness = np.sum(np.sqrt(total_sum), axis=1)
 
@@ -221,11 +224,15 @@ class GeneticAlgorithm:
 
     def valid_elements(self, learning_elements):
         result = learning_elements
-        if "KÜ" in result and result[0] != "KÜ":
+        if cons.abbreviation_ct in result and result[0] != cons.abbreviation_ct:
             return True
-        if "EK" in result and result[0] != "EK" and result[1] != "EK":
+        if (
+            cons.abbreviation_co in result
+            and result[0] != cons.abbreviation_co
+            and result[1] != cons.abbreviation_co
+        ):
             return True
-        if "LZ" in result and result[-1] != "LZ":
+        if cons.abbreviation_as in result and result[-1] != cons.abbreviation_as:
             return True
         return False
 
@@ -308,7 +315,7 @@ class GeneticAlgorithm:
     def get_learning_path(
         self,
         input_learning_style=None,
-        input_learning_element=None,
+        input_learning_element: LearningElementSequence | None = None,
         input_view_time=None,
     ):
         """calculates and verifies the learning path the genetic algorithm"""
@@ -320,7 +327,8 @@ class GeneticAlgorithm:
         if input_learning_element is None:
             raise err.NoValidParameterValueError()
         else:
-            self.learning_elements = utils.get_learning_element(input_learning_element)
+            self.learning_elements = utils.get_learning_element(
+                input_learning_element)
 
         if len(self.learning_elements) == 0:
             raise err.NoValidParameterValueError()

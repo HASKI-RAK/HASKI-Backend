@@ -76,10 +76,7 @@ def setup_db(
     cursor.execute("DROP TABLE IF EXISTS learning_characteristics")
     cursor.execute("DROP TABLE IF EXISTS learning_style")
     cursor.execute("DROP TABLE IF EXISTS learning_strategy")
-    cursor.execute("DROP TABLE IF EXISTS knowledge")
-    cursor.execute("DROP TABLE IF EXISTS learning_analytics")
     cursor.execute("DROP TABLE IF EXISTS course_creator_course")
-    cursor.execute("DROP TABLE IF EXISTS teacher_course")
     cursor.execute("DROP TABLE IF EXISTS student_course")
     cursor.execute("DROP TABLE IF EXISTS student_topic")
     cursor.execute("DROP TABLE IF EXISTS student_topic_visit")
@@ -501,46 +498,6 @@ def setup_db(
     cursor.execute(sql)
 
     sql = """
-        CREATE TABLE IF NOT EXISTS public.knowledge
-        (
-            id integer NOT NULL GENERATED ALWAYS AS IDENTITY
-            ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
-            characteristic_id integer NOT NULL,
-            CONSTRAINT knowledge_pkey PRIMARY KEY (id),
-            CONSTRAINT characteristic_id FOREIGN KEY (characteristic_id)
-                REFERENCES public.learning_characteristics (id) MATCH SIMPLE
-                ON UPDATE NO ACTION
-                ON DELETE NO ACTION
-        )
-
-        TABLESPACE pg_default;
-
-        ALTER TABLE IF EXISTS public.knowledge
-            OWNER to postgres;
-    """
-    cursor.execute(sql)
-
-    sql = """
-        CREATE TABLE IF NOT EXISTS public.learning_analytics
-        (
-            id integer NOT NULL GENERATED ALWAYS AS IDENTITY
-            ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
-            characteristic_id integer NOT NULL,
-            CONSTRAINT learning_analytics_pkey PRIMARY KEY (id),
-            CONSTRAINT characteristic_id FOREIGN KEY (characteristic_id)
-                REFERENCES public.learning_characteristics (id) MATCH SIMPLE
-                ON UPDATE NO ACTION
-                ON DELETE NO ACTION
-        )
-
-        TABLESPACE pg_default;
-
-        ALTER TABLE IF EXISTS public.learning_analytics
-            OWNER to postgres;
-    """
-    cursor.execute(sql)
-
-    sql = """
         CREATE TABLE IF NOT EXISTS public.course_creator_course
         (
             id integer NOT NULL GENERATED ALWAYS AS IDENTITY
@@ -563,31 +520,6 @@ def setup_db(
         TABLESPACE pg_default;
 
         ALTER TABLE IF EXISTS public.course_creator_course
-            OWNER to postgres;
-    """
-    cursor.execute(sql)
-
-    sql = """
-        CREATE TABLE IF NOT EXISTS public.teacher_course
-        (
-            id integer NOT NULL GENERATED ALWAYS AS IDENTITY
-            ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
-            teacher_id integer NOT NULL,
-            course_id integer NOT NULL,
-            CONSTRAINT teacher_course_pkey PRIMARY KEY (id),
-            CONSTRAINT course_id FOREIGN KEY (course_id)
-                REFERENCES public.course (id) MATCH SIMPLE
-                ON UPDATE NO ACTION
-                ON DELETE NO ACTION,
-            CONSTRAINT teacher_id FOREIGN KEY (teacher_id)
-                REFERENCES public.teacher (id) MATCH SIMPLE
-                ON UPDATE NO ACTION
-                ON DELETE NO ACTION
-        )
-
-        TABLESPACE pg_default;
-
-        ALTER TABLE IF EXISTS public.teacher_course
             OWNER to postgres;
     """
     cursor.execute(sql)

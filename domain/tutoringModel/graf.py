@@ -1,4 +1,8 @@
-from domain.tutoringModel.utils import check_learning_style, influence
+from domain.tutoringModel.utils import (
+    LearningElementSequence,
+    check_learning_style,
+    influence,
+)
 from utils import constants as cons
 
 
@@ -63,7 +67,8 @@ class GrafAlgorithm:
         else:
             score = (
                 score
-                + influence[learning_element][1] * learning_style["processing_value"]
+                + influence[learning_element][1] *
+                learning_style["processing_value"]
             )
         if learning_style[cons.name_perception_dimension] == "sns":
             score = (
@@ -74,16 +79,19 @@ class GrafAlgorithm:
         else:
             score = (
                 score
-                + influence[learning_element][3] * learning_style["perception_value"]
+                + influence[learning_element][3] *
+                learning_style["perception_value"]
             )
         if learning_style[cons.name_input_dimension] == "vis":
             score = (
                 score
-                + influence[learning_element][4] * learning_style[cons.name_input_value]
+                + influence[learning_element][4] *
+                learning_style[cons.name_input_value]
             )
         else:
             score = (
-                score + influence[learning_element][5] * learning_style["input_value"]
+                score + influence[learning_element][5] *
+                learning_style["input_value"]
             )
         if learning_style[cons.name_understanding_dimension] == "seq":
             score = (
@@ -123,9 +131,15 @@ class GrafAlgorithm:
             del learning_path[highest_item]
         return sort_learning_path
 
-    def get_learning_path(self, input_learning_style={}, list_of_les={}):
+    def get_learning_path(
+        self,
+        input_learning_style=None,
+        list_of_les: LearningElementSequence | None = None,
+    ) -> list[str]:
         """Inital method to start generating the learning path"""
         check_learning_style(input_learning_style)
+        if not list_of_les:
+            return []
         learning_path = {}
         for le in list_of_les:
             value = self.calculate_graf_score(

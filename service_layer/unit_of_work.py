@@ -21,8 +21,6 @@ class AbstractUnitOfWork(abc.ABC):
     ils_perception_answers: repository.AbstractRepository
     ils_processing_answers: repository.AbstractRepository
     ils_understanding_answers: repository.AbstractRepository
-    knowledge: repository.AbstractRepository
-    learning_analytics: repository.AbstractRepository
     learning_characteristics: repository.AbstractRepository
     learning_element: repository.AbstractRepository
     learning_element_rating: repository.AbstractRepository
@@ -48,7 +46,6 @@ class AbstractUnitOfWork(abc.ABC):
     student_topic: repository.AbstractRepository
     student_topic_visit: repository.AbstractRepository
     teacher: repository.AbstractRepository
-    teacher_course: repository.AbstractRepository
     topic: repository.AbstractRepository
     topic_learning_element: repository.AbstractRepository
 
@@ -92,8 +89,6 @@ class SqlAlchemyUnitOfWork(AbstractUnitOfWork):  # pragma: no cover
         self.ils_perception_answers = repository.SqlAlchemyRepository(self.session)
         self.ils_processing_answers = repository.SqlAlchemyRepository(self.session)
         self.ils_understanding_answers = repository.SqlAlchemyRepository(self.session)
-        self.knowledge = repository.SqlAlchemyRepository(self.session)
-        self.learning_analytics = repository.SqlAlchemyRepository(self.session)
         self.learning_characteristics = repository.SqlAlchemyRepository(self.session)
         self.learning_element = repository.SqlAlchemyRepository(self.session)
         self.learning_element_rating = repository.SqlAlchemyRepository(self.session)
@@ -124,7 +119,6 @@ class SqlAlchemyUnitOfWork(AbstractUnitOfWork):  # pragma: no cover
         self.student_topic = repository.SqlAlchemyRepository(self.session)
         self.student_topic_visit = repository.SqlAlchemyRepository(self.session)
         self.teacher = repository.SqlAlchemyRepository(self.session)
-        self.teacher_course = repository.SqlAlchemyRepository(self.session)
         self.topic = repository.SqlAlchemyRepository(self.session)
         self.topic_learning_element = repository.SqlAlchemyRepository(self.session)
         return super().__enter__()

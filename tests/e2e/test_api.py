@@ -24,7 +24,6 @@ learning_element_id = 0
 questionnaire_ils_id = 0
 questionnaire_list_k_id = 0
 
-path_admin = "/admin"
 path_activity_status = "/activitystatus"
 path_course = "/course"
 path_courses = "/courses"
@@ -32,10 +31,8 @@ path_contactform = "/contactform"
 path_content = "/content"
 path_news = "/news"
 path_logbuffer = "/logbuffer"
-path_knowledge = "/knowledge"
 path_logs = "/logs"
 path_frontend_logs = "/logs/frontend"
-path_learning_analytics = "/learningAnalytics"
 path_learning_characteristics = "/learningCharacteristics"
 path_learning_element = "/learningElement"
 path_learning_path = "/learningPath"
@@ -52,8 +49,6 @@ path_recommendation = "/recommendation"
 path_remote = "/lms/remote"
 path_settings = "/settings"
 path_student = "/student"
-path_subtopic = "/subtopic"
-path_teacher = "/teacher"
 path_topic = "/topic"
 path_user = "/user"
 path_algorithm = "/algorithm"
@@ -377,9 +372,6 @@ class TestApi:
     def test_api_create_user_from_moodle(
         self, client_class, input, keys_expected, status_code_expected, save_id
     ):
-        """[HASKI-REQ-0034] Validates automatic user provisioning from
-        Moodle payloads.
-        """
         url = path_lms_user
         r = client_class.post(url, json=input)
         assert r.status_code == status_code_expected
@@ -458,9 +450,6 @@ class TestApi:
     def test_api_create_course_from_moodle_without_start_date(
         self, client_class, input, keys_expected, status_code_expected, save_id
     ):
-        """[HASKI-REQ-0035] Validates course creation from Moodle data
-        handling missing start dates.
-        """
         global user_id_course_creator
         input["created_by"] = user_id_course_creator
         url = path_lms_course
@@ -536,7 +525,6 @@ class TestApi:
     def test_api_create_course_from_moodle(
         self, client_class, input, keys_expected, status_code_expected, save_id
     ):
-        """[HASKI-REQ-0035] Validates standard course creation from Moodle data."""
         global user_id_course_creator
         input["created_by"] = user_id_course_creator
         url = path_lms_course
@@ -665,9 +653,6 @@ class TestApi:
         status_code_expected,
         save_id,
     ):
-        """[HASKI-REQ-0036] Validates topic and subtopic creation from
-        Moodle payloads.
-        """
         global course_id, topic_id, sub_topic_id
         url = path_lms_course + "/" + str(course_id) + path_topic
         if topic_id != 0:
@@ -829,7 +814,6 @@ class TestApi:
         status_code_expected,
         save_id,
     ):
-        """[HASKI-REQ-0037] Validates learning element creation from Moodle payloads."""
         global course_id
         global sub_topic_id
         url = path_lms_topic + "/" + str(sub_topic_id) + path_learning_element
@@ -842,145 +826,7 @@ class TestApi:
             global learning_element_id
             learning_element_id = response["id"]
 
-    # Add Teacher to Course
-    @pytest.mark.parametrize(
-        "error_teacher, error_course, keys_expected,\
-                            status_code_expected",
-        [
-            # Working Example
-            (False, False, ["id", "course_id", "teacher_id"], 201),
-            # Teacher not found
-            (True, False, ["error", "message"], 404),
-            # Course not found
-            (False, True, ["error", "message"], 404),
-            # Teacher already in Course
-            (False, False, ["error", "message"], 400),
-        ],
-    )
-    def test_add_teacher_to_course(
-        self,
-        client_class,
-        error_teacher,
-        error_course,
-        keys_expected,
-        status_code_expected,
-    ):
-        global course_id, teacher_id
-        if error_teacher:
-            teacher_id_use = 99999
-        else:
-            teacher_id_use = teacher_id
-        if error_course:
-            course_id_use = 99999
-        else:
-            course_id_use = course_id
-        url = (
-            path_lms_course
-            + "/"
-            + str(course_id_use)
-            + path_teacher
-            + "/"
-            + str(teacher_id_use)
-        )
-        r = client_class.post(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        for key in keys_expected:
-            assert key in response.keys()
-
-    # Add Student to Course
-    @pytest.mark.parametrize(
-        "error_student, error_course, keys_expected,\
-                            status_code_expected",
-        [
-            # Working Example
-            (
-                False,
-                False,
-                [
-                    "id",
-                    "course_id",
-                    "student_id",
-                    "input_dimension",
-                    "input_value",
-                    "perception_dimension",
-                    "perception_value",
-                    "processing_dimension",
-                    "processing_value",
-                    "understanding_dimension",
-                    "understanding_value",
-                ],
-                201,
-            ),
-            # Student not found
-            (True, False, ["error", "message"], 404),
-            # Course not found
-            (False, True, ["error", "message"], 404),
-        ],
-    )
-    def test_add_student_to_course(
-        self,
-        client_class,
-        error_student,
-        error_course,
-        keys_expected,
-        status_code_expected,
-    ):
-        global course_id, student_id
-        if error_student:
-            student_id_use = 99999
-        else:
-            student_id_use = student_id
-        if error_course:
-            course_id_use = 99999
-        else:
-            course_id_use = course_id
-        url = (
-            path_lms_course
-            + "/"
-            + str(course_id_use)
-            + path_student
-            + "/"
-            + str(student_id_use)
-        )
-        r = client_class.post(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        for key in keys_expected:
-            assert key in response.keys()
-
-        # Add Student to Course - Duplicate
-        @pytest.mark.parametrize(
-            "keys_expected, status_code_expected, save_id",
-            [
-                # Working Example
-                (
-                    ["CREATED"],
-                    409,
-                    True,
-                ),
-            ],
-        )
-        def test_add_student_to_course_duplicate(
-            self, client_class, keys_expected, status_code_expected, save_id
-        ):
-            """Test adding a student that's already enrolled in the course"""
-            global course_id, student_id
-            url = (
-                path_lms_course
-                + "/"
-                + str(course_id)
-                + path_student
-                + "/"
-                + str(student_id)
-            )
-            # Try adding again - should return 304
-            r = client_class.post(url)
-            assert r.status_code == status_code_expected
-            response = json.loads(r.data.decode("utf-8").strip("\n"))
-            for key in keys_expected:
-                assert key in response.keys()
-
+    # Test post to create learning path algorithm
     @pytest.mark.parametrize(
         "input, keys_expected, status_code_expected",
         [
@@ -2139,8 +1985,6 @@ class TestApi:
                 [
                     "learning_style",
                     "learning_strategy",
-                    "learning_analytics",
-                    "knowledge",
                 ],
                 False,
             ),
@@ -2166,42 +2010,6 @@ class TestApi:
             + "/"
             + str(student_id_use)
             + path_learning_characteristics
-        )
-        r = client_class.get(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        for key in keys_expected:
-            assert key in response.keys()
-
-    # Get Learning Analytics
-    @pytest.mark.parametrize(
-        "lms_user_id, status_code_expected, \
-                            keys_expected, error",
-        [
-            # Working Example
-            (4, 200, [], False),
-            # Student not found
-            (1, 404, ["error", "message"], True),
-        ],
-    )
-    def test_get_students_learning_analytics(
-        self, client_class, lms_user_id, status_code_expected, keys_expected, error
-    ):
-        global user_id_student, student_id
-        if error:
-            student_id_use = 99999
-        else:
-            student_id_use = student_id
-        url = (
-            path_user
-            + "/"
-            + str(user_id_student)
-            + "/"
-            + str(lms_user_id)
-            + path_student
-            + "/"
-            + str(student_id_use)
-            + path_learning_analytics
         )
         r = client_class.get(url)
         assert r.status_code == status_code_expected
@@ -2295,90 +2103,6 @@ class TestApi:
         for key in keys_expected:
             assert key in response.keys()
 
-    # Get Knowledge
-    @pytest.mark.parametrize(
-        "lms_user_id, status_code_expected, \
-                            keys_expected, error",
-        [
-            # Working Example
-            (4, 200, [], False),
-            # Student not found
-            (1, 404, ["error", "message"], True),
-        ],
-    )
-    def test_get_students_knowledge(
-        self, client_class, lms_user_id, status_code_expected, keys_expected, error
-    ):
-        global user_id_student, student_id
-        if error:
-            student_id_use = 99999
-        else:
-            student_id_use = student_id
-        url = (
-            path_user
-            + "/"
-            + str(user_id_student)
-            + "/"
-            + str(lms_user_id)
-            + path_student
-            + "/"
-            + str(student_id_use)
-            + path_knowledge
-        )
-        r = client_class.get(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        for key in keys_expected:
-            assert key in response.keys()
-
-    # Get all courses for a student
-    @pytest.mark.parametrize(
-        "lms_user_id, status_code_expected, \
-                            keys_expected_1, keys_expected_2, error",
-        [
-            # Working Example
-            (4, 200, ["courses"], ["id", "lms_id", "name", "university"], False),
-            # Student not found
-            (1, 404, ["error", "message"], [], True),
-        ],
-    )
-    def test_get_student_courses(
-        self,
-        client_class,
-        lms_user_id,
-        status_code_expected,
-        keys_expected_1,
-        keys_expected_2,
-        error,
-    ):
-        global user_id_student, student_id
-        if error:
-            student_id_use = 99999
-        else:
-            student_id_use = student_id
-        url = (
-            path_user
-            + "/"
-            + str(user_id_student)
-            + "/"
-            + str(lms_user_id)
-            + path_student
-            + "/"
-            + str(student_id_use)
-            + path_course
-        )
-        r = client_class.get(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        if "courses" in keys_expected_1:
-            for key in keys_expected_1:
-                assert key in response.keys()
-            for key in keys_expected_2:
-                assert key in response["courses"][0].keys()
-        else:
-            for key in keys_expected_1:
-                assert key in response.keys()
-
     # Get a course for a student
     @pytest.mark.parametrize(
         "lms_user_id, status_code_expected, \
@@ -2429,81 +2153,6 @@ class TestApi:
         response = json.loads(r.data.decode("utf-8").strip("\n"))
         for key in keys_expected:
             assert key in response.keys()
-
-    # Get all topics for a course
-    @pytest.mark.parametrize(
-        "lms_user_id, status_code_expected,\
-                            keys_expected_1, keys_expected_2,\
-                            error_student, error_course",
-        [
-            # Working Example
-            (
-                4,
-                200,
-                ["topics"],
-                [
-                    "id",
-                    "lms_id",
-                    "name",
-                    "is_topic",
-                    "contains_le",
-                    "university",
-                    "parent_id",
-                    "student_topic",
-                ],
-                False,
-                False,
-            ),
-            # Student not found
-            (1, 404, ["error", "message"], [], True, False),
-            # Course not found
-            (1, 404, ["error", "message"], [], False, True),
-        ],
-    )
-    def test_get_student_course_topics(
-        self,
-        client_class,
-        lms_user_id,
-        status_code_expected,
-        keys_expected_1,
-        keys_expected_2,
-        error_student,
-        error_course,
-    ):
-        global user_id_student, student_id, course_id
-        if error_student:
-            student_id_use = 99999
-        else:
-            student_id_use = student_id
-        if error_course:
-            course_id_use = 99999
-        else:
-            course_id_use = course_id
-        url = (
-            path_user
-            + "/"
-            + str(user_id_student)
-            + "/"
-            + str(lms_user_id)
-            + path_student
-            + "/"
-            + str(student_id_use)
-            + path_course
-            + "/"
-            + str(course_id_use)
-            + path_topic
-        )
-        r = client_class.get(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        if "topics" in keys_expected_1:
-            for key in keys_expected_1:
-                assert key in response.keys()
-            for key in keys_expected_2:
-                assert key in response["topics"][0].keys()
-        else:
-            for key in keys_expected_1:
-                assert key in response.keys()
 
     # Get all learning elements for a course
     @pytest.mark.parametrize(
@@ -2785,92 +2434,6 @@ class TestApi:
         for key in keys_expected:
             assert key in response.keys()
 
-    # Get all sub-topics for a topic
-    @pytest.mark.parametrize(
-        "lms_user_id, status_code_expected,\
-                            keys_expected_1, keys_expected_2,\
-                            error_student, error_course, error_topic",
-        [
-            # Working Example
-            (
-                4,
-                200,
-                ["topics"],
-                [
-                    "id",
-                    "lms_id",
-                    "name",
-                    "is_topic",
-                    "contains_le",
-                    "university",
-                    "parent_id",
-                    "student_topic",
-                ],
-                False,
-                False,
-                False,
-            ),
-            # Student not found
-            (1, 404, ["error", "message"], [], True, False, False),
-            # Course not found
-            (1, 404, ["error", "message"], [], False, True, False),
-            # Topic not found
-            (1, 404, ["error", "message"], [], False, False, True),
-        ],
-    )
-    def test_get_sub_topics_for_topic(
-        self,
-        client_class,
-        lms_user_id,
-        status_code_expected,
-        keys_expected_1,
-        keys_expected_2,
-        error_student,
-        error_course,
-        error_topic,
-    ):
-        global user_id_student, student_id, course_id, topic_id
-        if error_student:
-            student_id_use = 99999
-        else:
-            student_id_use = student_id
-        if error_course:
-            course_id_use = 99999
-        else:
-            course_id_use = course_id
-        if error_topic:
-            topic_id_use = 99999
-        else:
-            topic_id_use = topic_id
-        url = (
-            path_user
-            + "/"
-            + str(user_id_student)
-            + "/"
-            + str(lms_user_id)
-            + path_student
-            + "/"
-            + str(student_id_use)
-            + path_course
-            + "/"
-            + str(course_id_use)
-            + path_topic
-            + "/"
-            + str(topic_id_use)
-            + path_subtopic
-        )
-        r = client_class.get(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        if "topics" in keys_expected_1:
-            for key in keys_expected_1:
-                assert key in response.keys()
-            for key in keys_expected_2:
-                assert key in response["topics"][0].keys()
-        else:
-            for key in keys_expected_1:
-                assert key in response.keys()
-
     # Get all LEs for a topic
     @pytest.mark.parametrize(
         "lms_user_id, status_code_expected,\
@@ -3045,141 +2608,6 @@ class TestApi:
         response = json.loads(r.data.decode("utf-8").strip("\n"))
         for key in keys_expected:
             assert key in response.keys()
-
-    # Get all Users by Admin
-    @pytest.mark.parametrize(
-        "lms_user_id, keys_expected_1,\
-                            keys_expected_2, status_code_expected,\
-                            error_user",
-        [
-            # Working Example
-            (1, ["users"], ["name", "role", "university"], 200, False),
-            # User not found
-            (1, ["error", "message"], [], 404, True),
-        ],
-    )
-    def test_get_users_by_admin_id(
-        self,
-        client_class,
-        lms_user_id,
-        keys_expected_1,
-        keys_expected_2,
-        status_code_expected,
-        error_user,
-    ):
-        global user_id_admin, admin_id
-        if error_user:
-            user_id_use = 99999
-        else:
-            user_id_use = user_id_admin
-        url = (
-            path_user
-            + "/"
-            + str(user_id_use)
-            + "/"
-            + str(lms_user_id)
-            + path_admin
-            + "/"
-            + str(admin_id)
-            + path_user
-        )
-        r = client_class.get(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        if "users" in keys_expected_1:
-            for key in keys_expected_2:
-                assert key in response["users"][0].keys()
-        else:
-            for key in keys_expected_1:
-                assert key in response.keys()
-
-    # Get all logs by Admin
-    @pytest.mark.parametrize(
-        "lms_user_id, keys_expected,\
-                            status_code_expected, error_admin",
-        [
-            # Working Example
-            (1, ["logs"], 200, False),
-            # User not found
-            (1, ["error", "message"], 404, True),
-        ],
-    )
-    def test_get_logs_by_admin_id(
-        self,
-        client_class,
-        lms_user_id,
-        keys_expected,
-        status_code_expected,
-        error_admin,
-    ):
-        global user_id_admin, admin_id
-        if error_admin:
-            user_id_use = 99999
-        else:
-            user_id_use = user_id_admin
-        url = (
-            path_user
-            + "/"
-            + str(user_id_use)
-            + "/"
-            + str(lms_user_id)
-            + path_admin
-            + "/"
-            + str(admin_id)
-            + path_logs
-        )
-        r = client_class.get(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        for key in keys_expected:
-            assert key in response.keys()
-
-    # Get all courses by Teacher
-    @pytest.mark.parametrize(
-        "lms_user_id, keys_expected_1,\
-                            keys_expected_2, status_code_expected,\
-                            error_teacher",
-        [
-            # Working Example
-            (3, ["courses"], ["id", "name", "lms_id"], 200, False),
-            # User not found
-            (3, ["error", "message"], [], 404, True),
-        ],
-    )
-    def test_get_courses_by_teacher_id(
-        self,
-        client_class,
-        lms_user_id,
-        keys_expected_1,
-        keys_expected_2,
-        status_code_expected,
-        error_teacher,
-    ):
-        global user_id_teacher, teacher_id
-        if error_teacher:
-            user_id_use = 99999
-        else:
-            user_id_use = user_id_teacher
-        url = (
-            path_user
-            + "/"
-            + str(user_id_use)
-            + "/"
-            + str(lms_user_id)
-            + path_teacher
-            + "/"
-            + str(teacher_id)
-            + path_course
-        )
-        r = client_class.get(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        if "courses" in keys_expected_1:
-            for key in keys_expected_2:
-                assert key in response["courses"][0].keys()
-        else:
-            for key in keys_expected_1:
-                assert key in response.keys()
 
     # Get Remote Courses from LMS
     @mock.patch(
@@ -4461,6 +3889,129 @@ class TestApi:
         for key in keys_expected:
             assert key in response.keys()
 
+    # Get all courses for a student
+    @pytest.mark.parametrize(
+        "lms_user_id, status_code_expected, \
+                            keys_expected_1, keys_expected_2, error",
+        [
+            # Working Example
+            (4, 200, ["courses"], ["id", "lms_id", "name", "university"], False),
+            # Student not found
+            (1, 404, ["error", "message"], [], True),
+        ],
+    )
+    def test_get_student_courses(
+        self,
+        client_class,
+        lms_user_id,
+        status_code_expected,
+        keys_expected_1,
+        keys_expected_2,
+        error,
+    ):
+        global user_id_student, student_id
+        if error:
+            student_id_use = 99999
+        else:
+            student_id_use = student_id
+        url = (
+            path_user
+            + "/"
+            + str(user_id_student)
+            + "/"
+            + str(lms_user_id)
+            + path_student
+            + "/"
+            + str(student_id_use)
+            + path_course
+        )
+        r = client_class.get(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        if "courses" in keys_expected_1:
+            for key in keys_expected_1:
+                assert key in response.keys()
+            for key in keys_expected_2:
+                assert key in response["courses"][0].keys()
+        else:
+            for key in keys_expected_1:
+                assert key in response.keys()
+
+    # Get all topics for a course
+    @pytest.mark.parametrize(
+        "lms_user_id, status_code_expected,\
+                            keys_expected_1, keys_expected_2,\
+                            error_student, error_course",
+        [
+            # Working Example
+            (
+                4,
+                200,
+                ["topics"],
+                [
+                    "id",
+                    "lms_id",
+                    "name",
+                    "is_topic",
+                    "contains_le",
+                    "university",
+                    "parent_id",
+                    "student_topic",
+                ],
+                False,
+                False,
+            ),
+            # Student not found
+            (1, 404, ["error", "message"], [], True, False),
+            # Course not found
+            (1, 404, ["error", "message"], [], False, True),
+        ],
+    )
+    def test_get_student_course_topics(
+        self,
+        client_class,
+        lms_user_id,
+        status_code_expected,
+        keys_expected_1,
+        keys_expected_2,
+        error_student,
+        error_course,
+    ):
+        global user_id_student, student_id, course_id
+        if error_student:
+            student_id_use = 99999
+        else:
+            student_id_use = student_id
+        if error_course:
+            course_id_use = 99999
+        else:
+            course_id_use = course_id
+        url = (
+            path_user
+            + "/"
+            + str(user_id_student)
+            + "/"
+            + str(lms_user_id)
+            + path_student
+            + "/"
+            + str(student_id_use)
+            + path_course
+            + "/"
+            + str(course_id_use)
+            + path_topic
+        )
+        r = client_class.get(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        if "topics" in keys_expected_1:
+            for key in keys_expected_1:
+                assert key in response.keys()
+            for key in keys_expected_2:
+                assert key in response["topics"][0].keys()
+        else:
+            for key in keys_expected_1:
+                assert key in response.keys()
+
     # DELETE METHODS
     # Reset User Settings
     @pytest.mark.parametrize(
@@ -4500,8 +4051,6 @@ class TestApi:
                 4,
                 [
                     "id",
-                    "knowledge",
-                    "learning_analytics",
                     "learning_strategy",
                     "learning_style",
                     "student_id",
@@ -4537,42 +4086,6 @@ class TestApi:
         response = json.loads(r.data.decode("utf-8").strip("\n"))
         for key in keys_expected:
             assert key in response.keys()
-
-    # Reset Learning Analytics
-    @pytest.mark.parametrize(
-        "lms_user_id, keys_expected,\
-                            status_code_expected, error",
-        [
-            # Working Example
-            (4, ["id", "characteristic_id"], 200, False),
-            # User not found
-            (1, ["error", "message"], 404, True),
-        ],
-    )
-    def test_reset_learning_analytics(
-        self, client_class, lms_user_id, keys_expected, status_code_expected, error
-    ):
-        global user_id_student, student_id
-        if error:
-            user_id_use = 99999
-        else:
-            user_id_use = user_id_student
-        url = (
-            path_user
-            + "/"
-            + str(user_id_use)
-            + "/"
-            + str(lms_user_id)
-            + path_student
-            + "/"
-            + str(student_id)
-            + path_learning_analytics
-        )
-        r = client_class.delete(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        for key in response.keys():
-            assert key in keys_expected
 
     # Reset Learning Style
     @pytest.mark.parametrize(
@@ -4682,42 +4195,6 @@ class TestApi:
             + "/"
             + str(student_id_use)
             + path_learning_strategy
-        )
-        r = client_class.delete(url)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        for key in response.keys():
-            assert key in keys_expected
-
-    # Reset Knowledge
-    @pytest.mark.parametrize(
-        "lms_user_id, keys_expected,\
-                            status_code_expected, error",
-        [
-            # Working Example
-            (4, ["id", "characteristic_id"], 200, False),
-            # User not found
-            (1, ["error", "message"], 404, True),
-        ],
-    )
-    def test_reset_knowledge(
-        self, client_class, lms_user_id, keys_expected, status_code_expected, error
-    ):
-        global user_id_student, student_id
-        if error:
-            user_id_use = 99999
-        else:
-            user_id_use = user_id_student
-        url = (
-            path_user
-            + "/"
-            + str(user_id_use)
-            + "/"
-            + str(lms_user_id)
-            + path_student
-            + "/"
-            + str(student_id)
-            + path_knowledge
         )
         r = client_class.delete(url)
         assert r.status_code == status_code_expected
