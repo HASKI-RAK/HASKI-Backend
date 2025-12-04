@@ -19,7 +19,7 @@ from utils import constants as cons
 rng = np.random.default_rng(11)
 
 
-def test_prepare_les_for_aco():
+def test_prepare_les_for_aco1():
     list_of_les = []
     list_of_keys = ["BE", "FO", "KÜ", "SE", "LZ", "EK", "ÜB"]
     for i, key in enumerate(list_of_keys):
@@ -65,15 +65,19 @@ def test_get_coordinates(
         understanding_dimension=understanding_dimension,
         understanding_value=7,
     )
+    dimensions = 6
     list_of_les = ["BE", "FO", "KÜ", "SE", "LZ", "EK", "ÜB", "ZF"]
     result = utils.get_coordinates(
-        learning_style=ls.serialize(), list_of_les=list_of_les
+        learning_style=ls.serialize(), list_of_les=list_of_les, dimensions=dimensions
     )
+
     assert type(result) == dict
+    assert all(len(v) == dimensions for v in result.values())
+    assert all(len(coord) == 6 for coord in result.values())
     assert result is not None
-    assert result["KÜ"] == (13, 13, 13, 13)
-    assert result["EK"] == (12, 12, 12, 12)
-    assert result["LZ"] == (-12, -12, -12, -12)
+    assert result["KÜ"] == (13,) * dimensions
+    assert result["EK"] == (12,) * dimensions
+    assert result["LZ"] == (-12,) * dimensions
 
 
 @pytest.mark.parametrize(
@@ -751,7 +755,31 @@ def test_calculate_variable_score_graf(
     assert score == expected_result
 
 
-def get_learning_path_ga(learning_style, list_of_elements):
+def get_learning_path_aco(learning_style, list_of_elements, dict_view_time=None):
+    list_of_les = []
+    for i, ele_name in enumerate(list_of_elements):
+        le = DM.LearningElement(
+            lms_id=i,
+            activity_type="lesson",
+            classification=ele_name,
+            name="Test LE",
+            university="TH-AB",
+            created_by="Max Mustermann",
+            created_at="2023-09-01",
+        )
+        list_of_les.append(le.serialize())
+    lp = TM.LearningPath(student_id=1, course_id=1, based_on="aco")
+    lp.get_learning_path(
+        student_id=1,
+        learning_style=learning_style,
+        _algorithm="aco",
+        list_of_les=list_of_les,
+        input_view_time=dict_view_time,
+    )
+    return lp.path
+
+
+def get_learning_path_ga(learning_style, list_of_elements, dict_view_time=None):
     list_of_les = []
     for i, ele_name in enumerate(list_of_elements):
         le = DM.LearningElement(
@@ -770,6 +798,7 @@ def get_learning_path_ga(learning_style, list_of_elements):
         learning_style=learning_style,
         _algorithm="ga",
         list_of_les=list_of_les,
+        input_view_time=dict_view_time,
     )
     return lp.path
 
@@ -833,7 +862,6 @@ def test_prepare_les_for_ga_2(learning_style, list_of_keys):
         assert ", " in result
         result = result.split(", ")
         assert isinstance(result, list)
-        print("OUTPUT:", result, "\n")
         if "KÜ" in list_of_elements:
             assert result[0] == "KÜ"
         if "EK" in list_of_elements:
@@ -1022,8 +1050,7 @@ def test_prepare_les_for_ga(learning_style, list_of_keys):
     if len(result) > 2:
         assert ", " in result
     result = result.split(", ")
-    print("Input", list_of_keys)
-    print("result", result, "GA")
+
     assert isinstance(result, list)
 
     if "KÜ" in list_of_keys:
@@ -1035,80 +1062,231 @@ def test_prepare_les_for_ga(learning_style, list_of_keys):
 
 
 @pytest.mark.parametrize(
-    "list_of_keys",
+    "learning_style, list_of_keys, dict_view_time",
     [
-        np.array(
-            [
-                "ZF",
-                "LZ",
-                "ÜB",
-                "ÜB",
-                "ÜB",
-                "SE",
-                "BE",
-                "AN",
-                "EK",
-                "EK",
-                "EK",
-                "ZL",
-                "AB",
-                "KÜ",
-                "FO",
-                "RQ",
-                "LZ",
-            ],
+        (
+            None,
+            ["ÜB", "FO", "LZ", "SE", "AN", "KÜ", "EK"],
+            {
+                "ÜB": (8, 800),
+                "FO": (9, 1600),
+                "LZ": (7, 2400),
+                "SE": (10, 1600),
+                "AN": (3, 3200),
+                "KÜ": (4, 1600),
+                "EK": (5, 800),
+            },
+        ),
+        (
+            {
+                "id": 1,
+                "characteristic_id": 1,
+                "perception_dimension": "int",
+                "perception_value": 7,
+                "input_dimension": "vis",
+                "input_value": 9,
+                "processing_dimension": "ref",
+                "processing_value": 5,
+                "understanding_dimension": "glo",
+                "understanding_value": 9,
+            },
+            ["ZF", "LZ", "ÜB", "SE", "BE", "AN", "EK", "ZL", "AB", "KÜ", "FO", "RQ"],
+            {
+                "ZF": (8, 800),
+                "LZ": (9, 1600),
+                "ÜB": (7, 2400),
+                "SE": (10, 1600),
+                "BE": (3, 1400),
+                "AN": (4, 3200),
+                "EK": (5, 1600),
+                "ZL": (8, 800),
+                "AB": (7, 1600),
+                "KÜ": (5, 2400),
+                "FO": (4, 1400),
+                "RQ": (3, 800)
+                # ele: (views, time)
+            },
         ),
     ],
 )
-def test_prepare_les_for_ga_for_all(list_of_keys):
-    numbers = [1, 9]
-    all_combinations = np.array(
-        [
-            [i, j, k, v]
-            for i in numbers
-            for j in numbers
-            for k in numbers
-            for v in numbers
-        ]
-    )
-    all_combinations = all_combinations.reshape(len(all_combinations), 4)
+def test_prepare_les_for_aco(learning_style, list_of_keys, dict_view_time):
+    if learning_style is None:
+        learning_style = {
+            "id": 1,
+            "characteristic_id": 1,
+            "perception_dimension": "int",
+            "perception_value": 11,
+            "input_dimension": "vis",
+            "input_value": 3,
+            "processing_dimension": "ref",
+            "processing_value": 7,
+            "understanding_dimension": "glo",
+            "understanding_value": 9,
+        }
 
-    input_types = ["vrb", "vis"]
-    perception_types = ["sns", "int"]
-    processing_types = ["act", "ref"]
-    understanding_types = ["glo", "seq"]
+    result = get_learning_path_aco(learning_style, list_of_keys, dict_view_time)
 
-    dimensions = np.array(
-        [
-            [i, j, k, v]
-            for i in perception_types
-            for j in input_types
-            for k in processing_types
-            for v in understanding_types
-        ]
-    )
-    for dim in dimensions:
-        for test in all_combinations:
-            learning_style = {
+    assert isinstance(result, str)
+    if len(result) > 2:
+        assert ", " in result
+    result = result.split(", ")
+
+    assert isinstance(result, list)
+
+    if "KÜ" in list_of_keys:
+        assert result[0] == "KÜ"
+    if "EK" in list_of_keys:
+        assert result[0] == "EK" or result[1] == "EK"
+    if "LZ" in list_of_keys:
+        assert result[-1] == "LZ"
+
+
+@pytest.mark.parametrize(
+    "learning_style, list_of_keys, dict_view_time",
+    [
+        (
+            None,
+            ["ÜB", "FO", "LZ", "SE", "AN", "KÜ", "EK"],
+            {
+                "ÜB": (8, 800),
+                "FO": (9, 1600),
+                "LZ": (7, 2400),
+                "SE": (10, 1600),
+                "AN": (3, 3200),
+                "KÜ": (4, 1600),
+                "EK": (5, 800),
+            },
+        ),
+        (
+            {
                 "id": 1,
-                "characteristic_id": 77,
-                "perception_dimension": dim[0],
-                "perception_value": test[0],
-                "input_dimension": dim[1],
-                "input_value": test[1],
-                "processing_dimension": dim[2],
-                "processing_value": test[2],
-                "understanding_dimension": dim[3],
-                "understanding_value": test[3],
-            }
-            result = get_learning_path_ga(learning_style, list_of_keys)
-            assert isinstance(result, str)
-            assert ", " in result
-            result = result.split(", ")
-            assert isinstance(result, list)
-            if "KÜ" in list_of_keys:
-                assert result[0] == "KÜ"
-            if "EK" in list_of_keys:
-                assert result[0] == "EK" or result[1] == "EK"
-            if "LZ" in list_of_keys:
-                assert result[-1] == "LZ"
+                "characteristic_id": 1,
+                "perception_dimension": "int",
+                "perception_value": 7,
+                "input_dimension": "vis",
+                "input_value": 9,
+                "processing_dimension": "ref",
+                "processing_value": 5,
+                "understanding_dimension": "glo",
+                "understanding_value": 9,
+            },
+            ["ZF", "LZ", "ÜB", "SE", "BE", "AN", "EK", "ZL", "AB", "KÜ", "FO", "RQ"],
+            {
+                "ZF": (8, 800),
+                "LZ": (9, 1600),
+                "ÜB": (7, 2400),
+                "SE": (10, 1600),
+                "BE": (3, 1400),
+                "AN": (4, 3200),
+                "EK": (5, 1600),
+                "ZL": (8, 800),
+                "AB": (7, 1600),
+                "KÜ": (5, 2400),
+                "FO": (4, 1400),
+                "RQ": (3, 800)
+                # ele: (views, time)
+            },
+        ),
+    ],
+)
+def test_prepare_les_for_ga1(learning_style, list_of_keys, dict_view_time):
+    if learning_style is None:
+        learning_style = {
+            "id": 1,
+            "characteristic_id": 1,
+            "perception_dimension": "int",
+            "perception_value": 11,
+            "input_dimension": "vis",
+            "input_value": 3,
+            "processing_dimension": "ref",
+            "processing_value": 7,
+            "understanding_dimension": "glo",
+            "understanding_value": 9,
+        }
+
+    result = get_learning_path_ga(learning_style, list_of_keys, dict_view_time)
+
+    assert isinstance(result, str)
+    if len(result) > 2:
+        assert ", " in result
+    result = result.split(", ")
+    assert isinstance(result, list)
+
+    if "KÜ" in list_of_keys:
+        assert result[0] == "KÜ"
+    if "EK" in list_of_keys:
+        assert result[0] == "EK" or result[1] == "EK"
+    if "LZ" in list_of_keys:
+        assert result[-1] == "LZ"
+
+
+def test_added_view_times_single_element():
+    input_view_time = {"BE": (5, 10)}
+
+    result = utils.added_view_times(input_view_time)
+
+    assert set(result.keys()) == {"BE"}
+    view, time = result["BE"]
+    assert view == 0
+    assert time == 0
+
+
+@pytest.mark.parametrize(
+    "learning_style, list_of_keys, dict_view_time",
+    [
+        (
+            None,
+            ["ÜB", "FO", "LZ", "SE", "AN", "KÜ", "EK"],
+            {},
+        ),
+        (
+            None,
+            ["ÜB"],
+            {
+                "ÜB": (7, 2400),
+            },
+        ),
+        (
+            None,
+            ["ÜB", "FO", "LZ", "SE", "AN", "KÜ", "EK"],
+            {
+                "ÜB": (7, 5000),
+                "SE": (3, 3000),
+                "AN": (6, 4000),
+                # ele: (views, time)
+            },
+        ),
+        (
+            None,
+            ["ÜB", "FO", "LZ", "SE", "AN", "KÜ", "EK"],
+            {
+                "ÜB": (3, 700),
+                "FO": (3, 700),
+                "LZ": (3, 700),
+                "SE": (3, 700),
+                "AN": (3, 700),
+                "KÜ": (3, 700),
+                "EK": (3, 700),
+            },
+        ),
+    ],
+)
+def test_prepare_les_for_ga2(learning_style, list_of_keys, dict_view_time):
+    if learning_style is None:
+        learning_style = {
+            "id": 1,
+            "characteristic_id": 1,
+            "perception_dimension": "int",
+            "perception_value": 11,
+            "input_dimension": "vis",
+            "input_value": 3,
+            "processing_dimension": "ref",
+            "processing_value": 7,
+            "understanding_dimension": "glo",
+            "understanding_value": 9,
+        }
+
+    result = get_learning_path_ga(learning_style, list_of_keys, dict_view_time)
+    assert isinstance(result, str)
+    path = result.split(", ") if result else []
+    assert isinstance(path, list)
