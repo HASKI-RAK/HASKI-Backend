@@ -1,3 +1,4 @@
+import http
 import json
 from unittest import mock
 
@@ -2733,6 +2734,31 @@ class TestApi:
         response = json.loads(r.data.decode("utf-8").strip("\n"))
         for key in keys_expected:
             assert key in response.keys()
+
+    def test_recalculate_learning_path_for_student(self, client_class):
+        global user_id_student, student_id, course_id, sub_topic_id
+        url = (
+            path_user
+            + "/"
+            + str(user_id_student)
+            + "/"
+            + str(4)
+            + path_student
+            + "/"
+            + str(student_id)
+            + path_course
+            + "/"
+            + str(course_id)
+            + path_topic
+            + "/"
+            + str(sub_topic_id)
+            + path_learning_path
+        )
+
+        r = client_class.get(url)
+        assert r.status_code == http.HTTPStatus.OK
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        assert response.get("path") not in (None, "")
 
     # Get a Learning Path Algorithm that a teacher chose for a topic
     @pytest.mark.parametrize(

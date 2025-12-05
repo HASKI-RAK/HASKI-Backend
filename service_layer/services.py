@@ -12,7 +12,7 @@ from domain.learnersModel import basic_listk_algorithm as BLKA
 from domain.learnersModel import model as LM
 from domain.tutoringModel import model as TM
 from domain.userAdministartion import model as UA
-from service_layer import unit_of_work
+from service_layer import learning_analytics, unit_of_work
 from service_layer.lti.OIDCLoginFlask import OIDCLoginFlask
 
 
@@ -498,12 +498,16 @@ def create_learning_path(
             default_learning_path = get_default_learning_path_by_university(
                 uow, user["university"]
             )
+            click_scores = learning_analytics.get_click_scores_for_learning_path(
+                user_id=student_id, course_id=course_id, topic_id=topic_id
+            )
             learning_path.get_learning_path(
                 student_id=student_id,
                 learning_style=learning_style,
                 _algorithm=algorithm.lower(),
                 list_of_les=list_of_les,
                 default_learning_path=default_learning_path,
+                click_data=click_scores,
             )
             result = learning_path.serialize()
             for i, le in enumerate(result["path"].replace(",", "").split()):
@@ -1680,6 +1684,64 @@ def get_learning_elements_for_topic_id(
             return []
 
 
+def recalculate_learning_path(
+    uow: unit_of_work.AbstractUnitOfWork,
+    user_id,
+    lms_user_id,
+    student_id,
+    course_id,
+    topic_id,
+) -> dict:
+    algorithm_short_name = None
+
+    with uow:
+        student_algorithm = get_student_lpath_le_algorithm(uow, student_id, topic_id)
+        if student_algorithm != {}:
+            algorithm = get_learning_path_algorithm_by_id(
+                uow, student_algorithm["algorithm_id"]
+            )
+            if algorithm != {}:
+                algorithm_short_name = algorithm["short_name"]
+
+        if algorithm_short_name is None:
+            topic_algorithm = get_lpath_le_algorithm_by_topic(uow, topic_id)
+            if topic_algorithm != {}:
+                algorithm = get_learning_path_algorithm_by_id(
+                    uow, topic_algorithm["algorithm_id"]
+                )
+                if algorithm != {}:
+                    algorithm_short_name = algorithm["short_name"]
+
+        if algorithm_short_name is None:
+            existing_path = uow.learning_path.get_learning_path(
+                student_id, course_id, topic_id
+            )
+            if existing_path:
+                algorithm_short_name = existing_path[0].based_on
+
+        if algorithm_short_name is None:
+            raise err.NoValidAlgorithmError()
+
+        create_learning_path(
+            uow,
+            user_id,
+            lms_user_id,
+            student_id,
+            course_id,
+            topic_id,
+            algorithm_short_name.lower(),
+        )
+
+        return get_learning_path(
+            uow,
+            user_id,
+            lms_user_id,
+            student_id,
+            course_id,
+            topic_id,
+        )
+
+
 def get_learning_path(
     uow: unit_of_work.AbstractUnitOfWork,
     user_id,
@@ -1959,14 +2021,16 @@ def get_lpath_le_algorithm_by_topic(
         lpath_le_algorithm = uow.lpath_le_algorithm.get_lpath_le_algorithm_by_topic(
             topic_id
         )
-        if lpath_le_algorithm == []:
-            result = {}
-        else:
-            if isinstance(lpath_le_algorithm, list):
-                result = lpath_le_algorithm[0].serialize()
-            else:
-                result = lpath_le_algorithm.serialize()
-        return result
+        if not lpath_le_algorithm:
+            return {}
+
+        if isinstance(lpath_le_algorithm, list):
+            return lpath_le_algorithm[0].serialize()
+
+        if isinstance(lpath_le_algorithm, dict):
+            return lpath_le_algorithm
+
+        return lpath_le_algorithm.serialize()
 
 
 def get_topic_learning_element_by_topic(

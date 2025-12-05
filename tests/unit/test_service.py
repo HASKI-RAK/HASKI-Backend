@@ -3507,6 +3507,51 @@ def test_get_learning_path():
     assert result != {}
 
 
+def test_recalculate_learning_path():
+    uow = FakeUnitOfWork()
+    create_course_creator_for_tests(uow)
+    create_student_for_tests(uow)
+    create_learning_path_algorithm_for_tests(uow)
+    create_student_learning_path_learning_element_algorithm_for_tests(uow)
+    create_course_for_tests(uow)
+    create_topic_for_tests(uow)
+    create_learning_element_for_tests_2(uow)
+    add_student_to_course_for_tests(uow)
+
+    result = services.recalculate_learning_path(
+        uow=uow,
+        user_id=1,
+        lms_user_id=1,
+        student_id=1,
+        course_id=1,
+        topic_id=1,
+    )
+
+    assert isinstance(result, dict)
+    assert result != {}
+    assert result["based_on"] == "aco"
+
+
+def test_recalculate_learning_path_no_algorithm():
+    uow = FakeUnitOfWork()
+    create_course_creator_for_tests(uow)
+    create_student_for_tests(uow)
+    create_course_for_tests(uow)
+    create_topic_for_tests(uow)
+    create_learning_element_for_tests_2(uow)
+    add_student_to_course_for_tests(uow)
+
+    with pytest.raises(err.NoValidAlgorithmError):
+        services.recalculate_learning_path(
+            uow=uow,
+            user_id=1,
+            lms_user_id=1,
+            student_id=1,
+            course_id=1,
+            topic_id=1,
+        )
+
+
 def test_create_learning_path_algorithm():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)

@@ -1858,7 +1858,7 @@ def get_learning_path(user_id, lms_user_id, student_id, course_id, topic_id):
     method = request.method
     match method:
         case "GET":
-            result = services.get_learning_path(
+            result = services.recalculate_learning_path(
                 unit_of_work.SqlAlchemyUnitOfWork(),
                 user_id,
                 lms_user_id,

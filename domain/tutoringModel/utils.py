@@ -1,5 +1,6 @@
 import math
 from datetime import datetime
+from typing import Any, Sequence, TypedDict
 
 import numpy as np
 
@@ -9,6 +10,28 @@ from utils import constants as cons
 rng = np.random.default_rng(5)
 
 ran_seed = int(datetime.timestamp(datetime.now()))
+
+
+class _LearningElementRequired(TypedDict):
+    """Required fields coming from `LearningElement.serialize`."""
+
+    classification: str
+
+
+class SerializedLearningElement(_LearningElementRequired, total=False):
+    id: int | None
+    lms_id: int | None
+    activity_type: str | None
+    name: str | None
+    university: str | None
+    created_by: str | None
+    created_at: datetime | str | None
+    last_updated: datetime | str | None
+    student_learning_element: dict[str, Any] | None
+
+
+LearningElementSequence = Sequence[SerializedLearningElement]
+
 
 # Interpretation of Graf et al. for Learning Elements
 # -1: negative Influence; 0: neutral; 1: positive Influence
@@ -189,7 +212,9 @@ def check_cons_learning_element(element):
         return False
 
 
-def get_learning_element(learning_elements):
+def get_learning_element(
+    learning_elements: Sequence[SerializedLearningElement],
+) -> list[str]:
     """converts the dictionary learning element
     into a list with only the short name LE"""
     classification_learning_element = []
@@ -265,8 +290,10 @@ def added_view_times(input_view_time):
 
     norm_view_time = {
         k: (
-            int(normalize_array2(v[0], old_min_view, old_max_view)),  # normaliza view
-            int(normalize_array2(v[1], old_min_time, old_max_time)),  # normaliza time
+            # normaliza view
+            int(normalize_array2(v[0], old_min_view, old_max_view)),
+            # normaliza time
+            int(normalize_array2(v[1], old_min_time, old_max_time)),
         )
         for k, v in input_view_time.items()
     }
@@ -296,4 +323,63 @@ def update_coordinate(dict_coordinate, input_view_time):
         else:
             updated_coords[k] = coord  # si no tiene view/time lo dejamos igual
     # print("\n\ncoordinate_update:", updated_coords)
+    return updated_coords
+
+
+def normalize_click_value(
+    score: float | int | None, new_min: int = -12, new_max: int = 13
+):
+    """
+    Normalize click scores coming from LAAC (range 0..50) into the GA coordinate range.
+    """
+    if score is None:
+        return 0
+
+    # Invert the scale so that higher click activity maps to smaller coordinates.
+    # This keeps the GA fitness purely geometric while ensuring that elements with
+    # higher engagement appear "closer" to the start of the path.
+    return normalize_array2(
+        score,
+        0,
+        50,
+        new_min=new_max,
+        new_max=new_min,
+    )
+
+
+def apply_click_dimension(
+    dict_coordinate: dict[str, tuple],
+    click_scores: dict[str, float],
+    dimensions: int,
+    click_index: int = 4,
+    fallback_value: float = 0,
+) -> dict[str, tuple]:
+    """
+    Insert the Clicks dimension (normalized) at the given\
+        index for each learning element.
+
+    Parameters:
+        dict_coordinate: current coordinates per LE.
+        click_scores: mapping LE classification -> raw dimensionScore from LAAC.
+        dimensions: total number of dimensions for the GA run.
+        click_index: position where the click dimension should be inserted.
+        fallback_value: value to use when no score is available.
+    """
+    if click_index >= dimensions:
+        return dict_coordinate
+
+    updated_coords: dict[str, tuple] = {}
+    for label, coord in dict_coordinate.items():
+        coord_list = list(coord)
+        if len(coord_list) < dimensions:
+            coord_list.extend([0] * (dimensions - len(coord_list)))
+
+        raw_score = click_scores.get(label)
+        normalized_score = (
+            normalize_click_value(raw_score)
+            if raw_score is not None
+            else fallback_value
+        )
+        coord_list[click_index] = normalized_score
+        updated_coords[label] = tuple(coord_list[:dimensions])
     return updated_coords

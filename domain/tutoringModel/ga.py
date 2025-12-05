@@ -2,6 +2,8 @@ import numpy as np
 
 import errors.errors as err
 from domain.tutoringModel import utils
+from domain.tutoringModel.utils import LearningElementSequence
+from utils import constants as cons
 
 
 class GeneticAlgorithm:
@@ -16,9 +18,9 @@ class GeneticAlgorithm:
 
     def __init__(
         self,
-        learning_elements=None,
+        learning_elements: LearningElementSequence | None = None,
     ):
-        self.learning_elements = learning_elements
+        self.learning_elements: list[str] | np.ndarray = []
         self.learning_style = {}
         self.best_population = []
         self.max_generation = 100
@@ -32,34 +34,54 @@ class GeneticAlgorithm:
         self.pop_size = 100
         self.first_is_present = False
         self.dimensionen = 4
+        self.click_dimension_weight = 3.0
 
         if learning_elements is not None:
-            #  convert learning element into
-            #  a list with the short name of learning element
-            le = utils.get_learning_element(learning_elements)
-            self.le_size = len(le)
+            sanitized_elements = utils.get_learning_element(learning_elements)
+            self.learning_elements = sanitized_elements
+            self.le_size = len(sanitized_elements)
 
-    def create_random_population(self, learning_style, input_view_time=None) -> None:
+    def create_random_population(
+        self, learning_style, input_view_time=None, click_scores=None
+    ) -> None:
         """Function for the calculation of the score.
         position a also Initialise some populations
         with Clustering if this is possible.
         param dict_coordinates"""
 
+        has_clicks = click_scores is not None
+        if click_scores is None:
+            click_scores = {}
+
         has_view_time = bool(input_view_time)
 
+        extra_dimensions = 1 if has_clicks else 0
         if has_view_time:
-            self.dimensionen = 6
+            extra_dimensions += 2
+
+        self.dimensionen = 4 + extra_dimensions
 
         coordinates = utils.get_coordinates(
             learning_style, self.learning_elements, self.dimensionen
         )
 
-        if not any(np.char.equal(self.learning_elements, "KÜ")):
+        if not any(np.char.equal(self.learning_elements, cons.abbreviation_ct)):
             self.dict_coordinate = {"first": (15,) * self.dimensionen}
             self.dict_coordinate.update(coordinates)
             self.first_is_present = True
         else:
             self.dict_coordinate = coordinates
+
+        if has_clicks:
+            # Clicks dimension is placed after the four ILS dimensions
+            click_index = 4
+            self.dict_coordinate = utils.apply_click_dimension(
+                self.dict_coordinate,
+                click_scores,
+                self.dimensionen,
+                click_index=click_index,
+                fallback_value=0,
+            )
 
         if has_view_time:
             norm_view_times = utils.added_view_times(input_view_time)
@@ -67,14 +89,22 @@ class GeneticAlgorithm:
                 self.dict_coordinate, norm_view_times
             )
 
-        self.le_coordinate = np.array(list(self.dict_coordinate.values()))
+        self.le_coordinate = np.array(list(self.dict_coordinate.values()), dtype=float)
+        if has_clicks:
+            self.le_coordinate[:, 4] *= self.click_dimension_weight
         self.learning_elements = np.array(list(self.dict_coordinate.keys()))
         self.le_size = len(self.learning_elements)
 
         sume = np.sum(self.le_coordinate, 1)
+        if has_clicks:
+            click_column = self.le_coordinate[:, 4]
+            # Boost individuals with higher click engagement (now lower values)
+            # so they remain competitive after the initial sorting.
+            sume -= 2 * click_column
         sume_sort_idx = np.flip(np.argsort(sume))
         self.le_coordinate = self.le_coordinate[sume_sort_idx]
         self.learning_elements = self.learning_elements[sume_sort_idx]
+        self._enforce_special_positions()
 
         self.population = utils.permutation_generator(self.le_size, self.pop_size)
         self.initial_individuals = np.arange(0, self.le_size)
@@ -166,6 +196,36 @@ class GeneticAlgorithm:
         population[8:13] = self.initial_individuals[1:]
         self.population[best_samples:] = population[:-best_samples].copy()
 
+    def _enforce_special_positions(self):
+        """Keep CT, CO, and AS in their required slots after sorting."""
+
+        def swap(idx_from, idx_to):
+            if idx_from == idx_to or idx_from < 0 or idx_to < 0:
+                return
+            self.learning_elements[[idx_from, idx_to]] = self.learning_elements[
+                [idx_to, idx_from]
+            ]
+            self.le_coordinate[[idx_from, idx_to]] = self.le_coordinate[
+                [idx_to, idx_from]
+            ]
+
+        def place(label, target_index):
+            matches = np.where(self.learning_elements == label)[0]
+            if matches.size == 0:
+                return
+            idx = int(matches[0])
+            if target_index < 0:
+                target_index = self.le_size + target_index
+            swap(idx, target_index)
+
+        if self.le_size == 0:
+            return
+
+        place(cons.abbreviation_ct, 0)
+        if self.le_size > 1:
+            place(cons.abbreviation_co, 1)
+        place(cons.abbreviation_as, -1)
+
     def calculate_learning_path_ga(self):
         """This function calculates the learning path with Genetic algorithm"""
         best_total_score = np.inf
@@ -221,11 +281,15 @@ class GeneticAlgorithm:
 
     def valid_elements(self, learning_elements):
         result = learning_elements
-        if "KÜ" in result and result[0] != "KÜ":
+        if cons.abbreviation_ct in result and result[0] != cons.abbreviation_ct:
             return True
-        if "EK" in result and result[0] != "EK" and result[1] != "EK":
+        if (
+            cons.abbreviation_co in result
+            and result[0] != cons.abbreviation_co
+            and result[1] != cons.abbreviation_co
+        ):
             return True
-        if "LZ" in result and result[-1] != "LZ":
+        if cons.abbreviation_as in result and result[-1] != cons.abbreviation_as:
             return True
         return False
 
@@ -308,8 +372,9 @@ class GeneticAlgorithm:
     def get_learning_path(
         self,
         input_learning_style=None,
-        input_learning_element=None,
+        input_learning_element: LearningElementSequence | None = None,
         input_view_time=None,
+        click_scores=None,
     ):
         """calculates and verifies the learning path the genetic algorithm"""
 
@@ -328,6 +393,8 @@ class GeneticAlgorithm:
         if len(self.learning_elements) == 1:
             return self.learning_elements[0]
 
-        self.create_random_population(input_learning_style, input_view_time)
+        self.create_random_population(
+            input_learning_style, input_view_time, click_scores=click_scores or {}
+        )
         result_ga = self.calculate_learning_path_ga()
         return result_ga
