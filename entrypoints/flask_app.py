@@ -328,6 +328,10 @@ def course_administration(data: Dict[str, Any], course_id, lms_course_id):
                         unit_of_work.SqlAlchemyUnitOfWork(),
                         learning_element["learning_element_id"],
                     )
+                    services.delete_learning_element_solution(
+                        unit_of_work.SqlAlchemyUnitOfWork(),
+                        learning_element["learning_element_id"],
+                    )
                     services.delete_learning_element(
                         unit_of_work.SqlAlchemyUnitOfWork(),
                         learning_element["learning_element_id"],
@@ -723,6 +727,10 @@ def topic_administration(data: Dict[str, Any], topic_id, lms_topic_id):
 
             for learning_element in learning_elements:
                 services.delete_student_learning_element_by_learning_element_id(
+                    unit_of_work.SqlAlchemyUnitOfWork(),
+                    learning_element["learning_element_id"],
+                )
+                services.delete_learning_element_solution(
                     unit_of_work.SqlAlchemyUnitOfWork(),
                     learning_element["learning_element_id"],
                 )
@@ -1784,6 +1792,13 @@ def post_calculate_rating(
                 learning_element_lms_id=learning_element_lms_id,
             )
 
+            # Init result and status code.
+            result = {}
+            status_code = 201
+
+            if not learning_element_by_lms:
+                return jsonify(result), status_code
+
             learning_element = services.get_learning_element_by_id(
                 uow=uow,
                 user_id=user_id,
@@ -1793,10 +1808,6 @@ def post_calculate_rating(
                 topic_id=topic_id,
                 learning_element_id=learning_element_by_lms["id"],
             )
-
-            # Init result and status code.
-            result = {}
-            status_code = 201
 
             # Get the activity type.
             activity_type = learning_element["activity_type"]
@@ -2459,6 +2470,82 @@ def get_learning_element_ratings():
             result = services.get_learning_element_ratings(
                 uow=unit_of_work.SqlAlchemyUnitOfWork()
             )
+            status_code = 200
+            return jsonify(result), status_code
+
+
+@app.route("/learningElement/<learning_element_lms_id>/solution", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_learning_element_solution(learning_element_lms_id: int):
+    match request.method:
+        case "GET":
+            result = services.get_learning_element_solution_by_learning_element_lms_id(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                learning_element_lms_id=learning_element_lms_id,
+            )
+            status_code = 200
+            return jsonify(result), status_code
+
+
+@app.route("/topic/<topic_id>/learningPath/solution", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_topic_solutions(topic_id: int):
+    match request.method:
+        case "GET":
+            result = services.get_topic_solutions(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                topic_id=topic_id,
+            )
+            status_code = 200
+            return jsonify(result), status_code
+
+
+@app.route("/learningElement/<learning_element_lms_id>/solution", methods=["POST"])
+@cross_origin(supports_credentials=True)
+@json_only()
+def post_learning_element_solution(data: Dict[str, Any], learning_element_lms_id: int):
+    match request.method:
+        case "POST":
+            entry = services.get_learning_element_solution_by_learning_element_lms_id(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                learning_element_lms_id=learning_element_lms_id,
+            )
+            if entry != {}:
+                raise err.AlreadyExisting()
+            condition2 = "activity_type" not in data
+            condition4 = "solution_lms_id" not in data
+            if condition2 or condition4:
+                raise err.MissingParameterError()
+            condition3 = type(data["activity_type"]) is str
+            condition5 = type(data["solution_lms_id"]) is int
+            if not (condition3 and condition5):
+                raise err.WrongParameterValueError()
+            result = services.add_learning_element_solution(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                learning_element_lms_id=learning_element_lms_id,
+                solution_lms_id=data["solution_lms_id"],
+                activity_type=data["activity_type"],
+            )
+            status_code = 201
+            return jsonify(result), status_code
+
+
+@app.route("/learningElement/<learning_element_id>/solution", methods=["DELETE"])
+@cross_origin(supports_credentials=True)
+def delete_learning_element_solution(learning_element_id: int):
+    match request.method:
+        case "DELETE":
+            entry = services.get_learning_element_solution_by_learning_element_id(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                learning_element_id=learning_element_id,
+            )
+            if entry == {}:
+                raise err.NoContentWarning()
+            services.delete_learning_element_solution(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                learning_element_id=learning_element_id,
+            )
+            result = {"message": cons.deletion_message}
             status_code = 200
             return jsonify(result), status_code
 
