@@ -826,13 +826,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 result.append(i)
         return result
 
-    def get_learning_element_recommendation(self, learning_path_id):
-        result = []
-        for i in self.learning_path_learning_element:
-            if i.learning_path_id == learning_path_id and i.recommended:
-                result.append(i)
-        return result
-
     def get_learning_element_solution(self, learning_element_lms_id):
         result = []
         for i in self.learning_element_solution:

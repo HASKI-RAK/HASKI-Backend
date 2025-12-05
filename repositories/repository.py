@@ -1580,15 +1580,6 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         except Exception:
             raise err.DatabaseQueryError()
 
-    def get_learning_element_recommendation(self, learning_path_id):
-        result = (
-            self.session.query(TM.LearningPathLearningElement)
-            .filter_by(learning_path_id=learning_path_id)
-            .filter_by(recommended=True)
-            .all()
-        )
-        return result
-
     def get_learning_element_solution(
         self, learning_element_lms_id
     ) -> DM.LearningElementSolution:

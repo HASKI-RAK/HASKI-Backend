@@ -1045,7 +1045,7 @@ def delete_learning_element_solution(
             uow.learning_element_solution.delete_learning_element_solution(
                 learning_element[0].lms_id
             )
-        uow.commit()
+            uow.commit()
 
 
 def delete_learning_path(uow: unit_of_work.AbstractUnitOfWork, learning_path_id):
@@ -2576,12 +2576,11 @@ def get_learning_element_solution_by_learning_element_lms_id(
     uow: unit_of_work.AbstractUnitOfWork, learning_element_lms_id: int
 ) -> dict:
     with uow:
-        result = {}
         solution = uow.learning_element_solution.get_learning_element_solution(
             learning_element_lms_id
         )
         if not solution:
-            return result
+            return {}
         return solution[0].serialize()
 
 
