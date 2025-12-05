@@ -2526,7 +2526,6 @@ def post_learning_element_solution(data: Dict[str, Any], learning_element_lms_id
             return jsonify(result), status_code
 
 
-
 @app.route("/learningElement/<learning_element_id>/solution", methods=["DELETE"])
 @cross_origin(supports_credentials=True)
 def delete_learning_element_solution(learning_element_id: int):
@@ -2534,7 +2533,7 @@ def delete_learning_element_solution(learning_element_id: int):
         case "DELETE":
             entry = services.get_learning_element_solution_by_learning_element_id(
                 uow=unit_of_work.SqlAlchemyUnitOfWork(),
-                learning_element_id=learning_element_id
+                learning_element_id=learning_element_id,
             )
             if entry == {}:
                 raise err.NoContentWarning()
