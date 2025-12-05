@@ -9,7 +9,7 @@ import errors.errors as err
 import repositories.repository as repository
 import service_layer.crypto.JWTKeyManagement as JWTKeyManagement
 import utils.constants as const
-from domain.domainModel.model import LearningElementRating
+from domain.domainModel.model import LearningElementRating, StudentLearningElement
 from domain.learnersModel.model import StudentRating
 from domain.userAdministartion import model as UA
 from service_layer import services, unit_of_work
@@ -42,6 +42,7 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         learning_characteristics=[],
         learning_element=[],
         learning_element_rating=[],
+        learning_element_solution=[],
         learning_path=[],
         learning_path_algorithm=[],
         lpath_le_algorithm=[],
@@ -57,7 +58,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         student=[],
         student_course=[],
         student_learning_element=[],
-        student_learning_element_visit=[],
         student_learning_path_learning_element_algorithm=[],
         student_rating=[],
         student_topic=[],
@@ -84,6 +84,7 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         self.learning_characteristics = set(learning_characteristics)
         self.learning_element = set(learning_element)
         self.learning_element_rating = set(learning_element_rating)
+        self.learning_element_solution = set(learning_element_solution)
         self.learning_path = set(learning_path)
         self.learning_path_algorithm = set(learning_path_algorithm)
         self.lpath_le_algorithm = set(lpath_le_algorithm)
@@ -99,7 +100,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         self.student = set(student)
         self.student_course = set(student_course)
         self.student_learning_element = set(student_learning_element)
-        self.student_learning_element_visit = set(student_learning_element_visit)
         self.student_learning_path_learning_element_algorithm = set(
             student_learning_path_learning_element_algorithm
         )
@@ -115,6 +115,10 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
     def add_course_creator_to_course(self, course_creator_course):
         course_creator_course.id = len(self.course_creator_course) + 1
         self.course_creator_course.add(course_creator_course)
+
+    def add_learning_element_solution(self, le_solution):
+        le_solution.id = len(self.learning_element_solution) + 1
+        self.learning_element_solution.add(le_solution)
 
     def add_student_learning_element_visit(self, student_learning_element_vist):
         student_learning_element_vist.id = len(self.student_learning_element_visit) + 1
@@ -243,6 +247,10 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
     def create_student(self, student):
         student.id = len(self.student) + 1
         self.student.add(student)
+
+    def add_student_learning_element(self, student_learning_element):
+        student_learning_element.id = len(self.student_learning_element) + 1
+        self.student_learning_element.add(student_learning_element)
 
     def add_student_lpath_le_algorithm(
         self, student_learning_path_learning_element_algorithm
@@ -412,6 +420,14 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         for remove in to_remove:
             self.learning_element.remove(remove)
 
+    def delete_learning_element_solution(self, learning_element_lms_id):
+        to_remove = []
+        for i in self.learning_element_solution:
+            if i.learning_element_lms_id == learning_element_lms_id:
+                to_remove.append(i)
+        for remove in to_remove:
+            self.learning_element_solution.remove(remove)
+
     def delete_learning_path(self, learning_path_id):
         to_remove = []
         for i in self.learning_path:
@@ -516,6 +532,19 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         for remove in to_remove:
             self.student_course.remove(remove)
 
+    def delete_student_learning_element_by_element(
+        self, student_id, learning_element_id
+    ):
+        to_remove = []
+        for i in self.student_learning_element:
+            if (
+                i.student_id == student_id
+                and i.learning_element_id == learning_element_id
+            ):
+                to_remove.append(i)
+        for remove in to_remove:
+            self.student_learning_element.remove(remove)
+
     def delete_student_learning_element(self, student_id):
         to_remove = []
         for i in self.student_learning_element:
@@ -533,24 +562,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 to_remove.append(i)
         for remove in to_remove:
             self.student_learning_element.remove(remove)
-
-    def delete_student_learning_element_visit(self, student_id):
-        to_remove = []
-        for i in self.student_learning_element_visit:
-            if i.self.student_id == student_id:
-                to_remove.append(i)
-        for remove in to_remove:
-            self.student_learning_element_visit.remove(remove)
-
-    def delete_student_learning_element_visit_by_learning_element_id(
-        self, learning_element_id
-    ):
-        to_remove = []
-        for i in self.student_learning_element_visit:
-            if i.self.learning_element_id == learning_element_id:
-                to_remove.append(i)
-        for remove in to_remove:
-            self.student_learning_element_visit.remove(remove)
 
     def delete_student_topic(self, student_id):
         to_remove = []
@@ -812,6 +823,20 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 result.append(i)
         return result
 
+    def get_learning_element_recommendation(self, learning_path_id):
+        result = []
+        for i in self.learning_path_learning_element:
+            if i.learning_path_id == learning_path_id and i.recommended:
+                result.append(i)
+        return result
+
+    def get_learning_element_solution(self, learning_element_lms_id):
+        result = []
+        for i in self.learning_element_solution:
+            if i.learning_element_lms_id == learning_element_lms_id:
+                result.append(i)
+        return result
+
     def get_learning_path(self, student_id, course_id, topic_id):
         result = []
         for i in self.learning_path:
@@ -957,6 +982,13 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 i.student_id == student_id
                 and i.learning_element_id == learning_element_id
             ):
+                result.append(i)
+        return result
+
+    def get_favorites_by_student_id(self, student_id):
+        result = []
+        for i in self.student_learning_element:
+            if i.student_id == student_id:
                 result.append(i)
         return result
 
@@ -1176,21 +1208,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         learning_style.id = len(self.learning_style)
         self.learning_style.add(learning_style)
 
-    def update_previous_learning_element_visit(self, student_id, visit_time):
-        to_update = next(
-            (
-                p
-                for p in self.student_learning_element_visit
-                if p.student_id == student_id and p.visit_start is None
-            ),
-            None,
-        )
-        if to_update is not None:
-            self.student_learning_element_visit.remove(to_update)
-            to_update.id = len(self.student_learning_element_visit)
-            to_update.visit_end = visit_time
-            self.student_learning_element_visit.add(to_update)
-
     def update_previous_topic_visit(self, student_id, visit_time):
         to_update = next(
             (
@@ -1212,26 +1229,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
             self.settings.remove(to_remove)
         settings.id = len(self.settings)
         self.settings.add(settings)
-
-    def update_student_learning_element(
-        self, student_id, learning_element_id, visit_time
-    ):
-        to_update = next(
-            (
-                p
-                for p in self.student_learning_element
-                if p.student_id == student_id
-                and p.learning_element_id == learning_element_id
-                and p.visit_start is None
-            ),
-            None,
-        )
-        if to_update is not None:
-            self.student_learning_element.remove(to_update)
-            to_update.id = len(self.student_learning_element)
-            to_update.done_at = visit_time
-            to_update.done = True
-            self.student_learning_element.add(to_update)
 
     def update_learning_path_learning_element_algorithm(
         self, topic_id, algorithm_short_name
@@ -1264,6 +1261,24 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
             to_update.student_id = student_id
             to_update.topic_id = topic_id
             self.student_learning_path_learning_element_algorithm.add(to_update)
+
+    def update_student_learning_element(
+        self, student_id, learning_element_id, is_favorite
+    ):
+        to_update = next(
+            (
+                p
+                for p in self.student_learning_element
+                if p.student_id == student_id
+                and p.learning_element_id == learning_element_id
+            ),
+            None,
+        )
+        if to_update is not None:
+            self.student_learning_element.remove(to_update)
+            to_update.id = len(self.student_learning_element)
+            to_update.favorite = is_favorite
+            self.student_learning_element.add(to_update)
 
     def update_topic(self, topic_id, topic):
         to_remove = next((p for p in self.topic if p.id == topic_id), None)
@@ -1301,6 +1316,7 @@ class FakeUnitOfWork(unit_of_work.AbstractUnitOfWork):  # pragma: no cover
         self.learning_characteristics = FakeRepository()
         self.learning_element = FakeRepository()
         self.learning_element_rating = FakeRepository()
+        self.learning_element_solution = FakeRepository()
         self.learning_path = FakeRepository()
         self.learning_path_algorithm = FakeRepository()
         self.lpath_le_algorithm = FakeRepository()
@@ -1316,7 +1332,6 @@ class FakeUnitOfWork(unit_of_work.AbstractUnitOfWork):  # pragma: no cover
         self.student = FakeRepository()
         self.student_course = FakeRepository()
         self.student_learning_element = FakeRepository()
-        self.student_learning_element_visit = FakeRepository()
         self.student_lpath_le_algorithm = FakeRepository()
         self.student_rating = FakeRepository()
         self.student_topic = FakeRepository()
@@ -1693,6 +1708,12 @@ def create_logbuffer_for_tests(uow):
     )
 
 
+def add_learning_element_solution_for_tests(uow):
+    services.add_learning_element_solution(
+        uow=uow, learning_element_lms_id=1, solution_lms_id=4, activity_type="resource"
+    )
+
+
 def add_student_to_course_for_tests(uow):
     services.add_student_to_course(uow=uow, student_id=1, course_id=1)
 
@@ -1752,6 +1773,31 @@ def create_learning_element_rating_for_tests_2(uow):
             rating_deviation=350,
             timestamp=datetime.datetime.now(),
         )
+
+
+def create_learning_element_rating_for_tests_2(uow):
+    list_of_ratings = [
+        1200,
+        1300,
+        1400,
+        1500,
+        1600,
+    ]
+    for i in range(len(list_of_ratings)):
+        services.create_learning_element_rating(
+            uow=uow,
+            learning_element_id=i + 1,
+            topic_id=1,
+            rating_value=list_of_ratings[i],
+            rating_deviation=350,
+            timestamp=datetime.datetime.now(),
+        )
+
+
+def create_student_learning_element_for_tests(uow):
+    uow.student_learning_element.add_student_learning_element(
+        StudentLearningElement(student_id=1, learning_element_id=1, is_favorite=True)
+    )
 
 
 # Starting with Tests
@@ -2790,6 +2836,36 @@ def test_get_activity_status_for_student_for_learning_element_for_course():
     assert result == [{"cmid": 2, "state": 0, "timecompleted": 0}]
 
 
+def test_get_favorites_by_student_id():
+    uow = FakeUnitOfWork()
+    create_student_learning_element_for_tests(uow)
+    result = services.get_favorites_by_student_id(uow=uow, student_id=1)
+    assert type(result) is dict
+    assert result != {}
+
+
+def test_update_student_learning_element():
+    uow = FakeUnitOfWork()
+    result = services.update_student_learning_element(
+        uow=uow, student_id=1, learning_element_id=1, is_favorite=True
+    )
+    assert type(result) is dict
+    assert result != {}
+
+
+def test_delete_student_learning_element():
+    uow = FakeUnitOfWork()
+    create_student_learning_element_for_tests(uow)
+    entries_beginning = len(uow.student_learning_element.student_learning_element)
+    result = services.delete_student_learning_element_by_element(
+        uow=uow, student_id=1, learning_element_id=1
+    )
+    assert type(result) is dict
+    assert result == {}
+    entries_after = len(uow.student_learning_element.student_learning_element)
+    assert entries_beginning - 1 == entries_after
+
+
 def test_get_course_by_id():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
@@ -3208,24 +3284,6 @@ def test_create_course_creator_course():
         uow=uow, created_by=1, course_id=1, created_at="2023-01-01"
     )
     entries_after = len(uow.course_creator_course.course_creator_course)
-    assert isinstance(result, dict)
-    assert result != {}
-    assert entries_beginning + 1 == entries_after
-
-
-def test_student_learning_element_visit():
-    uow = FakeUnitOfWork()
-    create_learning_element_for_tests_1(uow)
-    create_student_for_tests(uow)
-    entries_beginning = len(
-        uow.student_learning_element_visit.student_learning_element_visit
-    )
-    result = services.add_student_learning_element_visit(
-        uow=uow, student_id=1, learning_element_id=1, visit_start="2023-01-01"
-    )
-    entries_after = len(
-        uow.student_learning_element_visit.student_learning_element_visit
-    )
     assert isinstance(result, dict)
     assert result != {}
     assert entries_beginning + 1 == entries_after
@@ -3734,6 +3792,37 @@ def test_get_learning_element_ratings():
     result = services.get_learning_element_ratings(uow=uow)
     assert isinstance(result, list)
     assert result != []
+
+
+def test_add_learning_element_solution():
+    uow = FakeUnitOfWork()
+    result = services.add_learning_element_solution(
+        uow=uow,
+        learning_element_lms_id=1,
+        solution_lms_id=1,
+        activity_type="Test Solution",
+    )
+    assert type(result) is dict
+    assert result != {}
+
+
+def test_get_learning_element_solution():
+    uow = FakeUnitOfWork()
+    add_learning_element_solution_for_tests(uow=uow)
+    result = services.get_learning_element_solution_by_learning_element_id(
+        uow=uow, learning_element_lms_id=1
+    )
+    assert type(result) is dict
+    assert result != {}
+
+
+def test_delete_learning_element_solution():
+    uow = FakeUnitOfWork()
+    add_learning_element_solution_for_tests(uow=uow)
+    entries_before = len(uow.learning_element_solution.learning_element_solution)
+    services.delete_learning_element_solution(uow=uow, learning_element_id=1)
+    entries_after = len(uow.learning_element_solution.learning_element_solution)
+    assert entries_after == entries_before - 1
 
 
 def test_delete_learning_element_ratings_by_learning_element():

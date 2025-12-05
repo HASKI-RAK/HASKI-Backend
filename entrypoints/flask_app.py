@@ -726,6 +726,10 @@ def topic_administration(data: Dict[str, Any], topic_id, lms_topic_id):
                     unit_of_work.SqlAlchemyUnitOfWork(),
                     learning_element["learning_element_id"],
                 )
+                services.delete_learning_element_solution(
+                    unit_of_work.SqlAlchemyUnitOfWork(),
+                    learning_element["learning_element_id"],
+                )
                 services.delete_learning_element(
                     unit_of_work.SqlAlchemyUnitOfWork(),
                     learning_element["learning_element_id"],
@@ -980,39 +984,37 @@ def post_student_topic_visit(data: Dict[str, Any], student_id, lms_user_id, topi
 
 
 @app.route(
-    "/lms/student/<student_id>/<lms_user_id>/learningElement/"
-    + "<learning_element_id>",
-    methods=["POST"],
+    "/lms/student/<student_id>/learningElement/<learning_element_id>",
+    methods=["PUT"],
 )
 @cross_origin(supports_credentials=True)
-@json_only()
-def post_student_learning_element_id_visit(
-    data: Dict[str, Any], student_id, lms_user_id, learning_element_id
-):
-    method = request.method
-    match method:
-        case "POST":
-            condition1 = data is not None
-            condition2 = "visit_start" in data
-            if condition1 and condition2:
-                condition3 = type(data["visit_start"]) is str
-                condition4 = re.search(cons.date_format_search, data["visit_start"])
-                if condition3 and condition4:
-                    visit_start = datetime.strptime(
-                        data["visit_start"], cons.date_format
-                    ).date()
-                    result = services.add_student_learning_element_visit(
-                        unit_of_work.SqlAlchemyUnitOfWork(),
-                        student_id,
-                        learning_element_id,
-                        visit_start,
-                    )
-                    status_code = 201
-                    return jsonify(result), status_code
-                else:
-                    raise err.WrongParameterValueError()
-            else:
-                raise err.MissingParameterError()
+def put_student_learning_element(student_id, learning_element_id):
+    data = request.get_json()
+    if "is_favorite" not in data:
+        raise err.MissingParameterError()
+    result = services.update_student_learning_element(
+        unit_of_work.SqlAlchemyUnitOfWork(),
+        student_id,
+        learning_element_id,
+        data["is_favorite"],
+    )
+
+    status_code = 200
+    return jsonify(result), status_code
+
+
+@app.route(
+    "/lms/student/<student_id>/favorites",
+    methods=["GET"],
+)
+@cross_origin(supports_credentials=True)
+def get_favorites_by_student_id(student_id):
+    learning_elements = services.get_favorites_by_student_id(
+        unit_of_work.SqlAlchemyUnitOfWork(),
+        student_id,
+    )
+    status_code = 200
+    return jsonify(learning_elements), status_code
 
 
 @app.route(
@@ -2461,6 +2463,86 @@ def get_learning_element_ratings():
             )
             status_code = 200
             return jsonify(result), status_code
+
+
+@app.route("/learningElement/<learning_element_lms_id>/solution", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_learning_element_solution(learning_element_lms_id: int):
+    match request.method:
+        case "GET":
+            result = services.get_learning_element_solution_by_learning_element_lms_id(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                learning_element_lms_id=learning_element_lms_id,
+            )
+            status_code = 200
+            return jsonify(result), status_code
+
+
+@app.route("/topic/<topic_id>/learningPath/solution", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_topic_solutions(topic_id: int):
+    match request.method:
+        case "GET":
+            result = services.get_topic_solutions(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                topic_id=topic_id,
+            )
+            status_code = 200
+            return jsonify(result), status_code
+
+
+@app.route("/learningElement/<learning_element_lms_id>/solution", methods=["POST"])
+@cross_origin(supports_credentials=True)
+@json_only()
+def post_learning_element_solution(data: Dict[str, Any], learning_element_lms_id: int):
+    entry = services.get_learning_element_solution_by_learning_element_lms_id(
+        uow=unit_of_work.SqlAlchemyUnitOfWork(),
+        learning_element_lms_id=learning_element_lms_id,
+    )
+    condition1 = entry == {}
+    match request.method:
+        case "POST":
+            if condition1:
+                condition2 = "activity_type" not in data
+                condition3 = type(data["activity_type"]) is str
+                condition4 = "solution_lms_id" not in data
+                condition5 = type(data["solution_lms_id"]) is int
+                if condition2 and condition4:
+                    raise err.MissingParameterError()
+                elif condition3 and condition5:
+                    result = services.add_learning_element_solution(
+                        uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                        learning_element_lms_id=learning_element_lms_id,
+                        solution_lms_id=data["solution_lms_id"],
+                        activity_type=data["activity_type"],
+                    )
+                    status_code = 201
+                    return jsonify(result), status_code
+                else:
+                    raise err.WrongParameterValueError()
+            else:
+                raise err.AlreadyExisting()
+
+
+@app.route("/learningElement/<learning_element_id>/solution", methods=["DELETE"])
+@cross_origin(supports_credentials=True)
+def delete_learning_element_solution(learning_element_id: int):
+    entry = services.get_learning_element_solution_by_learning_element_id(
+        uow=unit_of_work.SqlAlchemyUnitOfWork(), learning_element_id=learning_element_id
+    )
+    condition1 = entry == {}
+    match request.method:
+        case "DELETE":
+            if not condition1:
+                services.delete_learning_element_solution(
+                    uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                    learning_element_id=learning_element_id,
+                )
+                result = {"message": cons.deletion_message}
+                status_code = 200
+                return jsonify(result), status_code
+            else:
+                raise err.NoContentWarning()
 
 
 @app.route(

@@ -60,6 +60,7 @@ path_algorithm = "/algorithm"
 path_student_algorithm = "/studentAlgorithm"
 path_teacher_algorithm = "/teacherAlgorithm"
 path_rating = "/rating"
+path_solution = "/solution"
 
 ils_complete = [
     "ar_1_f1",
@@ -1394,44 +1395,6 @@ class TestApi:
             + path_topic
             + "/"
             + str(topic_id)
-        )
-        r = client_class.post(url, json=input)
-        assert r.status_code == status_code_expected
-        response = json.loads(r.data.decode("utf-8").strip("\n"))
-        for key in keys_expected:
-            assert key in response.keys()
-
-    # Student visits Learning Element
-    @pytest.mark.parametrize(
-        "input, moodle_user_id, keys_expected,\
-                            status_code_expected",
-        [
-            # Working Example
-            (
-                {"visit_start": "2023-08-01T13:37:42Z"},
-                4,
-                ["student_id", "learning_element_id", "visit_start", "visit_end"],
-                201,
-            ),
-            # Wrong data format
-            ({"visit_start_time": "01.01.2023"}, 4, ["error", "message"], 400),
-            # Missing Parameter
-            ({"previous_learning_element_id": 1}, 4, ["error", "message"], 400),
-        ],
-    )
-    def test_post_learning_element_visit(
-        self, client_class, input, moodle_user_id, keys_expected, status_code_expected
-    ):
-        global student_id, learning_element_id
-        url = (
-            path_lms_student
-            + "/"
-            + str(student_id)
-            + "/"
-            + str(moodle_user_id)
-            + path_learning_element
-            + "/"
-            + str(learning_element_id)
         )
         r = client_class.post(url, json=input)
         assert r.status_code == status_code_expected
@@ -3776,6 +3739,45 @@ class TestApi:
         response = json.loads(r.data.decode("utf-8").strip("\n"))
         assert response == []
 
+    # Get favorites by student_id
+    @pytest.mark.parametrize(
+        "student_id, keys_expected,\
+                            status_code_expected",
+        [
+            # Working Example
+            (
+                1,
+                [
+                    "student_id",
+                    "learning_element_id",
+                    "is_favorite",
+                ],
+                200,
+            ),
+            # No student_id
+            (
+                None,
+                [
+                    "student_id",
+                    "learning_element_id",
+                    "is_favorite",
+                ],
+                200,
+            ),
+        ],
+    )
+    def test_get_favorites(
+        self, client_class, student_id, keys_expected, status_code_expected
+    ):
+        url = path_lms_student + "/" + str(student_id) + "/favorites"
+        r = client_class.get(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        assert "favorites" in response.keys()
+        for key in keys_expected:
+            for entry in response["favorites"]:
+                assert key in entry.keys()
+
     # PUT METHODS
     # Update the settings of a User
     @pytest.mark.parametrize(
@@ -3821,6 +3823,56 @@ class TestApi:
             user_id_use = user_id_student
         url = (
             path_user + "/" + str(user_id_use) + "/" + str(lms_user_id) + path_settings
+        )
+        r = client_class.put(url, json=request_body)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in keys_expected:
+            assert key in response.keys()
+
+    # Update student_learning_element with is_favorite status
+    @pytest.mark.parametrize(
+        "student_id, learning_element_id, request_body, keys_expected,\
+                            status_code_expected",
+        [
+            # Working Example
+            (
+                1,
+                1,
+                {"is_favorite": True},
+                [
+                    "student_id",
+                    "learning_element_id",
+                    "is_favorite",
+                ],
+                200,
+            ),
+            # Missing body
+            (
+                1,
+                1,
+                {},
+                ["error", "message"],
+                400,
+            ),
+        ],
+    )
+    def test_put_student_learning_element(
+        self,
+        client_class,
+        student_id,
+        learning_element_id,
+        request_body,
+        keys_expected,
+        status_code_expected,
+    ):
+        url = (
+            path_lms_student
+            + "/"
+            + str(student_id)
+            + path_learning_element
+            + "/"
+            + str(learning_element_id)
         )
         r = client_class.put(url, json=request_body)
         assert r.status_code == status_code_expected
@@ -4885,3 +4937,94 @@ class TestApi:
         response = json.loads(r.data.decode("utf-8").strip("\n"))
         for key in response.keys():
             assert key in keys_expected
+
+    # Create Learning Element Solution
+    @pytest.mark.parametrize(
+        "input, learning_element_lms_id, keys_expected,\
+                            status_code_expected, error",
+        [
+            # Working Example
+            (
+                {"activity_type": "resource", "solution_lms_id": 1},
+                1,
+                ["id", "learning_element_lms_id", "solution_lms_id", "activity_type"],
+                201,
+                False,
+            ),
+            # Fehlender Parameter (erwartet 400)
+            (
+                {},  # leeres JSON löst MissingParameterError aus
+                1,
+                ["error", "message"],
+                400,
+                True,
+            ),
+        ],
+    )
+    def test_add_learning_element_solution(
+        self,
+        client_class,
+        input,
+        learning_element_lms_id,
+        keys_expected,
+        status_code_expected,
+        error,
+    ):
+        url = path_learning_element + "/" + str(learning_element_lms_id) + "/solution"
+        r = client_class.post(url, json=input)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        if not error:
+            for key in response.keys():
+                assert key in keys_expected
+        else:
+            for key in keys_expected:
+                assert key in response.keys()
+
+    # Get Learning Element Solution
+    @pytest.mark.parametrize(
+        "learning_element_lms_id, keys_expected,\
+                            status_code_expected",
+        [
+            # Working Example
+            (
+                1,
+                ["id", "learning_element_lms_id", "solution_lms_id", "activity_type"],
+                200,
+            ),
+        ],
+    )
+    def test_get_learning_element_solution(
+        self, client_class, learning_element_lms_id, keys_expected, status_code_expected
+    ):
+        url = path_learning_element + "/" + str(learning_element_lms_id) + "/solution"
+        r = client_class.get(url)
+        assert r.status_code == status_code_expected
+        response = json.loads(r.data.decode("utf-8").strip("\n"))
+        for key in response.keys():
+            assert key in keys_expected
+
+    # Delete Learning Element Solution
+    @pytest.mark.parametrize(
+        "learning_element_lms_id, status_code_expected",
+        [
+            # Working Example
+            (1, 200),
+            # Solution already exists
+            (1, 204),
+        ],
+    )
+    def test_delete_learning_element_solution(
+        self, client_class, learning_element_lms_id, status_code_expected
+    ):
+        solution_lms_id = 4
+        url = (
+            path_learning_element
+            + "/"
+            + str(learning_element_lms_id)
+            + "/solution"
+            + "/"
+            + str(solution_lms_id)
+        )
+        r = client_class.delete(url)
+        assert r.status_code == status_code_expected
