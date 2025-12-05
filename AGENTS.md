@@ -2,6 +2,7 @@
 
 Use the tool calling functions given to you if needed.
 Use context7 if unsure about syntax.
+Run tests after writing code to ensure correctness.
 
 ## Python
 

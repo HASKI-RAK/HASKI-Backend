@@ -64,7 +64,8 @@ def handle_general_exception(ex):
 
 @app.errorhandler(err.AException)
 def handle_custom_exception(ex: err.AException):
-    response = json.dumps({"error": ex.__class__.__name__, "message": ex.message})
+    response = json.dumps(
+        {"error": ex.__class__.__name__, "message": ex.message})
     logger.error(response)
     return response, ex.status_code
 
@@ -168,10 +169,12 @@ def add_all_students_to_course(course_id):
     match method:
         case "POST":
             created_for = []
-            students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
+            students = services.get_all_students(
+                unit_of_work.SqlAlchemyUnitOfWork())
             for student in students:
                 user = services.get_user_by_id(
-                    unit_of_work.SqlAlchemyUnitOfWork(), student["user_id"], None
+                    unit_of_work.SqlAlchemyUnitOfWork(
+                    ), student["user_id"], None
                 )
                 courses = services.get_enrolled_university_courses(
                     unit_of_work.SqlAlchemyUnitOfWork(),
@@ -198,7 +201,8 @@ def add_all_students_to_course(course_id):
                 )
 
             return make_response(
-                jsonify({"CREATED": False, "course_id": course_id, "student_count": 0}),
+                jsonify(
+                    {"CREATED": False, "course_id": course_id, "student_count": 0}),
                 http.HTTPStatus.NOT_FOUND,
             )
 
@@ -227,7 +231,8 @@ def post_course(data: Dict[str, Any]):
             condition8 = type(data["university"]) is str
             condition9 = type(data["created_by"]) is int
             if not (condition6 and condition7 and condition8 and condition9):
-                raise err.WrongParameterValueError(message=cons.date_format_message)
+                raise err.WrongParameterValueError(
+                    message=cons.date_format_message)
 
             current_date = datetime.now().strftime(cons.date_format)
             start_date = datetime.strptime(current_date, cons.date_format)
@@ -238,7 +243,8 @@ def post_course(data: Dict[str, Any]):
                 and re.search(cons.date_format_search, data["start_date"]) is not None
             )
             if condition10:
-                start_date = datetime.strptime(data["start_date"], cons.date_format)
+                start_date = datetime.strptime(
+                    data["start_date"], cons.date_format)
 
             created_at = datetime.strptime(current_date, cons.date_format)
             course = services.create_course(
@@ -269,14 +275,16 @@ def course_administration(data: Dict[str, Any], course_id, lms_course_id):
             if not (condition1 and condition2 and condition3 and condition4):
                 raise err.MissingParameterError()
 
-            condition5 = re.search(cons.date_format_search, data["last_updated"])
+            condition5 = re.search(
+                cons.date_format_search, data["last_updated"])
             if not condition5:
                 raise err.WrongParameterValueError()
 
             start_date = None
             condition6 = "start_date" in data
             if condition6:
-                condition7 = re.search(cons.date_format_search, data["start_date"])
+                condition7 = re.search(
+                    cons.date_format_search, data["start_date"])
                 if not condition7:
                     raise err.WrongParameterValueError()
 
@@ -333,9 +341,11 @@ def course_administration(data: Dict[str, Any], course_id, lms_course_id):
                         learning_element["learning_element_id"],
                     )
 
-                services.delete_topic(unit_of_work.SqlAlchemyUnitOfWork(), topic["id"])
+                services.delete_topic(
+                    unit_of_work.SqlAlchemyUnitOfWork(), topic["id"])
 
-            services.delete_course(unit_of_work.SqlAlchemyUnitOfWork(), course_id)
+            services.delete_course(
+                unit_of_work.SqlAlchemyUnitOfWork(), course_id)
             result = {"message": cons.deletion_message}
             status_code = 200
             return jsonify(result), status_code
@@ -514,7 +524,8 @@ def post_learning_path_algorithm(data: Dict[str, Any]):
             condition2 = "short_name" in data and "full_name" in data
             if condition1 and condition2:
                 condition3 = (
-                    type(data["short_name"]) is str and type(data["full_name"]) is str
+                    type(data["short_name"]) is str and type(
+                        data["full_name"]) is str
                 )
                 available_algorithms = ["graf", "aco", "ga", "default"]
                 condition4 = data["short_name"].lower() in available_algorithms
@@ -576,11 +587,14 @@ def post_topic(data: Dict[str, Any], course_id):
             ):
                 raise err.WrongParameterValueError()
 
-            condition16 = re.search(cons.date_format_search, data["created_at"])
+            condition16 = re.search(
+                cons.date_format_search, data["created_at"])
             if not condition16:
-                raise err.WrongParameterValueError(message=cons.date_format_message)
+                raise err.WrongParameterValueError(
+                    message=cons.date_format_message)
 
-            created_at = datetime.strptime(data["created_at"], cons.date_format).date()
+            created_at = datetime.strptime(
+                data["created_at"], cons.date_format).date()
 
             topic = services.create_topic(
                 unit_of_work.SqlAlchemyUnitOfWork(),
@@ -619,7 +633,8 @@ def add_all_students_to_all_topics(course_id):
                 )
 
                 if services.is_student_enrolled_in_course(courses, course_id):
-                    services.add_student_to_topics(uow, student["id"], course_id)
+                    services.add_student_to_topics(
+                        uow, student["id"], course_id)
                     created_for.append(student["id"])
 
             if created_for:
@@ -635,7 +650,8 @@ def add_all_students_to_all_topics(course_id):
                 )
 
             return make_response(
-                jsonify({"CREATED": False, "course_id": course_id, "student_count": 0}),
+                jsonify(
+                    {"CREATED": False, "course_id": course_id, "student_count": 0}),
                 http.HTTPStatus.NOT_FOUND,
             )
 
@@ -670,12 +686,15 @@ def topic_administration(data: Dict[str, Any], topic_id, lms_topic_id):
             ):
                 raise err.MissingParameterError()
 
-            condition9 = re.search(cons.date_format_search, data["last_updated"])
-            condition10 = re.search(cons.date_format_search, data["created_at"])
+            condition9 = re.search(
+                cons.date_format_search, data["last_updated"])
+            condition10 = re.search(
+                cons.date_format_search, data["created_at"])
             if not (condition9 and condition10):
                 raise err.NoValidParameterValueError()
 
-            created_at = datetime.strptime(data["created_at"], cons.date_format).date()
+            created_at = datetime.strptime(
+                data["created_at"], cons.date_format).date()
 
             last_updated = datetime.strptime(
                 data["last_updated"], cons.date_format
@@ -731,7 +750,8 @@ def topic_administration(data: Dict[str, Any], topic_id, lms_topic_id):
                     learning_element["learning_element_id"],
                 )
 
-            services.delete_topic(unit_of_work.SqlAlchemyUnitOfWork(), topic_id)
+            services.delete_topic(
+                unit_of_work.SqlAlchemyUnitOfWork(), topic_id)
             result = {"message": cons.deletion_message}
             status_code = 200
             return jsonify(result), status_code
@@ -786,11 +806,14 @@ def create_learning_element(data: Dict[str, Any], topic_id):
             ):
                 raise err.WrongParameterValueError()
 
-            condition16 = re.search(cons.date_format_search, data["created_at"])
+            condition16 = re.search(
+                cons.date_format_search, data["created_at"])
             if not condition16:
-                raise err.WrongParameterValueError(message=cons.date_format_message)
+                raise err.WrongParameterValueError(
+                    message=cons.date_format_message)
 
-            created_at = datetime.strptime(data["created_at"], cons.date_format).date()
+            created_at = datetime.strptime(
+                data["created_at"], cons.date_format).date()
 
             learning_element = services.create_learning_element(
                 unit_of_work.SqlAlchemyUnitOfWork(),
@@ -804,7 +827,8 @@ def create_learning_element(data: Dict[str, Any], topic_id):
                 data["university"],
             )
 
-            students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
+            students = services.get_all_students(
+                unit_of_work.SqlAlchemyUnitOfWork())
 
             for student in students:
                 student_id = student["id"]
@@ -870,12 +894,16 @@ def learning_element_administration(
             ):
                 raise err.WrongParameterValueError()
 
-            condition17 = re.search(cons.date_format_search, data["created_at"])
-            condition18 = re.search(cons.date_format_search, data["last_updated"])
+            condition17 = re.search(
+                cons.date_format_search, data["created_at"])
+            condition18 = re.search(
+                cons.date_format_search, data["last_updated"])
             if not (condition17 and condition18):
-                raise err.WrongParameterValueError(message=cons.date_format_message)
+                raise err.WrongParameterValueError(
+                    message=cons.date_format_message)
 
-            created_at = datetime.strptime(data["created_at"], cons.date_format).date()
+            created_at = datetime.strptime(
+                data["created_at"], cons.date_format).date()
 
             last_updated = datetime.strptime(
                 data["last_updated"], cons.date_format
@@ -954,7 +982,8 @@ def post_student_topic_visit(data: Dict[str, Any], student_id, lms_user_id, topi
             condition1 = data is not None
             condition2 = "visit_start" in data
             if condition1 and condition2:
-                condition3 = re.search(cons.date_format_search, data["visit_start"])
+                condition3 = re.search(
+                    cons.date_format_search, data["visit_start"])
                 condition4 = type(data["visit_start"]) is str
                 if condition3 and condition4:
                     visit_start = datetime.strptime(
@@ -996,7 +1025,8 @@ def post_student_learning_element_id_visit(
             condition2 = "visit_start" in data
             if condition1 and condition2:
                 condition3 = type(data["visit_start"]) is str
-                condition4 = re.search(cons.date_format_search, data["visit_start"])
+                condition4 = re.search(
+                    cons.date_format_search, data["visit_start"])
                 if condition3 and condition4:
                     visit_start = datetime.strptime(
                         data["visit_start"], cons.date_format
@@ -1710,7 +1740,8 @@ def post_calculate_learning_path_for_all_students(
             uow = unit_of_work.SqlAlchemyUnitOfWork()
 
             # Get student and their courses.
-            students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
+            students = services.get_all_students(
+                unit_of_work.SqlAlchemyUnitOfWork())
 
             results = []
             for student in students:
@@ -1772,7 +1803,8 @@ def post_calculate_rating(
             uow = unit_of_work.SqlAlchemyUnitOfWork()
 
             # Get user by user id.
-            user = services.get_user_by_id(uow=uow, user_id=user_id, lms_user_id=None)
+            user = services.get_user_by_id(
+                uow=uow, user_id=user_id, lms_user_id=None)
 
             # Get student by user id.
             student = services.get_student_by_user_id(uow=uow, user_id=user_id)
@@ -1847,7 +1879,7 @@ def get_learning_path(user_id, lms_user_id, student_id, course_id, topic_id):
     method = request.method
     match method:
         case "GET":
-            result = services.get_learning_path(
+            result = services.recalculate_learning_path(
                 unit_of_work.SqlAlchemyUnitOfWork(),
                 user_id,
                 lms_user_id,
@@ -2053,7 +2085,8 @@ def post_student_lp_le_algorithm(
             if condition1:
                 condition2 = type(data["algorithm_short_name"]) is str
                 algorithm = services.get_learning_path_algorithm_by_short_name(
-                    unit_of_work.SqlAlchemyUnitOfWork(), data["algorithm_short_name"]
+                    unit_of_work.SqlAlchemyUnitOfWork(
+                    ), data["algorithm_short_name"]
                 )
                 condition3 = algorithm != {}
                 if condition2 and condition3:
@@ -2144,7 +2177,8 @@ def post_teacher_lp_le_algorithm(
 
             condition3 = type(data["algorithm_short_name"]) is str
             algorithm = services.get_learning_path_algorithm_by_short_name(
-                unit_of_work.SqlAlchemyUnitOfWork(), data["algorithm_short_name"]
+                unit_of_work.SqlAlchemyUnitOfWork(
+                ), data["algorithm_short_name"]
             )
             condition4 = algorithm != {}
             if not (condition3 and condition4):
@@ -2306,7 +2340,8 @@ def create_logbuffer(content, user_id):
 @app.route("/user/<user_id>/logbuffer", methods=["GET"])
 @cross_origin(supports_credentials=True)
 def get_logbuffer_by_user_id(user_id):
-    result = services.get_logbuffer(unit_of_work.SqlAlchemyUnitOfWork(), user_id)
+    result = services.get_logbuffer(
+        unit_of_work.SqlAlchemyUnitOfWork(), user_id)
     return make_response(jsonify(result), http.HTTPStatus.OK)
 
 
