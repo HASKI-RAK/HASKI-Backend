@@ -189,8 +189,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                 ):
                     self.oidc_login.verify_state()
 
-                    mock_verify_jwt.assert_called_once_with(
-                        "invalid_state_jwt")
+                    mock_verify_jwt.assert_called_once_with("invalid_state_jwt")
 
     def test_verify_state_invalid_payload(self):
         """[HASKI-REQ-0028] Test invalid state payload"""
@@ -213,8 +212,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                     with self.assertRaises(err.InvalidJWTError):
                         self.oidc_login.verify_state()
 
-                        mock_verify_jwt.assert_called_once_with(
-                            "invalid_state_jwt")
+                        mock_verify_jwt.assert_called_once_with("invalid_state_jwt")
                         mock_verify_state_jwt_payload.assert_called_once_with(
                             {"nonce": "invalid_nonce"}
                         )
@@ -246,8 +244,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                 ):
                     self.oidc_login.verify_id_token()
 
-                    mock_verify_jwt.assert_called_once_with(
-                        "valid_id_token_jwt")
+                    mock_verify_jwt.assert_called_once_with("valid_id_token_jwt")
 
     def test_verify_id_token_successful(self):
         """[HASKI-REQ-0028] Test successful ID token verification"""
@@ -534,8 +531,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
 
         # Mock nonce payload and user data
         nonce_payload = {"nonce": "valid_nonce"}
-        id_token = {
-            "https://purl.imsglobal.org/spec/lti/claim/roles": ["student"]}
+        id_token = {"https://purl.imsglobal.org/spec/lti/claim/roles": ["student"]}
         user_data = {
             "id": 1,
             "user_id": "user_123",
@@ -586,8 +582,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                                     "Roles."
                                     "RoleMapper."
                                     "get_permissions",
-                                    return_value=[
-                                        Permissions.READ, Permissions.WRITE],
+                                    return_value=[Permissions.READ, Permissions.WRITE],
                                 ):
                                     response = self.oidc_login.get_cookie_expiration()
                                     assert response.status == "200 OK"
@@ -793,8 +788,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                             16,
                             4,
                             4,
-                            tzinfo=datetime.timezone(
-                                datetime.timedelta(seconds=7200)),
+                            tzinfo=datetime.timezone(datetime.timedelta(seconds=7200)),
                         ),
                     }
                 ),

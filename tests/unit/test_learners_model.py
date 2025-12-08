@@ -9,8 +9,7 @@ from domain.learnersModel import model as LM
 class TestBasicQuestionnaireAlgorithms(unittest.TestCase):
     def test_basic_ils_algorithm(self):
         """[HASKI-REQ-0007] Test calculation of ILS learning style dimensions"""
-        ils_input = {"vv_1_f3": "a", "vv_2_f7": "a",
-                     "vv_3_f12": "b", "vv_4_f13": "a"}
+        ils_input = {"vv_1_f3": "a", "vv_2_f7": "a", "vv_3_f12": "b", "vv_4_f13": "a"}
         ils_perception = {
             "si_1_f2": "a",
             "si_2_f6": "a",
@@ -106,8 +105,7 @@ def test_calculate_student_rating():
         learning_element_id=1,
         learning_element_rating_value=1500,
         learning_element_rating_deviation=350,
-        learning_element_rating_timestamp=datetime.fromisoformat(
-            "2023-01-01 16:00"),
+        learning_element_rating_timestamp=datetime.fromisoformat("2023-01-01 16:00"),
     )
 
     assert result == {

@@ -702,8 +702,7 @@ def test_get_learning_path_default(learning_style, list_of_keys):
     list_of_le_size = rng.integers(2, 50, size=num_of_test)
 
     for i in range(num_of_test):
-        le_position = rng.integers(
-            2, len(list_of_keys), size=list_of_le_size[i])
+        le_position = rng.integers(2, len(list_of_keys), size=list_of_le_size[i])
         list_of_elements = list_of_keys[le_position]
         list_of_elements = rng.permutation(list_of_elements)
 
@@ -781,8 +780,7 @@ def test_calculate_variable_score_graf(
     [HASKI-REQ-0095]
     """
     algorithmus = Graf(student_id=1)
-    score = algorithmus.calculate_variable_score(
-        learning_element, learning_style)
+    score = algorithmus.calculate_variable_score(learning_element, learning_style)
     assert score == expected_result
 
 
@@ -863,8 +861,7 @@ def test_prepare_les_for_ga_2(learning_style, list_of_keys):
     list_of_le_size = rng.integers(2, 50, size=num_of_test)
 
     for i in range(num_of_test):
-        le_position = rng.integers(
-            2, len(list_of_keys), size=list_of_le_size[i])
+        le_position = rng.integers(2, len(list_of_keys), size=list_of_le_size[i])
         list_of_elements = list_of_keys[le_position]
         list_of_elements = rng.permutation(list_of_elements)
 
@@ -901,8 +898,7 @@ def test_prepare_les_for_ga_2(learning_style, list_of_keys):
                 "understanding_dimension": "glo",
                 "understanding_value": 9,
             },
-            ["ZF", "LZ", "ÜB", "SE", "BE", "AN",
-                "EK", "ZL", "AB", "KÜ", "FO", "RQ"],
+            ["ZF", "LZ", "ÜB", "SE", "BE", "AN", "EK", "ZL", "AB", "KÜ", "FO", "RQ"],
         ),
         (
             {

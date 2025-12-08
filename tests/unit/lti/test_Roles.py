@@ -66,8 +66,7 @@ class TestRoleMapper(unittest.TestCase):
         )
         self.assertEqual(role_mapper.get_role(), role_course_creator_string)
         self.assertEqual(
-            role_mapper.get_permissions(
-            ), [Permissions.READ, Permissions.WRITE]
+            role_mapper.get_permissions(), [Permissions.READ, Permissions.WRITE]
         )  # Replace with actual Permissions enum
 
 

@@ -15,7 +15,8 @@ from service_layer.service.SessionServiceFlask import (  # noqa: E501
 class TestSessionClass(unittest.TestCase):
     def test_constructor(self):
         """
-        [HASKI-REQ-0028] Test that the constructor initializes the object with the correct attributes.
+        [HASKI-REQ-0028] Test that the constructor \
+            initializes the object with the correct attributes.
         """
         session = Session()
         self.assertIsNone(session.expiration)
@@ -23,7 +24,8 @@ class TestSessionClass(unittest.TestCase):
 
     def test_setitem(self):
         """
-        [HASKI-REQ-0028] Test that the __setitem__ method modifies the 'modified' attribute to True.
+        [HASKI-REQ-0028] Test that the __setitem__ \
+            method modifies the 'modified' attribute to True.
         """
         session = Session()
         self.assertFalse(session.modified)  # Initial state
@@ -44,7 +46,8 @@ class TestSessionClass(unittest.TestCase):
 
     def test_getitem(self):
         """
-        [HASKI-REQ-0028] Test that the __getitem__ method returns the correct item value.
+        [HASKI-REQ-0028] Test that the __getitem__ \
+            method returns the correct item value.
         """
         session = Session(key="value")
         self.assertEqual(
