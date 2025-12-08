@@ -3317,7 +3317,7 @@ class TestApi:
     def test_get_remote_courses(
         self, client_class, keys_expected, status_code_expected, error
     ):
-        """[HASKI-REQ-0067] Proxies Moodle remote course list for the user (GH-30)."""
+        """[HASKI-REQ-0035] Proxies Moodle remote course list for the user (GH-30)."""
         url = "/lms" + path_user + "/1" + "/remote" + path_courses
         r = client_class.get(url)
         assert r.status_code == status_code_expected
