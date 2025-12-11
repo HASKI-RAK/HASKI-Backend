@@ -2387,7 +2387,7 @@ class TestApi:
         keys_expected_2,
         error,
     ):
-        """[HASKI-REQ-0053] Returns only the courses a \
+        """[HASKI-REQ-0035] Returns only the courses a \
             student participates in (GH-131)."""
         global user_id_student, student_id
         if error:
@@ -3166,7 +3166,7 @@ class TestApi:
         status_code_expected,
         error_admin,
     ):
-        """[HASKI-REQ-0065] Serves admin log retrieval endpoint (GH-15)."""
+        """[HASKI-REQ-0045] Serves admin log retrieval endpoint (GH-15)."""
         global user_id_admin, admin_id
         if error_admin:
             user_id_use = 99999
@@ -3881,7 +3881,7 @@ class TestApi:
         status_code_expected,
         error,
     ):
-        """[HASKI-REQ-0073] Updates theme/password settings via PUT (GH-81/GH-30)."""
+        """[HASKI-REQ-0070] Updates theme/password settings via PUT (GH-81/GH-30)."""
         global user_id_student
         if error:
             user_id_use = 99999
@@ -3989,7 +3989,7 @@ class TestApi:
         status_code_expected,
         error,
     ):
-        """[HASKI-REQ-0074] Updates FSLSM values via PUT (GH-30/GH-81)."""
+        """[HASKI-REQ-0048] Updates FSLSM values via PUT (GH-30/GH-81)."""
         global user_id_student, student_id
         if error:
             user_id_use = 99999
@@ -4552,7 +4552,7 @@ class TestApi:
     def test_reset_user_settings(
         self, client_class, lms_user_id, keys_expected, status_code_expected, error
     ):
-        """[HASKI-REQ-0073] Resets persisted theme/password defaults via DELETE."""
+        """[HASKI-REQ-0070] Resets persisted theme/password defaults via DELETE."""
         global user_id_student
         if error:
             user_id_use = 99999
@@ -4593,7 +4593,7 @@ class TestApi:
     def test_reset_learning_characteristics(
         self, client_class, lms_user_id, keys_expected, status_code_expected, error
     ):
-        """[HASKI-REQ-0079] Resets the consolidated learning profile."""
+        """[HASKI-REQ-0048] Resets the consolidated learning profile."""
         global user_id_student, student_id
         if error:
             user_id_use = 99999
@@ -4630,7 +4630,7 @@ class TestApi:
     def test_reset_learning_analytics(
         self, client_class, lms_user_id, keys_expected, status_code_expected, error
     ):
-        """[HASKI-REQ-0079] Clears the stored learning-analytics snapshot."""
+        """[HASKI-REQ-0048] Clears the stored learning-analytics snapshot."""
         global user_id_student, student_id
         if error:
             user_id_use = 99999
@@ -4683,7 +4683,7 @@ class TestApi:
     def test_reset_learning_style(
         self, client_class, lms_user_id, keys_expected, status_code_expected, error
     ):
-        """[HASKI-REQ-0079] Rebuilds the student's learning-style vector."""
+        """[HASKI-REQ-0048] Rebuilds the student's learning-style vector."""
         global user_id_student, student_id
         if error:
             user_id_use = 99999
@@ -4745,7 +4745,7 @@ class TestApi:
     def test_reset_learning_strategy(
         self, client_class, lms_user_id, keys_expected, status_code_expected, error
     ):
-        """[HASKI-REQ-0079] Clears the learning-strategy vectors."""
+        """[HASKI-REQ-0048] Clears the learning-strategy vectors."""
         global user_id_student, student_id
         if error:
             user_id_use = 99999
@@ -4784,7 +4784,7 @@ class TestApi:
     def test_reset_knowledge(
         self, client_class, lms_user_id, keys_expected, status_code_expected, error
     ):
-        """[HASKI-REQ-0079] Restores the base knowledge snapshot."""
+        """[HASKI-REQ-0048] Restores the base knowledge snapshot."""
         global user_id_student, student_id
         if error:
             user_id_use = 99999
@@ -4819,7 +4819,7 @@ class TestApi:
     def test_delete_contact_form(
         self, client_class, lms_user_id, user_id, status_code_expected
     ):
-        """[HASKI-REQ-0080] Deletes a processed support ticket."""
+        """[HASKI-REQ-0044] Deletes a processed support ticket."""
         user_id_student = user_id
         url = (
             path_user

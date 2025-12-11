@@ -2122,7 +2122,7 @@ def test_delete_user(role, lms_id):
 def test_update_settings():
     """
     Test updating user settings.
-    [HASKI-REQ-0073]
+    [HASKI-REQ-0070]
     """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
@@ -2135,7 +2135,7 @@ def test_update_settings():
 def test_reset_settings():
     """
     Test resetting user settings.
-    [HASKI-REQ-0073]
+    [HASKI-REQ-0070]
     """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
@@ -2149,7 +2149,7 @@ def test_reset_settings():
 def test_get_settings_for_user():
     """
     Test getting user settings.
-    [HASKI-REQ-0073]
+    [HASKI-REQ-0070]
     """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
@@ -2280,7 +2280,7 @@ def test_get_learning_characteristics():
 def test_reset_learning_characteristics():
     """
     Test resetting learning characteristics.
-    [HASKI-REQ-0079]
+    [HASKI-REQ-0048]
     """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
@@ -2464,7 +2464,7 @@ def test_create_questionnaire_ils(full_version):
 def test_delete_ils_input_answers():
     """
     Test deleting ILS input answers.
-    [HASKI-REQ-0079]
+    [HASKI-REQ-0048]
     """
     uow = FakeUnitOfWork()
     ils_input_answers = {}
@@ -2485,7 +2485,7 @@ def test_delete_ils_input_answers():
 def test_delete_ils_perception_answers():
     """
     Test deleting ILS perception answers.
-    [HASKI-REQ-0079]
+    [HASKI-REQ-0048]
     """
     uow = FakeUnitOfWork()
     ils_perception_answers = {}
@@ -2506,7 +2506,7 @@ def test_delete_ils_perception_answers():
 def test_delete_ils_processing_answers():
     """
     Test deleting ILS processing answers.
-    [HASKI-REQ-0079]
+    [HASKI-REQ-0048]
     """
     uow = FakeUnitOfWork()
     ils_processing_answers = {}
@@ -2527,7 +2527,7 @@ def test_delete_ils_processing_answers():
 def test_delete_ils_understanding_answers():
     """
     Test deleting ILS understanding answers.
-    [HASKI-REQ-0079]
+    [HASKI-REQ-0048]
     """
     uow = FakeUnitOfWork()
     ils_understanding_answers = {}
@@ -2551,7 +2551,7 @@ def test_delete_ils_understanding_answers():
 def test_delete_questionnaire_list_k():
     """
     Test deleting List K questionnaire.
-    [HASKI-REQ-0079]
+    [HASKI-REQ-0048]
     """
     uow = FakeUnitOfWork()
     services.create_user(
@@ -2588,7 +2588,7 @@ def test_delete_questionnaire_list_k():
 def test_delete_questionnaire_ils(full_version):
     """
     Test deleting ILS questionnaire.
-    [HASKI-REQ-0079]
+    [HASKI-REQ-0048]
     """
     uow = FakeUnitOfWork()
     services.create_user(
@@ -4054,7 +4054,7 @@ def test_reset_learning_style_by_student_id():
 def test_reset_learning_strategy_by_student_id():
     """
     Test resetting learning strategy by student ID.
-    [HASKI-REQ-0079]
+    [HASKI-REQ-0048]
     """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
@@ -4068,7 +4068,7 @@ def test_reset_learning_strategy_by_student_id():
 def test_update_learning_style_by_student_id():
     """
     Test updating learning style by student ID.
-    [HASKI-REQ-0074]
+    [HASKI-REQ-0048]
     """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
