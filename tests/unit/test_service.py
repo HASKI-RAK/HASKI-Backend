@@ -2622,7 +2622,7 @@ def test_delete_questionnaire_ils(full_version):
 def test_create_course_without_start_date():
     """
     Test creating a course without a start date.
-    [HASKI-REQ-0093]
+    [HASKI-REQ-0035]
     """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
@@ -2655,7 +2655,7 @@ def test_create_course_without_start_date():
 def test_create_course_with_start_date():
     """
     Test creating a course with a start date.
-    [HASKI-REQ-0093]
+    [HASKI-REQ-0035]
     """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
@@ -2993,7 +2993,7 @@ def test_get_activity_status_for_student_for_learning_element_for_course():
 def test_get_course_by_id():
     """
     Test getting a course by ID.
-    [HASKI-REQ-0093]
+    [HASKI-REQ-0035]
     """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
@@ -3006,7 +3006,7 @@ def test_get_course_by_id():
 def test_update_course_without_start_date():
     """
     Test updating a course without a start date.
-    [HASKI-REQ-0093]
+    [HASKI-REQ-0035]
     """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
@@ -3028,7 +3028,7 @@ def test_update_course_without_start_date():
 def test_update_course_with_start_date():
     """
     Test updating a course with a start date.
-    [HASKI-REQ-0093]
+    [HASKI-REQ-0035]
     """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
@@ -3066,7 +3066,7 @@ def test_delete_course():
 def test_create_course_topic():
     """
     Test creating a course topic.
-    [HASKI-REQ-0093]
+    [HASKI-REQ-0035]
     """
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.course_topic.course_topic)
@@ -3080,7 +3080,7 @@ def test_create_course_topic():
 def test_get_course_topic_by_course():
     """
     Test getting course topics by course.
-    [HASKI-REQ-0093]
+    [HASKI-REQ-0035]
     """
     uow = FakeUnitOfWork()
     create_course_topic_for_tests(uow)
@@ -3092,7 +3092,7 @@ def test_get_course_topic_by_course():
 def test_get_course_topic_by_topic():
     """
     Test getting course topics by topic.
-    [HASKI-REQ-0093]
+    [HASKI-REQ-0035]
     """
     uow = FakeUnitOfWork()
     create_course_topic_for_tests(uow)
@@ -3104,7 +3104,7 @@ def test_get_course_topic_by_topic():
 def test_delete_course_topic_by_course():
     """
     Test deleting course topics by course.
-    [HASKI-REQ-0093]
+    [HASKI-REQ-0035]
     """
     uow = FakeUnitOfWork()
     create_course_topic_for_tests(uow)
@@ -3119,7 +3119,7 @@ def test_delete_course_topic_by_course():
 def test_delete_course_topic_by_topic():
     """
     Test deleting course topics by topic.
-    [HASKI-REQ-0093]
+    [HASKI-REQ-0035]
     """
     uow = FakeUnitOfWork()
     create_course_topic_for_tests(uow)
@@ -3172,7 +3172,7 @@ def test_create_topic(
 ):
     """
     Test creating a topic.
-    [HASKI-REQ-0093]
+    [HASKI-REQ-0036]
     """
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.topic.topic)
@@ -3198,7 +3198,7 @@ def test_create_topic(
 def test_get_topic_by_id():
     """
     Test getting a topic by ID.
-    [HASKI-REQ-0093]
+    [HASKI-REQ-0035]
     """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
@@ -3220,7 +3220,7 @@ def test_get_topic_by_id():
 def test_update_topic():
     """
     Test updating a topic.
-    [HASKI-REQ-0093]
+    [HASKI-REQ-0036]
     """
     uow = FakeUnitOfWork()
     create_topic_for_tests(uow)
@@ -3292,7 +3292,7 @@ def test_delete_topic():
 def test_create_topic_learning_element():
     """
     Test creating a topic learning element.
-    [HASKI-REQ-0093]
+    [HASKI-REQ-0036]
     """
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.topic_learning_element.topic_learning_element)
@@ -3308,7 +3308,7 @@ def test_create_topic_learning_element():
 def test_get_topic_learning_element_by_topic():
     """
     Test getting topic learning elements by topic.
-    [HASKI-REQ-0093]
+    [HASKI-REQ-0036]
     """
     uow = FakeUnitOfWork()
     create_topic_learning_element_for_tests(uow)
@@ -3320,7 +3320,7 @@ def test_get_topic_learning_element_by_topic():
 def test_get_topic_learning_element_by_le():
     """
     Test getting topic learning elements by learning element.
-    [HASKI-REQ-0093]
+    [HASKI-REQ-0036]
     """
     uow = FakeUnitOfWork()
     create_topic_learning_element_for_tests(uow)
@@ -3334,7 +3334,7 @@ def test_get_topic_learning_element_by_le():
 def test_delete_topic_learning_element_by_topic():
     """
     Test deleting topic learning elements by topic.
-    [HASKI-REQ-0093]
+    [HASKI-REQ-0036]
     """
     uow = FakeUnitOfWork()
     create_topic_learning_element_for_tests(uow)
@@ -3349,7 +3349,7 @@ def test_delete_topic_learning_element_by_topic():
 def test_delete_topic_learning_element_by_le():
     """
     Test deleting topic learning elements by learning element.
-    [HASKI-REQ-0093]
+    [HASKI-REQ-0036]
     """
     uow = FakeUnitOfWork()
     create_topic_learning_element_for_tests(uow)
@@ -3439,7 +3439,7 @@ def test_update_learning_element():
 def test_delete_learning_element():
     """
     Test deleting a learning element.
-    [HASKI-REQ-0093]
+    [HASKI-REQ-0036]
     """
     uow = FakeUnitOfWork()
     create_learning_element_for_tests_1(uow)
@@ -3454,7 +3454,7 @@ def test_delete_learning_element():
 def test_add_student_to_course():
     """
     Test adding a student to a course.
-    [HASKI-REQ-0094]
+    [HASKI-REQ-0035]
     """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
@@ -3480,7 +3480,7 @@ def test_add_student_to_course():
 def test_add_teacher_to_course():
     """
     Test adding a teacher to a course.
-    [HASKI-REQ-0094]
+    [HASKI-REQ-0035]
     """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
@@ -3499,7 +3499,7 @@ def test_add_teacher_to_course():
 def test_create_course_creator_course():
     """
     Test creating a course creator course relation.
-    [HASKI-REQ-0094]
+    [HASKI-REQ-0035]
     """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
@@ -3652,7 +3652,7 @@ def test_delete_learning_paths_by_student_id():
 def test_get_courses_by_uni():
     """
     Test getting courses by university.
-    [HASKI-REQ-0094]
+    [HASKI-REQ-0035]
     """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
@@ -3669,7 +3669,7 @@ def test_get_courses_by_uni():
 def test_get_courses_by_student_id():
     """
     Test getting courses by student ID.
-    [HASKI-REQ-0094]
+    [HASKI-REQ-0035]
     """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
@@ -3785,7 +3785,7 @@ def test_get_learning_strategy_by_student_id():
 def test_get_les_for_course_id():
     """
     Test getting learning elements for a course ID.
-    [HASKI-REQ-0093]
+    [HASKI-REQ-0035]
     """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
@@ -3805,7 +3805,7 @@ def test_get_les_for_course_id():
 def test_get_les_for_course_and_topic_id():
     """
     Test getting learning elements for a course and topic ID.
-    [HASKI-REQ-0093]
+    [HASKI-REQ-0035]
     """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
@@ -3957,7 +3957,7 @@ def test_update_student_lpath_le_algorithm():
 def test_get_sub_topics():
     """
     Test getting sub-topics.
-    [HASKI-REQ-0093]
+    [HASKI-REQ-0035]
     """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
@@ -3978,7 +3978,7 @@ def test_get_sub_topics():
 def test_get_topics_by_student_and_course_id():
     """
     Test getting topics by student and course ID.
-    [HASKI-REQ-0093]
+    [HASKI-REQ-0035]
     """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
@@ -4418,3 +4418,4 @@ def test_update_ratings():
             "value": 1399.9159640386472,
         },
     }
+
