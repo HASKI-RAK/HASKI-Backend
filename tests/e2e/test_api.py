@@ -865,7 +865,7 @@ class TestApi:
         keys_expected,
         status_code_expected,
     ):
-        """[HASKI-REQ-0038] Validates teacher-course enrollment and error handling."""
+        """[HASKI-REQ-0035] Validates teacher-course enrollment and error handling."""
         global course_id, teacher_id
         if error_teacher:
             teacher_id_use = 99999
@@ -1025,7 +1025,7 @@ class TestApi:
     def test_post_student_learning_path_learning_element_algorithm(
         self, client_class, input, topic_id, keys_expected, status_code_expected
     ):
-        """[HASKI-REQ-0041] Validates student algorithm selection per topic (GH-83)."""
+        """[HASKI-REQ-0040] Validates student algorithm selection per topic (GH-83)."""
         global student_id
         url = (
             path_student
@@ -1154,7 +1154,7 @@ class TestApi:
     def test_p_student_learning_path_learning_element_algorithm(
         self, client_class, input, topic_id, keys_expected, status_code_expected
     ):
-        """[HASKI-REQ-0041] Validates LMS-aware student algorithm selection."""
+        """[HASKI-REQ-0040] Validates LMS-aware student algorithm selection."""
         global user_id_student
 
         url = (
@@ -2742,7 +2742,7 @@ class TestApi:
         error_course,
         error_topic,
     ):
-        """[HASKI-REQ-0058] Returns persisted learning paths per topic (GH-2)."""
+        """[HASKI-REQ-0059] Returns persisted learning paths per topic (GH-2)."""
         global user_id_student, student_id, course_id, sub_topic_id
         if error_student:
             student_id_use = 99999
@@ -4311,7 +4311,7 @@ class TestApi:
         status_code_expected,
         sub_topic,
     ):
-        """[HASKI-REQ-0076] Syncs topic/subtopic metadata with Moodle (GH-21)."""
+        """[HASKI-REQ-0036] Syncs topic/subtopic metadata with Moodle (GH-21)."""
         global course_id, topic_id, sub_topic_id
         if sub_topic:
             topic_id_use = sub_topic_id
@@ -4402,7 +4402,7 @@ class TestApi:
         keys_expected,
         status_code_expected,
     ):
-        """[HASKI-REQ-0077] Updates activity metadata from Moodle feeds (GH-21)."""
+        """[HASKI-REQ-0037] Updates activity metadata from Moodle feeds (GH-21)."""
         global course_id, sub_topic_id, learning_element_id
         url = (
             path_lms_learning_element
@@ -4505,7 +4505,7 @@ class TestApi:
     def test_api_add_all_students_to_course(
         self, client_class, keys_expected, status_code_expected, save_id
     ):
-        """[HASKI-REQ-0078] Bulk-syncs Moodle enrolments into a HASKI course."""
+        """[HASKI-REQ-0035] Bulk-syncs Moodle enrolments into a HASKI course."""
         url = path_course + "/" + str("2") + "/allStudents"
         r = client_class.post(url)
         assert r.status_code == status_code_expected
@@ -4527,7 +4527,7 @@ class TestApi:
     def test_api_add_all_students_to_topics(
         self, client_class, keys_expected, status_code_expected, save_id
     ):
-        """[HASKI-REQ-0078] Ensures course-topic enrolments mirror Moodle state."""
+        """[HASKI-REQ-0035] Ensures course-topic enrolments mirror Moodle state."""
         global course_id
         course_id_use = course_id
         url = path_course + "/" + str(course_id_use) + "/topics" + "/allStudents"
@@ -4890,7 +4890,7 @@ class TestApi:
         error_topic,
         error_le,
     ):
-        """[HASKI-REQ-0082] Removes a synced learning element via DELETE."""
+        """[HASKI-REQ-0035] Removes a synced learning element via DELETE."""
         global course_id, sub_topic_id, learning_element_id
         if error_le:
             learning_element_id_use = 99999
@@ -4933,7 +4933,7 @@ class TestApi:
         error_course,
         error_topic,
     ):
-        """[HASKI-REQ-0082] Deletes topics/subtopics mirrored from Moodle."""
+        """[HASKI-REQ-0035] Deletes topics/subtopics mirrored from Moodle."""
         global course_id, sub_topic_id
         if error_topic:
             topic_id_use = 99999
@@ -4960,7 +4960,7 @@ class TestApi:
     def test_api_delete_course_from_moodle(
         self, client_class, moodle_course_id, keys_expected, status_code_expected, error
     ):
-        """[HASKI-REQ-0082] Deletes a course and cascades to nested topics."""
+        """[HASKI-REQ-0035] Deletes a course and cascades to nested topics."""
         global course_id
         if error:
             course_id_use = 99999

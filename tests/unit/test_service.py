@@ -1856,7 +1856,7 @@ def test_get_user_by_lms_id():
 def test_student_learning_path_learning_element_algorithm():
     """
     Test adding a student learning path learning element algorithm.
-    [HASKI-REQ-0041]
+    [HASKI-REQ-0040]
     """
     uow = FakeUnitOfWork()
     create_student_learning_path_learning_element_algorithm_for_tests(uow)
@@ -3050,7 +3050,7 @@ def test_update_course_with_start_date():
 def test_delete_course():
     """
     Test deleting a course.
-    [HASKI-REQ-0082]
+    [HASKI-REQ-0035]
     """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
@@ -3269,7 +3269,7 @@ def test_update_topic():
 def test_delete_topic():
     """
     Test deleting a topic.
-    [HASKI-REQ-0082]
+    [HASKI-REQ-0035]
     """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
@@ -3411,7 +3411,7 @@ def test_get_learning_element_by_id():
 def test_update_learning_element():
     """
     Test updating a learning element.
-    [HASKI-REQ-0077]
+    [HASKI-REQ-0037]
     """
     uow = FakeUnitOfWork()
     create_learning_element_for_tests_1(uow)
@@ -3846,7 +3846,7 @@ def test_get_learning_path():
 def test_create_learning_path_algorithm():
     """
     Test creating a learning path algorithm.
-    [HASKI-REQ-0041]
+    [HASKI-REQ-0040]
     """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
@@ -3863,7 +3863,7 @@ def test_create_learning_path_algorithm():
 def test_get_learning_path_algorithm_by_id():
     """
     Test getting a learning path algorithm by ID.
-    [HASKI-REQ-0041]
+    [HASKI-REQ-0040]
     """
     uow = FakeUnitOfWork()
     create_learning_path_algorithm_for_tests(uow)
@@ -3875,7 +3875,7 @@ def test_get_learning_path_algorithm_by_id():
 def test_get_learning_path_algorithm_by_short_name():
     """
     Test getting a learning path algorithm by short name.
-    [HASKI-REQ-0041]
+    [HASKI-REQ-0040]
     """
     uow = FakeUnitOfWork()
     create_learning_path_algorithm_for_tests(uow)
@@ -3889,7 +3889,7 @@ def test_get_learning_path_algorithm_by_short_name():
 def test_create_learning_path_learning_element_algorithm():
     """
     Test creating a learning path learning element algorithm.
-    [HASKI-REQ-0041]
+    [HASKI-REQ-0040]
     """
     uow = FakeUnitOfWork()
     create_topic_for_tests(uow)
@@ -3907,7 +3907,7 @@ def test_create_learning_path_learning_element_algorithm():
 def test_get_lpath_le_algorithm_by_topic():
     """
     Test getting learning path learning element algorithm by topic.
-    [HASKI-REQ-0041]
+    [HASKI-REQ-0040]
     """
     uow = FakeUnitOfWork()
     create_learning_path_algorithm_for_tests(uow)
@@ -3920,7 +3920,7 @@ def test_get_lpath_le_algorithm_by_topic():
 def test_update_learning_path_learning_element_algorithm():
     """
     Test updating learning path learning element algorithm.
-    [HASKI-REQ-0041]
+    [HASKI-REQ-0040]
     """
     uow = FakeUnitOfWork()
     create_topic_for_tests(uow)
@@ -3938,7 +3938,7 @@ def test_update_learning_path_learning_element_algorithm():
 def test_update_student_lpath_le_algorithm():
     """
     Test updating student learning path learning element algorithm.
-    [HASKI-REQ-0041]
+    [HASKI-REQ-0040]
     """
     uow = FakeUnitOfWork()
     create_topic_for_tests(uow)
