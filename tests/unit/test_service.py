@@ -2015,7 +2015,7 @@ def test_create_news():
 def test_delete_admin():
     """
     Test deleting an admin user.
-    [HASKI-REQ-0081]
+    [HASKI-REQ-0069]
     """
     uow = FakeUnitOfWork()
     create_admin_for_tests(uow)
@@ -2030,7 +2030,7 @@ def test_delete_admin():
 def test_delete_course_creator():
     """
     Test deleting a course creator user.
-    [HASKI-REQ-0081]
+    [HASKI-REQ-0069]
     """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
@@ -2045,7 +2045,7 @@ def test_delete_course_creator():
 def test_delete_student():
     """
     Test deleting a student user.
-    [HASKI-REQ-0081]
+    [HASKI-REQ-0069]
     """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
@@ -2060,7 +2060,7 @@ def test_delete_student():
 def test_delete_teacher():
     """
     Test deleting a teacher user.
-    [HASKI-REQ-0081]
+    [HASKI-REQ-0069]
     """
     uow = FakeUnitOfWork()
     create_teacher_for_tests(uow)
@@ -2088,7 +2088,7 @@ def test_delete_teacher():
 def test_delete_user(role, lms_id):
     """
     Test deleting a user with different roles.
-    [HASKI-REQ-0081]
+    [HASKI-REQ-0069]
     """
     uow = FakeUnitOfWork()
     match role:
@@ -2173,7 +2173,7 @@ def test_get_student_learning_path_learning_element_algorithm():
 def test_update_user():
     """
     Test updating a user.
-    [HASKI-REQ-0075]
+    [HASKI-REQ-0069]
     """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)

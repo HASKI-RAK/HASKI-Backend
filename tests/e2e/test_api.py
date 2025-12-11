@@ -2585,7 +2585,7 @@ class TestApi:
         error_student,
         error_course,
     ):
-        """[HASKI-REQ-0056] Lists all authorized learning \
+        """[HASKI-REQ-0062] Lists all authorized learning \
             elements for a course (GH-21)."""
         global user_id_student, student_id, course_id
         if error_student:
@@ -2664,7 +2664,7 @@ class TestApi:
         error_course,
         error_topic,
     ):
-        """[HASKI-REQ-0057] Returns a single \
+        """[HASKI-REQ-0055] Returns a single \
             topic only when enrollment exists (GH-76)."""
         global user_id_student, student_id, course_id, topic_id
         if error_student:
@@ -2877,7 +2877,7 @@ class TestApi:
         error_course,
         error_topic,
     ):
-        """[HASKI-REQ-0061] Lists all subtopics for an enrolled student (GH-76)."""
+        """[HASKI-REQ-0055] Lists all subtopics for an enrolled student (GH-76)."""
         global user_id_student, student_id, course_id, topic_id
         if error_student:
             student_id_use = 99999
@@ -3054,7 +3054,7 @@ class TestApi:
         error_topic,
         error_le,
     ):
-        """[HASKI-REQ-0063] Returns a single learning \
+        """[HASKI-REQ-0062] Returns a single learning \
             element when enrollment exists (GH-21)."""
         global user_id_student, student_id, course_id
         global topic_id, learning_element_id
@@ -4069,7 +4069,7 @@ class TestApi:
     def test_update_user_from_moodle(
         self, client_class, input, moodle_user_id, keys_expected, status_code_expected
     ):
-        """[HASKI-REQ-0075] Synchronizes Moodle-ledger user metadata via PUT."""
+        """[HASKI-REQ-0069] Synchronizes Moodle-ledger user metadata via PUT."""
         global user_id_student
         url = path_lms_user + "/" + str(user_id_student) + "/" + str(moodle_user_id)
         r = client_class.put(url, json=input)
@@ -4848,7 +4848,7 @@ class TestApi:
     def test_delete_user(
         self, client_class, moodle_user_id, keys_expected, status_code_expected, student
     ):
-        """[HASKI-REQ-0081] Removes an LMS-linked HASKI user."""
+        """[HASKI-REQ-0069] Removes an LMS-linked HASKI user."""
         global user_id_student, user_id_teacher
         if student:
             user_id_use = user_id_student
