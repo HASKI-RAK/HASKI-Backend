@@ -1103,10 +1103,9 @@ def test_prepare_les_for_ga(learning_style, list_of_keys):
 
 
 @pytest.mark.parametrize(
-    "learning_style, list_of_keys, dict_view_time",
+    "list_of_keys, dict_view_time",
     [
         (
-            None,
             ["ÜB", "FO", "LZ", "SE", "AN", "KÜ", "EK"],
             {
                 "ÜB": (8, 800),
@@ -1119,18 +1118,6 @@ def test_prepare_les_for_ga(learning_style, list_of_keys):
             },
         ),
         (
-            {
-                "id": 1,
-                "characteristic_id": 1,
-                "perception_dimension": "int",
-                "perception_value": 7,
-                "input_dimension": "vis",
-                "input_value": 9,
-                "processing_dimension": "ref",
-                "processing_value": 5,
-                "understanding_dimension": "glo",
-                "understanding_value": 9,
-            },
             ["ZF", "LZ", "ÜB", "SE", "BE", "AN", "EK", "ZL", "AB", "KÜ", "FO", "RQ"],
             {
                 "ZF": (8, 800),
@@ -1150,7 +1137,7 @@ def test_prepare_les_for_ga(learning_style, list_of_keys):
         ),
     ],
 )
-def test_prepare_les_for_ga_for_all(list_of_keys):
+def test_prepare_les_for_ga_for_all(list_of_keys, dict_view_time):
     numbers = [1, 9]
     all_combinations = np.array(
         [
@@ -1191,7 +1178,7 @@ def test_prepare_les_for_ga_for_all(list_of_keys):
                 "understanding_dimension": dim[3],
                 "understanding_value": test[3],
             }
-            result = get_learning_path_ga(learning_style, list_of_keys)
+            result = get_learning_path_ga(learning_style, list_of_keys, dict_view_time)
             assert isinstance(result, str)
             assert ", " in result
             result = result.split(", ")
