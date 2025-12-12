@@ -4480,4 +4480,3 @@ def test_update_ratings():
             "value": 1399.9159640386472,
         },
     }
-
