@@ -18,6 +18,10 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
+    def add_learning_element_solution(self, le_solution: DM.LearningElementSolution):
+        raise NotImplementedError
+
+    @abc.abstractmethod
     def add_student_to_course(self, student_course) -> DM.StudentCourse:
         raise NotImplementedError
 
@@ -211,6 +215,10 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
 
     @abc.abstractmethod
     def delete_logbuffer(self, user_id):
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def delete_learning_element_solution(self, learning_element_lms_id):
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -527,6 +535,12 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
+    def get_learning_element_solution(
+        self, learning_element_lms_id
+    ) -> DM.LearningElementSolution:
+        raise NotImplementedError
+
+    @abc.abstractmethod
     def get_questionnaire_list_k_by_id(
         self, questionnaire_list_k_id: LM.QuestionnaireListK
     ) -> LM.QuestionnaireListK:
@@ -754,6 +768,14 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
     ) -> DM.CourseCreatorCourse:
         try:
             self.session.add(course_creator_course)
+        except IntegrityError:
+            raise err.ForeignKeyViolation()
+        except Exception:
+            raise err.CreationError()
+
+    def add_learning_element_solution(self, le_solution: DM.LearningElementSolution):
+        try:
+            self.session.add(le_solution)
         except IntegrityError:
             raise err.ForeignKeyViolation()
         except Exception:
@@ -1156,6 +1178,15 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         else:
             raise err.NoValidIdError()
 
+    def delete_learning_element_solution(self, learning_element_lms_id):
+        learning_element_solution = self.get_learning_element_solution(
+            learning_element_lms_id
+        )
+        if learning_element_solution != []:
+            self.session.query(DM.LearningElementSolution).filter_by(
+                learning_element_lms_id=learning_element_lms_id
+            ).delete()
+
     def delete_ils_input_answers(self, questionnaire_ils_id):
         ils_input_answers = self.get_ils_input_answers_by_id(questionnaire_ils_id)
         if ils_input_answers != []:
@@ -1527,10 +1558,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             .filter_by(id=learning_element_id)
             .all()
         )
-        if result == []:
-            raise err.NoValidIdError()
-        else:
-            return result
+        return result
 
     def get_learning_element_by_lms_id(
         self, learning_element_lms_id
@@ -1540,10 +1568,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             .filter_by(lms_id=learning_element_lms_id)
             .all()
         )
-        if result == []:
-            raise err.NoValidIdError()
-        else:
-            return result
+        return result
 
     def get_learning_elements_by_uni(self, university):
         try:
@@ -1554,6 +1579,16 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             )
         except Exception:
             raise err.DatabaseQueryError()
+
+    def get_learning_element_solution(
+        self, learning_element_lms_id
+    ) -> DM.LearningElementSolution:
+        result = (
+            self.session.query(DM.LearningElementSolution)
+            .filter_by(learning_element_lms_id=learning_element_lms_id)
+            .all()
+        )
+        return result
 
     def get_learning_path(self, student_id, course_id, topic_id) -> TM.LearningPath:
         result = (
