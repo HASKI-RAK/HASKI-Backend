@@ -6,10 +6,10 @@ import socket
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Union
 
+import requests
 from flask import Flask, jsonify, make_response, request
 from flask.wrappers import Response
 from flask_cors import CORS, cross_origin
-import requests
 from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
 
