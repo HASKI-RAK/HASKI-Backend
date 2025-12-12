@@ -2585,7 +2585,7 @@ class TestApi:
         error_student,
         error_course,
     ):
-        """[HASKI-REQ-0062] Lists all authorized learning \
+        """[HASKI-REQ-0037] Lists all authorized learning \
             elements for a course (GH-21)."""
         global user_id_student, student_id, course_id
         if error_student:
@@ -2964,7 +2964,7 @@ class TestApi:
         error_course,
         error_topic,
     ):
-        """[HASKI-REQ-0062] Lists topic learning \
+        """[HASKI-REQ-0037] Lists topic learning \
             elements for enrolled students (GH-21)."""
         global user_id_student, student_id, course_id, topic_id
         if error_student:
@@ -3054,7 +3054,7 @@ class TestApi:
         error_topic,
         error_le,
     ):
-        """[HASKI-REQ-0062] Returns a single learning \
+        """[HASKI-REQ-0037] Returns a single learning \
             element when enrollment exists (GH-21)."""
         global user_id_student, student_id, course_id
         global topic_id, learning_element_id
@@ -3560,7 +3560,7 @@ class TestApi:
         status_code_expected,
         error,
     ):
-        """[HASKI-REQ-0068] Mirrors Moodle section +\
+        """[HASKI-REQ-0035] Mirrors Moodle section +\
              module payloads for imports (GH-30)."""
         url = path_remote + path_course + "/" + expected_course_id + path_content
         r = client_class.get(url)
