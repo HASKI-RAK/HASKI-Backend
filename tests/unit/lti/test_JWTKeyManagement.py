@@ -101,7 +101,9 @@ class TestJWTKeyManagement(unittest.TestCase):
             print("Removed test_keys directory")
 
     def test_get_unverified_header(self):
-        """Test if a unverified header contains the correct information."""
+        """
+        [HASKI-REQ-0028] Test if a unverified header contains the correct information.
+        """
         # Arrange
         test_dictionary = {"a": "b"}
 
@@ -113,7 +115,9 @@ class TestJWTKeyManagement(unittest.TestCase):
         assert header["alg"] == "RS256" and header["typ"] == "JWT"
 
     def test_fail_get_unverified_header(self):
-        """Test if a unverified header with a wrong token fails."""
+        """
+        [HASKI-REQ-0028] Test if a unverified header with a wrong token fails.
+        """
         # Arrange
         test_dictionary = {"a": "b"}
 
@@ -126,7 +130,9 @@ class TestJWTKeyManagement(unittest.TestCase):
             jwt.get_unverified_header(corrupt_string.decode("utf-8"))
 
     def test_load_jwt(self):
-        """Test if the unverified claims contains the correct information."""
+        """
+        [HASKI-REQ-0028] Test if the unverified claims contains the correct information.
+        """
         # Arrange
         test_dictionary = {"a": "b"}
 
@@ -138,8 +144,10 @@ class TestJWTKeyManagement(unittest.TestCase):
         assert claims == test_dictionary
 
     def test_sign_verify_jwt(self):
-        """Test if a payload can be signed with a\
-            private key and verified with the public key."""
+        """
+        [HASKI-REQ-0028] Test if a payload can be signed with a
+        private key and verified with the public key.
+        """
         # Arrange
         test_dictionary = {"a": "b"}
 
@@ -151,8 +159,10 @@ class TestJWTKeyManagement(unittest.TestCase):
         assert test_dictionary == jwt.verify_jwt(token, key_public)
 
     def test_no_key_sign_verify_jwt(self):
-        """Test if a payload can be signed with a\
-            private key and verified with the public key."""
+        """
+        [HASKI-REQ-0028] Test if a payload can be signed with a
+        private key and verified with the public key.
+        """
         # Arrange
         test_dictionary = {"a": "b"}
 
@@ -163,8 +173,10 @@ class TestJWTKeyManagement(unittest.TestCase):
         assert test_dictionary == jwt.verify_jwt(token)
 
     def test_fail_verify_jwt(self):
-        """Test if a payload can be signed with a\
-            private key and verified with the public key."""
+        """
+        [HASKI-REQ-0028] Test if a payload can be signed with a
+        private key and verified with the public key.
+        """
         # Arrange
         test_dictionary = {"a": "b"}
 
@@ -176,8 +188,10 @@ class TestJWTKeyManagement(unittest.TestCase):
             jwt.verify_jwt(token + "a", key_public)
 
     def test_construct_jwt(self):
-        """Test if a payload can be signed with a\
-            private key and verified with the public key."""
+        """
+        [HASKI-REQ-0028] Test if a payload can be signed with a
+        private key and verified with the public key.
+        """
         # Arrange
 
         # Act
@@ -191,6 +205,9 @@ class TestJWTKeyManagement(unittest.TestCase):
         assert jwt.construct_key(hmac)
 
     def test_no_public_key_location(self):
+        """
+        [HASKI-REQ-0028] Test no public key location.
+        """
         with patch.object(
             jwt,
             "public_key_location",
@@ -202,6 +219,9 @@ class TestJWTKeyManagement(unittest.TestCase):
                 jwt.load_public_key()
 
     def test_no_private_key_location(self):
+        """
+        [HASKI-REQ-0028] Test no private key location.
+        """
         with patch.object(
             jwt,
             "private_key_location",
@@ -213,7 +233,9 @@ class TestJWTKeyManagement(unittest.TestCase):
                 jwt.sign_jwt({"a": "b"})
 
     def test_nonce_jwt(self):
-        """Test if a nonce-token can be generated and verified."""
+        """
+        [HASKI-REQ-0028] Test if a nonce-token can be generated and verified.
+        """
         # Arrange
         nonce = CryptoRandom().getrandomstring(32)
         state = CryptoRandom().getrandomstring(32)
@@ -235,7 +257,9 @@ class TestJWTKeyManagement(unittest.TestCase):
         assert SessionServiceFlask.get(nonce, "state_jwt") == state_jwt
 
     def test_state_jwt(self):
-        """Test if a state-token can be generated and verified."""
+        """
+        [HASKI-REQ-0028] Test if a state-token can be generated and verified.
+        """
         # Arrange
         state = CryptoRandom().getrandomstring(32)
         nonce = CryptoRandom().getrandomstring(32)

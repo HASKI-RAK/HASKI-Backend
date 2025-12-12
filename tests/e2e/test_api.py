@@ -866,6 +866,7 @@ class TestApi:
         keys_expected,
         status_code_expected,
     ):
+        """[HASKI-REQ-0035] Validates teacher-course enrollment and error handling."""
         global course_id, teacher_id
         if error_teacher:
             teacher_id_use = 99999
@@ -927,6 +928,7 @@ class TestApi:
         keys_expected,
         status_code_expected,
     ):
+        """[HASKI-REQ-0039] Validates student-course enrollment and safeguards."""
         global course_id, student_id
         if error_student:
             student_id_use = 99999
@@ -965,7 +967,7 @@ class TestApi:
         def test_add_student_to_course_duplicate(
             self, client_class, keys_expected, status_code_expected, save_id
         ):
-            """Test adding a student that's already enrolled in the course"""
+            """[HASKI-REQ-0039] Rejects duplicate student-course enrollments."""
             global course_id, student_id
             url = (
                 path_lms_course
@@ -995,6 +997,7 @@ class TestApi:
     def test_post_learning_path_algorithm(
         self, client_class, input, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0040] Validates creation of learning path algorithm catalog."""
         url = path_algorithm
         r = client_class.post(url, json=input)
         assert r.status_code == status_code_expected
@@ -1023,8 +1026,8 @@ class TestApi:
     def test_post_student_learning_path_learning_element_algorithm(
         self, client_class, input, topic_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0040] Validates student algorithm selection per topic (GH-83)."""
         global student_id
-
         url = (
             path_student
             + "/"
@@ -1100,6 +1103,7 @@ class TestApi:
         keys_expected,
         status_code_expected,
     ):
+        """[HASKI-REQ-0026] Validates tutor overrides for topic algorithms."""
         url = (
             path_user
             + "/"
@@ -1151,6 +1155,7 @@ class TestApi:
     def test_p_student_learning_path_learning_element_algorithm(
         self, client_class, input, topic_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0040] Validates LMS-aware student algorithm selection."""
         global user_id_student
 
         url = (
@@ -1227,6 +1232,8 @@ class TestApi:
         error_answer_list_k,
         error_list_k_id,
     ):
+        """[HASKI-REQ-0007] Persists LIST-K questionnaire \
+            submissions and guards invalid payloads."""
         json_input = {}
         list_k = []
         for id in list_k_ids:
@@ -1323,6 +1330,7 @@ class TestApi:
         error_key_wrong,
         error_answer_ils,
     ):
+        """[HASKI-REQ-0007] Guards and persists ILS questionnaire payloads (GH-182)."""
         json_input = {}
         ils = []
         if ils_long:
@@ -1385,6 +1393,7 @@ class TestApi:
     def test_post_topic_visit(
         self, client_class, input, moodle_user_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0042] Logs per-topic visit events for analytics (GH-136)."""
         global student_id, topic_id
         url = (
             path_lms_student
@@ -1423,6 +1432,7 @@ class TestApi:
     def test_post_learning_element_visit(
         self, client_class, input, moodle_user_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0042] Logs per-learning-element visit events (GH-136)."""
         global student_id, learning_element_id
         url = (
             path_lms_student
@@ -1482,6 +1492,8 @@ class TestApi:
     def test_post_learning_path(
         self, client_class, input, moodle_user_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0007] Calculates adaptive learning \
+            paths via tutoring model (GH-2)."""
         global user_id_student, student_id, course_id, sub_topic_id
         url = (
             path_user
@@ -1533,6 +1545,7 @@ class TestApi:
     def test_post_learning_path_ga(
         self, client_class, input, moodle_user_id, keys_exp, status_code_exp
     ):
+        """[HASKI-REQ-0007] Ensures GA-based learning paths are produced (GH-23)."""
         global user_id_student, student_id, course_id2, sub_topic_id2
         client_post = client_class.post(
             (
@@ -1598,6 +1611,7 @@ class TestApi:
     def test_post_learning_path_default(
         self, client_class, input, moodle_user_id, keys_exp, status_code_exp
     ):
+        """[HASKI-REQ-0026] Persists tutor-defined default learning paths (GH-84)."""
         global user_id_student, student_id, course_id2, sub_topic_id2
         client_post = client_class.post(
             (
@@ -1633,6 +1647,7 @@ class TestApi:
     def test_get_learning_path_default(
         self, client_class, moodle_user_id, keys_exp, status_code_exp
     ):
+        """[HASKI-REQ-0026] Serves tutor-defined default learning paths (GH-84)."""
         global user_id_student, student_id, course_id2, sub_topic_id2
         client_get = client_class.get(
             path_user
@@ -1675,6 +1690,8 @@ class TestApi:
     def test_post_calculate_learning_path(
         self, client_class, input, moodle_user_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0007] Allows postCalculate requests without \
+            explicit algorithm (GH-93)."""
         user_id_student = 4
         url = (
             path_user
@@ -1717,6 +1734,8 @@ class TestApi:
     def test_post_calculate_learning_path_for_all_students(
         self, client_class, input, moodle_user_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0026] Allows tutors to recalc \
+            every student's path for a topic (GH-84)."""
         global user_id_course_creator, course_id, sub_topic_id, user_id_student
         url = (
             "/v2"
@@ -1761,6 +1780,7 @@ class TestApi:
     def test_create_student_rating(
         self, client_class, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0043] Persists rating snapshots per student/topic (GH-106)."""
         url = (
             path_student
             + "/"
@@ -1795,6 +1815,7 @@ class TestApi:
     def test_get_student_ratings(
         self, client_class, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0043] Exposes stored student-topic ratings (GH-106)."""
         user_id_student = 4
         student_id = 2
         url = (
@@ -1831,6 +1852,8 @@ class TestApi:
     def test_create_learning_element_rating(
         self, client_class, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0043] Calculates metadata ratings \
+            for learning elements (GH-106)."""
         url = (
             path_topic
             + "/"
@@ -1865,6 +1888,8 @@ class TestApi:
     def test_get_learning_element_ratings(
         self, client_class, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0043] Lists all learning-element \
+            ratings for analytics (GH-106)."""
         url = path_learning_element + path_rating
         r = client_class.get(url)
         assert r.status_code == status_code_expected
@@ -1888,6 +1913,7 @@ class TestApi:
     def test_post_calculate_rating(
         self, mock_get, client_class, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0043] Recomputes ratings per Moodle attempt history (GH-106)."""
         mock_response_1 = mock.Mock(
             status_code=200, json=lambda: [{"modules": [{"id": 1, "instance": 1}]}]
         )
@@ -1956,6 +1982,7 @@ class TestApi:
     def test_post_contact_form(
         self, client_class, input, lms_user_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0044] Ensures students can submit categorized support tickets."""
         user_id_student = 4
         url = (
             path_user
@@ -2051,6 +2078,8 @@ class TestApi:
     def test_api_post_frontend_logs(
         self, client_class, input, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0045] Accepts Chrome Web \
+            Vitals payloads for ops telemetry (GH-15)."""
         url = path_frontend_logs
         r = client_class.post(url, json=input)
         assert r.status_code == status_code_expected
@@ -2085,6 +2114,7 @@ class TestApi:
         ],
     )
     def test_post_news(self, client_class, input, keys_expected, status_code_expected):
+        """[HASKI-REQ-0046] Persists university-filtered news for Newsbanner (GH-92)."""
         url = path_news
         r = client_class.post(url, json=input)
         assert r.status_code == status_code_expected
@@ -2119,6 +2149,7 @@ class TestApi:
     def test_post_logbuffer(
         self, client_class, input, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0047] Persists learner logbuffer entries (GH-104)."""
         user_id_student = 4
         url = path_user + "/" + str(user_id_student) + path_logbuffer
         r = client_class.post(url, json=input)
@@ -2152,6 +2183,7 @@ class TestApi:
     def test_get_students_learning_characteristics(
         self, client_class, lms_user_id, status_code_expected, keys_expected, error
     ):
+        """[HASKI-REQ-0048] Serves consolidated learning profile data (GH-30)."""
         global user_id_student, student_id
         if error:
             student_id_use = 99999
@@ -2188,6 +2220,7 @@ class TestApi:
     def test_get_students_learning_analytics(
         self, client_class, lms_user_id, status_code_expected, keys_expected, error
     ):
+        """[HASKI-REQ-0049] Exposes per-student learning analytics snapshots (GH-30)."""
         global user_id_student, student_id
         if error:
             student_id_use = 99999
@@ -2238,6 +2271,7 @@ class TestApi:
     def test_get_students_learning_style(
         self, client_class, lms_user_id, status_code_expected, keys_expected, error
     ):
+        """[HASKI-REQ-0050] Returns FSLSM dimensions per student (GH-30)."""
         global user_id_student, student_id
         if error:
             student_id_use = 99999
@@ -2274,6 +2308,7 @@ class TestApi:
     def test_get_students_learning_strategy(
         self, client_class, lms_user_id, status_code_expected, keys_expected, error
     ):
+        """[HASKI-REQ-0051] Delivers stored learning strategy vectors (GH-30)."""
         global user_id_student, student_id
         if error:
             student_id_use = 99999
@@ -2310,6 +2345,7 @@ class TestApi:
     def test_get_students_knowledge(
         self, client_class, lms_user_id, status_code_expected, keys_expected, error
     ):
+        """[HASKI-REQ-0052] Serves per-student knowledge profiles (GH-81)."""
         global user_id_student, student_id
         if error:
             student_id_use = 99999
@@ -2352,6 +2388,8 @@ class TestApi:
         keys_expected_2,
         error,
     ):
+        """[HASKI-REQ-0035] Returns only the courses a \
+            student participates in (GH-131)."""
         global user_id_student, student_id
         if error:
             student_id_use = 99999
@@ -2403,6 +2441,8 @@ class TestApi:
         error_student,
         error_course,
     ):
+        """[HASKI-REQ-0054] Enforces membership \
+            when fetching a single course (GH-131)."""
         global user_id_student, student_id, course_id
         if error_student:
             student_id_use = 99999
@@ -2471,6 +2511,7 @@ class TestApi:
         error_student,
         error_course,
     ):
+        """[HASKI-REQ-0055] Lists authorized course topics per student (GH-76)."""
         global user_id_student, student_id, course_id
         if error_student:
             student_id_use = 99999
@@ -2545,6 +2586,8 @@ class TestApi:
         error_student,
         error_course,
     ):
+        """[HASKI-REQ-0037] Lists all authorized learning \
+            elements for a course (GH-21)."""
         global user_id_student, student_id, course_id
         if error_student:
             student_id_use = 99999
@@ -2622,6 +2665,8 @@ class TestApi:
         error_course,
         error_topic,
     ):
+        """[HASKI-REQ-0055] Returns a single \
+            topic only when enrollment exists (GH-76)."""
         global user_id_student, student_id, course_id, topic_id
         if error_student:
             student_id_use = 99999
@@ -2698,6 +2743,7 @@ class TestApi:
         error_course,
         error_topic,
     ):
+        """[HASKI-REQ-0059] Returns persisted learning paths per topic (GH-2)."""
         global user_id_student, student_id, course_id, sub_topic_id
         if error_student:
             student_id_use = 99999
@@ -2749,6 +2795,7 @@ class TestApi:
     def test_get_learning_path_algorithm(
         self, client_class, user_id, topic_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0059] Exposes tutor-selected algorithms for a topic (GH-83)."""
         url = path_topic + "/" + str(topic_id) + path_teacher_algorithm
         r = client_class.get(url)
         assert r.status_code == status_code_expected
@@ -2770,6 +2817,7 @@ class TestApi:
     def test_get_learning_path_algorithm_student(
         self, client_class, topic_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0060] Returns student-selected algorithms per topic (GH-83)."""
         global user_id_student
         url = (
             path_user
@@ -2830,6 +2878,7 @@ class TestApi:
         error_course,
         error_topic,
     ):
+        """[HASKI-REQ-0055] Lists all subtopics for an enrolled student (GH-76)."""
         global user_id_student, student_id, course_id, topic_id
         if error_student:
             student_id_use = 99999
@@ -2916,6 +2965,8 @@ class TestApi:
         error_course,
         error_topic,
     ):
+        """[HASKI-REQ-0037] Lists topic learning \
+            elements for enrolled students (GH-21)."""
         global user_id_student, student_id, course_id, topic_id
         if error_student:
             student_id_use = 99999
@@ -3004,6 +3055,8 @@ class TestApi:
         error_topic,
         error_le,
     ):
+        """[HASKI-REQ-0037] Returns a single learning \
+            element when enrollment exists (GH-21)."""
         global user_id_student, student_id, course_id
         global topic_id, learning_element_id
         if error_student:
@@ -3068,6 +3121,7 @@ class TestApi:
         status_code_expected,
         error_user,
     ):
+        """[HASKI-REQ-0064] Provides admin-scoped user directory retrieval (GH-30)."""
         global user_id_admin, admin_id
         if error_user:
             user_id_use = 99999
@@ -3113,6 +3167,7 @@ class TestApi:
         status_code_expected,
         error_admin,
     ):
+        """[HASKI-REQ-0045] Serves admin log retrieval endpoint (GH-15)."""
         global user_id_admin, admin_id
         if error_admin:
             user_id_use = 99999
@@ -3156,6 +3211,7 @@ class TestApi:
         status_code_expected,
         error_teacher,
     ):
+        """[HASKI-REQ-0066] Returns only courses linked to the teacher (GH-21)."""
         global user_id_teacher, teacher_id
         if error_teacher:
             user_id_use = 99999
@@ -3262,6 +3318,7 @@ class TestApi:
     def test_get_remote_courses(
         self, client_class, keys_expected, status_code_expected, error
     ):
+        """[HASKI-REQ-0035] Proxies Moodle remote course list for the user (GH-30)."""
         url = "/lms" + path_user + "/1" + "/remote" + path_courses
         r = client_class.get(url)
         assert r.status_code == status_code_expected
@@ -3504,6 +3561,8 @@ class TestApi:
         status_code_expected,
         error,
     ):
+        """[HASKI-REQ-0035] Mirrors Moodle section +\
+             module payloads for imports (GH-30)."""
         url = path_remote + path_course + "/" + expected_course_id + path_content
         r = client_class.get(url)
         assert r.status_code == status_code_expected
@@ -3541,6 +3600,7 @@ class TestApi:
     def test_get_user_by_id(
         self, client_class, lms_user_id, keys_expected, status_code_expected, error
     ):
+        """[HASKI-REQ-0069] Delivers canonical user records per GH-30 OAS."""
         global user_id_student
         if error:
             user_id_use = 99999
@@ -3567,6 +3627,7 @@ class TestApi:
     def test_get_user_settings_by_id(
         self, client_class, lms_user_id, keys_expected, status_code_expected, error
     ):
+        """[HASKI-REQ-0070] Serves user-specific settings via LMS lookup (GH-81)."""
         global user_id_student
         if error:
             user_id_use = 99999
@@ -3606,6 +3667,7 @@ class TestApi:
         ],
     )
     def test_get_activity_status_for_student(self, client_class, course_id, student_id):
+        """[HASKI-REQ-0071] Exposes Moodle completion status lists per GH-30."""
         global user_id_student
         url = (
             path_lms_course
@@ -3652,6 +3714,8 @@ class TestApi:
     def test_get_activity_status_for_student_for_learning_element(
         self, client_class, course_id, student_id, learning_element_id
     ):
+        """[HASKI-REQ-0071] Filters completion status for\
+            single learning element (GH-30)."""
         global user_id_student
         url = (
             path_lms_course
@@ -3706,6 +3770,7 @@ class TestApi:
     def test_get_news(
         self, client_class, language_id, university, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0046] Delivers university/language-scoped news feed (GH-92)."""
         url = path_news + "/language/" + str(language_id) + "/university/"
         if university is not None:
             url = url + str(university)
@@ -3737,6 +3802,7 @@ class TestApi:
     def test_get_logbuffer(
         self, client_class, user_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0047] Returns user-specific logbuffer history (GH-104)."""
         url = path_user + "/" + str(user_id) + path_logbuffer
         r = client_class.get(url)
         assert r.status_code == status_code_expected
@@ -3758,6 +3824,7 @@ class TestApi:
     def test_get_learning_element_recommendation(
         self, client_class, user_id, status_code_expected
     ):
+        """[HASKI-REQ-0072] Returns ordered LE recommendations per GH-125."""
         global topic_id
         course_id = 1
         url = (
@@ -3815,6 +3882,7 @@ class TestApi:
         status_code_expected,
         error,
     ):
+        """[HASKI-REQ-0070] Updates theme/password settings via PUT (GH-81/GH-30)."""
         global user_id_student
         if error:
             user_id_use = 99999
@@ -3922,6 +3990,7 @@ class TestApi:
         status_code_expected,
         error,
     ):
+        """[HASKI-REQ-0048] Updates FSLSM values via PUT (GH-30/GH-81)."""
         global user_id_student, student_id
         if error:
             user_id_use = 99999
@@ -4001,6 +4070,7 @@ class TestApi:
     def test_update_user_from_moodle(
         self, client_class, input, moodle_user_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0069] Synchronizes Moodle-ledger user metadata via PUT."""
         global user_id_student
         url = path_lms_user + "/" + str(user_id_student) + "/" + str(moodle_user_id)
         r = client_class.put(url, json=input)
@@ -4058,6 +4128,7 @@ class TestApi:
     def test_update_course_from_moodle(
         self, client_class, input, moodle_course_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0035] Updates course metadata from Moodle payloads (GH-21)."""
         global course_id
         url = path_lms_course + "/" + str(course_id) + "/" + str(moodle_course_id)
         r = client_class.put(url, json=input)
@@ -4124,6 +4195,7 @@ class TestApi:
     def test_update_course_from_moodle_with_start_date(
         self, client_class, input, moodle_course_id, keys_expected, status_code_expected
     ):
+        """[HASKI-REQ-0035] Persists Moodle start dates on course updates (GH-21)."""
         global course_id
         url = path_lms_course + "/" + str(course_id) + "/" + str(moodle_course_id)
         r = client_class.put(url, json=input)
@@ -4240,6 +4312,7 @@ class TestApi:
         status_code_expected,
         sub_topic,
     ):
+        """[HASKI-REQ-0036] Syncs topic/subtopic metadata with Moodle (GH-21)."""
         global course_id, topic_id, sub_topic_id
         if sub_topic:
             topic_id_use = sub_topic_id
@@ -4330,6 +4403,7 @@ class TestApi:
         keys_expected,
         status_code_expected,
     ):
+        """[HASKI-REQ-0037] Updates activity metadata from Moodle feeds (GH-21)."""
         global course_id, sub_topic_id, learning_element_id
         url = (
             path_lms_learning_element
@@ -4432,6 +4506,7 @@ class TestApi:
     def test_api_add_all_students_to_course(
         self, client_class, keys_expected, status_code_expected, save_id
     ):
+        """[HASKI-REQ-0035] Bulk-syncs Moodle enrolments into a HASKI course."""
         url = path_course + "/" + str("2") + "/allStudents"
         r = client_class.post(url)
         assert r.status_code == status_code_expected
@@ -4453,6 +4528,7 @@ class TestApi:
     def test_api_add_all_students_to_topics(
         self, client_class, keys_expected, status_code_expected, save_id
     ):
+        """[HASKI-REQ-0035] Ensures course-topic enrolments mirror Moodle state."""
         global course_id
         course_id_use = course_id
         url = path_course + "/" + str(course_id_use) + "/topics" + "/allStudents"
@@ -4477,6 +4553,7 @@ class TestApi:
     def test_reset_user_settings(
         self, client_class, lms_user_id, keys_expected, status_code_expected, error
     ):
+        """[HASKI-REQ-0070] Resets persisted theme/password defaults via DELETE."""
         global user_id_student
         if error:
             user_id_use = 99999
@@ -4517,6 +4594,7 @@ class TestApi:
     def test_reset_learning_characteristics(
         self, client_class, lms_user_id, keys_expected, status_code_expected, error
     ):
+        """[HASKI-REQ-0048] Resets the consolidated learning profile."""
         global user_id_student, student_id
         if error:
             user_id_use = 99999
@@ -4553,6 +4631,7 @@ class TestApi:
     def test_reset_learning_analytics(
         self, client_class, lms_user_id, keys_expected, status_code_expected, error
     ):
+        """[HASKI-REQ-0048] Clears the stored learning-analytics snapshot."""
         global user_id_student, student_id
         if error:
             user_id_use = 99999
@@ -4605,6 +4684,7 @@ class TestApi:
     def test_reset_learning_style(
         self, client_class, lms_user_id, keys_expected, status_code_expected, error
     ):
+        """[HASKI-REQ-0048] Rebuilds the student's learning-style vector."""
         global user_id_student, student_id
         if error:
             user_id_use = 99999
@@ -4666,6 +4746,7 @@ class TestApi:
     def test_reset_learning_strategy(
         self, client_class, lms_user_id, keys_expected, status_code_expected, error
     ):
+        """[HASKI-REQ-0048] Clears the learning-strategy vectors."""
         global user_id_student, student_id
         if error:
             user_id_use = 99999
@@ -4704,6 +4785,7 @@ class TestApi:
     def test_reset_knowledge(
         self, client_class, lms_user_id, keys_expected, status_code_expected, error
     ):
+        """[HASKI-REQ-0048] Restores the base knowledge snapshot."""
         global user_id_student, student_id
         if error:
             user_id_use = 99999
@@ -4738,6 +4820,7 @@ class TestApi:
     def test_delete_contact_form(
         self, client_class, lms_user_id, user_id, status_code_expected
     ):
+        """[HASKI-REQ-0044] Deletes a processed support ticket."""
         user_id_student = user_id
         url = (
             path_user
@@ -4907,6 +4990,7 @@ class TestApi:
     def test_delete_user(
         self, client_class, moodle_user_id, keys_expected, status_code_expected, student
     ):
+        """[HASKI-REQ-0069] Removes an LMS-linked HASKI user."""
         global user_id_student, user_id_teacher
         if student:
             user_id_use = user_id_student
@@ -4948,6 +5032,7 @@ class TestApi:
         error_topic,
         error_le,
     ):
+        """[HASKI-REQ-0035] Removes a synced learning element via DELETE."""
         global course_id, sub_topic_id, learning_element_id
         if error_le:
             learning_element_id_use = 99999
@@ -4990,6 +5075,7 @@ class TestApi:
         error_course,
         error_topic,
     ):
+        """[HASKI-REQ-0035] Deletes topics/subtopics mirrored from Moodle."""
         global course_id, sub_topic_id
         if error_topic:
             topic_id_use = 99999
@@ -5016,6 +5102,7 @@ class TestApi:
     def test_api_delete_course_from_moodle(
         self, client_class, moodle_course_id, keys_expected, status_code_expected, error
     ):
+        """[HASKI-REQ-0035] Deletes a course and cascades to nested topics."""
         global course_id
         if error:
             course_id_use = 99999
