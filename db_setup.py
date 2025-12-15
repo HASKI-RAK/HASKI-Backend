@@ -1183,7 +1183,7 @@ def setup_db(
           CREATE TABLE IF NOT EXISTS public.learning_element_solution
           (
               id integer NOT NULL GENERATED ALWAYS AS IDENTITY
-          ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+              ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
               learning_element_lms_id integer NOT NULL,
               solution_lms_id integer NOT NULL,
               activity_type text COLLATE pg_catalog."default" NOT NULL,
@@ -1194,7 +1194,7 @@ def setup_db(
               TABLESPACE pg_default;
 
           ALTER TABLE IF EXISTS public.learning_element_solution
-              OWNER to postgres; \
+              OWNER to postgres;
           """
 
     cursor.execute(sql)
