@@ -928,7 +928,7 @@ class TestApi:
         keys_expected,
         status_code_expected,
     ):
-        """[HASKI-REQ-0039] Validates student-course enrollment and safeguards."""
+        """[HASKI-REQ-0034] Validates student-course enrollment and safeguards."""
         global course_id, student_id
         if error_student:
             student_id_use = 99999
@@ -967,7 +967,7 @@ class TestApi:
         def test_add_student_to_course_duplicate(
             self, client_class, keys_expected, status_code_expected, save_id
         ):
-            """[HASKI-REQ-0039] Rejects duplicate student-course enrollments."""
+            """[HASKI-REQ-0034] Rejects duplicate student-course enrollments."""
             global course_id, student_id
             url = (
                 path_lms_course
@@ -2220,7 +2220,7 @@ class TestApi:
     def test_get_students_learning_analytics(
         self, client_class, lms_user_id, status_code_expected, keys_expected, error
     ):
-        """[HASKI-REQ-0049] Exposes per-student learning analytics snapshots (GH-30)."""
+        """[HASKI-REQ-0048] Exposes per-student learning analytics snapshots (GH-30)."""
         global user_id_student, student_id
         if error:
             student_id_use = 99999
@@ -2271,7 +2271,7 @@ class TestApi:
     def test_get_students_learning_style(
         self, client_class, lms_user_id, status_code_expected, keys_expected, error
     ):
-        """[HASKI-REQ-0050] Returns FSLSM dimensions per student (GH-30)."""
+        """[HASKI-REQ-0048] Returns FSLSM dimensions per student (GH-30)."""
         global user_id_student, student_id
         if error:
             student_id_use = 99999
@@ -2308,7 +2308,7 @@ class TestApi:
     def test_get_students_learning_strategy(
         self, client_class, lms_user_id, status_code_expected, keys_expected, error
     ):
-        """[HASKI-REQ-0051] Delivers stored learning strategy vectors (GH-30)."""
+        """[HASKI-REQ-0048] Delivers stored learning strategy vectors (GH-30)."""
         global user_id_student, student_id
         if error:
             student_id_use = 99999
@@ -2345,7 +2345,7 @@ class TestApi:
     def test_get_students_knowledge(
         self, client_class, lms_user_id, status_code_expected, keys_expected, error
     ):
-        """[HASKI-REQ-0052] Serves per-student knowledge profiles (GH-81)."""
+        """[HASKI-REQ-0048] Serves per-student knowledge profiles (GH-81)."""
         global user_id_student, student_id
         if error:
             student_id_use = 99999
@@ -2441,7 +2441,7 @@ class TestApi:
         error_student,
         error_course,
     ):
-        """[HASKI-REQ-0054] Enforces membership \
+        """[HASKI-REQ-0035] Enforces membership \
             when fetching a single course (GH-131)."""
         global user_id_student, student_id, course_id
         if error_student:
@@ -2817,7 +2817,7 @@ class TestApi:
     def test_get_learning_path_algorithm_student(
         self, client_class, topic_id, keys_expected, status_code_expected
     ):
-        """[HASKI-REQ-0060] Returns student-selected algorithms per topic (GH-83)."""
+        """[HASKI-REQ-0059] Returns student-selected algorithms per topic (GH-83)."""
         global user_id_student
         url = (
             path_user
