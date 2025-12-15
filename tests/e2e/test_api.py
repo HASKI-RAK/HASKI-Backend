@@ -5032,7 +5032,7 @@ class TestApi:
         error_topic,
         error_le,
     ):
-        """[HASKI-REQ-0035] Removes a synced learning element via DELETE."""
+        """[HASKI-REQ-0082] Removes a synced learning element via DELETE."""
         global course_id, sub_topic_id, learning_element_id
         if error_le:
             learning_element_id_use = 99999
@@ -5075,7 +5075,7 @@ class TestApi:
         error_course,
         error_topic,
     ):
-        """[HASKI-REQ-0035] Deletes topics/subtopics mirrored from Moodle."""
+        """[HASKI-REQ-0082] Deletes topics/subtopics mirrored from Moodle."""
         global course_id, sub_topic_id
         if error_topic:
             topic_id_use = 99999
@@ -5102,7 +5102,7 @@ class TestApi:
     def test_api_delete_course_from_moodle(
         self, client_class, moodle_course_id, keys_expected, status_code_expected, error
     ):
-        """[HASKI-REQ-0035] Deletes a course and cascades to nested topics."""
+        """[HASKI-REQ-0082] Deletes a course and cascades to nested topics."""
         global course_id
         if error:
             course_id_use = 99999
