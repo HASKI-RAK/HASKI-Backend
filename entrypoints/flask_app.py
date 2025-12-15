@@ -2,12 +2,16 @@ import http
 import json
 import os
 import re
-from datetime import datetime
+import socket
+from datetime import datetime, timezone
 from typing import Any, Dict, List, Union
 
+import requests
 from flask import Flask, jsonify, make_response, request
 from flask.wrappers import Response
 from flask_cors import CORS, cross_origin
+from sqlalchemy import text
+from sqlalchemy.exc import SQLAlchemyError
 
 import service_layer.crypto.JWTKeyManagement as JWTKeyManagement
 import service_layer.lti.config.ToolConfigJson as ToolConfigJson
@@ -29,6 +33,101 @@ CORS(app, supports_credentials=True)
 orm.start_mappers()
 
 logger.configure_dict()
+
+SERVICE_STARTED_AT = datetime.now(timezone.utc)
+_last_successful_checks: Dict[str, Union[str, None]] = {
+    "database": None,
+    "message_queue": None,
+}
+
+
+def _utc_now_iso() -> str:
+    return datetime.now(timezone.utc).isoformat()
+
+
+def _service_version() -> str:
+    for key in (
+        "RELEASE_VERSION",
+        "BACKEND_VERSION",
+        "APP_VERSION",
+        "VERSION",
+        "GIT_SHA",
+        "COMMIT_SHA",
+        "IMAGE_TAG",
+    ):
+        value = os.environ.get(key)
+        if value:
+            return value
+    return "unknown"
+
+
+def _check_database() -> Dict[str, Any]:
+    started_at = datetime.now(timezone.utc)
+    check = {
+        "component": "database",
+        "impact": "critical",
+        "checked_at": _utc_now_iso(),
+        "last_successful": _last_successful_checks["database"],
+        "status": "DOWN",
+        "latency_ms": None,
+        "details": None,
+    }
+    session = None
+    try:
+        session = unit_of_work.DEFAULT_SESSION_FACTORY()
+        session.execute(text("SELECT 1"))
+        latency = (datetime.now(timezone.utc) - started_at).total_seconds() * 1000
+        check["status"] = "UP"
+        check["latency_ms"] = round(latency, 3)
+        _last_successful_checks["database"] = _utc_now_iso()
+        check["last_successful"] = _last_successful_checks["database"]
+    except SQLAlchemyError as exc:
+        check["details"] = str(exc.__cause__ or exc)
+        logger.error(f"Database health check failed: {check['details']}")
+    except Exception as exc:  # pragma: no cover - unexpected
+        check["details"] = str(exc)
+        logger.error(f"Database health check failed: {check['details']}")
+    finally:
+        if session is not None:
+            session.close()
+    return check
+
+
+def _check_message_queue() -> Dict[str, Any]:
+    started_at = datetime.now(timezone.utc)
+    health_url = os.environ.get("MESSAGE_QUEUE_HEALTHCHECK_URL")
+    check = {
+        "component": "message_queue",
+        "impact": "informational" if not health_url else "critical",
+        "checked_at": _utc_now_iso(),
+        "last_successful": _last_successful_checks["message_queue"],
+        "status": "SKIPPED",
+        "latency_ms": None,
+        "details": None,
+    }
+
+    if not health_url:
+        check["details"] = "MESSAGE_QUEUE_HEALTHCHECK_URL not set; skipping check"
+        return check
+
+    try:
+        response = requests.get(health_url, timeout=2)
+        latency = (datetime.now(timezone.utc) - started_at).total_seconds() * 1000
+        check["latency_ms"] = round(latency, 3)
+        if response.ok:
+            check["status"] = "UP"
+            _last_successful_checks["message_queue"] = _utc_now_iso()
+            check["last_successful"] = _last_successful_checks["message_queue"]
+        else:
+            check["status"] = "DOWN"
+            check["details"] = f"HTTP {response.status_code}"
+    except Exception as exc:  # pragma: no cover - unexpected
+        check["status"] = "DOWN"
+        check["details"] = str(exc)
+        logger.error(f"Message queue health check failed: {check['details']}")
+
+    return check
+
 
 mocked_frontend_log = {
     "logs": [
@@ -67,6 +166,44 @@ def handle_custom_exception(ex: err.AException):
     response = json.dumps({"error": ex.__class__.__name__, "message": ex.message})
     logger.error(response)
     return response, ex.status_code
+
+
+@app.route("/health", methods=["GET"])
+def health():
+    dependency_checks = {
+        "database": _check_database(),
+        "message_queue": _check_message_queue(),
+    }
+
+    critical_failures = [
+        name
+        for name, result in dependency_checks.items()
+        if result["impact"] == "critical" and result["status"] == "DOWN"
+    ]
+
+    overall_status = "UP" if not critical_failures else "DOWN"
+    status_code = (
+        http.HTTPStatus.OK
+        if overall_status == "UP"
+        else http.HTTPStatus.SERVICE_UNAVAILABLE
+    )
+
+    payload = {
+        "status": overall_status,
+        "checked_at": _utc_now_iso(),
+        "uptime_seconds": int(
+            (datetime.now(timezone.utc) - SERVICE_STARTED_AT).total_seconds()
+        ),
+        "service": {
+            "name": os.environ.get("PLATFORM_NAME", "HASKI-Backend"),
+            "version": _service_version(),
+            "hostname": os.environ.get("HOSTNAME", socket.gethostname()),
+        },
+        "dependencies": dependency_checks,
+    }
+
+    logger.info(json.dumps({"event": "health_check", **payload}))
+    return jsonify(payload), status_code
 
 
 # User Administration via LMS
