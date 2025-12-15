@@ -1786,7 +1786,7 @@ def create_learning_element_rating_for_tests_2(uow):
 def test_create_admin():
     """
     Test creating an admin user.
-    [HASKI-REQ-0092]
+    [HASKI-REQ-0034]
     """
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.admin.admin)
@@ -1801,7 +1801,7 @@ def test_create_admin():
 def test_create_course_creator():
     """
     Test creating a course creator user.
-    [HASKI-REQ-0092]
+    [HASKI-REQ-0034]
     """
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.course_creator.course_creator)
@@ -1816,7 +1816,7 @@ def test_create_course_creator():
 def test_create_settings():
     """
     Test creating settings for a user.
-    [HASKI-REQ-0092]
+    [HASKI-REQ-0034]
     """
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.settings.settings)
@@ -1830,7 +1830,7 @@ def test_create_settings():
 def test_create_student():
     """
     Test creating a student user.
-    [HASKI-REQ-0092]
+    [HASKI-REQ-0034]
     """
     uow = FakeUnitOfWork()
     student_entries_beginning = len(uow.student.student)
@@ -1855,7 +1855,7 @@ def test_create_student():
 def test_get_empty_user_by_lms_id():
     """
     Test getting a user by LMS ID when the user does not exist.
-    [HASKI-REQ-0092]
+    [HASKI-REQ-0034]
     """
     uow = FakeUnitOfWork()
     result = services.get_user_by_lms_id(uow, lms_user_id_creator)
@@ -1866,7 +1866,7 @@ def test_get_empty_user_by_lms_id():
 def test_get_user_by_lms_id():
     """
     Test getting a user by LMS ID when the user exists.
-    [HASKI-REQ-0092]
+    [HASKI-REQ-0034]
     """
     uow = FakeUnitOfWork()
     services.create_user(
@@ -1905,7 +1905,7 @@ def test_student_learning_path_learning_element_algorithm():
 def test_create_teacher():
     """
     Test creating a teacher user.
-    [HASKI-REQ-0092]
+    [HASKI-REQ-0034]
     """
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.teacher.teacher)
@@ -1933,7 +1933,7 @@ def test_create_teacher():
 def test_create_user(name, university, lms_user_id, role):
     """
     Test creating a user with different roles.
-    [HASKI-REQ-0092]
+    [HASKI-REQ-0034]
     """
     uow = FakeUnitOfWork()
     user_entries_beginning = len(uow.user.user)
@@ -1952,7 +1952,7 @@ def test_create_user(name, university, lms_user_id, role):
 def test_create_learning_characteristics():
     """
     Test creating learning characteristics.
-    [HASKI-REQ-0092]
+    [HASKI-REQ-0034]
     """
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.learning_characteristics.learning_characteristics)
@@ -1966,7 +1966,7 @@ def test_create_learning_characteristics():
 def test_create_learning_style():
     """
     Test creating learning style.
-    [HASKI-REQ-0092]
+    [HASKI-REQ-0034]
     """
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.learning_style.learning_style)
@@ -1980,7 +1980,7 @@ def test_create_learning_style():
 def test_create_learning_strategy():
     """
     Test creating learning strategy.
-    [HASKI-REQ-0092]
+    [HASKI-REQ-0034]
     """
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.learning_strategy.learning_strategy)
@@ -1994,7 +1994,7 @@ def test_create_learning_strategy():
 def test_create_knowledge():
     """
     Test creating knowledge.
-    [HASKI-REQ-0092]
+    [HASKI-REQ-0034]
     """
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.knowledge.knowledge)
@@ -2008,7 +2008,7 @@ def test_create_knowledge():
 def test_create_learning_analytics():
     """
     Test creating learning analytics.
-    [HASKI-REQ-0092]
+    [HASKI-REQ-0034]
     """
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.learning_analytics.learning_analytics)
@@ -2189,7 +2189,7 @@ def test_get_settings_for_user():
 def test_get_student_learning_path_learning_element_algorithm():
     """
     Test getting a student learning path learning element algorithm.
-    [HASKI-REQ-0060]
+    [HASKI-REQ-0059]
     """
     uow = FakeUnitOfWork()
     create_student_learning_path_learning_element_algorithm_for_tests(uow)
@@ -2287,7 +2287,7 @@ def test_get_news():
 def test_get_learning_characteristics():
     """
     Test getting learning characteristics.
-    [HASKI-REQ-0092]
+    [HASKI-REQ-0034]
     """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
@@ -3750,7 +3750,7 @@ def test_get_learning_style_by_student_id():
 def test_create_default_learning_path():
     """
     Test creating a default learning path.
-    [HASKI-REQ-0096]
+    [HASKI-REQ-0026]
     """
     uow = FakeUnitOfWork()
     create_default_learning_path_for_tests(uow)
@@ -3772,7 +3772,7 @@ def test_create_default_learning_path():
 def test_get_default_learning_path_by_university():
     """
     Test getting default learning path by university.
-    [HASKI-REQ-0096]
+    [HASKI-REQ-0026]
     """
     uow = FakeUnitOfWork()
     create_default_learning_path_for_tests(uow)
@@ -3786,7 +3786,7 @@ def test_get_default_learning_path_by_university():
 def test_delete_default_learning_path_by_uni():
     """
     Test deleting default learning path by university.
-    [HASKI-REQ-0096]
+    [HASKI-REQ-0026]
     """
     uow = FakeUnitOfWork()
     create_default_learning_path_for_tests(uow)
@@ -4027,7 +4027,7 @@ def test_get_topics_by_student_and_course_id():
 def test_get_user_by_admin():
     """
     Test getting user by admin.
-    [HASKI-REQ-0092]
+    [HASKI-REQ-0034]
     """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)

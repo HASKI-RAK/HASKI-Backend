@@ -700,7 +700,7 @@ def get_learning_path_default(learning_style, list_of_elements, default_learning
 def test_get_learning_path_default(learning_style, list_of_keys):
     """
     Test getting default learning path.
-    [HASKI-REQ-0096]
+    [HASKI-REQ-0026]
     """
     num_of_test = 10
     list_of_le_size = rng.integers(2, 50, size=num_of_test)
