@@ -2742,7 +2742,7 @@ class TestApi:
         error_course,
         error_topic,
     ):
-        """[HASKI-REQ-0058] Returns persisted learning paths per topic (GH-2)."""
+        """[HASKI-REQ-0007] Returns persisted learning paths per topic (GH-2)."""
         global user_id_student, student_id, course_id, sub_topic_id
         if error_student:
             student_id_use = 99999
