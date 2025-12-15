@@ -1179,6 +1179,34 @@ def setup_db(
           """
     cursor.execute(sql)
 
+    sql = """
+    -- Create ENUM type for activity_type if it does not exist
+    DO $$
+    BEGIN
+        IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'activity_type_enum') THEN
+            CREATE TYPE activity_type_enum AS ENUM ('quiz', 'assignment', 'lecture');
+        END IF;
+    END$$;
+
+    CREATE TABLE IF NOT EXISTS public.learning_element_solution
+    (
+        id integer NOT NULL GENERATED ALWAYS AS IDENTITY
+        ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+        learning_element_lms_id integer NOT NULL,
+        solution_lms_id integer NOT NULL,
+        activity_type activity_type_enum NOT NULL,
+        CONSTRAINT learning_element_solution_pkey PRIMARY KEY (id),
+        CONSTRAINT unique_learning_element_solution UNIQUE (learning_element_lms_id, solution_lms_id)
+    )
+
+    TABLESPACE pg_default;
+
+    ALTER TABLE IF EXISTS public.learning_element_solution
+        OWNER to postgres;
+    """
+
+    cursor.execute(sql)
+
     conn.commit()
     # Closing the connection
     conn.close()
