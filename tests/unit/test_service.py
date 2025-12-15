@@ -3078,7 +3078,7 @@ def test_update_course_with_start_date():
 def test_delete_course():
     """
     Test deleting a course.
-    [HASKI-REQ-0035]
+    [HASKI-REQ-0082]
     """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
@@ -3132,7 +3132,7 @@ def test_get_course_topic_by_topic():
 def test_delete_course_topic_by_course():
     """
     Test deleting course topics by course.
-    [HASKI-REQ-0035]
+    [HASKI-REQ-0082]
     """
     uow = FakeUnitOfWork()
     create_course_topic_for_tests(uow)
@@ -3147,7 +3147,7 @@ def test_delete_course_topic_by_course():
 def test_delete_course_topic_by_topic():
     """
     Test deleting course topics by topic.
-    [HASKI-REQ-0035]
+    [HASKI-REQ-0082]
     """
     uow = FakeUnitOfWork()
     create_course_topic_for_tests(uow)
