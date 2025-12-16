@@ -167,6 +167,15 @@ learning_element = Table(
     Column("last_updated", Date, nullable=True),
 )
 
+learning_element_solution = Table(
+    "learning_element_solution",
+    mapper_registry.metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("learning_element_lms_id", Integer, nullable=False),
+    Column("solution_lms_id", Integer, nullable=False),
+    Column("activity_type", String, nullable=False),
+)
+
 learning_path = Table(
     "learning_path",
     mapper_registry.metadata,
@@ -192,7 +201,6 @@ learning_path_learning_element = Table(
     Column("id", Integer, primary_key=True, autoincrement=True),
     Column("learning_element_id", Integer, nullable=False),
     Column("learning_path_id", Integer, nullable=False),
-    Column("recommended", Boolean, nullable=False),
     Column("position", Integer, nullable=False),
 )
 
@@ -202,7 +210,6 @@ learning_path_topic = Table(
     Column("id", Integer, primary_key=True, autoincrement=True),
     Column("topic_id", Integer, nullable=False),
     Column("learning_path_id", Integer, nullable=False),
-    Column("recommended", Boolean, nullable=False),
     Column("position", Integer, nullable=False),
 )
 
@@ -546,6 +553,10 @@ def start_mappers():
     mapper_registry.map_imperatively(
         DM.LearningElement,
         learning_element,
+    )
+    mapper_registry.map_imperatively(
+        DM.LearningElementSolution,
+        learning_element_solution,
     )
     mapper_registry.map_imperatively(
         TM.LearningPath,

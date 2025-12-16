@@ -1,7 +1,6 @@
 import time
 
-from domain.tutoringModel import aco, default, ga, graf, nestor, tyche
-from domain.tutoringModel.utils import get_coordinates
+from domain.tutoringModel import aco, default, ga, graf, nestor, tyche, utils
 from errors import errors as err
 from utils import constants as cons
 
@@ -37,6 +36,7 @@ class LearningPath:
         _algorithm,
         list_of_les,
         default_learning_path=None,
+        input_view_time=None,
     ):
         algorithm = _algorithm.lower()
         if algorithm == "graf":
@@ -47,8 +47,19 @@ class LearningPath:
             self.path = ", ".join(temp)
         elif algorithm == "aco":
             list_of_les_classifications = self.prepare_le_for_aco(list_of_les)
-            coordinates = get_coordinates(learning_style, list_of_les_classifications)
-            start_point = {"Start": (15, 15, 15, 15)}
+            if input_view_time is None:
+                dimension = 4
+                coordinates = utils.get_coordinates(
+                    learning_style, list_of_les_classifications
+                )
+            else:
+                dimension = 6
+                coordinates = utils.get_coordinates(
+                    learning_style, list_of_les_classifications, dimension
+                )
+                norm_view_times = utils.added_view_times(input_view_time)
+                coordinates = utils.update_coordinate(coordinates, norm_view_times)
+            start_point = {"Start": (15,) * dimension}
             start_point.update(coordinates)
             path = aco.AntColonySolver()
             result = path.solve(list(start_point.items()))
@@ -61,7 +72,9 @@ class LearningPath:
         elif algorithm == "ga":
             genetic_alg = ga.GeneticAlgorithm(learning_elements=list_of_les)
             self.path = genetic_alg.get_learning_path(
-                input_learning_style=learning_style, input_learning_element=list_of_les
+                input_learning_style=learning_style,
+                input_learning_element=list_of_les,
+                input_view_time=input_view_time,
             )
         elif algorithm == "tyche":
             tyche_alg = tyche.TycheAlgorithm()
@@ -116,10 +129,9 @@ class LearningPathAlgorithm:
 
 
 class LearningPathTopic:
-    def __init__(self, topic_id, learning_path_id, recommended, position) -> None:
+    def __init__(self, topic_id, learning_path_id, position) -> None:
         self.topic_id = topic_id
         self.learning_path_id = learning_path_id
-        self.recommended = recommended
         self.position = position
 
     def serialize(self):
@@ -127,7 +139,6 @@ class LearningPathTopic:
             "id": self.id,
             "topic_id": self.topic_id,
             "learning_path_id": self.learning_path_id,
-            "recommended": self.recommended,
             "position": self.position,
         }
 
@@ -137,13 +148,11 @@ class LearningPathLearningElement:
         self,
         learning_element_id,
         learning_path_id,
-        recommended,
         position,
         learning_element=None,
     ) -> None:
         self.learning_element_id = learning_element_id
         self.learning_path_id = learning_path_id
-        self.recommended = recommended
         self.position = position
         self.learning_element = learning_element
 
@@ -152,7 +161,6 @@ class LearningPathLearningElement:
             "id": self.id,
             "learning_element_id": self.learning_element_id,
             "learning_path_id": self.learning_path_id,
-            "recommended": self.recommended,
             "position": self.position,
             "learning_element": self.learning_element,
         }

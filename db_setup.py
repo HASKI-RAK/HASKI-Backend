@@ -799,7 +799,6 @@ def setup_db(
             ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
             learning_element_id integer NOT NULL,
             learning_path_id integer NOT NULL,
-            recommended boolean NOT NULL,
             "position" integer NOT NULL,
             CONSTRAINT learning_path_learning_element_pkey PRIMARY KEY (id),
             CONSTRAINT learning_element_id FOREIGN KEY (learning_element_id)
@@ -1108,7 +1107,10 @@ def setup_db(
             topic_id integer NOT NULL,
             rating_value integer NOT NULL,
             rating_deviation integer NOT NULL,
-            timestamp timestamp without time zone NOT NULL
+            timestamp timestamp without time zone NOT NULL,
+            CONSTRAINT student_rating_pkey PRIMARY KEY (id),
+            FOREIGN KEY (student_id) REFERENCES public.student (id),
+            FOREIGN KEY (topic_id) REFERENCES public.topic (id)
         )
 
         TABLESPACE pg_default;
@@ -1116,6 +1118,7 @@ def setup_db(
         ALTER TABLE IF EXISTS public.student_rating
             OWNER to postgres;
     """
+
     cursor.execute(sql)
 
     sql = """
@@ -1127,7 +1130,10 @@ def setup_db(
             topic_id integer NOT NULL,
             rating_value integer NOT NULL,
             rating_deviation integer NOT NULL,
-            timestamp timestamp without time zone NOT NULL
+            timestamp timestamp without time zone NOT NULL,
+            CONSTRAINT learning_element_rating_pkey PRIMARY KEY (id),
+            FOREIGN KEY (learning_element_id) REFERENCES public.learning_element (id),
+            FOREIGN KEY (topic_id) REFERENCES public.topic (id)
         )
 
         TABLESPACE pg_default;
@@ -1172,6 +1178,26 @@ def setup_db(
           INSERT INTO learning_path_algorithm (short_name, full_name)
           VALUES ('nestor', 'Nestor') \
           """
+    cursor.execute(sql)
+
+    sql = """
+          CREATE TABLE IF NOT EXISTS public.learning_element_solution
+          (
+              id integer NOT NULL GENERATED ALWAYS AS IDENTITY
+              ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+              learning_element_lms_id integer NOT NULL,
+              solution_lms_id integer NOT NULL,
+              activity_type text COLLATE pg_catalog."default" NOT NULL,
+              CONSTRAINT learning_element_solution_pkey PRIMARY KEY (id),
+              CONSTRAINT unique_learning_element UNIQUE (learning_element_lms_id)
+              )
+
+              TABLESPACE pg_default;
+
+          ALTER TABLE IF EXISTS public.learning_element_solution
+              OWNER to postgres;
+          """
+
     cursor.execute(sql)
 
     conn.commit()

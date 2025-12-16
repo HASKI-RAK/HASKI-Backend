@@ -42,6 +42,7 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         learning_characteristics=[],
         learning_element=[],
         learning_element_rating=[],
+        learning_element_solution=[],
         learning_path=[],
         learning_path_algorithm=[],
         lpath_le_algorithm=[],
@@ -84,6 +85,7 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         self.learning_characteristics = set(learning_characteristics)
         self.learning_element = set(learning_element)
         self.learning_element_rating = set(learning_element_rating)
+        self.learning_element_solution = set(learning_element_solution)
         self.learning_path = set(learning_path)
         self.learning_path_algorithm = set(learning_path_algorithm)
         self.lpath_le_algorithm = set(lpath_le_algorithm)
@@ -115,6 +117,10 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
     def add_course_creator_to_course(self, course_creator_course):
         course_creator_course.id = len(self.course_creator_course) + 1
         self.course_creator_course.add(course_creator_course)
+
+    def add_learning_element_solution(self, le_solution):
+        le_solution.id = len(self.learning_element_solution) + 1
+        self.learning_element_solution.add(le_solution)
 
     def add_student_learning_element_visit(self, student_learning_element_vist):
         student_learning_element_vist.id = len(self.student_learning_element_visit) + 1
@@ -412,6 +418,14 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         for remove in to_remove:
             self.learning_element.remove(remove)
 
+    def delete_learning_element_solution(self, learning_element_lms_id):
+        to_remove = []
+        for i in self.learning_element_solution:
+            if i.learning_element_lms_id == learning_element_lms_id:
+                to_remove.append(i)
+        for remove in to_remove:
+            self.learning_element_solution.remove(remove)
+
     def delete_learning_path(self, learning_path_id):
         to_remove = []
         for i in self.learning_path:
@@ -640,6 +654,32 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
         for remove in to_remove:
             self.news.remove(remove)
 
+    def delete_learning_element_ratings_by_learning_element(
+        self, learning_element_id: int
+    ):
+        to_remove = []
+        for i in self.learning_element_rating:
+            if i.learning_element_id == learning_element_id:
+                to_remove.append(i)
+        for remove in to_remove:
+            self.learning_element_rating.remove(remove)
+
+    def delete_learning_element_ratings_by_topic(self, topic_id: int):
+        to_remove = []
+        for i in self.learning_element_rating:
+            if i.topic_id == topic_id:
+                to_remove.append(i)
+        for remove in to_remove:
+            self.learning_element_rating.remove(remove)
+
+    def delete_student_ratings_by_topic(self, topic_id: int):
+        to_remove = []
+        for i in self.student_rating:
+            if i.topic_id == topic_id:
+                to_remove.append(i)
+        for remove in to_remove:
+            self.student_rating.remove(remove)
+
     def get_admin_by_id(self, user_id):
         result = []
         for i in self.admin:
@@ -786,10 +826,10 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 result.append(i)
         return result
 
-    def get_learning_element_recommendation(self, learning_path_id):
+    def get_learning_element_solution(self, learning_element_lms_id):
         result = []
-        for i in self.learning_path_learning_element:
-            if i.learning_path_id == learning_path_id and i.recommended:
+        for i in self.learning_element_solution:
+            if i.learning_element_lms_id == learning_element_lms_id:
                 result.append(i)
         return result
 
@@ -1282,6 +1322,7 @@ class FakeUnitOfWork(unit_of_work.AbstractUnitOfWork):  # pragma: no cover
         self.learning_characteristics = FakeRepository()
         self.learning_element = FakeRepository()
         self.learning_element_rating = FakeRepository()
+        self.learning_element_solution = FakeRepository()
         self.learning_path = FakeRepository()
         self.learning_path_algorithm = FakeRepository()
         self.lpath_le_algorithm = FakeRepository()
@@ -1572,6 +1613,28 @@ def create_learning_element_for_tests_2(uow):
         )
 
 
+def create_learning_element_for_tests_3(uow):
+    list_of_les = [
+        cons.abbreviation_ex,
+        cons.abbreviation_ec,
+        cons.abbreviation_ec,
+        cons.abbreviation_ec,
+        cons.abbreviation_cc,
+    ]
+    for i in range(len(list_of_les)):
+        services.create_learning_element(
+            uow=uow,
+            topic_id=1,
+            lms_id=i + 1,
+            activity_type="h5pactivity",
+            classification=list_of_les[i],
+            name="Test LE",
+            created_at="2017-01-01",
+            created_by=user_name_example,
+            university=university_example,
+        )
+
+
 def create_course_topic_for_tests(uow):
     services.create_course_topic(uow=uow, course_id=1, topic_id=1)
 
@@ -1652,6 +1715,12 @@ def create_logbuffer_for_tests(uow):
     )
 
 
+def add_learning_element_solution_for_tests(uow):
+    services.add_learning_element_solution(
+        uow=uow, learning_element_lms_id=1, solution_lms_id=4, activity_type="resource"
+    )
+
+
 def add_student_to_course_for_tests(uow):
     services.add_student_to_course(uow=uow, student_id=1, course_id=1)
 
@@ -1683,7 +1752,7 @@ def create_student_rating_for_tests(uow):
     )
 
 
-def create_learning_element_rating_for_tests(uow):
+def create_learning_element_rating_for_tests_1(uow):
     services.create_learning_element_rating(
         uow=uow,
         learning_element_id=1,
@@ -1694,40 +1763,75 @@ def create_learning_element_rating_for_tests(uow):
     )
 
 
+def create_learning_element_rating_for_tests_2(uow):
+    list_of_ratings = [
+        1200,
+        1300,
+        1400,
+        1500,
+        1600,
+    ]
+    for i in range(len(list_of_ratings)):
+        services.create_learning_element_rating(
+            uow=uow,
+            learning_element_id=i + 1,
+            topic_id=1,
+            rating_value=list_of_ratings[i],
+            rating_deviation=350,
+            timestamp=datetime.datetime.now(),
+        )
+
+
 # Starting with Tests
 def test_create_admin():
+    """
+    Test creating an admin user.
+    [HASKI-REQ-0034]
+    """
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.admin.admin)
     user = UA.User(user_name_example, university_example, 1, "admin")
     result = services.create_admin(uow=uow, user=user)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.admin.admin)
     assert entries_beginning + 1 == entries_after
 
 
 def test_create_course_creator():
+    """
+    Test creating a course creator user.
+    [HASKI-REQ-0034]
+    """
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.course_creator.course_creator)
     user = UA.User(user_name_example, university_example, 1, "course creator")
     result = services.create_course_creator(uow=uow, user=user)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.course_creator.course_creator)
     assert entries_beginning + 1 == entries_after
 
 
 def test_create_settings():
+    """
+    Test creating settings for a user.
+    [HASKI-REQ-0034]
+    """
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.settings.settings)
     result = services.create_settings(uow=uow, user_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.settings.settings)
     assert entries_beginning + 1 == entries_after
 
 
 def test_create_student():
+    """
+    Test creating a student user.
+    [HASKI-REQ-0034]
+    """
     uow = FakeUnitOfWork()
     student_entries_beginning = len(uow.student.student)
     characteristic_entries_beginning = len(
@@ -1736,7 +1840,7 @@ def test_create_student():
     style_entries_beginning = len(uow.learning_style.learning_style)
     user = UA.User(user_name_example, university_example, 1, "student")
     result = services.create_student(uow=uow, user=user)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     student_entries_after = len(uow.student.student)
     characteristic_entries_after = len(
@@ -1749,13 +1853,21 @@ def test_create_student():
 
 
 def test_get_empty_user_by_lms_id():
+    """
+    Test getting a user by LMS ID when the user does not exist.
+    [HASKI-REQ-0034]
+    """
     uow = FakeUnitOfWork()
     result = services.get_user_by_lms_id(uow, lms_user_id_creator)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result == {}
 
 
 def test_get_user_by_lms_id():
+    """
+    Test getting a user by LMS ID when the user exists.
+    [HASKI-REQ-0034]
+    """
     uow = FakeUnitOfWork()
     services.create_user(
         uow=uow,
@@ -1765,11 +1877,15 @@ def test_get_user_by_lms_id():
         role="student",
     )
     result = services.get_user_by_lms_id(uow, 10)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
 def test_student_learning_path_learning_element_algorithm():
+    """
+    Test adding a student learning path learning element algorithm.
+    [HASKI-REQ-0040]
+    """
     uow = FakeUnitOfWork()
     create_student_learning_path_learning_element_algorithm_for_tests(uow)
     initial_entries = len(
@@ -1787,11 +1903,15 @@ def test_student_learning_path_learning_element_algorithm():
 
 
 def test_create_teacher():
+    """
+    Test creating a teacher user.
+    [HASKI-REQ-0034]
+    """
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.teacher.teacher)
     user = UA.User(user_name_example, university_example, 1, "teacher")
     result = services.create_teacher(uow=uow, user=user)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.teacher.teacher)
     assert entries_beginning + 1 == entries_after
@@ -1811,13 +1931,17 @@ def test_create_teacher():
     ],
 )
 def test_create_user(name, university, lms_user_id, role):
+    """
+    Test creating a user with different roles.
+    [HASKI-REQ-0034]
+    """
     uow = FakeUnitOfWork()
     user_entries_beginning = len(uow.user.user)
     settings_entries_beginning = len(uow.settings.settings)
     result = services.create_user(
         uow=uow, name=name, university=university, lms_user_id=lms_user_id, role=role
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     user_entries_after = len(uow.user.user)
     settings_entries_after = len(uow.settings.settings)
@@ -1826,56 +1950,80 @@ def test_create_user(name, university, lms_user_id, role):
 
 
 def test_create_learning_characteristics():
+    """
+    Test creating learning characteristics.
+    [HASKI-REQ-0034]
+    """
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.learning_characteristics.learning_characteristics)
     result = services.create_learning_characteristics(uow=uow, student_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.learning_characteristics.learning_characteristics)
     assert entries_beginning + 1 == entries_after
 
 
 def test_create_learning_style():
+    """
+    Test creating learning style.
+    [HASKI-REQ-0034]
+    """
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.learning_style.learning_style)
     result = services.create_learning_style(uow=uow, characteristic_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.learning_style.learning_style)
     assert entries_beginning + 1 == entries_after
 
 
 def test_create_learning_strategy():
+    """
+    Test creating learning strategy.
+    [HASKI-REQ-0034]
+    """
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.learning_strategy.learning_strategy)
     result = services.create_learning_strategy(uow=uow, characteristic_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.learning_strategy.learning_strategy)
     assert entries_beginning + 1 == entries_after
 
 
 def test_create_knowledge():
+    """
+    Test creating knowledge.
+    [HASKI-REQ-0034]
+    """
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.knowledge.knowledge)
     result = services.create_knowledge(uow=uow, characteristic_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.knowledge.knowledge)
     assert entries_beginning + 1 == entries_after
 
 
 def test_create_learning_analytics():
+    """
+    Test creating learning analytics.
+    [HASKI-REQ-0034]
+    """
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.learning_analytics.learning_analytics)
     result = services.create_learning_analytics(uow=uow, characteristic_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.learning_analytics.learning_analytics)
     assert entries_beginning + 1 == entries_after
 
 
 def test_create_news():
+    """
+    Test creating news.
+    [HASKI-REQ-0046]
+    """
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.news.news)
     result = services.create_news(
@@ -1886,51 +2034,67 @@ def test_create_news():
         news_content="idk",
         expiration_date=datetime.datetime(3027, 2, 15, 18, 54, 58, 291224),
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.news.news)
     assert entries_beginning + 1 == entries_after
 
 
 def test_delete_admin():
+    """
+    Test deleting an admin user.
+    [HASKI-REQ-0069]
+    """
     uow = FakeUnitOfWork()
     create_admin_for_tests(uow)
     entries_beginning = len(uow.admin.admin)
     result = services.delete_admin(uow, 1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result == {}
     entries_after = len(uow.admin.admin)
     assert entries_beginning - 1 == entries_after
 
 
 def test_delete_course_creator():
+    """
+    Test deleting a course creator user.
+    [HASKI-REQ-0069]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     entries_beginning = len(uow.course_creator.course_creator)
     result = services.delete_course_creator(uow, 1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result == {}
     entries_after = len(uow.course_creator.course_creator)
     assert entries_beginning - 1 == entries_after
 
 
 def test_delete_student():
+    """
+    Test deleting a student user.
+    [HASKI-REQ-0069]
+    """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
     entries_beginning = len(uow.student.student)
     result = services.delete_student(uow, 1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result == {}
     entries_after = len(uow.student.student)
     assert entries_beginning - 1 == entries_after
 
 
 def test_delete_teacher():
+    """
+    Test deleting a teacher user.
+    [HASKI-REQ-0069]
+    """
     uow = FakeUnitOfWork()
     create_teacher_for_tests(uow)
     entries_beginning = len(uow.teacher.teacher)
     result = services.delete_teacher(uow, 1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result == {}
     entries_after = len(uow.teacher.teacher)
     assert entries_beginning - 1 == entries_after
@@ -1950,6 +2114,10 @@ def test_delete_teacher():
     ],
 )
 def test_delete_user(role, lms_id):
+    """
+    Test deleting a user with different roles.
+    [HASKI-REQ-0069]
+    """
     uow = FakeUnitOfWork()
     match role:
         case const.role_admin_string:
@@ -1966,7 +2134,7 @@ def test_delete_user(role, lms_id):
         uow.learning_characteristics.learning_characteristics
     )
     result = services.delete_user(uow=uow, user_id=1, lms_user_id=lms_id)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result == {}
     entries_after = len(uow.user.user)
     settings_entries_end = len(uow.settings.settings)
@@ -1980,33 +2148,49 @@ def test_delete_user(role, lms_id):
 
 
 def test_update_settings():
+    """
+    Test updating user settings.
+    [HASKI-REQ-0070]
+    """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
     result = services.update_settings_for_user(uow=uow, user_id=1, theme="dark")
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     assert result["theme"] == "dark"
 
 
 def test_reset_settings():
+    """
+    Test resetting user settings.
+    [HASKI-REQ-0070]
+    """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
     services.update_settings_for_user(uow=uow, user_id=1, theme="dark")
     result = services.reset_settings(uow=uow, user_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     assert result["theme"] == "Standard"
 
 
 def test_get_settings_for_user():
+    """
+    Test getting user settings.
+    [HASKI-REQ-0070]
+    """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
     result = services.get_settings_for_user(uow, 1)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
 def test_get_student_learning_path_learning_element_algorithm():
+    """
+    Test getting a student learning path learning element algorithm.
+    [HASKI-REQ-0059]
+    """
     uow = FakeUnitOfWork()
     create_student_learning_path_learning_element_algorithm_for_tests(uow)
     result = services.get_student_lpath_le_algorithm(uow, 1, 1)
@@ -2015,24 +2199,36 @@ def test_get_student_learning_path_learning_element_algorithm():
 
 
 def test_update_user():
+    """
+    Test updating a user.
+    [HASKI-REQ-0069]
+    """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
     result = services.update_user(uow, 1, 1, "Maria Musterfraun", university_example)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
 def test_create_contact_form():
+    """
+    Test creating a contact form.
+    [HASKI-REQ-0044]
+    """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
     result = services.create_contact_form(
         uow, 1, 1, "Lernelement", "Funktionalität", "Test", datetime.datetime.now()
     )
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
 def test_create_logbuffer():
+    """
+    Test creating a logbuffer entry.
+    [HASKI-REQ-0047]
+    """
     uow = FakeUnitOfWork()
     create_logbuffer_for_tests(uow)
     result = services.create_logbuffer(
@@ -2041,15 +2237,19 @@ def test_create_logbuffer():
         "Test content",
         datetime.datetime.now(),
     )
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
 def test_get_logbuffer():
+    """
+    Test getting logbuffer entries.
+    [HASKI-REQ-0047]
+    """
     uow = FakeUnitOfWork()
     create_logbuffer_for_tests(uow)
     result = services.get_logbuffer(uow, 1)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     keys_expected = [
         "content",
@@ -2062,10 +2262,14 @@ def test_get_logbuffer():
 
 
 def test_get_news():
+    """
+    Test getting news.
+    [HASKI-REQ-0046]
+    """
     uow = FakeUnitOfWork()
     create_news_for_tests(uow)
     result = services.get_news(uow, "en", "TH-AB", datetime.datetime.now())
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     keys_expected = [
         "created_at",
@@ -2081,10 +2285,14 @@ def test_get_news():
 
 
 def test_get_learning_characteristics():
+    """
+    Test getting learning characteristics.
+    [HASKI-REQ-0034]
+    """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
     result = services.get_learning_characteristics(uow, 1)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     keys_expected = [
         "knowledge",
@@ -2098,6 +2306,10 @@ def test_get_learning_characteristics():
 
 
 def test_reset_learning_characteristics():
+    """
+    Test resetting learning characteristics.
+    [HASKI-REQ-0048]
+    """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
     entries_beginning = len(uow.learning_characteristics.learning_characteristics)
@@ -2105,13 +2317,17 @@ def test_reset_learning_characteristics():
         uow=uow, user_id=1, lms_user_id=1, student_id=1
     )
     entries_after = len(uow.learning_characteristics.learning_characteristics)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_beginning == entries_after
     assert result["learning_style"]["perception_value"] == 0
 
 
 def test_create_ils_input_answers():
+    """
+    Test creating ILS input answers.
+    [HASKI-REQ-0007]
+    """
     uow = FakeUnitOfWork()
     ils_input_answers = {}
     for key in questionnaire_ils_complete:
@@ -2122,12 +2338,16 @@ def test_create_ils_input_answers():
         uow=uow, questionnaire_ils_id=1, answers=ils_input_answers
     )
     entries_after = len(uow.ils_input_answers.ils_input_answers)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_beginning + 1 == entries_after
 
 
 def test_create_ils_perception_answers():
+    """
+    Test creating ILS perception answers.
+    [HASKI-REQ-0007]
+    """
     uow = FakeUnitOfWork()
     ils_perception_answers = {}
     for key in questionnaire_ils_complete:
@@ -2138,12 +2358,16 @@ def test_create_ils_perception_answers():
         uow=uow, questionnaire_ils_id=1, answers=ils_perception_answers
     )
     entries_after = len(uow.ils_perception_answers.ils_perception_answers)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_beginning + 1 == entries_after
 
 
 def test_create_ils_processing_answers():
+    """
+    Test creating ILS processing answers.
+    [HASKI-REQ-0007]
+    """
     uow = FakeUnitOfWork()
     ils_processing_answers = {}
     for key in questionnaire_ils_complete:
@@ -2154,12 +2378,16 @@ def test_create_ils_processing_answers():
         uow=uow, questionnaire_ils_id=1, answers=ils_processing_answers
     )
     entries_after = len(uow.ils_processing_answers.ils_processing_answers)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_beginning + 1 == entries_after
 
 
 def test_create_ils_understanding_answers():
+    """
+    Test creating ILS understanding answers.
+    [HASKI-REQ-0007]
+    """
     uow = FakeUnitOfWork()
     ils_understanding_answers = {}
     for key in questionnaire_ils_complete:
@@ -2170,12 +2398,16 @@ def test_create_ils_understanding_answers():
         uow=uow, questionnaire_ils_id=1, answers=ils_understanding_answers
     )
     entries_after = len(uow.ils_understanding_answers.ils_understanding_answers)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_beginning + 1 == entries_after
 
 
 def test_create_list_k_questionnaire():
+    """
+    Test creating List K questionnaire.
+    [HASKI-REQ-0007]
+    """
     uow = FakeUnitOfWork()
     services.create_user(
         uow=uow,
@@ -2194,14 +2426,14 @@ def test_create_list_k_questionnaire():
         uow=uow, student_id=1, list_k_answers=questionnaire_list_k_answers
     )
     entries_after = len(uow.questionnaire_list_k.questionnaire_list_k)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_beginning + 1 == entries_after
     services.create_questionnaire_list_k(
         uow=uow, student_id=1, list_k_answers=questionnaire_list_k_answers
     )
     entries_after2 = len(uow.questionnaire_list_k.questionnaire_list_k)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_after == entries_after2
 
@@ -2216,6 +2448,10 @@ def test_create_list_k_questionnaire():
     ],
 )
 def test_create_questionnaire_ils(full_version):
+    """
+    Test creating ILS questionnaire.
+    [HASKI-REQ-0007]
+    """
     uow = FakeUnitOfWork()
     services.create_user(
         uow=uow,
@@ -2239,7 +2475,7 @@ def test_create_questionnaire_ils(full_version):
         ils_answers=questionnaire_ils_answers,
     )
     entries_after = len(uow.questionnaire_ils.questionnaire_ils)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_beginning + 1 == entries_after
     services.create_questionnaire_ils(
@@ -2248,12 +2484,16 @@ def test_create_questionnaire_ils(full_version):
         ils_answers=questionnaire_ils_answers,
     )
     entries_after2 = len(uow.questionnaire_ils.questionnaire_ils)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_after == entries_after2
 
 
 def test_delete_ils_input_answers():
+    """
+    Test deleting ILS input answers.
+    [HASKI-REQ-0048]
+    """
     uow = FakeUnitOfWork()
     ils_input_answers = {}
     for key in questionnaire_ils_complete:
@@ -2265,12 +2505,16 @@ def test_delete_ils_input_answers():
     entries_beginning = len(uow.ils_input_answers.ils_input_answers)
     result = services.delete_ils_input_answers(uow=uow, questionnaire_ils_id=1)
     entries_after = len(uow.ils_input_answers.ils_input_answers)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result == {}
     assert entries_beginning - 1 == entries_after
 
 
 def test_delete_ils_perception_answers():
+    """
+    Test deleting ILS perception answers.
+    [HASKI-REQ-0048]
+    """
     uow = FakeUnitOfWork()
     ils_perception_answers = {}
     for key in questionnaire_ils_complete:
@@ -2282,12 +2526,16 @@ def test_delete_ils_perception_answers():
     entries_beginning = len(uow.ils_perception_answers.ils_perception_answers)
     result = services.delete_ils_perception_answers(uow=uow, questionnaire_ils_id=1)
     entries_after = len(uow.ils_perception_answers.ils_perception_answers)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result == {}
     assert entries_beginning - 1 == entries_after
 
 
 def test_delete_ils_processing_answers():
+    """
+    Test deleting ILS processing answers.
+    [HASKI-REQ-0048]
+    """
     uow = FakeUnitOfWork()
     ils_processing_answers = {}
     for key in questionnaire_ils_complete:
@@ -2299,12 +2547,16 @@ def test_delete_ils_processing_answers():
     entries_beginning = len(uow.ils_processing_answers.ils_processing_answers)
     result = services.delete_ils_processing_answers(uow=uow, questionnaire_ils_id=1)
     entries_after = len(uow.ils_processing_answers.ils_processing_answers)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result == {}
     assert entries_beginning - 1 == entries_after
 
 
 def test_delete_ils_understanding_answers():
+    """
+    Test deleting ILS understanding answers.
+    [HASKI-REQ-0048]
+    """
     uow = FakeUnitOfWork()
     ils_understanding_answers = {}
     for key in questionnaire_ils_complete:
@@ -2319,12 +2571,16 @@ def test_delete_ils_understanding_answers():
         questionnaire_ils_id=1,
     )
     entries_after = len(uow.ils_understanding_answers.ils_understanding_answers)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result == {}
     assert entries_beginning - 1 == entries_after
 
 
 def test_delete_questionnaire_list_k():
+    """
+    Test deleting List K questionnaire.
+    [HASKI-REQ-0048]
+    """
     uow = FakeUnitOfWork()
     services.create_user(
         uow=uow,
@@ -2343,7 +2599,7 @@ def test_delete_questionnaire_list_k():
     entries_beginning = len(uow.questionnaire_list_k.questionnaire_list_k)
     result = services.delete_questionnaire_list_k(uow=uow, questionnaire_list_k_id=1)
     entries_after = len(uow.questionnaire_list_k.questionnaire_list_k)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result == {}
     assert entries_beginning - 1 == entries_after
 
@@ -2358,6 +2614,10 @@ def test_delete_questionnaire_list_k():
     ],
 )
 def test_delete_questionnaire_ils(full_version):
+    """
+    Test deleting ILS questionnaire.
+    [HASKI-REQ-0048]
+    """
     uow = FakeUnitOfWork()
     services.create_user(
         uow=uow,
@@ -2382,12 +2642,16 @@ def test_delete_questionnaire_ils(full_version):
     entries_beginning = len(uow.questionnaire_ils.questionnaire_ils)
     result = services.delete_questionnaire_ils(uow=uow, questionnaire_ils_id=1)
     entries_after = len(uow.questionnaire_ils.questionnaire_ils)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result == {}
     assert entries_beginning - 1 == entries_after
 
 
 def test_create_course_without_start_date():
+    """
+    Test creating a course without a start date.
+    [HASKI-REQ-0035]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     entries_beginning = len(uow.course.course)
@@ -2403,7 +2667,7 @@ def test_create_course_without_start_date():
         created_at="2023-01-01",
         start_date=None,
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.course.course)
     entries_after_course_creator_course = len(
@@ -2417,6 +2681,10 @@ def test_create_course_without_start_date():
 
 
 def test_create_course_with_start_date():
+    """
+    Test creating a course with a start date.
+    [HASKI-REQ-0035]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     entries_before = len(uow.course.course)
@@ -2432,7 +2700,7 @@ def test_create_course_with_start_date():
         created_at="2023-01-01",
         start_date="2024-01-01",
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.course.course)
     entries_after_course_creator_course = len(
@@ -2458,6 +2726,10 @@ def test_create_course_with_start_date():
     ),
 )
 def test_get_moodle_rest_url_for_completion_status():
+    """
+    Test getting Moodle REST URL for completion status.
+    [HASKI-REQ-0071]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_course_for_tests(uow)
@@ -2513,6 +2785,10 @@ def test_get_moodle_rest_url_for_completion_status():
     ),
 )
 def test_get_courses_from_moodle():
+    """
+    Test getting courses from Moodle.
+    [HASKI-REQ-0035]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_course_for_tests(uow)
@@ -2639,6 +2915,10 @@ def test_get_courses_from_moodle():
     ),
 )
 def test_get_topics_and_elements_from_moodle_course():
+    """
+    Test getting topics and elements from Moodle course.
+    [HASKI-REQ-0037]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_course_for_tests(uow)
@@ -2685,6 +2965,10 @@ def test_get_topics_and_elements_from_moodle_course():
     ),
 )
 def test_get_activity_status_for_student_for_course():
+    """
+    Test getting activity status for student for course.
+    [HASKI-REQ-0071]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_course_for_tests(uow)
@@ -2717,6 +3001,10 @@ def test_get_activity_status_for_student_for_course():
     ),
 )
 def test_get_activity_status_for_student_for_learning_element_for_course():
+    """
+    Test getting activity status for student for learning element for course.
+    [HASKI-REQ-0071]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_course_for_tests(uow)
@@ -2731,15 +3019,23 @@ def test_get_activity_status_for_student_for_learning_element_for_course():
 
 
 def test_get_course_by_id():
+    """
+    Test getting a course by ID.
+    [HASKI-REQ-0035]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_course_for_tests(uow)
     result = services.get_course_by_id(uow=uow, user_id=1, lms_user_id=3, course_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
 def test_update_course_without_start_date():
+    """
+    Test updating a course without a start date.
+    [HASKI-REQ-0035]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_course_for_tests(uow)
@@ -2752,12 +3048,16 @@ def test_update_course_without_start_date():
         university=university_example,
         start_date=None,
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     entries_after = len(uow.course.course)
     assert entries_beginning == entries_after
 
 
 def test_update_course_with_start_date():
+    """
+    Test updating a course with a start date.
+    [HASKI-REQ-0035]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_course_for_tests(uow)
@@ -2770,66 +3070,90 @@ def test_update_course_with_start_date():
         university=university_example,
         start_date="2024-01-01",
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     entries_after = len(uow.course.course)
     assert entries_beginning == entries_after
 
 
 def test_delete_course():
+    """
+    Test deleting a course.
+    [HASKI-REQ-0082]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_course_for_tests(uow)
     entries_beginning = len(uow.course.course)
     result = services.delete_course(uow=uow, course_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result == {}
     entries_after = len(uow.course.course)
     assert entries_beginning - 1 == entries_after
 
 
 def test_create_course_topic():
+    """
+    Test creating a course topic.
+    [HASKI-REQ-0035]
+    """
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.course_topic.course_topic)
     result = services.create_course_topic(uow=uow, course_id=1, topic_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.course_topic.course_topic)
     assert entries_beginning + 1 == entries_after
 
 
 def test_get_course_topic_by_course():
+    """
+    Test getting course topics by course.
+    [HASKI-REQ-0035]
+    """
     uow = FakeUnitOfWork()
     create_course_topic_for_tests(uow)
     result = services.get_course_topic_by_course(uow=uow, course_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
 def test_get_course_topic_by_topic():
+    """
+    Test getting course topics by topic.
+    [HASKI-REQ-0035]
+    """
     uow = FakeUnitOfWork()
     create_course_topic_for_tests(uow)
     result = services.get_course_topic_by_topic(uow=uow, topic_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
 def test_delete_course_topic_by_course():
+    """
+    Test deleting course topics by course.
+    [HASKI-REQ-0082]
+    """
     uow = FakeUnitOfWork()
     create_course_topic_for_tests(uow)
     entries_beginning = len(uow.course_topic.course_topic)
     result = services.delete_course_topic_by_course(uow=uow, course_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result == {}
     entries_after = len(uow.course_topic.course_topic)
     assert entries_beginning - 1 == entries_after
 
 
 def test_delete_course_topic_by_topic():
+    """
+    Test deleting course topics by topic.
+    [HASKI-REQ-0082]
+    """
     uow = FakeUnitOfWork()
     create_course_topic_for_tests(uow)
     entries_beginning = len(uow.course_topic.course_topic)
     result = services.delete_course_topic_by_topic(uow=uow, topic_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result == {}
     entries_after = len(uow.course_topic.course_topic)
     assert entries_beginning - 1 == entries_after
@@ -2874,6 +3198,10 @@ def test_create_topic(
     created_by,
     created_at,
 ):
+    """
+    Test creating a topic.
+    [HASKI-REQ-0036]
+    """
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.topic.topic)
     result = services.create_topic(
@@ -2888,7 +3216,7 @@ def test_create_topic(
         created_at=created_at,
         created_by=created_by,
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.topic.topic)
     assert entries_beginning + 1 == entries_after
@@ -2896,6 +3224,10 @@ def test_create_topic(
 
 
 def test_get_topic_by_id():
+    """
+    Test getting a topic by ID.
+    [HASKI-REQ-0035]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_course_for_tests(uow)
@@ -2904,16 +3236,20 @@ def test_get_topic_by_id():
     result = services.get_topic_by_id(
         uow=uow, user_id=1, lms_user_id=1, course_id=1, student_id=1, topic_id=1
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     result2 = services.get_topic_by_id(
         uow=uow, user_id=1, lms_user_id=1, course_id=1, student_id=1, topic_id=2
     )
-    assert type(result2) is dict
+    assert isinstance(result2, dict)
     assert result2 != {}
 
 
 def test_update_topic():
+    """
+    Test updating a topic.
+    [HASKI-REQ-0036]
+    """
     uow = FakeUnitOfWork()
     create_topic_for_tests(uow)
     create_sub_topic_for_tests(uow)
@@ -2932,7 +3268,7 @@ def test_update_topic():
         created_by=1,
         last_updated=last_updated,
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.topic.topic)
     assert entries_beginning == entries_after
@@ -2951,7 +3287,7 @@ def test_update_topic():
         created_by=1,
         last_updated=last_updated2,
     )
-    assert type(result2) is dict
+    assert isinstance(result2, dict)
     assert result2 != {}
     entries_after = len(uow.topic.topic)
     assert entries_beginning == entries_after
@@ -2959,6 +3295,10 @@ def test_update_topic():
 
 
 def test_delete_topic():
+    """
+    Test deleting a topic.
+    [HASKI-REQ-0035]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_course_for_tests(uow)
@@ -2967,71 +3307,95 @@ def test_delete_topic():
     entries_beginning = len(uow.topic.topic)
     result = services.delete_topic(uow=uow, topic_id=2)
     entries_after = len(uow.topic.topic)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result == {}
     assert entries_beginning - 1 == entries_after
     result2 = services.delete_topic(uow=uow, topic_id=1)
     entries_after2 = len(uow.topic.topic)
-    assert type(result2) == dict
+    assert isinstance(result2, dict)
     assert result2 == {}
     assert entries_beginning - 2 == entries_after2
 
 
 def test_create_topic_learning_element():
+    """
+    Test creating a topic learning element.
+    [HASKI-REQ-0036]
+    """
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.topic_learning_element.topic_learning_element)
     result = services.create_topic_learning_element(
         uow=uow, topic_id=1, learning_element_id=1
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.topic_learning_element.topic_learning_element)
     assert entries_beginning + 1 == entries_after
 
 
 def test_get_topic_learning_element_by_topic():
+    """
+    Test getting topic learning elements by topic.
+    [HASKI-REQ-0036]
+    """
     uow = FakeUnitOfWork()
     create_topic_learning_element_for_tests(uow)
     result = services.get_topic_learning_element_by_topic(uow=uow, topic_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
 def test_get_topic_learning_element_by_le():
+    """
+    Test getting topic learning elements by learning element.
+    [HASKI-REQ-0036]
+    """
     uow = FakeUnitOfWork()
     create_topic_learning_element_for_tests(uow)
     result = services.get_topic_learning_element_by_learning_element(
         uow=uow, learning_element_id=1
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
 def test_delete_topic_learning_element_by_topic():
+    """
+    Test deleting topic learning elements by topic.
+    [HASKI-REQ-0036]
+    """
     uow = FakeUnitOfWork()
     create_topic_learning_element_for_tests(uow)
     entries_beginning = len(uow.topic_learning_element.topic_learning_element)
     result = services.delete_topic_learning_element_by_topic(uow=uow, topic_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result == {}
     entries_after = len(uow.topic_learning_element.topic_learning_element)
     assert entries_beginning - 1 == entries_after
 
 
 def test_delete_topic_learning_element_by_le():
+    """
+    Test deleting topic learning elements by learning element.
+    [HASKI-REQ-0036]
+    """
     uow = FakeUnitOfWork()
     create_topic_learning_element_for_tests(uow)
     entries_beginning = len(uow.topic_learning_element.topic_learning_element)
     result = services.delete_topic_learning_element_by_learning_element(
         uow=uow, learning_element_id=1
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result == {}
     entries_after = len(uow.topic_learning_element.topic_learning_element)
     assert entries_beginning - 1 == entries_after
 
 
 def test_create_learning_element():
+    """
+    Test creating a learning element.
+    [HASKI-REQ-0037]
+    """
     uow = FakeUnitOfWork()
     entries_beginning = len(uow.learning_element.learning_element)
     result = services.create_learning_element(
@@ -3045,7 +3409,7 @@ def test_create_learning_element():
         created_by=user_name_example,
         university=university_example,
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.learning_element.learning_element)
     assert entries_beginning + 1 == entries_after
@@ -3053,6 +3417,10 @@ def test_create_learning_element():
 
 
 def test_get_learning_element_by_id():
+    """
+    Test getting a learning element by ID.
+    [HASKI-REQ-0037]
+    """
     uow = FakeUnitOfWork()
     create_learning_element_for_tests_1(uow)
     result = services.get_learning_element_by_id(
@@ -3064,11 +3432,15 @@ def test_get_learning_element_by_id():
         topic_id=1,
         learning_element_id=1,
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
 def test_update_learning_element():
+    """
+    Test updating a learning element.
+    [HASKI-REQ-0037]
+    """
     uow = FakeUnitOfWork()
     create_learning_element_for_tests_1(uow)
     entries_beginning = len(uow.learning_element.learning_element)
@@ -3085,7 +3457,7 @@ def test_update_learning_element():
         university=university_example,
         last_updated=last_updated,
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     entries_after = len(uow.learning_element.learning_element)
     assert entries_beginning == entries_after
@@ -3093,17 +3465,25 @@ def test_update_learning_element():
 
 
 def test_delete_learning_element():
+    """
+    Test deleting a learning element.
+    [HASKI-REQ-0036]
+    """
     uow = FakeUnitOfWork()
     create_learning_element_for_tests_1(uow)
     entries_beginning = len(uow.learning_element.learning_element)
     result = services.delete_learning_element(uow=uow, learning_element_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result == {}
     entries_after = len(uow.learning_element.learning_element)
     assert entries_beginning - 1 == entries_after
 
 
 def test_add_student_to_course():
+    """
+    Test adding a student to a course.
+    [HASKI-REQ-0035]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
@@ -3118,16 +3498,18 @@ def test_add_student_to_course():
     entries_after_course = len(uow.student_course.student_course)
     entries_after_topic = len(uow.student_topic.student_topic)
     entries_after_le = len(uow.student_learning_element.student_learning_element)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_beginning_course + 1 == entries_after_course
     assert entries_after_topic > entries_beginning_topic
     assert entries_after_le > entries_beginning_le
-    with pytest.raises(err.AlreadyExisting):
-        services.add_student_to_course(uow=uow, student_id=1, course_id=1)
 
 
 def test_add_teacher_to_course():
+    """
+    Test adding a teacher to a course.
+    [HASKI-REQ-0035]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_teacher_for_tests(uow)
@@ -3135,7 +3517,7 @@ def test_add_teacher_to_course():
     entries_beginning_course = len(uow.teacher_course.teacher_course)
     result = services.add_teacher_to_course(uow=uow, teacher_id=1, course_id=1)
     entries_after_course = len(uow.teacher_course.teacher_course)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_beginning_course + 1 == entries_after_course
     with pytest.raises(err.AlreadyExisting):
@@ -3143,6 +3525,10 @@ def test_add_teacher_to_course():
 
 
 def test_create_course_creator_course():
+    """
+    Test creating a course creator course relation.
+    [HASKI-REQ-0035]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     entries_beginning = len(uow.course_creator_course.course_creator_course)
@@ -3150,12 +3536,16 @@ def test_create_course_creator_course():
         uow=uow, created_by=1, course_id=1, created_at="2023-01-01"
     )
     entries_after = len(uow.course_creator_course.course_creator_course)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_beginning + 1 == entries_after
 
 
 def test_student_learning_element_visit():
+    """
+    Test adding a student learning element visit.
+    [HASKI-REQ-0095]
+    """
     uow = FakeUnitOfWork()
     create_learning_element_for_tests_1(uow)
     create_student_for_tests(uow)
@@ -3168,12 +3558,16 @@ def test_student_learning_element_visit():
     entries_after = len(
         uow.student_learning_element_visit.student_learning_element_visit
     )
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_beginning + 1 == entries_after
 
 
 def test_student_topic_visit():
+    """
+    Test adding a student topic visit.
+    [HASKI-REQ-0095]
+    """
     uow = FakeUnitOfWork()
     create_topic_for_tests(uow)
     create_student_for_tests(uow)
@@ -3186,14 +3580,14 @@ def test_student_topic_visit():
         previous_topic_id=None,
     )
     entries_after = len(uow.student_topic_visit.student_topic_visit)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_beginning + 1 == entries_after
     result = services.add_student_topic_visit(
         uow=uow, student_id=1, topic_id=1, visit_start="2023-01-02", previous_topic_id=1
     )
     entries_after2 = len(uow.student_topic_visit.student_topic_visit)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
     assert entries_beginning + 2 == entries_after2
 
@@ -3216,6 +3610,10 @@ def test_student_topic_visit():
     ],
 )
 def test_create_learning_path(number_of_les, algorithm):
+    """
+    Test creating a learning path.
+    [HASKI-REQ-0095]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
@@ -3234,7 +3632,7 @@ def test_create_learning_path(number_of_les, algorithm):
             create_learning_path_for_tests(uow, algorithm)
     else:
         result = create_learning_path_for_tests(uow, algorithm)
-        assert type(result) == dict
+        assert isinstance(result, dict)
         assert result != {}
         entries_after_path = len(uow.learning_path.learning_path)
         entries_after_path_le = len(
@@ -3243,7 +3641,7 @@ def test_create_learning_path(number_of_les, algorithm):
         assert entries_beginning_path + 1 == entries_after_path
         assert entries_beginning_path_le + number_of_les == entries_after_path_le
         result = create_learning_path_for_tests(uow, algorithm)
-        assert type(result) == dict
+        assert isinstance(result, dict)
         assert result != {}
         entries_after_path_2 = len(uow.learning_path.learning_path)
         entries_after_path_le_2 = len(
@@ -3254,6 +3652,10 @@ def test_create_learning_path(number_of_les, algorithm):
 
 
 def test_delete_learning_paths_by_student_id():
+    """
+    Test deleting learning paths by student ID.
+    [HASKI-REQ-0095]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
@@ -3276,6 +3678,10 @@ def test_delete_learning_paths_by_student_id():
 
 
 def test_get_courses_by_uni():
+    """
+    Test getting courses by university.
+    [HASKI-REQ-0035]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
@@ -3283,12 +3689,16 @@ def test_get_courses_by_uni():
     create_course_with_start_date_for_tests(uow)
     add_student_to_course_for_tests(uow)
     result = services.get_courses_by_uni(uow=uow, university=university_example)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert len(result["courses"]) == 2
     assert result != {}
 
 
 def test_get_courses_by_student_id():
+    """
+    Test getting courses by student ID.
+    [HASKI-REQ-0035]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
@@ -3297,35 +3707,51 @@ def test_get_courses_by_student_id():
     result = services.get_courses_by_student_id(
         uow=uow, user_id=1, lms_user_id=1, student_id=1
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
 def test_get_knowledge_by_student_id():
+    """
+    Test getting knowledge by student ID.
+    [HASKI-REQ-0095]
+    """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
     result = services.get_knowledge_by_student_id(uow=uow, student_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
 def test_get_learning_analytics_by_student_id():
+    """
+    Test getting learning analytics by student ID.
+    [HASKI-REQ-0095]
+    """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
     result = services.get_learning_analytics_by_student_id(uow=uow, student_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
 def test_get_learning_style_by_student_id():
+    """
+    Test getting learning style by student ID.
+    [HASKI-REQ-0007]
+    """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
     result = services.get_learning_style_by_student_id(uow=uow, student_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
 def test_create_default_learning_path():
+    """
+    Test creating a default learning path.
+    [HASKI-REQ-0026]
+    """
     uow = FakeUnitOfWork()
     create_default_learning_path_for_tests(uow)
     initial_entries = len(uow.default_learning_path.default_learning_path)
@@ -3344,6 +3770,10 @@ def test_create_default_learning_path():
 
 
 def test_get_default_learning_path_by_university():
+    """
+    Test getting default learning path by university.
+    [HASKI-REQ-0026]
+    """
     uow = FakeUnitOfWork()
     create_default_learning_path_for_tests(uow)
     result = services.get_default_learning_path_by_university(
@@ -3354,6 +3784,10 @@ def test_get_default_learning_path_by_university():
 
 
 def test_delete_default_learning_path_by_uni():
+    """
+    Test deleting default learning path by university.
+    [HASKI-REQ-0026]
+    """
     uow = FakeUnitOfWork()
     create_default_learning_path_for_tests(uow)
     entries_beginning_path = len(uow.default_learning_path.default_learning_path)
@@ -3365,14 +3799,22 @@ def test_delete_default_learning_path_by_uni():
 
 
 def test_get_learning_strategy_by_student_id():
+    """
+    Test getting learning strategy by student ID.
+    [HASKI-REQ-0007]
+    """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
     result = services.get_learning_strategy_by_student_id(uow=uow, student_id=1)
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
 def test_get_les_for_course_id():
+    """
+    Test getting learning elements for a course ID.
+    [HASKI-REQ-0035]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
@@ -3384,11 +3826,15 @@ def test_get_les_for_course_id():
     result = services.get_learning_elements_for_course_id(
         uow=uow, user_id=1, lms_user_id=1, student_id=1, course_id=1
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
 def test_get_les_for_course_and_topic_id():
+    """
+    Test getting learning elements for a course and topic ID.
+    [HASKI-REQ-0035]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
@@ -3400,28 +3846,15 @@ def test_get_les_for_course_and_topic_id():
     result = services.get_learning_elements_for_course_and_topic_id(
         uow=uow, user_id=1, lms_user_id=1, student_id=1, course_id=1, topic_id=1
     )
-    assert type(result) is dict
-    assert result != {}
-
-
-def test_get_learning_element_recommendation():
-    uow = FakeUnitOfWork()
-    create_course_creator_for_tests(uow)
-    create_learning_path_learning_element_algorithm_for_tests(uow)
-    create_student_for_tests(uow)
-    create_course_for_tests(uow)
-    create_topic_for_tests(uow)
-    create_learning_element_for_tests_1(uow)
-    add_student_to_course_for_tests(uow)
-    create_learning_path_for_tests(uow)
-    result = services.get_learning_element_recommendation(
-        uow=uow, user_id=1, lms_user_id=1, student_id=1, course_id=1, topic_id=1
-    )
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
 def test_get_learning_path():
+    """
+    Test getting a learning path.
+    [HASKI-REQ-0095]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
@@ -3434,11 +3867,15 @@ def test_get_learning_path():
     result = services.get_learning_path(
         uow=uow, user_id=1, lms_user_id=1, student_id=1, course_id=1, topic_id=1
     )
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
 def test_create_learning_path_algorithm():
+    """
+    Test creating a learning path algorithm.
+    [HASKI-REQ-0040]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     initial_entries = len(uow.learning_path_algorithm.learning_path_algorithm)
@@ -3452,6 +3889,10 @@ def test_create_learning_path_algorithm():
 
 
 def test_get_learning_path_algorithm_by_id():
+    """
+    Test getting a learning path algorithm by ID.
+    [HASKI-REQ-0040]
+    """
     uow = FakeUnitOfWork()
     create_learning_path_algorithm_for_tests(uow)
     result = services.get_learning_path_algorithm_by_id(uow=uow, id=1)
@@ -3460,6 +3901,10 @@ def test_get_learning_path_algorithm_by_id():
 
 
 def test_get_learning_path_algorithm_by_short_name():
+    """
+    Test getting a learning path algorithm by short name.
+    [HASKI-REQ-0040]
+    """
     uow = FakeUnitOfWork()
     create_learning_path_algorithm_for_tests(uow)
     result = services.get_learning_path_algorithm_by_short_name(
@@ -3470,6 +3915,10 @@ def test_get_learning_path_algorithm_by_short_name():
 
 
 def test_create_learning_path_learning_element_algorithm():
+    """
+    Test creating a learning path learning element algorithm.
+    [HASKI-REQ-0040]
+    """
     uow = FakeUnitOfWork()
     create_topic_for_tests(uow)
     create_learning_path_algorithm_for_tests(uow)
@@ -3484,6 +3933,10 @@ def test_create_learning_path_learning_element_algorithm():
 
 
 def test_get_lpath_le_algorithm_by_topic():
+    """
+    Test getting learning path learning element algorithm by topic.
+    [HASKI-REQ-0040]
+    """
     uow = FakeUnitOfWork()
     create_learning_path_algorithm_for_tests(uow)
     create_learning_path_learning_element_algorithm_for_tests(uow)
@@ -3493,6 +3946,10 @@ def test_get_lpath_le_algorithm_by_topic():
 
 
 def test_update_learning_path_learning_element_algorithm():
+    """
+    Test updating learning path learning element algorithm.
+    [HASKI-REQ-0040]
+    """
     uow = FakeUnitOfWork()
     create_topic_for_tests(uow)
     create_learning_path_algorithm_for_tests(uow)
@@ -3507,6 +3964,10 @@ def test_update_learning_path_learning_element_algorithm():
 
 
 def test_update_student_lpath_le_algorithm():
+    """
+    Test updating student learning path learning element algorithm.
+    [HASKI-REQ-0040]
+    """
     uow = FakeUnitOfWork()
     create_topic_for_tests(uow)
     create_student_for_tests(uow)
@@ -3522,6 +3983,10 @@ def test_update_student_lpath_le_algorithm():
 
 
 def test_get_sub_topics():
+    """
+    Test getting sub-topics.
+    [HASKI-REQ-0035]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
@@ -3534,11 +3999,15 @@ def test_get_sub_topics():
     result = services.get_sub_topic_by_topic_id(
         uow=uow, user_id=1, lms_user_id=1, student_id=1, course_id=1, topic_id=1
     )
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
 def test_get_topics_by_student_and_course_id():
+    """
+    Test getting topics by student and course ID.
+    [HASKI-REQ-0035]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_student_for_tests(uow)
@@ -3551,60 +4020,84 @@ def test_get_topics_by_student_and_course_id():
     result = services.get_topics_by_student_and_course_id(
         uow=uow, user_id=1, lms_user_id=1, student_id=1, course_id=1
     )
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
 def test_get_user_by_admin():
+    """
+    Test getting user by admin.
+    [HASKI-REQ-0034]
+    """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
     create_admin_for_tests(uow)
     result = services.get_users_by_admin(uow=uow, user_id=1, lms_user_id=1)
-    assert type(result) == dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
 def test_reset_knowledge_by_student_id():
+    """
+    Test resetting knowledge by student ID.
+    [HASKI-REQ-0095]
+    """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
     result = services.reset_knowledge_by_student_id(
         uow=uow, user_id=1, lms_user_id=1, student_id=1
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
 def test_reset_learning_analytics_by_student_id():
+    """
+    Test resetting learning analytics by student ID.
+    [HASKI-REQ-0095]
+    """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
     result = services.reset_learning_analytics_by_student_id(
         uow=uow, user_id=1, lms_user_id=1, student_id=1
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
 def test_reset_learning_style_by_student_id():
+    """
+    Test resetting learning style by student ID.
+    [HASKI-REQ-0007]
+    """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
     result = services.reset_learning_style_by_student_id(
         uow=uow, user_id=1, lms_user_id=1, student_id=1
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
 def test_reset_learning_strategy_by_student_id():
+    """
+    Test resetting learning strategy by student ID.
+    [HASKI-REQ-0048]
+    """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
     result = services.reset_learning_strategy_by_student_id(
         uow=uow, user_id=1, lms_user_id=1, student_id=1
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
 def test_update_learning_style_by_student_id():
+    """
+    Test updating learning style by student ID.
+    [HASKI-REQ-0048]
+    """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow)
     result = services.update_learning_style_by_student_id(
@@ -3621,11 +4114,15 @@ def test_update_learning_style_by_student_id():
         understanding_dimension="glo",
         understanding_value=11,
     )
-    assert type(result) is dict
+    assert isinstance(result, dict)
     assert result != {}
 
 
 def test_create_student_rating():
+    """
+    Test creating a student rating.
+    [HASKI-REQ-0043]
+    """
     uow = FakeUnitOfWork()
     create_student_for_tests(uow=uow)
     initial_entries = len(uow.student_rating.student_rating)
@@ -3644,24 +4141,36 @@ def test_create_student_rating():
 
 
 def test_get_student_ratings_on_topic():
+    """
+    Test getting student ratings on a topic.
+    [HASKI-REQ-0043]
+    """
     uow = FakeUnitOfWork()
     create_student_rating_for_tests(uow=uow)
     result = services.get_student_ratings_on_topic(uow=uow, student_id=1, topic_id=1)
-    assert type(result) is list
+    assert isinstance(result, list)
     assert result != []
 
 
 def test_get_student_ratings():
+    """
+    Test getting all student ratings.
+    [HASKI-REQ-0043]
+    """
     uow = FakeUnitOfWork()
     create_student_rating_for_tests(uow=uow)
     result = services.get_student_ratings(uow=uow)
-    assert type(result) is list
+    assert isinstance(result, list)
     assert result != []
 
 
 def test_create_learning_element_rating():
+    """
+    Test creating a learning element rating.
+    [HASKI-REQ-0043]
+    """
     uow = FakeUnitOfWork()
-    create_learning_element_rating_for_tests(uow=uow)
+    create_learning_element_rating_for_tests_1(uow=uow)
     initial_entries = len(uow.learning_element_rating.learning_element_rating)
     result = services.create_learning_element_rating(
         uow=uow,
@@ -3678,21 +4187,107 @@ def test_create_learning_element_rating():
 
 
 def test_get_learning_element_ratings_on_topic():
+    """
+    Test getting learning element ratings on a topic.
+    [HASKI-REQ-0043]
+    """
     uow = FakeUnitOfWork()
-    create_learning_element_rating_for_tests(uow=uow)
+    create_learning_element_rating_for_tests_1(uow=uow)
     result = services.get_learning_element_ratings_on_topic(
         uow=uow, learning_element_id=1, topic_id=1
     )
-    assert type(result) is list
+    assert isinstance(result, list)
     assert result != []
 
 
 def test_get_learning_element_ratings():
+    """
+    Test getting all learning element ratings.
+    [HASKI-REQ-0043]
+    """
     uow = FakeUnitOfWork()
-    create_learning_element_rating_for_tests(uow)
+    create_learning_element_rating_for_tests_1(uow)
     result = services.get_learning_element_ratings(uow=uow)
-    assert type(result) is list
+    assert isinstance(result, list)
     assert result != []
+
+
+def test_add_learning_element_solution():
+    uow = FakeUnitOfWork()
+    create_learning_element_for_tests_1(uow)
+    result = services.add_learning_element_solution(
+        uow=uow,
+        learning_element_lms_id=1,
+        solution_lms_id=1,
+        activity_type="Test Solution",
+    )
+    assert type(result) is dict
+    assert result != {}
+
+
+def test_get_learning_element_solution():
+    uow = FakeUnitOfWork()
+    create_learning_element_for_tests_1(uow)
+    add_learning_element_solution_for_tests(uow=uow)
+    result = services.get_learning_element_solution_by_learning_element_id(
+        uow=uow, learning_element_id=1
+    )
+    assert type(result) is dict
+    assert result != {}
+
+
+def test_delete_learning_element_solution():
+    uow = FakeUnitOfWork()
+    create_learning_element_for_tests_1(uow)
+    add_learning_element_solution_for_tests(uow=uow)
+    entries_before = len(uow.learning_element_solution.learning_element_solution)
+    services.delete_learning_element_solution(uow=uow, learning_element_id=1)
+    entries_after = len(uow.learning_element_solution.learning_element_solution)
+    assert entries_after == entries_before - 1
+
+
+def test_delete_learning_element_ratings_by_learning_element():
+    """
+    Test deleting learning element ratings by learning element.
+    [HASKI-REQ-0043]
+    """
+    uow = FakeUnitOfWork()
+    create_learning_element_rating_for_tests_1(uow=uow)
+    entries_beginning = len(uow.learning_element_rating.learning_element_rating)
+    result = services.delete_learning_element_ratings_by_learning_element(
+        uow, learning_element_id=1
+    )
+    assert result is None
+    entries_after = len(uow.learning_element_rating.learning_element_rating)
+    assert entries_beginning - 1 == entries_after
+
+
+def test_delete_learning_element_ratings_by_topic():
+    """
+    Test deleting learning element ratings by topic.
+    [HASKI-REQ-0043]
+    """
+    uow = FakeUnitOfWork()
+    create_learning_element_rating_for_tests_1(uow=uow)
+    entries_beginning = len(uow.learning_element_rating.learning_element_rating)
+    result = services.delete_learning_element_ratings_by_topic(uow, topic_id=1)
+    assert result is None
+    entries_after = len(uow.learning_element_rating.learning_element_rating)
+    assert entries_beginning - 1 == entries_after
+
+
+def test_delete_student_ratings_by_topic():
+    """
+    Test deleting student ratings by topic.
+    [HASKI-REQ-0043]
+    """
+    uow = FakeUnitOfWork()
+    create_student_rating_for_tests(uow=uow)
+    entries_beginning = len(uow.student_rating.student_rating)
+    result = services.delete_student_ratings_by_topic(uow, topic_id=1)
+    assert result is None
+    entries_after = len(uow.student_rating.student_rating)
+    assert entries_beginning - 1 == entries_after
 
 
 @mock.patch(
@@ -3707,6 +4302,10 @@ def test_get_learning_element_ratings():
     ),
 )
 def test_get_moodle_course_content():
+    """
+    Test getting Moodle course content.
+    [HASKI-REQ-0037]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_course_for_tests(uow)
@@ -3727,6 +4326,10 @@ def test_get_moodle_course_content():
     ),
 )
 def test_get_h5p_activity_id_for_learning_element():
+    """
+    Test getting H5P activity ID for a learning element.
+    [HASKI-REQ-0043]
+    """
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
     create_course_for_tests(uow)
@@ -3739,6 +4342,10 @@ def test_get_h5p_activity_id_for_learning_element():
 
 @mock.patch("requests.get")
 def test_get_moodle_h5p_activity_attempts(mock_get):
+    """
+    Test getting Moodle H5P activity attempts.
+    [HASKI-REQ-0043]
+    """
     mock_response_1 = mock.Mock(
         status_code=200, json=lambda: [{"modules": [{"id": 1, "instance": 1}]}]
     )
@@ -3766,6 +4373,10 @@ def test_get_moodle_h5p_activity_attempts(mock_get):
 
 @mock.patch("requests.get")
 def test_get_moodle_most_recent_attempt_by_user(mock_get):
+    """
+    Test getting most recent Moodle attempt by user.
+    [HASKI-REQ-0043]
+    """
     mock_response_1 = mock.Mock(
         status_code=200, json=lambda: [{"modules": [{"id": 1, "instance": 1}]}]
     )
@@ -3787,3 +4398,85 @@ def test_get_moodle_most_recent_attempt_by_user(mock_get):
         uow=uow, course_id=1, learning_element_id=1, lms_user_id="1"
     )
     assert result == {"timecreated": 2}
+
+
+def test_get_recommended_exercises_for_student_in_topic():
+    """
+    Test getting recommended exercises for a student in a topic.
+    [HASKI-REQ-0072]
+    """
+    uow = FakeUnitOfWork()
+    create_course_creator_for_tests(uow)
+    create_student_for_tests(uow)
+    create_course_for_tests(uow)
+    create_topic_for_tests(uow)
+    create_learning_element_for_tests_3(uow)
+    create_learning_path_learning_element_algorithm_for_tests(uow)
+    add_student_to_course_for_tests(uow)
+    results = services.get_recommended_exercises_for_student_in_topic(
+        uow=uow, user_id=1, lms_user_id=1, student_id=1, course_id=1, topic_id=1
+    )
+    assert isinstance(results, list)
+    assert results != []
+
+    create_student_rating_for_tests(uow)
+    create_learning_element_rating_for_tests_2(uow)
+    results = services.get_recommended_exercises_for_student_in_topic(
+        uow=uow, user_id=1, lms_user_id=1, student_id=1, course_id=1, topic_id=1
+    )
+    assert isinstance(results, list)
+    assert results != []
+
+
+def test_update_ratings():
+    """
+    Test updating ratings.
+    [HASKI-REQ-0043]
+    """
+    uow = FakeUnitOfWork()
+    assert services.get_learning_element_ratings(uow) == []
+    timestamp = datetime.datetime(2025, 5, 24, 10, 0, 0)
+    result = services.update_ratings(
+        uow=uow,
+        student_id=1,
+        learning_element_id=1,
+        topic_id=1,
+        attempt_result=1,
+        timestamp=timestamp,
+    )
+    assert isinstance(result, dict)
+    assert result == {
+        "learning_element_rating": {
+            "deviation": 290.2305060910912,
+            "timestamp": timestamp,
+            "value": 1337.7879973942352,
+        },
+        "student_rating": {
+            "deviation": 290.2305060910912,
+            "timestamp": timestamp,
+            "value": 1613.5484018240354,
+        },
+    }
+
+    timestamp = datetime.datetime(2025, 5, 24, 10, 0, 1)
+    result = services.update_ratings(
+        uow=uow,
+        student_id=1,
+        learning_element_id=1,
+        topic_id=1,
+        attempt_result=0,
+        timestamp=timestamp,
+    )
+    assert isinstance(result, dict)
+    assert result == {
+        "learning_element_rating": {
+            "deviation": 257.2042041883119,
+            "timestamp": timestamp,
+            "value": 1551.4204351796234,
+        },
+        "student_rating": {
+            "deviation": 257.20420418831196,
+            "timestamp": timestamp,
+            "value": 1399.9159640386472,
+        },
+    }

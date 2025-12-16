@@ -31,6 +31,7 @@ class GeneticAlgorithm:
         self.cross_rate = 0.9
         self.pop_size = 100
         self.first_is_present = False
+        self.dimensionen = 4
 
         if learning_elements is not None:
             #  convert learning element into
@@ -38,20 +39,33 @@ class GeneticAlgorithm:
             le = utils.get_learning_element(learning_elements)
             self.le_size = len(le)
 
-    def create_random_population(self, learning_style) -> None:
+    def create_random_population(self, learning_style, input_view_time=None) -> None:
         """Function for the calculation of the score.
         position a also Initialise some populations
         with Clustering if this is possible.
         param dict_coordinates"""
 
-        coordinates = utils.get_coordinates(learning_style, self.learning_elements)
+        has_view_time = bool(input_view_time)
+
+        if has_view_time:
+            self.dimensionen = 6
+
+        coordinates = utils.get_coordinates(
+            learning_style, self.learning_elements, self.dimensionen
+        )
 
         if not any(np.char.equal(self.learning_elements, "KÜ")):
-            self.dict_coordinate = {"first": (15, 15, 15, 15)}
+            self.dict_coordinate = {"first": (15,) * self.dimensionen}
             self.dict_coordinate.update(coordinates)
             self.first_is_present = True
         else:
             self.dict_coordinate = coordinates
+
+        if has_view_time:
+            norm_view_times = utils.added_view_times(input_view_time)
+            self.dict_coordinate = utils.update_coordinate(
+                self.dict_coordinate, norm_view_times
+            )
 
         self.le_coordinate = np.array(list(self.dict_coordinate.values()))
         self.learning_elements = np.array(list(self.dict_coordinate.keys()))
@@ -76,28 +90,30 @@ class GeneticAlgorithm:
         return new_pop
 
     def get_lines_paths(self, new_pop):
-        """This function extract all the positions X,Y,Z,K.
-        in the space of the generated trajectories"""
-        le_coord = self.le_coordinate[new_pop]
-        line_x, line_y, line_z, line_k = (
-            le_coord[:, :, 0],
-            le_coord[:, :, 1],
-            le_coord[:, :, 2],
-            le_coord[:, :, 3],
-        )
-        return (line_x, line_y, line_z, line_k)
+        """This function extracts all the positions (X,Y,Z,K,..)
+        in the space of the generated trajectories."""
 
-    def get_fitness(self, line_x, line_y, line_z, line_k):
-        """Function to calculate the fitness function for GA"""
+        le_coord = self.le_coordinate[new_pop]
+
+        # all columns from `le_coord` dynamically to handle any number of dimensions
+        lines = [le_coord[:, :, i] for i in range(le_coord.shape[2])]
+
+        return tuple(lines)
+
+    def get_fitness(self, *lines):
+        """Calculate the fitness function for multiple variables."""
+
+        # Ensure all entries have the same shape.
+        shape = lines[0].shape
+        for line in lines:
+            assert line.shape == shape, "The dimensions of the arrays do not match."
+
         # a score is evaluated for each individual, which is
         # calculated using the fitness function: dtype=np.float64)
-        total_sum = (
-            np.square(np.diff(line_x))
-            + np.square(np.diff(line_y))
-            + np.square(np.diff(line_z))
-            + np.square(np.diff(line_k))
-        )
-        fitness = np.sum(np.sqrt(total_sum), 1)
+        total_sum = np.sum([np.square(np.diff(line, axis=1)) for line in lines], axis=0)
+
+        fitness = np.sum(np.sqrt(total_sum), axis=1)
+
         return fitness
 
     def crossover(self, parent, pop):
@@ -157,8 +173,10 @@ class GeneticAlgorithm:
         valid = False
         while i < self.n_generation or valid:
             new_pop = self.valid_population()
-            lx, ly, lz, lk = self.get_lines_paths(new_pop)
-            fitness = self.get_fitness(lx, ly, lz, lk)
+            lines = self.get_lines_paths(new_pop)
+            # lx, ly, lz, lk = self.get_lines_paths(new_pop)
+            # fitness = self.get_fitness(lx, ly, lz, lk)
+            fitness = self.get_fitness(*lines)
 
             # sort population
             best_index = np.argsort(fitness)
@@ -273,10 +291,8 @@ class GeneticAlgorithm:
             ]
         )
 
-    def get_learning_path(self, input_learning_style=None, input_learning_element=None):
-        """calculates and verifies the learning path the genetic algorithm"""
-
-        result_ga = []
+    def validation_learning_style(self, input_learning_style=None):
+        """Check the input_learning_style."""
         if input_learning_style is None:
             raise err.MissingParameterError()
         else:
@@ -289,6 +305,18 @@ class GeneticAlgorithm:
                 # Wrong  Dimension input_learning_style
                 raise err.WrongLearningStyleDimensionError()
 
+    def get_learning_path(
+        self,
+        input_learning_style=None,
+        input_learning_element=None,
+        input_view_time=None,
+    ):
+        """calculates and verifies the learning path the genetic algorithm"""
+
+        result_ga = []
+
+        self.validation_learning_style(input_learning_style)
+
         if input_learning_element is None:
             raise err.NoValidParameterValueError()
         else:
@@ -300,6 +328,6 @@ class GeneticAlgorithm:
         if len(self.learning_elements) == 1:
             return self.learning_elements[0]
 
-        self.create_random_population(input_learning_style)
+        self.create_random_population(input_learning_style, input_view_time)
         result_ga = self.calculate_learning_path_ga()
         return result_ga

@@ -23,7 +23,6 @@ COPY domain/ /app/domain/
 COPY entrypoints/ /app/entrypoints/
 COPY repositories/ /app/repositories/
 COPY service_layer/ /app/service_layer/
-COPY setup/ /app/setup/
 COPY tests/ /app/tests/
 COPY utils/ /app/utils/
 COPY config.py /app/config.py

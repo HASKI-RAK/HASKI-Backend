@@ -4,6 +4,7 @@ from domain.domainModel import model as DM
 
 
 def test_calculate_learning_element_rating():
+    """[HASKI-REQ-0043] Test calculation of learning element rating"""
     learning_element = DM.LearningElementRating(
         1, 1, datetime.fromisoformat("2023-01-01 16:00"), None, None
     )

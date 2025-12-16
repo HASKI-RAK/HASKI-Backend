@@ -15,6 +15,8 @@ class TestAuthorizeDecorator(unittest.TestCase):
         self.app = Flask(__name__)
 
     def test_authorized_user(self):
+        """[HASKI-REQ-0028] Test that a user with the \
+            correct permissions can access the route"""
         state = {"permissions": [Permissions.READ.value]}
         # Mock the request object
         with self.app.test_request_context():
@@ -39,6 +41,8 @@ class TestAuthorizeDecorator(unittest.TestCase):
                 self.assertEqual(response.data, b"Success")
 
     def test_unauthorized_user(self):
+        """[HASKI-REQ-0028] Test that a user without \
+            the correct permissions cannot access the route"""
         state = {"permissions": []}
         # Mock the request object
         with self.app.test_request_context():

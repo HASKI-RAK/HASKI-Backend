@@ -2,12 +2,16 @@ import http
 import json
 import os
 import re
-from datetime import datetime
+import socket
+from datetime import datetime, timezone
 from typing import Any, Dict, List, Union
 
+import requests
 from flask import Flask, jsonify, make_response, request
 from flask.wrappers import Response
 from flask_cors import CORS, cross_origin
+from sqlalchemy import text
+from sqlalchemy.exc import SQLAlchemyError
 
 import service_layer.crypto.JWTKeyManagement as JWTKeyManagement
 import service_layer.lti.config.ToolConfigJson as ToolConfigJson
@@ -29,6 +33,101 @@ CORS(app, supports_credentials=True)
 orm.start_mappers()
 
 logger.configure_dict()
+
+SERVICE_STARTED_AT = datetime.now(timezone.utc)
+_last_successful_checks: Dict[str, Union[str, None]] = {
+    "database": None,
+    "message_queue": None,
+}
+
+
+def _utc_now_iso() -> str:
+    return datetime.now(timezone.utc).isoformat()
+
+
+def _service_version() -> str:
+    for key in (
+        "RELEASE_VERSION",
+        "BACKEND_VERSION",
+        "APP_VERSION",
+        "VERSION",
+        "GIT_SHA",
+        "COMMIT_SHA",
+        "IMAGE_TAG",
+    ):
+        value = os.environ.get(key)
+        if value:
+            return value
+    return "unknown"
+
+
+def _check_database() -> Dict[str, Any]:
+    started_at = datetime.now(timezone.utc)
+    check = {
+        "component": "database",
+        "impact": "critical",
+        "checked_at": _utc_now_iso(),
+        "last_successful": _last_successful_checks["database"],
+        "status": "DOWN",
+        "latency_ms": None,
+        "details": None,
+    }
+    session = None
+    try:
+        session = unit_of_work.DEFAULT_SESSION_FACTORY()
+        session.execute(text("SELECT 1"))
+        latency = (datetime.now(timezone.utc) - started_at).total_seconds() * 1000
+        check["status"] = "UP"
+        check["latency_ms"] = round(latency, 3)
+        _last_successful_checks["database"] = _utc_now_iso()
+        check["last_successful"] = _last_successful_checks["database"]
+    except SQLAlchemyError as exc:
+        check["details"] = str(exc.__cause__ or exc)
+        logger.error(f"Database health check failed: {check['details']}")
+    except Exception as exc:  # pragma: no cover - unexpected
+        check["details"] = str(exc)
+        logger.error(f"Database health check failed: {check['details']}")
+    finally:
+        if session is not None:
+            session.close()
+    return check
+
+
+def _check_message_queue() -> Dict[str, Any]:
+    started_at = datetime.now(timezone.utc)
+    health_url = os.environ.get("MESSAGE_QUEUE_HEALTHCHECK_URL")
+    check = {
+        "component": "message_queue",
+        "impact": "informational" if not health_url else "critical",
+        "checked_at": _utc_now_iso(),
+        "last_successful": _last_successful_checks["message_queue"],
+        "status": "SKIPPED",
+        "latency_ms": None,
+        "details": None,
+    }
+
+    if not health_url:
+        check["details"] = "MESSAGE_QUEUE_HEALTHCHECK_URL not set; skipping check"
+        return check
+
+    try:
+        response = requests.get(health_url, timeout=2)
+        latency = (datetime.now(timezone.utc) - started_at).total_seconds() * 1000
+        check["latency_ms"] = round(latency, 3)
+        if response.ok:
+            check["status"] = "UP"
+            _last_successful_checks["message_queue"] = _utc_now_iso()
+            check["last_successful"] = _last_successful_checks["message_queue"]
+        else:
+            check["status"] = "DOWN"
+            check["details"] = f"HTTP {response.status_code}"
+    except Exception as exc:  # pragma: no cover - unexpected
+        check["status"] = "DOWN"
+        check["details"] = str(exc)
+        logger.error(f"Message queue health check failed: {check['details']}")
+
+    return check
+
 
 mocked_frontend_log = {
     "logs": [
@@ -67,6 +166,44 @@ def handle_custom_exception(ex: err.AException):
     response = json.dumps({"error": ex.__class__.__name__, "message": ex.message})
     logger.error(response)
     return response, ex.status_code
+
+
+@app.route("/health", methods=["GET"])
+def health():
+    dependency_checks = {
+        "database": _check_database(),
+        "message_queue": _check_message_queue(),
+    }
+
+    critical_failures = [
+        name
+        for name, result in dependency_checks.items()
+        if result["impact"] == "critical" and result["status"] == "DOWN"
+    ]
+
+    overall_status = "UP" if not critical_failures else "DOWN"
+    status_code = (
+        http.HTTPStatus.OK
+        if overall_status == "UP"
+        else http.HTTPStatus.SERVICE_UNAVAILABLE
+    )
+
+    payload = {
+        "status": overall_status,
+        "checked_at": _utc_now_iso(),
+        "uptime_seconds": int(
+            (datetime.now(timezone.utc) - SERVICE_STARTED_AT).total_seconds()
+        ),
+        "service": {
+            "name": os.environ.get("PLATFORM_NAME", "HASKI-Backend"),
+            "version": _service_version(),
+            "hostname": os.environ.get("HOSTNAME", socket.gethostname()),
+        },
+        "dependencies": dependency_checks,
+    }
+
+    logger.info(json.dumps({"event": "health_check", **payload}))
+    return jsonify(payload), status_code
 
 
 # User Administration via LMS
@@ -160,30 +297,46 @@ def get_user_by_id(user_id, lms_user_id):
             return jsonify(user), status_code
 
 
-# Add all students to a course
+# Add all students that are enrolled in moodle courses to the haski courses
 @app.route("/course/<course_id>/allStudents", methods=["POST"])
 @cross_origin(supports_credentials=True)
 def add_all_students_to_course(course_id):
     method = request.method
     match method:
         case "POST":
+            created_for = []
             students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
             for student in students:
-                student_id = student["id"]
-                services.add_student_to_course(
-                    unit_of_work.SqlAlchemyUnitOfWork(),
-                    student_id,
-                    course_id,
+                user = services.get_user_by_id(
+                    unit_of_work.SqlAlchemyUnitOfWork(), student["user_id"], None
                 )
+                courses = services.get_enrolled_university_courses(
+                    unit_of_work.SqlAlchemyUnitOfWork(),
+                    user["lms_user_id"],
+                    user["university"],
+                )
+                if services.is_student_enrolled_in_course(courses, course_id):
+                    services.add_student_to_course(
+                        unit_of_work.SqlAlchemyUnitOfWork(),
+                        student["id"],
+                        course_id,
+                    )
+                    created_for.append(student["id"])
+            if created_for:
+                return make_response(
+                    jsonify(
+                        {
+                            "CREATED": True,
+                            "course_id": course_id,
+                            "student_count": len(created_for),
+                        }
+                    ),
+                    http.HTTPStatus.CREATED,
+                )
+
             return make_response(
-                jsonify(
-                    {
-                        "CREATED": True,
-                        "course_id": course_id,
-                        "students_added": len(students),
-                    }
-                ),
-                http.HTTPStatus.CREATED,
+                jsonify({"CREATED": False, "course_id": course_id, "student_count": 0}),
+                http.HTTPStatus.NOT_FOUND,
             )
 
 
@@ -201,42 +354,42 @@ def post_course(data: Dict[str, Any]):
             condition3 = "lms_id" in data
             condition4 = "university" in data
             condition5 = "created_by" in data
-            condition10 = "start_date" in data
-            if condition1 and condition2 and condition3 and condition4 and condition5:
-                condition6 = type(data["lms_id"]) is int
-                condition7 = type(data["name"]) is str
-                condition8 = type(data["university"]) is str
-                condition9 = type(data["created_by"]) is int
-                if condition6 and condition7 and condition8 and condition9:
-                    current_date = datetime.now().strftime(cons.date_format)
-                    if condition10:
-                        condition11 = type(data["start_date"]) is str
-                        if condition11:
-                            condition12 = re.search(
-                                cons.date_format_search, data["start_date"]
-                            )
-                            if condition12:
-                                start_date = datetime.strptime(
-                                    data["start_date"], cons.date_format
-                                )
-                    else:
-                        start_date = datetime.strptime(current_date, cons.date_format)
-                    created_at = datetime.strptime(current_date, cons.date_format)
-                    course = services.create_course(
-                        unit_of_work.SqlAlchemyUnitOfWork(),
-                        data["lms_id"],
-                        data["name"],
-                        data["university"],
-                        data["created_by"],
-                        created_at,
-                        start_date,
-                    )
-                    status_code = 201
-                    return jsonify(course), status_code
-                else:
-                    raise err.WrongParameterValueError(message=cons.date_format_message)
-            else:
+            if not (
+                condition1 and condition2 and condition3 and condition4 and condition5
+            ):
                 raise err.MissingParameterError()
+
+            condition6 = type(data["lms_id"]) is int
+            condition7 = type(data["name"]) is str
+            condition8 = type(data["university"]) is str
+            condition9 = type(data["created_by"]) is int
+            if not (condition6 and condition7 and condition8 and condition9):
+                raise err.WrongParameterValueError(message=cons.date_format_message)
+
+            current_date = datetime.now().strftime(cons.date_format)
+            start_date = datetime.strptime(current_date, cons.date_format)
+
+            condition10 = (
+                "start_date" in data
+                and isinstance(data["start_date"], str)
+                and re.search(cons.date_format_search, data["start_date"]) is not None
+            )
+            if condition10:
+                start_date = datetime.strptime(data["start_date"], cons.date_format)
+
+            created_at = datetime.strptime(current_date, cons.date_format)
+            course = services.create_course(
+                unit_of_work.SqlAlchemyUnitOfWork(),
+                data["lms_id"],
+                data["name"],
+                data["university"],
+                data["created_by"],
+                created_at,
+                start_date,
+            )
+
+            status_code = 201
+            return jsonify(course), status_code
 
 
 @app.route("/lms/course/<course_id>/<lms_course_id>", methods=["PUT", "DELETE"])
@@ -250,36 +403,35 @@ def course_administration(data: Dict[str, Any], course_id, lms_course_id):
             condition2 = "name" in data
             condition3 = "university" in data
             condition4 = "last_updated" in data
-            if condition1 and condition2 and condition3 and condition4:
-                condition5 = re.search(cons.date_format_search, data["last_updated"])
-                if condition5:
-                    condition6 = "start_date" in data
-                    if condition6:
-                        condition7 = re.search(
-                            cons.date_format_search, data["start_date"]
-                        )
-                        if condition7:
-                            start_date = datetime.strptime(
-                                data["start_date"], cons.date_format
-                            ).date()
-                        else:
-                            raise err.WrongParameterValueError()
-                    else:
-                        start_date = None
-                    course = services.update_course(
-                        unit_of_work.SqlAlchemyUnitOfWork(),
-                        course_id,
-                        lms_course_id,
-                        data["name"],
-                        data["university"],
-                        start_date,
-                    )
-                    status_code = 201
-                    return jsonify(course), status_code
-                else:
-                    raise err.WrongParameterValueError()
-            else:
+            if not (condition1 and condition2 and condition3 and condition4):
                 raise err.MissingParameterError()
+
+            condition5 = re.search(cons.date_format_search, data["last_updated"])
+            if not condition5:
+                raise err.WrongParameterValueError()
+
+            start_date = None
+            condition6 = "start_date" in data
+            if condition6:
+                condition7 = re.search(cons.date_format_search, data["start_date"])
+                if not condition7:
+                    raise err.WrongParameterValueError()
+
+                start_date = datetime.strptime(
+                    data["start_date"], cons.date_format
+                ).date()
+
+            course = services.update_course(
+                unit_of_work.SqlAlchemyUnitOfWork(),
+                course_id,
+                lms_course_id,
+                data["name"],
+                data["university"],
+                start_date,
+            )
+
+            status_code = 201
+            return jsonify(course), status_code
         case "DELETE":
             topics = services.get_topics_for_course_id(
                 unit_of_work.SqlAlchemyUnitOfWork(), course_id
@@ -288,11 +440,7 @@ def course_administration(data: Dict[str, Any], course_id, lms_course_id):
                 unit_of_work.SqlAlchemyUnitOfWork(), course_id
             )
             for topic in topics:
-                # student and learning_element rating need to be deleted (topic_id)
                 services.delete_student_topic_by_topic_id(
-                    unit_of_work.SqlAlchemyUnitOfWork(), topic["id"]
-                )
-                learning_elements = services.get_learning_elements_for_topic_id(
                     unit_of_work.SqlAlchemyUnitOfWork(), topic["id"]
                 )
                 services.delete_learning_path_learning_element_algorithm(
@@ -301,14 +449,33 @@ def course_administration(data: Dict[str, Any], course_id, lms_course_id):
                 services.delete_student_lpath_le_algorithm(
                     unit_of_work.SqlAlchemyUnitOfWork(), topic["id"]
                 )
+                services.delete_student_ratings_by_topic(
+                    unit_of_work.SqlAlchemyUnitOfWork(), topic["id"]
+                )
+                services.delete_learning_element_ratings_by_topic(
+                    unit_of_work.SqlAlchemyUnitOfWork(), topic["id"]
+                )
+
+                learning_elements = services.get_learning_elements_for_topic_id(
+                    unit_of_work.SqlAlchemyUnitOfWork(), topic["id"]
+                )
+
                 for learning_element in learning_elements:
                     services.delete_student_learning_element_by_learning_element_id(
-                        unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"]
+                        unit_of_work.SqlAlchemyUnitOfWork(),
+                        learning_element["learning_element_id"],
+                    )
+                    services.delete_learning_element_solution(
+                        unit_of_work.SqlAlchemyUnitOfWork(),
+                        learning_element["learning_element_id"],
                     )
                     services.delete_learning_element(
-                        unit_of_work.SqlAlchemyUnitOfWork(), learning_element["id"]
+                        unit_of_work.SqlAlchemyUnitOfWork(),
+                        learning_element["learning_element_id"],
                     )
+
                 services.delete_topic(unit_of_work.SqlAlchemyUnitOfWork(), topic["id"])
+
             services.delete_course(unit_of_work.SqlAlchemyUnitOfWork(), course_id)
             result = {"message": cons.deletion_message}
             status_code = 200
@@ -445,18 +612,22 @@ def get_activity_status_for_student_for_learning_element(
 
 
 @app.route(
-    "/lms/remote/courses",
+    "/lms/user/<user_id>/remote/courses",
     methods=["GET"],
 )
 @cross_origin(supports_credentials=True)
-def get_all_remote_courses():
+def get_all_remote_courses(user_id):
     method = request.method
     match method:
         case "GET":
-            remote_courses = services.get_courses_from_moodle(
-                unit_of_work.SqlAlchemyUnitOfWork()
+            user = services.get_user_by_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), user_id, None
             )
-            return jsonify(remote_courses), 200
+            enrolled_moodle_courses = services.get_courses_for_user_from_moodle(
+                unit_of_work.SqlAlchemyUnitOfWork(), user["lms_user_id"]
+            )
+
+            return jsonify(enrolled_moodle_courses), 200
 
 
 @app.route(
@@ -516,7 +687,7 @@ def post_topic(data: Dict[str, Any], course_id):
             condition6 = "created_by" in data
             condition7 = "created_at" in data
             condition8 = "university" in data
-            if (
+            if not (
                 condition1
                 and condition2
                 and condition3
@@ -526,49 +697,47 @@ def post_topic(data: Dict[str, Any], course_id):
                 and condition7
                 and condition8
             ):
-                condition9 = type(data["name"]) is str
-                condition10 = type(data["lms_id"]) is int
-                condition11 = type(data["is_topic"]) is bool
-                condition12 = type(data["contains_le"]) is bool
-                condition13 = type(data["created_by"]) is str
-                condition14 = type(data["created_at"]) is str
-                condition15 = type(data["university"]) is str
-                if (
-                    condition9
-                    and condition10
-                    and condition11
-                    and condition12
-                    and condition13
-                    and condition14
-                    and condition15
-                ):
-                    condition16 = re.search(cons.date_format_search, data["created_at"])
-                    if condition16:
-                        created_at = datetime.strptime(
-                            data["created_at"], cons.date_format
-                        ).date()
-                        topic = services.create_topic(
-                            unit_of_work.SqlAlchemyUnitOfWork(),
-                            course_id,
-                            data["lms_id"],
-                            data["is_topic"],
-                            data["parent_id"] if "parent_id" in data else None,
-                            data["contains_le"],
-                            data["name"],
-                            data["university"],
-                            data["created_by"],
-                            created_at,
-                        )
-                        status_code = 201
-                        return jsonify(topic), status_code
-                    else:
-                        raise err.WrongParameterValueError(
-                            message=cons.date_format_message
-                        )
-                else:
-                    raise err.WrongParameterValueError()
-            else:
                 raise err.MissingParameterError()
+
+            condition9 = type(data["name"]) is str
+            condition10 = type(data["lms_id"]) is int
+            condition11 = type(data["is_topic"]) is bool
+            condition12 = type(data["contains_le"]) is bool
+            condition13 = type(data["created_by"]) is str
+            condition14 = type(data["created_at"]) is str
+            condition15 = type(data["university"]) is str
+            if not (
+                condition9
+                and condition10
+                and condition11
+                and condition12
+                and condition13
+                and condition14
+                and condition15
+            ):
+                raise err.WrongParameterValueError()
+
+            condition16 = re.search(cons.date_format_search, data["created_at"])
+            if not condition16:
+                raise err.WrongParameterValueError(message=cons.date_format_message)
+
+            created_at = datetime.strptime(data["created_at"], cons.date_format).date()
+
+            topic = services.create_topic(
+                unit_of_work.SqlAlchemyUnitOfWork(),
+                course_id,
+                data["lms_id"],
+                data["is_topic"],
+                data["parent_id"] if "parent_id" in data else None,
+                data["contains_le"],
+                data["name"],
+                data["university"],
+                data["created_by"],
+                created_at,
+            )
+
+            status_code = 201
+            return jsonify(topic), status_code
 
 
 # Add Topic to course and add all students to it
@@ -578,23 +747,37 @@ def add_all_students_to_all_topics(course_id):
     method = request.method
     match method:
         case "POST":
-            students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
+            uow = unit_of_work.SqlAlchemyUnitOfWork()
+            students = services.get_all_students(uow)
+            created_for = []
+
             for student in students:
-                student_id = student["id"]
-                services.add_student_to_topics(
-                    unit_of_work.SqlAlchemyUnitOfWork(),
-                    student_id,
-                    course_id,
+                user = services.get_user_by_id(uow, student["user_id"], None)
+
+                # look if student is enrolled in the course
+                courses = services.get_courses_by_student_id(
+                    uow, user["id"], user["lms_user_id"], student["id"]
                 )
+
+                if services.is_student_enrolled_in_course(courses, course_id):
+                    services.add_student_to_topics(uow, student["id"], course_id)
+                    created_for.append(student["id"])
+
+            if created_for:
+                return make_response(
+                    jsonify(
+                        {
+                            "CREATED": True,
+                            "course_id": course_id,
+                            "student_count": len(created_for),
+                        }
+                    ),
+                    http.HTTPStatus.CREATED,
+                )
+
             return make_response(
-                jsonify(
-                    {
-                        "CREATED": True,
-                        "course_id": course_id,
-                        "students_added": len(students),
-                    }
-                ),
-                http.HTTPStatus.CREATED,
+                jsonify({"CREATED": False, "course_id": course_id, "student_count": 0}),
+                http.HTTPStatus.NOT_FOUND,
             )
 
 
@@ -616,7 +799,7 @@ def topic_administration(data: Dict[str, Any], topic_id, lms_topic_id):
             condition6 = "created_at" in data
             condition7 = "university" in data
             condition8 = "last_updated" in data
-            if (
+            if not (
                 condition1
                 and condition2
                 and condition3
@@ -626,44 +809,40 @@ def topic_administration(data: Dict[str, Any], topic_id, lms_topic_id):
                 and condition7
                 and condition8
             ):
-                condition9 = re.search(cons.date_format_search, data["last_updated"])
-                condition10 = re.search(cons.date_format_search, data["created_at"])
-                if condition9 and condition10:
-                    created_at = datetime.strptime(
-                        data["created_at"], cons.date_format
-                    ).date()
-                    last_updated = datetime.strptime(
-                        data["last_updated"], cons.date_format
-                    ).date()
-
-                    topic = services.update_topic(
-                        unit_of_work.SqlAlchemyUnitOfWork(),
-                        topic_id,
-                        lms_topic_id,
-                        data["is_topic"],
-                        data["parent_id"],
-                        data["contains_le"],
-                        data["name"],
-                        data["university"],
-                        data["created_by"],
-                        created_at,
-                        last_updated,
-                    )
-                    status_code = 201
-                    return jsonify(topic), status_code
-                else:
-                    raise err.NoValidParameterValueError()
-            else:
                 raise err.MissingParameterError()
+
+            condition9 = re.search(cons.date_format_search, data["last_updated"])
+            condition10 = re.search(cons.date_format_search, data["created_at"])
+            if not (condition9 and condition10):
+                raise err.NoValidParameterValueError()
+
+            created_at = datetime.strptime(data["created_at"], cons.date_format).date()
+
+            last_updated = datetime.strptime(
+                data["last_updated"], cons.date_format
+            ).date()
+
+            topic = services.update_topic(
+                unit_of_work.SqlAlchemyUnitOfWork(),
+                topic_id,
+                lms_topic_id,
+                data["is_topic"],
+                data["parent_id"],
+                data["contains_le"],
+                data["name"],
+                data["university"],
+                data["created_by"],
+                created_at,
+                last_updated,
+            )
+
+            status_code = 201
+            return jsonify(topic), status_code
         case "DELETE":
             services.delete_learning_paths_by_topic_id(
                 unit_of_work.SqlAlchemyUnitOfWork(), topic_id
             )
             services.delete_student_topic_by_topic_id(
-                unit_of_work.SqlAlchemyUnitOfWork(), topic_id
-            )
-            # student and learning_element rating need to be deleted, both have topic_id
-            learning_elements = services.get_learning_elements_for_topic_id(
                 unit_of_work.SqlAlchemyUnitOfWork(), topic_id
             )
             services.delete_learning_path_learning_element_algorithm(
@@ -672,8 +851,23 @@ def topic_administration(data: Dict[str, Any], topic_id, lms_topic_id):
             services.delete_student_lpath_le_algorithm(
                 unit_of_work.SqlAlchemyUnitOfWork(), topic_id
             )
+            services.delete_student_ratings_by_topic(
+                unit_of_work.SqlAlchemyUnitOfWork(), topic_id
+            )
+            services.delete_learning_element_ratings_by_topic(
+                unit_of_work.SqlAlchemyUnitOfWork(), topic_id
+            )
+
+            learning_elements = services.get_learning_elements_for_topic_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), topic_id
+            )
+
             for learning_element in learning_elements:
                 services.delete_student_learning_element_by_learning_element_id(
+                    unit_of_work.SqlAlchemyUnitOfWork(),
+                    learning_element["learning_element_id"],
+                )
+                services.delete_learning_element_solution(
                     unit_of_work.SqlAlchemyUnitOfWork(),
                     learning_element["learning_element_id"],
                 )
@@ -681,6 +875,7 @@ def topic_administration(data: Dict[str, Any], topic_id, lms_topic_id):
                     unit_of_work.SqlAlchemyUnitOfWork(),
                     learning_element["learning_element_id"],
                 )
+
             services.delete_topic(unit_of_work.SqlAlchemyUnitOfWork(), topic_id)
             result = {"message": cons.deletion_message}
             status_code = 200
@@ -706,7 +901,7 @@ def create_learning_element(data: Dict[str, Any], topic_id):
             condition6 = "created_by" in data
             condition7 = "created_at" in data
             condition8 = "university" in data
-            if (
+            if not (
                 condition1
                 and condition2
                 and condition3
@@ -716,58 +911,56 @@ def create_learning_element(data: Dict[str, Any], topic_id):
                 and condition7
                 and condition8
             ):
-                condition9 = type(data["lms_id"]) == int
-                condition10 = type(data["activity_type"]) == str
-                condition11 = type(data["classification"]) == str
-                condition12 = type(data["name"]) == str
-                condition13 = type(data["created_by"]) == str
-                condition14 = type(data["created_at"]) == str
-                condition15 = type(data["university"]) == str
-                if (
-                    condition9
-                    and condition10
-                    and condition11
-                    and condition12
-                    and condition13
-                    and condition14
-                    and condition15
-                ):
-                    condition16 = re.search(cons.date_format_search, data["created_at"])
-                    if condition16:
-                        created_at = datetime.strptime(
-                            data["created_at"], cons.date_format
-                        ).date()
-                        learning_element = services.create_learning_element(
-                            unit_of_work.SqlAlchemyUnitOfWork(),
-                            topic_id,
-                            data["lms_id"],
-                            data["activity_type"],
-                            data["classification"],
-                            data["name"],
-                            data["created_by"],
-                            created_at,
-                            data["university"],
-                        )
-                        students = services.get_all_students(
-                            unit_of_work.SqlAlchemyUnitOfWork()
-                        )
-                        for student in students:
-                            student_id = student["id"]
-                            services.add_student_to_learning_element(
-                                unit_of_work.SqlAlchemyUnitOfWork(),
-                                learning_element["id"],
-                                student_id,
-                            )
-                        status_code = 201
-                        return jsonify(learning_element), status_code
-                    else:
-                        raise err.WrongParameterValueError(
-                            message=cons.date_format_message
-                        )
-                else:
-                    raise err.WrongParameterValueError()
-            else:
                 raise err.MissingParameterError()
+
+            condition9 = isinstance(data["lms_id"], int)
+            condition10 = isinstance(data["activity_type"], str)
+            condition11 = isinstance(data["classification"], str)
+            condition12 = isinstance(data["name"], str)
+            condition13 = isinstance(data["created_by"], str)
+            condition14 = isinstance(data["created_at"], str)
+            condition15 = isinstance(data["university"], str)
+            if not (
+                condition9
+                and condition10
+                and condition11
+                and condition12
+                and condition13
+                and condition14
+                and condition15
+            ):
+                raise err.WrongParameterValueError()
+
+            condition16 = re.search(cons.date_format_search, data["created_at"])
+            if not condition16:
+                raise err.WrongParameterValueError(message=cons.date_format_message)
+
+            created_at = datetime.strptime(data["created_at"], cons.date_format).date()
+
+            learning_element = services.create_learning_element(
+                unit_of_work.SqlAlchemyUnitOfWork(),
+                topic_id,
+                data["lms_id"],
+                data["activity_type"],
+                data["classification"],
+                data["name"],
+                data["created_by"],
+                created_at,
+                data["university"],
+            )
+
+            students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
+
+            for student in students:
+                student_id = student["id"]
+                services.add_student_to_learning_element(
+                    unit_of_work.SqlAlchemyUnitOfWork(),
+                    learning_element["id"],
+                    student_id,
+                )
+
+            status_code = 201
+            return jsonify(learning_element), status_code
 
 
 @app.route(
@@ -792,7 +985,7 @@ def learning_element_administration(
             condition6 = "created_at" in data
             condition7 = "university" in data
             condition8 = "last_updated" in data
-            if (
+            if not (
                 condition1
                 and condition2
                 and condition3
@@ -802,60 +995,60 @@ def learning_element_administration(
                 and condition7
                 and condition8
             ):
-                condition10 = type(data["activity_type"]) == str
-                condition11 = type(data["classification"]) == str
-                condition12 = type(data["name"]) == str
-                condition13 = type(data["created_by"]) == str
-                condition14 = type(data["created_at"]) == str
-                condition15 = type(data["university"]) == str
-                condition16 = type(data["last_updated"]) == str
-                if (
-                    condition10
-                    and condition11
-                    and condition12
-                    and condition13
-                    and condition14
-                    and condition15
-                    and condition16
-                ):
-                    condition17 = re.search(cons.date_format_search, data["created_at"])
-                    condition18 = re.search(
-                        cons.date_format_search, data["last_updated"]
-                    )
-                    if condition17 and condition18:
-                        created_at = datetime.strptime(
-                            data["created_at"], cons.date_format
-                        ).date()
-                        last_updated = datetime.strptime(
-                            data["last_updated"], cons.date_format
-                        ).date()
-                        learning_element = services.update_learning_element(
-                            unit_of_work.SqlAlchemyUnitOfWork(),
-                            learning_element_id,
-                            lms_learning_element_id,
-                            data["activity_type"],
-                            data["classification"],
-                            data["name"],
-                            data["created_by"],
-                            created_at,
-                            last_updated,
-                            data["university"],
-                        )
-                        status_code = 201
-                        return jsonify(learning_element), status_code
-                    else:
-                        raise err.WrongParameterValueError(
-                            message=cons.date_format_message
-                        )
-                else:
-                    raise err.WrongParameterValueError()
-            else:
                 raise err.MissingParameterError()
+
+            condition10 = isinstance(data["activity_type"], str)
+            condition11 = isinstance(data["classification"], str)
+            condition12 = isinstance(data["name"], str)
+            condition13 = isinstance(data["created_by"], str)
+            condition14 = isinstance(data["created_at"], str)
+            condition15 = isinstance(data["university"], str)
+            condition16 = isinstance(data["last_updated"], str)
+            if not (
+                condition10
+                and condition11
+                and condition12
+                and condition13
+                and condition14
+                and condition15
+                and condition16
+            ):
+                raise err.WrongParameterValueError()
+
+            condition17 = re.search(cons.date_format_search, data["created_at"])
+            condition18 = re.search(cons.date_format_search, data["last_updated"])
+            if not (condition17 and condition18):
+                raise err.WrongParameterValueError(message=cons.date_format_message)
+
+            created_at = datetime.strptime(data["created_at"], cons.date_format).date()
+
+            last_updated = datetime.strptime(
+                data["last_updated"], cons.date_format
+            ).date()
+
+            learning_element = services.update_learning_element(
+                unit_of_work.SqlAlchemyUnitOfWork(),
+                learning_element_id,
+                lms_learning_element_id,
+                data["activity_type"],
+                data["classification"],
+                data["name"],
+                data["created_by"],
+                created_at,
+                last_updated,
+                data["university"],
+            )
+
+            status_code = 201
+            return jsonify(learning_element), status_code
         case "DELETE":
             services.delete_learning_path_learning_element_by_le_id(
                 unit_of_work.SqlAlchemyUnitOfWork(), learning_element_id
             )
             services.delete_student_learning_element_by_learning_element_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), learning_element_id
+            )
+            services.delete_learning_element_ratings_by_learning_element(
                 unit_of_work.SqlAlchemyUnitOfWork(), learning_element_id
             )
             services.delete_learning_element(
@@ -875,8 +1068,12 @@ def post_student_course(course_id, student_id):
             student_course = services.add_student_to_course(
                 unit_of_work.SqlAlchemyUnitOfWork(), student_id, course_id
             )
-            status_code = 201
-            return jsonify(student_course), status_code
+            if student_course != {}:
+                return make_response(jsonify(student_course), http.HTTPStatus.CREATED)
+            else:
+                return make_response(
+                    jsonify({"CREATED": False}), http.HTTPStatus.CONFLICT
+                )
 
 
 @app.route("/lms/course/<course_id>/teacher/<teacher_id>", methods=["POST"])
@@ -1060,49 +1257,54 @@ def questionnaire_ils(data: Dict[str, Any], student_id):
     match method:
         case "POST":
             condition = "ils" in data
-            if condition:
-                ils = {}
-                for key in data["ils"]:
-                    ils[key["question_id"]] = key["answer"]
-                required_answers_ils = [
-                    "vv_2_f7",
-                    "vv_5_f19",
-                    "vv_7_f27",
-                    "vv_10_f39",
-                    "vv_11_f43",
-                    "si_1_f2",
-                    "si_4_f14",
-                    "si_7_f26",
-                    "si_10_f38",
-                    "si_11_f42",
-                    "ar_3_f9",
-                    "ar_4_f13",
-                    "ar_6_f21",
-                    "ar_7_f25",
-                    "ar_8_f29",
-                    "sg_1_f4",
-                    "sg_2_f8",
-                    "sg_4_f16",
-                    "sg_10_f40",
-                    "sg_11_f44",
-                ]
-                for key in required_answers_ils:
-                    if key not in ils.keys():
-                        raise err.MissingParameterError()
-                for answer in ils.values():
-                    if type(answer) != str:
-                        raise err.WrongParameterValueError()
-                    if answer != "a" and answer != "b":
-                        raise err.NoValidParameterValueError()
-                result = services.create_questionnaire_ils(
-                    uow=unit_of_work.SqlAlchemyUnitOfWork(),
-                    student_id=student_id,
-                    ils_answers=ils,
-                )
-                status_code = 201
-                return jsonify(result), status_code
-            else:
+            if not condition:
                 raise err.MissingParameterError()
+
+            ils = {}
+            for key in data["ils"]:
+                ils[key["question_id"]] = key["answer"]
+
+            required_answers_ils = [
+                "vv_2_f7",
+                "vv_5_f19",
+                "vv_7_f27",
+                "vv_10_f39",
+                "vv_11_f43",
+                "si_1_f2",
+                "si_4_f14",
+                "si_7_f26",
+                "si_10_f38",
+                "si_11_f42",
+                "ar_3_f9",
+                "ar_4_f13",
+                "ar_6_f21",
+                "ar_7_f25",
+                "ar_8_f29",
+                "sg_1_f4",
+                "sg_2_f8",
+                "sg_4_f16",
+                "sg_10_f40",
+                "sg_11_f44",
+            ]
+
+            for key in required_answers_ils:
+                if key not in ils.keys():
+                    raise err.MissingParameterError()
+
+            for answer in ils.values():
+                if not isinstance(answer, str):
+                    raise err.WrongParameterValueError()
+                if answer != "a" and answer != "b":
+                    raise err.NoValidParameterValueError()
+
+            result = services.create_questionnaire_ils(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                student_id=student_id,
+                ils_answers=ils,
+            )
+
+            status_code = 201
+            return jsonify(result), status_code
 
 
 @app.route("/lms/student/<student_id>/questionnaire/listk", methods=["POST"])
@@ -1113,70 +1315,73 @@ def questionnaire_list_k(data: Dict[str, Any], student_id):
     match method:
         case "POST":
             condition = "list_k" in data
-            if condition:
-                list_k = {}
-                for key in data["list_k"]:
-                    list_k[key["question_id"]] = key["answer"]
-                required_answers_list_k = [
-                    "org1_f1",
-                    "org2_f2",
-                    "org3_f3",
-                    "elab1_f4",
-                    "elab2_f5",
-                    "elab3_f6",
-                    "crit_rev1_f7",
-                    "crit_rev2_f8",
-                    "crit_rev3_f9",
-                    "rep1_f10",
-                    "rep2_f11",
-                    "rep3_f12",
-                    "goal_plan1_f13",
-                    "goal_plan2_f14",
-                    "goal_plan3_f15",
-                    "con1_f16",
-                    "con2_f17",
-                    "con3_f18",
-                    "reg1_f19",
-                    "reg2_f20",
-                    "reg3_f21",
-                    "att1_f22",
-                    "att2_f23",
-                    "att3_f24",
-                    "eff1_f25",
-                    "eff2_f26",
-                    "eff3_f27",
-                    "time1_f28",
-                    "time2_f29",
-                    "time3_f30",
-                    "lrn_w_cls1_f31",
-                    "lrn_w_cls2_f32",
-                    "lrn_w_cls3_f33",
-                    "lit_res1_f34",
-                    "lit_res2_f35",
-                    "lit_res3_f36",
-                    "lrn_env1_f37",
-                    "lrn_env2_f38",
-                    "lrn_env3_f39",
-                ]
-                for key in required_answers_list_k:
-                    if key not in list_k.keys():
-                        raise err.MissingParameterError()
-                for answer in list_k.values():
-                    if type(answer) != int:
-                        raise err.WrongParameterValueError()
-                    if answer > 5:
-                        raise err.NoValidParameterValueError()
-                    if answer < 0:
-                        raise err.NoValidParameterValueError()
-                result = services.create_questionnaire_list_k(
-                    uow=unit_of_work.SqlAlchemyUnitOfWork(),
-                    student_id=student_id,
-                    list_k_answers=list_k,
-                )
-                status_code = 201
-                return jsonify(result), status_code
-            else:
+            if not condition:
                 raise err.MissingParameterError()
+
+            list_k = {}
+            for key in data["list_k"]:
+                list_k[key["question_id"]] = key["answer"]
+
+            required_answers_list_k = [
+                "org1_f1",
+                "org2_f2",
+                "org3_f3",
+                "elab1_f4",
+                "elab2_f5",
+                "elab3_f6",
+                "crit_rev1_f7",
+                "crit_rev2_f8",
+                "crit_rev3_f9",
+                "rep1_f10",
+                "rep2_f11",
+                "rep3_f12",
+                "goal_plan1_f13",
+                "goal_plan2_f14",
+                "goal_plan3_f15",
+                "con1_f16",
+                "con2_f17",
+                "con3_f18",
+                "reg1_f19",
+                "reg2_f20",
+                "reg3_f21",
+                "att1_f22",
+                "att2_f23",
+                "att3_f24",
+                "eff1_f25",
+                "eff2_f26",
+                "eff3_f27",
+                "time1_f28",
+                "time2_f29",
+                "time3_f30",
+                "lrn_w_cls1_f31",
+                "lrn_w_cls2_f32",
+                "lrn_w_cls3_f33",
+                "lit_res1_f34",
+                "lit_res2_f35",
+                "lit_res3_f36",
+                "lrn_env1_f37",
+                "lrn_env2_f38",
+                "lrn_env3_f39",
+            ]
+
+            for key in required_answers_list_k:
+                if key not in list_k.keys():
+                    raise err.MissingParameterError()
+
+            for answer in list_k.values():
+                if not isinstance(answer, int):
+                    raise err.WrongParameterValueError()
+                if answer > 5 or answer < 0:
+                    raise err.NoValidParameterValueError()
+
+            result = services.create_questionnaire_list_k(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                student_id=student_id,
+                list_k_answers=list_k,
+            )
+
+            status_code = 201
+            return jsonify(result), status_code
 
 
 @app.route(
@@ -1520,30 +1725,6 @@ def get_learning_element_by_le_id(
             return jsonify(result), status_code
 
 
-@app.route(
-    "/user/<user_id>/<lms_user_id>/student/<student_id>/course/"
-    + "<course_id>/topic/<topic_id>/recommendation",
-    methods=["GET"],
-)
-@cross_origin(supports_credentials=True)
-def get_learning_element_recommendation(
-    user_id, lms_user_id, student_id, course_id, topic_id
-):
-    method = request.method
-    match method:
-        case "GET":
-            result = services.get_learning_element_recommendation(
-                unit_of_work.SqlAlchemyUnitOfWork(),
-                user_id,
-                lms_user_id,
-                student_id,
-                course_id,
-                topic_id,
-            )
-            status_code = 200
-            return jsonify(result), status_code
-
-
 # Learning Path Endpoints
 @app.route(
     "/user/<user_id>/<lms_user_id>/student/<student_id>/course/"
@@ -1653,79 +1834,72 @@ def post_calculate_learning_path_for_all_students(
         case "POST":
             condition2 = "university" in data
             condition4 = "role" in data
-            if condition2 and condition4:
-                condition6 = type(data["university"]) is str
-                condition8 = type(data["role"]) is str
-                if condition6 and condition8:
-                    role = data["role"].lower()
-                    available_roles = [
-                        role_admin_string,
-                        role_course_creator_string,
-                        role_teacher_string,
-                    ]
-                    if role not in available_roles:
-                        raise err.NoValidRoleError()
-                    else:
-                        # Get unit of work.
-                        uow = unit_of_work.SqlAlchemyUnitOfWork()
-
-                        # Get student and their courses.
-                        students = services.get_all_students(
-                            unit_of_work.SqlAlchemyUnitOfWork()
-                        )
-
-                        results = []
-
-                        for student in students:
-                            student_user_id = services.get_user_by_id(
-                                unit_of_work.SqlAlchemyUnitOfWork(),
-                                student["user_id"],
-                                None,
-                            )
-                            topic = services.get_topic_by_id(
-                                unit_of_work.SqlAlchemyUnitOfWork(),
-                                None,
-                                None,
-                                course_id,
-                                None,
-                                topic_id,
-                            )
-
-                            results = []
-
-                            if topic["contains_le"]:
-                                # Get algorithm for the topic.
-                                algorithm = services.get_student_lpath_le_algorithm(
-                                    uow, student["id"], topic["id"]
-                                ) or services.get_lpath_le_algorithm_by_topic(
-                                    uow, topic["id"]
-                                )
-                                lpath_algorithm = (
-                                    services.get_learning_path_algorithm_by_id(
-                                        uow, algorithm["algorithm_id"]
-                                    )
-                                )
-
-                                # Create learning path.
-                                results.append(
-                                    services.create_learning_path(
-                                        unit_of_work.SqlAlchemyUnitOfWork(),
-                                        student_user_id["id"],
-                                        student_user_id["lms_user_id"],
-                                        student["id"],
-                                        course_id,
-                                        topic["id"],
-                                        lpath_algorithm["short_name"].lower(),
-                                    )
-                                )
-
-                        # Return results with status code.
-                        status_code = 201
-                        return jsonify(results), status_code
-                else:
-                    raise err.WrongParameterValueError()
-            else:
+            if not (condition2 and condition4):
                 raise err.MissingParameterError()
+
+            condition6 = type(data["university"]) is str
+            condition8 = type(data["role"]) is str
+            if not (condition6 and condition8):
+                raise err.WrongParameterValueError()
+
+            available_roles = [
+                role_admin_string,
+                role_course_creator_string,
+                role_teacher_string,
+            ]
+            condition9 = data["role"].lower() in available_roles
+            if not condition9:
+                raise err.NoValidRoleError()
+
+            # Get unit of work.
+            uow = unit_of_work.SqlAlchemyUnitOfWork()
+
+            # Get student and their courses.
+            students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
+
+            results = []
+            for student in students:
+                student_user_id = services.get_user_by_id(
+                    unit_of_work.SqlAlchemyUnitOfWork(),
+                    student["user_id"],
+                    None,
+                )
+
+                topic = services.get_topic_by_id(
+                    unit_of_work.SqlAlchemyUnitOfWork(),
+                    None,
+                    None,
+                    course_id,
+                    None,
+                    topic_id,
+                )
+
+                if topic["contains_le"]:
+                    # Get algorithm for the topic.
+                    algorithm = services.get_student_lpath_le_algorithm(
+                        uow, student["id"], topic["id"]
+                    ) or services.get_lpath_le_algorithm_by_topic(uow, topic["id"])
+
+                    lpath_algorithm = services.get_learning_path_algorithm_by_id(
+                        uow, algorithm["algorithm_id"]
+                    )
+
+                    # Create learning path.
+                    results.append(
+                        services.create_learning_path(
+                            unit_of_work.SqlAlchemyUnitOfWork(),
+                            student_user_id["id"],
+                            student_user_id["lms_user_id"],
+                            student["id"],
+                            course_id,
+                            topic["id"],
+                            lpath_algorithm["short_name"].lower(),
+                        )
+                    )
+
+            # Return results with status code.
+            status_code = 201
+            return jsonify(results), status_code
 
 
 @app.route(
@@ -1755,6 +1929,13 @@ def post_calculate_rating(
                 learning_element_lms_id=learning_element_lms_id,
             )
 
+            # Init result and status code.
+            result = {}
+            status_code = 201
+
+            if not learning_element_by_lms:
+                return jsonify(result), status_code
+
             learning_element = services.get_learning_element_by_id(
                 uow=uow,
                 user_id=user_id,
@@ -1765,37 +1946,42 @@ def post_calculate_rating(
                 learning_element_id=learning_element_by_lms["id"],
             )
 
+            # Get the activity type.
+            activity_type = learning_element["activity_type"]
+            available_activity_types = ["h5pactivity"]
+
+            # Early return if the activity type is not supported.
+            if activity_type not in available_activity_types:
+                return jsonify(result), status_code
+
             # Get classification of learning element id.
             classification = learning_element["classification"]
-            available_classification = ["ÜB", "SE"]
-            condition = classification in available_classification
+            available_classifications = ["ÜB", "SE"]
 
-            # Init result.
-            result = {}
+            # Early return if the classification is not available.
+            if classification not in available_classifications:
+                return jsonify(result), status_code
 
-            # Check the condition.
-            if condition:
-                # Get the attempt from moodle.
-                response = services.get_moodle_most_recent_attempt_by_user(
+            # Get the attempt from moodle.
+            response = services.get_moodle_most_recent_attempt_by_user(
+                uow=uow,
+                course_id=int(course_id),
+                learning_element_id=int(learning_element_lms_id),
+                lms_user_id=str(user["lms_user_id"]),
+            )
+
+            # Update the ratings.
+            if response != {}:
+                result = services.update_ratings(
                     uow=uow,
-                    course_id=int(course_id),
-                    learning_element_id=int(learning_element_lms_id),
-                    lms_user_id=str(user["lms_user_id"]),
+                    student_id=student["id"],
+                    learning_element_id=int(learning_element["id"]),
+                    topic_id=int(topic_id),
+                    attempt_result=response.get("success", 0),
+                    timestamp=datetime.fromtimestamp(response["timecreated"]),
                 )
 
-                # Update the ratings.
-                if response != {}:
-                    result = services.update_ratings(
-                        uow=uow,
-                        student_id=student["id"],
-                        learning_element_id=int(learning_element["id"]),
-                        topic_id=int(topic_id),
-                        attempt_result=response.get("success", 0),
-                        timestamp=datetime.fromtimestamp(response["timecreated"]),
-                    )
-
             # Return result with status code.
-            status_code = 201
             return jsonify(result), status_code
 
 
@@ -1862,79 +2048,78 @@ def create_default_learning_path(
                 )
                 for item in data
             )
-            if condition1:
-                user = services.get_user_by_id(
-                    unit_of_work.SqlAlchemyUnitOfWork(), user_id, lms_user_id
-                )
-                permitted_roles = [
-                    role_admin_string,
-                    role_course_creator_string,
-                    role_teacher_string,
-                ]
-                condition2 = user["role"] in permitted_roles
-                if condition2:
-                    condition3 = services.get_default_learning_path_by_university(
-                        unit_of_work.SqlAlchemyUnitOfWork(), user["university"]
-                    )
-                    if condition3:
-                        services.delete_default_learning_path_by_uni(
-                            unit_of_work.SqlAlchemyUnitOfWork(), user["university"]
-                        )
-                    results = []
-                    for item in data:
-                        results.append(
-                            services.create_default_learning_path_element(
-                                unit_of_work.SqlAlchemyUnitOfWork(),
-                                item["classification"],
-                                item["position"],
-                                item["disabled"],
-                                user["university"],
-                            )
-                        )
-                    # Recalculate "Default" learningpaths for all students
-                    courses = services.get_courses_by_uni(
-                        unit_of_work.SqlAlchemyUnitOfWork(), user["university"]
-                    )
-                    students = services.get_all_students(
-                        unit_of_work.SqlAlchemyUnitOfWork()
-                    )
-                    for student in students:
-                        student_user_id = services.get_user_by_id(
-                            unit_of_work.SqlAlchemyUnitOfWork(),
-                            student["user_id"],
-                            None,
-                        )
-                        for course in courses["courses"]:
-                            topics = services.get_topics_for_course_id(
-                                unit_of_work.SqlAlchemyUnitOfWork(), course["id"]
-                            )
-                            for topic in topics:
-                                current_topic = services.get_topic_by_id(
-                                    unit_of_work.SqlAlchemyUnitOfWork(),
-                                    None,
-                                    None,
-                                    course["id"],
-                                    None,
-                                    topic["id"],
-                                )
-
-                                results_learning_pahts = []
-
-                                if current_topic["contains_le"]:
-                                    results_learning_pahts.append(
-                                        services.create_learning_path(
-                                            unit_of_work.SqlAlchemyUnitOfWork(),
-                                            student_user_id["id"],
-                                            student_user_id["lms_user_id"],
-                                            student["id"],
-                                            course["id"],
-                                            topic["id"],
-                                            "default",
-                                        )
-                                    )
-                    return make_response(jsonify(results), http.HTTPStatus.CREATED)
-            else:
+            if not condition1:
                 return make_response(http.HTTPStatus.BAD_REQUEST)
+
+            user = services.get_user_by_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), user_id, lms_user_id
+            )
+            permitted_roles = [
+                role_admin_string,
+                role_course_creator_string,
+                role_teacher_string,
+            ]
+            condition2 = user["role"] in permitted_roles
+
+            if condition2:
+                condition3 = services.get_default_learning_path_by_university(
+                    unit_of_work.SqlAlchemyUnitOfWork(), user["university"]
+                )
+                if condition3:
+                    services.delete_default_learning_path_by_uni(
+                        unit_of_work.SqlAlchemyUnitOfWork(), user["university"]
+                    )
+                results = []
+                for item in data:
+                    results.append(
+                        services.create_default_learning_path_element(
+                            unit_of_work.SqlAlchemyUnitOfWork(),
+                            item["classification"],
+                            item["position"],
+                            item["disabled"],
+                            user["university"],
+                        )
+                    )
+                # Recalculate "Default" learningpaths for all students
+                courses = services.get_courses_by_uni(
+                    unit_of_work.SqlAlchemyUnitOfWork(), user["university"]
+                )
+                students = services.get_all_students(
+                    unit_of_work.SqlAlchemyUnitOfWork()
+                )
+                for student in students:
+                    student_user_id = services.get_user_by_id(
+                        unit_of_work.SqlAlchemyUnitOfWork(),
+                        student["user_id"],
+                        None,
+                    )
+                    for course in courses["courses"]:
+                        topics = services.get_topics_for_course_id(
+                            unit_of_work.SqlAlchemyUnitOfWork(), course["id"]
+                        )
+                        for topic in topics:
+                            current_topic = services.get_topic_by_id(
+                                unit_of_work.SqlAlchemyUnitOfWork(),
+                                None,
+                                None,
+                                course["id"],
+                                None,
+                                topic["id"],
+                            )
+                            results_learning_pahts = []
+                            if current_topic["contains_le"]:
+                                results_learning_pahts.append(
+                                    services.create_learning_path(
+                                        unit_of_work.SqlAlchemyUnitOfWork(),
+                                        student_user_id["id"],
+                                        student_user_id["lms_user_id"],
+                                        student["id"],
+                                        course["id"],
+                                        topic["id"],
+                                        "default",
+                                    )
+                                )
+                return make_response(jsonify(results), http.HTTPStatus.CREATED)
 
 
 # User Endpoints
@@ -2090,6 +2275,9 @@ def post_teacher_lp_le_algorithm(
     match method:
         case "POST":
             condition1 = "algorithm_short_name" in data
+            if not condition1:
+                raise err.MissingParameterError()
+
             user = services.get_user_by_id(
                 unit_of_work.SqlAlchemyUnitOfWork(), user_id, lms_user_id
             )
@@ -2099,56 +2287,50 @@ def post_teacher_lp_le_algorithm(
                 role_teacher_string,
             ]
             condition2 = user["role"] in permitted_roles
-            if condition1 and condition2:
-                condition3 = type(data["algorithm_short_name"]) is str
-                algorithm = services.get_learning_path_algorithm_by_short_name(
-                    unit_of_work.SqlAlchemyUnitOfWork(), data["algorithm_short_name"]
-                )
-                condition4 = algorithm != {}
-                if condition3 and condition4:
-                    lp_le_algorithm = services.get_lpath_le_algorithm_by_topic(
-                        unit_of_work.SqlAlchemyUnitOfWork(), topic_id
-                    )
-                    if lp_le_algorithm == {}:
-                        # here all available students should get their
-                        # student_learning_path_learning_element_algorithm
-                        # on behalf of the set teacher_algorithm
-                        students = services.get_all_students(
-                            unit_of_work.SqlAlchemyUnitOfWork()
-                        )
-                        for student in students:
-                            student_id = student["id"]
-                            services.add_student_lpath_le_algorithm(
-                                unit_of_work.SqlAlchemyUnitOfWork(),
-                                student_id,
-                                topic_id,
-                                algorithm["id"],
-                            )
-                        result = (
-                            services.create_learning_path_learning_element_algorithm(
-                                unit_of_work.SqlAlchemyUnitOfWork(),
-                                topic_id,
-                                algorithm["id"],
-                            )
-                        )
-                        status_code = 201
-                        return jsonify(result), status_code
-                    else:
-                        result = (
-                            services.update_learning_path_learning_element_algorithm(
-                                unit_of_work.SqlAlchemyUnitOfWork(),
-                                topic_id,
-                                data["algorithm_short_name"],
-                            )
-                        )
-                        status_code = 201
-                        return jsonify(result), status_code
-                else:
-                    raise err.WrongParameterValueError()
-            elif not condition1:
-                raise err.MissingParameterError()
-            else:
+            if not condition2:
                 raise err.UnauthorizedError()
+
+            condition3 = type(data["algorithm_short_name"]) is str
+            algorithm = services.get_learning_path_algorithm_by_short_name(
+                unit_of_work.SqlAlchemyUnitOfWork(), data["algorithm_short_name"]
+            )
+            condition4 = algorithm != {}
+            if not (condition3 and condition4):
+                raise err.WrongParameterValueError()
+
+            result = {}
+            lp_le_algorithm = services.get_lpath_le_algorithm_by_topic(
+                unit_of_work.SqlAlchemyUnitOfWork(), topic_id
+            )
+            if lp_le_algorithm == {}:
+                # here all available students should get their
+                # student_learning_path_learning_element_algorithm
+                # on behalf of the set teacher_algorithm
+                students = services.get_all_students(
+                    unit_of_work.SqlAlchemyUnitOfWork()
+                )
+                for student in students:
+                    student_id = student["id"]
+                    services.add_student_lpath_le_algorithm(
+                        unit_of_work.SqlAlchemyUnitOfWork(),
+                        student_id,
+                        topic_id,
+                        algorithm["id"],
+                    )
+                result = services.create_learning_path_learning_element_algorithm(
+                    unit_of_work.SqlAlchemyUnitOfWork(),
+                    topic_id,
+                    algorithm["id"],
+                )
+            else:
+                result = services.update_learning_path_learning_element_algorithm(
+                    unit_of_work.SqlAlchemyUnitOfWork(),
+                    topic_id,
+                    data["algorithm_short_name"],
+                )
+
+            status_code = 201
+            return jsonify(result), status_code
 
 
 @app.route("/user/<user_id>/<lms_user_id>/settings", methods=["GET"])
@@ -2382,20 +2564,6 @@ def post_create_student_rating(student_id: str, topic_id: str):
             return jsonify(result), status_code
 
 
-@app.route("/student/<student_id>/topic/<topic_id>/rating", methods=["GET"])
-@cross_origin(supports_credentials=True)
-def get_student_ratings_on_topic(student_id: str, topic_id: str):
-    match request.method:
-        case "GET":
-            result = services.get_student_ratings_on_topic(
-                uow=unit_of_work.SqlAlchemyUnitOfWork(),
-                student_id=int(student_id),
-                topic_id=int(topic_id),
-            )
-            status_code = 200
-            return jsonify(result), status_code
-
-
 @app.route("/user/<user_id>/student/<student_id>/rating", methods=["GET"])
 @cross_origin(supports_credentials=True)
 def get_student_ratings(user_id: str, student_id: str):
@@ -2431,22 +2599,6 @@ def post_create_learning_element_rating(topic_id: str, learning_element_id: str)
             return jsonify(result), status_code
 
 
-@app.route(
-    "/topic/<topic_id>/learningElement/<learning_element_id>/rating", methods=["GET"]
-)
-@cross_origin(supports_credentials=True)
-def get_learning_element_ratings_on_topic(topic_id: str, learning_element_id: str):
-    match request.method:
-        case "GET":
-            result = services.get_learning_element_ratings_on_topic(
-                uow=unit_of_work.SqlAlchemyUnitOfWork(),
-                topic_id=int(topic_id),
-                learning_element_id=int(learning_element_id),
-            )
-            status_code = 200
-            return jsonify(result), status_code
-
-
 @app.route("/learningElement/rating", methods=["GET"])
 @cross_origin(supports_credentials=True)
 def get_learning_element_ratings():
@@ -2457,6 +2609,111 @@ def get_learning_element_ratings():
             )
             status_code = 200
             return jsonify(result), status_code
+
+
+@app.route("/learningElement/<learning_element_lms_id>/solution", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_learning_element_solution(learning_element_lms_id: int):
+    match request.method:
+        case "GET":
+            result = services.get_learning_element_solution_by_learning_element_lms_id(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                learning_element_lms_id=learning_element_lms_id,
+            )
+            status_code = 200
+            return jsonify(result), status_code
+
+
+@app.route("/topic/<topic_id>/learningPath/solution", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_topic_solutions(topic_id: int):
+    match request.method:
+        case "GET":
+            result = services.get_topic_solutions(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                topic_id=topic_id,
+            )
+            status_code = 200
+            return jsonify(result), status_code
+
+
+@app.route("/learningElement/<learning_element_lms_id>/solution", methods=["POST"])
+@cross_origin(supports_credentials=True)
+@json_only()
+def post_learning_element_solution(data: Dict[str, Any], learning_element_lms_id: int):
+    match request.method:
+        case "POST":
+            entry = services.get_learning_element_solution_by_learning_element_lms_id(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                learning_element_lms_id=learning_element_lms_id,
+            )
+            if entry != {}:
+                raise err.AlreadyExisting()
+            condition2 = "activity_type" not in data
+            condition4 = "solution_lms_id" not in data
+            if condition2 or condition4:
+                raise err.MissingParameterError()
+            condition3 = type(data["activity_type"]) is str
+            condition5 = type(data["solution_lms_id"]) is int
+            if not (condition3 and condition5):
+                raise err.WrongParameterValueError()
+            result = services.add_learning_element_solution(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                learning_element_lms_id=learning_element_lms_id,
+                solution_lms_id=data["solution_lms_id"],
+                activity_type=data["activity_type"],
+            )
+            status_code = 201
+            return jsonify(result), status_code
+
+
+@app.route("/learningElement/<learning_element_id>/solution", methods=["DELETE"])
+@cross_origin(supports_credentials=True)
+def delete_learning_element_solution(learning_element_id: int):
+    match request.method:
+        case "DELETE":
+            entry = services.get_learning_element_solution_by_learning_element_id(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                learning_element_id=learning_element_id,
+            )
+            if entry == {}:
+                raise err.NoContentWarning()
+            services.delete_learning_element_solution(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                learning_element_id=learning_element_id,
+            )
+            result = {"message": cons.deletion_message}
+            status_code = 200
+            return jsonify(result), status_code
+
+
+@app.route(
+    "/user/<user_id>/course/<course_id>/topic/<topic_id>/recommendation",
+    methods=["GET"],
+)
+@cross_origin(supports_credentials=True)
+def get_learning_element_recommendation(user_id: str, course_id: str, topic_id: str):
+    # uow
+    uow = unit_of_work.SqlAlchemyUnitOfWork()
+
+    # Get user by user id.
+    user = services.get_user_by_id(uow=uow, user_id=user_id, lms_user_id=None)
+
+    # Get student by user id.
+    student = services.get_student_by_user_id(uow=uow, user_id=user_id)
+
+    # Get all recommended exercises for student in topic.
+    results = services.get_recommended_exercises_for_student_in_topic(
+        uow=uow,
+        user_id=user_id,
+        lms_user_id=user["lms_user_id"],
+        student_id=student["id"],
+        topic_id=topic_id,
+        course_id=course_id,
+    )
+
+    status_code = 200
+    return jsonify(results), status_code
 
 
 if __name__ == "__main__":
