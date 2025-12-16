@@ -772,7 +772,6 @@ def setup_db(
             ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
             topic_id integer NOT NULL,
             learning_path_id integer NOT NULL,
-            recommended boolean NOT NULL,
             "position" integer NOT NULL,
             CONSTRAINT learning_path_topic_pkey PRIMARY KEY (id),
             CONSTRAINT learning_path_id FOREIGN KEY (learning_path_id)
