@@ -1,6 +1,7 @@
 import datetime
 import os
 import unittest
+from contextlib import ExitStack
 from unittest import mock
 from unittest.mock import MagicMock, patch
 
@@ -64,6 +65,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
         ToolConfigJson._iss_conf_dict = config_file
 
     def test_tool_config_decode_platform(self):
+        """[HASKI-REQ-0028] Test decoding platform configuration"""
         platform = ToolConfigJson.decode_platform(
             ToolConfigJson.get_platform("https://moodle.haski.app")
         )
@@ -73,7 +75,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
         )
 
     def test_no_platform(self):
-        """check_params but decode_platform returns None"""
+        """[HASKI-REQ-0028] check_params but decode_platform returns None"""
         with patch.object(self.oidc_login, "_request", _request=MagicMock) as mock_form:
             mock_form.form = form.copy()
             mock_form.host = host
@@ -89,6 +91,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                     self.oidc_login.check_params()
 
     def test_check_params_successful(self):
+        """[HASKI-REQ-0028] Test successful parameter check"""
         # expect not to raise an exception
         with patch.object(self.oidc_login, "_request", _request=MagicMock) as mock_form:
             mock_form.form = form.copy()
@@ -96,6 +99,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
             self.assertTrue(self.oidc_login.check_params())
 
     def test_check_params_missing_iss(self):
+        """[HASKI-REQ-0028] Test missing iss parameter"""
         # object clone without iss:
         with patch.object(self.oidc_login, "_request", _request=MagicMock) as mock_form:
             mock_form.form = form.copy()
@@ -106,6 +110,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                 self.oidc_login.check_params()
 
     def test_check_params_missing_platform(self):
+        """[HASKI-REQ-0028] Test missing platform configuration"""
         with patch.object(
             ToolConfigJson,
             "get_platform",
@@ -118,6 +123,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                     self.oidc_login.check_params()
 
     def test_check_params_wrong_target_link_uri(self):
+        """[HASKI-REQ-0028] Test wrong target link URI"""
         with patch.object(self.oidc_login, "_request", _request=MagicMock) as mock_form:
             mock_form.form = form.copy()
             mock_form.form["target_link_uri"] = "wrong_uri"
@@ -127,7 +133,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                 self.oidc_login.check_params()
 
     def test_prod_no_https(self):
-        """targetlink has no https and environ is production"""
+        """[HASKI-REQ-0028] targetlink has no https and environ is production"""
 
         with patch.object(self.oidc_login, "_request", _request=MagicMock) as mock_form:
             mock_form.form = form.copy()
@@ -143,6 +149,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                     self.oidc_login.check_params()
 
     def test_verify_state_successful(self):
+        """[HASKI-REQ-0028] Test successful state verification"""
         with patch.object(self.oidc_login, "_request", _request=MagicMock) as mock_form:
             mock_form.form = form.copy()
             mock_form.host = host
@@ -166,6 +173,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                     )
 
     def test_verify_state_invalid_jwt(self):
+        """[HASKI-REQ-0028] Test invalid state JWT"""
         with patch.object(self.oidc_login, "_request", _request=MagicMock) as mock_form:
             mock_form.form = form.copy()
             mock_form.host = host
@@ -184,6 +192,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                     mock_verify_jwt.assert_called_once_with("invalid_state_jwt")
 
     def test_verify_state_invalid_payload(self):
+        """[HASKI-REQ-0028] Test invalid state payload"""
         with patch.object(self.oidc_login, "_request", _request=MagicMock) as mock_form:
             mock_form.form = form.copy()
             mock_form.host = host
@@ -209,6 +218,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                         )
 
     def test_verify_id_token_error_in_form(self):
+        """[HASKI-REQ-0028] Test error in form during ID token verification"""
         with patch.object(self.oidc_login, "_request", _request=MagicMock) as mock_form:
             mock_form.form = form.copy()
             mock_form.host = host
@@ -218,6 +228,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                 self.oidc_login.verify_id_token()
 
     def test_verify_id_token_unverified_header_fail(self):
+        """[HASKI-REQ-0028] Test unverified header failure"""
         with patch.object(self.oidc_login, "_request", _request=MagicMock) as mock_form:
             mock_form.form = form.copy()
             mock_form.host = host
@@ -236,6 +247,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                     mock_verify_jwt.assert_called_once_with("valid_id_token_jwt")
 
     def test_verify_id_token_successful(self):
+        """[HASKI-REQ-0028] Test successful ID token verification"""
         with patch.object(self.oidc_login, "_request", _request=MagicMock) as mock_form:
             mock_form.form = form.copy()
             mock_form.host = host
@@ -277,6 +289,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                             )
 
     def test_lti_launch_from_id_token_user_does_not_exist_in_db(self):
+        """[HASKI-REQ-0028] Test LTI launch when user does not exist in DB"""
         # Create a mock request with the necessary attributes
         request_mock = MagicMock()
         request_mock.form = MagicMock()
@@ -339,24 +352,25 @@ class TestOIDCLoginFlask(unittest.TestCase):
                                     "id": 1,
                                     "name": "Test User",
                                     "role": "student",
+                                    "lms_user_id": "user123",
                                     "university": "HS-KE",
                                 },
                             ):
                                 with patch(
-                                    "service_layer.services." "get_courses_by_uni",
+                                    "service_layer.services.get_enrolled_university_courses",  # noqa: E501
                                     return_value={
                                         "courses": [
                                             {
                                                 "id": 1,
                                                 "name": "course-1",
                                                 "university": "HS-KE",
+                                                "lms_id": 1,
                                             }
                                         ],
                                     },
                                 ):
                                     with patch(
-                                        "service_layer.services."
-                                        "get_student_by_user_id",
+                                        "service_layer.services.get_student_by_user_id",  # noqa: E501
                                         return_value={
                                             "id": 1,
                                             "name": "Test User",
@@ -365,30 +379,22 @@ class TestOIDCLoginFlask(unittest.TestCase):
                                         },
                                     ):
                                         with patch(
-                                            "service_layer.services."
-                                            "add_student_to_course",
+                                            "service_layer.services.add_student_to_course",  # noqa: E501
                                             return_value={
                                                 "state": "ok",
                                             },
                                         ):
                                             with patch("flask.redirect"):
                                                 with patch(
-                                                    "service_layer."
-                                                    "lti.config."
-                                                    "ToolConfigJson.get_platform",
+                                                    "service_layer.lti.config.ToolConfigJson.get_platform",  # noqa: E501
                                                     return_valule="moodle",
                                                 ):
                                                     with patch(
-                                                        "service_layer."
-                                                        "lti.config."
-                                                        "ToolConfigJson."
-                                                        "decode_platform",
+                                                        "service_layer.lti.config.ToolConfigJson.decode_platform",  # noqa: E501
                                                         return_valule="moodle_decoded",
                                                     ):
                                                         with patch(
-                                                            "service_layer."
-                                                            "services."
-                                                            "get_student_by_user_id",
+                                                            "service_layer.services.get_user_by_id",  # noqa: E501
                                                             return_value={
                                                                 "id": 1,
                                                                 "name": "Test User",
@@ -397,14 +403,16 @@ class TestOIDCLoginFlask(unittest.TestCase):
                                                         ):
                                                             self.oidc_login.id_token = (
                                                                 MagicMock()
-                                                            )  # noqa: E501
+                                                            )
                                                             self.oidc_login.id_token.nonce = (  # noqa: E501
                                                                 "valid_nonce"
                                                             )
                                                             self.oidc_login.id_token.sub = (  # noqa: E501
                                                                 "user123"
                                                             )
-                                                            self.oidc_login.id_token.name = "Test User"  # noqa: E501
+                                                            self.oidc_login.id_token.name = (  # noqa: E501
+                                                                "Test User"
+                                                            )
                                                             self.oidc_login.id_token.__getitem__.side_effect = (  # noqa: E501
                                                                 jwt_payload.__getitem__
                                                             )
@@ -412,13 +420,13 @@ class TestOIDCLoginFlask(unittest.TestCase):
                                                             response = (
                                                                 self.oidc_login.lti_launch_from_id_token()  # noqa: E501
                                                             )
-
                                                             assert (
                                                                 response.status
                                                                 == "302 FOUND"
-                                                            )  # noqa: E501
+                                                            )
 
     def test_lti_launch_from_id_token_user_exists_in_db(self):
+        """[HASKI-REQ-0028] Test LTI launch when user exists in DB"""
         # Create a mock request with the necessary attributes
         request_mock = MagicMock()
         request_mock.form = MagicMock()
@@ -517,6 +525,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
                                             assert response.status == "302 FOUND"
 
     def test_get_cookie_expiration_successful(self):
+        """[HASKI-REQ-0028] Test successful cookie expiration retrieval"""
         # Mock request data
         json_data = {"nonce": "valid_nonce_jwt"}
 
@@ -581,6 +590,7 @@ class TestOIDCLoginFlask(unittest.TestCase):
     def test_lti_launch_from_id_token_user_does_not_exist_in_db_role_course_creator(
         self,
     ):
+        """[HASKI-REQ-0028] Test LTI launch for course creator not in DB"""
         # Create a mock request with the necessary attributes
         request_mock = MagicMock()
         request_mock.form = MagicMock()
@@ -617,282 +627,219 @@ class TestOIDCLoginFlask(unittest.TestCase):
             "https://purl.imsglobal.org/spec/lti/claim/roles": ["student"],
         }
 
-        with patch(
-            "service_layer.crypto.JWTKeyManagement.verify_jwt", return_value=jwt_payload
-        ):
-            with patch(
+        # Create a mock platform object with frontend_login_url
+        platform_mock = MagicMock()
+        platform_mock.frontend_login_url = "https://frontend.haski.app/login"
+        # Add any other attributes your code may need from platform
+
+        patch_targets = [
+            (
+                "service_layer.crypto.JWTKeyManagement.verify_jwt",
+                dict(return_value=jwt_payload),
+            ),
+            (
                 "service_layer.crypto.JWTKeyManagement.generate_nonce_jwt",
-                return_value="mocked_nonce_jwt",
-            ):
-                with patch("service_layer.service.SessionServiceFlask.set"):
-                    with patch(
-                        "service_layer.service.SessionServiceFlask.get"
-                    ) as mock_get_session:
-                        mock_get_session.side_effect = (
-                            lambda nonce, key: "valid_state"
-                            if key == "state" and nonce == "valid_nonce"
-                            else None
-                        )
-                        with patch(
-                            "service_layer.services.get_user_by_lms_id",
-                            return_value={},
-                        ):
-                            with patch(
-                                "service_layer.services.create_user",
-                                return_value={
-                                    "id": 1,
-                                    "name": "Test User",
-                                    "role": "course creator",
-                                    "lms_user_id": "2",
-                                    "university": "HS-KE",
+                dict(return_value="mocked_nonce_jwt"),
+            ),
+            ("service_layer.service.SessionServiceFlask.set", {}),
+            ("service_layer.service.SessionServiceFlask.get", {}),
+            ("service_layer.services.get_user_by_lms_id", dict(return_value={})),
+            (
+                "service_layer.services.create_user",
+                dict(
+                    return_value={
+                        "id": 1,
+                        "name": "Test User",
+                        "role": "course creator",
+                        "lms_user_id": "2",
+                        "university": "HS-KE",
+                    }
+                ),
+            ),
+            (
+                "service_layer.services.get_enrolled_university_courses",
+                dict(
+                    return_value={
+                        "courses": [
+                            {
+                                "id": 1,
+                                "name": "course-1",
+                                "university": "HS-KE",
+                                "lms_id": 1,
+                            }
+                        ],
+                    }
+                ),
+            ),
+            (
+                "service_layer.services.get_student_by_user_id",
+                dict(
+                    return_value={
+                        "id": 1,
+                        "name": "Test User",
+                        "role": "course creator",
+                        "university": "HS-KE",
+                    }
+                ),
+            ),
+            (
+                "service_layer.services.add_student_to_course",
+                dict(return_value={"state": "ok"}),
+            ),
+            ("flask.redirect", {}),
+            # Patch get_platform and decode_platform to return platform_mock
+            (
+                "service_layer.lti.config.ToolConfigJson.get_platform",
+                dict(return_value=platform_mock),
+            ),
+            (
+                "service_layer.lti.config.ToolConfigJson.decode_platform",
+                dict(return_value=platform_mock),
+            ),
+            (
+                "service_layer.services.get_student_by_user_id",
+                dict(
+                    return_value={
+                        "id": 1,
+                        "name": "Test User",
+                        "role": "course creator",
+                    }
+                ),
+            ),
+            (
+                "service_layer.services.get_default_learning_path_by_university",
+                dict(
+                    return_value=[
+                        {
+                            "id": 1,
+                            "classification": "LZ",
+                            "position": 1,
+                            "disabled": False,
+                            "university": "HS-KE",
+                        },
+                        # ...other elements...
+                    ]
+                ),
+            ),
+            (
+                "service_layer.services.get_topics_by_student_and_course_id",
+                dict(
+                    return_value={
+                        "topics": [
+                            {
+                                "id": 1,
+                                "lms_id": 1,
+                                "is_topic": True,
+                                "parent_id": None,
+                                "contains_le": True,
+                                "name": "General",
+                                "university": "New Site",
+                                "created_by": "muster student",
+                                "created_at": datetime.datetime(2025, 6, 17, 0, 0),
+                                "last_updated": None,
+                                "student_topic": {
+                                    "id": 4,
+                                    "student_id": 4,
+                                    "topic_id": 1,
+                                    "done": False,
+                                    "done_at": None,
+                                    "visits": [],
                                 },
-                            ):
-                                with patch(
-                                    "service_layer.services." "get_courses_by_uni",
-                                    return_value={
-                                        "courses": [
-                                            {
-                                                "id": 1,
-                                                "name": "course-1",
-                                                "university": "HS-KE",
-                                            }
-                                        ],
-                                    },
-                                ):
-                                    with patch(
-                                        "service_layer.services."
-                                        "get_student_by_user_id",
-                                        return_value={
-                                            "id": 1,
-                                            "name": "Test User",
-                                            "role": "course creator",
-                                            "university": "HS-KE",
-                                        },
-                                    ):
-                                        with patch(
-                                            "service_layer.services."
-                                            "add_student_to_course",
-                                            return_value={
-                                                "state": "ok",
-                                            },
-                                        ):
-                                            with patch("flask.redirect"):
-                                                with patch(
-                                                    "service_layer."
-                                                    "lti.config."
-                                                    "ToolConfigJson.get_platform",
-                                                    return_valule="moodle",
-                                                ):
-                                                    with patch(
-                                                        "service_layer."
-                                                        "lti.config."
-                                                        "ToolConfigJson."
-                                                        "decode_platform",
-                                                        return_valule="moodle_decoded",
-                                                    ):
-                                                        with patch(
-                                                            "service_layer."
-                                                            "services."
-                                                            "get_student_by_user_id",
-                                                            return_value={
-                                                                "id": 1,
-                                                                "name": "Test User",
-                                                                "role": "course creator",  # noqa: E501
-                                                            },
-                                                        ):
-                                                            with patch(
-                                                                "service_layer."
-                                                                "services."
-                                                                "get_default_learning_path_by_university",  # noqa: E501
-                                                                return_value=[
-                                                                    {
-                                                                        "id": 1,
-                                                                        "classification": "LZ",  # noqa: E501
-                                                                        "position": 1,
-                                                                        "disabled": False,  # noqa: E501
-                                                                        "university": "HS-KE",  # noqa: E501
-                                                                    },
-                                                                    {
-                                                                        "id": 2,
-                                                                        "classification": "FO",  # noqa: E501
-                                                                        "position": 2,
-                                                                        "disabled": False,  # noqa: E501
-                                                                        "university": "HS-KE",  # noqa: E501
-                                                                    },
-                                                                    {
-                                                                        "id": 3,
-                                                                        "classification": "BE",  # noqa: E501
-                                                                        "position": 3,
-                                                                        "disabled": False,  # noqa: E501
-                                                                        "university": "HS-KE",  # noqa: E501
-                                                                    },
-                                                                    {
-                                                                        "id": 4,
-                                                                        "classification": "AB",  # noqa: E501
-                                                                        "position": 4,
-                                                                        "disabled": False,  # noqa: E501
-                                                                        "university": "HS-KE",  # noqa: E501
-                                                                    },
-                                                                    {
-                                                                        "id": 5,
-                                                                        "classification": "ÜB",  # noqa: E501
-                                                                        "position": 5,
-                                                                        "disabled": False,  # noqa: E501
-                                                                        "university": "HS-KE",  # noqa: E501
-                                                                    },
-                                                                    {
-                                                                        "id": 6,
-                                                                        "classification": "ZF",  # noqa: E501
-                                                                        "position": 6,
-                                                                        "disabled": False,  # noqa: E501
-                                                                        "university": "HS-KE",  # noqa: E501
-                                                                    },
-                                                                    {
-                                                                        "id": 7,
-                                                                        "classification": "ZL",  # noqa: E501
-                                                                        "position": 7,
-                                                                        "disabled": False,  # noqa: E501
-                                                                        "university": "HS-KE",  # noqa: E501
-                                                                    },
-                                                                    {
-                                                                        "id": 8,
-                                                                        "classification": "EK",  # noqa: E501
-                                                                        "position": 9000,  # noqa: E501
-                                                                        "disabled": True,  # noqa: E501
-                                                                        "university": "HS-KE",  # noqa: E501
-                                                                    },
-                                                                    {
-                                                                        "id": 9,
-                                                                        "classification": "KÜ",  # noqa: E501
-                                                                        "position": 9001,  # noqa: E501
-                                                                        "disabled": True,  # noqa: E501
-                                                                        "university": "HS-KE",  # noqa: E501
-                                                                    },
-                                                                    {
-                                                                        "id": 10,
-                                                                        "classification": "AN",  # noqa: E501
-                                                                        "position": 9002,  # noqa: E501
-                                                                        "disabled": True,  # noqa: E501
-                                                                        "university": "HS-KE",  # noqa: E501
-                                                                    },
-                                                                    {
-                                                                        "id": 11,
-                                                                        "classification": "RQ",  # noqa: E501
-                                                                        "position": 9003,  # noqa: E501
-                                                                        "disabled": True,  # noqa: E501
-                                                                        "university": "HS-KE",  # noqa: E501
-                                                                    },
-                                                                    {
-                                                                        "id": 12,
-                                                                        "classification": "SE",  # noqa: E501
-                                                                        "position": 9004,  # noqa: E501
-                                                                        "disabled": True,  # noqa: E501
-                                                                        "university": "HS-KE",  # noqa: E501
-                                                                    },
-                                                                ],
-                                                            ):
-                                                                with patch(
-                                                                    "service_layer."  # noqa: E501
-                                                                    "services."
-                                                                    "get_topics_by_student_and_course_id",  # noqa: E501
-                                                                    return_value={
-                                                                        "topics": [
-                                                                            {
-                                                                                "id": 1,  # noqa: E501
-                                                                                "lms_id": 1,  # noqa: E501
-                                                                                "is_topic": True,  # noqa: E501
-                                                                                "parent_id": None,  # noqa: E501
-                                                                                "contains_le": True,  # noqa: E501
-                                                                                "name": "General",  # noqa: E501
-                                                                                "university": "New Site",  # noqa: E501
-                                                                                "created_by": "muster student",  # noqa: E501
-                                                                                "created_at": datetime.datetime(  # noqa: E501
-                                                                                    2025,  # noqa: E501
-                                                                                    6,  # noqa: E501
-                                                                                    17,  # noqa: E501
-                                                                                    0,  # noqa: E501
-                                                                                    0,  # noqa: E501
-                                                                                ),
-                                                                                "last_updated": None,  # noqa: E501
-                                                                                "student_topic": {  # noqa: E501
-                                                                                    "id": 4,  # noqa: E501
-                                                                                    "student_id": 4,  # noqa: E501
-                                                                                    "topic_id": 1,  # noqa: E501
-                                                                                    "done": False,  # noqa: E501
-                                                                                    "done_at": None,  # noqa: E501
-                                                                                    "visits": [],  # noqa: E501
-                                                                                },
-                                                                            }
-                                                                        ]
-                                                                    },
-                                                                ):
-                                                                    with patch(
-                                                                        "service_layer."  # noqa: E501
-                                                                        "services."
-                                                                        "get_student_lpath_le_algorithm",  # noqa: E501
-                                                                        return_value={
-                                                                            "id": 7,
-                                                                            "student_id": 5,  # noqa: E501
-                                                                            "topic_id": 1,  # noqa: E501
-                                                                            "algorithm_id": 4,  # noqa: E501
-                                                                        },
-                                                                    ):
-                                                                        with patch(
-                                                                            "service_layer."  # noqa: E501
-                                                                            "services."
-                                                                            "get_learning_path_algorithm_by_id",  # noqa: E501
-                                                                            return_value={  # noqa: E501
-                                                                                "id": 4,  # noqa: E501
-                                                                                "short_name": "graf",  # noqa: E501
-                                                                                "full_name": "Graf et al.",  # noqa: E501
-                                                                            },
-                                                                        ):
-                                                                            with patch(
-                                                                                "service_layer."  # noqa: E501
-                                                                                "services."  # noqa: E501
-                                                                                "create_learning_path",  # noqa: E501
-                                                                                return_value={  # noqa: E501
-                                                                                    "id": 5,  # noqa: E501
-                                                                                    "student_id": 5,  # noqa: E501
-                                                                                    "course_id": 1,  # noqa: E501
-                                                                                    "topic_id": 1,  # noqa: E501
-                                                                                    "based_on": "graf",  # noqa: E501
-                                                                                    "path": "FO",  # noqa: E501
-                                                                                    "calculated_on": datetime.datetime(  # noqa: E501
-                                                                                        2025,  # noqa: E501
-                                                                                        6,  # noqa: E501
-                                                                                        17,  # noqa: E501
-                                                                                        16,  # noqa: E501
-                                                                                        4,  # noqa: E501
-                                                                                        4,  # noqa: E501
-                                                                                        tzinfo=datetime.timezone(  # noqa: E501
-                                                                                            datetime.timedelta(  # noqa: E501
-                                                                                                seconds=7200  # noqa: E501
-                                                                                            )  # noqa: E501
-                                                                                        ),  # noqa: E501
-                                                                                    ),
-                                                                                },
-                                                                            ):
-                                                                                self.oidc_login.id_token = (  # noqa: E501
-                                                                                    MagicMock()  # noqa: E501
-                                                                                )  # noqa: E501
-                                                                                self.oidc_login.id_token.nonce = "valid_nonce"  # noqa: E501
-                                                                                self.oidc_login.id_token.sub = "user123"  # noqa: E501
-                                                                                self.oidc_login.id_token.name = "Test User"  # noqa: E501
-                                                                                self.oidc_login.id_token.__getitem__.side_effect = (  # noqa: E501
-                                                                                    jwt_payload.__getitem__  # noqa: E501
-                                                                                )
+                            }
+                        ]
+                    }
+                ),
+            ),
+            (
+                "service_layer.services.get_student_lpath_le_algorithm",
+                dict(
+                    return_value={
+                        "id": 7,
+                        "student_id": 5,
+                        "topic_id": 1,
+                        "algorithm_id": 4,
+                    }
+                ),
+            ),
+            (
+                "service_layer.services.get_learning_path_algorithm_by_id",
+                dict(
+                    return_value={
+                        "id": 4,
+                        "short_name": "graf",
+                        "full_name": "Graf et al.",
+                    }
+                ),
+            ),
+            (
+                "service_layer.services.create_learning_path",
+                dict(
+                    return_value={
+                        "id": 5,
+                        "student_id": 5,
+                        "course_id": 1,
+                        "topic_id": 1,
+                        "based_on": "graf",
+                        "path": "FO",
+                        "calculated_on": datetime.datetime(
+                            2025,
+                            6,
+                            17,
+                            16,
+                            4,
+                            4,
+                            tzinfo=datetime.timezone(datetime.timedelta(seconds=7200)),
+                        ),
+                    }
+                ),
+            ),
+            (
+                "service_layer.services.get_user_by_id",
+                dict(
+                    return_value={
+                        "id": 1,
+                        "name": "Test User",
+                        "role": "student",
+                    }
+                ),
+            ),
+            (
+                "service_layer.services.get_courses_by_student_id",
+                dict(
+                    return_value={
+                        "courses": [
+                            {
+                                "id": 1,
+                                "name": "course-1",
+                                "university": "HS-KE",
+                                "lms_id": 1,
+                            },
+                        ],
+                    }
+                ),
+            ),
+        ]
 
-                                                                                response = (  # noqa: E501
-                                                                                    self.oidc_login.lti_launch_from_id_token()  # noqa: E501
-                                                                                )
+        with ExitStack() as stack:
+            mocks = []
+            for target, kwargs in patch_targets:
+                mocks.append(stack.enter_context(patch(target, **kwargs)))
+            mocks[3].side_effect = (
+                lambda nonce, key: "valid_state"
+                if key == "state" and nonce == "valid_nonce"
+                else None
+            )
+            self.oidc_login.id_token = MagicMock()
+            self.oidc_login.id_token.nonce = "valid_nonce"
+            self.oidc_login.id_token.sub = "user123"
+            self.oidc_login.id_token.name = "Test User"
+            self.oidc_login.id_token.__getitem__.side_effect = jwt_payload.__getitem__
 
-                                                                                assert (  # noqa: E501
-                                                                                    response.status  # noqa: E501
-                                                                                    == "302 FOUND"  # noqa: E501
-                                                                                )  # noqa: E501
+            response = self.oidc_login.lti_launch_from_id_token()
+            assert response.status == "302 FOUND"
 
     def test_get_logout(self):
+        """[HASKI-REQ-0028] Test logout functionality"""
         with patch.object(
             self.oidc_login, "_request", _request=MagicMock
         ) as mock_request:
@@ -902,7 +849,8 @@ class TestOIDCLoginFlask(unittest.TestCase):
 
             self.assertEqual(response.status_code, 204)
             set_cookie_header = response.headers.get("Set-Cookie", "")
-            self.assertIn("haski_state=", set_cookie_header)  # Check for empty value
+            # Check for empty value
+            self.assertIn("haski_state=", set_cookie_header)
             self.assertIn("Max-Age=0", set_cookie_header)
             self.assertIn("Domain=example.com", set_cookie_header)
             self.assertIn("HttpOnly", set_cookie_header)

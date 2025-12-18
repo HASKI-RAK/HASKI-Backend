@@ -6,6 +6,7 @@ from service_layer.service.CookieServiceFlask import CookieServiceFlask
 
 
 def test_set_cookie():
+    """[HASKI-REQ-0028] Validates secure cookie creation for LTI auth (GH-19)."""
     # Create a mock response object
     response = Mock(spec=Response)
 
@@ -30,6 +31,7 @@ def test_set_cookie():
 
 
 def test_delete_cookie():
+    """[HASKI-REQ-0028] Validates secure cookie deletion semantics (GH-19)."""
     # Create a mock response object
     response = Mock(spec=Response)
 

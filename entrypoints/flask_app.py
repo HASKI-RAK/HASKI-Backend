@@ -2,12 +2,16 @@ import http
 import json
 import os
 import re
-from datetime import datetime
+import socket
+from datetime import datetime, timezone
 from typing import Any, Dict, List, Union
 
+import requests
 from flask import Flask, jsonify, make_response, request
 from flask.wrappers import Response
 from flask_cors import CORS, cross_origin
+from sqlalchemy import text
+from sqlalchemy.exc import SQLAlchemyError
 
 import service_layer.crypto.JWTKeyManagement as JWTKeyManagement
 import service_layer.lti.config.ToolConfigJson as ToolConfigJson
@@ -29,6 +33,101 @@ CORS(app, supports_credentials=True)
 orm.start_mappers()
 
 logger.configure_dict()
+
+SERVICE_STARTED_AT = datetime.now(timezone.utc)
+_last_successful_checks: Dict[str, Union[str, None]] = {
+    "database": None,
+    "message_queue": None,
+}
+
+
+def _utc_now_iso() -> str:
+    return datetime.now(timezone.utc).isoformat()
+
+
+def _service_version() -> str:
+    for key in (
+        "RELEASE_VERSION",
+        "BACKEND_VERSION",
+        "APP_VERSION",
+        "VERSION",
+        "GIT_SHA",
+        "COMMIT_SHA",
+        "IMAGE_TAG",
+    ):
+        value = os.environ.get(key)
+        if value:
+            return value
+    return "unknown"
+
+
+def _check_database() -> Dict[str, Any]:
+    started_at = datetime.now(timezone.utc)
+    check = {
+        "component": "database",
+        "impact": "critical",
+        "checked_at": _utc_now_iso(),
+        "last_successful": _last_successful_checks["database"],
+        "status": "DOWN",
+        "latency_ms": None,
+        "details": None,
+    }
+    session = None
+    try:
+        session = unit_of_work.DEFAULT_SESSION_FACTORY()
+        session.execute(text("SELECT 1"))
+        latency = (datetime.now(timezone.utc) - started_at).total_seconds() * 1000
+        check["status"] = "UP"
+        check["latency_ms"] = round(latency, 3)
+        _last_successful_checks["database"] = _utc_now_iso()
+        check["last_successful"] = _last_successful_checks["database"]
+    except SQLAlchemyError as exc:
+        check["details"] = str(exc.__cause__ or exc)
+        logger.error(f"Database health check failed: {check['details']}")
+    except Exception as exc:  # pragma: no cover - unexpected
+        check["details"] = str(exc)
+        logger.error(f"Database health check failed: {check['details']}")
+    finally:
+        if session is not None:
+            session.close()
+    return check
+
+
+def _check_message_queue() -> Dict[str, Any]:
+    started_at = datetime.now(timezone.utc)
+    health_url = os.environ.get("MESSAGE_QUEUE_HEALTHCHECK_URL")
+    check = {
+        "component": "message_queue",
+        "impact": "informational" if not health_url else "critical",
+        "checked_at": _utc_now_iso(),
+        "last_successful": _last_successful_checks["message_queue"],
+        "status": "SKIPPED",
+        "latency_ms": None,
+        "details": None,
+    }
+
+    if not health_url:
+        check["details"] = "MESSAGE_QUEUE_HEALTHCHECK_URL not set; skipping check"
+        return check
+
+    try:
+        response = requests.get(health_url, timeout=2)
+        latency = (datetime.now(timezone.utc) - started_at).total_seconds() * 1000
+        check["latency_ms"] = round(latency, 3)
+        if response.ok:
+            check["status"] = "UP"
+            _last_successful_checks["message_queue"] = _utc_now_iso()
+            check["last_successful"] = _last_successful_checks["message_queue"]
+        else:
+            check["status"] = "DOWN"
+            check["details"] = f"HTTP {response.status_code}"
+    except Exception as exc:  # pragma: no cover - unexpected
+        check["status"] = "DOWN"
+        check["details"] = str(exc)
+        logger.error(f"Message queue health check failed: {check['details']}")
+
+    return check
+
 
 mocked_frontend_log = {
     "logs": [
@@ -67,6 +166,44 @@ def handle_custom_exception(ex: err.AException):
     response = json.dumps({"error": ex.__class__.__name__, "message": ex.message})
     logger.error(response)
     return response, ex.status_code
+
+
+@app.route("/health", methods=["GET"])
+def health():
+    dependency_checks = {
+        "database": _check_database(),
+        "message_queue": _check_message_queue(),
+    }
+
+    critical_failures = [
+        name
+        for name, result in dependency_checks.items()
+        if result["impact"] == "critical" and result["status"] == "DOWN"
+    ]
+
+    overall_status = "UP" if not critical_failures else "DOWN"
+    status_code = (
+        http.HTTPStatus.OK
+        if overall_status == "UP"
+        else http.HTTPStatus.SERVICE_UNAVAILABLE
+    )
+
+    payload = {
+        "status": overall_status,
+        "checked_at": _utc_now_iso(),
+        "uptime_seconds": int(
+            (datetime.now(timezone.utc) - SERVICE_STARTED_AT).total_seconds()
+        ),
+        "service": {
+            "name": os.environ.get("PLATFORM_NAME", "HASKI-Backend"),
+            "version": _service_version(),
+            "hostname": os.environ.get("HOSTNAME", socket.gethostname()),
+        },
+        "dependencies": dependency_checks,
+    }
+
+    logger.info(json.dumps({"event": "health_check", **payload}))
+    return jsonify(payload), status_code
 
 
 # User Administration via LMS
@@ -160,30 +297,46 @@ def get_user_by_id(user_id, lms_user_id):
             return jsonify(user), status_code
 
 
-# Add all students to a course
+# Add all students that are enrolled in moodle courses to the haski courses
 @app.route("/course/<course_id>/allStudents", methods=["POST"])
 @cross_origin(supports_credentials=True)
 def add_all_students_to_course(course_id):
     method = request.method
     match method:
         case "POST":
+            created_for = []
             students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
             for student in students:
-                student_id = student["id"]
-                services.add_student_to_course(
-                    unit_of_work.SqlAlchemyUnitOfWork(),
-                    student_id,
-                    course_id,
+                user = services.get_user_by_id(
+                    unit_of_work.SqlAlchemyUnitOfWork(), student["user_id"], None
                 )
+                courses = services.get_enrolled_university_courses(
+                    unit_of_work.SqlAlchemyUnitOfWork(),
+                    user["lms_user_id"],
+                    user["university"],
+                )
+                if services.is_student_enrolled_in_course(courses, course_id):
+                    services.add_student_to_course(
+                        unit_of_work.SqlAlchemyUnitOfWork(),
+                        student["id"],
+                        course_id,
+                    )
+                    created_for.append(student["id"])
+            if created_for:
+                return make_response(
+                    jsonify(
+                        {
+                            "CREATED": True,
+                            "course_id": course_id,
+                            "student_count": len(created_for),
+                        }
+                    ),
+                    http.HTTPStatus.CREATED,
+                )
+
             return make_response(
-                jsonify(
-                    {
-                        "CREATED": True,
-                        "course_id": course_id,
-                        "students_added": len(students),
-                    }
-                ),
-                http.HTTPStatus.CREATED,
+                jsonify({"CREATED": False, "course_id": course_id, "student_count": 0}),
+                http.HTTPStatus.NOT_FOUND,
             )
 
 
@@ -309,6 +462,10 @@ def course_administration(data: Dict[str, Any], course_id, lms_course_id):
 
                 for learning_element in learning_elements:
                     services.delete_student_learning_element_by_learning_element_id(
+                        unit_of_work.SqlAlchemyUnitOfWork(),
+                        learning_element["learning_element_id"],
+                    )
+                    services.delete_learning_element_solution(
                         unit_of_work.SqlAlchemyUnitOfWork(),
                         learning_element["learning_element_id"],
                     )
@@ -455,18 +612,22 @@ def get_activity_status_for_student_for_learning_element(
 
 
 @app.route(
-    "/lms/remote/courses",
+    "/lms/user/<user_id>/remote/courses",
     methods=["GET"],
 )
 @cross_origin(supports_credentials=True)
-def get_all_remote_courses():
+def get_all_remote_courses(user_id):
     method = request.method
     match method:
         case "GET":
-            remote_courses = services.get_courses_from_moodle(
-                unit_of_work.SqlAlchemyUnitOfWork()
+            user = services.get_user_by_id(
+                unit_of_work.SqlAlchemyUnitOfWork(), user_id, None
             )
-            return jsonify(remote_courses), 200
+            enrolled_moodle_courses = services.get_courses_for_user_from_moodle(
+                unit_of_work.SqlAlchemyUnitOfWork(), user["lms_user_id"]
+            )
+
+            return jsonify(enrolled_moodle_courses), 200
 
 
 @app.route(
@@ -586,23 +747,37 @@ def add_all_students_to_all_topics(course_id):
     method = request.method
     match method:
         case "POST":
-            students = services.get_all_students(unit_of_work.SqlAlchemyUnitOfWork())
+            uow = unit_of_work.SqlAlchemyUnitOfWork()
+            students = services.get_all_students(uow)
+            created_for = []
+
             for student in students:
-                student_id = student["id"]
-                services.add_student_to_topics(
-                    unit_of_work.SqlAlchemyUnitOfWork(),
-                    student_id,
-                    course_id,
+                user = services.get_user_by_id(uow, student["user_id"], None)
+
+                # look if student is enrolled in the course
+                courses = services.get_courses_by_student_id(
+                    uow, user["id"], user["lms_user_id"], student["id"]
                 )
+
+                if services.is_student_enrolled_in_course(courses, course_id):
+                    services.add_student_to_topics(uow, student["id"], course_id)
+                    created_for.append(student["id"])
+
+            if created_for:
+                return make_response(
+                    jsonify(
+                        {
+                            "CREATED": True,
+                            "course_id": course_id,
+                            "student_count": len(created_for),
+                        }
+                    ),
+                    http.HTTPStatus.CREATED,
+                )
+
             return make_response(
-                jsonify(
-                    {
-                        "CREATED": True,
-                        "course_id": course_id,
-                        "students_added": len(students),
-                    }
-                ),
-                http.HTTPStatus.CREATED,
+                jsonify({"CREATED": False, "course_id": course_id, "student_count": 0}),
+                http.HTTPStatus.NOT_FOUND,
             )
 
 
@@ -893,8 +1068,12 @@ def post_student_course(course_id, student_id):
             student_course = services.add_student_to_course(
                 unit_of_work.SqlAlchemyUnitOfWork(), student_id, course_id
             )
-            status_code = 201
-            return jsonify(student_course), status_code
+            if student_course != {}:
+                return make_response(jsonify(student_course), http.HTTPStatus.CREATED)
+            else:
+                return make_response(
+                    jsonify({"CREATED": False}), http.HTTPStatus.CONFLICT
+                )
 
 
 @app.route("/lms/course/<course_id>/teacher/<teacher_id>", methods=["POST"])
@@ -1748,6 +1927,13 @@ def post_calculate_rating(
                 learning_element_lms_id=learning_element_lms_id,
             )
 
+            # Init result and status code.
+            result = {}
+            status_code = 201
+
+            if not learning_element_by_lms:
+                return jsonify(result), status_code
+
             learning_element = services.get_learning_element_by_id(
                 uow=uow,
                 user_id=user_id,
@@ -1757,10 +1943,6 @@ def post_calculate_rating(
                 topic_id=topic_id,
                 learning_element_id=learning_element_by_lms["id"],
             )
-
-            # Init result and status code.
-            result = {}
-            status_code = 201
 
             # Get the activity type.
             activity_type = learning_element["activity_type"]
@@ -2457,54 +2639,50 @@ def get_topic_solutions(topic_id: int):
 @cross_origin(supports_credentials=True)
 @json_only()
 def post_learning_element_solution(data: Dict[str, Any], learning_element_lms_id: int):
-    entry = services.get_learning_element_solution_by_learning_element_lms_id(
-        uow=unit_of_work.SqlAlchemyUnitOfWork(),
-        learning_element_lms_id=learning_element_lms_id,
-    )
-    condition1 = entry == {}
     match request.method:
         case "POST":
-            if condition1:
-                condition2 = "activity_type" not in data
-                condition3 = type(data["activity_type"]) is str
-                condition4 = "solution_lms_id" not in data
-                condition5 = type(data["solution_lms_id"]) is int
-                if condition2 and condition4:
-                    raise err.MissingParameterError()
-                elif condition3 and condition5:
-                    result = services.add_learning_element_solution(
-                        uow=unit_of_work.SqlAlchemyUnitOfWork(),
-                        learning_element_lms_id=learning_element_lms_id,
-                        solution_lms_id=data["solution_lms_id"],
-                        activity_type=data["activity_type"],
-                    )
-                    status_code = 201
-                    return jsonify(result), status_code
-                else:
-                    raise err.WrongParameterValueError()
-            else:
+            entry = services.get_learning_element_solution_by_learning_element_lms_id(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                learning_element_lms_id=learning_element_lms_id,
+            )
+            if entry != {}:
                 raise err.AlreadyExisting()
+            condition2 = "activity_type" not in data
+            condition4 = "solution_lms_id" not in data
+            if condition2 or condition4:
+                raise err.MissingParameterError()
+            condition3 = type(data["activity_type"]) is str
+            condition5 = type(data["solution_lms_id"]) is int
+            if not (condition3 and condition5):
+                raise err.WrongParameterValueError()
+            result = services.add_learning_element_solution(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                learning_element_lms_id=learning_element_lms_id,
+                solution_lms_id=data["solution_lms_id"],
+                activity_type=data["activity_type"],
+            )
+            status_code = 201
+            return jsonify(result), status_code
 
 
 @app.route("/learningElement/<learning_element_id>/solution", methods=["DELETE"])
 @cross_origin(supports_credentials=True)
 def delete_learning_element_solution(learning_element_id: int):
-    entry = services.get_learning_element_solution_by_learning_element_id(
-        uow=unit_of_work.SqlAlchemyUnitOfWork(), learning_element_id=learning_element_id
-    )
-    condition1 = entry == {}
     match request.method:
         case "DELETE":
-            if not condition1:
-                services.delete_learning_element_solution(
-                    uow=unit_of_work.SqlAlchemyUnitOfWork(),
-                    learning_element_id=learning_element_id,
-                )
-                result = {"message": cons.deletion_message}
-                status_code = 200
-                return jsonify(result), status_code
-            else:
+            entry = services.get_learning_element_solution_by_learning_element_id(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                learning_element_id=learning_element_id,
+            )
+            if entry == {}:
                 raise err.NoContentWarning()
+            services.delete_learning_element_solution(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                learning_element_id=learning_element_id,
+            )
+            result = {"message": cons.deletion_message}
+            status_code = 200
+            return jsonify(result), status_code
 
 
 @app.route(

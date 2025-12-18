@@ -645,7 +645,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
         raise NotImplementedError
 
     @abc.abstractmethod
-    def get_user_by_id(self, user_id, lms_user_id) -> list[UA.User]:
+    def get_user_by_id(self, user_id, lms_user_id=None) -> list[UA.User]:
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -770,7 +770,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
         except IntegrityError:
             raise err.ForeignKeyViolation()
         except Exception:
-            raise err.CreationError
+            raise err.CreationError()
 
     def add_student_to_course(self, student_course) -> DM.StudentCourse:
         course_exist = self.get_courses_by_student_id(student_course.student_id)
@@ -1536,10 +1536,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             .filter_by(id=learning_element_id)
             .all()
         )
-        if result == []:
-            raise err.NoValidIdError()
-        else:
-            return result
+        return result
 
     def get_learning_element_by_lms_id(
         self, learning_element_lms_id
@@ -1549,10 +1546,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             .filter_by(lms_id=learning_element_lms_id)
             .all()
         )
-        if result == []:
-            raise err.NoValidIdError()
-        else:
-            return result
+        return result
 
     def get_learning_elements_by_uni(self, university):
         try:
@@ -1563,15 +1557,6 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             )
         except Exception:
             raise err.DatabaseQueryError()
-
-    def get_learning_element_recommendation(self, learning_path_id):
-        result = (
-            self.session.query(TM.LearningPathLearningElement)
-            .filter_by(learning_path_id=learning_path_id)
-            .filter_by(recommended=True)
-            .all()
-        )
-        return result
 
     def get_learning_element_solution(
         self, learning_element_lms_id
