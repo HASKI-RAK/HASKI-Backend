@@ -2778,5 +2778,69 @@ def add_badges_to_topic(
     return jsonify(result), status_code
 
 
+@app.route("/student/<student_id>/gamificationSettings", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_gamification_settings(student_id: str):
+    result = services.get_gamification_settings_for_student(
+        uow=unit_of_work.SqlAlchemyUnitOfWork(),
+        student_id=int(student_id)
+    )
+    status_code = 200
+    return jsonify(result), status_code
+
+
+@app.route("/student/<student_id>/gamificationSettings", methods=["POST"])
+@cross_origin(supports_credentials=True)
+def set_gamification_settings_for_student(
+    data: Dict[str, Any], student_id: str
+):
+    message = ""
+    data_present = data is not None
+    if not data_present:
+        raise err.MissingParameterError()
+    
+    presentation_present = "presentation" in data
+    social_present = "social" in data
+    level_present = "level" in data
+
+    if not (presentation_present and social_present and level_present):
+        raise err.MissingParameterError()
+    
+    data_types_correct = (
+        type(data["presentation"]) is str and
+        type(data["social"]) is str and
+        type(data["information"]) is str
+    )
+
+    if not data_types_correct:
+        raise err.WrongParameterValueError()
+    
+    settings_exist = services.get_gamification_settings_for_student(
+        uow=unit_of_work.SqlAlchemyUnitOfWork(),
+        student_id=int(student_id)
+    ) != {}
+
+    if settings_exist:
+        services.update_gamification_settings_for_student(
+            uow=unit_of_work.SqlAlchemyUnitOfWork(),
+            student_id=int(student_id),
+            presentation=data["presentation"],
+            social=data["social"],
+            information=data["information"]
+        )
+        message = "updated gamification settings for student with id " + student_id
+    else:
+        services.create_gamification_settings_for_student(
+            uow=unit_of_work.SqlAlchemyUnitOfWork(),
+            student_id=int(student_id),
+            presentation=data["presentation"],
+            social=data["social"],
+            information=data["information"]
+        )
+        message = "created gamification settings for student with id " + student_id
+
+    status_code = 201
+    return jsonify(message), status_code
+
 if __name__ == "__main__":
     app.run(port=5000, debug=True)

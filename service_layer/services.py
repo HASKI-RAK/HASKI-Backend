@@ -1025,6 +1025,17 @@ def create_settings(uow: unit_of_work.AbstractUnitOfWork, user_id) -> dict:
         uow.commit()
         result = setting.serialize()
         return result
+    
+
+def create_gamification_settings(
+    uow: unit_of_work.AbstractUnitOfWork, student_id, presentation, social, information
+)-> None:
+    with uow:
+        gamification_settings = LM.GamificationSettings(
+            student_id, presentation, social, information
+        )
+        uow.gamification_settings.create_gamification_settings(gamification_settings)
+        uow.commit()
 
 
 def create_student(uow: unit_of_work.AbstractUnitOfWork, user) -> dict:
@@ -2479,6 +2490,19 @@ def get_settings_for_user(uow: unit_of_work.AbstractUnitOfWork, user_id) -> dict
         return result
 
 
+def get_gamification_settings_for_student(
+    uow: unit_of_work.AbstractUnitOfWork, student_id
+) -> dict:
+    with uow:
+        gamification_settings = uow.gamification_settings.get_gamification_settings(
+            student_id
+        )
+        if gamification_settings == []:
+            result = {}
+        else:
+            result = gamification_settings[0].serialize()
+        return result
+
 def get_student_lpath_le_algorithm(
     uow: unit_of_work.AbstractUnitOfWork, student_id: int, topic_id: int
 ) -> dict:
@@ -3580,6 +3604,23 @@ def update_settings_for_user(
         uow.settings.update_settings(user_id, settings)
         uow.commit()
         return settings.serialize()
+    
+
+def update_gamification_settings_for_student(
+    uow: unit_of_work.AbstractUnitOfWork,
+    student_id,
+    presentation,
+    social,
+    information,
+) -> None:
+    with uow:
+        gamification_settings = UA.GamificationSettings(
+            student_id, presentation, social, information
+        )
+        uow.gamification_settings.update_gamification_settings(
+            student_id, gamification_settings
+        )
+        uow.commit()
 
 
 def update_student_experience_points(

@@ -38,6 +38,7 @@ class AbstractUnitOfWork(abc.ABC):
     questionnaire_ils: repository.AbstractRepository
     questionnaire_list_k: repository.AbstractRepository
     settings: repository.AbstractRepository
+    gamification_settings: repository.AbstractRepository
     contact_form: repository.AbstractRepository
     news: repository.AbstractRepository
     logbuffer: repository.AbstractRepository
@@ -115,6 +116,7 @@ class SqlAlchemyUnitOfWork(AbstractUnitOfWork):  # pragma: no cover
         self.questionnaire_ils = repository.SqlAlchemyRepository(self.session)
         self.questionnaire_list_k = repository.SqlAlchemyRepository(self.session)
         self.settings = repository.SqlAlchemyRepository(self.session)
+        self.gamification_settings = repository.SqlAlchemyRepository(self.session)
         self.contact_form = repository.SqlAlchemyRepository(self.session)
         self.news = repository.SqlAlchemyRepository(self.session)
         self.logbuffer = repository.SqlAlchemyRepository(self.session)

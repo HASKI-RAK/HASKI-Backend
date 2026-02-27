@@ -324,6 +324,16 @@ settings = Table(
     Column("pswd", String, nullable=True),
 )
 
+gamification_settings = Table(
+    "gamification_settings",
+    mapper_registry.metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("student_id", Integer, nullable=False),
+    Column("presentation", Float, nullable=False),
+    Column("social", Float, nullable=False),
+    Column("information", Float, nullable=False),
+)
+
 contact_form = Table(
     "contact_form",
     mapper_registry.metadata,
@@ -629,6 +639,11 @@ def start_mappers():
     mapper_registry.map_imperatively(
         UA.Settings,
         settings,
+    )
+
+    mapper_registry.map_imperatively(
+        UA.GamificationSettings,
+        gamification_settings,
     )
 
     mapper_registry.map_imperatively(

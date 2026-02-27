@@ -1248,6 +1248,26 @@ def setup_db(
                 OWNER to postgres;
     """
 
+    sql = """
+        CREATE TABLE IF NOT EXISTS public.gamification_settings
+        (
+            id integer NOT NULL GENERATED ALWAYS AS IDENTITY
+            ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+            student_id integer NOT NULL,
+            presentation text COLLATE pg_catalog."default" NOT NULL,
+            social text COLLATE pg_catalog."default" NOT NULL,
+            information text COLLATE pg_catalog."default" NOT NULL,
+            CONSTRAINT gamification_preferences_pkey PRIMARY KEY (id)
+            CONSTRAINT student_id_fkey FOREIGN KEY (student_id)
+                REFERENCES public.student (id) MATCH SIMPLE
+                ON UPDATE CASCADE
+                ON DELETE NO CASCADE
+        )
+        TABLESPACE pg_default;
+        ALTER TABLE IF EXISTS public.gamification_settings
+            OWNER to postgres;
+    """
+
     cursor.execute(sql)
 
     conn.commit()

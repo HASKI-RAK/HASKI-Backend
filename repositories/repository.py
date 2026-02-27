@@ -168,6 +168,11 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     @abc.abstractmethod
     def create_settings(self, settings) -> UA.Settings:
         raise NotImplementedError
+    
+    @abc.abstractmethod
+    def create_gamification_settings(
+            self, gamification_settings: UA.GamificationSettings):
+        raise NotImplementedError
 
     @abc.abstractmethod
     def create_contact_form(self, contact_form: UA.ContactForm) -> UA.ContactForm:
@@ -619,6 +624,10 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     @abc.abstractmethod
     def get_settings(self, user_id):
         raise NotImplementedError
+    
+    @abc.abstractmethod
+    def get_gamification_settings(self, student_id)-> UA.GamificationSettings:
+        raise NotImplementedError
 
     @abc.abstractmethod
     def get_default_learning_path_by_university(
@@ -806,6 +815,12 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
 
     @abc.abstractmethod
     def update_settings(self, user_id, settings) -> UA.Settings:
+        raise NotImplementedError
+    
+    @abc.abstractmethod
+    def update_gamification_settings(
+        self, student_id, gamification_Settings: UA.GamificationSettings
+        ):
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -1135,6 +1150,13 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
     def create_settings(self, settings) -> UA.Settings:
         try:
             self.session.add(settings)
+        except Exception:
+            raise err.CreationError()
+        
+    def create_gamification_settings(
+            self, gamification_settings: UA.GamificationSettings):
+        try:
+            self.session.add(gamification_settings)
         except Exception:
             raise err.CreationError()
 
@@ -1978,6 +2000,11 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             raise err.NoValidIdError()
         else:
             return result
+        
+    def get_gamification_settings(self, student_id) -> UA.GamificationSettings:
+        result = self.session.query(UA.GamificationSettings).filter_by(
+            student_id=student_id).all()
+        return result
 
     def get_default_learning_path_by_university(
         self, university: str
@@ -2422,6 +2449,23 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
                         UA.Settings.pswd: settings.pswd,
                     }
                 )
+            )
+        else:
+            raise err.NoValidIdError
+        
+    def update_gamification_settings(
+            self, student_id, gamification_settings : UA.GamificationSettings):
+        settings_exist = self.get_gamification_settings(student_id)
+        if settings_exist != []:
+            gamification_settings.id = settings_exist[0].id
+            
+            self.session.query(UA.GamificationSettings).filter_by(
+            student_id=student_id).update(
+                {
+                    UA.GamificationSettings.presentation: gamification_settings.presentation,  # noqa
+                    UA.GamificationSettings.social: gamification_settings.social,
+                    UA.GamificationSettings.level: gamification_settings.level,
+                }
             )
         else:
             raise err.NoValidIdError

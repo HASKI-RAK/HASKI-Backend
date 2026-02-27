@@ -79,6 +79,24 @@ class Settings:
             "theme": self.theme,
             "pswd": self.pswd,
         }
+    
+
+class GamificationSettings:
+    def __init__(self, student_id, presentation, social, information) -> None:
+        self.id = None
+        self.student_id = student_id
+        self.presentation = presentation
+        self.social = social
+        self.information = information
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "student_id": self.student_id,
+            "presentation": self.presentation,
+            "social": self.social,
+            "information": self.information,
+        }
 
 
 class ContactForm:
