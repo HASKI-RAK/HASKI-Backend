@@ -1,3 +1,4 @@
+import math
 import os
 from datetime import datetime
 from math import log
@@ -2596,11 +2597,25 @@ def get_course_leaderboard(
 
 
 def get_experience_points_leaderboard(
-        uow: unit_of_work.AbstractUnitOfWork, student_id: int) -> list[dict]:
+        uow: unit_of_work.AbstractUnitOfWork, student_id: int) -> dict:
     with uow:
         exp_points = uow.student_experience_points.get_student_experience_points()
         # Sort by experience points
         exp_points.sort(key=lambda x: x.experience_points, reverse=True)
+        leaderboard = []
+        total_participents = len(exp_points)
+        result = {"total_participents": total_participents}
+        max_leaderboard_size = 60
+        number_of_leagues = 3
+
+        leagues_labels = {
+            0: "first",
+            1: "second",
+            2: "third"
+        }
+
+        previous_xp = 0
+        rank = 0
 
         # Find current student's position
         current_student_index = None
@@ -2610,26 +2625,186 @@ def get_experience_points_leaderboard(
                 break
 
         if current_student_index is None:
-            return []
-
-        if len(exp_points) <= 3:
-            return [exp_point.serialize() for exp_point in exp_points]
-        result = []
-        if current_student_index == 0:
-            result.append(exp_points[0].serialize())
-            result.append(exp_points[1].serialize())
-            result.append(exp_points[2].serialize())
-        elif current_student_index == len(exp_points) - 1:
-            result.append(exp_points[-3].serialize())
-            result.append(exp_points[-2].serialize())
-            result.append(exp_points[-1].serialize())
+            return err.DatabaseQueryError
+        
+        #todo: find way to include top 3
+        if current_student_index < max_leaderboard_size:
+            for i in range(min(max_leaderboard_size, len(exp_points))):
+                if exp_points[i].experience_points != previous_xp:
+                        rank += 1
+                        previous_xp = exp_points[i].experience_points
+                entry = {
+                    "rank": rank,
+                    "student_id": exp_points[i].student_id,
+                    "experience_points": exp_points[i].experience_points,
+                }
+                leaderboard.append(entry)
+            result["league"] = "none"
         else:
-            result.append(exp_points[current_student_index - 1].serialize())
-            result.append(exp_points[current_student_index].serialize())
-            result.append(exp_points[current_student_index + 1].serialize())
+            league_size = len(exp_points) / number_of_leagues
+            league_number = math.floor(current_student_index / league_size)
+            # lowest index = highest rank
+            league_top_border = math.floor(league_number * league_size)
+            # bottom index = lowest rank in league
+            league_bottom_border = round(((league_number + 1) * league_size))
 
+            # highest and lowest value of interval to be shown in Leaderboard, 
+            # with current student in the middle
+            highest_rank_border = max(
+                league_top_border, current_student_index-(max_leaderboard_size/2))
+            size_budget = max_leaderboard_size
+            size_budget = size_budget - (current_student_index - highest_rank_border)
+            lowest_rank_border = min(
+            current_student_index+size_budget, league_bottom_border)
+
+            result["league"] = leagues_labels[league_number]
+
+            # append first three ranks in league
+            leaderboard.append({
+                "rank": 1,
+                "student_id": exp_points[league_top_border].student_id,
+                "experience_points": exp_points[league_top_border].experience_points})
+            leaderboard.append({
+                "rank": 2,
+                "student_id": exp_points[league_top_border+1].student_id,
+                "experience_points": exp_points[league_top_border+1].experience_points})
+            leaderboard.append({
+                "rank": 3,
+                "student_id": exp_points[league_top_border+2].student_id,
+                "experience_points": exp_points[league_top_border+2].experience_points})
+
+            previous_xp = 0
+            rank = 0
+            for i in range(highest_rank_border, lowest_rank_border):
+                if i >= len(exp_points):
+                    break
+                if exp_points[i].experience_points != previous_xp:
+                    rank += 1
+                    previous_xp = exp_points[i].experience_points
+                entry = {
+                        "rank": rank,
+                        "student_id": exp_points[i].student_id,
+                        "experience_points": exp_points[i].experience_points}
+                leaderboard.append(entry)
+        
+        result["leaderboard"] = leaderboard
         return result
+    
 
+def get_badge_leaderboard(
+    uow: unit_of_work.AbstractUnitOfWork, student_id: int):
+    with uow:
+        all_students = uow.student.get_all_students()
+        max_leaderboard_size = 60
+        badges_by_student = []
+        result = {}
+        student_index = None
+        student_has_badges = False
+        leaderboard = []
+        number_of_leagues = 3
+        leagues_labels = {
+            0: "first",
+            1: "second",
+            2: "third"
+        }
+        previous_badge_count = 0
+        rank = 0
+
+        # create list of dicts with student id and badge count for all students
+        # with at least one badge
+        for i, student in enumerate(all_students):
+            student_badges = uow.student_badge.get_student_badges(student.id)
+            if len(student_badges) == 0:
+                continue
+            student_ranking = {"student_id": student.id, 
+                               "badge_count": len(student_badges)}
+            badges_by_student.append(student_ranking)
+            
+        
+        if len(badges_by_student) == 0:
+            return {}
+        
+        sorted_records = sorted(
+                badges_by_student, key=lambda x: x["badge_count"], reverse=True
+            )
+        
+        for i, record in enumerate(sorted_records):
+            if record["student_id"] == student_id:
+                student_index = i
+                student_has_badges = True
+                break
+        
+        if student_has_badges == False:
+            result["total_participents"] = len(sorted_records)
+            result["leaderboard"] = leaderboard
+            result["league"] = "unranked"
+            return result
+        else:
+            # show all users if there are less than max_leaderboard_size,
+            # otherwise show current student with neighbours and top 3
+            if len(sorted_records) <= max_leaderboard_size:
+                for i, record in enumerate(sorted_records):
+                    if sorted_records[i]["badge_count"] != previous_badge_count:
+                        rank += 1
+                        previous_badge_count = sorted_records[i]["badge_count"]
+                    entry = {
+                            "rank": rank,
+                            "student_id": sorted_records[i]["student_id"],
+                            "badge_count": sorted_records[i]["badge_count"]}
+                    leaderboard.append(entry)
+                result["league"] = "none"
+            else:
+                league_size = len(sorted_records) / number_of_leagues
+                league_number = math.floor(student_index / league_size)
+                # lowest index = highest rank
+                league_top_border = math.floor(league_number * league_size)
+                # bottom index = lowest rank in league
+                league_bottom_border = round(((league_number + 1) * league_size))
+
+                # highest and lowest value of interval to be shown in Leaderboard, 
+                # with current student in the middle
+                highest_rank_border = max(
+                    league_top_border, student_index-(max_leaderboard_size/2))
+                size_budget = max_leaderboard_size
+                size_budget = size_budget - (student_index - highest_rank_border)
+                lowest_rank_border = min(
+                    student_index+size_budget, league_bottom_border)
+
+                result["league"] = leagues_labels[league_number]
+
+                # append first three ranks in league
+                leaderboard.append({
+                    "rank": 1,
+                    "student_id": sorted_records[league_top_border]["student_id"],
+                    "badge_count": sorted_records[league_top_border]["badge_count"]})
+                leaderboard.append({
+                    "rank": 2,
+                    "student_id": sorted_records[league_top_border+1]["student_id"],
+                    "badge_count": sorted_records[league_top_border+1]["badge_count"]})
+                leaderboard.append({
+                    "rank": 3,
+                    "student_id": sorted_records[league_top_border+2]["student_id"],
+                    "badge_count": sorted_records[league_top_border+2]["badge_count"]})
+
+                previous_badge_count = 0
+                rank = 0
+                for i in range(highest_rank_border, lowest_rank_border):
+                    if i >= len(sorted_records):
+                        break
+                    if sorted_records[i]["badge_count"] != previous_badge_count:
+                        rank += 1
+                        previous_badge_count = sorted_records[i]["badge_count"]
+                    entry = {
+                            "rank": rank,
+                            "student_id": sorted_records[i]["student_id"],
+                            "badge_count": sorted_records[i]["badge_count"]}
+                    leaderboard.append(entry)
+
+                
+    
+        result["total_participents"] = len(sorted_records)
+        result["leaderboard"] = leaderboard
+        return result
 
 def get_badges_by_course(
     uow: unit_of_work.AbstractUnitOfWork, course_id: int) -> list[dict]:
