@@ -1248,6 +1248,8 @@ def setup_db(
                 OWNER to postgres;
     """
 
+    cursor.execute(sql)
+
     sql = """
         CREATE TABLE IF NOT EXISTS public.gamification_settings
         (
