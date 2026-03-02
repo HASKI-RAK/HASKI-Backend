@@ -29,3 +29,5 @@ LAAC_VERIFY_SSL=true
 LAAC_BEARER_TOKEN=
 # Alternative variable names the backend will also accept for convenience:
 # LAAC_DEV_JWT / DEV_JWT / LAAC_API_TOKEN
+# URL to moodle course
+MOODLE_COURSE_URL=https://ke.moodle.haski.app/course/view.php?id=

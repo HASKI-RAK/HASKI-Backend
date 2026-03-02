@@ -14,7 +14,7 @@ import service_layer.lti.config.ToolConfigJson as ToolConfigJson
 import utils.logger as logger
 from errors import errors as err
 from repositories import orm
-from service_layer import services, unit_of_work
+from service_layer import learning_analytics, services, unit_of_work
 from utils import constants as cons
 from utils.constants import (
     role_admin_string,
@@ -2577,6 +2577,180 @@ def get_learning_element_recommendation(user_id: str, course_id: str, topic_id: 
 
     status_code = 200
     return jsonify(results), status_code
+
+
+@app.route("/user/<user_id>/scoreboard", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_scoreboard_course_data(user_id: str):
+    since = request.args.get("since")
+    until = request.args.get("until")
+
+    score = learning_analytics.get_courses_scores(user_id, since, until)
+    max_score = learning_analytics.get_courses_max_scores(user_id, since, until)
+    time_spent = learning_analytics.get_courses_time_spent(user_id, since, until)
+
+    uow = unit_of_work.SqlAlchemyUnitOfWork()
+    student = services.get_student_by_user_id(uow, user_id)
+
+    last_elements = {
+        element_id: {
+            "learning_element": services.get_learning_element_by_lms_id(
+                uow, student["id"], element_id
+            ),
+            "completed_at": completed_at,
+        }
+        for element_id, completed_at in learning_analytics.get_user_last_elements(
+            user_id
+        ).items()
+    }
+
+    result = {
+        "score": score,
+        "max_score": max_score,
+        "time_spent": time_spent,
+        "last_elements": last_elements,
+    }
+
+    status_code = 200
+    return jsonify(result), status_code
+
+
+@app.route("/user/<user_id>/course/<course_id>/scoreboard", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_scoreboard_topic_data(user_id: str, course_id: str):
+    since = request.args.get("since")
+    until = request.args.get("until")
+
+    uow = unit_of_work.SqlAlchemyUnitOfWork()
+    topics = services.get_topics_for_course_id(uow, course_id)  # course_id: 4
+    topic_learning_element_ids = {
+        topic["topic_id"]: {
+            learning_element["learning_element_id"]
+            for learning_element in services.get_learning_elements_for_topic_id(
+                uow, topic["topic_id"]
+            )
+        }
+        for topic in topics
+    }
+
+    raw_score = learning_analytics.get_course_elements_best_attempts(user_id, course_id)
+    raw_max_score = learning_analytics.get_course_elements_max_scores(
+        user_id, course_id, since, until
+    )
+    raw_time_spent = learning_analytics.get_course_elements_time_spent(
+        user_id, course_id, since, until
+    )
+
+    score = {}
+    max_score = {}
+    time_spent = {}
+
+    for topic_id, learning_element_ids in topic_learning_element_ids.items():
+        score[topic_id] = sum(
+            raw_score[element_id]["score"] or 0
+            for element_id in set(learning_element_ids) & raw_score.keys()
+        )
+        max_score[topic_id] = sum(
+            raw_max_score[element_id] or 0
+            for element_id in set(learning_element_ids) & raw_max_score.keys()
+        )
+        time_spent[topic_id] = sum(
+            raw_time_spent[element_id] or id
+            for element_id in set(learning_element_ids) & raw_time_spent.keys()
+        )
+
+    student = services.get_student_by_user_id(uow, user_id)
+
+    last_elements = {
+        element_id: {
+            "learning_element": services.get_learning_element_by_lms_id(
+                uow, student["id"], element_id
+            ),
+            "completed_at": completed_at,
+        }
+        for element_id, completed_at in learning_analytics.get_course_last_elements(
+            user_id, course_id, since, until
+        ).items()
+    }
+
+    result = {
+        "score": score,
+        "max_score": max_score,
+        "time_spent": time_spent,
+        "last_elements": last_elements,
+    }
+
+    status_code = 200
+    return jsonify(result), status_code
+
+
+@app.route(
+    "/user/<user_id>/course/<course_id>/topic/<topic_id>/scoreboard", methods=["GET"]
+)
+@cross_origin(supports_credentials=True)
+def get_scoreboard_learning_element_data(user_id: str, course_id: str, topic_id: str):
+    since = request.args.get("since")
+    until = request.args.get("until")
+
+    uow = unit_of_work.SqlAlchemyUnitOfWork()
+    learning_elements = services.get_learning_elements_for_topic_id(uow, topic_id)
+    learning_element_ids = [
+        str(learning_element["learning_element_id"])
+        for learning_element in learning_elements
+    ]
+
+    raw_best_attempts = learning_analytics.get_course_elements_best_attempts(
+        user_id, course_id
+    )
+    best_attempts = {
+        element_id: raw_best_attempts[element_id]
+        for element_id in set(learning_element_ids) & raw_best_attempts.keys()
+    }
+
+    raw_max_score = learning_analytics.get_course_elements_max_scores(
+        user_id, course_id, since, until
+    )
+    max_score = {
+        element_id: value
+        for element_id, value in raw_max_score.items()
+        if element_id in learning_element_ids
+    }
+
+    raw_time_spent = learning_analytics.get_course_elements_time_spent(
+        user_id, course_id, since, until
+    )
+    time_spent = {
+        element_id: value
+        for element_id, value in raw_time_spent.items()
+        if element_id in learning_element_ids
+    }
+
+    student = services.get_student_by_user_id(uow, user_id)
+    last_three_best_attempts = dict(
+        sorted(
+            best_attempts.items(), key=lambda item: item[1]["completedAt"], reverse=True
+        )[:3]
+    )
+
+    last_elements = {
+        element_id: {
+            "learning_element": services.get_learning_element_by_lms_id(
+                uow, student["id"], element_id
+            ),
+            "completed_at": last_three_best_attempts[element_id]["completedAt"],
+        }
+        for element_id in last_three_best_attempts.keys()
+    }
+
+    result = {
+        "max_score": max_score,
+        "time_spent": time_spent,
+        "last_elements": last_elements,
+        "best_attempts": best_attempts,
+    }
+
+    status_code = 200
+    return jsonify(result), status_code
 
 
 if __name__ == "__main__":
