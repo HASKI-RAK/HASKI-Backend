@@ -329,9 +329,9 @@ gamification_settings = Table(
     mapper_registry.metadata,
     Column("id", Integer, primary_key=True, autoincrement=True),
     Column("student_id", Integer, nullable=False),
-    Column("presentation", Float, nullable=False),
-    Column("social", Float, nullable=False),
-    Column("information", Float, nullable=False),
+    Column("presentation", String, nullable=False),
+    Column("social", String, nullable=False),
+    Column("information", String, nullable=False),
 )
 
 contact_form = Table(

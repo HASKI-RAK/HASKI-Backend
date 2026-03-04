@@ -1259,11 +1259,11 @@ def setup_db(
             presentation text COLLATE pg_catalog."default" NOT NULL,
             social text COLLATE pg_catalog."default" NOT NULL,
             information text COLLATE pg_catalog."default" NOT NULL,
-            CONSTRAINT gamification_preferences_pkey PRIMARY KEY (id)
+            CONSTRAINT gamification_preferences_pkey PRIMARY KEY (id),
             CONSTRAINT student_id_fkey FOREIGN KEY (student_id)
                 REFERENCES public.student (id) MATCH SIMPLE
                 ON UPDATE CASCADE
-                ON DELETE NO CASCADE
+                ON DELETE CASCADE
         )
         TABLESPACE pg_default;
         ALTER TABLE IF EXISTS public.gamification_settings

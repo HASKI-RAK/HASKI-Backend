@@ -1029,13 +1029,14 @@ def create_settings(uow: unit_of_work.AbstractUnitOfWork, user_id) -> dict:
 
 def create_gamification_settings(
     uow: unit_of_work.AbstractUnitOfWork, student_id, presentation, social, information
-)-> None:
+)-> dict:
     with uow:
-        gamification_settings = LM.GamificationSettings(
+        gamification_settings = UA.GamificationSettings(
             student_id, presentation, social, information
         )
         uow.gamification_settings.create_gamification_settings(gamification_settings)
         uow.commit()
+        return gamification_settings.serialize()
 
 
 def create_student(uow: unit_of_work.AbstractUnitOfWork, user) -> dict:
@@ -2498,7 +2499,7 @@ def get_gamification_settings_for_student(
             student_id
         )
         if gamification_settings == []:
-            result = {}
+            result = { "message": "No Settings found for this student" }
         else:
             result = gamification_settings[0].serialize()
         return result
@@ -3612,7 +3613,7 @@ def update_gamification_settings_for_student(
     presentation,
     social,
     information,
-) -> None:
+) -> dict:
     with uow:
         gamification_settings = UA.GamificationSettings(
             student_id, presentation, social, information
@@ -3621,6 +3622,7 @@ def update_gamification_settings_for_student(
             student_id, gamification_settings
         )
         uow.commit()
+        return gamification_settings.serialize()
 
 
 def update_student_experience_points(

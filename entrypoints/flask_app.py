@@ -2794,7 +2794,7 @@ def get_gamification_settings(student_id: str):
 def set_gamification_settings_for_student(
     data: Dict[str, Any], student_id: str
 ):
-    message = ""
+    result = {}
     data_present = data is not None
     if not data_present:
         raise err.MissingParameterError()
@@ -2821,26 +2821,24 @@ def set_gamification_settings_for_student(
     ) != {}
 
     if settings_exist:
-        services.update_gamification_settings_for_student(
+        result = services.update_gamification_settings_for_student(
             uow=unit_of_work.SqlAlchemyUnitOfWork(),
             student_id=int(student_id),
             presentation=data["presentation"],
             social=data["social"],
             information=data["information"]
         )
-        message = "updated gamification settings for student with id " + student_id
     else:
-        services.create_gamification_settings_for_student(
+        result = services.create_gamification_settings_for_student(
             uow=unit_of_work.SqlAlchemyUnitOfWork(),
             student_id=int(student_id),
             presentation=data["presentation"],
             social=data["social"],
             information=data["information"]
         )
-        message = "created gamification settings for student with id " + student_id
 
     status_code = 201
-    return jsonify(message), status_code
+    return jsonify(result), status_code
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)

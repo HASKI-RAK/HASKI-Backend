@@ -171,7 +171,8 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     
     @abc.abstractmethod
     def create_gamification_settings(
-            self, gamification_settings: UA.GamificationSettings):
+            self, gamification_settings: UA.GamificationSettings
+            ) -> UA.GamificationSettings:
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -820,7 +821,7 @@ class AbstractRepository(abc.ABC):  # pragma: no cover
     @abc.abstractmethod
     def update_gamification_settings(
         self, student_id, gamification_Settings: UA.GamificationSettings
-        ):
+        ) -> UA.GamificationSettings:
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -1154,7 +1155,8 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             raise err.CreationError()
         
     def create_gamification_settings(
-            self, gamification_settings: UA.GamificationSettings):
+            self, gamification_settings: UA.GamificationSettings
+        ) -> UA.GamificationSettings:
         try:
             self.session.add(gamification_settings)
         except Exception:
@@ -2454,12 +2456,13 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
             raise err.NoValidIdError
         
     def update_gamification_settings(
-            self, student_id, gamification_settings : UA.GamificationSettings):
+            self, student_id, gamification_settings : UA.GamificationSettings
+            ) -> UA.GamificationSettings:
         settings_exist = self.get_gamification_settings(student_id)
         if settings_exist != []:
             gamification_settings.id = settings_exist[0].id
             
-            self.session.query(UA.GamificationSettings).filter_by(
+            return self.session.query(UA.GamificationSettings).filter_by(
             student_id=student_id).update(
                 {
                     UA.GamificationSettings.presentation: gamification_settings.presentation,  # noqa
