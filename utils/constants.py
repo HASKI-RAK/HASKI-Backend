@@ -16,6 +16,22 @@ abbreviation_ra = "AB"
 abbreviation_cc = "ZF"
 abbreviation_as = "LZ"
 
+# Mapping between LAAC element type codes and internal learning element abbreviations
+laac_type_to_classification = {
+    "CT": abbreviation_ct,
+    "CO": abbreviation_co,
+    "RQ": abbreviation_rq,
+    "SE": abbreviation_se,
+    "FO": abbreviation_fo,
+    "RM": abbreviation_rm,
+    "AN": abbreviation_an,
+    "EC": abbreviation_ec,
+    "EX": abbreviation_ex,
+    "RA": abbreviation_ra,
+    "CC": abbreviation_cc,
+    "AS": abbreviation_as,
+}
+
 name_kü = "kurzuebersicht"
 name_lz = "lernziele"
 name_ms = "manuskript"

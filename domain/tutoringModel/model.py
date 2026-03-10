@@ -1,7 +1,7 @@
 import time
 
-from domain.tutoringModel import aco, default, ga, graf, nestor, tyche
-from domain.tutoringModel.utils import get_coordinates
+from domain.tutoringModel import aco, default, ga, graf, nestor, tyche, utils
+from domain.tutoringModel.utils import LearningElementSequence
 from errors import errors as err
 from utils import constants as cons
 
@@ -10,6 +10,7 @@ class LearningPath:
     def __init__(
         self, student_id, course_id, based_on, topic_id=None, path=None
     ) -> None:
+        self.id = None
         self.student_id = student_id
         self.course_id = course_id
         self.based_on = based_on
@@ -35,8 +36,10 @@ class LearningPath:
         student_id,
         learning_style,
         _algorithm,
-        list_of_les,
+        list_of_les: LearningElementSequence,
         default_learning_path=None,
+        input_view_time=None,
+        click_data=None,
     ):
         algorithm = _algorithm.lower()
         if algorithm == "graf":
@@ -47,21 +50,35 @@ class LearningPath:
             self.path = ", ".join(temp)
         elif algorithm == "aco":
             list_of_les_classifications = self.prepare_le_for_aco(list_of_les)
-            coordinates = get_coordinates(learning_style, list_of_les_classifications)
-            start_point = {"Start": (15, 15, 15, 15)}
+            if input_view_time is None:
+                dimension = 4
+                coordinates = utils.get_coordinates(
+                    learning_style, list_of_les_classifications
+                )
+            else:
+                dimension = 6
+                coordinates = utils.get_coordinates(
+                    learning_style, list_of_les_classifications, dimension
+                )
+                norm_view_times = utils.added_view_times(input_view_time)
+                coordinates = utils.update_coordinate(coordinates, norm_view_times)
+            start_point = {"Start": (15,) * dimension}
             start_point.update(coordinates)
             path = aco.AntColonySolver()
             result = path.solve(list(start_point.items()))
 
             le_path = ""
             for ele in result[1:]:
-                le_path = le_path + ele[0] + ", "
+                le_path = le_path + str(ele[0]) + ", "
             self.path = le_path[:-2]
 
         elif algorithm == "ga":
             genetic_alg = ga.GeneticAlgorithm(learning_elements=list_of_les)
             self.path = genetic_alg.get_learning_path(
-                input_learning_style=learning_style, input_learning_element=list_of_les
+                input_learning_style=learning_style,
+                input_learning_element=list_of_les,
+                input_view_time=input_view_time,
+                click_scores=click_data if click_data is not None else {},
             )
         elif algorithm == "tyche":
             tyche_alg = tyche.TycheAlgorithm()
@@ -81,7 +98,7 @@ class LearningPath:
         else:
             raise err.NoValidAlgorithmError()
 
-    def prepare_le_for_aco(self, list_of_les):
+    def prepare_le_for_aco(self, list_of_les: LearningElementSequence):
         lz_in_list = False
         list_of_les_classifications = []
         for le in list_of_les:
@@ -117,6 +134,7 @@ class LearningPathAlgorithm:
 
 class LearningPathTopic:
     def __init__(self, topic_id, learning_path_id, position) -> None:
+        self.id = None
         self.topic_id = topic_id
         self.learning_path_id = learning_path_id
         self.position = position
@@ -138,6 +156,7 @@ class LearningPathLearningElement:
         position,
         learning_element=None,
     ) -> None:
+        self.id = None
         self.learning_element_id = learning_element_id
         self.learning_path_id = learning_path_id
         self.position = position

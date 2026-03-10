@@ -826,13 +826,6 @@ class FakeRepository(repository.AbstractRepository):  # pragma: no cover
                 result.append(i)
         return result
 
-    def get_learning_element_recommendation(self, learning_path_id):
-        result = []
-        for i in self.learning_path_learning_element:
-            if i.learning_path_id == learning_path_id and i.recommended:
-                result.append(i)
-        return result
-
     def get_learning_element_solution(self, learning_element_lms_id):
         result = []
         for i in self.learning_element_solution:
@@ -3514,6 +3507,51 @@ def test_get_learning_path():
     assert result != {}
 
 
+def test_recalculate_learning_path():
+    uow = FakeUnitOfWork()
+    create_course_creator_for_tests(uow)
+    create_student_for_tests(uow)
+    create_learning_path_algorithm_for_tests(uow)
+    create_student_learning_path_learning_element_algorithm_for_tests(uow)
+    create_course_for_tests(uow)
+    create_topic_for_tests(uow)
+    create_learning_element_for_tests_2(uow)
+    add_student_to_course_for_tests(uow)
+
+    result = services.recalculate_learning_path(
+        uow=uow,
+        user_id=1,
+        lms_user_id=1,
+        student_id=1,
+        course_id=1,
+        topic_id=1,
+    )
+
+    assert isinstance(result, dict)
+    assert result != {}
+    assert result["based_on"] == "aco"
+
+
+def test_recalculate_learning_path_no_algorithm():
+    uow = FakeUnitOfWork()
+    create_course_creator_for_tests(uow)
+    create_student_for_tests(uow)
+    create_course_for_tests(uow)
+    create_topic_for_tests(uow)
+    create_learning_element_for_tests_2(uow)
+    add_student_to_course_for_tests(uow)
+
+    with pytest.raises(err.NoValidAlgorithmError):
+        services.recalculate_learning_path(
+            uow=uow,
+            user_id=1,
+            lms_user_id=1,
+            student_id=1,
+            course_id=1,
+            topic_id=1,
+        )
+
+
 def test_create_learning_path_algorithm():
     uow = FakeUnitOfWork()
     create_course_creator_for_tests(uow)
@@ -3773,6 +3811,7 @@ def test_get_learning_element_ratings():
 
 def test_add_learning_element_solution():
     uow = FakeUnitOfWork()
+    create_learning_element_for_tests_1(uow)
     result = services.add_learning_element_solution(
         uow=uow,
         learning_element_lms_id=1,
@@ -3785,9 +3824,10 @@ def test_add_learning_element_solution():
 
 def test_get_learning_element_solution():
     uow = FakeUnitOfWork()
+    create_learning_element_for_tests_1(uow)
     add_learning_element_solution_for_tests(uow=uow)
     result = services.get_learning_element_solution_by_learning_element_id(
-        uow=uow, learning_element_lms_id=1
+        uow=uow, learning_element_id=1
     )
     assert type(result) is dict
     assert result != {}
@@ -3795,6 +3835,7 @@ def test_get_learning_element_solution():
 
 def test_delete_learning_element_solution():
     uow = FakeUnitOfWork()
+    create_learning_element_for_tests_1(uow)
     add_learning_element_solution_for_tests(uow=uow)
     entries_before = len(uow.learning_element_solution.learning_element_solution)
     services.delete_learning_element_solution(uow=uow, learning_element_id=1)

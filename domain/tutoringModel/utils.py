@@ -1,5 +1,6 @@
 import math
 from datetime import datetime
+from typing import Any, Sequence, TypedDict
 
 import numpy as np
 
@@ -9,6 +10,28 @@ from utils import constants as cons
 rng = np.random.default_rng(5)
 
 ran_seed = int(datetime.timestamp(datetime.now()))
+
+
+class _LearningElementRequired(TypedDict):
+    """Required fields coming from `LearningElement.serialize`."""
+
+    classification: str
+
+
+class SerializedLearningElement(_LearningElementRequired, total=False):
+    id: int | None
+    lms_id: int | None
+    activity_type: str | None
+    name: str | None
+    university: str | None
+    created_by: str | None
+    created_at: datetime | str | None
+    last_updated: datetime | str | None
+    student_learning_element: dict[str, Any] | None
+
+
+LearningElementSequence = Sequence[SerializedLearningElement]
+
 
 # Interpretation of Graf et al. for Learning Elements
 # -1: negative Influence; 0: neutral; 1: positive Influence
@@ -26,69 +49,86 @@ influence = {
 
 
 # Calculate the coordinates for the LEs
-def get_coordinates(learning_style, list_of_les):
+def _fixed_coordinate_for_special_le(element, dimensions):
+    """CT, CO and AS have fixed coordinates."""
+    fixed_values = {
+        cons.abbreviation_ct: 13,
+        cons.abbreviation_co: 12,
+        cons.abbreviation_as: -12,
+    }
+    if element in fixed_values:
+        return (fixed_values[element],) * dimensions
+    return None
+
+
+def _coordinate_for_cc(learning_style, dimensions):
+    """Special rule for CC."""
+    proc_dim = learning_style["processing_dimension"]
+    und_dim = learning_style["understanding_dimension"]
+    proc_val = learning_style["processing_value"]
+    und_val = learning_style["understanding_value"]
+
+    if proc_dim == "ref" and und_dim == "seq":
+        value = 11 if proc_val > und_val else 0
+    elif proc_dim == "ref" or und_dim == "glo":
+        value = 11
+    else:
+        value = 0
+
+    return (value,) * dimensions
+
+
+def _coordinate_for_element(learning_style, element, dimensions):
+    """Normal coordinates for non-special LEs."""
+    coordinate = []
+
+    dim_map = {
+        "processing_dimension": ("act", "ref", (0, 1), "processing_value"),
+        "perception_dimension": ("sns", "int", (2, 3), "perception_value"),
+        "input_dimension": ("vis", "vrb", (4, 5), "input_value"),
+        "understanding_dimension": ("seq", "glo", (6, 7), "understanding_value"),
+    }
+
+    for dim_key, (
+        pos_label,
+        neg_label,
+        (idx_pos, idx_neg),
+        value_key,
+    ) in dim_map.items():
+        dim_value = learning_style[dim_key]
+        value = learning_style[value_key]
+
+        if dim_value == pos_label:
+            coordinate.append(value * influence[element][idx_pos])
+        elif dim_value == neg_label:
+            coordinate.append(value * influence[element][idx_neg])
+
+    if len(coordinate) < dimensions:
+        coordinate.extend([0] * (dimensions - len(coordinate)))
+    elif len(coordinate) > dimensions:
+        coordinate = coordinate[:dimensions]
+
+    return tuple(coordinate)
+
+
+# Calculate the coordinates for the LEs
+def get_coordinates(learning_style, list_of_les, dimensions=4):
     coordinates = {}
-    for elememnt in list_of_les:
-        if elememnt == cons.abbreviation_ct:
-            coordinates[cons.abbreviation_ct] = (13, 13, 13, 13)
-        elif elememnt == cons.abbreviation_co:
-            coordinates[cons.abbreviation_co] = (12, 12, 12, 12)
-        elif elememnt == cons.abbreviation_as:
-            coordinates[cons.abbreviation_as] = (-12, -12, -12, -12)
-        elif elememnt == cons.abbreviation_cc:
-            if (
-                learning_style["processing_dimension"] == "ref"
-                and learning_style["understanding_dimension"] == "seq"
-            ):
-                if (
-                    learning_style["processing_value"]
-                    > learning_style["understanding_value"]
-                ):
-                    coordinates[cons.abbreviation_cc] = (11, 11, 11, 11)
-                else:
-                    coordinates[cons.abbreviation_cc] = (0, 0, 0, 0)
-            elif (
-                learning_style["processing_dimension"] == "ref"
-                or learning_style["understanding_dimension"] == "glo"
-            ):
-                coordinates[cons.abbreviation_cc] = (11, 11, 11, 11)
-            else:
-                coordinates[cons.abbreviation_cc] = (0, 0, 0, 0)
-        else:
-            coordinate = list()
-            if learning_style["processing_dimension"] == "act":
-                coordinate.append(
-                    learning_style["processing_value"] * influence[elememnt][0]
-                )
-            elif learning_style["processing_dimension"] == "ref":
-                coordinate.append(
-                    learning_style["processing_value"] * influence[elememnt][1]
-                )
-            if learning_style["perception_dimension"] == "sns":
-                coordinate.append(
-                    learning_style["perception_value"] * influence[elememnt][2]
-                )
-            elif learning_style["perception_dimension"] == "int":
-                coordinate.append(
-                    learning_style["perception_value"] * influence[elememnt][3]
-                )
-            if learning_style["input_dimension"] == "vis":
-                coordinate.append(
-                    learning_style["input_value"] * influence[elememnt][4]
-                )
-            elif learning_style["input_dimension"] == "vrb":
-                coordinate.append(
-                    learning_style["input_value"] * influence[elememnt][5]
-                )
-            if learning_style["understanding_dimension"] == "seq":
-                coordinate.append(
-                    learning_style["understanding_value"] * influence[elememnt][6]
-                )
-            elif learning_style["understanding_dimension"] == "glo":
-                coordinate.append(
-                    learning_style["understanding_value"] * influence[elememnt][7]
-                )
-            coordinates[elememnt] = tuple(coordinate)
+
+    for element in list_of_les:
+        fixed = _fixed_coordinate_for_special_le(element, dimensions)
+        if fixed is not None:
+            coordinates[element] = fixed
+            continue
+
+        if element == cons.abbreviation_cc:
+            coordinates[element] = _coordinate_for_cc(learning_style, dimensions)
+            continue
+
+        coordinates[element] = _coordinate_for_element(
+            learning_style, element, dimensions
+        )
+
     return coordinates
 
 
@@ -172,7 +212,9 @@ def check_cons_learning_element(element):
         return False
 
 
-def get_learning_element(learning_elements):
+def get_learning_element(
+    learning_elements: Sequence[SerializedLearningElement],
+) -> list[str]:
     """converts the dictionary learning element
     into a list with only the short name LE"""
     classification_learning_element = []
@@ -203,3 +245,141 @@ def get_learning_path_as_str(result_ga):
         str_learning_path = str_learning_path[:-2]
 
     return str_learning_path
+
+
+def normalize_array2(data, old_min, old_max, new_min=-12, new_max=13):
+    """
+    Scale a value from an old range to a new range.
+
+    Parameters:
+        data: float or array-like
+            Value(s) to normalize.
+        old_min, old_max: float
+            Original range.
+        new_min, new_max: float, optional
+            Target range (default -12 to 13).
+
+    Returns:
+        float or array-like: Normalized value(s).
+    """
+    if old_max == old_min:
+        return (new_min + new_max) / 2
+    return new_min + (data - old_min) * (new_max - new_min) / (old_max - old_min)
+
+
+def added_view_times(input_view_time):
+    """
+    Normalize view/time values for each learning element.
+
+    Parameters:
+        input_view_time: dict
+            Mapping {label: (view, time)} with raw values.
+
+    Returns:
+        dict: {label: (norm_view, norm_time)} normalized to the target range.
+    """
+    if not input_view_time:
+        return {}
+
+    views = [v[0] for v in input_view_time.values()]
+    times = [v[1] for v in input_view_time.values()]
+    # views, times = zip(*input_view_time.values())
+
+    old_min_view, old_max_view = min(views), max(views)
+    old_min_time, old_max_time = min(times), max(times)
+
+    norm_view_time = {
+        k: (
+            # normaliza view
+            int(normalize_array2(v[0], old_min_view, old_max_view)),
+            # normaliza time
+            int(normalize_array2(v[1], old_min_time, old_max_time)),
+        )
+        for k, v in input_view_time.items()
+    }
+    return norm_view_time
+
+
+def update_coordinate(dict_coordinate, input_view_time):
+    """
+    Insert normalized view/time values into the last two positions of coordinates.
+
+    Parameters:
+        dict_coordinate: dict
+            {label: coord_tuple} original coordinates.
+        input_view_time: dict
+            {label: (view, time)} normalized view/time values.
+
+    Returns:
+        dict: Updated coordinates with new view/time where applicable.
+    """
+    updated_coords = {}
+    for k, coord in dict_coordinate.items():
+        if k in input_view_time and k not in ("KÜ", "EK", "LZ"):
+            view, time = input_view_time[k]
+            # reemplazar penúltima y última posición
+            new_coord = coord[:-2] + (view, time)
+            updated_coords[k] = new_coord
+        else:
+            updated_coords[k] = coord  # si no tiene view/time lo dejamos igual
+    # print("\n\ncoordinate_update:", updated_coords)
+    return updated_coords
+
+
+def normalize_click_value(
+    score: float | int | None, new_min: int = -12, new_max: int = 13
+):
+    """
+    Normalize click scores coming from LAAC (range 0..50) into the GA coordinate range.
+    """
+    if score is None:
+        return 0
+
+    # Invert the scale so that higher click activity maps to smaller coordinates.
+    # This keeps the GA fitness purely geometric while ensuring that elements with
+    # higher engagement appear "closer" to the start of the path.
+    return normalize_array2(
+        score,
+        0,
+        50,
+        new_min=new_max,
+        new_max=new_min,
+    )
+
+
+def apply_click_dimension(
+    dict_coordinate: dict[str, tuple],
+    click_scores: dict[str, float],
+    dimensions: int,
+    click_index: int = 4,
+    fallback_value: float = 0,
+) -> dict[str, tuple]:
+    """
+    Insert the Clicks dimension (normalized) at the given\
+        index for each learning element.
+
+    Parameters:
+        dict_coordinate: current coordinates per LE.
+        click_scores: mapping LE classification -> raw dimensionScore from LAAC.
+        dimensions: total number of dimensions for the GA run.
+        click_index: position where the click dimension should be inserted.
+        fallback_value: value to use when no score is available.
+    """
+    if click_index >= dimensions:
+        return dict_coordinate
+
+    updated_coords: dict[str, tuple] = {}
+    for label, coord in dict_coordinate.items():
+        coord_list = list(coord)
+        if len(coord_list) < dimensions:
+            coord_list.extend([0] * (dimensions - len(coord_list)))
+
+        raw_score = click_scores.get(label)
+        normalized_score = (
+            normalize_click_value(raw_score)
+            if raw_score is not None
+            else fallback_value
+        )
+        coord_list[click_index] = normalized_score
+        updated_coords[label] = tuple(coord_list[:dimensions])
+    return updated_coords

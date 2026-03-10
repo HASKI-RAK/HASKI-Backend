@@ -15,7 +15,7 @@ from domain.learnersModel import basic_listk_algorithm as BLKA
 from domain.learnersModel import model as LM
 from domain.tutoringModel import model as TM
 from domain.userAdministartion import model as UA
-from service_layer import unit_of_work
+from service_layer import learning_analytics, unit_of_work
 from service_layer.lti.OIDCLoginFlask import OIDCLoginFlask
 
 
@@ -794,12 +794,16 @@ def create_learning_path(
             default_learning_path = get_default_learning_path_by_university(
                 uow, user["university"]
             )
+            click_scores = learning_analytics.get_click_scores_for_learning_path(
+                user_id=student_id, course_id=course_id, topic_id=topic_id
+            )
             learning_path.get_learning_path(
                 student_id=student_id,
                 learning_style=learning_style,
                 _algorithm=algorithm.lower(),
                 list_of_les=list_of_les,
                 default_learning_path=default_learning_path,
+                click_data=click_scores,
             )
             result = learning_path.serialize()
             for i, le in enumerate(result["path"].replace(",", "").split()):
@@ -1370,7 +1374,7 @@ def delete_learning_element_solution(
             uow.learning_element_solution.delete_learning_element_solution(
                 learning_element[0].lms_id
             )
-        uow.commit()
+            uow.commit()
 
 
 def delete_learning_path(uow: unit_of_work.AbstractUnitOfWork, learning_path_id):
@@ -1876,7 +1880,7 @@ def get_learning_element_by_lms_id(
         learning_element = uow.learning_element.get_learning_element_by_lms_id(
             learning_element_lms_id
         )
-        if learning_element[0] is None:
+        if not learning_element:
             result = {}
         else:
             student_learning_element = (
@@ -2010,6 +2014,64 @@ def get_learning_elements_for_topic_id(
             return results
         except Exception:
             return []
+
+
+def recalculate_learning_path(
+    uow: unit_of_work.AbstractUnitOfWork,
+    user_id,
+    lms_user_id,
+    student_id,
+    course_id,
+    topic_id,
+) -> dict:
+    algorithm_short_name = None
+
+    with uow:
+        student_algorithm = get_student_lpath_le_algorithm(uow, student_id, topic_id)
+        if student_algorithm != {}:
+            algorithm = get_learning_path_algorithm_by_id(
+                uow, student_algorithm["algorithm_id"]
+            )
+            if algorithm != {}:
+                algorithm_short_name = algorithm["short_name"]
+
+        if algorithm_short_name is None:
+            topic_algorithm = get_lpath_le_algorithm_by_topic(uow, topic_id)
+            if topic_algorithm != {}:
+                algorithm = get_learning_path_algorithm_by_id(
+                    uow, topic_algorithm["algorithm_id"]
+                )
+                if algorithm != {}:
+                    algorithm_short_name = algorithm["short_name"]
+
+        if algorithm_short_name is None:
+            existing_path = uow.learning_path.get_learning_path(
+                student_id, course_id, topic_id
+            )
+            if existing_path:
+                algorithm_short_name = existing_path[0].based_on
+
+        if algorithm_short_name is None:
+            raise err.NoValidAlgorithmError()
+
+        create_learning_path(
+            uow,
+            user_id,
+            lms_user_id,
+            student_id,
+            course_id,
+            topic_id,
+            algorithm_short_name.lower(),
+        )
+
+        return get_learning_path(
+            uow,
+            user_id,
+            lms_user_id,
+            student_id,
+            course_id,
+            topic_id,
+        )
 
 
 def get_learning_path(
@@ -2305,14 +2367,16 @@ def get_lpath_le_algorithm_by_topic(
         lpath_le_algorithm = uow.lpath_le_algorithm.get_lpath_le_algorithm_by_topic(
             topic_id
         )
-        if lpath_le_algorithm == []:
-            result = {}
-        else:
-            if isinstance(lpath_le_algorithm, list):
-                result = lpath_le_algorithm[0].serialize()
-            else:
-                result = lpath_le_algorithm.serialize()
-        return result
+        if not lpath_le_algorithm:
+            return {}
+
+        if isinstance(lpath_le_algorithm, list):
+            return lpath_le_algorithm[0].serialize()
+
+        if isinstance(lpath_le_algorithm, dict):
+            return lpath_le_algorithm
+
+        return lpath_le_algorithm.serialize()
 
 
 def get_topic_learning_element_by_topic(
@@ -3245,16 +3309,17 @@ def get_learning_element_solution_by_learning_element_lms_id(
     uow: unit_of_work.AbstractUnitOfWork, learning_element_lms_id: int
 ) -> dict:
     with uow:
-        result = {}
         solution = uow.learning_element_solution.get_learning_element_solution(
             learning_element_lms_id
         )
         if not solution:
-            return result
+            return {}
         return solution[0].serialize()
 
 
-def get_topic_solutions(uow: unit_of_work.AbstractUnitOfWork, topic_id: int) -> dict:
+def get_topic_solutions(
+    uow: unit_of_work.AbstractUnitOfWork, topic_id: int
+) -> list[dict]:
     with uow:
         topic_learning_elements = get_learning_elements_for_topic_id(uow, topic_id)
         result = []
@@ -3262,14 +3327,15 @@ def get_topic_solutions(uow: unit_of_work.AbstractUnitOfWork, topic_id: int) -> 
             learning_element_lms_id = uow.learning_element.get_learning_element_by_id(
                 learning_element["learning_element_id"]
             )
-            # Get the solution for each learning element
-            learning_element_solution = (
-                uow.learning_element_solution.get_learning_element_solution(
-                    learning_element_lms_id[0].lms_id
+            if learning_element_lms_id:
+                # Get the solution for each learning element
+                learning_element_solution = (
+                    uow.learning_element_solution.get_learning_element_solution(
+                        learning_element_lms_id[0].lms_id
+                    )
                 )
-            )
-            if learning_element_solution:
-                result.append(learning_element_solution[0].serialize())
+                if learning_element_solution:
+                    result.append(learning_element_solution[0].serialize())
         return result
 
 

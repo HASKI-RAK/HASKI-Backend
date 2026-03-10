@@ -14,7 +14,7 @@ import service_layer.lti.config.ToolConfigJson as ToolConfigJson
 import utils.logger as logger
 from errors import errors as err
 from repositories import orm
-from service_layer import services, unit_of_work
+from service_layer import learning_analytics, services, unit_of_work
 from utils import constants as cons
 from utils.constants import (
     role_admin_string,
@@ -325,6 +325,10 @@ def course_administration(data: Dict[str, Any], course_id, lms_course_id):
 
                 for learning_element in learning_elements:
                     services.delete_student_learning_element_by_learning_element_id(
+                        unit_of_work.SqlAlchemyUnitOfWork(),
+                        learning_element["learning_element_id"],
+                    )
+                    services.delete_learning_element_solution(
                         unit_of_work.SqlAlchemyUnitOfWork(),
                         learning_element["learning_element_id"],
                     )
@@ -1788,6 +1792,13 @@ def post_calculate_rating(
                 learning_element_lms_id=learning_element_lms_id,
             )
 
+            # Init result and status code.
+            result = {}
+            status_code = 201
+
+            if not learning_element_by_lms:
+                return jsonify(result), status_code
+
             learning_element = services.get_learning_element_by_id(
                 uow=uow,
                 user_id=user_id,
@@ -1797,10 +1808,6 @@ def post_calculate_rating(
                 topic_id=topic_id,
                 learning_element_id=learning_element_by_lms["id"],
             )
-
-            # Init result and status code.
-            result = {}
-            status_code = 201
 
             # Get the activity type.
             activity_type = learning_element["activity_type"]
@@ -1851,7 +1858,7 @@ def get_learning_path(user_id, lms_user_id, student_id, course_id, topic_id):
     method = request.method
     match method:
         case "GET":
-            result = services.get_learning_path(
+            result = services.recalculate_learning_path(
                 unit_of_work.SqlAlchemyUnitOfWork(),
                 user_id,
                 lms_user_id,
@@ -2497,54 +2504,50 @@ def get_topic_solutions(topic_id: int):
 @cross_origin(supports_credentials=True)
 @json_only()
 def post_learning_element_solution(data: Dict[str, Any], learning_element_lms_id: int):
-    entry = services.get_learning_element_solution_by_learning_element_lms_id(
-        uow=unit_of_work.SqlAlchemyUnitOfWork(),
-        learning_element_lms_id=learning_element_lms_id,
-    )
-    condition1 = entry == {}
     match request.method:
         case "POST":
-            if condition1:
-                condition2 = "activity_type" not in data
-                condition3 = type(data["activity_type"]) is str
-                condition4 = "solution_lms_id" not in data
-                condition5 = type(data["solution_lms_id"]) is int
-                if condition2 and condition4:
-                    raise err.MissingParameterError()
-                elif condition3 and condition5:
-                    result = services.add_learning_element_solution(
-                        uow=unit_of_work.SqlAlchemyUnitOfWork(),
-                        learning_element_lms_id=learning_element_lms_id,
-                        solution_lms_id=data["solution_lms_id"],
-                        activity_type=data["activity_type"],
-                    )
-                    status_code = 201
-                    return jsonify(result), status_code
-                else:
-                    raise err.WrongParameterValueError()
-            else:
+            entry = services.get_learning_element_solution_by_learning_element_lms_id(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                learning_element_lms_id=learning_element_lms_id,
+            )
+            if entry != {}:
                 raise err.AlreadyExisting()
+            condition2 = "activity_type" not in data
+            condition4 = "solution_lms_id" not in data
+            if condition2 or condition4:
+                raise err.MissingParameterError()
+            condition3 = type(data["activity_type"]) is str
+            condition5 = type(data["solution_lms_id"]) is int
+            if not (condition3 and condition5):
+                raise err.WrongParameterValueError()
+            result = services.add_learning_element_solution(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                learning_element_lms_id=learning_element_lms_id,
+                solution_lms_id=data["solution_lms_id"],
+                activity_type=data["activity_type"],
+            )
+            status_code = 201
+            return jsonify(result), status_code
 
 
 @app.route("/learningElement/<learning_element_id>/solution", methods=["DELETE"])
 @cross_origin(supports_credentials=True)
 def delete_learning_element_solution(learning_element_id: int):
-    entry = services.get_learning_element_solution_by_learning_element_id(
-        uow=unit_of_work.SqlAlchemyUnitOfWork(), learning_element_id=learning_element_id
-    )
-    condition1 = entry == {}
     match request.method:
         case "DELETE":
-            if not condition1:
-                services.delete_learning_element_solution(
-                    uow=unit_of_work.SqlAlchemyUnitOfWork(),
-                    learning_element_id=learning_element_id,
-                )
-                result = {"message": cons.deletion_message}
-                status_code = 200
-                return jsonify(result), status_code
-            else:
+            entry = services.get_learning_element_solution_by_learning_element_id(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                learning_element_id=learning_element_id,
+            )
+            if entry == {}:
                 raise err.NoContentWarning()
+            services.delete_learning_element_solution(
+                uow=unit_of_work.SqlAlchemyUnitOfWork(),
+                learning_element_id=learning_element_id,
+            )
+            result = {"message": cons.deletion_message}
+            status_code = 200
+            return jsonify(result), status_code
 
 
 @app.route(
@@ -2611,7 +2614,7 @@ def calculate_student_xp(
     data_present = data is not None
     if not data_present:
         raise err.MissingParameterError()
-    
+
     course_id_present = "course_id" in data
     learning_element_id_present = "learning_element_id" in data
     user_lms_id_present = "user_lms_id" in data
@@ -2624,7 +2627,7 @@ def calculate_student_xp(
             and classification_present and start_time_present
             ):
         raise err.MissingParameterError()
-    
+
     result = services.update_student_experience_points(
         uow=unit_of_work.SqlAlchemyUnitOfWork(),
         student_id=int(student_id),
@@ -2692,7 +2695,7 @@ def check_and_assign_badges(
     data_present = data is not None
     if not data_present:
         raise err.MissingParameterError()
-    
+
     course_id_present = "course_id" in data
     topic_id_present = "topic_id" in data
     lms_user_id_present = "lms_user_id" in data
@@ -2704,7 +2707,7 @@ def check_and_assign_badges(
             lms_user_id_present and time_stamp_present and
             classification_present):
         raise err.MissingParameterError()
-    
+
     data_types_correct = (
         type(data["course_id"]) is int and
         type(data["topic_id"]) is int and
@@ -2798,14 +2801,14 @@ def set_gamification_settings_for_student(
     data_present = data is not None
     if not data_present:
         raise err.MissingParameterError()
-    
+
     presentation_present = "presentation" in data
     social_present = "social" in data
     level_present = "level" in data
 
     if not (presentation_present and social_present and level_present):
         raise err.MissingParameterError()
-    
+
     data_types_correct = (
         type(data["presentation"]) is str and
         type(data["social"]) is str and
@@ -2814,7 +2817,7 @@ def set_gamification_settings_for_student(
 
     if not data_types_correct:
         raise err.WrongParameterValueError()
-    
+
     settings_exist = services.get_gamification_settings_for_student(
         uow=unit_of_work.SqlAlchemyUnitOfWork(),
         student_id=int(student_id)
@@ -2839,6 +2842,180 @@ def set_gamification_settings_for_student(
 
     status_code = 201
     return jsonify(result), status_code
+
+@app.route("/user/<user_id>/scoreboard", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_scoreboard_course_data(user_id: str):
+    since = request.args.get("since")
+    until = request.args.get("until")
+
+    score = learning_analytics.get_courses_scores(user_id, since, until)
+    max_score = learning_analytics.get_courses_max_scores(user_id, since, until)
+    time_spent = learning_analytics.get_courses_time_spent(user_id, since, until)
+
+    uow = unit_of_work.SqlAlchemyUnitOfWork()
+    student = services.get_student_by_user_id(uow, user_id)
+
+    last_elements = {
+        element_id: {
+            "learning_element": services.get_learning_element_by_lms_id(
+                uow, student["id"], element_id
+            ),
+            "completed_at": completed_at,
+        }
+        for element_id, completed_at in learning_analytics.get_user_last_elements(
+            user_id
+        ).items()
+    }
+
+    result = {
+        "score": score,
+        "max_score": max_score,
+        "time_spent": time_spent,
+        "last_elements": last_elements,
+    }
+
+    status_code = 200
+    return jsonify(result), status_code
+
+
+@app.route("/user/<user_id>/course/<course_id>/scoreboard", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def get_scoreboard_topic_data(user_id: str, course_id: str):
+    since = request.args.get("since")
+    until = request.args.get("until")
+
+    uow = unit_of_work.SqlAlchemyUnitOfWork()
+    topics = services.get_topics_for_course_id(uow, course_id)  # course_id: 4
+    topic_learning_element_ids = {
+        topic["topic_id"]: {
+            learning_element["learning_element_id"]
+            for learning_element in services.get_learning_elements_for_topic_id(
+                uow, topic["topic_id"]
+            )
+        }
+        for topic in topics
+    }
+
+    raw_score = learning_analytics.get_course_elements_best_attempts(user_id, course_id)
+    raw_max_score = learning_analytics.get_course_elements_max_scores(
+        user_id, course_id, since, until
+    )
+    raw_time_spent = learning_analytics.get_course_elements_time_spent(
+        user_id, course_id, since, until
+    )
+
+    score = {}
+    max_score = {}
+    time_spent = {}
+
+    for topic_id, learning_element_ids in topic_learning_element_ids.items():
+        score[topic_id] = sum(
+            raw_score[element_id]["score"] or 0
+            for element_id in set(learning_element_ids) & raw_score.keys()
+        )
+        max_score[topic_id] = sum(
+            raw_max_score[element_id] or 0
+            for element_id in set(learning_element_ids) & raw_max_score.keys()
+        )
+        time_spent[topic_id] = sum(
+            raw_time_spent[element_id] or id
+            for element_id in set(learning_element_ids) & raw_time_spent.keys()
+        )
+
+    student = services.get_student_by_user_id(uow, user_id)
+
+    last_elements = {
+        element_id: {
+            "learning_element": services.get_learning_element_by_lms_id(
+                uow, student["id"], element_id
+            ),
+            "completed_at": completed_at,
+        }
+        for element_id, completed_at in learning_analytics.get_course_last_elements(
+            user_id, course_id, since, until
+        ).items()
+    }
+
+    result = {
+        "score": score,
+        "max_score": max_score,
+        "time_spent": time_spent,
+        "last_elements": last_elements,
+    }
+
+    status_code = 200
+    return jsonify(result), status_code
+
+
+@app.route(
+    "/user/<user_id>/course/<course_id>/topic/<topic_id>/scoreboard", methods=["GET"]
+)
+@cross_origin(supports_credentials=True)
+def get_scoreboard_learning_element_data(user_id: str, course_id: str, topic_id: str):
+    since = request.args.get("since")
+    until = request.args.get("until")
+
+    uow = unit_of_work.SqlAlchemyUnitOfWork()
+    learning_elements = services.get_learning_elements_for_topic_id(uow, topic_id)
+    learning_element_ids = [
+        str(learning_element["learning_element_id"])
+        for learning_element in learning_elements
+    ]
+
+    raw_best_attempts = learning_analytics.get_course_elements_best_attempts(
+        user_id, course_id
+    )
+    best_attempts = {
+        element_id: raw_best_attempts[element_id]
+        for element_id in set(learning_element_ids) & raw_best_attempts.keys()
+    }
+
+    raw_max_score = learning_analytics.get_course_elements_max_scores(
+        user_id, course_id, since, until
+    )
+    max_score = {
+        element_id: value
+        for element_id, value in raw_max_score.items()
+        if element_id in learning_element_ids
+    }
+
+    raw_time_spent = learning_analytics.get_course_elements_time_spent(
+        user_id, course_id, since, until
+    )
+    time_spent = {
+        element_id: value
+        for element_id, value in raw_time_spent.items()
+        if element_id in learning_element_ids
+    }
+
+    student = services.get_student_by_user_id(uow, user_id)
+    last_three_best_attempts = dict(
+        sorted(
+            best_attempts.items(), key=lambda item: item[1]["completedAt"], reverse=True
+        )[:3]
+    )
+
+    last_elements = {
+        element_id: {
+            "learning_element": services.get_learning_element_by_lms_id(
+                uow, student["id"], element_id
+            ),
+            "completed_at": last_three_best_attempts[element_id]["completedAt"],
+        }
+        for element_id in last_three_best_attempts.keys()
+    }
+
+    result = {
+        "max_score": max_score,
+        "time_spent": time_spent,
+        "last_elements": last_elements,
+        "best_attempts": best_attempts,
+    }
+
+    status_code = 200
+    return jsonify(result), status_code
+
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
