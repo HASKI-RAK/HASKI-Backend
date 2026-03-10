@@ -2452,7 +2452,7 @@ class SqlAlchemyRepository(AbstractRepository):  # pragma: no cover
                 {
                     UA.GamificationSettings.presentation: gamification_settings.presentation,  # noqa
                     UA.GamificationSettings.social: gamification_settings.social,
-                    UA.GamificationSettings.level: gamification_settings.level,
+                    UA.GamificationSettings.information: gamification_settings.information,
                 }
             )
         else:

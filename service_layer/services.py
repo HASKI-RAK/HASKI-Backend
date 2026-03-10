@@ -2563,7 +2563,7 @@ def get_gamification_settings_for_student(
             student_id
         )
         if gamification_settings == []:
-            result = { "message": "No Settings found for this student" }
+            result = {}
         else:
             result = gamification_settings[0].serialize()
         return result
