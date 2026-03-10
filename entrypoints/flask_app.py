@@ -2791,6 +2791,7 @@ def get_gamification_settings(student_id: str):
 
 @app.route("/student/<student_id>/gamificationSettings", methods=["POST"])
 @cross_origin(supports_credentials=True)
+@json_only()
 def set_gamification_settings_for_student(
     data: Dict[str, Any], student_id: str
 ):
