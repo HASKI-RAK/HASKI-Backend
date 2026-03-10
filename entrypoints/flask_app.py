@@ -2802,9 +2802,9 @@ def set_gamification_settings_for_student(
     
     presentation_present = "presentation" in data
     social_present = "social" in data
-    level_present = "level" in data
+    information_present = "information" in data
 
-    if not (presentation_present and social_present and level_present):
+    if not (presentation_present and social_present and information_present):
         raise err.MissingParameterError()
     
     data_types_correct = (
@@ -2830,7 +2830,7 @@ def set_gamification_settings_for_student(
             information=data["information"]
         )
     else:
-        result = services.create_gamification_settings_for_student(
+        result = services.create_gamification_settings(
             uow=unit_of_work.SqlAlchemyUnitOfWork(),
             student_id=int(student_id),
             presentation=data["presentation"],
