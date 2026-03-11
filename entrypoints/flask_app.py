@@ -2850,12 +2850,19 @@ def get_scoreboard_course_data(user_id: str):
     since = request.args.get("since")
     until = request.args.get("until")
 
-    score = learning_analytics.get_courses_scores(user_id, since, until)
-    max_score = learning_analytics.get_courses_max_scores(user_id, since, until)
-    time_spent = learning_analytics.get_courses_time_spent(user_id, since, until)
+    since = None
+    until = None
 
     uow = unit_of_work.SqlAlchemyUnitOfWork()
+    user = services.get_user_by_id(uow, user_id)
     student = services.get_student_by_user_id(uow, user_id)
+
+    score = learning_analytics.get_courses_scores(user["lms_user_id"], since, until)
+    print("score (line 2861):", score)
+    max_score = learning_analytics.get_courses_max_scores(user["lms_user_id"], since, until)
+    print("max_score (line 2864):", max_score)
+    time_spent = learning_analytics.get_courses_time_spent(user["lms_user_id"], since, until)
+    print("time_spent (line 2867):", time_spent)
 
     last_elements = {
         element_id: {
@@ -2865,7 +2872,7 @@ def get_scoreboard_course_data(user_id: str):
             "completed_at": completed_at,
         }
         for element_id, completed_at in learning_analytics.get_user_last_elements(
-            user_id
+            user["lms_user_id"]
         ).items()
     }
 
@@ -2875,6 +2882,7 @@ def get_scoreboard_course_data(user_id: str):
         "time_spent": time_spent,
         "last_elements": last_elements,
     }
+    print("result (line 2885):", result)
 
     status_code = 200
     return jsonify(result), status_code
