@@ -2907,12 +2907,15 @@ def get_scoreboard_topic_data(user_id: str, course_id: str, course_lms_id: str):
     print("topic_learning_element_ids (line 2902):", topic_learning_element_lms_ids)
 
     raw_score = learning_analytics.get_course_elements_best_attempts(user["lms_user_id"], course_lms_id)
+    print("raw_score (line 2910):", raw_score)
     raw_max_score = learning_analytics.get_course_elements_max_scores(
         user["lms_user_id"], course_lms_id, since, until
     )
+    print("raw_max_score (line 2914):", raw_max_score)
     raw_time_spent = learning_analytics.get_course_elements_time_spent(
         user["lms_user_id"], course_lms_id, since, until
     )
+    print("raw_time_spent (line 2918):", raw_time_spent)
 
     score = {}
     max_score = {}
@@ -2952,6 +2955,7 @@ def get_scoreboard_topic_data(user_id: str, course_id: str, course_lms_id: str):
         "time_spent": time_spent,
         "last_elements": last_elements,
     }
+    print("result (line 2957):", result)
 
     status_code = 200
     return jsonify(result), status_code
