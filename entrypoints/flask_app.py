@@ -2968,52 +2968,73 @@ def get_scoreboard_topic_data(user_id: str, course_id: str, course_lms_id: str):
 
 
 @app.route(
-    "/user/<user_id>/course/<course_id>/topic/<topic_id>/scoreboard", methods=["GET"]
+    "/user/<user_id>/course/<course_id>/<course_lms_id>/topic/<topic_id>/scoreboard", methods=["GET"]
 )
 @cross_origin(supports_credentials=True)
-def get_scoreboard_learning_element_data(user_id: str, course_id: str, topic_id: str):
+def get_scoreboard_learning_element_data(user_id: str, course_id: str, course_lms_id: str, topic_id: str):
     since = request.args.get("since")
     until = request.args.get("until")
 
+    since = None
+    until =None
+
     uow = unit_of_work.SqlAlchemyUnitOfWork()
+    user = services.get_user_by_id(uow, user_id)
+    student = services.get_student_by_user_id(uow, user_id)
     learning_elements = services.get_learning_elements_for_topic_id(uow, topic_id)
-    learning_element_ids = [
-        str(learning_element["learning_element_id"])
+    learning_element_lms_ids = [
+        str(learning_element_data["lms_id"])
         for learning_element in learning_elements
+        if (learning_element_data := services.get_learning_element_by_id(
+            uow,
+            user_id,
+            user["lms_user_id"],
+            student["id"],
+            course_id,
+            topic_id,
+            learning_element["learning_element_id"],
+        ))["lms_id"] is not None
     ]
 
     raw_best_attempts = learning_analytics.get_course_elements_best_attempts(
-        user_id, course_id
+        user["lms_user_id"], course_lms_id
     )
+    print("raw_best_attempts (line 3002):", raw_best_attempts)
     best_attempts = {
         element_id: raw_best_attempts[element_id]
-        for element_id in set(learning_element_ids) & raw_best_attempts.keys()
+        for element_id in set(learning_element_lms_ids) & raw_best_attempts.keys()
     }
+    print("best_attempts (line 3007):", best_attempts)
 
     raw_max_score = learning_analytics.get_course_elements_max_scores(
-        user_id, course_id, since, until
+        user["lms_user_id"], course_lms_id, since, until
     )
+    print("raw_max_score (line 3012):", raw_max_score)
+
     max_score = {
         element_id: value
         for element_id, value in raw_max_score.items()
-        if element_id in learning_element_ids
+        if element_id in learning_element_lms_ids
     }
+    print("max_score (line 3017):", max_score)
 
     raw_time_spent = learning_analytics.get_course_elements_time_spent(
-        user_id, course_id, since, until
+        user["lms_user_id"], course_lms_id, since, until
     )
+    print("raw_time_spent (line 3022):", raw_time_spent)
     time_spent = {
         element_id: value
         for element_id, value in raw_time_spent.items()
-        if element_id in learning_element_ids
+        if element_id in learning_element_lms_ids
     }
+    print("time_spent (line 3027):", time_spent)
 
-    student = services.get_student_by_user_id(uow, user_id)
     last_three_best_attempts = dict(
         sorted(
             best_attempts.items(), key=lambda item: item[1]["completedAt"], reverse=True
         )[:3]
     )
+    print("last_three_best_attempts (line 3034):", last_three_best_attempts)
 
     last_elements = {
         element_id: {
@@ -3031,6 +3052,7 @@ def get_scoreboard_learning_element_data(user_id: str, course_id: str, topic_id:
         "last_elements": last_elements,
         "best_attempts": best_attempts,
     }
+    print("result (line 3055):", result)
 
     status_code = 200
     return jsonify(result), status_code
