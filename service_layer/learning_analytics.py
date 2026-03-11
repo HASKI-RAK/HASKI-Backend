@@ -529,6 +529,7 @@ def get_course_elements_best_attempts(user_id: Any, course_id: Any) -> dict[str,
     course_elements_best_attempts = fetch_course_elements_best_attempts(
         user_id, course_id
     )
+    print("course_elements_best_attempts, (line 532 learning_analytics)", course_elements_best_attempts)
     return map_items_to_record(course_elements_best_attempts)
 
 
