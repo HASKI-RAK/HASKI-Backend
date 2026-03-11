@@ -3744,17 +3744,17 @@ def update_student_experience_points(
               learning_element_id,
               user_lms_id
           )
-          if response != {} and response["usersattempts"][0]["attempts"]:
+          if response != {} and response.get("usersattempts", [{}])[0].get("attempts"):
               attempts = response["usersattempts"][0]["attempts"]
               sorted_attempts = sorted(
                   attempts,
-                  key=lambda x: x["timecreated"],
+                  key=lambda x: x.get("timecreated", 0),
                   reverse=True
                 )
               current_attempts = list(
-                  filter(lambda x: x["timecreated"] >= start_time, sorted_attempts))
+                  filter(lambda x: x.get("timecreated", 0) >= start_time, sorted_attempts))
               previous_attempts = list(
-                  filter(lambda x: x["timecreated"] < start_time, sorted_attempts)
+                  filter(lambda x: x.get("timecreated", 0) < start_time, sorted_attempts)
               )
 
               if (current_attempts == []):
@@ -3776,20 +3776,20 @@ def update_student_experience_points(
                   }
 
               best_score_percentage = (
-                  current_attempts[0]["rawscore"] / current_attempts[0].get("maxscore", 1)
+                  current_attempts[0].get("rawscore", 0) / current_attempts[0].get("maxscore", 1)
               )
 
               successful_attempts = list(
-                  filter(lambda x: x["success"] == 1, previous_attempts)
+                  filter(lambda x: x.get("success", 0) == 1, previous_attempts)
               )
               time_between_attempts = 0
               if previous_attempts != [] and successful_attempts != []:
                   time_between_attempts = (
-                      current_attempts[0]["timecreated"] -
+                      current_attempts[0].get("timecreated", 0) -
                       max(
                           successful_attempts,
-                          key=lambda x: x["timecreated"]
-                        )["timecreated"]
+                          key=lambda x: x.get("timecreated", 0)
+                        ).get("timecreated", 0)
                   )
               wait_bonus = min((time_between_attempts / 259200), 2.5) or 1
 
@@ -3801,7 +3801,7 @@ def update_student_experience_points(
               experience_points += 40 * log(len(current_attempts))
               #  give points for success scaled with the time
               #  elapsed since last successful attempt
-              experience_points += current_attempts[0]["success"] * 200 * wait_bonus
+              experience_points += current_attempts[0].get("success", 1) * 200 * wait_bonus
 
               total_xp = uow.student_experience_points.update_student_experience_points(
                   student_id, experience_points
@@ -3814,7 +3814,7 @@ def update_student_experience_points(
                   "rating_points": rating_points,
                   "score_modifier": best_score_percentage,
                   "attempt_xp": 40 * log(len(current_attempts)),
-                  "success_modifier": current_attempts[0]["success"],
+                  "success_modifier": current_attempts[0].get("success", 1),
                   "wait_bonus": wait_bonus,
                   "successful_attempts": len(successful_attempts),
                   "new_attempt": True
