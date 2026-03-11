@@ -2850,9 +2850,6 @@ def get_scoreboard_course_data(user_id: str):
     since = request.args.get("since")
     until = request.args.get("until")
 
-    since = None
-    until = None
-
     uow = unit_of_work.SqlAlchemyUnitOfWork()
     user = services.get_user_by_id(uow, user_id)
     student = services.get_student_by_user_id(uow, user_id)
@@ -2892,10 +2889,8 @@ def get_scoreboard_course_data(user_id: str):
 @cross_origin(supports_credentials=True)
 def get_scoreboard_topic_data(user_id: str, course_id: str, course_lms_id: str):
 
-#    since = request.args.get("since")
-#    until = request.args.get("until")
-    since = None
-    until = None
+    since = request.args.get("since")
+    until = request.args.get("until")
 
     uow = unit_of_work.SqlAlchemyUnitOfWork()
     user = services.get_user_by_id(uow, user_id)
@@ -2982,9 +2977,6 @@ def get_scoreboard_topic_data(user_id: str, course_id: str, course_lms_id: str):
 def get_scoreboard_learning_element_data(user_id: str, course_id: str, course_lms_id: str, topic_id: str):
     since = request.args.get("since")
     until = request.args.get("until")
-
-    since = None
-    until =None
 
     uow = unit_of_work.SqlAlchemyUnitOfWork()
     user = services.get_user_by_id(uow, user_id)
