@@ -2922,18 +2922,24 @@ def get_scoreboard_topic_data(user_id: str, course_id: str, course_lms_id: str):
     time_spent = {}
 
     for topic_id, learning_element_lms_ids in topic_learning_element_lms_ids.items():
+        element_ids = {str(element_id) for element_id in learning_element_lms_ids}
+        print("element_ids (line 2927):", element_ids)
+
         score[topic_id] = sum(
-            raw_score[element_id]["score"] or 0
-            for element_id in set(learning_element_lms_ids) & raw_score.keys()
+            raw_score[element_id].get("score", 0) or 0
+            for element_id in element_ids & raw_score.keys()
         )
+        print("score[topic_id] (line 2929):", score[topic_id])
         max_score[topic_id] = sum(
             raw_max_score[element_id] or 0
-            for element_id in set(learning_element_lms_ids) & raw_max_score.keys()
+            for element_id in element_ids & raw_max_score.keys()
         )
+        print("max_score[topic_id] (line 2934):", max_score[topic_id])
         time_spent[topic_id] = sum(
-            raw_time_spent[element_id] or id
-            for element_id in set(learning_element_lms_ids) & raw_time_spent.keys()
+            raw_time_spent[element_id] or 0
+            for element_id in element_ids & raw_time_spent.keys()
         )
+        print("time_spent[topic_id] (line 2939):", time_spent[topic_id])
 
 
 
