@@ -217,6 +217,7 @@ def get_courses_scores(
     should be present, even if LA data is missing.
     """
     courses_scores = fetch_courses_scores(user_id, since, until)
+    print("courses_scores, (line 432 learning_analytics)", courses_scores)
     return map_items_to_record(courses_scores)
 
 
