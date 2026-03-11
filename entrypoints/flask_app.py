@@ -2866,10 +2866,10 @@ def get_scoreboard_course_data(user_id: str):
 
     last_elements = {
         element_id: {
-            "learning_element": services.get_learning_element_by_lms_id(
+            "learningElement": services.get_learning_element_by_lms_id(
                 uow, student["id"], element_id
             ),
-            "completed_at": completed_at,
+            "completedAt": completed_at,
         }
         for element_id, completed_at in learning_analytics.get_user_last_elements(
             user["lms_user_id"]
@@ -2878,9 +2878,9 @@ def get_scoreboard_course_data(user_id: str):
 
     result = {
         "score": score,
-        "max_score": max_score,
-        "time_spent": time_spent,
-        "last_elements": last_elements,
+        "maxScore": max_score,
+        "timeSpent": time_spent,
+        "lastElements": last_elements,
     }
     print("result (line 2885):", result)
 
@@ -2953,10 +2953,10 @@ def get_scoreboard_topic_data(user_id: str, course_id: str, course_lms_id: str):
 
     last_elements = {
         element_id: {
-            "learning_element": services.get_learning_element_by_lms_id(
+            "learningElement": services.get_learning_element_by_lms_id(
                 uow, student["id"], element_id
             ),
-            "completed_at": completed_at,
+            "completedAt": completed_at,
         }
         for element_id, completed_at in learning_analytics.get_course_last_elements(
             user["lms_user_id"], course_lms_id, since, until
@@ -2965,9 +2965,9 @@ def get_scoreboard_topic_data(user_id: str, course_id: str, course_lms_id: str):
 
     result = {
         "score": score,
-        "max_score": max_score,
-        "time_spent": time_spent,
-        "last_elements": last_elements,
+        "maxScore": max_score,
+        "timeSpent": time_spent,
+        "lastElements": last_elements,
     }
     print("result (line 2957):", result)
 
@@ -3046,19 +3046,19 @@ def get_scoreboard_learning_element_data(user_id: str, course_id: str, course_lm
 
     last_elements = {
         element_id: {
-            "learning_element": services.get_learning_element_by_lms_id(
+            "learningElement": services.get_learning_element_by_lms_id(
                 uow, student["id"], element_id
             ),
-            "completed_at": last_three_best_attempts[element_id]["completedAt"],
+            "completedAt": last_three_best_attempts[element_id]["completedAt"],
         }
         for element_id in last_three_best_attempts.keys()
     }
 
     result = {
-        "max_score": max_score,
-        "time_spent": time_spent,
-        "last_elements": last_elements,
-        "best_attempts": best_attempts,
+        "maxScore": max_score,
+        "timeSpent": time_spent,
+        "lastElements": last_elements,
+        "bestAttempts": best_attempts,
     }
     print("result (line 3055):", result)
 
