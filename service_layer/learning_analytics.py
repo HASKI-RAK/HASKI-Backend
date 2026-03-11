@@ -159,6 +159,64 @@ def map_items_to_record(items: list[dict]) -> dict[str, Any]:
     return mapped
 
 
+def map_items_to_best_attempt_record(items: list[dict]) -> dict[str, dict[str, Any]]:
+    mapped: dict[str, dict[str, Any]] = {}
+
+    for item in items:
+        url = item.get("courseId") or item.get("elementId")
+        if not url:
+            continue
+
+        element_id = parse_qs(urlparse(url).query).get("id", [None])[0]
+        if element_id is None:
+            continue
+
+        candidate = {
+            "score": item.get("score"),
+            "maxScore": item.get("maxScore"),
+            "timeSpent": item.get("timeSpent"),
+            "completedAt": item.get("completedAt"),
+            "completionStatus": item.get("completionStatus"),
+        }
+
+        current = mapped.get(element_id)
+
+        if current is None:
+            mapped[element_id] = candidate
+            continue
+
+        candidate_score = candidate.get("score")
+        current_score = current.get("score")
+
+        if current_score is None and candidate_score is not None:
+            mapped[element_id] = candidate
+            continue
+
+        if current_score is not None and candidate_score is not None:
+            if candidate_score > current_score:
+                mapped[element_id] = candidate
+            elif candidate_score == current_score:
+                if (
+                        candidate.get("completedAt") is not None
+                        and (
+                        current.get("completedAt") is None
+                        or candidate["completedAt"] > current["completedAt"]
+                )
+                ):
+                    mapped[element_id] = candidate
+            continue
+
+        if current_score is None and candidate_score is None:
+            # merge missing info only
+            merged = current.copy()
+            for key, value in candidate.items():
+                if merged.get(key) is None and value is not None:
+                    merged[key] = value
+            mapped[element_id] = merged
+
+    return mapped
+
+
 def fetch_courses_scores(
     user_id: Any, since: Any | None = None, until: Any | None = None
 ) -> list[dict[str, int]]:
@@ -531,7 +589,7 @@ def get_course_elements_best_attempts(user_id: Any, course_id: Any) -> dict[str,
         user_id, course_id
     )
     print("course_elements_best_attempts, (line 532 learning_analytics)", course_elements_best_attempts)
-    return map_items_to_record(course_elements_best_attempts)
+    return map_items_to_best_attempt_record(course_elements_best_attempts)
 
 
 def fetch_course_elements_time_spent(
