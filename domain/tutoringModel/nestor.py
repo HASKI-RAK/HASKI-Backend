@@ -169,8 +169,7 @@ class Nestor:
         for le_var in self.rgb_le_variables:
             # Query both LE format and probability values
             query_map = le_infer.map_query(
-                variables=[
-                    le_var], evidence=evidence_for_inference, show_progress=False
+                variables=[le_var], evidence=evidence_for_inference, show_progress=False
             )
             le_max_dict[str(query_map)] = str(
                 le_infer.max_marginal(
@@ -197,8 +196,7 @@ class Nestor:
             try:
                 le_max_dict.pop(remove_key)
             except KeyError:
-                le_max_dict.update(
-                    {remove_key: le_max_dict.pop(str({"VAM": "Yes"}))})
+                le_max_dict.update({remove_key: le_max_dict.pop(str({"VAM": "Yes"}))})
 
         # here the dictionary contains inference with both yes and no
         # The LEs with state 'No' is not removed but

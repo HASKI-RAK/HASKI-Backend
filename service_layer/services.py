@@ -12,7 +12,7 @@ from domain.learnersModel import basic_listk_algorithm as BLKA
 from domain.learnersModel import model as LM
 from domain.tutoringModel import model as TM
 from domain.userAdministartion import model as UA
-from service_layer import unit_of_work
+from service_layer import learning_analytics, unit_of_work
 from service_layer.lti.OIDCLoginFlask import OIDCLoginFlask
 
 
@@ -441,12 +441,16 @@ def create_learning_path(
             default_learning_path = get_default_learning_path_by_university(
                 uow, user["university"]
             )
+            click_scores = learning_analytics.get_click_scores_for_learning_path(
+                user_id=student_id, course_id=course_id, topic_id=topic_id
+            )
             learning_path.get_learning_path(
                 student_id=student_id,
                 learning_style=learning_style,
                 _algorithm=algorithm.lower(),
                 list_of_les=list_of_les,
                 default_learning_path=default_learning_path,
+                click_data=click_scores,
             )
             result = learning_path.serialize()
             for i, le in enumerate(result["path"].replace(",", "").split()):

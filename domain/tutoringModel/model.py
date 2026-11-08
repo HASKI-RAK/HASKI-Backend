@@ -39,6 +39,7 @@ class LearningPath:
         list_of_les: LearningElementSequence,
         default_learning_path=None,
         input_view_time=None,
+        click_data=None,
     ):
         algorithm = _algorithm.lower()
         if algorithm == "graf":
@@ -60,8 +61,7 @@ class LearningPath:
                     learning_style, list_of_les_classifications, dimension
                 )
                 norm_view_times = utils.added_view_times(input_view_time)
-                coordinates = utils.update_coordinate(
-                    coordinates, norm_view_times)
+                coordinates = utils.update_coordinate(coordinates, norm_view_times)
             start_point = {"Start": (15,) * dimension}
             start_point.update(coordinates)
             path = aco.AntColonySolver()
@@ -78,6 +78,7 @@ class LearningPath:
                 input_learning_style=learning_style,
                 input_learning_element=list_of_les,
                 input_view_time=input_view_time,
+                click_scores=click_data if click_data is not None else {},
             )
         elif algorithm == "tyche":
             tyche_alg = tyche.TycheAlgorithm()

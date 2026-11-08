@@ -16,3 +16,16 @@ CLIENT_ID=clientid
 KEY_ID=test_key_id
 KEY_N_VALUE=default_n_value
 JWT_KEYS_LOCATION="./keys"
+
+# --- Learning Analytics (LAAC) ---
+# Base URL of the LAAC API (default cloud endpoint)
+LAAC_BASE_URL=https://laac.haski.app/api/v1
+# Set to 'false' to skip TLS verification for local/self-signed setups (not recommended)
+LAAC_VERIFY_SSL=true
+# Bearer token for LAAC metrics (must include analytics:read scope).
+# You can paste a long-lived/dev token generated via the LAAC repo scripts
+# (e.g. `yarn setup:secrets && yarn generate:jwt` in the LAAC project),
+# or obtain a production token from your IdP configured with the same JWT_SECRET.
+LAAC_BEARER_TOKEN=
+# Alternative variable names the backend will also accept for convenience:
+# LAAC_DEV_JWT / DEV_JWT / LAAC_API_TOKEN

@@ -7,6 +7,7 @@ from pgmpy.models import BayesianNetwork
 import errors.errors as err
 from domain.domainModel import model as DM
 from domain.learnersModel import model as LM
+from domain.tutoringModel import ga as ga_module
 from domain.tutoringModel import model as TM
 from domain.tutoringModel import nestor, tyche, utils
 from domain.tutoringModel.graf import GrafAlgorithm as Graf
@@ -779,7 +780,9 @@ def get_learning_path_aco(learning_style, list_of_elements, dict_view_time=None)
     return lp.path
 
 
-def get_learning_path_ga(learning_style, list_of_elements, dict_view_time=None):
+def get_learning_path_ga(
+    learning_style, list_of_elements, dict_view_time=None, click_scores=None
+):
     list_of_les = []
     for i, ele_name in enumerate(list_of_elements):
         le = DM.LearningElement(
@@ -799,6 +802,7 @@ def get_learning_path_ga(learning_style, list_of_elements, dict_view_time=None):
         _algorithm="ga",
         list_of_les=list_of_les,
         input_view_time=dict_view_time,
+        click_data=click_scores,
     )
     return lp.path
 
@@ -1231,6 +1235,30 @@ def test_added_view_times_single_element():
     assert time == 0
 
 
+def test_apply_click_dimension_normalizes_and_extends():
+    coords = {"ÜB": (1, 2, 3, 4)}
+    clicks = {"ÜB": 50.0}
+
+    updated = utils.apply_click_dimension(
+        coords, clicks, dimensions=5, click_index=4, fallback_value=0
+    )
+
+    assert "ÜB" in updated
+    assert len(updated["ÜB"]) == 5
+    # Highest click score now maps to the minimum coordinate (strong attraction).
+    assert updated["ÜB"][4] == pytest.approx(-12)
+
+
+def test_apply_click_dimension_uses_fallback_for_missing_scores():
+    coords = {"BE": (1, 2, 3, 4)}
+
+    updated = utils.apply_click_dimension(
+        coords, {}, dimensions=5, click_index=4, fallback_value=0
+    )
+
+    assert updated["BE"][4] == 0
+
+
 @pytest.mark.parametrize(
     "learning_style, list_of_keys, dict_view_time",
     [
@@ -1290,3 +1318,230 @@ def test_prepare_les_for_ga2(learning_style, list_of_keys, dict_view_time):
     assert isinstance(result, str)
     path = result.split(", ") if result else []
     assert isinstance(path, list)
+
+
+def test_ga_click_dimension_included_even_without_data():
+    learning_style = {
+        "id": 1,
+        "characteristic_id": 1,
+        "perception_dimension": "int",
+        "perception_value": 7,
+        "input_dimension": "vis",
+        "input_value": 9,
+        "processing_dimension": "ref",
+        "processing_value": 5,
+        "understanding_dimension": "glo",
+        "understanding_value": 9,
+    }
+    list_of_les = [
+        {
+            "classification": "KÜ",
+        },
+        {
+            "classification": "EK",
+        },
+        {
+            "classification": "ÜB",
+        },
+    ]
+
+    algorithm = ga_module.GeneticAlgorithm(learning_elements=list_of_les)
+    algorithm.create_random_population(
+        learning_style=learning_style,
+        input_view_time=None,
+        click_scores={},
+    )
+
+    assert algorithm.le_coordinate.shape[1] == 5
+    coords_by_label = dict(zip(algorithm.learning_elements, algorithm.le_coordinate))
+    assert coords_by_label["ÜB"][4] == 0
+
+
+def test_ga_click_dimension_uses_scores_and_respects_ct_co_positions():
+    learning_style = {
+        "id": 1,
+        "characteristic_id": 1,
+        "perception_dimension": "int",
+        "perception_value": 5,
+        "input_dimension": "vis",
+        "input_value": 9,
+        "processing_dimension": "ref",
+        "processing_value": 5,
+        "understanding_dimension": "glo",
+        "understanding_value": 9,
+    }
+    list_of_keys = ["KÜ", "EK", "ÜB", "SE"]
+    click_scores = {
+        "KÜ": 10.0,
+        "EK": 8.0,
+        "ÜB": 50.0,
+        "SE": 1.0,
+    }
+
+    result = get_learning_path_ga(
+        learning_style, list_of_keys, dict_view_time=None, click_scores=click_scores
+    )
+    path = result.split(", ") if result else []
+
+    assert path[0] == "KÜ"
+    assert path[1] == "EK"
+
+
+def test_ga_dimensions_with_clicks_and_view_time():
+    learning_style = {
+        "id": 1,
+        "characteristic_id": 1,
+        "perception_dimension": "int",
+        "perception_value": 5,
+        "input_dimension": "vis",
+        "input_value": 9,
+        "processing_dimension": "ref",
+        "processing_value": 5,
+        "understanding_dimension": "glo",
+        "understanding_value": 9,
+    }
+    list_of_les = [
+        {"classification": "KÜ"},
+        {"classification": "EK"},
+        {"classification": "ÜB"},
+    ]
+    view_time = {"ÜB": (10, 20)}
+    ga_instance = ga_module.GeneticAlgorithm(learning_elements=list_of_les)
+    ga_instance.create_random_population(
+        learning_style=learning_style,
+        input_view_time=view_time,
+        click_scores={"ÜB": 25},
+    )
+
+    # 4 ILS + 1 click + 2 view/time
+    assert ga_instance.le_coordinate.shape[1] == 7
+
+
+def test_ga_click_scores_affect_coordinate_magnitude():
+    learning_style = {
+        "id": 1,
+        "characteristic_id": 1,
+        "perception_dimension": "int",
+        "perception_value": 5,
+        "input_dimension": "vis",
+        "input_value": 9,
+        "processing_dimension": "ref",
+        "processing_value": 5,
+        "understanding_dimension": "glo",
+        "understanding_value": 9,
+    }
+    list_of_les = [
+        {"classification": "KÜ"},
+        {"classification": "EK"},
+        {"classification": "ÜB"},
+        {"classification": "SE"},
+        {"classification": "BE"},
+    ]
+    ga_instance = ga_module.GeneticAlgorithm(learning_elements=list_of_les)
+    ga_instance.create_random_population(
+        learning_style=learning_style,
+        input_view_time=None,
+        click_scores={"ÜB": 50, "SE": 0},
+    )
+
+    coords_by_label = dict(
+        zip(ga_instance.learning_elements, ga_instance.le_coordinate)
+    )
+    ub_click = coords_by_label["ÜB"][4]
+    se_click = coords_by_label["SE"][4]
+    be_click = coords_by_label["BE"][4]
+
+    assert ub_click < be_click  # high engagement draws closest
+    assert be_click < se_click  # raw zero score sits furthest away
+
+
+def test_ga_path_differs_with_click_scores_and_respects_constraints():
+    learning_style = {
+        "id": 1,
+        "characteristic_id": 1,
+        "perception_dimension": "int",
+        "perception_value": 5,
+        "input_dimension": "vis",
+        "input_value": 9,
+        "processing_dimension": "ref",
+        "processing_value": 5,
+        "understanding_dimension": "glo",
+        "understanding_value": 9,
+    }
+    list_of_keys = ["KÜ", "EK", "ÜB", "SE", "BE"]
+
+    path_no_clicks = get_learning_path_ga(
+        learning_style, list_of_keys, dict_view_time=None, click_scores=None
+    ).split(", ")
+
+    click_scores = {"ÜB": 50, "SE": 10, "BE": 0}
+    path_with_clicks = get_learning_path_ga(
+        learning_style, list_of_keys, dict_view_time=None, click_scores=click_scores
+    ).split(", ")
+
+    # CT/CO constraints unchanged
+    assert path_with_clicks[0] == "KÜ"
+    assert path_with_clicks[1] == "EK"
+
+    # Higher click score should pull ÜB earlier relative to BE/SE
+    pos_no_clicks = path_no_clicks.index("ÜB")
+    pos_with_clicks = path_with_clicks.index("ÜB")
+    assert pos_with_clicks <= pos_no_clicks
+    assert path_with_clicks.index("ÜB") < path_with_clicks.index("BE")
+
+
+def test_normalize_click_value_inverts_range_and_handles_missing_values():
+    highest_engagement = utils.normalize_click_value(50)
+    lowest_engagement = utils.normalize_click_value(0)
+    missing_value = utils.normalize_click_value(None)
+
+    assert highest_engagement == pytest.approx(-12)
+    assert lowest_engagement == pytest.approx(13)
+    assert missing_value == 0
+
+
+def test_ga_injects_placeholder_when_ct_is_missing():
+    learning_style = {
+        "id": 1,
+        "characteristic_id": 1,
+        "perception_dimension": "int",
+        "perception_value": 7,
+        "input_dimension": "vis",
+        "input_value": 3,
+        "processing_dimension": "ref",
+        "processing_value": 5,
+        "understanding_dimension": "glo",
+        "understanding_value": 9,
+    }
+    list_of_les = [
+        {"classification": "ÜB"},
+        {"classification": "SE"},
+        {"classification": "LZ"},
+    ]
+
+    ga_instance = ga_module.GeneticAlgorithm(learning_elements=list_of_les)
+    ga_instance.create_random_population(
+        learning_style=learning_style,
+        input_view_time=None,
+        click_scores=None,
+    )
+
+    assert ga_instance.first_is_present is True
+    assert ga_instance.learning_elements[0] == "first"
+
+
+def test_ga_enforce_special_positions_places_labels_correctly():
+    ga_instance = ga_module.GeneticAlgorithm()
+    ga_instance.learning_elements = np.array(
+        ["ÜB", "LZ", "EK", "SE", "KÜ"], dtype=object
+    )
+    ga_instance.le_size = len(ga_instance.learning_elements)
+    ga_instance.le_coordinate = np.arange(ga_instance.le_size * 2, dtype=float).reshape(
+        ga_instance.le_size, 2
+    )
+
+    ga_instance._enforce_special_positions()
+
+    assert ga_instance.learning_elements[0] == "KÜ"
+    assert ga_instance.learning_elements[1] == "EK"
+    assert ga_instance.learning_elements[-1] == "LZ"
